@@ -983,6 +983,7 @@ static void mavlink_test_detection_stats(uint8_t system_id, uint8_t component_id
 	}18275,
 	}18379,
 	}18483,
+	}18587,
 	};
 	mavlink_detection_stats_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -990,8 +991,9 @@ static void mavlink_test_detection_stats(uint8_t system_id, uint8_t component_id
         	packet1.best_lat = packet_in.best_lat;
         	packet1.best_lon = packet_in.best_lon;
         	packet1.best_detection_id = packet_in.best_detection_id;
-        	packet1.detection_fps = packet_in.detection_fps;
+        	packet1.fps = packet_in.fps;
         	packet1.detections = packet_in.detections;
+        	packet1.best_alt = packet_in.best_alt;
         	packet1.images_done = packet_in.images_done;
         	packet1.images_todo = packet_in.images_todo;
         
@@ -1003,12 +1005,12 @@ static void mavlink_test_detection_stats(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_detection_stats_pack(system_id, component_id, &msg , packet1.detections , packet1.best_score , packet1.best_lat , packet1.best_lon , packet1.best_detection_id , packet1.images_done , packet1.images_todo , packet1.detection_fps );
+	mavlink_msg_detection_stats_pack(system_id, component_id, &msg , packet1.detections , packet1.best_score , packet1.best_lat , packet1.best_lon , packet1.best_alt , packet1.best_detection_id , packet1.images_done , packet1.images_todo , packet1.fps );
 	mavlink_msg_detection_stats_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_detection_stats_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.detections , packet1.best_score , packet1.best_lat , packet1.best_lon , packet1.best_detection_id , packet1.images_done , packet1.images_todo , packet1.detection_fps );
+	mavlink_msg_detection_stats_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.detections , packet1.best_score , packet1.best_lat , packet1.best_lon , packet1.best_alt , packet1.best_detection_id , packet1.images_done , packet1.images_todo , packet1.fps );
 	mavlink_msg_detection_stats_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -1021,7 +1023,7 @@ static void mavlink_test_detection_stats(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_detection_stats_send(MAVLINK_COMM_1 , packet1.detections , packet1.best_score , packet1.best_lat , packet1.best_lon , packet1.best_detection_id , packet1.images_done , packet1.images_todo , packet1.detection_fps );
+	mavlink_msg_detection_stats_send(MAVLINK_COMM_1 , packet1.detections , packet1.best_score , packet1.best_lat , packet1.best_lon , packet1.best_alt , packet1.best_detection_id , packet1.images_done , packet1.images_todo , packet1.fps );
 	mavlink_msg_detection_stats_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
@@ -1036,24 +1038,34 @@ static void mavlink_test_onboard_health(uint8_t system_id, uint8_t component_id,
 	}45.0,
 	}73.0,
 	}101.0,
-	}18067,
-	}{ 187, 188, 189, 190 },
-	}199,
-	}10,
-	}77,
+	}129.0,
+	}157.0,
+	}185.0,
+	}213.0,
+	}18899,
+	}235,
+	}46,
+	}113,
+	}180,
+	}247,
 	};
 	mavlink_onboard_health_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.uptime = packet_in.uptime;
-        	packet1.disk_usage_gb = packet_in.disk_usage_gb;
+        	packet1.ram_total = packet_in.ram_total;
+        	packet1.swap_total = packet_in.swap_total;
+        	packet1.disk_total = packet_in.disk_total;
         	packet1.temp = packet_in.temp;
         	packet1.voltage = packet_in.voltage;
+        	packet1.network_load_in = packet_in.network_load_in;
+        	packet1.network_load_out = packet_in.network_load_out;
         	packet1.cpu_freq = packet_in.cpu_freq;
+        	packet1.cpu_load = packet_in.cpu_load;
         	packet1.ram_usage = packet_in.ram_usage;
+        	packet1.swap_usage = packet_in.swap_usage;
         	packet1.disk_health = packet_in.disk_health;
         	packet1.disk_usage = packet_in.disk_usage;
         
-        	mav_array_memcpy(packet1.cpu_load, packet_in.cpu_load, sizeof(uint8_t)*4);
         
 
         memset(&packet2, 0, sizeof(packet2));
@@ -1062,12 +1074,12 @@ static void mavlink_test_onboard_health(uint8_t system_id, uint8_t component_id,
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_onboard_health_pack(system_id, component_id, &msg , packet1.uptime , packet1.cpu_freq , packet1.cpu_load , packet1.ram_usage , packet1.disk_health , packet1.disk_usage , packet1.disk_usage_gb , packet1.temp , packet1.voltage );
+	mavlink_msg_onboard_health_pack(system_id, component_id, &msg , packet1.uptime , packet1.cpu_freq , packet1.cpu_load , packet1.ram_usage , packet1.ram_total , packet1.swap_usage , packet1.swap_total , packet1.disk_health , packet1.disk_usage , packet1.disk_total , packet1.temp , packet1.voltage , packet1.network_load_in , packet1.network_load_out );
 	mavlink_msg_onboard_health_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_onboard_health_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.uptime , packet1.cpu_freq , packet1.cpu_load , packet1.ram_usage , packet1.disk_health , packet1.disk_usage , packet1.disk_usage_gb , packet1.temp , packet1.voltage );
+	mavlink_msg_onboard_health_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.uptime , packet1.cpu_freq , packet1.cpu_load , packet1.ram_usage , packet1.ram_total , packet1.swap_usage , packet1.swap_total , packet1.disk_health , packet1.disk_usage , packet1.disk_total , packet1.temp , packet1.voltage , packet1.network_load_in , packet1.network_load_out );
 	mavlink_msg_onboard_health_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -1080,7 +1092,7 @@ static void mavlink_test_onboard_health(uint8_t system_id, uint8_t component_id,
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_onboard_health_send(MAVLINK_COMM_1 , packet1.uptime , packet1.cpu_freq , packet1.cpu_load , packet1.ram_usage , packet1.disk_health , packet1.disk_usage , packet1.disk_usage_gb , packet1.temp , packet1.voltage );
+	mavlink_msg_onboard_health_send(MAVLINK_COMM_1 , packet1.uptime , packet1.cpu_freq , packet1.cpu_load , packet1.ram_usage , packet1.ram_total , packet1.swap_usage , packet1.swap_total , packet1.disk_health , packet1.disk_usage , packet1.disk_total , packet1.temp , packet1.voltage , packet1.network_load_in , packet1.network_load_out );
 	mavlink_msg_onboard_health_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }

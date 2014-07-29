@@ -5,34 +5,36 @@
 typedef struct __mavlink_detection_stats_t
 {
  float best_score; ///< Best score
- int32_t best_lat; ///< Latitude of best detection
- int32_t best_lon; ///< Longitude of best detection
+ int32_t best_lat; ///< Latitude of best detection * 1E7
+ int32_t best_lon; ///< Longitude of best detection * 1E7
  int32_t best_detection_id; ///< ID of best detection
- float detection_fps; ///< Average frames per seconds for detection
+ float fps; ///< Average images per seconds processed
  uint16_t detections; ///< Number of detections
- uint16_t images_done; ///< Number of images in already processed
- uint16_t images_todo; ///< Number of images in queue to process
+ int16_t best_alt; ///< Altitude of best detection * 1E3
+ uint16_t images_done; ///< Number of images already processed
+ uint16_t images_todo; ///< Number of images still to process
 } mavlink_detection_stats_t;
 
-#define MAVLINK_MSG_ID_DETECTION_STATS_LEN 26
-#define MAVLINK_MSG_ID_205_LEN 26
+#define MAVLINK_MSG_ID_DETECTION_STATS_LEN 28
+#define MAVLINK_MSG_ID_205_LEN 28
 
-#define MAVLINK_MSG_ID_DETECTION_STATS_CRC 61
-#define MAVLINK_MSG_ID_205_CRC 61
+#define MAVLINK_MSG_ID_DETECTION_STATS_CRC 165
+#define MAVLINK_MSG_ID_205_CRC 165
 
 
 
 #define MAVLINK_MESSAGE_INFO_DETECTION_STATS { \
 	"DETECTION_STATS", \
-	8, \
+	9, \
 	{  { "best_score", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_detection_stats_t, best_score) }, \
          { "best_lat", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_detection_stats_t, best_lat) }, \
          { "best_lon", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_detection_stats_t, best_lon) }, \
          { "best_detection_id", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_detection_stats_t, best_detection_id) }, \
-         { "detection_fps", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_detection_stats_t, detection_fps) }, \
+         { "fps", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_detection_stats_t, fps) }, \
          { "detections", NULL, MAVLINK_TYPE_UINT16_T, 0, 20, offsetof(mavlink_detection_stats_t, detections) }, \
-         { "images_done", NULL, MAVLINK_TYPE_UINT16_T, 0, 22, offsetof(mavlink_detection_stats_t, images_done) }, \
-         { "images_todo", NULL, MAVLINK_TYPE_UINT16_T, 0, 24, offsetof(mavlink_detection_stats_t, images_todo) }, \
+         { "best_alt", NULL, MAVLINK_TYPE_INT16_T, 0, 22, offsetof(mavlink_detection_stats_t, best_alt) }, \
+         { "images_done", NULL, MAVLINK_TYPE_UINT16_T, 0, 24, offsetof(mavlink_detection_stats_t, images_done) }, \
+         { "images_todo", NULL, MAVLINK_TYPE_UINT16_T, 0, 26, offsetof(mavlink_detection_stats_t, images_todo) }, \
          } \
 }
 
@@ -45,16 +47,17 @@ typedef struct __mavlink_detection_stats_t
  *
  * @param detections Number of detections
  * @param best_score Best score
- * @param best_lat Latitude of best detection
- * @param best_lon Longitude of best detection
+ * @param best_lat Latitude of best detection * 1E7
+ * @param best_lon Longitude of best detection * 1E7
+ * @param best_alt Altitude of best detection * 1E3
  * @param best_detection_id ID of best detection
- * @param images_done Number of images in already processed
- * @param images_todo Number of images in queue to process
- * @param detection_fps Average frames per seconds for detection
+ * @param images_done Number of images already processed
+ * @param images_todo Number of images still to process
+ * @param fps Average images per seconds processed
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_detection_stats_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-						       uint16_t detections, float best_score, int32_t best_lat, int32_t best_lon, int32_t best_detection_id, uint16_t images_done, uint16_t images_todo, float detection_fps)
+						       uint16_t detections, float best_score, int32_t best_lat, int32_t best_lon, int16_t best_alt, int32_t best_detection_id, uint16_t images_done, uint16_t images_todo, float fps)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_DETECTION_STATS_LEN];
@@ -62,10 +65,11 @@ static inline uint16_t mavlink_msg_detection_stats_pack(uint8_t system_id, uint8
 	_mav_put_int32_t(buf, 4, best_lat);
 	_mav_put_int32_t(buf, 8, best_lon);
 	_mav_put_int32_t(buf, 12, best_detection_id);
-	_mav_put_float(buf, 16, detection_fps);
+	_mav_put_float(buf, 16, fps);
 	_mav_put_uint16_t(buf, 20, detections);
-	_mav_put_uint16_t(buf, 22, images_done);
-	_mav_put_uint16_t(buf, 24, images_todo);
+	_mav_put_int16_t(buf, 22, best_alt);
+	_mav_put_uint16_t(buf, 24, images_done);
+	_mav_put_uint16_t(buf, 26, images_todo);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_DETECTION_STATS_LEN);
 #else
@@ -74,8 +78,9 @@ static inline uint16_t mavlink_msg_detection_stats_pack(uint8_t system_id, uint8
 	packet.best_lat = best_lat;
 	packet.best_lon = best_lon;
 	packet.best_detection_id = best_detection_id;
-	packet.detection_fps = detection_fps;
+	packet.fps = fps;
 	packet.detections = detections;
+	packet.best_alt = best_alt;
 	packet.images_done = images_done;
 	packet.images_todo = images_todo;
 
@@ -98,17 +103,18 @@ static inline uint16_t mavlink_msg_detection_stats_pack(uint8_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param detections Number of detections
  * @param best_score Best score
- * @param best_lat Latitude of best detection
- * @param best_lon Longitude of best detection
+ * @param best_lat Latitude of best detection * 1E7
+ * @param best_lon Longitude of best detection * 1E7
+ * @param best_alt Altitude of best detection * 1E3
  * @param best_detection_id ID of best detection
- * @param images_done Number of images in already processed
- * @param images_todo Number of images in queue to process
- * @param detection_fps Average frames per seconds for detection
+ * @param images_done Number of images already processed
+ * @param images_todo Number of images still to process
+ * @param fps Average images per seconds processed
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_detection_stats_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
-						           uint16_t detections,float best_score,int32_t best_lat,int32_t best_lon,int32_t best_detection_id,uint16_t images_done,uint16_t images_todo,float detection_fps)
+						           uint16_t detections,float best_score,int32_t best_lat,int32_t best_lon,int16_t best_alt,int32_t best_detection_id,uint16_t images_done,uint16_t images_todo,float fps)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_DETECTION_STATS_LEN];
@@ -116,10 +122,11 @@ static inline uint16_t mavlink_msg_detection_stats_pack_chan(uint8_t system_id, 
 	_mav_put_int32_t(buf, 4, best_lat);
 	_mav_put_int32_t(buf, 8, best_lon);
 	_mav_put_int32_t(buf, 12, best_detection_id);
-	_mav_put_float(buf, 16, detection_fps);
+	_mav_put_float(buf, 16, fps);
 	_mav_put_uint16_t(buf, 20, detections);
-	_mav_put_uint16_t(buf, 22, images_done);
-	_mav_put_uint16_t(buf, 24, images_todo);
+	_mav_put_int16_t(buf, 22, best_alt);
+	_mav_put_uint16_t(buf, 24, images_done);
+	_mav_put_uint16_t(buf, 26, images_todo);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_DETECTION_STATS_LEN);
 #else
@@ -128,8 +135,9 @@ static inline uint16_t mavlink_msg_detection_stats_pack_chan(uint8_t system_id, 
 	packet.best_lat = best_lat;
 	packet.best_lon = best_lon;
 	packet.best_detection_id = best_detection_id;
-	packet.detection_fps = detection_fps;
+	packet.fps = fps;
 	packet.detections = detections;
+	packet.best_alt = best_alt;
 	packet.images_done = images_done;
 	packet.images_todo = images_todo;
 
@@ -154,7 +162,7 @@ static inline uint16_t mavlink_msg_detection_stats_pack_chan(uint8_t system_id, 
  */
 static inline uint16_t mavlink_msg_detection_stats_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_detection_stats_t* detection_stats)
 {
-	return mavlink_msg_detection_stats_pack(system_id, component_id, msg, detection_stats->detections, detection_stats->best_score, detection_stats->best_lat, detection_stats->best_lon, detection_stats->best_detection_id, detection_stats->images_done, detection_stats->images_todo, detection_stats->detection_fps);
+	return mavlink_msg_detection_stats_pack(system_id, component_id, msg, detection_stats->detections, detection_stats->best_score, detection_stats->best_lat, detection_stats->best_lon, detection_stats->best_alt, detection_stats->best_detection_id, detection_stats->images_done, detection_stats->images_todo, detection_stats->fps);
 }
 
 /**
@@ -168,7 +176,7 @@ static inline uint16_t mavlink_msg_detection_stats_encode(uint8_t system_id, uin
  */
 static inline uint16_t mavlink_msg_detection_stats_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_detection_stats_t* detection_stats)
 {
-	return mavlink_msg_detection_stats_pack_chan(system_id, component_id, chan, msg, detection_stats->detections, detection_stats->best_score, detection_stats->best_lat, detection_stats->best_lon, detection_stats->best_detection_id, detection_stats->images_done, detection_stats->images_todo, detection_stats->detection_fps);
+	return mavlink_msg_detection_stats_pack_chan(system_id, component_id, chan, msg, detection_stats->detections, detection_stats->best_score, detection_stats->best_lat, detection_stats->best_lon, detection_stats->best_alt, detection_stats->best_detection_id, detection_stats->images_done, detection_stats->images_todo, detection_stats->fps);
 }
 
 /**
@@ -177,16 +185,17 @@ static inline uint16_t mavlink_msg_detection_stats_encode_chan(uint8_t system_id
  *
  * @param detections Number of detections
  * @param best_score Best score
- * @param best_lat Latitude of best detection
- * @param best_lon Longitude of best detection
+ * @param best_lat Latitude of best detection * 1E7
+ * @param best_lon Longitude of best detection * 1E7
+ * @param best_alt Altitude of best detection * 1E3
  * @param best_detection_id ID of best detection
- * @param images_done Number of images in already processed
- * @param images_todo Number of images in queue to process
- * @param detection_fps Average frames per seconds for detection
+ * @param images_done Number of images already processed
+ * @param images_todo Number of images still to process
+ * @param fps Average images per seconds processed
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_detection_stats_send(mavlink_channel_t chan, uint16_t detections, float best_score, int32_t best_lat, int32_t best_lon, int32_t best_detection_id, uint16_t images_done, uint16_t images_todo, float detection_fps)
+static inline void mavlink_msg_detection_stats_send(mavlink_channel_t chan, uint16_t detections, float best_score, int32_t best_lat, int32_t best_lon, int16_t best_alt, int32_t best_detection_id, uint16_t images_done, uint16_t images_todo, float fps)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_DETECTION_STATS_LEN];
@@ -194,10 +203,11 @@ static inline void mavlink_msg_detection_stats_send(mavlink_channel_t chan, uint
 	_mav_put_int32_t(buf, 4, best_lat);
 	_mav_put_int32_t(buf, 8, best_lon);
 	_mav_put_int32_t(buf, 12, best_detection_id);
-	_mav_put_float(buf, 16, detection_fps);
+	_mav_put_float(buf, 16, fps);
 	_mav_put_uint16_t(buf, 20, detections);
-	_mav_put_uint16_t(buf, 22, images_done);
-	_mav_put_uint16_t(buf, 24, images_todo);
+	_mav_put_int16_t(buf, 22, best_alt);
+	_mav_put_uint16_t(buf, 24, images_done);
+	_mav_put_uint16_t(buf, 26, images_todo);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_DETECTION_STATS, buf, MAVLINK_MSG_ID_DETECTION_STATS_LEN, MAVLINK_MSG_ID_DETECTION_STATS_CRC);
@@ -210,8 +220,9 @@ static inline void mavlink_msg_detection_stats_send(mavlink_channel_t chan, uint
 	packet.best_lat = best_lat;
 	packet.best_lon = best_lon;
 	packet.best_detection_id = best_detection_id;
-	packet.detection_fps = detection_fps;
+	packet.fps = fps;
 	packet.detections = detections;
+	packet.best_alt = best_alt;
 	packet.images_done = images_done;
 	packet.images_todo = images_todo;
 
@@ -231,7 +242,7 @@ static inline void mavlink_msg_detection_stats_send(mavlink_channel_t chan, uint
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_detection_stats_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint16_t detections, float best_score, int32_t best_lat, int32_t best_lon, int32_t best_detection_id, uint16_t images_done, uint16_t images_todo, float detection_fps)
+static inline void mavlink_msg_detection_stats_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint16_t detections, float best_score, int32_t best_lat, int32_t best_lon, int16_t best_alt, int32_t best_detection_id, uint16_t images_done, uint16_t images_todo, float fps)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char *buf = (char *)msgbuf;
@@ -239,10 +250,11 @@ static inline void mavlink_msg_detection_stats_send_buf(mavlink_message_t *msgbu
 	_mav_put_int32_t(buf, 4, best_lat);
 	_mav_put_int32_t(buf, 8, best_lon);
 	_mav_put_int32_t(buf, 12, best_detection_id);
-	_mav_put_float(buf, 16, detection_fps);
+	_mav_put_float(buf, 16, fps);
 	_mav_put_uint16_t(buf, 20, detections);
-	_mav_put_uint16_t(buf, 22, images_done);
-	_mav_put_uint16_t(buf, 24, images_todo);
+	_mav_put_int16_t(buf, 22, best_alt);
+	_mav_put_uint16_t(buf, 24, images_done);
+	_mav_put_uint16_t(buf, 26, images_todo);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_DETECTION_STATS, buf, MAVLINK_MSG_ID_DETECTION_STATS_LEN, MAVLINK_MSG_ID_DETECTION_STATS_CRC);
@@ -255,8 +267,9 @@ static inline void mavlink_msg_detection_stats_send_buf(mavlink_message_t *msgbu
 	packet->best_lat = best_lat;
 	packet->best_lon = best_lon;
 	packet->best_detection_id = best_detection_id;
-	packet->detection_fps = detection_fps;
+	packet->fps = fps;
 	packet->detections = detections;
+	packet->best_alt = best_alt;
 	packet->images_done = images_done;
 	packet->images_todo = images_todo;
 
@@ -297,7 +310,7 @@ static inline float mavlink_msg_detection_stats_get_best_score(const mavlink_mes
 /**
  * @brief Get field best_lat from detection_stats message
  *
- * @return Latitude of best detection
+ * @return Latitude of best detection * 1E7
  */
 static inline int32_t mavlink_msg_detection_stats_get_best_lat(const mavlink_message_t* msg)
 {
@@ -307,11 +320,21 @@ static inline int32_t mavlink_msg_detection_stats_get_best_lat(const mavlink_mes
 /**
  * @brief Get field best_lon from detection_stats message
  *
- * @return Longitude of best detection
+ * @return Longitude of best detection * 1E7
  */
 static inline int32_t mavlink_msg_detection_stats_get_best_lon(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_int32_t(msg,  8);
+}
+
+/**
+ * @brief Get field best_alt from detection_stats message
+ *
+ * @return Altitude of best detection * 1E3
+ */
+static inline int16_t mavlink_msg_detection_stats_get_best_alt(const mavlink_message_t* msg)
+{
+	return _MAV_RETURN_int16_t(msg,  22);
 }
 
 /**
@@ -327,29 +350,29 @@ static inline int32_t mavlink_msg_detection_stats_get_best_detection_id(const ma
 /**
  * @brief Get field images_done from detection_stats message
  *
- * @return Number of images in already processed
+ * @return Number of images already processed
  */
 static inline uint16_t mavlink_msg_detection_stats_get_images_done(const mavlink_message_t* msg)
-{
-	return _MAV_RETURN_uint16_t(msg,  22);
-}
-
-/**
- * @brief Get field images_todo from detection_stats message
- *
- * @return Number of images in queue to process
- */
-static inline uint16_t mavlink_msg_detection_stats_get_images_todo(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint16_t(msg,  24);
 }
 
 /**
- * @brief Get field detection_fps from detection_stats message
+ * @brief Get field images_todo from detection_stats message
  *
- * @return Average frames per seconds for detection
+ * @return Number of images still to process
  */
-static inline float mavlink_msg_detection_stats_get_detection_fps(const mavlink_message_t* msg)
+static inline uint16_t mavlink_msg_detection_stats_get_images_todo(const mavlink_message_t* msg)
+{
+	return _MAV_RETURN_uint16_t(msg,  26);
+}
+
+/**
+ * @brief Get field fps from detection_stats message
+ *
+ * @return Average images per seconds processed
+ */
+static inline float mavlink_msg_detection_stats_get_fps(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  16);
 }
@@ -367,8 +390,9 @@ static inline void mavlink_msg_detection_stats_decode(const mavlink_message_t* m
 	detection_stats->best_lat = mavlink_msg_detection_stats_get_best_lat(msg);
 	detection_stats->best_lon = mavlink_msg_detection_stats_get_best_lon(msg);
 	detection_stats->best_detection_id = mavlink_msg_detection_stats_get_best_detection_id(msg);
-	detection_stats->detection_fps = mavlink_msg_detection_stats_get_detection_fps(msg);
+	detection_stats->fps = mavlink_msg_detection_stats_get_fps(msg);
 	detection_stats->detections = mavlink_msg_detection_stats_get_detections(msg);
+	detection_stats->best_alt = mavlink_msg_detection_stats_get_best_alt(msg);
 	detection_stats->images_done = mavlink_msg_detection_stats_get_images_done(msg);
 	detection_stats->images_todo = mavlink_msg_detection_stats_get_images_todo(msg);
 #else
