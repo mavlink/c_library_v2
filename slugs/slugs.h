@@ -95,13 +95,15 @@ typedef enum MAV_CMD
 	MAV_CMD_VIDEO_START_CAPTURE=2500, /* Starts video capture |Camera ID (0 for all cameras), 1 for first, 2 for second, etc.| Frames per second| Resolution in megapixels (0.3 for 640x480, 1.3 for 1280x720, etc)|  */
 	MAV_CMD_VIDEO_STOP_CAPTURE=2501, /* Stop the current video capture |Reserved| Reserved|  */
 	MAV_CMD_PANORAMA_CREATE=2800, /* Create a panorama at the current position |Viewing angle horizontal of the panorama| Viewing angle vertical of panorama|  */
-	MAV_CMD_ENUM_END=2801, /*  | */
 	MAV_CMD_DO_NOTHING=10001, /* Does nothing. |1 to arm, 0 to disarm|  */
 	MAV_CMD_RETURN_TO_BASE=10011, /* Return vehicle to base. |0: return to base, 1: track mobile base|  */
 	MAV_CMD_STOP_RETURN_TO_BASE=10012, /* Stops the vehicle from returning to base and resumes flight.  | */
 	MAV_CMD_TURN_LIGHT=10013, /* Turns the vehicle's visible or infrared lights on or off. |0: visible lights, 1: infrared lights| 0: turn on, 1: turn off|  */
 	MAV_CMD_GET_MID_LEVEL_COMMANDS=10014, /* Requests vehicle to send current mid-level commands to ground station. | */
 	MAV_CMD_MIDLEVEL_STORAGE=10015, /* Requests storage of mid-level commands. |Mid-level command storage: 0: read from flash/EEPROM, 1: write to flash/EEPROM|  */
+	MAV_CMD_PAYLOAD_PREPARE_DEPLOY=30001, /* Deploy payload on a Lat / Lon / Alt position. This includes the navigation to reach the required release position and velocity. |Operation mode. 0: prepare single payload deploy (overwriting previous requests), but do not execute it. 1: execute payload deploy immediately (rejecting further deploy commands during execution, but allowing abort). 2: add payload deploy to existing deployment list.| Desired approach vector in degrees compass heading (0..360). A negative value indicates the system can define the approach vector at will.| Desired ground speed at release time. This can be overriden by the airframe in case it needs to meet minimum airspeed. A negative value indicates the system can define the ground speed at will.| Minimum altitude clearance to the release position in meters. A negative value indicates the system can define the clearance at will.| Latitude unscaled for MISSION_ITEM or in 1e7 degrees for MISSION_ITEM_INT| Longitude unscaled for MISSION_ITEM or in 1e7 degrees for MISSION_ITEM_INT| Altitude, in meters WGS84|  */
+	MAV_CMD_PAYLOAD_CONTROL_DEPLOY=30002, /* Control the payload deployment. |Operation mode. 0: Abort deployment, continue normal mission. 1: switch to payload deploment mode. 100: delete first payload deployment request. 101: delete all payload deployment requests.| Reserved| Reserved| Reserved| Reserved| Reserved| Reserved|  */
+	MAV_CMD_ENUM_END=30003, /*  | */
 } MAV_CMD;
 #endif
 
