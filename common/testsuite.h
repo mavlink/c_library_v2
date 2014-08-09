@@ -2645,13 +2645,13 @@ static void mavlink_test_mission_item_int(uint8_t system_id, uint8_t component_i
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_mission_item_int_t packet_in = {
-		963497464,
-	}963497672,
-	}963497880,
-	}963498088,
+		17.0,
+	}45.0,
+	}73.0,
+	}101.0,
 	}963498296,
 	}963498504,
-	}963498712,
+	}185.0,
 	}18691,
 	}18795,
 	}101,
@@ -2767,13 +2767,13 @@ static void mavlink_test_command_int(uint8_t system_id, uint8_t component_id, ma
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_command_int_t packet_in = {
-		963497464,
-	}963497672,
-	}963497880,
-	}963498088,
+		17.0,
+	}45.0,
+	}73.0,
+	}101.0,
 	}963498296,
 	}963498504,
-	}963498712,
+	}185.0,
 	}18691,
 	}223,
 	}34,
