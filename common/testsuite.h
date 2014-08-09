@@ -2117,20 +2117,20 @@ static void mavlink_test_attitude_quaternion_cov(uint8_t system_id, uint8_t comp
         uint16_t i;
 	mavlink_attitude_quaternion_cov_t packet_in = {
 		963497464,
-	}45.0,
-	}73.0,
-	}101.0,
-	}129.0,
-	}{ 157.0, 158.0, 159.0, 160.0, 161.0, 162.0, 163.0, 164.0, 165.0 },
+	}{ 45.0, 46.0, 47.0, 48.0 },
+	}157.0,
+	}185.0,
+	}213.0,
+	}{ 241.0, 242.0, 243.0, 244.0, 245.0, 246.0, 247.0, 248.0, 249.0 },
 	};
 	mavlink_attitude_quaternion_cov_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.time_boot_ms = packet_in.time_boot_ms;
-        	packet1.q[4] = packet_in.q[4];
         	packet1.rollspeed = packet_in.rollspeed;
         	packet1.pitchspeed = packet_in.pitchspeed;
         	packet1.yawspeed = packet_in.yawspeed;
         
+        	mav_array_memcpy(packet1.q, packet_in.q, sizeof(float)*4);
         	mav_array_memcpy(packet1.covariance, packet_in.covariance, sizeof(float)*9);
         
 
@@ -2140,12 +2140,12 @@ static void mavlink_test_attitude_quaternion_cov(uint8_t system_id, uint8_t comp
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_attitude_quaternion_cov_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.q[4] , packet1.rollspeed , packet1.pitchspeed , packet1.yawspeed , packet1.covariance );
+	mavlink_msg_attitude_quaternion_cov_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.q , packet1.rollspeed , packet1.pitchspeed , packet1.yawspeed , packet1.covariance );
 	mavlink_msg_attitude_quaternion_cov_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_attitude_quaternion_cov_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.q[4] , packet1.rollspeed , packet1.pitchspeed , packet1.yawspeed , packet1.covariance );
+	mavlink_msg_attitude_quaternion_cov_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.q , packet1.rollspeed , packet1.pitchspeed , packet1.yawspeed , packet1.covariance );
 	mavlink_msg_attitude_quaternion_cov_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -2158,7 +2158,7 @@ static void mavlink_test_attitude_quaternion_cov(uint8_t system_id, uint8_t comp
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_attitude_quaternion_cov_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.q[4] , packet1.rollspeed , packet1.pitchspeed , packet1.yawspeed , packet1.covariance );
+	mavlink_msg_attitude_quaternion_cov_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.q , packet1.rollspeed , packet1.pitchspeed , packet1.yawspeed , packet1.covariance );
 	mavlink_msg_attitude_quaternion_cov_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
