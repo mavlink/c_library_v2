@@ -2,11 +2,11 @@
  *	@brief MAVLink comm protocol generated from matrixpilot.xml
  *	@see http://qgroundcontrol.org/mavlink/
  */
-#ifndef MATRIXPILOT_H
-#define MATRIXPILOT_H
+#ifndef MAVLINK_MATRIXPILOT_H
+#define MAVLINK_MATRIXPILOT_H
 
 #ifndef MAVLINK_H
-    #error Wrong include order: MATRIXPILOT.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
+    #error Wrong include order: MAVLINK_MATRIXPILOT.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
 #ifdef __cplusplus
@@ -157,4 +157,4 @@ typedef enum MAV_CMD
 #ifdef __cplusplus
 }
 #endif // __cplusplus
-#endif // MATRIXPILOT_H
+#endif // MAVLINK_MATRIXPILOT_H

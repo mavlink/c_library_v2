@@ -2,11 +2,11 @@
  *	@brief MAVLink comm protocol generated from test.xml
  *	@see http://qgroundcontrol.org/mavlink/
  */
-#ifndef TEST_H
-#define TEST_H
+#ifndef MAVLINK_TEST_H
+#define MAVLINK_TEST_H
 
 #ifndef MAVLINK_H
-    #error Wrong include order: TEST.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
+    #error Wrong include order: MAVLINK_TEST.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
 #ifdef __cplusplus
@@ -54,4 +54,4 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif // __cplusplus
-#endif // TEST_H
+#endif // MAVLINK_TEST_H

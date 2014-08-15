@@ -2,11 +2,11 @@
  *	@brief MAVLink comm protocol generated from minimal.xml
  *	@see http://qgroundcontrol.org/mavlink/
  */
-#ifndef MINIMAL_H
-#define MINIMAL_H
+#ifndef MAVLINK_MINIMAL_H
+#define MAVLINK_MINIMAL_H
 
 #ifndef MAVLINK_H
-    #error Wrong include order: MINIMAL.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
+    #error Wrong include order: MAVLINK_MINIMAL.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
 #ifdef __cplusplus
@@ -151,4 +151,4 @@ typedef enum MAV_STATE
 #ifdef __cplusplus
 }
 #endif // __cplusplus
-#endif // MINIMAL_H
+#endif // MAVLINK_MINIMAL_H

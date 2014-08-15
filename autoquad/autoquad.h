@@ -2,11 +2,11 @@
  *	@brief MAVLink comm protocol generated from autoquad.xml
  *	@see http://qgroundcontrol.org/mavlink/
  */
-#ifndef AUTOQUAD_H
-#define AUTOQUAD_H
+#ifndef MAVLINK_AUTOQUAD_H
+#define MAVLINK_AUTOQUAD_H
 
 #ifndef MAVLINK_H
-    #error Wrong include order: AUTOQUAD.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
+    #error Wrong include order: MAVLINK_AUTOQUAD.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
 #ifdef __cplusplus
@@ -147,4 +147,4 @@ typedef enum MAV_CMD
 #ifdef __cplusplus
 }
 #endif // __cplusplus
-#endif // AUTOQUAD_H
+#endif // MAVLINK_AUTOQUAD_H

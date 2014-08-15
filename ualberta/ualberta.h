@@ -2,11 +2,11 @@
  *	@brief MAVLink comm protocol generated from ualberta.xml
  *	@see http://qgroundcontrol.org/mavlink/
  */
-#ifndef UALBERTA_H
-#define UALBERTA_H
+#ifndef MAVLINK_UALBERTA_H
+#define MAVLINK_UALBERTA_H
 
 #ifndef MAVLINK_H
-    #error Wrong include order: UALBERTA.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
+    #error Wrong include order: MAVLINK_UALBERTA.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
 #ifdef __cplusplus
@@ -94,4 +94,4 @@ typedef enum UALBERTA_PILOT_MODE
 #ifdef __cplusplus
 }
 #endif // __cplusplus
-#endif // UALBERTA_H
+#endif // MAVLINK_UALBERTA_H

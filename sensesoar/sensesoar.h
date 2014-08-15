@@ -2,11 +2,11 @@
  *	@brief MAVLink comm protocol generated from sensesoar.xml
  *	@see http://qgroundcontrol.org/mavlink/
  */
-#ifndef SENSESOAR_H
-#define SENSESOAR_H
+#ifndef MAVLINK_SENSESOAR_H
+#define MAVLINK_SENSESOAR_H
 
 #ifndef MAVLINK_H
-    #error Wrong include order: SENSESOAR.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
+    #error Wrong include order: MAVLINK_SENSESOAR.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
 #ifdef __cplusplus
@@ -78,4 +78,4 @@ typedef enum SENSESOAR_MODE
 #ifdef __cplusplus
 }
 #endif // __cplusplus
-#endif // SENSESOAR_H
+#endif // MAVLINK_SENSESOAR_H
