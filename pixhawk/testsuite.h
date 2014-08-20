@@ -975,27 +975,33 @@ static void mavlink_test_detection_stats(uint8_t system_id, uint8_t component_id
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_detection_stats_t packet_in = {
-		17.0,
+		963497464,
 	}963497672,
-	}963497880,
+	}73.0,
 	}963498088,
-	}129.0,
-	}18275,
-	}18379,
-	}18483,
-	}18587,
+	}963498296,
+	}963498504,
+	}963498712,
+	}963498920,
+	}963499128,
+	}963499336,
+	}297.0,
+	}19523,
 	};
 	mavlink_detection_stats_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
+        	packet1.detections = packet_in.detections;
+        	packet1.cluster_iters = packet_in.cluster_iters;
         	packet1.best_score = packet_in.best_score;
         	packet1.best_lat = packet_in.best_lat;
         	packet1.best_lon = packet_in.best_lon;
         	packet1.best_detection_id = packet_in.best_detection_id;
-        	packet1.fps = packet_in.fps;
-        	packet1.detections = packet_in.detections;
-        	packet1.best_alt = packet_in.best_alt;
+        	packet1.best_cluster_id = packet_in.best_cluster_id;
+        	packet1.best_cluster_iter_id = packet_in.best_cluster_iter_id;
         	packet1.images_done = packet_in.images_done;
         	packet1.images_todo = packet_in.images_todo;
+        	packet1.fps = packet_in.fps;
+        	packet1.best_alt = packet_in.best_alt;
         
         
 
@@ -1005,12 +1011,12 @@ static void mavlink_test_detection_stats(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_detection_stats_pack(system_id, component_id, &msg , packet1.detections , packet1.best_score , packet1.best_lat , packet1.best_lon , packet1.best_alt , packet1.best_detection_id , packet1.images_done , packet1.images_todo , packet1.fps );
+	mavlink_msg_detection_stats_pack(system_id, component_id, &msg , packet1.detections , packet1.cluster_iters , packet1.best_score , packet1.best_lat , packet1.best_lon , packet1.best_alt , packet1.best_detection_id , packet1.best_cluster_id , packet1.best_cluster_iter_id , packet1.images_done , packet1.images_todo , packet1.fps );
 	mavlink_msg_detection_stats_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_detection_stats_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.detections , packet1.best_score , packet1.best_lat , packet1.best_lon , packet1.best_alt , packet1.best_detection_id , packet1.images_done , packet1.images_todo , packet1.fps );
+	mavlink_msg_detection_stats_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.detections , packet1.cluster_iters , packet1.best_score , packet1.best_lat , packet1.best_lon , packet1.best_alt , packet1.best_detection_id , packet1.best_cluster_id , packet1.best_cluster_iter_id , packet1.images_done , packet1.images_todo , packet1.fps );
 	mavlink_msg_detection_stats_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -1023,7 +1029,7 @@ static void mavlink_test_detection_stats(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_detection_stats_send(MAVLINK_COMM_1 , packet1.detections , packet1.best_score , packet1.best_lat , packet1.best_lon , packet1.best_alt , packet1.best_detection_id , packet1.images_done , packet1.images_todo , packet1.fps );
+	mavlink_msg_detection_stats_send(MAVLINK_COMM_1 , packet1.detections , packet1.cluster_iters , packet1.best_score , packet1.best_lat , packet1.best_lon , packet1.best_alt , packet1.best_detection_id , packet1.best_cluster_id , packet1.best_cluster_iter_id , packet1.images_done , packet1.images_todo , packet1.fps );
 	mavlink_msg_detection_stats_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
