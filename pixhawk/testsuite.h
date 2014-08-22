@@ -985,8 +985,8 @@ static void mavlink_test_detection_stats(uint8_t system_id, uint8_t component_id
 	}963498920,
 	}963499128,
 	}963499336,
-	}297.0,
-	}19523,
+	}963499544,
+	}325.0,
 	};
 	mavlink_detection_stats_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -995,13 +995,13 @@ static void mavlink_test_detection_stats(uint8_t system_id, uint8_t component_id
         	packet1.best_score = packet_in.best_score;
         	packet1.best_lat = packet_in.best_lat;
         	packet1.best_lon = packet_in.best_lon;
+        	packet1.best_alt = packet_in.best_alt;
         	packet1.best_detection_id = packet_in.best_detection_id;
         	packet1.best_cluster_id = packet_in.best_cluster_id;
         	packet1.best_cluster_iter_id = packet_in.best_cluster_iter_id;
         	packet1.images_done = packet_in.images_done;
         	packet1.images_todo = packet_in.images_todo;
         	packet1.fps = packet_in.fps;
-        	packet1.best_alt = packet_in.best_alt;
         
         
 
