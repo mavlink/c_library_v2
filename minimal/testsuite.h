@@ -31,12 +31,12 @@ static void mavlink_test_heartbeat(uint8_t system_id, uint8_t component_id, mavl
         uint16_t i;
 	mavlink_heartbeat_t packet_in = {
 		963497464,
-	}17,
-	}84,
-	}151,
-	}218,
-	}2,
-	};
+	17,
+	84,
+	151,
+	218,
+	2,
+	;
 	mavlink_heartbeat_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.custom_mode = packet_in.custom_mode;

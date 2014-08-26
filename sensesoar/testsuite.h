@@ -31,9 +31,9 @@ static void mavlink_test_obs_position(uint8_t system_id, uint8_t component_id, m
         uint16_t i;
 	mavlink_obs_position_t packet_in = {
 		963497464,
-	}963497672,
-	}963497880,
-	};
+	963497672,
+	963497880,
+	;
 	mavlink_obs_position_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.lon = packet_in.lon;
@@ -78,7 +78,7 @@ static void mavlink_test_obs_velocity(uint8_t system_id, uint8_t component_id, m
         uint16_t i;
 	mavlink_obs_velocity_t packet_in = {
 		{ 17.0, 18.0, 19.0 },
-	};
+	;
 	mavlink_obs_velocity_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         
@@ -121,7 +121,7 @@ static void mavlink_test_obs_attitude(uint8_t system_id, uint8_t component_id, m
         uint16_t i;
 	mavlink_obs_attitude_t packet_in = {
 		{ 123.0, 124.0, 125.0, 126.0 },
-	};
+	;
 	mavlink_obs_attitude_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         
@@ -164,7 +164,7 @@ static void mavlink_test_obs_wind(uint8_t system_id, uint8_t component_id, mavli
         uint16_t i;
 	mavlink_obs_wind_t packet_in = {
 		{ 17.0, 18.0, 19.0 },
-	};
+	;
 	mavlink_obs_wind_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         
@@ -207,9 +207,9 @@ static void mavlink_test_obs_air_velocity(uint8_t system_id, uint8_t component_i
         uint16_t i;
 	mavlink_obs_air_velocity_t packet_in = {
 		17.0,
-	}45.0,
-	}73.0,
-	};
+	45.0,
+	73.0,
+	;
 	mavlink_obs_air_velocity_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.magnitude = packet_in.magnitude;
@@ -254,8 +254,8 @@ static void mavlink_test_obs_bias(uint8_t system_id, uint8_t component_id, mavli
         uint16_t i;
 	mavlink_obs_bias_t packet_in = {
 		{ 17.0, 18.0, 19.0 },
-	}{ 101.0, 102.0, 103.0 },
-	};
+	{ 101.0, 102.0, 103.0 },
+	;
 	mavlink_obs_bias_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         
@@ -299,7 +299,7 @@ static void mavlink_test_obs_qff(uint8_t system_id, uint8_t component_id, mavlin
         uint16_t i;
 	mavlink_obs_qff_t packet_in = {
 		17.0,
-	};
+	;
 	mavlink_obs_qff_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.qff = packet_in.qff;
@@ -342,7 +342,7 @@ static void mavlink_test_obs_air_temp(uint8_t system_id, uint8_t component_id, m
         uint16_t i;
 	mavlink_obs_air_temp_t packet_in = {
 		17.0,
-	};
+	;
 	mavlink_obs_air_temp_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.airT = packet_in.airT;
@@ -385,7 +385,7 @@ static void mavlink_test_filt_rot_vel(uint8_t system_id, uint8_t component_id, m
         uint16_t i;
 	mavlink_filt_rot_vel_t packet_in = {
 		{ 17.0, 18.0, 19.0 },
-	};
+	;
 	mavlink_filt_rot_vel_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         
@@ -428,8 +428,8 @@ static void mavlink_test_llc_out(uint8_t system_id, uint8_t component_id, mavlin
         uint16_t i;
 	mavlink_llc_out_t packet_in = {
 		{ 17235, 17236, 17237, 17238 },
-	}{ 17651, 17652 },
-	};
+	{ 17651, 17652 },
+	;
 	mavlink_llc_out_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         
@@ -473,9 +473,9 @@ static void mavlink_test_pm_elec(uint8_t system_id, uint8_t component_id, mavlin
         uint16_t i;
 	mavlink_pm_elec_t packet_in = {
 		17.0,
-	}45.0,
-	}{ 73.0, 74.0, 75.0 },
-	};
+	45.0,
+	{ 73.0, 74.0, 75.0 },
+	;
 	mavlink_pm_elec_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.PwCons = packet_in.PwCons;
@@ -520,10 +520,10 @@ static void mavlink_test_sys_stat(uint8_t system_id, uint8_t component_id, mavli
         uint16_t i;
 	mavlink_sys_stat_t packet_in = {
 		5,
-	}72,
-	}139,
-	}206,
-	};
+	72,
+	139,
+	206,
+	;
 	mavlink_sys_stat_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.gps = packet_in.gps;
@@ -569,8 +569,8 @@ static void mavlink_test_cmd_airspeed_chng(uint8_t system_id, uint8_t component_
         uint16_t i;
 	mavlink_cmd_airspeed_chng_t packet_in = {
 		17.0,
-	}17,
-	};
+	17,
+	;
 	mavlink_cmd_airspeed_chng_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.spCmd = packet_in.spCmd;
@@ -614,8 +614,8 @@ static void mavlink_test_cmd_airspeed_ack(uint8_t system_id, uint8_t component_i
         uint16_t i;
 	mavlink_cmd_airspeed_ack_t packet_in = {
 		17.0,
-	}17,
-	};
+	17,
+	;
 	mavlink_cmd_airspeed_ack_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.spCmd = packet_in.spCmd;
