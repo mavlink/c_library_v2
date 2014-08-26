@@ -30,13 +30,8 @@ static void mavlink_test_set_cam_shutter(uint8_t system_id, uint8_t component_id
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_set_cam_shutter_t packet_in = {
-		17.0,
-	17443,
-	17547,
-	29,
-	96,
-	163,
-	;
+		17.0,17443,17547,29,96,163
+    };
 	mavlink_set_cam_shutter_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.gain = packet_in.gain;
@@ -83,19 +78,8 @@ static void mavlink_test_image_triggered(uint8_t system_id, uint8_t component_id
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_image_triggered_t packet_in = {
-		93372036854775807ULL,
-	963497880,
-	101.0,
-	129.0,
-	157.0,
-	185.0,
-	213.0,
-	241.0,
-	269.0,
-	297.0,
-	325.0,
-	353.0,
-	;
+		93372036854775807ULL,963497880,101.0,129.0,157.0,185.0,213.0,241.0,269.0,297.0,325.0,353.0
+    };
 	mavlink_image_triggered_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.timestamp = packet_in.timestamp;
@@ -148,8 +132,8 @@ static void mavlink_test_image_trigger_control(uint8_t system_id, uint8_t compon
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_image_trigger_control_t packet_in = {
-		5,
-	;
+		5
+    };
 	mavlink_image_trigger_control_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.enable = packet_in.enable;
@@ -191,30 +175,8 @@ static void mavlink_test_image_available(uint8_t system_id, uint8_t component_id
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_image_available_t packet_in = {
-		93372036854775807ULL,
-	93372036854776311ULL,
-	93372036854776815ULL,
-	963498712,
-	963498920,
-	963499128,
-	963499336,
-	297.0,
-	325.0,
-	353.0,
-	381.0,
-	409.0,
-	437.0,
-	465.0,
-	493.0,
-	521.0,
-	549.0,
-	577.0,
-	21603,
-	21707,
-	21811,
-	147,
-	214,
-	;
+		93372036854775807ULL,93372036854776311ULL,93372036854776815ULL,963498712,963498920,963499128,963499336,297.0,325.0,353.0,381.0,409.0,437.0,465.0,493.0,521.0,549.0,577.0,21603,21707,21811,147,214
+    };
 	mavlink_image_available_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.cam_id = packet_in.cam_id;
@@ -278,13 +240,8 @@ static void mavlink_test_set_position_control_offset(uint8_t system_id, uint8_t 
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_set_position_control_offset_t packet_in = {
-		17.0,
-	45.0,
-	73.0,
-	101.0,
-	53,
-	120,
-	;
+		17.0,45.0,73.0,101.0,53,120
+    };
 	mavlink_set_position_control_offset_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.x = packet_in.x;
@@ -331,12 +288,8 @@ static void mavlink_test_position_control_setpoint(uint8_t system_id, uint8_t co
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_position_control_setpoint_t packet_in = {
-		17.0,
-	45.0,
-	73.0,
-	101.0,
-	18067,
-	;
+		17.0,45.0,73.0,101.0,18067
+    };
 	mavlink_position_control_setpoint_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.x = packet_in.x;
@@ -382,14 +335,8 @@ static void mavlink_test_marker(uint8_t system_id, uint8_t component_id, mavlink
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_marker_t packet_in = {
-		17.0,
-	45.0,
-	73.0,
-	101.0,
-	129.0,
-	157.0,
-	18483,
-	;
+		17.0,45.0,73.0,101.0,129.0,157.0,18483
+    };
 	mavlink_marker_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.x = packet_in.x;
@@ -437,14 +384,8 @@ static void mavlink_test_raw_aux(uint8_t system_id, uint8_t component_id, mavlin
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_raw_aux_t packet_in = {
-		963497464,
-	17443,
-	17547,
-	17651,
-	17755,
-	17859,
-	17963,
-	;
+		963497464,17443,17547,17651,17755,17859,17963
+    };
 	mavlink_raw_aux_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.baro = packet_in.baro;
@@ -492,9 +433,8 @@ static void mavlink_test_watchdog_heartbeat(uint8_t system_id, uint8_t component
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_watchdog_heartbeat_t packet_in = {
-		17235,
-	17339,
-	;
+		17235,17339
+    };
 	mavlink_watchdog_heartbeat_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.watchdog_id = packet_in.watchdog_id;
@@ -537,12 +477,8 @@ static void mavlink_test_watchdog_process_info(uint8_t system_id, uint8_t compon
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_watchdog_process_info_t packet_in = {
-		963497464,
-	17443,
-	17547,
-	"IJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABC",
-	"EFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRST",
-	;
+		963497464,17443,17547,"IJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABC","EFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRST"
+    };
 	mavlink_watchdog_process_info_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.timeout = packet_in.timeout;
@@ -588,13 +524,8 @@ static void mavlink_test_watchdog_process_status(uint8_t system_id, uint8_t comp
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_watchdog_process_status_t packet_in = {
-		963497464,
-	17443,
-	17547,
-	17651,
-	163,
-	230,
-	;
+		963497464,17443,17547,17651,163,230
+    };
 	mavlink_watchdog_process_status_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.pid = packet_in.pid;
@@ -641,11 +572,8 @@ static void mavlink_test_watchdog_command(uint8_t system_id, uint8_t component_i
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_watchdog_command_t packet_in = {
-		17235,
-	17339,
-	17,
-	84,
-	;
+		17235,17339,17,84
+    };
 	mavlink_watchdog_command_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.watchdog_id = packet_in.watchdog_id;
@@ -690,11 +618,8 @@ static void mavlink_test_pattern_detected(uint8_t system_id, uint8_t component_i
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_pattern_detected_t packet_in = {
-		17.0,
-	17,
-	"FGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ",
-	128,
-	;
+		17.0,17,"FGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ",128
+    };
 	mavlink_pattern_detected_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.confidence = packet_in.confidence;
@@ -739,15 +664,8 @@ static void mavlink_test_point_of_interest(uint8_t system_id, uint8_t component_
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_point_of_interest_t packet_in = {
-		17.0,
-	45.0,
-	73.0,
-	17859,
-	175,
-	242,
-	53,
-	"RSTUVWXYZABCDEFGHIJKLMNOP",
-	;
+		17.0,45.0,73.0,17859,175,242,53,"RSTUVWXYZABCDEFGHIJKLMNOP"
+    };
 	mavlink_point_of_interest_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.x = packet_in.x;
@@ -796,18 +714,8 @@ static void mavlink_test_point_of_interest_connection(uint8_t system_id, uint8_t
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_point_of_interest_connection_t packet_in = {
-		17.0,
-	45.0,
-	73.0,
-	101.0,
-	129.0,
-	157.0,
-	18483,
-	211,
-	22,
-	89,
-	"DEFGHIJKLMNOPQRSTUVWXYZAB",
-	;
+		17.0,45.0,73.0,101.0,129.0,157.0,18483,211,22,89,"DEFGHIJKLMNOPQRSTUVWXYZAB"
+    };
 	mavlink_point_of_interest_connection_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.xp1 = packet_in.xp1;
@@ -859,15 +767,8 @@ static void mavlink_test_brief_feature(uint8_t system_id, uint8_t component_id, 
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_brief_feature_t packet_in = {
-		17.0,
-	45.0,
-	73.0,
-	101.0,
-	18067,
-	18171,
-	65,
-	{ 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163 },
-	;
+		17.0,45.0,73.0,101.0,18067,18171,65,{ 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163 }
+    };
 	mavlink_brief_feature_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.x = packet_in.x;
@@ -916,16 +817,8 @@ static void mavlink_test_attitude_control(uint8_t system_id, uint8_t component_i
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_attitude_control_t packet_in = {
-		17.0,
-	45.0,
-	73.0,
-	101.0,
-	53,
-	120,
-	187,
-	254,
-	65,
-	;
+		17.0,45.0,73.0,101.0,53,120,187,254,65
+    };
 	mavlink_attitude_control_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.roll = packet_in.roll;
@@ -975,19 +868,8 @@ static void mavlink_test_detection_stats(uint8_t system_id, uint8_t component_id
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_detection_stats_t packet_in = {
-		963497464,
-	963497672,
-	73.0,
-	963498088,
-	963498296,
-	963498504,
-	963498712,
-	963498920,
-	963499128,
-	963499336,
-	963499544,
-	325.0,
-	;
+		963497464,963497672,73.0,963498088,963498296,963498504,963498712,963498920,963499128,963499336,963499544,325.0
+    };
 	mavlink_detection_stats_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.detections = packet_in.detections;
@@ -1040,21 +922,8 @@ static void mavlink_test_onboard_health(uint8_t system_id, uint8_t component_id,
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_onboard_health_t packet_in = {
-		963497464,
-	45.0,
-	73.0,
-	101.0,
-	129.0,
-	157.0,
-	185.0,
-	213.0,
-	18899,
-	235,
-	46,
-	113,
-	180,
-	247,
-	;
+		963497464,45.0,73.0,101.0,129.0,157.0,185.0,213.0,18899,235,46,113,180,247
+    };
 	mavlink_onboard_health_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.uptime = packet_in.uptime;

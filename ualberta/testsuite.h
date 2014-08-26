@@ -30,14 +30,8 @@ static void mavlink_test_nav_filter_bias(uint8_t system_id, uint8_t component_id
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_nav_filter_bias_t packet_in = {
-		93372036854775807ULL,
-	73.0,
-	101.0,
-	129.0,
-	157.0,
-	185.0,
-	213.0,
-	;
+		93372036854775807ULL,73.0,101.0,129.0,157.0,185.0,213.0
+    };
 	mavlink_nav_filter_bias_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.usec = packet_in.usec;
@@ -85,13 +79,8 @@ static void mavlink_test_radio_calibration(uint8_t system_id, uint8_t component_
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_radio_calibration_t packet_in = {
-		{ 17235, 17236, 17237 },
-	{ 17547, 17548, 17549 },
-	{ 17859, 17860, 17861 },
-	{ 18171, 18172 },
-	{ 18379, 18380, 18381, 18382, 18383 },
-	{ 18899, 18900, 18901, 18902, 18903 },
-	;
+		{ 17235, 17236, 17237 },{ 17547, 17548, 17549 },{ 17859, 17860, 17861 },{ 18171, 18172 },{ 18379, 18380, 18381, 18382, 18383 },{ 18899, 18900, 18901, 18902, 18903 }
+    };
 	mavlink_radio_calibration_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         
@@ -138,10 +127,8 @@ static void mavlink_test_ualberta_sys_status(uint8_t system_id, uint8_t componen
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_ualberta_sys_status_t packet_in = {
-		5,
-	72,
-	139,
-	;
+		5,72,139
+    };
 	mavlink_ualberta_sys_status_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.mode = packet_in.mode;
