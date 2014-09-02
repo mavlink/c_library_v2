@@ -106,7 +106,7 @@ typedef enum MAV_CMD
 	MAV_CMD_IMAGE_STOP_CAPTURE=2001, /* Stop image capture sequence |Reserved| Reserved|  */
 	MAV_CMD_VIDEO_START_CAPTURE=2500, /* Starts video capture |Camera ID (0 for all cameras), 1 for first, 2 for second, etc.| Frames per second| Resolution in megapixels (0.3 for 640x480, 1.3 for 1280x720, etc)|  */
 	MAV_CMD_VIDEO_STOP_CAPTURE=2501, /* Stop the current video capture |Reserved| Reserved|  */
-	MAV_CMD_PANORAMA_CREATE=2800, /* Create a panorama at the current position |Viewing angle horizontal of the panorama| Viewing angle vertical of panorama|  */
+	MAV_CMD_PANORAMA_CREATE=2800, /* Create a panorama at the current position |Viewing angle horizontal of the panorama (in degrees, +- 0.5 the total angle)| Viewing angle vertical of panorama (in degrees)| Speed of the horizontal rotation (in degrees per second)| Speed of the vertical rotation (in degrees per second)|  */
 	MAV_CMD_DO_START_SEARCH=10001, /* Starts a search |1 to arm, 0 to disarm|  */
 	MAV_CMD_DO_FINISH_SEARCH=10002, /* Starts a search |1 to arm, 0 to disarm|  */
 	MAV_CMD_NAV_SWEEP=10003, /* Starts a search |1 to arm, 0 to disarm|  */
