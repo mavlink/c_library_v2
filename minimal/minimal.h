@@ -1,6 +1,6 @@
 /** @file
  *	@brief MAVLink comm protocol generated from minimal.xml
- *	@see http://qgroundcontrol.org/mavlink/
+ *	@see http://mavlink.org
  */
 #ifndef MAVLINK_MINIMAL_H
 #define MAVLINK_MINIMAL_H

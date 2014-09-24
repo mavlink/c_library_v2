@@ -1,6 +1,6 @@
 /** @file
  *	@brief MAVLink comm protocol generated from autoquad.xml
- *	@see http://qgroundcontrol.org/mavlink/
+ *	@see http://mavlink.org
  */
 #ifndef MAVLINK_AUTOQUAD_H
 #define MAVLINK_AUTOQUAD_H

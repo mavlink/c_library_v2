@@ -1,6 +1,6 @@
 /** @file
  *	@brief MAVLink comm protocol generated from matrixpilot.xml
- *	@see http://qgroundcontrol.org/mavlink/
+ *	@see http://mavlink.org
  */
 #ifndef MAVLINK_MATRIXPILOT_H
 #define MAVLINK_MATRIXPILOT_H

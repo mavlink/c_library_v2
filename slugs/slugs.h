@@ -1,6 +1,6 @@
 /** @file
  *	@brief MAVLink comm protocol generated from slugs.xml
- *	@see http://qgroundcontrol.org/mavlink/
+ *	@see http://mavlink.org
  */
 #ifndef MAVLINK_SLUGS_H
 #define MAVLINK_SLUGS_H

@@ -1,6 +1,6 @@
 /** @file
  *	@brief MAVLink comm protocol generated from sensesoar.xml
- *	@see http://qgroundcontrol.org/mavlink/
+ *	@see http://mavlink.org
  */
 #ifndef MAVLINK_SENSESOAR_H
 #define MAVLINK_SENSESOAR_H

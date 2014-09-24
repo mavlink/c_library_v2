@@ -1,6 +1,6 @@
 /** @file
  *	@brief MAVLink comm protocol generated from ardupilotmega.xml
- *	@see http://qgroundcontrol.org/mavlink/
+ *	@see http://mavlink.org
  */
 #ifndef MAVLINK_ARDUPILOTMEGA_H
 #define MAVLINK_ARDUPILOTMEGA_H

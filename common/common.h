@@ -1,6 +1,6 @@
 /** @file
  *	@brief MAVLink comm protocol generated from common.xml
- *	@see http://qgroundcontrol.org/mavlink/
+ *	@see http://mavlink.org
  */
 #ifndef MAVLINK_COMMON_H
 #define MAVLINK_COMMON_H

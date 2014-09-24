@@ -1,11 +1,11 @@
 /** @file
  *	@brief MAVLink comm protocol built from sensesoar.xml
- *	@see http://pixhawk.ethz.ch/software/mavlink
+ *	@see http://mavlink.org
  */
 #ifndef MAVLINK_VERSION_H
 #define MAVLINK_VERSION_H
 
-#define MAVLINK_BUILD_DATE "Mon Sep 15 02:00:38 2014"
+#define MAVLINK_BUILD_DATE "Wed Sep 24 12:51:08 2014"
 #define MAVLINK_WIRE_PROTOCOL_VERSION "1.0"
 #define MAVLINK_MAX_DIALECT_PAYLOAD_SIZE 255
  
