@@ -3534,38 +3534,40 @@ static void mavlink_test_highres_imu(uint8_t system_id, uint8_t component_id, ma
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
-static void mavlink_test_omnidirectional_flow(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+static void mavlink_test_optical_flow_rad(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
 	mavlink_message_t msg;
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
-	mavlink_omnidirectional_flow_t packet_in = {
-		93372036854775807ULL,73.0,{ 17859, 17860, 17861, 17862, 17863, 17864, 17865, 17866, 17867, 17868 },{ 18899, 18900, 18901, 18902, 18903, 18904, 18905, 18906, 18907, 18908 },161,228
+	mavlink_optical_flow_rad_t packet_in = {
+		93372036854775807ULL,963497880,101.0,129.0,963498504,185.0,89,156
     };
-	mavlink_omnidirectional_flow_t packet1, packet2;
+	mavlink_optical_flow_rad_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.time_usec = packet_in.time_usec;
-        	packet1.front_distance_m = packet_in.front_distance_m;
+        	packet1.integration_time_us = packet_in.integration_time_us;
+        	packet1.integrated_x = packet_in.integrated_x;
+        	packet1.integrated_y = packet_in.integrated_y;
+        	packet1.time_delta_distance_us = packet_in.time_delta_distance_us;
+        	packet1.distance = packet_in.distance;
         	packet1.sensor_id = packet_in.sensor_id;
         	packet1.quality = packet_in.quality;
         
-        	mav_array_memcpy(packet1.left, packet_in.left, sizeof(int16_t)*10);
-        	mav_array_memcpy(packet1.right, packet_in.right, sizeof(int16_t)*10);
         
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_omnidirectional_flow_encode(system_id, component_id, &msg, &packet1);
-	mavlink_msg_omnidirectional_flow_decode(&msg, &packet2);
+	mavlink_msg_optical_flow_rad_encode(system_id, component_id, &msg, &packet1);
+	mavlink_msg_optical_flow_rad_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_omnidirectional_flow_pack(system_id, component_id, &msg , packet1.time_usec , packet1.sensor_id , packet1.left , packet1.right , packet1.quality , packet1.front_distance_m );
-	mavlink_msg_omnidirectional_flow_decode(&msg, &packet2);
+	mavlink_msg_optical_flow_rad_pack(system_id, component_id, &msg , packet1.time_usec , packet1.sensor_id , packet1.integration_time_us , packet1.integrated_x , packet1.integrated_y , packet1.quality , packet1.time_delta_distance_us , packet1.distance );
+	mavlink_msg_optical_flow_rad_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_omnidirectional_flow_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_usec , packet1.sensor_id , packet1.left , packet1.right , packet1.quality , packet1.front_distance_m );
-	mavlink_msg_omnidirectional_flow_decode(&msg, &packet2);
+	mavlink_msg_optical_flow_rad_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_usec , packet1.sensor_id , packet1.integration_time_us , packet1.integrated_x , packet1.integrated_y , packet1.quality , packet1.time_delta_distance_us , packet1.distance );
+	mavlink_msg_optical_flow_rad_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
@@ -3573,12 +3575,12 @@ static void mavlink_test_omnidirectional_flow(uint8_t system_id, uint8_t compone
         for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
         	comm_send_ch(MAVLINK_COMM_0, buffer[i]);
         }
-	mavlink_msg_omnidirectional_flow_decode(last_msg, &packet2);
+	mavlink_msg_optical_flow_rad_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_omnidirectional_flow_send(MAVLINK_COMM_1 , packet1.time_usec , packet1.sensor_id , packet1.left , packet1.right , packet1.quality , packet1.front_distance_m );
-	mavlink_msg_omnidirectional_flow_decode(last_msg, &packet2);
+	mavlink_msg_optical_flow_rad_send(MAVLINK_COMM_1 , packet1.time_usec , packet1.sensor_id , packet1.integration_time_us , packet1.integrated_x , packet1.integrated_y , packet1.quality , packet1.time_delta_distance_us , packet1.distance );
+	mavlink_msg_optical_flow_rad_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
@@ -5406,7 +5408,7 @@ static void mavlink_test_common(uint8_t system_id, uint8_t component_id, mavlink
 	mavlink_test_vision_speed_estimate(system_id, component_id, last_msg);
 	mavlink_test_vicon_position_estimate(system_id, component_id, last_msg);
 	mavlink_test_highres_imu(system_id, component_id, last_msg);
-	mavlink_test_omnidirectional_flow(system_id, component_id, last_msg);
+	mavlink_test_optical_flow_rad(system_id, component_id, last_msg);
 	mavlink_test_hil_sensor(system_id, component_id, last_msg);
 	mavlink_test_sim_state(system_id, component_id, last_msg);
 	mavlink_test_radio_status(system_id, component_id, last_msg);
