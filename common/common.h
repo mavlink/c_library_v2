@@ -575,7 +575,8 @@ typedef enum MAV_DISTANCE_SENSOR
 {
 	MAV_DISTANCE_SENSOR_LASER=0, /* Laser altimeter, e.g. LightWare SF02/F or PulsedLight units | */
 	MAV_DISTANCE_SENSOR_ULTRASOUND=1, /* Ultrasound altimeter, e.g. MaxBotix units | */
-	MAV_DISTANCE_SENSOR_ENUM_END=2, /*  | */
+	MAV_DISTANCE_SENSOR_INFRARED=2, /* Infrared rangefinder, e.g. Sharp units | */
+	MAV_DISTANCE_SENSOR_ENUM_END=3, /*  | */
 } MAV_DISTANCE_SENSOR;
 #endif
 
