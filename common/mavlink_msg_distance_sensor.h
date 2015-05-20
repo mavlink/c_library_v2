@@ -10,7 +10,7 @@ typedef struct __mavlink_distance_sensor_t
  uint16_t current_distance; ///< Current distance reading
  uint8_t type; ///< Type from MAV_DISTANCE_SENSOR enum.
  uint8_t id; ///< Onboard ID of the sensor
- uint8_t orientation; ///< Direction the sensor faces from FIXME enum.
+ uint8_t orientation; ///< Direction the sensor faces from MAV_SENSOR_ORIENTATION enum.
  uint8_t covariance; ///< Measurement covariance in centimeters, 0 for unknown / invalid readings
 } mavlink_distance_sensor_t;
 
@@ -49,7 +49,7 @@ typedef struct __mavlink_distance_sensor_t
  * @param current_distance Current distance reading
  * @param type Type from MAV_DISTANCE_SENSOR enum.
  * @param id Onboard ID of the sensor
- * @param orientation Direction the sensor faces from FIXME enum.
+ * @param orientation Direction the sensor faces from MAV_SENSOR_ORIENTATION enum.
  * @param covariance Measurement covariance in centimeters, 0 for unknown / invalid readings
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -102,7 +102,7 @@ static inline uint16_t mavlink_msg_distance_sensor_pack(uint8_t system_id, uint8
  * @param current_distance Current distance reading
  * @param type Type from MAV_DISTANCE_SENSOR enum.
  * @param id Onboard ID of the sensor
- * @param orientation Direction the sensor faces from FIXME enum.
+ * @param orientation Direction the sensor faces from MAV_SENSOR_ORIENTATION enum.
  * @param covariance Measurement covariance in centimeters, 0 for unknown / invalid readings
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -181,7 +181,7 @@ static inline uint16_t mavlink_msg_distance_sensor_encode_chan(uint8_t system_id
  * @param current_distance Current distance reading
  * @param type Type from MAV_DISTANCE_SENSOR enum.
  * @param id Onboard ID of the sensor
- * @param orientation Direction the sensor faces from FIXME enum.
+ * @param orientation Direction the sensor faces from MAV_SENSOR_ORIENTATION enum.
  * @param covariance Measurement covariance in centimeters, 0 for unknown / invalid readings
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -337,7 +337,7 @@ static inline uint8_t mavlink_msg_distance_sensor_get_id(const mavlink_message_t
 /**
  * @brief Get field orientation from distance_sensor message
  *
- * @return Direction the sensor faces from FIXME enum.
+ * @return Direction the sensor faces from MAV_SENSOR_ORIENTATION enum.
  */
 static inline uint8_t mavlink_msg_distance_sensor_get_orientation(const mavlink_message_t* msg)
 {
