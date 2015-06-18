@@ -58,7 +58,7 @@ typedef enum AUTOQUAD_NAV_STATUS
 } AUTOQUAD_NAV_STATUS;
 #endif
 
-/** @brief  */
+/** @brief Commands to be executed by the MAV. They can be executed on user request, or as part of a mission script. If the action is used in a mission, the parameter mapping to the waypoint/mission message is as follows: Param 1, Param 2, Param 3, Param 4, X: Param 5, Y:Param 6, Z:Param 7. This command list is similar what ARINC 424 is for commercial aircraft: A data format how to interpret waypoint/mission data. */
 #ifndef HAVE_ENUM_MAV_CMD
 #define HAVE_ENUM_MAV_CMD
 typedef enum MAV_CMD
@@ -133,7 +133,9 @@ typedef enum MAV_CMD
 } MAV_CMD;
 #endif
 
-/** @brief  */
+/** @brief Data stream IDs. A data stream is not a fixed set of messages, but rather a
+     recommendation to the autopilot software. Individual autopilots may or may not obey
+     the recommended messages. */
 #ifndef HAVE_ENUM_MAV_DATA_STREAM
 #define HAVE_ENUM_MAV_DATA_STREAM
 typedef enum MAV_DATA_STREAM
