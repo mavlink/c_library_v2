@@ -4,7 +4,7 @@
 
 typedef struct __mavlink_request_data_stream_t
 {
- uint16_t req_message_rate; ///< The requested interval between two messages of this type
+ uint16_t req_message_rate; ///< The requested message rate
  uint8_t target_system; ///< The target requested to send the message stream.
  uint8_t target_component; ///< The target requested to send the message stream.
  uint8_t req_stream_id; ///< The ID of the requested data stream
@@ -40,7 +40,7 @@ typedef struct __mavlink_request_data_stream_t
  * @param target_system The target requested to send the message stream.
  * @param target_component The target requested to send the message stream.
  * @param req_stream_id The ID of the requested data stream
- * @param req_message_rate The requested interval between two messages of this type
+ * @param req_message_rate The requested message rate
  * @param start_stop 1 to start sending, 0 to stop sending.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -84,7 +84,7 @@ static inline uint16_t mavlink_msg_request_data_stream_pack(uint8_t system_id, u
  * @param target_system The target requested to send the message stream.
  * @param target_component The target requested to send the message stream.
  * @param req_stream_id The ID of the requested data stream
- * @param req_message_rate The requested interval between two messages of this type
+ * @param req_message_rate The requested message rate
  * @param start_stop 1 to start sending, 0 to stop sending.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -154,7 +154,7 @@ static inline uint16_t mavlink_msg_request_data_stream_encode_chan(uint8_t syste
  * @param target_system The target requested to send the message stream.
  * @param target_component The target requested to send the message stream.
  * @param req_stream_id The ID of the requested data stream
- * @param req_message_rate The requested interval between two messages of this type
+ * @param req_message_rate The requested message rate
  * @param start_stop 1 to start sending, 0 to stop sending.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -268,7 +268,7 @@ static inline uint8_t mavlink_msg_request_data_stream_get_req_stream_id(const ma
 /**
  * @brief Get field req_message_rate from request_data_stream message
  *
- * @return The requested interval between two messages of this type
+ * @return The requested message rate
  */
 static inline uint16_t mavlink_msg_request_data_stream_get_req_message_rate(const mavlink_message_t* msg)
 {

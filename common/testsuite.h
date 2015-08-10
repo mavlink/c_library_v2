@@ -5769,6 +5769,50 @@ static void mavlink_test_set_home_position(uint8_t system_id, uint8_t component_
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
+static void mavlink_test_message_interval(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+	mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+	mavlink_message_interval_t packet_in = {
+		963497464,17443
+    };
+	mavlink_message_interval_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        	packet1.interval_us = packet_in.interval_us;
+        	packet1.message_id = packet_in.message_id;
+        
+        
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_message_interval_encode(system_id, component_id, &msg, &packet1);
+	mavlink_msg_message_interval_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_message_interval_pack(system_id, component_id, &msg , packet1.message_id , packet1.interval_us );
+	mavlink_msg_message_interval_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_message_interval_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.message_id , packet1.interval_us );
+	mavlink_msg_message_interval_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+        	comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+	mavlink_msg_message_interval_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_message_interval_send(MAVLINK_COMM_1 , packet1.message_id , packet1.interval_us );
+	mavlink_msg_message_interval_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
 static void mavlink_test_v2_extension(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
 	mavlink_message_t msg;
@@ -6206,6 +6250,7 @@ static void mavlink_test_common(uint8_t system_id, uint8_t component_id, mavlink
 	mavlink_test_vibration(system_id, component_id, last_msg);
 	mavlink_test_home_position(system_id, component_id, last_msg);
 	mavlink_test_set_home_position(system_id, component_id, last_msg);
+	mavlink_test_message_interval(system_id, component_id, last_msg);
 	mavlink_test_v2_extension(system_id, component_id, last_msg);
 	mavlink_test_memory_vect(system_id, component_id, last_msg);
 	mavlink_test_debug_vect(system_id, component_id, last_msg);

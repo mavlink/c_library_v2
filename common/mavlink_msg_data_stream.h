@@ -4,7 +4,7 @@
 
 typedef struct __mavlink_data_stream_t
 {
- uint16_t message_rate; ///< The requested interval between two messages of this type
+ uint16_t message_rate; ///< The message rate
  uint8_t stream_id; ///< The ID of the requested data stream
  uint8_t on_off; ///< 1 stream is enabled, 0 stream is stopped.
 } mavlink_data_stream_t;
@@ -34,7 +34,7 @@ typedef struct __mavlink_data_stream_t
  * @param msg The MAVLink message to compress the data into
  *
  * @param stream_id The ID of the requested data stream
- * @param message_rate The requested interval between two messages of this type
+ * @param message_rate The message rate
  * @param on_off 1 stream is enabled, 0 stream is stopped.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -72,7 +72,7 @@ static inline uint16_t mavlink_msg_data_stream_pack(uint8_t system_id, uint8_t c
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param stream_id The ID of the requested data stream
- * @param message_rate The requested interval between two messages of this type
+ * @param message_rate The message rate
  * @param on_off 1 stream is enabled, 0 stream is stopped.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -136,7 +136,7 @@ static inline uint16_t mavlink_msg_data_stream_encode_chan(uint8_t system_id, ui
  * @param chan MAVLink channel to send the message
  *
  * @param stream_id The ID of the requested data stream
- * @param message_rate The requested interval between two messages of this type
+ * @param message_rate The message rate
  * @param on_off 1 stream is enabled, 0 stream is stopped.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -222,7 +222,7 @@ static inline uint8_t mavlink_msg_data_stream_get_stream_id(const mavlink_messag
 /**
  * @brief Get field message_rate from data_stream message
  *
- * @return The requested interval between two messages of this type
+ * @return The message rate
  */
 static inline uint16_t mavlink_msg_data_stream_get_message_rate(const mavlink_message_t* msg)
 {
