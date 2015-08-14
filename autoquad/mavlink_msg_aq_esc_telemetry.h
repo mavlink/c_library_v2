@@ -4,15 +4,15 @@
 
 typedef struct __mavlink_aq_esc_telemetry_t
 {
- uint32_t time_boot_ms; ///< Timestamp of the component clock since boot time in ms.
- uint32_t data0[4]; ///< Data bits 1-32 for each ESC.
- uint32_t data1[4]; ///< Data bits 33-64 for each ESC.
- uint16_t status_age[4]; ///< Age of each ESC telemetry reading in ms compared to boot time. A value of 0xFFFF means timeout/no data.
- uint8_t seq; ///< Sequence number of message (first set of 4 motors is #1, next 4 is #2, etc).
- uint8_t num_motors; ///< Total number of active ESCs/motors on the system.
- uint8_t num_in_seq; ///< Number of active ESCs in this sequence (1 through this many array members will be populated with data)
- uint8_t escid[4]; ///< ESC/Motor ID
- uint8_t data_version[4]; ///< Version of data structure (determines contents).
+ uint32_t time_boot_ms; /*< Timestamp of the component clock since boot time in ms.*/
+ uint32_t data0[4]; /*< Data bits 1-32 for each ESC.*/
+ uint32_t data1[4]; /*< Data bits 33-64 for each ESC.*/
+ uint16_t status_age[4]; /*< Age of each ESC telemetry reading in ms compared to boot time. A value of 0xFFFF means timeout/no data.*/
+ uint8_t seq; /*< Sequence number of message (first set of 4 motors is #1, next 4 is #2, etc).*/
+ uint8_t num_motors; /*< Total number of active ESCs/motors on the system.*/
+ uint8_t num_in_seq; /*< Number of active ESCs in this sequence (1 through this many array members will be populated with data)*/
+ uint8_t escid[4]; /*< ESC/Motor ID*/
+ uint8_t data_version[4]; /*< Version of data structure (determines contents).*/
 } mavlink_aq_esc_telemetry_t;
 
 #define MAVLINK_MSG_ID_AQ_ESC_TELEMETRY_LEN 55

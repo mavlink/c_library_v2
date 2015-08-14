@@ -4,8 +4,8 @@
 
 typedef struct __mavlink_watchdog_heartbeat_t
 {
- uint16_t watchdog_id; ///< Watchdog ID
- uint16_t process_count; ///< Number of processes
+ uint16_t watchdog_id; /*< Watchdog ID*/
+ uint16_t process_count; /*< Number of processes*/
 } mavlink_watchdog_heartbeat_t;
 
 #define MAVLINK_MSG_ID_WATCHDOG_HEARTBEAT_LEN 4

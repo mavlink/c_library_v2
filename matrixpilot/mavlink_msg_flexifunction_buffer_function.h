@@ -4,13 +4,13 @@
 
 typedef struct __mavlink_flexifunction_buffer_function_t
 {
- uint16_t func_index; ///< Function index
- uint16_t func_count; ///< Total count of functions
- uint16_t data_address; ///< Address in the flexifunction data, Set to 0xFFFF to use address in target memory
- uint16_t data_size; ///< Size of the 
- uint8_t target_system; ///< System ID
- uint8_t target_component; ///< Component ID
- int8_t data[48]; ///< Settings data
+ uint16_t func_index; /*< Function index*/
+ uint16_t func_count; /*< Total count of functions*/
+ uint16_t data_address; /*< Address in the flexifunction data, Set to 0xFFFF to use address in target memory*/
+ uint16_t data_size; /*< Size of the */
+ uint8_t target_system; /*< System ID*/
+ uint8_t target_component; /*< Component ID*/
+ int8_t data[48]; /*< Settings data*/
 } mavlink_flexifunction_buffer_function_t;
 
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_LEN 58

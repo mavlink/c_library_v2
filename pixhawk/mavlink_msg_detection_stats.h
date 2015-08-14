@@ -4,18 +4,18 @@
 
 typedef struct __mavlink_detection_stats_t
 {
- uint32_t detections; ///< Number of detections
- uint32_t cluster_iters; ///< Number of cluster iterations
- float best_score; ///< Best score
- int32_t best_lat; ///< Latitude of the best detection * 1E7
- int32_t best_lon; ///< Longitude of the best detection * 1E7
- int32_t best_alt; ///< Altitude of the best detection * 1E3
- uint32_t best_detection_id; ///< Best detection ID
- uint32_t best_cluster_id; ///< Best cluster ID
- uint32_t best_cluster_iter_id; ///< Best cluster ID
- uint32_t images_done; ///< Number of images already processed
- uint32_t images_todo; ///< Number of images still to process
- float fps; ///< Average images per seconds processed
+ uint32_t detections; /*< Number of detections*/
+ uint32_t cluster_iters; /*< Number of cluster iterations*/
+ float best_score; /*< Best score*/
+ int32_t best_lat; /*< Latitude of the best detection * 1E7*/
+ int32_t best_lon; /*< Longitude of the best detection * 1E7*/
+ int32_t best_alt; /*< Altitude of the best detection * 1E3*/
+ uint32_t best_detection_id; /*< Best detection ID*/
+ uint32_t best_cluster_id; /*< Best cluster ID*/
+ uint32_t best_cluster_iter_id; /*< Best cluster ID*/
+ uint32_t images_done; /*< Number of images already processed*/
+ uint32_t images_todo; /*< Number of images still to process*/
+ float fps; /*< Average images per seconds processed*/
 } mavlink_detection_stats_t;
 
 #define MAVLINK_MSG_ID_DETECTION_STATS_LEN 48

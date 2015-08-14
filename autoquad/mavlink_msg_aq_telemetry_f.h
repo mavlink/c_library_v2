@@ -4,27 +4,27 @@
 
 typedef struct __mavlink_aq_telemetry_f_t
 {
- float value1; ///< value1
- float value2; ///< value2
- float value3; ///< value3
- float value4; ///< value4
- float value5; ///< value5
- float value6; ///< value6
- float value7; ///< value7
- float value8; ///< value8
- float value9; ///< value9
- float value10; ///< value10
- float value11; ///< value11
- float value12; ///< value12
- float value13; ///< value13
- float value14; ///< value14
- float value15; ///< value15
- float value16; ///< value16
- float value17; ///< value17
- float value18; ///< value18
- float value19; ///< value19
- float value20; ///< value20
- uint16_t Index; ///< Index of message
+ float value1; /*< value1*/
+ float value2; /*< value2*/
+ float value3; /*< value3*/
+ float value4; /*< value4*/
+ float value5; /*< value5*/
+ float value6; /*< value6*/
+ float value7; /*< value7*/
+ float value8; /*< value8*/
+ float value9; /*< value9*/
+ float value10; /*< value10*/
+ float value11; /*< value11*/
+ float value12; /*< value12*/
+ float value13; /*< value13*/
+ float value14; /*< value14*/
+ float value15; /*< value15*/
+ float value16; /*< value16*/
+ float value17; /*< value17*/
+ float value18; /*< value18*/
+ float value19; /*< value19*/
+ float value20; /*< value20*/
+ uint16_t Index; /*< Index of message*/
 } mavlink_aq_telemetry_f_t;
 
 #define MAVLINK_MSG_ID_AQ_TELEMETRY_F_LEN 82

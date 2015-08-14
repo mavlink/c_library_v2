@@ -4,9 +4,9 @@
 
 typedef struct __mavlink_slugs_mobile_location_t
 {
- float latitude; ///< Mobile Latitude
- float longitude; ///< Mobile Longitude
- uint8_t target; ///< The system reporting the action
+ float latitude; /*< Mobile Latitude*/
+ float longitude; /*< Mobile Longitude*/
+ uint8_t target; /*< The system reporting the action*/
 } mavlink_slugs_mobile_location_t;
 
 #define MAVLINK_MSG_ID_SLUGS_MOBILE_LOCATION_LEN 9

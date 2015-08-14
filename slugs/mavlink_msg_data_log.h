@@ -4,12 +4,12 @@
 
 typedef struct __mavlink_data_log_t
 {
- float fl_1; ///< Log value 1 
- float fl_2; ///< Log value 2 
- float fl_3; ///< Log value 3 
- float fl_4; ///< Log value 4 
- float fl_5; ///< Log value 5 
- float fl_6; ///< Log value 6 
+ float fl_1; /*< Log value 1 */
+ float fl_2; /*< Log value 2 */
+ float fl_3; /*< Log value 3 */
+ float fl_4; /*< Log value 4 */
+ float fl_5; /*< Log value 5 */
+ float fl_6; /*< Log value 6 */
 } mavlink_data_log_t;
 
 #define MAVLINK_MSG_ID_DATA_LOG_LEN 24

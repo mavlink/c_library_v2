@@ -4,11 +4,11 @@
 
 typedef struct __mavlink_position_control_setpoint_t
 {
- float x; ///< x position
- float y; ///< y position
- float z; ///< z position
- float yaw; ///< yaw orientation in radians, 0 = NORTH
- uint16_t id; ///< ID of waypoint, 0 for plain position
+ float x; /*< x position*/
+ float y; /*< y position*/
+ float z; /*< z position*/
+ float yaw; /*< yaw orientation in radians, 0 = NORTH*/
+ uint16_t id; /*< ID of waypoint, 0 for plain position*/
 } mavlink_position_control_setpoint_t;
 
 #define MAVLINK_MSG_ID_POSITION_CONTROL_SETPOINT_LEN 18

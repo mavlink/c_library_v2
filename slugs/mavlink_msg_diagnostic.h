@@ -4,12 +4,12 @@
 
 typedef struct __mavlink_diagnostic_t
 {
- float diagFl1; ///< Diagnostic float 1
- float diagFl2; ///< Diagnostic float 2
- float diagFl3; ///< Diagnostic float 3
- int16_t diagSh1; ///< Diagnostic short 1
- int16_t diagSh2; ///< Diagnostic short 2
- int16_t diagSh3; ///< Diagnostic short 3
+ float diagFl1; /*< Diagnostic float 1*/
+ float diagFl2; /*< Diagnostic float 2*/
+ float diagFl3; /*< Diagnostic float 3*/
+ int16_t diagSh1; /*< Diagnostic short 1*/
+ int16_t diagSh2; /*< Diagnostic short 2*/
+ int16_t diagSh3; /*< Diagnostic short 3*/
 } mavlink_diagnostic_t;
 
 #define MAVLINK_MSG_ID_DIAGNOSTIC_LEN 18

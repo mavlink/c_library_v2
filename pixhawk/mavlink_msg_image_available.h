@@ -4,29 +4,29 @@
 
 typedef struct __mavlink_image_available_t
 {
- uint64_t cam_id; ///< Camera id
- uint64_t timestamp; ///< Timestamp
- uint64_t valid_until; ///< Until which timestamp this buffer will stay valid
- uint32_t img_seq; ///< The image sequence number
- uint32_t img_buf_index; ///< Position of the image in the buffer, starts with 0
- uint32_t key; ///< Shared memory area key
- uint32_t exposure; ///< Exposure time, in microseconds
- float gain; ///< Camera gain
- float roll; ///< Roll angle in rad
- float pitch; ///< Pitch angle in rad
- float yaw; ///< Yaw angle in rad
- float local_z; ///< Local frame Z coordinate (height over ground)
- float lat; ///< GPS X coordinate
- float lon; ///< GPS Y coordinate
- float alt; ///< Global frame altitude
- float ground_x; ///< Ground truth X
- float ground_y; ///< Ground truth Y
- float ground_z; ///< Ground truth Z
- uint16_t width; ///< Image width
- uint16_t height; ///< Image height
- uint16_t depth; ///< Image depth
- uint8_t cam_no; ///< Camera # (starts with 0)
- uint8_t channels; ///< Image channels
+ uint64_t cam_id; /*< Camera id*/
+ uint64_t timestamp; /*< Timestamp*/
+ uint64_t valid_until; /*< Until which timestamp this buffer will stay valid*/
+ uint32_t img_seq; /*< The image sequence number*/
+ uint32_t img_buf_index; /*< Position of the image in the buffer, starts with 0*/
+ uint32_t key; /*< Shared memory area key*/
+ uint32_t exposure; /*< Exposure time, in microseconds*/
+ float gain; /*< Camera gain*/
+ float roll; /*< Roll angle in rad*/
+ float pitch; /*< Pitch angle in rad*/
+ float yaw; /*< Yaw angle in rad*/
+ float local_z; /*< Local frame Z coordinate (height over ground)*/
+ float lat; /*< GPS X coordinate*/
+ float lon; /*< GPS Y coordinate*/
+ float alt; /*< Global frame altitude*/
+ float ground_x; /*< Ground truth X*/
+ float ground_y; /*< Ground truth Y*/
+ float ground_z; /*< Ground truth Z*/
+ uint16_t width; /*< Image width*/
+ uint16_t height; /*< Image height*/
+ uint16_t depth; /*< Image depth*/
+ uint8_t cam_no; /*< Camera # (starts with 0)*/
+ uint8_t channels; /*< Image channels*/
 } mavlink_image_available_t;
 
 #define MAVLINK_MSG_ID_IMAGE_AVAILABLE_LEN 92

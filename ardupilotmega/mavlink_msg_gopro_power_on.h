@@ -4,8 +4,8 @@
 
 typedef struct __mavlink_gopro_power_on_t
 {
- uint8_t target_system; ///< System ID
- uint8_t target_component; ///< Component ID
+ uint8_t target_system; /*< System ID*/
+ uint8_t target_component; /*< Component ID*/
 } mavlink_gopro_power_on_t;
 
 #define MAVLINK_MSG_ID_GOPRO_POWER_ON_LEN 2

@@ -4,18 +4,18 @@
 
 typedef struct __mavlink_image_triggered_t
 {
- uint64_t timestamp; ///< Timestamp
- uint32_t seq; ///< IMU seq
- float roll; ///< Roll angle in rad
- float pitch; ///< Pitch angle in rad
- float yaw; ///< Yaw angle in rad
- float local_z; ///< Local frame Z coordinate (height over ground)
- float lat; ///< GPS X coordinate
- float lon; ///< GPS Y coordinate
- float alt; ///< Global frame altitude
- float ground_x; ///< Ground truth X
- float ground_y; ///< Ground truth Y
- float ground_z; ///< Ground truth Z
+ uint64_t timestamp; /*< Timestamp*/
+ uint32_t seq; /*< IMU seq*/
+ float roll; /*< Roll angle in rad*/
+ float pitch; /*< Pitch angle in rad*/
+ float yaw; /*< Yaw angle in rad*/
+ float local_z; /*< Local frame Z coordinate (height over ground)*/
+ float lat; /*< GPS X coordinate*/
+ float lon; /*< GPS Y coordinate*/
+ float alt; /*< Global frame altitude*/
+ float ground_x; /*< Ground truth X*/
+ float ground_y; /*< Ground truth Y*/
+ float ground_z; /*< Ground truth Z*/
 } mavlink_image_triggered_t;
 
 #define MAVLINK_MSG_ID_IMAGE_TRIGGERED_LEN 52

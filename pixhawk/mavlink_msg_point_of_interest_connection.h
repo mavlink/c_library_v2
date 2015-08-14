@@ -4,17 +4,17 @@
 
 typedef struct __mavlink_point_of_interest_connection_t
 {
- float xp1; ///< X1 Position
- float yp1; ///< Y1 Position
- float zp1; ///< Z1 Position
- float xp2; ///< X2 Position
- float yp2; ///< Y2 Position
- float zp2; ///< Z2 Position
- uint16_t timeout; ///< 0: no timeout, >1: timeout in seconds
- uint8_t type; ///< 0: Notice, 1: Warning, 2: Critical, 3: Emergency, 4: Debug
- uint8_t color; ///< 0: blue, 1: yellow, 2: red, 3: orange, 4: green, 5: magenta
- uint8_t coordinate_system; ///< 0: global, 1:local
- char name[26]; ///< POI connection name
+ float xp1; /*< X1 Position*/
+ float yp1; /*< Y1 Position*/
+ float zp1; /*< Z1 Position*/
+ float xp2; /*< X2 Position*/
+ float yp2; /*< Y2 Position*/
+ float zp2; /*< Z2 Position*/
+ uint16_t timeout; /*< 0: no timeout, >1: timeout in seconds*/
+ uint8_t type; /*< 0: Notice, 1: Warning, 2: Critical, 3: Emergency, 4: Debug*/
+ uint8_t color; /*< 0: blue, 1: yellow, 2: red, 3: orange, 4: green, 5: magenta*/
+ uint8_t coordinate_system; /*< 0: global, 1:local*/
+ char name[26]; /*< POI connection name*/
 } mavlink_point_of_interest_connection_t;
 
 #define MAVLINK_MSG_ID_POINT_OF_INTEREST_CONNECTION_LEN 55

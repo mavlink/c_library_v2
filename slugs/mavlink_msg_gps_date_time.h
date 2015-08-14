@@ -4,18 +4,18 @@
 
 typedef struct __mavlink_gps_date_time_t
 {
- uint8_t year; ///< Year reported by Gps 
- uint8_t month; ///< Month reported by Gps 
- uint8_t day; ///< Day reported by Gps 
- uint8_t hour; ///< Hour reported by Gps 
- uint8_t min; ///< Min reported by Gps 
- uint8_t sec; ///< Sec reported by Gps  
- uint8_t clockStat; ///< Clock Status. See table 47 page 211 OEMStar Manual  
- uint8_t visSat; ///< Visible satellites reported by Gps  
- uint8_t useSat; ///< Used satellites in Solution  
- uint8_t GppGl; ///< GPS+GLONASS satellites in Solution  
- uint8_t sigUsedMask; ///< GPS and GLONASS usage mask (bit 0 GPS_used? bit_4 GLONASS_used?)
- uint8_t percentUsed; ///< Percent used GPS
+ uint8_t year; /*< Year reported by Gps */
+ uint8_t month; /*< Month reported by Gps */
+ uint8_t day; /*< Day reported by Gps */
+ uint8_t hour; /*< Hour reported by Gps */
+ uint8_t min; /*< Min reported by Gps */
+ uint8_t sec; /*< Sec reported by Gps  */
+ uint8_t clockStat; /*< Clock Status. See table 47 page 211 OEMStar Manual  */
+ uint8_t visSat; /*< Visible satellites reported by Gps  */
+ uint8_t useSat; /*< Used satellites in Solution  */
+ uint8_t GppGl; /*< GPS+GLONASS satellites in Solution  */
+ uint8_t sigUsedMask; /*< GPS and GLONASS usage mask (bit 0 GPS_used? bit_4 GLONASS_used?)*/
+ uint8_t percentUsed; /*< Percent used GPS*/
 } mavlink_gps_date_time_t;
 
 #define MAVLINK_MSG_ID_GPS_DATE_TIME_LEN 12

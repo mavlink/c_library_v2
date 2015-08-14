@@ -4,14 +4,14 @@
 
 typedef struct __mavlink_point_of_interest_t
 {
- float x; ///< X Position
- float y; ///< Y Position
- float z; ///< Z Position
- uint16_t timeout; ///< 0: no timeout, >1: timeout in seconds
- uint8_t type; ///< 0: Notice, 1: Warning, 2: Critical, 3: Emergency, 4: Debug
- uint8_t color; ///< 0: blue, 1: yellow, 2: red, 3: orange, 4: green, 5: magenta
- uint8_t coordinate_system; ///< 0: global, 1:local
- char name[26]; ///< POI name
+ float x; /*< X Position*/
+ float y; /*< Y Position*/
+ float z; /*< Z Position*/
+ uint16_t timeout; /*< 0: no timeout, >1: timeout in seconds*/
+ uint8_t type; /*< 0: Notice, 1: Warning, 2: Critical, 3: Emergency, 4: Debug*/
+ uint8_t color; /*< 0: blue, 1: yellow, 2: red, 3: orange, 4: green, 5: magenta*/
+ uint8_t coordinate_system; /*< 0: global, 1:local*/
+ char name[26]; /*< POI name*/
 } mavlink_point_of_interest_t;
 
 #define MAVLINK_MSG_ID_POINT_OF_INTEREST_LEN 43

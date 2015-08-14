@@ -4,11 +4,11 @@
 
 typedef struct __mavlink_watchdog_process_info_t
 {
- int32_t timeout; ///< Timeout (seconds)
- uint16_t watchdog_id; ///< Watchdog ID
- uint16_t process_id; ///< Process ID
- char name[100]; ///< Process name
- char arguments[147]; ///< Process arguments
+ int32_t timeout; /*< Timeout (seconds)*/
+ uint16_t watchdog_id; /*< Watchdog ID*/
+ uint16_t process_id; /*< Process ID*/
+ char name[100]; /*< Process name*/
+ char arguments[147]; /*< Process arguments*/
 } mavlink_watchdog_process_info_t;
 
 #define MAVLINK_MSG_ID_WATCHDOG_PROCESS_INFO_LEN 255

@@ -4,8 +4,8 @@
 
 typedef struct __mavlink_flexifunction_command_ack_t
 {
- uint16_t command_type; ///< Command acknowledged
- uint16_t result; ///< result of acknowledge
+ uint16_t command_type; /*< Command acknowledged*/
+ uint16_t result; /*< result of acknowledge*/
 } mavlink_flexifunction_command_ack_t;
 
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_COMMAND_ACK_LEN 4

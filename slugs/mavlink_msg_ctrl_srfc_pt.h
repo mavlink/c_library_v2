@@ -4,8 +4,8 @@
 
 typedef struct __mavlink_ctrl_srfc_pt_t
 {
- uint16_t bitfieldPt; ///< Bitfield containing the passthrough configuration, see CONTROL_SURFACE_FLAG ENUM.
- uint8_t target; ///< The system setting the commands
+ uint16_t bitfieldPt; /*< Bitfield containing the passthrough configuration, see CONTROL_SURFACE_FLAG ENUM.*/
+ uint8_t target; /*< The system setting the commands*/
 } mavlink_ctrl_srfc_pt_t;
 
 #define MAVLINK_MSG_ID_CTRL_SRFC_PT_LEN 3

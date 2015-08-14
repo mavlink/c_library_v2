@@ -4,11 +4,11 @@
 
 typedef struct __mavlink_gopro_command_t
 {
- uint8_t target_system; ///< System ID
- uint8_t target_component; ///< Component ID
- uint8_t gp_cmd_name_1; ///< First character of the 2 character GoPro command
- uint8_t gp_cmd_name_2; ///< Second character of the 2 character GoPro command
- uint8_t gp_cmd_parm; ///< Parameter for the command
+ uint8_t target_system; /*< System ID*/
+ uint8_t target_component; /*< Component ID*/
+ uint8_t gp_cmd_name_1; /*< First character of the 2 character GoPro command*/
+ uint8_t gp_cmd_name_2; /*< Second character of the 2 character GoPro command*/
+ uint8_t gp_cmd_parm; /*< Parameter for the command*/
 } mavlink_gopro_command_t;
 
 #define MAVLINK_MSG_ID_GOPRO_COMMAND_LEN 5

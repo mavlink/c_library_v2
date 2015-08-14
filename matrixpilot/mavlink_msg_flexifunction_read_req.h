@@ -4,10 +4,10 @@
 
 typedef struct __mavlink_flexifunction_read_req_t
 {
- int16_t read_req_type; ///< Type of flexifunction data requested
- int16_t data_index; ///< index into data where needed
- uint8_t target_system; ///< System ID
- uint8_t target_component; ///< Component ID
+ int16_t read_req_type; /*< Type of flexifunction data requested*/
+ int16_t data_index; /*< index into data where needed*/
+ uint8_t target_system; /*< System ID*/
+ uint8_t target_component; /*< Component ID*/
 } mavlink_flexifunction_read_req_t;
 
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_READ_REQ_LEN 6

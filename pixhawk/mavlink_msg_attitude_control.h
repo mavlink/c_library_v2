@@ -4,15 +4,15 @@
 
 typedef struct __mavlink_attitude_control_t
 {
- float roll; ///< roll
- float pitch; ///< pitch
- float yaw; ///< yaw
- float thrust; ///< thrust
- uint8_t target; ///< The system to be controlled
- uint8_t roll_manual; ///< roll control enabled auto:0, manual:1
- uint8_t pitch_manual; ///< pitch auto:0, manual:1
- uint8_t yaw_manual; ///< yaw auto:0, manual:1
- uint8_t thrust_manual; ///< thrust auto:0, manual:1
+ float roll; /*< roll*/
+ float pitch; /*< pitch*/
+ float yaw; /*< yaw*/
+ float thrust; /*< thrust*/
+ uint8_t target; /*< The system to be controlled*/
+ uint8_t roll_manual; /*< roll control enabled auto:0, manual:1*/
+ uint8_t pitch_manual; /*< pitch auto:0, manual:1*/
+ uint8_t yaw_manual; /*< yaw auto:0, manual:1*/
+ uint8_t thrust_manual; /*< thrust auto:0, manual:1*/
 } mavlink_attitude_control_t;
 
 #define MAVLINK_MSG_ID_ATTITUDE_CONTROL_LEN 21

@@ -4,10 +4,10 @@
 
 typedef struct __mavlink_mid_lvl_cmds_t
 {
- float hCommand; ///< Commanded Altitude in meters
- float uCommand; ///< Commanded Airspeed in m/s
- float rCommand; ///< Commanded Turnrate in rad/s
- uint8_t target; ///< The system setting the commands
+ float hCommand; /*< Commanded Altitude in meters*/
+ float uCommand; /*< Commanded Airspeed in m/s*/
+ float rCommand; /*< Commanded Turnrate in rad/s*/
+ uint8_t target; /*< The system setting the commands*/
 } mavlink_mid_lvl_cmds_t;
 
 #define MAVLINK_MSG_ID_MID_LVL_CMDS_LEN 13

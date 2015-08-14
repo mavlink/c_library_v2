@@ -4,12 +4,12 @@
 
 typedef struct __mavlink_watchdog_process_status_t
 {
- int32_t pid; ///< PID
- uint16_t watchdog_id; ///< Watchdog ID
- uint16_t process_id; ///< Process ID
- uint16_t crashes; ///< Number of crashes
- uint8_t state; ///< Is running / finished / suspended / crashed
- uint8_t muted; ///< Is muted
+ int32_t pid; /*< PID*/
+ uint16_t watchdog_id; /*< Watchdog ID*/
+ uint16_t process_id; /*< Process ID*/
+ uint16_t crashes; /*< Number of crashes*/
+ uint8_t state; /*< Is running / finished / suspended / crashed*/
+ uint8_t muted; /*< Is muted*/
 } mavlink_watchdog_process_status_t;
 
 #define MAVLINK_MSG_ID_WATCHDOG_PROCESS_STATUS_LEN 12

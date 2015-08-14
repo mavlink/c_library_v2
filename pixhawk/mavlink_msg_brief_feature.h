@@ -4,14 +4,14 @@
 
 typedef struct __mavlink_brief_feature_t
 {
- float x; ///< x position in m
- float y; ///< y position in m
- float z; ///< z position in m
- float response; ///< Harris operator response at this location
- uint16_t size; ///< Size in pixels
- uint16_t orientation; ///< Orientation
- uint8_t orientation_assignment; ///< Orientation assignment 0: false, 1:true
- uint8_t descriptor[32]; ///< Descriptor
+ float x; /*< x position in m*/
+ float y; /*< y position in m*/
+ float z; /*< z position in m*/
+ float response; /*< Harris operator response at this location*/
+ uint16_t size; /*< Size in pixels*/
+ uint16_t orientation; /*< Orientation*/
+ uint8_t orientation_assignment; /*< Orientation assignment 0: false, 1:true*/
+ uint8_t descriptor[32]; /*< Descriptor*/
 } mavlink_brief_feature_t;
 
 #define MAVLINK_MSG_ID_BRIEF_FEATURE_LEN 53

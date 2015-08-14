@@ -4,13 +4,13 @@
 
 typedef struct __mavlink_ekf_ext_t
 {
- uint64_t timestamp; ///<  Time since system start [us]
- float Windspeed; ///<  Magnitude of wind velocity (in lateral inertial plane) [m/s]
- float WindDir; ///<  Wind heading angle from North [rad]
- float WindZ; ///<  Z (Down) component of inertial wind velocity [m/s]
- float Airspeed; ///<  Magnitude of air velocity [m/s]
- float beta; ///<  Sideslip angle [rad]
- float alpha; ///<  Angle of attack [rad]
+ uint64_t timestamp; /*<  Time since system start [us]*/
+ float Windspeed; /*<  Magnitude of wind velocity (in lateral inertial plane) [m/s]*/
+ float WindDir; /*<  Wind heading angle from North [rad]*/
+ float WindZ; /*<  Z (Down) component of inertial wind velocity [m/s]*/
+ float Airspeed; /*<  Magnitude of air velocity [m/s]*/
+ float beta; /*<  Sideslip angle [rad]*/
+ float alpha; /*<  Angle of attack [rad]*/
 } mavlink_ekf_ext_t;
 
 #define MAVLINK_MSG_ID_EKF_EXT_LEN 32

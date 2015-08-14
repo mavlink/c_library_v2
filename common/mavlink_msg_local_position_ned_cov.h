@@ -4,19 +4,19 @@
 
 typedef struct __mavlink_local_position_ned_cov_t
 {
- uint64_t time_utc; ///< Timestamp (microseconds since UNIX epoch) in UTC. 0 for unknown. Commonly filled by the precision time source of a GPS receiver.
- uint32_t time_boot_ms; ///< Timestamp (milliseconds since system boot). 0 for system without monotonic timestamp
- float x; ///< X Position
- float y; ///< Y Position
- float z; ///< Z Position
- float vx; ///< X Speed (m/s)
- float vy; ///< Y Speed (m/s)
- float vz; ///< Z Speed (m/s)
- float ax; ///< X Acceleration (m/s^2)
- float ay; ///< Y Acceleration (m/s^2)
- float az; ///< Z Acceleration (m/s^2)
- float covariance[45]; ///< Covariance matrix upper right triangular (first nine entries are the first ROW, next eight entries are the second row, etc.)
- uint8_t estimator_type; ///< Class id of the estimator this estimate originated from.
+ uint64_t time_utc; /*< Timestamp (microseconds since UNIX epoch) in UTC. 0 for unknown. Commonly filled by the precision time source of a GPS receiver.*/
+ uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot). 0 for system without monotonic timestamp*/
+ float x; /*< X Position*/
+ float y; /*< Y Position*/
+ float z; /*< Z Position*/
+ float vx; /*< X Speed (m/s)*/
+ float vy; /*< Y Speed (m/s)*/
+ float vz; /*< Z Speed (m/s)*/
+ float ax; /*< X Acceleration (m/s^2)*/
+ float ay; /*< Y Acceleration (m/s^2)*/
+ float az; /*< Z Acceleration (m/s^2)*/
+ float covariance[45]; /*< Covariance matrix upper right triangular (first nine entries are the first ROW, next eight entries are the second row, etc.)*/
+ uint8_t estimator_type; /*< Class id of the estimator this estimate originated from.*/
 } mavlink_local_position_ned_cov_t;
 
 #define MAVLINK_MSG_ID_LOCAL_POSITION_NED_COV_LEN 229

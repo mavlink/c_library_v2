@@ -4,13 +4,13 @@
 
 typedef struct __mavlink_marker_t
 {
- float x; ///< x position
- float y; ///< y position
- float z; ///< z position
- float roll; ///< roll orientation
- float pitch; ///< pitch orientation
- float yaw; ///< yaw orientation
- uint16_t id; ///< ID
+ float x; /*< x position*/
+ float y; /*< y position*/
+ float z; /*< z position*/
+ float roll; /*< roll orientation*/
+ float pitch; /*< pitch orientation*/
+ float yaw; /*< yaw orientation*/
+ uint16_t id; /*< ID*/
 } mavlink_marker_t;
 
 #define MAVLINK_MSG_ID_MARKER_LEN 26

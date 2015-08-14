@@ -4,10 +4,10 @@
 
 typedef struct __mavlink_watchdog_command_t
 {
- uint16_t watchdog_id; ///< Watchdog ID
- uint16_t process_id; ///< Process ID
- uint8_t target_system_id; ///< Target system ID
- uint8_t command_id; ///< Command ID
+ uint16_t watchdog_id; /*< Watchdog ID*/
+ uint16_t process_id; /*< Process ID*/
+ uint8_t target_system_id; /*< Target system ID*/
+ uint8_t command_id; /*< Command ID*/
 } mavlink_watchdog_command_t;
 
 #define MAVLINK_MSG_ID_WATCHDOG_COMMAND_LEN 6

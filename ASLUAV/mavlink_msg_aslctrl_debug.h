@@ -4,17 +4,17 @@
 
 typedef struct __mavlink_aslctrl_debug_t
 {
- uint32_t i32_1; ///<  Debug data
- float f_1; ///<  Debug data 
- float f_2; ///<  Debug data
- float f_3; ///<  Debug data
- float f_4; ///<  Debug data
- float f_5; ///<  Debug data
- float f_6; ///<  Debug data
- float f_7; ///<  Debug data
- float f_8; ///<  Debug data
- uint8_t i8_1; ///<  Debug data
- uint8_t i8_2; ///<  Debug data
+ uint32_t i32_1; /*<  Debug data*/
+ float f_1; /*<  Debug data */
+ float f_2; /*<  Debug data*/
+ float f_3; /*<  Debug data*/
+ float f_4; /*<  Debug data*/
+ float f_5; /*<  Debug data*/
+ float f_6; /*<  Debug data*/
+ float f_7; /*<  Debug data*/
+ float f_8; /*<  Debug data*/
+ uint8_t i8_1; /*<  Debug data*/
+ uint8_t i8_2; /*<  Debug data*/
 } mavlink_aslctrl_debug_t;
 
 #define MAVLINK_MSG_ID_ASLCTRL_DEBUG_LEN 38

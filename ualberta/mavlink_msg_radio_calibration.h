@@ -4,12 +4,12 @@
 
 typedef struct __mavlink_radio_calibration_t
 {
- uint16_t aileron[3]; ///< Aileron setpoints: left, center, right
- uint16_t elevator[3]; ///< Elevator setpoints: nose down, center, nose up
- uint16_t rudder[3]; ///< Rudder setpoints: nose left, center, nose right
- uint16_t gyro[2]; ///< Tail gyro mode/gain setpoints: heading hold, rate mode
- uint16_t pitch[5]; ///< Pitch curve setpoints (every 25%)
- uint16_t throttle[5]; ///< Throttle curve setpoints (every 25%)
+ uint16_t aileron[3]; /*< Aileron setpoints: left, center, right*/
+ uint16_t elevator[3]; /*< Elevator setpoints: nose down, center, nose up*/
+ uint16_t rudder[3]; /*< Rudder setpoints: nose left, center, nose right*/
+ uint16_t gyro[2]; /*< Tail gyro mode/gain setpoints: heading hold, rate mode*/
+ uint16_t pitch[5]; /*< Pitch curve setpoints (every 25%)*/
+ uint16_t throttle[5]; /*< Throttle curve setpoints (every 25%)*/
 } mavlink_radio_calibration_t;
 
 #define MAVLINK_MSG_ID_RADIO_CALIBRATION_LEN 42

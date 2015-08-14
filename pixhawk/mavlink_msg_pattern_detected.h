@@ -4,10 +4,10 @@
 
 typedef struct __mavlink_pattern_detected_t
 {
- float confidence; ///< Confidence of detection
- uint8_t type; ///< 0: Pattern, 1: Letter
- char file[100]; ///< Pattern file name
- uint8_t detected; ///< Accepted as true detection, 0 no, 1 yes
+ float confidence; /*< Confidence of detection*/
+ uint8_t type; /*< 0: Pattern, 1: Letter*/
+ char file[100]; /*< Pattern file name*/
+ uint8_t detected; /*< Accepted as true detection, 0 no, 1 yes*/
 } mavlink_pattern_detected_t;
 
 #define MAVLINK_MSG_ID_PATTERN_DETECTED_LEN 106

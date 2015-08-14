@@ -4,28 +4,28 @@
 
 typedef struct __mavlink_test_types_t
 {
- uint64_t u64; ///< uint64_t
- int64_t s64; ///< int64_t
- double d; ///< double
- uint64_t u64_array[3]; ///< uint64_t_array
- int64_t s64_array[3]; ///< int64_t_array
- double d_array[3]; ///< double_array
- uint32_t u32; ///< uint32_t
- int32_t s32; ///< int32_t
- float f; ///< float
- uint32_t u32_array[3]; ///< uint32_t_array
- int32_t s32_array[3]; ///< int32_t_array
- float f_array[3]; ///< float_array
- uint16_t u16; ///< uint16_t
- int16_t s16; ///< int16_t
- uint16_t u16_array[3]; ///< uint16_t_array
- int16_t s16_array[3]; ///< int16_t_array
- char c; ///< char
- char s[10]; ///< string
- uint8_t u8; ///< uint8_t
- int8_t s8; ///< int8_t
- uint8_t u8_array[3]; ///< uint8_t_array
- int8_t s8_array[3]; ///< int8_t_array
+ uint64_t u64; /*< uint64_t*/
+ int64_t s64; /*< int64_t*/
+ double d; /*< double*/
+ uint64_t u64_array[3]; /*< uint64_t_array*/
+ int64_t s64_array[3]; /*< int64_t_array*/
+ double d_array[3]; /*< double_array*/
+ uint32_t u32; /*< uint32_t*/
+ int32_t s32; /*< int32_t*/
+ float f; /*< float*/
+ uint32_t u32_array[3]; /*< uint32_t_array*/
+ int32_t s32_array[3]; /*< int32_t_array*/
+ float f_array[3]; /*< float_array*/
+ uint16_t u16; /*< uint16_t*/
+ int16_t s16; /*< int16_t*/
+ uint16_t u16_array[3]; /*< uint16_t_array*/
+ int16_t s16_array[3]; /*< int16_t_array*/
+ char c; /*< char*/
+ char s[10]; /*< string*/
+ uint8_t u8; /*< uint8_t*/
+ int8_t s8; /*< int8_t*/
+ uint8_t u8_array[3]; /*< uint8_t_array*/
+ int8_t s8_array[3]; /*< int8_t_array*/
 } mavlink_test_types_t;
 
 #define MAVLINK_MSG_ID_TEST_TYPES_LEN 179

@@ -4,13 +4,13 @@
 
 typedef struct __mavlink_nav_filter_bias_t
 {
- uint64_t usec; ///< Timestamp (microseconds)
- float accel_0; ///< b_f[0]
- float accel_1; ///< b_f[1]
- float accel_2; ///< b_f[2]
- float gyro_0; ///< b_f[0]
- float gyro_1; ///< b_f[1]
- float gyro_2; ///< b_f[2]
+ uint64_t usec; /*< Timestamp (microseconds)*/
+ float accel_0; /*< b_f[0]*/
+ float accel_1; /*< b_f[1]*/
+ float accel_2; /*< b_f[2]*/
+ float gyro_0; /*< b_f[0]*/
+ float gyro_1; /*< b_f[1]*/
+ float gyro_2; /*< b_f[2]*/
 } mavlink_nav_filter_bias_t;
 
 #define MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN 32

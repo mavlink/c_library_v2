@@ -4,9 +4,9 @@
 
 typedef struct __mavlink_cpu_load_t
 {
- uint16_t batVolt; ///< Battery Voltage in millivolts
- uint8_t sensLoad; ///< Sensor DSC Load
- uint8_t ctrlLoad; ///< Control DSC Load
+ uint16_t batVolt; /*< Battery Voltage in millivolts*/
+ uint8_t sensLoad; /*< Sensor DSC Load*/
+ uint8_t ctrlLoad; /*< Control DSC Load*/
 } mavlink_cpu_load_t;
 
 #define MAVLINK_MSG_ID_CPU_LOAD_LEN 4

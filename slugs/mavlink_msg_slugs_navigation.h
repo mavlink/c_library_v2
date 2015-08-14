@@ -4,16 +4,16 @@
 
 typedef struct __mavlink_slugs_navigation_t
 {
- float u_m; ///< Measured Airspeed prior to the nav filter in m/s
- float phi_c; ///< Commanded Roll
- float theta_c; ///< Commanded Pitch
- float psiDot_c; ///< Commanded Turn rate
- float ay_body; ///< Y component of the body acceleration
- float totalDist; ///< Total Distance to Run on this leg of Navigation
- float dist2Go; ///< Remaining distance to Run on this leg of Navigation
- uint16_t h_c; ///< Commanded altitude in 0.1 m
- uint8_t fromWP; ///< Origin WP
- uint8_t toWP; ///< Destination WP
+ float u_m; /*< Measured Airspeed prior to the nav filter in m/s*/
+ float phi_c; /*< Commanded Roll*/
+ float theta_c; /*< Commanded Pitch*/
+ float psiDot_c; /*< Commanded Turn rate*/
+ float ay_body; /*< Y component of the body acceleration*/
+ float totalDist; /*< Total Distance to Run on this leg of Navigation*/
+ float dist2Go; /*< Remaining distance to Run on this leg of Navigation*/
+ uint16_t h_c; /*< Commanded altitude in 0.1 m*/
+ uint8_t fromWP; /*< Origin WP*/
+ uint8_t toWP; /*< Destination WP*/
 } mavlink_slugs_navigation_t;
 
 #define MAVLINK_MSG_ID_SLUGS_NAVIGATION_LEN 32

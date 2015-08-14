@@ -4,23 +4,23 @@
 
 typedef struct __mavlink_control_system_state_t
 {
- uint64_t time_usec; ///< Timestamp (micros since boot or Unix epoch)
- float x_acc; ///< X acceleration in body frame
- float y_acc; ///< Y acceleration in body frame
- float z_acc; ///< Z acceleration in body frame
- float x_vel; ///< X velocity in body frame
- float y_vel; ///< Y velocity in body frame
- float z_vel; ///< Z velocity in body frame
- float x_pos; ///< X position in local frame
- float y_pos; ///< Y position in local frame
- float z_pos; ///< Z position in local frame
- float airspeed; ///< Airspeed, set to -1 if unknown
- float vel_variance[3]; ///< Variance of body velocity estimate
- float pos_variance[3]; ///< Variance in local position
- float q[4]; ///< The attitude, represented as Quaternion
- float roll_rate; ///< Angular rate in roll axis
- float pitch_rate; ///< Angular rate in pitch axis
- float yaw_rate; ///< Angular rate in yaw axis
+ uint64_t time_usec; /*< Timestamp (micros since boot or Unix epoch)*/
+ float x_acc; /*< X acceleration in body frame*/
+ float y_acc; /*< Y acceleration in body frame*/
+ float z_acc; /*< Z acceleration in body frame*/
+ float x_vel; /*< X velocity in body frame*/
+ float y_vel; /*< Y velocity in body frame*/
+ float z_vel; /*< Z velocity in body frame*/
+ float x_pos; /*< X position in local frame*/
+ float y_pos; /*< Y position in local frame*/
+ float z_pos; /*< Z position in local frame*/
+ float airspeed; /*< Airspeed, set to -1 if unknown*/
+ float vel_variance[3]; /*< Variance of body velocity estimate*/
+ float pos_variance[3]; /*< Variance in local position*/
+ float q[4]; /*< The attitude, represented as Quaternion*/
+ float roll_rate; /*< Angular rate in roll axis*/
+ float pitch_rate; /*< Angular rate in pitch axis*/
+ float yaw_rate; /*< Angular rate in yaw axis*/
 } mavlink_control_system_state_t;
 
 #define MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE_LEN 100

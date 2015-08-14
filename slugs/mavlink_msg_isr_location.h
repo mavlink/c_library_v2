@@ -4,13 +4,13 @@
 
 typedef struct __mavlink_isr_location_t
 {
- float latitude; ///< ISR Latitude
- float longitude; ///< ISR Longitude
- float height; ///< ISR Height
- uint8_t target; ///< The system reporting the action
- uint8_t option1; ///< Option 1
- uint8_t option2; ///< Option 2
- uint8_t option3; ///< Option 3
+ float latitude; /*< ISR Latitude*/
+ float longitude; /*< ISR Longitude*/
+ float height; /*< ISR Height*/
+ uint8_t target; /*< The system reporting the action*/
+ uint8_t option1; /*< Option 1*/
+ uint8_t option2; /*< Option 2*/
+ uint8_t option3; /*< Option 3*/
 } mavlink_isr_location_t;
 
 #define MAVLINK_MSG_ID_ISR_LOCATION_LEN 16

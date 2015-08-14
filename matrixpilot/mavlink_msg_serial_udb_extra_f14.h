@@ -4,17 +4,17 @@
 
 typedef struct __mavlink_serial_udb_extra_f14_t
 {
- uint32_t sue_TRAP_SOURCE; ///< Serial UDB Extra Type Program Address of Last Trap
- int16_t sue_RCON; ///< Serial UDB Extra Reboot Regitster of DSPIC
- int16_t sue_TRAP_FLAGS; ///< Serial UDB Extra  Last dspic Trap Flags
- int16_t sue_osc_fail_count; ///< Serial UDB Extra Number of Ocillator Failures
- uint8_t sue_WIND_ESTIMATION; ///< Serial UDB Extra Wind Estimation Enabled
- uint8_t sue_GPS_TYPE; ///< Serial UDB Extra Type of GPS Unit
- uint8_t sue_DR; ///< Serial UDB Extra Dead Reckoning Enabled
- uint8_t sue_BOARD_TYPE; ///< Serial UDB Extra Type of UDB Hardware
- uint8_t sue_AIRFRAME; ///< Serial UDB Extra Type of Airframe
- uint8_t sue_CLOCK_CONFIG; ///< Serial UDB Extra UDB Internal Clock Configuration
- uint8_t sue_FLIGHT_PLAN_TYPE; ///< Serial UDB Extra Type of Flight Plan
+ uint32_t sue_TRAP_SOURCE; /*< Serial UDB Extra Type Program Address of Last Trap*/
+ int16_t sue_RCON; /*< Serial UDB Extra Reboot Regitster of DSPIC*/
+ int16_t sue_TRAP_FLAGS; /*< Serial UDB Extra  Last dspic Trap Flags*/
+ int16_t sue_osc_fail_count; /*< Serial UDB Extra Number of Ocillator Failures*/
+ uint8_t sue_WIND_ESTIMATION; /*< Serial UDB Extra Wind Estimation Enabled*/
+ uint8_t sue_GPS_TYPE; /*< Serial UDB Extra Type of GPS Unit*/
+ uint8_t sue_DR; /*< Serial UDB Extra Dead Reckoning Enabled*/
+ uint8_t sue_BOARD_TYPE; /*< Serial UDB Extra Type of UDB Hardware*/
+ uint8_t sue_AIRFRAME; /*< Serial UDB Extra Type of Airframe*/
+ uint8_t sue_CLOCK_CONFIG; /*< Serial UDB Extra UDB Internal Clock Configuration*/
+ uint8_t sue_FLIGHT_PLAN_TYPE; /*< Serial UDB Extra Type of Flight Plan*/
 } mavlink_serial_udb_extra_f14_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F14_LEN 17

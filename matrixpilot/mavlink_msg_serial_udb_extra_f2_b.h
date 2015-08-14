@@ -4,39 +4,39 @@
 
 typedef struct __mavlink_serial_udb_extra_f2_b_t
 {
- uint32_t sue_time; ///< Serial UDB Extra Time
- uint32_t sue_flags; ///< Serial UDB Extra Status Flags
- int16_t sue_pwm_input_1; ///< Serial UDB Extra PWM Input Channel 1
- int16_t sue_pwm_input_2; ///< Serial UDB Extra PWM Input Channel 2
- int16_t sue_pwm_input_3; ///< Serial UDB Extra PWM Input Channel 3
- int16_t sue_pwm_input_4; ///< Serial UDB Extra PWM Input Channel 4
- int16_t sue_pwm_input_5; ///< Serial UDB Extra PWM Input Channel 5
- int16_t sue_pwm_input_6; ///< Serial UDB Extra PWM Input Channel 6
- int16_t sue_pwm_input_7; ///< Serial UDB Extra PWM Input Channel 7
- int16_t sue_pwm_input_8; ///< Serial UDB Extra PWM Input Channel 8
- int16_t sue_pwm_input_9; ///< Serial UDB Extra PWM Input Channel 9
- int16_t sue_pwm_input_10; ///< Serial UDB Extra PWM Input Channel 10
- int16_t sue_pwm_output_1; ///< Serial UDB Extra PWM Output Channel 1
- int16_t sue_pwm_output_2; ///< Serial UDB Extra PWM Output Channel 2
- int16_t sue_pwm_output_3; ///< Serial UDB Extra PWM Output Channel 3
- int16_t sue_pwm_output_4; ///< Serial UDB Extra PWM Output Channel 4
- int16_t sue_pwm_output_5; ///< Serial UDB Extra PWM Output Channel 5
- int16_t sue_pwm_output_6; ///< Serial UDB Extra PWM Output Channel 6
- int16_t sue_pwm_output_7; ///< Serial UDB Extra PWM Output Channel 7
- int16_t sue_pwm_output_8; ///< Serial UDB Extra PWM Output Channel 8
- int16_t sue_pwm_output_9; ///< Serial UDB Extra PWM Output Channel 9
- int16_t sue_pwm_output_10; ///< Serial UDB Extra PWM Output Channel 10
- int16_t sue_imu_location_x; ///< Serial UDB Extra IMU Location X
- int16_t sue_imu_location_y; ///< Serial UDB Extra IMU Location Y
- int16_t sue_imu_location_z; ///< Serial UDB Extra IMU Location Z
- int16_t sue_osc_fails; ///< Serial UDB Extra Oscillator Failure Count
- int16_t sue_imu_velocity_x; ///< Serial UDB Extra IMU Velocity X
- int16_t sue_imu_velocity_y; ///< Serial UDB Extra IMU Velocity Y
- int16_t sue_imu_velocity_z; ///< Serial UDB Extra IMU Velocity Z
- int16_t sue_waypoint_goal_x; ///< Serial UDB Extra Current Waypoint Goal X
- int16_t sue_waypoint_goal_y; ///< Serial UDB Extra Current Waypoint Goal Y
- int16_t sue_waypoint_goal_z; ///< Serial UDB Extra Current Waypoint Goal Z
- int16_t sue_memory_stack_free; ///< Serial UDB Extra Stack Memory Free
+ uint32_t sue_time; /*< Serial UDB Extra Time*/
+ uint32_t sue_flags; /*< Serial UDB Extra Status Flags*/
+ int16_t sue_pwm_input_1; /*< Serial UDB Extra PWM Input Channel 1*/
+ int16_t sue_pwm_input_2; /*< Serial UDB Extra PWM Input Channel 2*/
+ int16_t sue_pwm_input_3; /*< Serial UDB Extra PWM Input Channel 3*/
+ int16_t sue_pwm_input_4; /*< Serial UDB Extra PWM Input Channel 4*/
+ int16_t sue_pwm_input_5; /*< Serial UDB Extra PWM Input Channel 5*/
+ int16_t sue_pwm_input_6; /*< Serial UDB Extra PWM Input Channel 6*/
+ int16_t sue_pwm_input_7; /*< Serial UDB Extra PWM Input Channel 7*/
+ int16_t sue_pwm_input_8; /*< Serial UDB Extra PWM Input Channel 8*/
+ int16_t sue_pwm_input_9; /*< Serial UDB Extra PWM Input Channel 9*/
+ int16_t sue_pwm_input_10; /*< Serial UDB Extra PWM Input Channel 10*/
+ int16_t sue_pwm_output_1; /*< Serial UDB Extra PWM Output Channel 1*/
+ int16_t sue_pwm_output_2; /*< Serial UDB Extra PWM Output Channel 2*/
+ int16_t sue_pwm_output_3; /*< Serial UDB Extra PWM Output Channel 3*/
+ int16_t sue_pwm_output_4; /*< Serial UDB Extra PWM Output Channel 4*/
+ int16_t sue_pwm_output_5; /*< Serial UDB Extra PWM Output Channel 5*/
+ int16_t sue_pwm_output_6; /*< Serial UDB Extra PWM Output Channel 6*/
+ int16_t sue_pwm_output_7; /*< Serial UDB Extra PWM Output Channel 7*/
+ int16_t sue_pwm_output_8; /*< Serial UDB Extra PWM Output Channel 8*/
+ int16_t sue_pwm_output_9; /*< Serial UDB Extra PWM Output Channel 9*/
+ int16_t sue_pwm_output_10; /*< Serial UDB Extra PWM Output Channel 10*/
+ int16_t sue_imu_location_x; /*< Serial UDB Extra IMU Location X*/
+ int16_t sue_imu_location_y; /*< Serial UDB Extra IMU Location Y*/
+ int16_t sue_imu_location_z; /*< Serial UDB Extra IMU Location Z*/
+ int16_t sue_osc_fails; /*< Serial UDB Extra Oscillator Failure Count*/
+ int16_t sue_imu_velocity_x; /*< Serial UDB Extra IMU Velocity X*/
+ int16_t sue_imu_velocity_y; /*< Serial UDB Extra IMU Velocity Y*/
+ int16_t sue_imu_velocity_z; /*< Serial UDB Extra IMU Velocity Z*/
+ int16_t sue_waypoint_goal_x; /*< Serial UDB Extra Current Waypoint Goal X*/
+ int16_t sue_waypoint_goal_y; /*< Serial UDB Extra Current Waypoint Goal Y*/
+ int16_t sue_waypoint_goal_z; /*< Serial UDB Extra Current Waypoint Goal Z*/
+ int16_t sue_memory_stack_free; /*< Serial UDB Extra Stack Memory Free*/
 } mavlink_serial_udb_extra_f2_b_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_B_LEN 70

@@ -4,9 +4,9 @@
 
 typedef struct __mavlink_ualberta_sys_status_t
 {
- uint8_t mode; ///< System mode, see UALBERTA_AUTOPILOT_MODE ENUM
- uint8_t nav_mode; ///< Navigation mode, see UALBERTA_NAV_MODE ENUM
- uint8_t pilot; ///< Pilot mode, see UALBERTA_PILOT_MODE
+ uint8_t mode; /*< System mode, see UALBERTA_AUTOPILOT_MODE ENUM*/
+ uint8_t nav_mode; /*< Navigation mode, see UALBERTA_NAV_MODE ENUM*/
+ uint8_t pilot; /*< Pilot mode, see UALBERTA_PILOT_MODE*/
 } mavlink_ualberta_sys_status_t;
 
 #define MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN 3

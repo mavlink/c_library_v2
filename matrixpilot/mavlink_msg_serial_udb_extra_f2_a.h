@@ -4,34 +4,34 @@
 
 typedef struct __mavlink_serial_udb_extra_f2_a_t
 {
- uint32_t sue_time; ///< Serial UDB Extra Time
- int32_t sue_latitude; ///< Serial UDB Extra Latitude
- int32_t sue_longitude; ///< Serial UDB Extra Longitude
- int32_t sue_altitude; ///< Serial UDB Extra Altitude
- uint16_t sue_waypoint_index; ///< Serial UDB Extra Waypoint Index
- int16_t sue_rmat0; ///< Serial UDB Extra Rmat 0
- int16_t sue_rmat1; ///< Serial UDB Extra Rmat 1
- int16_t sue_rmat2; ///< Serial UDB Extra Rmat 2
- int16_t sue_rmat3; ///< Serial UDB Extra Rmat 3
- int16_t sue_rmat4; ///< Serial UDB Extra Rmat 4
- int16_t sue_rmat5; ///< Serial UDB Extra Rmat 5
- int16_t sue_rmat6; ///< Serial UDB Extra Rmat 6
- int16_t sue_rmat7; ///< Serial UDB Extra Rmat 7
- int16_t sue_rmat8; ///< Serial UDB Extra Rmat 8
- uint16_t sue_cog; ///< Serial UDB Extra GPS Course Over Ground
- int16_t sue_sog; ///< Serial UDB Extra Speed Over Ground
- uint16_t sue_cpu_load; ///< Serial UDB Extra CPU Load
- int16_t sue_voltage_milis; ///< Serial UDB Extra Voltage in MilliVolts
- uint16_t sue_air_speed_3DIMU; ///< Serial UDB Extra 3D IMU Air Speed
- int16_t sue_estimated_wind_0; ///< Serial UDB Extra Estimated Wind 0
- int16_t sue_estimated_wind_1; ///< Serial UDB Extra Estimated Wind 1
- int16_t sue_estimated_wind_2; ///< Serial UDB Extra Estimated Wind 2
- int16_t sue_magFieldEarth0; ///< Serial UDB Extra Magnetic Field Earth 0 
- int16_t sue_magFieldEarth1; ///< Serial UDB Extra Magnetic Field Earth 1 
- int16_t sue_magFieldEarth2; ///< Serial UDB Extra Magnetic Field Earth 2 
- int16_t sue_svs; ///< Serial UDB Extra Number of Sattelites in View
- int16_t sue_hdop; ///< Serial UDB Extra GPS Horizontal Dilution of Precision
- uint8_t sue_status; ///< Serial UDB Extra Status
+ uint32_t sue_time; /*< Serial UDB Extra Time*/
+ int32_t sue_latitude; /*< Serial UDB Extra Latitude*/
+ int32_t sue_longitude; /*< Serial UDB Extra Longitude*/
+ int32_t sue_altitude; /*< Serial UDB Extra Altitude*/
+ uint16_t sue_waypoint_index; /*< Serial UDB Extra Waypoint Index*/
+ int16_t sue_rmat0; /*< Serial UDB Extra Rmat 0*/
+ int16_t sue_rmat1; /*< Serial UDB Extra Rmat 1*/
+ int16_t sue_rmat2; /*< Serial UDB Extra Rmat 2*/
+ int16_t sue_rmat3; /*< Serial UDB Extra Rmat 3*/
+ int16_t sue_rmat4; /*< Serial UDB Extra Rmat 4*/
+ int16_t sue_rmat5; /*< Serial UDB Extra Rmat 5*/
+ int16_t sue_rmat6; /*< Serial UDB Extra Rmat 6*/
+ int16_t sue_rmat7; /*< Serial UDB Extra Rmat 7*/
+ int16_t sue_rmat8; /*< Serial UDB Extra Rmat 8*/
+ uint16_t sue_cog; /*< Serial UDB Extra GPS Course Over Ground*/
+ int16_t sue_sog; /*< Serial UDB Extra Speed Over Ground*/
+ uint16_t sue_cpu_load; /*< Serial UDB Extra CPU Load*/
+ int16_t sue_voltage_milis; /*< Serial UDB Extra Voltage in MilliVolts*/
+ uint16_t sue_air_speed_3DIMU; /*< Serial UDB Extra 3D IMU Air Speed*/
+ int16_t sue_estimated_wind_0; /*< Serial UDB Extra Estimated Wind 0*/
+ int16_t sue_estimated_wind_1; /*< Serial UDB Extra Estimated Wind 1*/
+ int16_t sue_estimated_wind_2; /*< Serial UDB Extra Estimated Wind 2*/
+ int16_t sue_magFieldEarth0; /*< Serial UDB Extra Magnetic Field Earth 0 */
+ int16_t sue_magFieldEarth1; /*< Serial UDB Extra Magnetic Field Earth 1 */
+ int16_t sue_magFieldEarth2; /*< Serial UDB Extra Magnetic Field Earth 2 */
+ int16_t sue_svs; /*< Serial UDB Extra Number of Sattelites in View*/
+ int16_t sue_hdop; /*< Serial UDB Extra GPS Horizontal Dilution of Precision*/
+ uint8_t sue_status; /*< Serial UDB Extra Status*/
 } mavlink_serial_udb_extra_f2_a_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_LEN 63

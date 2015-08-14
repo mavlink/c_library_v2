@@ -4,19 +4,19 @@
 
 typedef struct __mavlink_sens_batmon_t
 {
- float temperature; ///< Battery pack temperature in [deg C]
- uint16_t voltage; ///< Battery pack voltage in [mV]
- int16_t current; ///< Battery pack current in [mA]
- uint16_t batterystatus; ///< Battery monitor status report bits in Hex
- uint16_t serialnumber; ///< Battery monitor serial number in Hex
- uint16_t hostfetcontrol; ///< Battery monitor sensor host FET control in Hex
- uint16_t cellvoltage1; ///< Battery pack cell 1 voltage in [mV]
- uint16_t cellvoltage2; ///< Battery pack cell 2 voltage in [mV]
- uint16_t cellvoltage3; ///< Battery pack cell 3 voltage in [mV]
- uint16_t cellvoltage4; ///< Battery pack cell 4 voltage in [mV]
- uint16_t cellvoltage5; ///< Battery pack cell 5 voltage in [mV]
- uint16_t cellvoltage6; ///< Battery pack cell 6 voltage in [mV]
- uint8_t SoC; ///< Battery pack state-of-charge
+ float temperature; /*< Battery pack temperature in [deg C]*/
+ uint16_t voltage; /*< Battery pack voltage in [mV]*/
+ int16_t current; /*< Battery pack current in [mA]*/
+ uint16_t batterystatus; /*< Battery monitor status report bits in Hex*/
+ uint16_t serialnumber; /*< Battery monitor serial number in Hex*/
+ uint16_t hostfetcontrol; /*< Battery monitor sensor host FET control in Hex*/
+ uint16_t cellvoltage1; /*< Battery pack cell 1 voltage in [mV]*/
+ uint16_t cellvoltage2; /*< Battery pack cell 2 voltage in [mV]*/
+ uint16_t cellvoltage3; /*< Battery pack cell 3 voltage in [mV]*/
+ uint16_t cellvoltage4; /*< Battery pack cell 4 voltage in [mV]*/
+ uint16_t cellvoltage5; /*< Battery pack cell 5 voltage in [mV]*/
+ uint16_t cellvoltage6; /*< Battery pack cell 6 voltage in [mV]*/
+ uint8_t SoC; /*< Battery pack state-of-charge*/
 } mavlink_sens_batmon_t;
 
 #define MAVLINK_MSG_ID_SENS_BATMON_LEN 27

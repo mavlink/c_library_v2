@@ -4,13 +4,13 @@
 
 typedef struct __mavlink_status_gps_t
 {
- float magVar; ///< Magnetic variation, degrees 
- uint16_t csFails; ///< Number of times checksum has failed
- uint8_t gpsQuality; ///< The quality indicator, 0=fix not available or invalid, 1=GPS fix, 2=C/A differential GPS, 6=Dead reckoning mode, 7=Manual input mode (fixed position), 8=Simulator mode, 9= WAAS a
- uint8_t msgsType; ///<  Indicates if GN, GL or GP messages are being received
- uint8_t posStatus; ///<  A = data valid, V = data invalid
- int8_t magDir; ///<  Magnetic variation direction E/W. Easterly variation (E) subtracts from True course and Westerly variation (W) adds to True course
- uint8_t modeInd; ///<  Positioning system mode indicator. A - Autonomous;D-Differential; E-Estimated (dead reckoning) mode;M-Manual input; N-Data not valid
+ float magVar; /*< Magnetic variation, degrees */
+ uint16_t csFails; /*< Number of times checksum has failed*/
+ uint8_t gpsQuality; /*< The quality indicator, 0=fix not available or invalid, 1=GPS fix, 2=C/A differential GPS, 6=Dead reckoning mode, 7=Manual input mode (fixed position), 8=Simulator mode, 9= WAAS a*/
+ uint8_t msgsType; /*<  Indicates if GN, GL or GP messages are being received*/
+ uint8_t posStatus; /*<  A = data valid, V = data invalid*/
+ int8_t magDir; /*<  Magnetic variation direction E/W. Easterly variation (E) subtracts from True course and Westerly variation (W) adds to True course*/
+ uint8_t modeInd; /*<  Positioning system mode indicator. A - Autonomous;D-Differential; E-Estimated (dead reckoning) mode;M-Manual input; N-Data not valid*/
 } mavlink_status_gps_t;
 
 #define MAVLINK_MSG_ID_STATUS_GPS_LEN 11

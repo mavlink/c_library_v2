@@ -4,12 +4,12 @@
 
 typedef struct __mavlink_set_cam_shutter_t
 {
- float gain; ///< Camera gain
- uint16_t interval; ///< Shutter interval, in microseconds
- uint16_t exposure; ///< Exposure time, in microseconds
- uint8_t cam_no; ///< Camera id
- uint8_t cam_mode; ///< Camera mode: 0 = auto, 1 = manual
- uint8_t trigger_pin; ///< Trigger pin, 0-3 for PtGrey FireFly
+ float gain; /*< Camera gain*/
+ uint16_t interval; /*< Shutter interval, in microseconds*/
+ uint16_t exposure; /*< Exposure time, in microseconds*/
+ uint8_t cam_no; /*< Camera id*/
+ uint8_t cam_mode; /*< Camera mode: 0 = auto, 1 = manual*/
+ uint8_t trigger_pin; /*< Trigger pin, 0-3 for PtGrey FireFly*/
 } mavlink_set_cam_shutter_t;
 
 #define MAVLINK_MSG_ID_SET_CAM_SHUTTER_LEN 11

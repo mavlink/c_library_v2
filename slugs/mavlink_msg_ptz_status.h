@@ -4,9 +4,9 @@
 
 typedef struct __mavlink_ptz_status_t
 {
- int16_t pan; ///< The Pan value in 10ths of degree
- int16_t tilt; ///< The Tilt value in 10ths of degree
- uint8_t zoom; ///< The actual Zoom Value
+ int16_t pan; /*< The Pan value in 10ths of degree*/
+ int16_t tilt; /*< The Tilt value in 10ths of degree*/
+ uint8_t zoom; /*< The actual Zoom Value*/
 } mavlink_ptz_status_t;
 
 #define MAVLINK_MSG_ID_PTZ_STATUS_LEN 5

@@ -4,20 +4,20 @@
 
 typedef struct __mavlink_onboard_health_t
 {
- uint32_t uptime; ///< Uptime of system
- float ram_total; ///< RAM size in GiB
- float swap_total; ///< Swap size in GiB
- float disk_total; ///< Disk total in GiB
- float temp; ///< Temperature
- float voltage; ///< Supply voltage V
- float network_load_in; ///< Network load inbound KiB/s
- float network_load_out; ///< Network load outbound in KiB/s 
- uint16_t cpu_freq; ///< CPU frequency
- uint8_t cpu_load; ///< CPU load in percent
- uint8_t ram_usage; ///< RAM usage in percent
- uint8_t swap_usage; ///< Swap usage in percent
- int8_t disk_health; ///< Disk health (-1: N/A, 0: ERR, 1: RO, 2: RW)
- uint8_t disk_usage; ///< Disk usage in percent
+ uint32_t uptime; /*< Uptime of system*/
+ float ram_total; /*< RAM size in GiB*/
+ float swap_total; /*< Swap size in GiB*/
+ float disk_total; /*< Disk total in GiB*/
+ float temp; /*< Temperature*/
+ float voltage; /*< Supply voltage V*/
+ float network_load_in; /*< Network load inbound KiB/s*/
+ float network_load_out; /*< Network load outbound in KiB/s */
+ uint16_t cpu_freq; /*< CPU frequency*/
+ uint8_t cpu_load; /*< CPU load in percent*/
+ uint8_t ram_usage; /*< RAM usage in percent*/
+ uint8_t swap_usage; /*< Swap usage in percent*/
+ int8_t disk_health; /*< Disk health (-1: N/A, 0: ERR, 1: RO, 2: RW)*/
+ uint8_t disk_usage; /*< Disk usage in percent*/
 } mavlink_onboard_health_t;
 
 #define MAVLINK_MSG_ID_ONBOARD_HEALTH_LEN 39

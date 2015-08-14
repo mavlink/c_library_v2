@@ -4,11 +4,11 @@
 
 typedef struct __mavlink_gopro_response_t
 {
- uint16_t gp_cmd_result; ///< Result of the command attempt to the GoPro, as defined by GOPRO_CMD_RESULT enum.
- uint8_t gp_cmd_name_1; ///< First character of the 2 character GoPro command that generated this response
- uint8_t gp_cmd_name_2; ///< Second character of the 2 character GoPro command that generated this response
- uint8_t gp_cmd_response_status; ///< Response byte from the GoPro's response to the command.  0 = Success, 1 = Failure
- uint8_t gp_cmd_response_argument; ///< Response argument from the GoPro's response to the command
+ uint16_t gp_cmd_result; /*< Result of the command attempt to the GoPro, as defined by GOPRO_CMD_RESULT enum.*/
+ uint8_t gp_cmd_name_1; /*< First character of the 2 character GoPro command that generated this response*/
+ uint8_t gp_cmd_name_2; /*< Second character of the 2 character GoPro command that generated this response*/
+ uint8_t gp_cmd_response_status; /*< Response byte from the GoPro's response to the command.  0 = Success, 1 = Failure*/
+ uint8_t gp_cmd_response_argument; /*< Response argument from the GoPro's response to the command*/
 } mavlink_gopro_response_t;
 
 #define MAVLINK_MSG_ID_GOPRO_RESPONSE_LEN 6

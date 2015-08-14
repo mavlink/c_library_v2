@@ -4,19 +4,19 @@
 
 typedef struct __mavlink_sens_mppt_t
 {
- uint64_t mppt_timestamp; ///<  MPPT last timestamp 
- float mppt1_volt; ///<  MPPT1 voltage 
- float mppt1_amp; ///<  MPPT1 current 
- float mppt2_volt; ///<  MPPT2 voltage 
- float mppt2_amp; ///<  MPPT2 current 
- float mppt3_volt; ///<  MPPT3 voltage 
- float mppt3_amp; ///<  MPPT3 current 
- uint16_t mppt1_pwm; ///<  MPPT1 pwm 
- uint16_t mppt2_pwm; ///<  MPPT2 pwm 
- uint16_t mppt3_pwm; ///<  MPPT3 pwm 
- uint8_t mppt1_status; ///<  MPPT1 status 
- uint8_t mppt2_status; ///<  MPPT2 status 
- uint8_t mppt3_status; ///<  MPPT3 status 
+ uint64_t mppt_timestamp; /*<  MPPT last timestamp */
+ float mppt1_volt; /*<  MPPT1 voltage */
+ float mppt1_amp; /*<  MPPT1 current */
+ float mppt2_volt; /*<  MPPT2 voltage */
+ float mppt2_amp; /*<  MPPT2 current */
+ float mppt3_volt; /*<  MPPT3 voltage */
+ float mppt3_amp; /*<  MPPT3 current */
+ uint16_t mppt1_pwm; /*<  MPPT1 pwm */
+ uint16_t mppt2_pwm; /*<  MPPT2 pwm */
+ uint16_t mppt3_pwm; /*<  MPPT3 pwm */
+ uint8_t mppt1_status; /*<  MPPT1 status */
+ uint8_t mppt2_status; /*<  MPPT2 status */
+ uint8_t mppt3_status; /*<  MPPT3 status */
 } mavlink_sens_mppt_t;
 
 #define MAVLINK_MSG_ID_SENS_MPPT_LEN 41

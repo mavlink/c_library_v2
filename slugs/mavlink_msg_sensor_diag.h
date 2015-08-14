@@ -4,10 +4,10 @@
 
 typedef struct __mavlink_sensor_diag_t
 {
- float float1; ///< Float field 1
- float float2; ///< Float field 2
- int16_t int1; ///< Int 16 field 1
- int8_t char1; ///< Int 8 field 1
+ float float1; /*< Float field 1*/
+ float float2; /*< Float field 2*/
+ int16_t int1; /*< Int 16 field 1*/
+ int8_t char1; /*< Int 8 field 1*/
 } mavlink_sensor_diag_t;
 
 #define MAVLINK_MSG_ID_SENSOR_DIAG_LEN 11

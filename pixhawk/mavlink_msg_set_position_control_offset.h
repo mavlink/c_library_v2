@@ -4,12 +4,12 @@
 
 typedef struct __mavlink_set_position_control_offset_t
 {
- float x; ///< x position offset
- float y; ///< y position offset
- float z; ///< z position offset
- float yaw; ///< yaw orientation offset in radians, 0 = NORTH
- uint8_t target_system; ///< System ID
- uint8_t target_component; ///< Component ID
+ float x; /*< x position offset*/
+ float y; /*< y position offset*/
+ float z; /*< z position offset*/
+ float yaw; /*< yaw orientation offset in radians, 0 = NORTH*/
+ uint8_t target_system; /*< System ID*/
+ uint8_t target_component; /*< Component ID*/
 } mavlink_set_position_control_offset_t;
 
 #define MAVLINK_MSG_ID_SET_POSITION_CONTROL_OFFSET_LEN 18

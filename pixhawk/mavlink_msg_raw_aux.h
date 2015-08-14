@@ -4,13 +4,13 @@
 
 typedef struct __mavlink_raw_aux_t
 {
- int32_t baro; ///< Barometric pressure (hecto Pascal)
- uint16_t adc1; ///< ADC1 (J405 ADC3, LPC2148 AD0.6)
- uint16_t adc2; ///< ADC2 (J405 ADC5, LPC2148 AD0.2)
- uint16_t adc3; ///< ADC3 (J405 ADC6, LPC2148 AD0.1)
- uint16_t adc4; ///< ADC4 (J405 ADC7, LPC2148 AD1.3)
- uint16_t vbat; ///< Battery voltage
- int16_t temp; ///< Temperature (degrees celcius)
+ int32_t baro; /*< Barometric pressure (hecto Pascal)*/
+ uint16_t adc1; /*< ADC1 (J405 ADC3, LPC2148 AD0.6)*/
+ uint16_t adc2; /*< ADC2 (J405 ADC5, LPC2148 AD0.2)*/
+ uint16_t adc3; /*< ADC3 (J405 ADC6, LPC2148 AD0.1)*/
+ uint16_t adc4; /*< ADC4 (J405 ADC7, LPC2148 AD1.3)*/
+ uint16_t vbat; /*< Battery voltage*/
+ int16_t temp; /*< Temperature (degrees celcius)*/
 } mavlink_raw_aux_t;
 
 #define MAVLINK_MSG_ID_RAW_AUX_LEN 16

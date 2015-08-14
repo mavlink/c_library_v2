@@ -4,16 +4,16 @@
 
 typedef struct __mavlink_serial_udb_extra_f4_t
 {
- uint8_t sue_ROLL_STABILIZATION_AILERONS; ///< Serial UDB Extra Roll Stabilization with Ailerons Enabled
- uint8_t sue_ROLL_STABILIZATION_RUDDER; ///< Serial UDB Extra Roll Stabilization with Rudder Enabled
- uint8_t sue_PITCH_STABILIZATION; ///< Serial UDB Extra Pitch Stabilization Enabled
- uint8_t sue_YAW_STABILIZATION_RUDDER; ///< Serial UDB Extra Yaw Stabilization using Rudder Enabled
- uint8_t sue_YAW_STABILIZATION_AILERON; ///< Serial UDB Extra Yaw Stabilization using Ailerons Enabled
- uint8_t sue_AILERON_NAVIGATION; ///< Serial UDB Extra Navigation with Ailerons Enabled
- uint8_t sue_RUDDER_NAVIGATION; ///< Serial UDB Extra Navigation with Rudder Enabled
- uint8_t sue_ALTITUDEHOLD_STABILIZED; ///< Serial UDB Extra Type of Alitude Hold when in Stabilized Mode
- uint8_t sue_ALTITUDEHOLD_WAYPOINT; ///< Serial UDB Extra Type of Alitude Hold when in Waypoint Mode
- uint8_t sue_RACING_MODE; ///< Serial UDB Extra Firmware racing mode enabled
+ uint8_t sue_ROLL_STABILIZATION_AILERONS; /*< Serial UDB Extra Roll Stabilization with Ailerons Enabled*/
+ uint8_t sue_ROLL_STABILIZATION_RUDDER; /*< Serial UDB Extra Roll Stabilization with Rudder Enabled*/
+ uint8_t sue_PITCH_STABILIZATION; /*< Serial UDB Extra Pitch Stabilization Enabled*/
+ uint8_t sue_YAW_STABILIZATION_RUDDER; /*< Serial UDB Extra Yaw Stabilization using Rudder Enabled*/
+ uint8_t sue_YAW_STABILIZATION_AILERON; /*< Serial UDB Extra Yaw Stabilization using Ailerons Enabled*/
+ uint8_t sue_AILERON_NAVIGATION; /*< Serial UDB Extra Navigation with Ailerons Enabled*/
+ uint8_t sue_RUDDER_NAVIGATION; /*< Serial UDB Extra Navigation with Rudder Enabled*/
+ uint8_t sue_ALTITUDEHOLD_STABILIZED; /*< Serial UDB Extra Type of Alitude Hold when in Stabilized Mode*/
+ uint8_t sue_ALTITUDEHOLD_WAYPOINT; /*< Serial UDB Extra Type of Alitude Hold when in Waypoint Mode*/
+ uint8_t sue_RACING_MODE; /*< Serial UDB Extra Firmware racing mode enabled*/
 } mavlink_serial_udb_extra_f4_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F4_LEN 10

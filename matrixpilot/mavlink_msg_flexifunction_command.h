@@ -4,9 +4,9 @@
 
 typedef struct __mavlink_flexifunction_command_t
 {
- uint8_t target_system; ///< System ID
- uint8_t target_component; ///< Component ID
- uint8_t command_type; ///< Flexifunction command type
+ uint8_t target_system; /*< System ID*/
+ uint8_t target_component; /*< Component ID*/
+ uint8_t command_type; /*< Flexifunction command type*/
 } mavlink_flexifunction_command_t;
 
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_COMMAND_LEN 3

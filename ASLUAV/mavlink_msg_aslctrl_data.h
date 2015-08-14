@@ -4,31 +4,31 @@
 
 typedef struct __mavlink_aslctrl_data_t
 {
- uint64_t timestamp; ///<  Timestamp
- float h; ///<  See sourcecode for a description of these values... 
- float hRef; ///<  
- float hRef_t; ///<  
- float PitchAngle; ///< Pitch angle [deg]
- float PitchAngleRef; ///< Pitch angle reference[deg] 
- float q; ///<  
- float qRef; ///<  
- float uElev; ///<  
- float uThrot; ///<  
- float uThrot2; ///<  
- float aZ; ///<  
- float AirspeedRef; ///< Airspeed reference [m/s]
- float YawAngle; ///< Yaw angle [deg]
- float YawAngleRef; ///< Yaw angle reference[deg]
- float RollAngle; ///< Roll angle [deg]
- float RollAngleRef; ///< Roll angle reference[deg]
- float p; ///<  
- float pRef; ///<  
- float r; ///<  
- float rRef; ///<  
- float uAil; ///<  
- float uRud; ///<  
- uint8_t aslctrl_mode; ///<  ASLCTRL control-mode (manual, stabilized, auto, etc...)
- uint8_t SpoilersEngaged; ///<  
+ uint64_t timestamp; /*<  Timestamp*/
+ float h; /*<  See sourcecode for a description of these values... */
+ float hRef; /*<  */
+ float hRef_t; /*<  */
+ float PitchAngle; /*< Pitch angle [deg]*/
+ float PitchAngleRef; /*< Pitch angle reference[deg] */
+ float q; /*<  */
+ float qRef; /*<  */
+ float uElev; /*<  */
+ float uThrot; /*<  */
+ float uThrot2; /*<  */
+ float aZ; /*<  */
+ float AirspeedRef; /*< Airspeed reference [m/s]*/
+ float YawAngle; /*< Yaw angle [deg]*/
+ float YawAngleRef; /*< Yaw angle reference[deg]*/
+ float RollAngle; /*< Roll angle [deg]*/
+ float RollAngleRef; /*< Roll angle reference[deg]*/
+ float p; /*<  */
+ float pRef; /*<  */
+ float r; /*<  */
+ float rRef; /*<  */
+ float uAil; /*<  */
+ float uRud; /*<  */
+ uint8_t aslctrl_mode; /*<  ASLCTRL control-mode (manual, stabilized, auto, etc...)*/
+ uint8_t SpoilersEngaged; /*<  */
 } mavlink_aslctrl_data_t;
 
 #define MAVLINK_MSG_ID_ASLCTRL_DATA_LEN 98

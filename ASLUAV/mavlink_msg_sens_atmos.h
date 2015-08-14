@@ -4,8 +4,8 @@
 
 typedef struct __mavlink_sens_atmos_t
 {
- float TempAmbient; ///<  Ambient temperature [degrees Celsius]
- float Humidity; ///<  Relative humidity [%]
+ float TempAmbient; /*<  Ambient temperature [degrees Celsius]*/
+ float Humidity; /*<  Relative humidity [%]*/
 } mavlink_sens_atmos_t;
 
 #define MAVLINK_MSG_ID_SENS_ATMOS_LEN 8
