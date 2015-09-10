@@ -489,6 +489,62 @@ static void mavlink_test_sens_batmon(uint8_t system_id, uint8_t component_id, ma
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
+static void mavlink_test_fw_soaring_data(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+	mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+	mavlink_fw_soaring_data_t packet_in = {
+		93372036854775807ULL,93372036854776311ULL,129.0,157.0,185.0,213.0,241.0,269.0,297.0,325.0,353.0,381.0,173,240
+    };
+	mavlink_fw_soaring_data_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        	packet1.timestamp = packet_in.timestamp;
+        	packet1.timestampModeChanged = packet_in.timestampModeChanged;
+        	packet1.CurrentUpdraftSpeed = packet_in.CurrentUpdraftSpeed;
+        	packet1.xW = packet_in.xW;
+        	packet1.xR = packet_in.xR;
+        	packet1.xLat = packet_in.xLat;
+        	packet1.xLon = packet_in.xLon;
+        	packet1.VarW = packet_in.VarW;
+        	packet1.VarR = packet_in.VarR;
+        	packet1.VarLat = packet_in.VarLat;
+        	packet1.VarLon = packet_in.VarLon;
+        	packet1.LoiterRadius = packet_in.LoiterRadius;
+        	packet1.ControlMode = packet_in.ControlMode;
+        	packet1.valid = packet_in.valid;
+        
+        
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_fw_soaring_data_encode(system_id, component_id, &msg, &packet1);
+	mavlink_msg_fw_soaring_data_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_fw_soaring_data_pack(system_id, component_id, &msg , packet1.timestamp , packet1.timestampModeChanged , packet1.CurrentUpdraftSpeed , packet1.xW , packet1.xR , packet1.xLat , packet1.xLon , packet1.VarW , packet1.VarR , packet1.VarLat , packet1.VarLon , packet1.LoiterRadius , packet1.ControlMode , packet1.valid );
+	mavlink_msg_fw_soaring_data_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_fw_soaring_data_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.timestamp , packet1.timestampModeChanged , packet1.CurrentUpdraftSpeed , packet1.xW , packet1.xR , packet1.xLat , packet1.xLon , packet1.VarW , packet1.VarR , packet1.VarLat , packet1.VarLon , packet1.LoiterRadius , packet1.ControlMode , packet1.valid );
+	mavlink_msg_fw_soaring_data_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+        	comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+	mavlink_msg_fw_soaring_data_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_fw_soaring_data_send(MAVLINK_COMM_1 , packet1.timestamp , packet1.timestampModeChanged , packet1.CurrentUpdraftSpeed , packet1.xW , packet1.xR , packet1.xLat , packet1.xLon , packet1.VarW , packet1.VarR , packet1.VarLat , packet1.VarLon , packet1.LoiterRadius , packet1.ControlMode , packet1.valid );
+	mavlink_msg_fw_soaring_data_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
 static void mavlink_test_ASLUAV(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
 	mavlink_test_sens_power(system_id, component_id, last_msg);
@@ -500,6 +556,7 @@ static void mavlink_test_ASLUAV(uint8_t system_id, uint8_t component_id, mavlink
 	mavlink_test_asl_obctrl(system_id, component_id, last_msg);
 	mavlink_test_sens_atmos(system_id, component_id, last_msg);
 	mavlink_test_sens_batmon(system_id, component_id, last_msg);
+	mavlink_test_fw_soaring_data(system_id, component_id, last_msg);
 }
 
 #ifdef __cplusplus
