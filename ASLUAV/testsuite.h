@@ -545,6 +545,56 @@ static void mavlink_test_fw_soaring_data(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
+static void mavlink_test_sensorpod_status(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+	mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+	mavlink_sensorpod_status_t packet_in = {
+		93372036854775807ULL,17651,163,230,41,108,175,242
+    };
+	mavlink_sensorpod_status_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        	packet1.timestamp = packet_in.timestamp;
+        	packet1.free_space = packet_in.free_space;
+        	packet1.visensor_rate_1 = packet_in.visensor_rate_1;
+        	packet1.visensor_rate_2 = packet_in.visensor_rate_2;
+        	packet1.visensor_rate_3 = packet_in.visensor_rate_3;
+        	packet1.visensor_rate_4 = packet_in.visensor_rate_4;
+        	packet1.recording_nodes_count = packet_in.recording_nodes_count;
+        	packet1.cpu_temp = packet_in.cpu_temp;
+        
+        
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_sensorpod_status_encode(system_id, component_id, &msg, &packet1);
+	mavlink_msg_sensorpod_status_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_sensorpod_status_pack(system_id, component_id, &msg , packet1.timestamp , packet1.visensor_rate_1 , packet1.visensor_rate_2 , packet1.visensor_rate_3 , packet1.visensor_rate_4 , packet1.recording_nodes_count , packet1.cpu_temp , packet1.free_space );
+	mavlink_msg_sensorpod_status_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_sensorpod_status_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.timestamp , packet1.visensor_rate_1 , packet1.visensor_rate_2 , packet1.visensor_rate_3 , packet1.visensor_rate_4 , packet1.recording_nodes_count , packet1.cpu_temp , packet1.free_space );
+	mavlink_msg_sensorpod_status_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+        	comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+	mavlink_msg_sensorpod_status_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_sensorpod_status_send(MAVLINK_COMM_1 , packet1.timestamp , packet1.visensor_rate_1 , packet1.visensor_rate_2 , packet1.visensor_rate_3 , packet1.visensor_rate_4 , packet1.recording_nodes_count , packet1.cpu_temp , packet1.free_space );
+	mavlink_msg_sensorpod_status_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
 static void mavlink_test_ASLUAV(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
 	mavlink_test_sens_power(system_id, component_id, last_msg);
@@ -557,6 +607,7 @@ static void mavlink_test_ASLUAV(uint8_t system_id, uint8_t component_id, mavlink
 	mavlink_test_sens_atmos(system_id, component_id, last_msg);
 	mavlink_test_sens_batmon(system_id, component_id, last_msg);
 	mavlink_test_fw_soaring_data(system_id, component_id, last_msg);
+	mavlink_test_sensorpod_status(system_id, component_id, last_msg);
 }
 
 #ifdef __cplusplus
