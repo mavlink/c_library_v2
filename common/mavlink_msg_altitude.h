@@ -4,6 +4,7 @@
 
 typedef struct __mavlink_altitude_t
 {
+ uint64_t time_usec; /*< Timestamp (milliseconds since system boot)*/
  float altitude_monotonic; /*< This altitude measure is initialized on system boot and monotonic (it is never reset, but represents the local altitude change). The only guarantee on this field is that it will never be reset and is consistent within a flight. The recommended value for this field is the uncorrected barometric altitude at boot time. This altitude will also drift and vary between flights.*/
  float altitude_amsl; /*< This altitude measure is strictly above mean sea level and might be non-monotonic (it might reset on events like GPS lock or when a new QNH value is set). It should be the altitude to which global altitude waypoints are compared to. Note that it is *not* the GPS altitude, however, most GPS modules already output AMSL by default and not the WGS84 altitude.*/
  float altitude_local; /*< This is the local altitude in the local coordinate frame. It is not the altitude above home, but in reference to the coordinate origin (0, 0, 0). It is up-positive.*/
@@ -12,23 +13,24 @@ typedef struct __mavlink_altitude_t
  float bottom_clearance; /*< This is not the altitude, but the clear space below the system according to the fused clearance estimate. It generally should max out at the maximum range of e.g. the laser altimeter. It is generally a moving target. A negative value indicates no measurement available.*/
 } mavlink_altitude_t;
 
-#define MAVLINK_MSG_ID_ALTITUDE_LEN 24
-#define MAVLINK_MSG_ID_141_LEN 24
+#define MAVLINK_MSG_ID_ALTITUDE_LEN 32
+#define MAVLINK_MSG_ID_141_LEN 32
 
-#define MAVLINK_MSG_ID_ALTITUDE_CRC 148
-#define MAVLINK_MSG_ID_141_CRC 148
+#define MAVLINK_MSG_ID_ALTITUDE_CRC 47
+#define MAVLINK_MSG_ID_141_CRC 47
 
 
 
 #define MAVLINK_MESSAGE_INFO_ALTITUDE { \
 	"ALTITUDE", \
-	6, \
-	{  { "altitude_monotonic", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_altitude_t, altitude_monotonic) }, \
-         { "altitude_amsl", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_altitude_t, altitude_amsl) }, \
-         { "altitude_local", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_altitude_t, altitude_local) }, \
-         { "altitude_relative", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_altitude_t, altitude_relative) }, \
-         { "altitude_terrain", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_altitude_t, altitude_terrain) }, \
-         { "bottom_clearance", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_altitude_t, bottom_clearance) }, \
+	7, \
+	{  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_altitude_t, time_usec) }, \
+         { "altitude_monotonic", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_altitude_t, altitude_monotonic) }, \
+         { "altitude_amsl", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_altitude_t, altitude_amsl) }, \
+         { "altitude_local", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_altitude_t, altitude_local) }, \
+         { "altitude_relative", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_altitude_t, altitude_relative) }, \
+         { "altitude_terrain", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_altitude_t, altitude_terrain) }, \
+         { "bottom_clearance", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_altitude_t, bottom_clearance) }, \
          } \
 }
 
@@ -39,6 +41,7 @@ typedef struct __mavlink_altitude_t
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
+ * @param time_usec Timestamp (milliseconds since system boot)
  * @param altitude_monotonic This altitude measure is initialized on system boot and monotonic (it is never reset, but represents the local altitude change). The only guarantee on this field is that it will never be reset and is consistent within a flight. The recommended value for this field is the uncorrected barometric altitude at boot time. This altitude will also drift and vary between flights.
  * @param altitude_amsl This altitude measure is strictly above mean sea level and might be non-monotonic (it might reset on events like GPS lock or when a new QNH value is set). It should be the altitude to which global altitude waypoints are compared to. Note that it is *not* the GPS altitude, however, most GPS modules already output AMSL by default and not the WGS84 altitude.
  * @param altitude_local This is the local altitude in the local coordinate frame. It is not the altitude above home, but in reference to the coordinate origin (0, 0, 0). It is up-positive.
@@ -48,20 +51,22 @@ typedef struct __mavlink_altitude_t
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_altitude_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-						       float altitude_monotonic, float altitude_amsl, float altitude_local, float altitude_relative, float altitude_terrain, float bottom_clearance)
+						       uint64_t time_usec, float altitude_monotonic, float altitude_amsl, float altitude_local, float altitude_relative, float altitude_terrain, float bottom_clearance)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_ALTITUDE_LEN];
-	_mav_put_float(buf, 0, altitude_monotonic);
-	_mav_put_float(buf, 4, altitude_amsl);
-	_mav_put_float(buf, 8, altitude_local);
-	_mav_put_float(buf, 12, altitude_relative);
-	_mav_put_float(buf, 16, altitude_terrain);
-	_mav_put_float(buf, 20, bottom_clearance);
+	_mav_put_uint64_t(buf, 0, time_usec);
+	_mav_put_float(buf, 8, altitude_monotonic);
+	_mav_put_float(buf, 12, altitude_amsl);
+	_mav_put_float(buf, 16, altitude_local);
+	_mav_put_float(buf, 20, altitude_relative);
+	_mav_put_float(buf, 24, altitude_terrain);
+	_mav_put_float(buf, 28, bottom_clearance);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ALTITUDE_LEN);
 #else
 	mavlink_altitude_t packet;
+	packet.time_usec = time_usec;
 	packet.altitude_monotonic = altitude_monotonic;
 	packet.altitude_amsl = altitude_amsl;
 	packet.altitude_local = altitude_local;
@@ -86,6 +91,7 @@ static inline uint16_t mavlink_msg_altitude_pack(uint8_t system_id, uint8_t comp
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
+ * @param time_usec Timestamp (milliseconds since system boot)
  * @param altitude_monotonic This altitude measure is initialized on system boot and monotonic (it is never reset, but represents the local altitude change). The only guarantee on this field is that it will never be reset and is consistent within a flight. The recommended value for this field is the uncorrected barometric altitude at boot time. This altitude will also drift and vary between flights.
  * @param altitude_amsl This altitude measure is strictly above mean sea level and might be non-monotonic (it might reset on events like GPS lock or when a new QNH value is set). It should be the altitude to which global altitude waypoints are compared to. Note that it is *not* the GPS altitude, however, most GPS modules already output AMSL by default and not the WGS84 altitude.
  * @param altitude_local This is the local altitude in the local coordinate frame. It is not the altitude above home, but in reference to the coordinate origin (0, 0, 0). It is up-positive.
@@ -96,20 +102,22 @@ static inline uint16_t mavlink_msg_altitude_pack(uint8_t system_id, uint8_t comp
  */
 static inline uint16_t mavlink_msg_altitude_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
-						           float altitude_monotonic,float altitude_amsl,float altitude_local,float altitude_relative,float altitude_terrain,float bottom_clearance)
+						           uint64_t time_usec,float altitude_monotonic,float altitude_amsl,float altitude_local,float altitude_relative,float altitude_terrain,float bottom_clearance)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_ALTITUDE_LEN];
-	_mav_put_float(buf, 0, altitude_monotonic);
-	_mav_put_float(buf, 4, altitude_amsl);
-	_mav_put_float(buf, 8, altitude_local);
-	_mav_put_float(buf, 12, altitude_relative);
-	_mav_put_float(buf, 16, altitude_terrain);
-	_mav_put_float(buf, 20, bottom_clearance);
+	_mav_put_uint64_t(buf, 0, time_usec);
+	_mav_put_float(buf, 8, altitude_monotonic);
+	_mav_put_float(buf, 12, altitude_amsl);
+	_mav_put_float(buf, 16, altitude_local);
+	_mav_put_float(buf, 20, altitude_relative);
+	_mav_put_float(buf, 24, altitude_terrain);
+	_mav_put_float(buf, 28, bottom_clearance);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ALTITUDE_LEN);
 #else
 	mavlink_altitude_t packet;
+	packet.time_usec = time_usec;
 	packet.altitude_monotonic = altitude_monotonic;
 	packet.altitude_amsl = altitude_amsl;
 	packet.altitude_local = altitude_local;
@@ -138,7 +146,7 @@ static inline uint16_t mavlink_msg_altitude_pack_chan(uint8_t system_id, uint8_t
  */
 static inline uint16_t mavlink_msg_altitude_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_altitude_t* altitude)
 {
-	return mavlink_msg_altitude_pack(system_id, component_id, msg, altitude->altitude_monotonic, altitude->altitude_amsl, altitude->altitude_local, altitude->altitude_relative, altitude->altitude_terrain, altitude->bottom_clearance);
+	return mavlink_msg_altitude_pack(system_id, component_id, msg, altitude->time_usec, altitude->altitude_monotonic, altitude->altitude_amsl, altitude->altitude_local, altitude->altitude_relative, altitude->altitude_terrain, altitude->bottom_clearance);
 }
 
 /**
@@ -152,13 +160,14 @@ static inline uint16_t mavlink_msg_altitude_encode(uint8_t system_id, uint8_t co
  */
 static inline uint16_t mavlink_msg_altitude_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_altitude_t* altitude)
 {
-	return mavlink_msg_altitude_pack_chan(system_id, component_id, chan, msg, altitude->altitude_monotonic, altitude->altitude_amsl, altitude->altitude_local, altitude->altitude_relative, altitude->altitude_terrain, altitude->bottom_clearance);
+	return mavlink_msg_altitude_pack_chan(system_id, component_id, chan, msg, altitude->time_usec, altitude->altitude_monotonic, altitude->altitude_amsl, altitude->altitude_local, altitude->altitude_relative, altitude->altitude_terrain, altitude->bottom_clearance);
 }
 
 /**
  * @brief Send a altitude message
  * @param chan MAVLink channel to send the message
  *
+ * @param time_usec Timestamp (milliseconds since system boot)
  * @param altitude_monotonic This altitude measure is initialized on system boot and monotonic (it is never reset, but represents the local altitude change). The only guarantee on this field is that it will never be reset and is consistent within a flight. The recommended value for this field is the uncorrected barometric altitude at boot time. This altitude will also drift and vary between flights.
  * @param altitude_amsl This altitude measure is strictly above mean sea level and might be non-monotonic (it might reset on events like GPS lock or when a new QNH value is set). It should be the altitude to which global altitude waypoints are compared to. Note that it is *not* the GPS altitude, however, most GPS modules already output AMSL by default and not the WGS84 altitude.
  * @param altitude_local This is the local altitude in the local coordinate frame. It is not the altitude above home, but in reference to the coordinate origin (0, 0, 0). It is up-positive.
@@ -168,16 +177,17 @@ static inline uint16_t mavlink_msg_altitude_encode_chan(uint8_t system_id, uint8
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_altitude_send(mavlink_channel_t chan, float altitude_monotonic, float altitude_amsl, float altitude_local, float altitude_relative, float altitude_terrain, float bottom_clearance)
+static inline void mavlink_msg_altitude_send(mavlink_channel_t chan, uint64_t time_usec, float altitude_monotonic, float altitude_amsl, float altitude_local, float altitude_relative, float altitude_terrain, float bottom_clearance)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_ALTITUDE_LEN];
-	_mav_put_float(buf, 0, altitude_monotonic);
-	_mav_put_float(buf, 4, altitude_amsl);
-	_mav_put_float(buf, 8, altitude_local);
-	_mav_put_float(buf, 12, altitude_relative);
-	_mav_put_float(buf, 16, altitude_terrain);
-	_mav_put_float(buf, 20, bottom_clearance);
+	_mav_put_uint64_t(buf, 0, time_usec);
+	_mav_put_float(buf, 8, altitude_monotonic);
+	_mav_put_float(buf, 12, altitude_amsl);
+	_mav_put_float(buf, 16, altitude_local);
+	_mav_put_float(buf, 20, altitude_relative);
+	_mav_put_float(buf, 24, altitude_terrain);
+	_mav_put_float(buf, 28, bottom_clearance);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ALTITUDE, buf, MAVLINK_MSG_ID_ALTITUDE_LEN, MAVLINK_MSG_ID_ALTITUDE_CRC);
@@ -186,6 +196,7 @@ static inline void mavlink_msg_altitude_send(mavlink_channel_t chan, float altit
 #endif
 #else
 	mavlink_altitude_t packet;
+	packet.time_usec = time_usec;
 	packet.altitude_monotonic = altitude_monotonic;
 	packet.altitude_amsl = altitude_amsl;
 	packet.altitude_local = altitude_local;
@@ -209,16 +220,17 @@ static inline void mavlink_msg_altitude_send(mavlink_channel_t chan, float altit
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_altitude_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  float altitude_monotonic, float altitude_amsl, float altitude_local, float altitude_relative, float altitude_terrain, float bottom_clearance)
+static inline void mavlink_msg_altitude_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, float altitude_monotonic, float altitude_amsl, float altitude_local, float altitude_relative, float altitude_terrain, float bottom_clearance)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char *buf = (char *)msgbuf;
-	_mav_put_float(buf, 0, altitude_monotonic);
-	_mav_put_float(buf, 4, altitude_amsl);
-	_mav_put_float(buf, 8, altitude_local);
-	_mav_put_float(buf, 12, altitude_relative);
-	_mav_put_float(buf, 16, altitude_terrain);
-	_mav_put_float(buf, 20, bottom_clearance);
+	_mav_put_uint64_t(buf, 0, time_usec);
+	_mav_put_float(buf, 8, altitude_monotonic);
+	_mav_put_float(buf, 12, altitude_amsl);
+	_mav_put_float(buf, 16, altitude_local);
+	_mav_put_float(buf, 20, altitude_relative);
+	_mav_put_float(buf, 24, altitude_terrain);
+	_mav_put_float(buf, 28, bottom_clearance);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ALTITUDE, buf, MAVLINK_MSG_ID_ALTITUDE_LEN, MAVLINK_MSG_ID_ALTITUDE_CRC);
@@ -227,6 +239,7 @@ static inline void mavlink_msg_altitude_send_buf(mavlink_message_t *msgbuf, mavl
 #endif
 #else
 	mavlink_altitude_t *packet = (mavlink_altitude_t *)msgbuf;
+	packet->time_usec = time_usec;
 	packet->altitude_monotonic = altitude_monotonic;
 	packet->altitude_amsl = altitude_amsl;
 	packet->altitude_local = altitude_local;
@@ -249,13 +262,23 @@ static inline void mavlink_msg_altitude_send_buf(mavlink_message_t *msgbuf, mavl
 
 
 /**
+ * @brief Get field time_usec from altitude message
+ *
+ * @return Timestamp (milliseconds since system boot)
+ */
+static inline uint64_t mavlink_msg_altitude_get_time_usec(const mavlink_message_t* msg)
+{
+	return _MAV_RETURN_uint64_t(msg,  0);
+}
+
+/**
  * @brief Get field altitude_monotonic from altitude message
  *
  * @return This altitude measure is initialized on system boot and monotonic (it is never reset, but represents the local altitude change). The only guarantee on this field is that it will never be reset and is consistent within a flight. The recommended value for this field is the uncorrected barometric altitude at boot time. This altitude will also drift and vary between flights.
  */
 static inline float mavlink_msg_altitude_get_altitude_monotonic(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  0);
+	return _MAV_RETURN_float(msg,  8);
 }
 
 /**
@@ -265,7 +288,7 @@ static inline float mavlink_msg_altitude_get_altitude_monotonic(const mavlink_me
  */
 static inline float mavlink_msg_altitude_get_altitude_amsl(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  4);
+	return _MAV_RETURN_float(msg,  12);
 }
 
 /**
@@ -275,7 +298,7 @@ static inline float mavlink_msg_altitude_get_altitude_amsl(const mavlink_message
  */
 static inline float mavlink_msg_altitude_get_altitude_local(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  8);
+	return _MAV_RETURN_float(msg,  16);
 }
 
 /**
@@ -285,7 +308,7 @@ static inline float mavlink_msg_altitude_get_altitude_local(const mavlink_messag
  */
 static inline float mavlink_msg_altitude_get_altitude_relative(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  12);
+	return _MAV_RETURN_float(msg,  20);
 }
 
 /**
@@ -295,7 +318,7 @@ static inline float mavlink_msg_altitude_get_altitude_relative(const mavlink_mes
  */
 static inline float mavlink_msg_altitude_get_altitude_terrain(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  16);
+	return _MAV_RETURN_float(msg,  24);
 }
 
 /**
@@ -305,7 +328,7 @@ static inline float mavlink_msg_altitude_get_altitude_terrain(const mavlink_mess
  */
 static inline float mavlink_msg_altitude_get_bottom_clearance(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  20);
+	return _MAV_RETURN_float(msg,  28);
 }
 
 /**
@@ -317,6 +340,7 @@ static inline float mavlink_msg_altitude_get_bottom_clearance(const mavlink_mess
 static inline void mavlink_msg_altitude_decode(const mavlink_message_t* msg, mavlink_altitude_t* altitude)
 {
 #if MAVLINK_NEED_BYTE_SWAP
+	altitude->time_usec = mavlink_msg_altitude_get_time_usec(msg);
 	altitude->altitude_monotonic = mavlink_msg_altitude_get_altitude_monotonic(msg);
 	altitude->altitude_amsl = mavlink_msg_altitude_get_altitude_amsl(msg);
 	altitude->altitude_local = mavlink_msg_altitude_get_altitude_local(msg);
