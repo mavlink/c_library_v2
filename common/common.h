@@ -666,7 +666,7 @@ typedef enum MAV_PROTOCOL_CAPABILITY
 	MAV_PROTOCOL_CAPABILITY_MISSION_INT=4, /* Autopilot supports MISSION_INT scaled integer message type. | */
 	MAV_PROTOCOL_CAPABILITY_COMMAND_INT=8, /* Autopilot supports COMMAND_INT scaled integer message type. | */
 	MAV_PROTOCOL_CAPABILITY_PARAM_UNION=16, /* Autopilot supports the new param union message type. | */
-	MAV_PROTOCOL_CAPABILITY_FTP=32, /* Autopilot supports the new param union message type. | */
+	MAV_PROTOCOL_CAPABILITY_FTP=32, /* Autopilot supports the new FILE_TRANSFER_PROTOCOL message type. | */
 	MAV_PROTOCOL_CAPABILITY_SET_ATTITUDE_TARGET=64, /* Autopilot supports commanding attitude offboard. | */
 	MAV_PROTOCOL_CAPABILITY_SET_POSITION_TARGET_LOCAL_NED=128, /* Autopilot supports commanding position and velocity targets in local NED frame. | */
 	MAV_PROTOCOL_CAPABILITY_SET_POSITION_TARGET_GLOBAL_INT=256, /* Autopilot supports commanding position and velocity targets in global scaled integers. | */
@@ -698,8 +698,8 @@ typedef enum MAV_ESTIMATOR_TYPE
 typedef enum MAV_BATTERY_TYPE
 {
 	MAV_BATTERY_TYPE_UNKNOWN=0, /* Not specified. | */
-	MAV_BATTERY_TYPE_LIPO=1, /* Lithium polymere battery | */
-	MAV_BATTERY_TYPE_LIFE=2, /* Lithium ferrite battery | */
+	MAV_BATTERY_TYPE_LIPO=1, /* Lithium polymer battery | */
+	MAV_BATTERY_TYPE_LIFE=2, /* Lithium-iron-phosphate battery | */
 	MAV_BATTERY_TYPE_LION=3, /* Lithium-ION battery | */
 	MAV_BATTERY_TYPE_NIMH=4, /* Nickel metal hydride battery | */
 	MAV_BATTERY_TYPE_ENUM_END=5, /*  | */
@@ -711,7 +711,7 @@ typedef enum MAV_BATTERY_TYPE
 #define HAVE_ENUM_MAV_BATTERY_FUNCTION
 typedef enum MAV_BATTERY_FUNCTION
 {
-	MAV_BATTERY_FUNCTION_UNKNOWN=0, /* Lithium polymere battery | */
+	MAV_BATTERY_FUNCTION_UNKNOWN=0, /* Battery function is unknown | */
 	MAV_BATTERY_FUNCTION_ALL=1, /* Battery supports all flight systems | */
 	MAV_BATTERY_FUNCTION_PROPULSION=2, /* Battery for the propulsion system | */
 	MAV_BATTERY_FUNCTION_AVIONICS=3, /* Avionics battery | */
