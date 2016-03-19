@@ -5449,6 +5449,59 @@ static void mavlink_test_scaled_pressure3(uint8_t system_id, uint8_t component_i
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
+static void mavlink_test_follow_target(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+	mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+	mavlink_follow_target_t packet_in = {
+		93372036854775807ULL,93372036854776311ULL,963498296,963498504,185.0,{ 213.0, 214.0, 215.0 },{ 297.0, 298.0, 299.0 },{ 381.0, 382.0, 383.0, 384.0 },{ 493.0, 494.0, 495.0 },{ 577.0, 578.0, 579.0 },25
+    };
+	mavlink_follow_target_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        	packet1.timestamp = packet_in.timestamp;
+        	packet1.custom_state = packet_in.custom_state;
+        	packet1.lat = packet_in.lat;
+        	packet1.lon = packet_in.lon;
+        	packet1.alt = packet_in.alt;
+        	packet1.est_capabilities = packet_in.est_capabilities;
+        
+        	mav_array_memcpy(packet1.vel, packet_in.vel, sizeof(float)*3);
+        	mav_array_memcpy(packet1.acc, packet_in.acc, sizeof(float)*3);
+        	mav_array_memcpy(packet1.attitude_q, packet_in.attitude_q, sizeof(float)*4);
+        	mav_array_memcpy(packet1.rates, packet_in.rates, sizeof(float)*3);
+        	mav_array_memcpy(packet1.position_cov, packet_in.position_cov, sizeof(float)*3);
+        
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_follow_target_encode(system_id, component_id, &msg, &packet1);
+	mavlink_msg_follow_target_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_follow_target_pack(system_id, component_id, &msg , packet1.timestamp , packet1.est_capabilities , packet1.lat , packet1.lon , packet1.alt , packet1.vel , packet1.acc , packet1.attitude_q , packet1.rates , packet1.position_cov , packet1.custom_state );
+	mavlink_msg_follow_target_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_follow_target_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.timestamp , packet1.est_capabilities , packet1.lat , packet1.lon , packet1.alt , packet1.vel , packet1.acc , packet1.attitude_q , packet1.rates , packet1.position_cov , packet1.custom_state );
+	mavlink_msg_follow_target_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+        	comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+	mavlink_msg_follow_target_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_follow_target_send(MAVLINK_COMM_1 , packet1.timestamp , packet1.est_capabilities , packet1.lat , packet1.lon , packet1.alt , packet1.vel , packet1.acc , packet1.attitude_q , packet1.rates , packet1.position_cov , packet1.custom_state );
+	mavlink_msg_follow_target_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
 static void mavlink_test_control_system_state(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
 	mavlink_message_t msg;
@@ -6390,6 +6443,7 @@ static void mavlink_test_common(uint8_t system_id, uint8_t component_id, mavlink
 	mavlink_test_altitude(system_id, component_id, last_msg);
 	mavlink_test_resource_request(system_id, component_id, last_msg);
 	mavlink_test_scaled_pressure3(system_id, component_id, last_msg);
+	mavlink_test_follow_target(system_id, component_id, last_msg);
 	mavlink_test_control_system_state(system_id, component_id, last_msg);
 	mavlink_test_battery_status(system_id, component_id, last_msg);
 	mavlink_test_autopilot_version(system_id, component_id, last_msg);
