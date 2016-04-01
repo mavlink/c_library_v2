@@ -34,6 +34,16 @@ extern "C" {
 // ENUM DEFINITIONS
 
 
+/** @brief Track current version of these definitions (can be used by checking value of AUTOQUAD_MAVLINK_DEFS_VERSION_ENUM_END). Append a new entry for each published change. */
+#ifndef HAVE_ENUM_AUTOQUAD_MAVLINK_DEFS_VERSION
+#define HAVE_ENUM_AUTOQUAD_MAVLINK_DEFS_VERSION
+typedef enum AUTOQUAD_MAVLINK_DEFS_VERSION
+{
+	AQ_MAVLINK_DEFS_VERSION_1=1, /*  | */
+	AUTOQUAD_MAVLINK_DEFS_VERSION_ENUM_END=2, /*  | */
+} AUTOQUAD_MAVLINK_DEFS_VERSION;
+#endif
+
 /** @brief Available operating modes/statuses for AutoQuad flight controller. 
 				Bitmask up to 32 bits. Low side bits for base modes, high side for 
 				additional active features/modifiers/constraints. */
@@ -42,12 +52,19 @@ extern "C" {
 typedef enum AUTOQUAD_NAV_STATUS
 {
 	AQ_NAV_STATUS_INIT=0, /* System is initializing | */
-	AQ_NAV_STATUS_STANDBY=1, /* System is standing by, not active | */
-	AQ_NAV_STATUS_MANUAL=2, /* Stabilized, under full manual control | */
+	AQ_NAV_STATUS_STANDBY=1, /* System is *armed* and standing by, with no throttle input and no autonomous mode | */
+	AQ_NAV_STATUS_MANUAL=2, /* Flying (throttle input detected), assumed under manual control unless other mode bits are set | */
 	AQ_NAV_STATUS_ALTHOLD=4, /* Altitude hold engaged | */
 	AQ_NAV_STATUS_POSHOLD=8, /* Position hold engaged | */
-	AQ_NAV_STATUS_DVH=16, /* Dynamic Velocity Hold is active | */
+	AQ_NAV_STATUS_GUIDED=16, /* Externally-guided (eg. GCS) navigation mode | */
 	AQ_NAV_STATUS_MISSION=32, /* Autonomous mission execution mode | */
+	AQ_NAV_STATUS_READY=256, /* Ready but *not armed* | */
+	AQ_NAV_STATUS_CALIBRATING=512, /* Calibration mode active | */
+	AQ_NAV_STATUS_NO_RC=4096, /* No valid control input (eg. no radio link) | */
+	AQ_NAV_STATUS_FUEL_LOW=8192, /* Battery is low (stage 1 warning) | */
+	AQ_NAV_STATUS_FUEL_CRITICAL=16384, /* Battery is depleted (stage 2 warning) | */
+	AQ_NAV_STATUS_DVH=16777216, /* Dynamic Velocity Hold is active (PH with proportional manual direction override) | */
+	AQ_NAV_STATUS_DAO=33554432, /* ynamic Altitude Override is active (AH with proportional manual adjustment) | */
 	AQ_NAV_STATUS_CEILING_REACHED=67108864, /* Craft is at ceiling altitude | */
 	AQ_NAV_STATUS_CEILING=134217728, /* Ceiling altitude is set | */
 	AQ_NAV_STATUS_HF_DYNAMIC=268435456, /* Heading-Free dynamic mode active | */
@@ -63,8 +80,8 @@ typedef enum AUTOQUAD_NAV_STATUS
 #define HAVE_ENUM_MAV_CMD
 typedef enum MAV_CMD
 {
+	MAV_CMD_AQ_NAV_LEG_ORBIT=1, /* Orbit a waypoint. |Orbit radius in meters| Loiter time in decimal seconds| Maximum horizontal speed in m/s| Desired yaw angle at waypoint| Latitude| Longitude| Altitude|  */
 	MAV_CMD_AQ_TELEMETRY=2, /* Start/stop AutoQuad telemetry values stream. |Start or stop (1 or 0)| Stream frequency in us| Dataset ID (refer to aq_mavlink.h::mavlinkCustomDataSets enum in AQ flight controller code)| Empty| Empty| Empty| Empty|  */
-	MAV_CMD_AQ_FOLLOW=3, /* Command AutoQuad to go to a particular place at a set speed. |Latitude| Lontitude| Altitude| Speed| Empty| Empty| Empty|  */
 	MAV_CMD_AQ_REQUEST_VERSION=4, /* Request AutoQuad firmware version number. |Empty| Empty| Empty| Empty| Empty| Empty| Empty|  */
 	MAV_CMD_NAV_WAYPOINT=16, /* Navigate to MISSION. |Hold time in decimal seconds. (ignored by fixed wing, time to stay at MISSION for rotary wing)| Acceptance radius in meters (if the sphere with this radius is hit, the MISSION counts as reached)| 0 to pass through the WP, if > 0 radius in meters to pass by WP. Positive value for clockwise orbit, negative value for counter-clockwise orbit. Allows trajectory control.| Desired yaw angle at MISSION (rotary wing)| Latitude| Longitude| Altitude|  */
 	MAV_CMD_NAV_LOITER_UNLIM=17, /* Loiter around this MISSION an unlimited amount of time |Empty| Empty| Radius around MISSION, in meters. If positive loiter clockwise, else counter-clockwise| Desired yaw angle.| Latitude| Longitude| Altitude|  */
