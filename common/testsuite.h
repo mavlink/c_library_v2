@@ -5767,15 +5767,15 @@ static void mavlink_test_estimator_status(uint8_t system_id, uint8_t component_i
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
-static void mavlink_test_wind(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+static void mavlink_test_wind_cov(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
 	mavlink_message_t msg;
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
-	mavlink_wind_t packet_in = {
+	mavlink_wind_cov_t packet_in = {
 		93372036854775807ULL,73.0,101.0,129.0,157.0,185.0,213.0,241.0,269.0
     };
-	mavlink_wind_t packet1, packet2;
+	mavlink_wind_cov_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.time_usec = packet_in.time_usec;
         	packet1.wind_x = packet_in.wind_x;
@@ -5790,18 +5790,18 @@ static void mavlink_test_wind(uint8_t system_id, uint8_t component_id, mavlink_m
         
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_wind_encode(system_id, component_id, &msg, &packet1);
-	mavlink_msg_wind_decode(&msg, &packet2);
+	mavlink_msg_wind_cov_encode(system_id, component_id, &msg, &packet1);
+	mavlink_msg_wind_cov_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_wind_pack(system_id, component_id, &msg , packet1.time_usec , packet1.wind_x , packet1.wind_y , packet1.wind_z , packet1.var_horiz , packet1.var_vert , packet1.wind_alt , packet1.horiz_accuracy , packet1.vert_accuracy );
-	mavlink_msg_wind_decode(&msg, &packet2);
+	mavlink_msg_wind_cov_pack(system_id, component_id, &msg , packet1.time_usec , packet1.wind_x , packet1.wind_y , packet1.wind_z , packet1.var_horiz , packet1.var_vert , packet1.wind_alt , packet1.horiz_accuracy , packet1.vert_accuracy );
+	mavlink_msg_wind_cov_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_wind_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_usec , packet1.wind_x , packet1.wind_y , packet1.wind_z , packet1.var_horiz , packet1.var_vert , packet1.wind_alt , packet1.horiz_accuracy , packet1.vert_accuracy );
-	mavlink_msg_wind_decode(&msg, &packet2);
+	mavlink_msg_wind_cov_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_usec , packet1.wind_x , packet1.wind_y , packet1.wind_z , packet1.var_horiz , packet1.var_vert , packet1.wind_alt , packet1.horiz_accuracy , packet1.vert_accuracy );
+	mavlink_msg_wind_cov_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
@@ -5809,12 +5809,12 @@ static void mavlink_test_wind(uint8_t system_id, uint8_t component_id, mavlink_m
         for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
         	comm_send_ch(MAVLINK_COMM_0, buffer[i]);
         }
-	mavlink_msg_wind_decode(last_msg, &packet2);
+	mavlink_msg_wind_cov_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_wind_send(MAVLINK_COMM_1 , packet1.time_usec , packet1.wind_x , packet1.wind_y , packet1.wind_z , packet1.var_horiz , packet1.var_vert , packet1.wind_alt , packet1.horiz_accuracy , packet1.vert_accuracy );
-	mavlink_msg_wind_decode(last_msg, &packet2);
+	mavlink_msg_wind_cov_send(MAVLINK_COMM_1 , packet1.time_usec , packet1.wind_x , packet1.wind_y , packet1.wind_z , packet1.var_horiz , packet1.var_vert , packet1.wind_alt , packet1.horiz_accuracy , packet1.vert_accuracy );
+	mavlink_msg_wind_cov_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
@@ -6552,7 +6552,7 @@ static void mavlink_test_common(uint8_t system_id, uint8_t component_id, mavlink
 	mavlink_test_autopilot_version(system_id, component_id, last_msg);
 	mavlink_test_landing_target(system_id, component_id, last_msg);
 	mavlink_test_estimator_status(system_id, component_id, last_msg);
-	mavlink_test_wind(system_id, component_id, last_msg);
+	mavlink_test_wind_cov(system_id, component_id, last_msg);
 	mavlink_test_vibration(system_id, component_id, last_msg);
 	mavlink_test_home_position(system_id, component_id, last_msg);
 	mavlink_test_set_home_position(system_id, component_id, last_msg);
