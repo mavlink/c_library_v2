@@ -5784,8 +5784,8 @@ static void mavlink_test_wind(uint8_t system_id, uint8_t component_id, mavlink_m
         	packet1.var_horiz = packet_in.var_horiz;
         	packet1.var_vert = packet_in.var_vert;
         	packet1.wind_alt = packet_in.wind_alt;
-        	packet1.pos_horiz_accuracy = packet_in.pos_horiz_accuracy;
-        	packet1.pos_vert_accuracy = packet_in.pos_vert_accuracy;
+        	packet1.horiz_accuracy = packet_in.horiz_accuracy;
+        	packet1.vert_accuracy = packet_in.vert_accuracy;
         
         
 
@@ -5795,12 +5795,12 @@ static void mavlink_test_wind(uint8_t system_id, uint8_t component_id, mavlink_m
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_wind_pack(system_id, component_id, &msg , packet1.time_usec , packet1.wind_x , packet1.wind_y , packet1.wind_z , packet1.var_horiz , packet1.var_vert , packet1.wind_alt , packet1.pos_horiz_accuracy , packet1.pos_vert_accuracy );
+	mavlink_msg_wind_pack(system_id, component_id, &msg , packet1.time_usec , packet1.wind_x , packet1.wind_y , packet1.wind_z , packet1.var_horiz , packet1.var_vert , packet1.wind_alt , packet1.horiz_accuracy , packet1.vert_accuracy );
 	mavlink_msg_wind_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_wind_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_usec , packet1.wind_x , packet1.wind_y , packet1.wind_z , packet1.var_horiz , packet1.var_vert , packet1.wind_alt , packet1.pos_horiz_accuracy , packet1.pos_vert_accuracy );
+	mavlink_msg_wind_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_usec , packet1.wind_x , packet1.wind_y , packet1.wind_z , packet1.var_horiz , packet1.var_vert , packet1.wind_alt , packet1.horiz_accuracy , packet1.vert_accuracy );
 	mavlink_msg_wind_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -5813,7 +5813,7 @@ static void mavlink_test_wind(uint8_t system_id, uint8_t component_id, mavlink_m
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_wind_send(MAVLINK_COMM_1 , packet1.time_usec , packet1.wind_x , packet1.wind_y , packet1.wind_z , packet1.var_horiz , packet1.var_vert , packet1.wind_alt , packet1.pos_horiz_accuracy , packet1.pos_vert_accuracy );
+	mavlink_msg_wind_send(MAVLINK_COMM_1 , packet1.time_usec , packet1.wind_x , packet1.wind_y , packet1.wind_z , packet1.var_horiz , packet1.var_vert , packet1.wind_alt , packet1.horiz_accuracy , packet1.vert_accuracy );
 	mavlink_msg_wind_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }

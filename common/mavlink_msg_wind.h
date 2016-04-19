@@ -11,15 +11,15 @@ typedef struct __mavlink_wind_t
  float var_horiz; /*< Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate.*/
  float var_vert; /*< Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate.*/
  float wind_alt; /*< AMSL altitude (m) this measurement was taken at*/
- float pos_horiz_accuracy; /*< Horizontal position 1-STD accuracy relative to the EKF local origin (m)*/
- float pos_vert_accuracy; /*< Vertical position 1-STD accuracy relative to the EKF local origin (m)*/
+ float horiz_accuracy; /*< Horizontal speed 1-STD accuracy*/
+ float vert_accuracy; /*< Vertical speed 1-STD accuracy*/
 } mavlink_wind_t;
 
 #define MAVLINK_MSG_ID_WIND_LEN 40
 #define MAVLINK_MSG_ID_231_LEN 40
 
-#define MAVLINK_MSG_ID_WIND_CRC 24
-#define MAVLINK_MSG_ID_231_CRC 24
+#define MAVLINK_MSG_ID_WIND_CRC 113
+#define MAVLINK_MSG_ID_231_CRC 113
 
 
 
@@ -33,8 +33,8 @@ typedef struct __mavlink_wind_t
          { "var_horiz", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_wind_t, var_horiz) }, \
          { "var_vert", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_wind_t, var_vert) }, \
          { "wind_alt", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_wind_t, wind_alt) }, \
-         { "pos_horiz_accuracy", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_wind_t, pos_horiz_accuracy) }, \
-         { "pos_vert_accuracy", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_wind_t, pos_vert_accuracy) }, \
+         { "horiz_accuracy", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_wind_t, horiz_accuracy) }, \
+         { "vert_accuracy", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_wind_t, vert_accuracy) }, \
          } \
 }
 
@@ -52,12 +52,12 @@ typedef struct __mavlink_wind_t
  * @param var_horiz Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate.
  * @param var_vert Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate.
  * @param wind_alt AMSL altitude (m) this measurement was taken at
- * @param pos_horiz_accuracy Horizontal position 1-STD accuracy relative to the EKF local origin (m)
- * @param pos_vert_accuracy Vertical position 1-STD accuracy relative to the EKF local origin (m)
+ * @param horiz_accuracy Horizontal speed 1-STD accuracy
+ * @param vert_accuracy Vertical speed 1-STD accuracy
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_wind_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-						       uint64_t time_usec, float wind_x, float wind_y, float wind_z, float var_horiz, float var_vert, float wind_alt, float pos_horiz_accuracy, float pos_vert_accuracy)
+						       uint64_t time_usec, float wind_x, float wind_y, float wind_z, float var_horiz, float var_vert, float wind_alt, float horiz_accuracy, float vert_accuracy)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_WIND_LEN];
@@ -68,8 +68,8 @@ static inline uint16_t mavlink_msg_wind_pack(uint8_t system_id, uint8_t componen
 	_mav_put_float(buf, 20, var_horiz);
 	_mav_put_float(buf, 24, var_vert);
 	_mav_put_float(buf, 28, wind_alt);
-	_mav_put_float(buf, 32, pos_horiz_accuracy);
-	_mav_put_float(buf, 36, pos_vert_accuracy);
+	_mav_put_float(buf, 32, horiz_accuracy);
+	_mav_put_float(buf, 36, vert_accuracy);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_WIND_LEN);
 #else
@@ -81,8 +81,8 @@ static inline uint16_t mavlink_msg_wind_pack(uint8_t system_id, uint8_t componen
 	packet.var_horiz = var_horiz;
 	packet.var_vert = var_vert;
 	packet.wind_alt = wind_alt;
-	packet.pos_horiz_accuracy = pos_horiz_accuracy;
-	packet.pos_vert_accuracy = pos_vert_accuracy;
+	packet.horiz_accuracy = horiz_accuracy;
+	packet.vert_accuracy = vert_accuracy;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_WIND_LEN);
 #endif
@@ -108,13 +108,13 @@ static inline uint16_t mavlink_msg_wind_pack(uint8_t system_id, uint8_t componen
  * @param var_horiz Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate.
  * @param var_vert Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate.
  * @param wind_alt AMSL altitude (m) this measurement was taken at
- * @param pos_horiz_accuracy Horizontal position 1-STD accuracy relative to the EKF local origin (m)
- * @param pos_vert_accuracy Vertical position 1-STD accuracy relative to the EKF local origin (m)
+ * @param horiz_accuracy Horizontal speed 1-STD accuracy
+ * @param vert_accuracy Vertical speed 1-STD accuracy
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_wind_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
-						           uint64_t time_usec,float wind_x,float wind_y,float wind_z,float var_horiz,float var_vert,float wind_alt,float pos_horiz_accuracy,float pos_vert_accuracy)
+						           uint64_t time_usec,float wind_x,float wind_y,float wind_z,float var_horiz,float var_vert,float wind_alt,float horiz_accuracy,float vert_accuracy)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_WIND_LEN];
@@ -125,8 +125,8 @@ static inline uint16_t mavlink_msg_wind_pack_chan(uint8_t system_id, uint8_t com
 	_mav_put_float(buf, 20, var_horiz);
 	_mav_put_float(buf, 24, var_vert);
 	_mav_put_float(buf, 28, wind_alt);
-	_mav_put_float(buf, 32, pos_horiz_accuracy);
-	_mav_put_float(buf, 36, pos_vert_accuracy);
+	_mav_put_float(buf, 32, horiz_accuracy);
+	_mav_put_float(buf, 36, vert_accuracy);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_WIND_LEN);
 #else
@@ -138,8 +138,8 @@ static inline uint16_t mavlink_msg_wind_pack_chan(uint8_t system_id, uint8_t com
 	packet.var_horiz = var_horiz;
 	packet.var_vert = var_vert;
 	packet.wind_alt = wind_alt;
-	packet.pos_horiz_accuracy = pos_horiz_accuracy;
-	packet.pos_vert_accuracy = pos_vert_accuracy;
+	packet.horiz_accuracy = horiz_accuracy;
+	packet.vert_accuracy = vert_accuracy;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_WIND_LEN);
 #endif
@@ -162,7 +162,7 @@ static inline uint16_t mavlink_msg_wind_pack_chan(uint8_t system_id, uint8_t com
  */
 static inline uint16_t mavlink_msg_wind_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_wind_t* wind)
 {
-	return mavlink_msg_wind_pack(system_id, component_id, msg, wind->time_usec, wind->wind_x, wind->wind_y, wind->wind_z, wind->var_horiz, wind->var_vert, wind->wind_alt, wind->pos_horiz_accuracy, wind->pos_vert_accuracy);
+	return mavlink_msg_wind_pack(system_id, component_id, msg, wind->time_usec, wind->wind_x, wind->wind_y, wind->wind_z, wind->var_horiz, wind->var_vert, wind->wind_alt, wind->horiz_accuracy, wind->vert_accuracy);
 }
 
 /**
@@ -176,7 +176,7 @@ static inline uint16_t mavlink_msg_wind_encode(uint8_t system_id, uint8_t compon
  */
 static inline uint16_t mavlink_msg_wind_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_wind_t* wind)
 {
-	return mavlink_msg_wind_pack_chan(system_id, component_id, chan, msg, wind->time_usec, wind->wind_x, wind->wind_y, wind->wind_z, wind->var_horiz, wind->var_vert, wind->wind_alt, wind->pos_horiz_accuracy, wind->pos_vert_accuracy);
+	return mavlink_msg_wind_pack_chan(system_id, component_id, chan, msg, wind->time_usec, wind->wind_x, wind->wind_y, wind->wind_z, wind->var_horiz, wind->var_vert, wind->wind_alt, wind->horiz_accuracy, wind->vert_accuracy);
 }
 
 /**
@@ -190,12 +190,12 @@ static inline uint16_t mavlink_msg_wind_encode_chan(uint8_t system_id, uint8_t c
  * @param var_horiz Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate.
  * @param var_vert Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate.
  * @param wind_alt AMSL altitude (m) this measurement was taken at
- * @param pos_horiz_accuracy Horizontal position 1-STD accuracy relative to the EKF local origin (m)
- * @param pos_vert_accuracy Vertical position 1-STD accuracy relative to the EKF local origin (m)
+ * @param horiz_accuracy Horizontal speed 1-STD accuracy
+ * @param vert_accuracy Vertical speed 1-STD accuracy
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_wind_send(mavlink_channel_t chan, uint64_t time_usec, float wind_x, float wind_y, float wind_z, float var_horiz, float var_vert, float wind_alt, float pos_horiz_accuracy, float pos_vert_accuracy)
+static inline void mavlink_msg_wind_send(mavlink_channel_t chan, uint64_t time_usec, float wind_x, float wind_y, float wind_z, float var_horiz, float var_vert, float wind_alt, float horiz_accuracy, float vert_accuracy)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_WIND_LEN];
@@ -206,8 +206,8 @@ static inline void mavlink_msg_wind_send(mavlink_channel_t chan, uint64_t time_u
 	_mav_put_float(buf, 20, var_horiz);
 	_mav_put_float(buf, 24, var_vert);
 	_mav_put_float(buf, 28, wind_alt);
-	_mav_put_float(buf, 32, pos_horiz_accuracy);
-	_mav_put_float(buf, 36, pos_vert_accuracy);
+	_mav_put_float(buf, 32, horiz_accuracy);
+	_mav_put_float(buf, 36, vert_accuracy);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_WIND, buf, MAVLINK_MSG_ID_WIND_LEN, MAVLINK_MSG_ID_WIND_CRC);
@@ -223,8 +223,8 @@ static inline void mavlink_msg_wind_send(mavlink_channel_t chan, uint64_t time_u
 	packet.var_horiz = var_horiz;
 	packet.var_vert = var_vert;
 	packet.wind_alt = wind_alt;
-	packet.pos_horiz_accuracy = pos_horiz_accuracy;
-	packet.pos_vert_accuracy = pos_vert_accuracy;
+	packet.horiz_accuracy = horiz_accuracy;
+	packet.vert_accuracy = vert_accuracy;
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_WIND, (const char *)&packet, MAVLINK_MSG_ID_WIND_LEN, MAVLINK_MSG_ID_WIND_CRC);
@@ -242,7 +242,7 @@ static inline void mavlink_msg_wind_send(mavlink_channel_t chan, uint64_t time_u
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_wind_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, float wind_x, float wind_y, float wind_z, float var_horiz, float var_vert, float wind_alt, float pos_horiz_accuracy, float pos_vert_accuracy)
+static inline void mavlink_msg_wind_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, float wind_x, float wind_y, float wind_z, float var_horiz, float var_vert, float wind_alt, float horiz_accuracy, float vert_accuracy)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char *buf = (char *)msgbuf;
@@ -253,8 +253,8 @@ static inline void mavlink_msg_wind_send_buf(mavlink_message_t *msgbuf, mavlink_
 	_mav_put_float(buf, 20, var_horiz);
 	_mav_put_float(buf, 24, var_vert);
 	_mav_put_float(buf, 28, wind_alt);
-	_mav_put_float(buf, 32, pos_horiz_accuracy);
-	_mav_put_float(buf, 36, pos_vert_accuracy);
+	_mav_put_float(buf, 32, horiz_accuracy);
+	_mav_put_float(buf, 36, vert_accuracy);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_WIND, buf, MAVLINK_MSG_ID_WIND_LEN, MAVLINK_MSG_ID_WIND_CRC);
@@ -270,8 +270,8 @@ static inline void mavlink_msg_wind_send_buf(mavlink_message_t *msgbuf, mavlink_
 	packet->var_horiz = var_horiz;
 	packet->var_vert = var_vert;
 	packet->wind_alt = wind_alt;
-	packet->pos_horiz_accuracy = pos_horiz_accuracy;
-	packet->pos_vert_accuracy = pos_vert_accuracy;
+	packet->horiz_accuracy = horiz_accuracy;
+	packet->vert_accuracy = vert_accuracy;
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_WIND, (const char *)packet, MAVLINK_MSG_ID_WIND_LEN, MAVLINK_MSG_ID_WIND_CRC);
@@ -358,21 +358,21 @@ static inline float mavlink_msg_wind_get_wind_alt(const mavlink_message_t* msg)
 }
 
 /**
- * @brief Get field pos_horiz_accuracy from wind message
+ * @brief Get field horiz_accuracy from wind message
  *
- * @return Horizontal position 1-STD accuracy relative to the EKF local origin (m)
+ * @return Horizontal speed 1-STD accuracy
  */
-static inline float mavlink_msg_wind_get_pos_horiz_accuracy(const mavlink_message_t* msg)
+static inline float mavlink_msg_wind_get_horiz_accuracy(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  32);
 }
 
 /**
- * @brief Get field pos_vert_accuracy from wind message
+ * @brief Get field vert_accuracy from wind message
  *
- * @return Vertical position 1-STD accuracy relative to the EKF local origin (m)
+ * @return Vertical speed 1-STD accuracy
  */
-static inline float mavlink_msg_wind_get_pos_vert_accuracy(const mavlink_message_t* msg)
+static inline float mavlink_msg_wind_get_vert_accuracy(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  36);
 }
@@ -393,8 +393,8 @@ static inline void mavlink_msg_wind_decode(const mavlink_message_t* msg, mavlink
 	wind->var_horiz = mavlink_msg_wind_get_var_horiz(msg);
 	wind->var_vert = mavlink_msg_wind_get_var_vert(msg);
 	wind->wind_alt = mavlink_msg_wind_get_wind_alt(msg);
-	wind->pos_horiz_accuracy = mavlink_msg_wind_get_pos_horiz_accuracy(msg);
-	wind->pos_vert_accuracy = mavlink_msg_wind_get_pos_vert_accuracy(msg);
+	wind->horiz_accuracy = mavlink_msg_wind_get_horiz_accuracy(msg);
+	wind->vert_accuracy = mavlink_msg_wind_get_vert_accuracy(msg);
 #else
 	memcpy(wind, _MAV_PAYLOAD(msg), MAVLINK_MSG_ID_WIND_LEN);
 #endif
