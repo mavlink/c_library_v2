@@ -160,7 +160,11 @@ static inline void mavlink_msg_mission_clear_all_send(mavlink_channel_t chan, ui
  */
 static inline void mavlink_msg_mission_clear_all_send_struct(mavlink_channel_t chan, const mavlink_mission_clear_all_t* mission_clear_all)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_mission_clear_all_send(chan, mission_clear_all->target_system, mission_clear_all->target_component);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MISSION_CLEAR_ALL, (const char *)mission_clear_all, MAVLINK_MSG_ID_MISSION_CLEAR_ALL_MIN_LEN, MAVLINK_MSG_ID_MISSION_CLEAR_ALL_LEN, MAVLINK_MSG_ID_MISSION_CLEAR_ALL_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_MISSION_CLEAR_ALL_LEN <= MAVLINK_MAX_PAYLOAD_LEN

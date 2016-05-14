@@ -292,7 +292,11 @@ static inline void mavlink_msg_command_int_send(mavlink_channel_t chan, uint8_t 
  */
 static inline void mavlink_msg_command_int_send_struct(mavlink_channel_t chan, const mavlink_command_int_t* command_int)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_command_int_send(chan, command_int->target_system, command_int->target_component, command_int->frame, command_int->command, command_int->current, command_int->autocontinue, command_int->param1, command_int->param2, command_int->param3, command_int->param4, command_int->x, command_int->y, command_int->z);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_COMMAND_INT, (const char *)command_int, MAVLINK_MSG_ID_COMMAND_INT_MIN_LEN, MAVLINK_MSG_ID_COMMAND_INT_LEN, MAVLINK_MSG_ID_COMMAND_INT_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_COMMAND_INT_LEN <= MAVLINK_MAX_PAYLOAD_LEN

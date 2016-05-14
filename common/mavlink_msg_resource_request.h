@@ -191,7 +191,11 @@ static inline void mavlink_msg_resource_request_send(mavlink_channel_t chan, uin
  */
 static inline void mavlink_msg_resource_request_send_struct(mavlink_channel_t chan, const mavlink_resource_request_t* resource_request)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_resource_request_send(chan, resource_request->request_id, resource_request->uri_type, resource_request->uri, resource_request->transfer_type, resource_request->storage);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RESOURCE_REQUEST, (const char *)resource_request, MAVLINK_MSG_ID_RESOURCE_REQUEST_MIN_LEN, MAVLINK_MSG_ID_RESOURCE_REQUEST_LEN, MAVLINK_MSG_ID_RESOURCE_REQUEST_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_RESOURCE_REQUEST_LEN <= MAVLINK_MAX_PAYLOAD_LEN

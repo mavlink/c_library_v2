@@ -220,7 +220,11 @@ static inline void mavlink_msg_local_position_ned_system_global_offset_send(mavl
  */
 static inline void mavlink_msg_local_position_ned_system_global_offset_send_struct(mavlink_channel_t chan, const mavlink_local_position_ned_system_global_offset_t* local_position_ned_system_global_offset)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_local_position_ned_system_global_offset_send(chan, local_position_ned_system_global_offset->time_boot_ms, local_position_ned_system_global_offset->x, local_position_ned_system_global_offset->y, local_position_ned_system_global_offset->z, local_position_ned_system_global_offset->roll, local_position_ned_system_global_offset->pitch, local_position_ned_system_global_offset->yaw);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET, (const char *)local_position_ned_system_global_offset, MAVLINK_MSG_ID_LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_MIN_LEN, MAVLINK_MSG_ID_LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_LEN, MAVLINK_MSG_ID_LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_LEN <= MAVLINK_MAX_PAYLOAD_LEN

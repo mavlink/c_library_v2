@@ -244,7 +244,11 @@ static inline void mavlink_msg_wind_cov_send(mavlink_channel_t chan, uint64_t ti
  */
 static inline void mavlink_msg_wind_cov_send_struct(mavlink_channel_t chan, const mavlink_wind_cov_t* wind_cov)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_wind_cov_send(chan, wind_cov->time_usec, wind_cov->wind_x, wind_cov->wind_y, wind_cov->wind_z, wind_cov->var_horiz, wind_cov->var_vert, wind_cov->wind_alt, wind_cov->horiz_accuracy, wind_cov->vert_accuracy);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_WIND_COV, (const char *)wind_cov, MAVLINK_MSG_ID_WIND_COV_MIN_LEN, MAVLINK_MSG_ID_WIND_COV_LEN, MAVLINK_MSG_ID_WIND_COV_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_WIND_COV_LEN <= MAVLINK_MAX_PAYLOAD_LEN

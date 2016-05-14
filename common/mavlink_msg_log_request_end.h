@@ -160,7 +160,11 @@ static inline void mavlink_msg_log_request_end_send(mavlink_channel_t chan, uint
  */
 static inline void mavlink_msg_log_request_end_send_struct(mavlink_channel_t chan, const mavlink_log_request_end_t* log_request_end)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_log_request_end_send(chan, log_request_end->target_system, log_request_end->target_component);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LOG_REQUEST_END, (const char *)log_request_end, MAVLINK_MSG_ID_LOG_REQUEST_END_MIN_LEN, MAVLINK_MSG_ID_LOG_REQUEST_END_LEN, MAVLINK_MSG_ID_LOG_REQUEST_END_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_LOG_REQUEST_END_LEN <= MAVLINK_MAX_PAYLOAD_LEN

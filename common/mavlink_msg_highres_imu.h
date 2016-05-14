@@ -316,7 +316,11 @@ static inline void mavlink_msg_highres_imu_send(mavlink_channel_t chan, uint64_t
  */
 static inline void mavlink_msg_highres_imu_send_struct(mavlink_channel_t chan, const mavlink_highres_imu_t* highres_imu)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_highres_imu_send(chan, highres_imu->time_usec, highres_imu->xacc, highres_imu->yacc, highres_imu->zacc, highres_imu->xgyro, highres_imu->ygyro, highres_imu->zgyro, highres_imu->xmag, highres_imu->ymag, highres_imu->zmag, highres_imu->abs_pressure, highres_imu->diff_pressure, highres_imu->pressure_alt, highres_imu->temperature, highres_imu->fields_updated);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HIGHRES_IMU, (const char *)highres_imu, MAVLINK_MSG_ID_HIGHRES_IMU_MIN_LEN, MAVLINK_MSG_ID_HIGHRES_IMU_LEN, MAVLINK_MSG_ID_HIGHRES_IMU_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_HIGHRES_IMU_LEN <= MAVLINK_MAX_PAYLOAD_LEN

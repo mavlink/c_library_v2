@@ -220,7 +220,11 @@ static inline void mavlink_msg_vision_position_estimate_send(mavlink_channel_t c
  */
 static inline void mavlink_msg_vision_position_estimate_send_struct(mavlink_channel_t chan, const mavlink_vision_position_estimate_t* vision_position_estimate)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_vision_position_estimate_send(chan, vision_position_estimate->usec, vision_position_estimate->x, vision_position_estimate->y, vision_position_estimate->z, vision_position_estimate->roll, vision_position_estimate->pitch, vision_position_estimate->yaw);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_VISION_POSITION_ESTIMATE, (const char *)vision_position_estimate, MAVLINK_MSG_ID_VISION_POSITION_ESTIMATE_MIN_LEN, MAVLINK_MSG_ID_VISION_POSITION_ESTIMATE_LEN, MAVLINK_MSG_ID_VISION_POSITION_ESTIMATE_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_VISION_POSITION_ESTIMATE_LEN <= MAVLINK_MAX_PAYLOAD_LEN

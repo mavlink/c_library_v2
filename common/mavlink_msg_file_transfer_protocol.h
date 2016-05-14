@@ -178,7 +178,11 @@ static inline void mavlink_msg_file_transfer_protocol_send(mavlink_channel_t cha
  */
 static inline void mavlink_msg_file_transfer_protocol_send_struct(mavlink_channel_t chan, const mavlink_file_transfer_protocol_t* file_transfer_protocol)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_file_transfer_protocol_send(chan, file_transfer_protocol->target_network, file_transfer_protocol->target_system, file_transfer_protocol->target_component, file_transfer_protocol->payload);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FILE_TRANSFER_PROTOCOL, (const char *)file_transfer_protocol, MAVLINK_MSG_ID_FILE_TRANSFER_PROTOCOL_MIN_LEN, MAVLINK_MSG_ID_FILE_TRANSFER_PROTOCOL_LEN, MAVLINK_MSG_ID_FILE_TRANSFER_PROTOCOL_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_FILE_TRANSFER_PROTOCOL_LEN <= MAVLINK_MAX_PAYLOAD_LEN

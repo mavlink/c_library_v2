@@ -256,7 +256,11 @@ static inline void mavlink_msg_scaled_imu3_send(mavlink_channel_t chan, uint32_t
  */
 static inline void mavlink_msg_scaled_imu3_send_struct(mavlink_channel_t chan, const mavlink_scaled_imu3_t* scaled_imu3)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_scaled_imu3_send(chan, scaled_imu3->time_boot_ms, scaled_imu3->xacc, scaled_imu3->yacc, scaled_imu3->zacc, scaled_imu3->xgyro, scaled_imu3->ygyro, scaled_imu3->zgyro, scaled_imu3->xmag, scaled_imu3->ymag, scaled_imu3->zmag);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SCALED_IMU3, (const char *)scaled_imu3, MAVLINK_MSG_ID_SCALED_IMU3_MIN_LEN, MAVLINK_MSG_ID_SCALED_IMU3_LEN, MAVLINK_MSG_ID_SCALED_IMU3_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_SCALED_IMU3_LEN <= MAVLINK_MAX_PAYLOAD_LEN

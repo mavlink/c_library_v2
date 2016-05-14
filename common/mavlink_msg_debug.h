@@ -172,7 +172,11 @@ static inline void mavlink_msg_debug_send(mavlink_channel_t chan, uint32_t time_
  */
 static inline void mavlink_msg_debug_send_struct(mavlink_channel_t chan, const mavlink_debug_t* debug)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_debug_send(chan, debug->time_boot_ms, debug->ind, debug->value);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_DEBUG, (const char *)debug, MAVLINK_MSG_ID_DEBUG_MIN_LEN, MAVLINK_MSG_ID_DEBUG_LEN, MAVLINK_MSG_ID_DEBUG_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_DEBUG_LEN <= MAVLINK_MAX_PAYLOAD_LEN

@@ -190,7 +190,11 @@ static inline void mavlink_msg_param_set_send(mavlink_channel_t chan, uint8_t ta
  */
 static inline void mavlink_msg_param_set_send_struct(mavlink_channel_t chan, const mavlink_param_set_t* param_set)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_param_set_send(chan, param_set->target_system, param_set->target_component, param_set->param_id, param_set->param_value, param_set->param_type);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PARAM_SET, (const char *)param_set, MAVLINK_MSG_ID_PARAM_SET_MIN_LEN, MAVLINK_MSG_ID_PARAM_SET_LEN, MAVLINK_MSG_ID_PARAM_SET_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_PARAM_SET_LEN <= MAVLINK_MAX_PAYLOAD_LEN

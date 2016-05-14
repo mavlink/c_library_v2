@@ -190,7 +190,11 @@ static inline void mavlink_msg_debug_vect_send(mavlink_channel_t chan, const cha
  */
 static inline void mavlink_msg_debug_vect_send_struct(mavlink_channel_t chan, const mavlink_debug_vect_t* debug_vect)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_debug_vect_send(chan, debug_vect->name, debug_vect->time_usec, debug_vect->x, debug_vect->y, debug_vect->z);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_DEBUG_VECT, (const char *)debug_vect, MAVLINK_MSG_ID_DEBUG_VECT_MIN_LEN, MAVLINK_MSG_ID_DEBUG_VECT_LEN, MAVLINK_MSG_ID_DEBUG_VECT_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_DEBUG_VECT_LEN <= MAVLINK_MAX_PAYLOAD_LEN

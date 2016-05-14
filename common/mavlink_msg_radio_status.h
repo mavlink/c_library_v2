@@ -220,7 +220,11 @@ static inline void mavlink_msg_radio_status_send(mavlink_channel_t chan, uint8_t
  */
 static inline void mavlink_msg_radio_status_send_struct(mavlink_channel_t chan, const mavlink_radio_status_t* radio_status)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_radio_status_send(chan, radio_status->rssi, radio_status->remrssi, radio_status->txbuf, radio_status->noise, radio_status->remnoise, radio_status->rxerrors, radio_status->fixed);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RADIO_STATUS, (const char *)radio_status, MAVLINK_MSG_ID_RADIO_STATUS_MIN_LEN, MAVLINK_MSG_ID_RADIO_STATUS_LEN, MAVLINK_MSG_ID_RADIO_STATUS_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_RADIO_STATUS_LEN <= MAVLINK_MAX_PAYLOAD_LEN

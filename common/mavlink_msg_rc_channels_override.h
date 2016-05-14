@@ -256,7 +256,11 @@ static inline void mavlink_msg_rc_channels_override_send(mavlink_channel_t chan,
  */
 static inline void mavlink_msg_rc_channels_override_send_struct(mavlink_channel_t chan, const mavlink_rc_channels_override_t* rc_channels_override)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_rc_channels_override_send(chan, rc_channels_override->target_system, rc_channels_override->target_component, rc_channels_override->chan1_raw, rc_channels_override->chan2_raw, rc_channels_override->chan3_raw, rc_channels_override->chan4_raw, rc_channels_override->chan5_raw, rc_channels_override->chan6_raw, rc_channels_override->chan7_raw, rc_channels_override->chan8_raw);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE, (const char *)rc_channels_override, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_MIN_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_LEN <= MAVLINK_MAX_PAYLOAD_LEN

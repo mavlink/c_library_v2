@@ -220,7 +220,11 @@ static inline void mavlink_msg_altitude_send(mavlink_channel_t chan, uint64_t ti
  */
 static inline void mavlink_msg_altitude_send_struct(mavlink_channel_t chan, const mavlink_altitude_t* altitude)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_altitude_send(chan, altitude->time_usec, altitude->altitude_monotonic, altitude->altitude_amsl, altitude->altitude_local, altitude->altitude_relative, altitude->altitude_terrain, altitude->bottom_clearance);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ALTITUDE, (const char *)altitude, MAVLINK_MSG_ID_ALTITUDE_MIN_LEN, MAVLINK_MSG_ID_ALTITUDE_LEN, MAVLINK_MSG_ID_ALTITUDE_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_ALTITUDE_LEN <= MAVLINK_MAX_PAYLOAD_LEN

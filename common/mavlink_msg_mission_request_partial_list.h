@@ -184,7 +184,11 @@ static inline void mavlink_msg_mission_request_partial_list_send(mavlink_channel
  */
 static inline void mavlink_msg_mission_request_partial_list_send_struct(mavlink_channel_t chan, const mavlink_mission_request_partial_list_t* mission_request_partial_list)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_mission_request_partial_list_send(chan, mission_request_partial_list->target_system, mission_request_partial_list->target_component, mission_request_partial_list->start_index, mission_request_partial_list->end_index);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MISSION_REQUEST_PARTIAL_LIST, (const char *)mission_request_partial_list, MAVLINK_MSG_ID_MISSION_REQUEST_PARTIAL_LIST_MIN_LEN, MAVLINK_MSG_ID_MISSION_REQUEST_PARTIAL_LIST_LEN, MAVLINK_MSG_ID_MISSION_REQUEST_PARTIAL_LIST_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_MISSION_REQUEST_PARTIAL_LIST_LEN <= MAVLINK_MAX_PAYLOAD_LEN

@@ -178,7 +178,11 @@ static inline void mavlink_msg_gps_inject_data_send(mavlink_channel_t chan, uint
  */
 static inline void mavlink_msg_gps_inject_data_send_struct(mavlink_channel_t chan, const mavlink_gps_inject_data_t* gps_inject_data)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_gps_inject_data_send(chan, gps_inject_data->target_system, gps_inject_data->target_component, gps_inject_data->len, gps_inject_data->data);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GPS_INJECT_DATA, (const char *)gps_inject_data, MAVLINK_MSG_ID_GPS_INJECT_DATA_MIN_LEN, MAVLINK_MSG_ID_GPS_INJECT_DATA_LEN, MAVLINK_MSG_ID_GPS_INJECT_DATA_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_GPS_INJECT_DATA_LEN <= MAVLINK_MAX_PAYLOAD_LEN

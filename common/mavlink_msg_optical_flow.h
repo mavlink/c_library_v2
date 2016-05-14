@@ -232,7 +232,11 @@ static inline void mavlink_msg_optical_flow_send(mavlink_channel_t chan, uint64_
  */
 static inline void mavlink_msg_optical_flow_send_struct(mavlink_channel_t chan, const mavlink_optical_flow_t* optical_flow)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_optical_flow_send(chan, optical_flow->time_usec, optical_flow->sensor_id, optical_flow->flow_x, optical_flow->flow_y, optical_flow->flow_comp_m_x, optical_flow->flow_comp_m_y, optical_flow->quality, optical_flow->ground_distance);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_OPTICAL_FLOW, (const char *)optical_flow, MAVLINK_MSG_ID_OPTICAL_FLOW_MIN_LEN, MAVLINK_MSG_ID_OPTICAL_FLOW_LEN, MAVLINK_MSG_ID_OPTICAL_FLOW_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_OPTICAL_FLOW_LEN <= MAVLINK_MAX_PAYLOAD_LEN

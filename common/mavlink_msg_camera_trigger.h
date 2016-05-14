@@ -160,7 +160,11 @@ static inline void mavlink_msg_camera_trigger_send(mavlink_channel_t chan, uint6
  */
 static inline void mavlink_msg_camera_trigger_send_struct(mavlink_channel_t chan, const mavlink_camera_trigger_t* camera_trigger)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_camera_trigger_send(chan, camera_trigger->time_usec, camera_trigger->seq);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAMERA_TRIGGER, (const char *)camera_trigger, MAVLINK_MSG_ID_CAMERA_TRIGGER_MIN_LEN, MAVLINK_MSG_ID_CAMERA_TRIGGER_LEN, MAVLINK_MSG_ID_CAMERA_TRIGGER_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_CAMERA_TRIGGER_LEN <= MAVLINK_MAX_PAYLOAD_LEN

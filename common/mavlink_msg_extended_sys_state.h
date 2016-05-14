@@ -160,7 +160,11 @@ static inline void mavlink_msg_extended_sys_state_send(mavlink_channel_t chan, u
  */
 static inline void mavlink_msg_extended_sys_state_send_struct(mavlink_channel_t chan, const mavlink_extended_sys_state_t* extended_sys_state)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_extended_sys_state_send(chan, extended_sys_state->vtol_state, extended_sys_state->landed_state);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_EXTENDED_SYS_STATE, (const char *)extended_sys_state, MAVLINK_MSG_ID_EXTENDED_SYS_STATE_MIN_LEN, MAVLINK_MSG_ID_EXTENDED_SYS_STATE_LEN, MAVLINK_MSG_ID_EXTENDED_SYS_STATE_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_EXTENDED_SYS_STATE_LEN <= MAVLINK_MAX_PAYLOAD_LEN

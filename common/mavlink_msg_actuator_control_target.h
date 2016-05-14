@@ -166,7 +166,11 @@ static inline void mavlink_msg_actuator_control_target_send(mavlink_channel_t ch
  */
 static inline void mavlink_msg_actuator_control_target_send_struct(mavlink_channel_t chan, const mavlink_actuator_control_target_t* actuator_control_target)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_actuator_control_target_send(chan, actuator_control_target->time_usec, actuator_control_target->group_mlx, actuator_control_target->controls);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET, (const char *)actuator_control_target, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_MIN_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN <= MAVLINK_MAX_PAYLOAD_LEN

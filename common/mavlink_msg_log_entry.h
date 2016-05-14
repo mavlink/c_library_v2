@@ -196,7 +196,11 @@ static inline void mavlink_msg_log_entry_send(mavlink_channel_t chan, uint16_t i
  */
 static inline void mavlink_msg_log_entry_send_struct(mavlink_channel_t chan, const mavlink_log_entry_t* log_entry)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_log_entry_send(chan, log_entry->id, log_entry->num_logs, log_entry->last_log_num, log_entry->time_utc, log_entry->size);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LOG_ENTRY, (const char *)log_entry, MAVLINK_MSG_ID_LOG_ENTRY_MIN_LEN, MAVLINK_MSG_ID_LOG_ENTRY_LEN, MAVLINK_MSG_ID_LOG_ENTRY_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_LOG_ENTRY_LEN <= MAVLINK_MAX_PAYLOAD_LEN

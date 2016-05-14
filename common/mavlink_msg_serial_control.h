@@ -202,7 +202,11 @@ static inline void mavlink_msg_serial_control_send(mavlink_channel_t chan, uint8
  */
 static inline void mavlink_msg_serial_control_send_struct(mavlink_channel_t chan, const mavlink_serial_control_t* serial_control)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_serial_control_send(chan, serial_control->device, serial_control->flags, serial_control->timeout, serial_control->baudrate, serial_control->count, serial_control->data);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SERIAL_CONTROL, (const char *)serial_control, MAVLINK_MSG_ID_SERIAL_CONTROL_MIN_LEN, MAVLINK_MSG_ID_SERIAL_CONTROL_LEN, MAVLINK_MSG_ID_SERIAL_CONTROL_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_SERIAL_CONTROL_LEN <= MAVLINK_MAX_PAYLOAD_LEN

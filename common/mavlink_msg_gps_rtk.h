@@ -292,7 +292,11 @@ static inline void mavlink_msg_gps_rtk_send(mavlink_channel_t chan, uint32_t tim
  */
 static inline void mavlink_msg_gps_rtk_send_struct(mavlink_channel_t chan, const mavlink_gps_rtk_t* gps_rtk)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_gps_rtk_send(chan, gps_rtk->time_last_baseline_ms, gps_rtk->rtk_receiver_id, gps_rtk->wn, gps_rtk->tow, gps_rtk->rtk_health, gps_rtk->rtk_rate, gps_rtk->nsats, gps_rtk->baseline_coords_type, gps_rtk->baseline_a_mm, gps_rtk->baseline_b_mm, gps_rtk->baseline_c_mm, gps_rtk->accuracy, gps_rtk->iar_num_hypotheses);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GPS_RTK, (const char *)gps_rtk, MAVLINK_MSG_ID_GPS_RTK_MIN_LEN, MAVLINK_MSG_ID_GPS_RTK_LEN, MAVLINK_MSG_ID_GPS_RTK_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_GPS_RTK_LEN <= MAVLINK_MAX_PAYLOAD_LEN

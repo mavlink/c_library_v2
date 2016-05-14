@@ -160,7 +160,11 @@ static inline void mavlink_msg_param_request_list_send(mavlink_channel_t chan, u
  */
 static inline void mavlink_msg_param_request_list_send_struct(mavlink_channel_t chan, const mavlink_param_request_list_t* param_request_list)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_param_request_list_send(chan, param_request_list->target_system, param_request_list->target_component);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PARAM_REQUEST_LIST, (const char *)param_request_list, MAVLINK_MSG_ID_PARAM_REQUEST_LIST_MIN_LEN, MAVLINK_MSG_ID_PARAM_REQUEST_LIST_LEN, MAVLINK_MSG_ID_PARAM_REQUEST_LIST_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_PARAM_REQUEST_LIST_LEN <= MAVLINK_MAX_PAYLOAD_LEN

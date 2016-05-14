@@ -266,7 +266,11 @@ static inline void mavlink_msg_follow_target_send(mavlink_channel_t chan, uint64
  */
 static inline void mavlink_msg_follow_target_send_struct(mavlink_channel_t chan, const mavlink_follow_target_t* follow_target)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_follow_target_send(chan, follow_target->timestamp, follow_target->est_capabilities, follow_target->lat, follow_target->lon, follow_target->alt, follow_target->vel, follow_target->acc, follow_target->attitude_q, follow_target->rates, follow_target->position_cov, follow_target->custom_state);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FOLLOW_TARGET, (const char *)follow_target, MAVLINK_MSG_ID_FOLLOW_TARGET_MIN_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_FOLLOW_TARGET_LEN <= MAVLINK_MAX_PAYLOAD_LEN

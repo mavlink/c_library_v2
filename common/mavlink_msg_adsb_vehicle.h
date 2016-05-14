@@ -286,7 +286,11 @@ static inline void mavlink_msg_adsb_vehicle_send(mavlink_channel_t chan, uint32_
  */
 static inline void mavlink_msg_adsb_vehicle_send_struct(mavlink_channel_t chan, const mavlink_adsb_vehicle_t* adsb_vehicle)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_adsb_vehicle_send(chan, adsb_vehicle->ICAO_address, adsb_vehicle->lat, adsb_vehicle->lon, adsb_vehicle->altitude_type, adsb_vehicle->altitude, adsb_vehicle->heading, adsb_vehicle->hor_velocity, adsb_vehicle->ver_velocity, adsb_vehicle->callsign, adsb_vehicle->emitter_type, adsb_vehicle->tslc, adsb_vehicle->flags, adsb_vehicle->squawk);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ADSB_VEHICLE, (const char *)adsb_vehicle, MAVLINK_MSG_ID_ADSB_VEHICLE_MIN_LEN, MAVLINK_MSG_ID_ADSB_VEHICLE_LEN, MAVLINK_MSG_ID_ADSB_VEHICLE_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_ADSB_VEHICLE_LEN <= MAVLINK_MAX_PAYLOAD_LEN

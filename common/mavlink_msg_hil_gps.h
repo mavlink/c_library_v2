@@ -292,7 +292,11 @@ static inline void mavlink_msg_hil_gps_send(mavlink_channel_t chan, uint64_t tim
  */
 static inline void mavlink_msg_hil_gps_send_struct(mavlink_channel_t chan, const mavlink_hil_gps_t* hil_gps)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_hil_gps_send(chan, hil_gps->time_usec, hil_gps->fix_type, hil_gps->lat, hil_gps->lon, hil_gps->alt, hil_gps->eph, hil_gps->epv, hil_gps->vel, hil_gps->vn, hil_gps->ve, hil_gps->vd, hil_gps->cog, hil_gps->satellites_visible);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HIL_GPS, (const char *)hil_gps, MAVLINK_MSG_ID_HIL_GPS_MIN_LEN, MAVLINK_MSG_ID_HIL_GPS_LEN, MAVLINK_MSG_ID_HIL_GPS_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_HIL_GPS_LEN <= MAVLINK_MAX_PAYLOAD_LEN

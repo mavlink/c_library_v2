@@ -166,7 +166,11 @@ static inline void mavlink_msg_named_value_int_send(mavlink_channel_t chan, uint
  */
 static inline void mavlink_msg_named_value_int_send_struct(mavlink_channel_t chan, const mavlink_named_value_int_t* named_value_int)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_named_value_int_send(chan, named_value_int->time_boot_ms, named_value_int->name, named_value_int->value);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_NAMED_VALUE_INT, (const char *)named_value_int, MAVLINK_MSG_ID_NAMED_VALUE_INT_MIN_LEN, MAVLINK_MSG_ID_NAMED_VALUE_INT_LEN, MAVLINK_MSG_ID_NAMED_VALUE_INT_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_NAMED_VALUE_INT_LEN <= MAVLINK_MAX_PAYLOAD_LEN

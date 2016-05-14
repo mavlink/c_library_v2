@@ -232,7 +232,11 @@ static inline void mavlink_msg_landing_target_send(mavlink_channel_t chan, uint6
  */
 static inline void mavlink_msg_landing_target_send_struct(mavlink_channel_t chan, const mavlink_landing_target_t* landing_target)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_landing_target_send(chan, landing_target->time_usec, landing_target->target_num, landing_target->frame, landing_target->angle_x, landing_target->angle_y, landing_target->distance, landing_target->size_x, landing_target->size_y);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LANDING_TARGET, (const char *)landing_target, MAVLINK_MSG_ID_LANDING_TARGET_MIN_LEN, MAVLINK_MSG_ID_LANDING_TARGET_LEN, MAVLINK_MSG_ID_LANDING_TARGET_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_LANDING_TARGET_LEN <= MAVLINK_MAX_PAYLOAD_LEN

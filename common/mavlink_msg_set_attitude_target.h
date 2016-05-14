@@ -238,7 +238,11 @@ static inline void mavlink_msg_set_attitude_target_send(mavlink_channel_t chan, 
  */
 static inline void mavlink_msg_set_attitude_target_send_struct(mavlink_channel_t chan, const mavlink_set_attitude_target_t* set_attitude_target)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_set_attitude_target_send(chan, set_attitude_target->time_boot_ms, set_attitude_target->target_system, set_attitude_target->target_component, set_attitude_target->type_mask, set_attitude_target->q, set_attitude_target->body_roll_rate, set_attitude_target->body_pitch_rate, set_attitude_target->body_yaw_rate, set_attitude_target->thrust);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SET_ATTITUDE_TARGET, (const char *)set_attitude_target, MAVLINK_MSG_ID_SET_ATTITUDE_TARGET_MIN_LEN, MAVLINK_MSG_ID_SET_ATTITUDE_TARGET_LEN, MAVLINK_MSG_ID_SET_ATTITUDE_TARGET_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_SET_ATTITUDE_TARGET_LEN <= MAVLINK_MAX_PAYLOAD_LEN

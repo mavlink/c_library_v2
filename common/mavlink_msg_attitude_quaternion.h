@@ -232,7 +232,11 @@ static inline void mavlink_msg_attitude_quaternion_send(mavlink_channel_t chan, 
  */
 static inline void mavlink_msg_attitude_quaternion_send_struct(mavlink_channel_t chan, const mavlink_attitude_quaternion_t* attitude_quaternion)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_attitude_quaternion_send(chan, attitude_quaternion->time_boot_ms, attitude_quaternion->q1, attitude_quaternion->q2, attitude_quaternion->q3, attitude_quaternion->q4, attitude_quaternion->rollspeed, attitude_quaternion->pitchspeed, attitude_quaternion->yawspeed);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ATTITUDE_QUATERNION, (const char *)attitude_quaternion, MAVLINK_MSG_ID_ATTITUDE_QUATERNION_MIN_LEN, MAVLINK_MSG_ID_ATTITUDE_QUATERNION_LEN, MAVLINK_MSG_ID_ATTITUDE_QUATERNION_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_ATTITUDE_QUATERNION_LEN <= MAVLINK_MAX_PAYLOAD_LEN

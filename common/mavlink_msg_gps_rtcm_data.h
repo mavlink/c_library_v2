@@ -166,7 +166,11 @@ static inline void mavlink_msg_gps_rtcm_data_send(mavlink_channel_t chan, uint8_
  */
 static inline void mavlink_msg_gps_rtcm_data_send_struct(mavlink_channel_t chan, const mavlink_gps_rtcm_data_t* gps_rtcm_data)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_gps_rtcm_data_send(chan, gps_rtcm_data->flags, gps_rtcm_data->len, gps_rtcm_data->data);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GPS_RTCM_DATA, (const char *)gps_rtcm_data, MAVLINK_MSG_ID_GPS_RTCM_DATA_MIN_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN <= MAVLINK_MAX_PAYLOAD_LEN

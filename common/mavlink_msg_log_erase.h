@@ -160,7 +160,11 @@ static inline void mavlink_msg_log_erase_send(mavlink_channel_t chan, uint8_t ta
  */
 static inline void mavlink_msg_log_erase_send_struct(mavlink_channel_t chan, const mavlink_log_erase_t* log_erase)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_log_erase_send(chan, log_erase->target_system, log_erase->target_component);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LOG_ERASE, (const char *)log_erase, MAVLINK_MSG_ID_LOG_ERASE_MIN_LEN, MAVLINK_MSG_ID_LOG_ERASE_LEN, MAVLINK_MSG_ID_LOG_ERASE_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_LOG_ERASE_LEN <= MAVLINK_MAX_PAYLOAD_LEN

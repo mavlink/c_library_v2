@@ -256,7 +256,11 @@ static inline void mavlink_msg_estimator_status_send(mavlink_channel_t chan, uin
  */
 static inline void mavlink_msg_estimator_status_send_struct(mavlink_channel_t chan, const mavlink_estimator_status_t* estimator_status)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_estimator_status_send(chan, estimator_status->time_usec, estimator_status->flags, estimator_status->vel_ratio, estimator_status->pos_horiz_ratio, estimator_status->pos_vert_ratio, estimator_status->mag_ratio, estimator_status->hagl_ratio, estimator_status->tas_ratio, estimator_status->pos_horiz_accuracy, estimator_status->pos_vert_accuracy);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ESTIMATOR_STATUS, (const char *)estimator_status, MAVLINK_MSG_ID_ESTIMATOR_STATUS_MIN_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN <= MAVLINK_MAX_PAYLOAD_LEN

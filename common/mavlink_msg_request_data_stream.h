@@ -196,7 +196,11 @@ static inline void mavlink_msg_request_data_stream_send(mavlink_channel_t chan, 
  */
 static inline void mavlink_msg_request_data_stream_send_struct(mavlink_channel_t chan, const mavlink_request_data_stream_t* request_data_stream)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_request_data_stream_send(chan, request_data_stream->target_system, request_data_stream->target_component, request_data_stream->req_stream_id, request_data_stream->req_message_rate, request_data_stream->start_stop);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_REQUEST_DATA_STREAM, (const char *)request_data_stream, MAVLINK_MSG_ID_REQUEST_DATA_STREAM_MIN_LEN, MAVLINK_MSG_ID_REQUEST_DATA_STREAM_LEN, MAVLINK_MSG_ID_REQUEST_DATA_STREAM_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_REQUEST_DATA_STREAM_LEN <= MAVLINK_MAX_PAYLOAD_LEN

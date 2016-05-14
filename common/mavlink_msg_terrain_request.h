@@ -184,7 +184,11 @@ static inline void mavlink_msg_terrain_request_send(mavlink_channel_t chan, int3
  */
 static inline void mavlink_msg_terrain_request_send_struct(mavlink_channel_t chan, const mavlink_terrain_request_t* terrain_request)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_terrain_request_send(chan, terrain_request->lat, terrain_request->lon, terrain_request->grid_spacing, terrain_request->mask);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_TERRAIN_REQUEST, (const char *)terrain_request, MAVLINK_MSG_ID_TERRAIN_REQUEST_MIN_LEN, MAVLINK_MSG_ID_TERRAIN_REQUEST_LEN, MAVLINK_MSG_ID_TERRAIN_REQUEST_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_TERRAIN_REQUEST_LEN <= MAVLINK_MAX_PAYLOAD_LEN

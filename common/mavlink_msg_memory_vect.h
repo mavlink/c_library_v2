@@ -178,7 +178,11 @@ static inline void mavlink_msg_memory_vect_send(mavlink_channel_t chan, uint16_t
  */
 static inline void mavlink_msg_memory_vect_send_struct(mavlink_channel_t chan, const mavlink_memory_vect_t* memory_vect)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_memory_vect_send(chan, memory_vect->address, memory_vect->ver, memory_vect->type, memory_vect->value);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MEMORY_VECT, (const char *)memory_vect, MAVLINK_MSG_ID_MEMORY_VECT_MIN_LEN, MAVLINK_MSG_ID_MEMORY_VECT_LEN, MAVLINK_MSG_ID_MEMORY_VECT_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_MEMORY_VECT_LEN <= MAVLINK_MAX_PAYLOAD_LEN

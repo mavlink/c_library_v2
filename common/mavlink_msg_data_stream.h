@@ -172,7 +172,11 @@ static inline void mavlink_msg_data_stream_send(mavlink_channel_t chan, uint8_t 
  */
 static inline void mavlink_msg_data_stream_send_struct(mavlink_channel_t chan, const mavlink_data_stream_t* data_stream)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_data_stream_send(chan, data_stream->stream_id, data_stream->message_rate, data_stream->on_off);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_DATA_STREAM, (const char *)data_stream, MAVLINK_MSG_ID_DATA_STREAM_MIN_LEN, MAVLINK_MSG_ID_DATA_STREAM_LEN, MAVLINK_MSG_ID_DATA_STREAM_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_DATA_STREAM_LEN <= MAVLINK_MAX_PAYLOAD_LEN

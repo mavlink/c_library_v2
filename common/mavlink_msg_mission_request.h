@@ -172,7 +172,11 @@ static inline void mavlink_msg_mission_request_send(mavlink_channel_t chan, uint
  */
 static inline void mavlink_msg_mission_request_send_struct(mavlink_channel_t chan, const mavlink_mission_request_t* mission_request)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_mission_request_send(chan, mission_request->target_system, mission_request->target_component, mission_request->seq);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MISSION_REQUEST, (const char *)mission_request, MAVLINK_MSG_ID_MISSION_REQUEST_MIN_LEN, MAVLINK_MSG_ID_MISSION_REQUEST_LEN, MAVLINK_MSG_ID_MISSION_REQUEST_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_MISSION_REQUEST_LEN <= MAVLINK_MAX_PAYLOAD_LEN

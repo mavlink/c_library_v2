@@ -160,7 +160,11 @@ static inline void mavlink_msg_timesync_send(mavlink_channel_t chan, int64_t tc1
  */
 static inline void mavlink_msg_timesync_send_struct(mavlink_channel_t chan, const mavlink_timesync_t* timesync)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_timesync_send(chan, timesync->tc1, timesync->ts1);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_TIMESYNC, (const char *)timesync, MAVLINK_MSG_ID_TIMESYNC_MIN_LEN, MAVLINK_MSG_ID_TIMESYNC_LEN, MAVLINK_MSG_ID_TIMESYNC_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_TIMESYNC_LEN <= MAVLINK_MAX_PAYLOAD_LEN

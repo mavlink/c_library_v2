@@ -244,7 +244,11 @@ static inline void mavlink_msg_safety_set_allowed_area_send(mavlink_channel_t ch
  */
 static inline void mavlink_msg_safety_set_allowed_area_send_struct(mavlink_channel_t chan, const mavlink_safety_set_allowed_area_t* safety_set_allowed_area)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_safety_set_allowed_area_send(chan, safety_set_allowed_area->target_system, safety_set_allowed_area->target_component, safety_set_allowed_area->frame, safety_set_allowed_area->p1x, safety_set_allowed_area->p1y, safety_set_allowed_area->p1z, safety_set_allowed_area->p2x, safety_set_allowed_area->p2y, safety_set_allowed_area->p2z);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SAFETY_SET_ALLOWED_AREA, (const char *)safety_set_allowed_area, MAVLINK_MSG_ID_SAFETY_SET_ALLOWED_AREA_MIN_LEN, MAVLINK_MSG_ID_SAFETY_SET_ALLOWED_AREA_LEN, MAVLINK_MSG_ID_SAFETY_SET_ALLOWED_AREA_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_SAFETY_SET_ALLOWED_AREA_LEN <= MAVLINK_MAX_PAYLOAD_LEN

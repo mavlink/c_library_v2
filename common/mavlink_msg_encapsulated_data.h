@@ -154,7 +154,11 @@ static inline void mavlink_msg_encapsulated_data_send(mavlink_channel_t chan, ui
  */
 static inline void mavlink_msg_encapsulated_data_send_struct(mavlink_channel_t chan, const mavlink_encapsulated_data_t* encapsulated_data)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_encapsulated_data_send(chan, encapsulated_data->seqnr, encapsulated_data->data);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ENCAPSULATED_DATA, (const char *)encapsulated_data, MAVLINK_MSG_ID_ENCAPSULATED_DATA_MIN_LEN, MAVLINK_MSG_ID_ENCAPSULATED_DATA_LEN, MAVLINK_MSG_ID_ENCAPSULATED_DATA_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_ENCAPSULATED_DATA_LEN <= MAVLINK_MAX_PAYLOAD_LEN

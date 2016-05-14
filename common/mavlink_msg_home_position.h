@@ -250,7 +250,11 @@ static inline void mavlink_msg_home_position_send(mavlink_channel_t chan, int32_
  */
 static inline void mavlink_msg_home_position_send_struct(mavlink_channel_t chan, const mavlink_home_position_t* home_position)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_home_position_send(chan, home_position->latitude, home_position->longitude, home_position->altitude, home_position->x, home_position->y, home_position->z, home_position->q, home_position->approach_x, home_position->approach_y, home_position->approach_z);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HOME_POSITION, (const char *)home_position, MAVLINK_MSG_ID_HOME_POSITION_MIN_LEN, MAVLINK_MSG_ID_HOME_POSITION_LEN, MAVLINK_MSG_ID_HOME_POSITION_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_HOME_POSITION_LEN <= MAVLINK_MAX_PAYLOAD_LEN

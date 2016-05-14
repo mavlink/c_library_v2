@@ -184,7 +184,11 @@ static inline void mavlink_msg_ping_send(mavlink_channel_t chan, uint64_t time_u
  */
 static inline void mavlink_msg_ping_send_struct(mavlink_channel_t chan, const mavlink_ping_t* ping)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_ping_send(chan, ping->time_usec, ping->seq, ping->target_system, ping->target_component);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PING, (const char *)ping, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, MAVLINK_MSG_ID_PING_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_PING_LEN <= MAVLINK_MAX_PAYLOAD_LEN

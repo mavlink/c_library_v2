@@ -196,7 +196,11 @@ static inline void mavlink_msg_raw_pressure_send(mavlink_channel_t chan, uint64_
  */
 static inline void mavlink_msg_raw_pressure_send_struct(mavlink_channel_t chan, const mavlink_raw_pressure_t* raw_pressure)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_raw_pressure_send(chan, raw_pressure->time_usec, raw_pressure->press_abs, raw_pressure->press_diff1, raw_pressure->press_diff2, raw_pressure->temperature);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RAW_PRESSURE, (const char *)raw_pressure, MAVLINK_MSG_ID_RAW_PRESSURE_MIN_LEN, MAVLINK_MSG_ID_RAW_PRESSURE_LEN, MAVLINK_MSG_ID_RAW_PRESSURE_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_RAW_PRESSURE_LEN <= MAVLINK_MAX_PAYLOAD_LEN

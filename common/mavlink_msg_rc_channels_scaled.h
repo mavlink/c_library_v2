@@ -268,7 +268,11 @@ static inline void mavlink_msg_rc_channels_scaled_send(mavlink_channel_t chan, u
  */
 static inline void mavlink_msg_rc_channels_scaled_send_struct(mavlink_channel_t chan, const mavlink_rc_channels_scaled_t* rc_channels_scaled)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_rc_channels_scaled_send(chan, rc_channels_scaled->time_boot_ms, rc_channels_scaled->port, rc_channels_scaled->chan1_scaled, rc_channels_scaled->chan2_scaled, rc_channels_scaled->chan3_scaled, rc_channels_scaled->chan4_scaled, rc_channels_scaled->chan5_scaled, rc_channels_scaled->chan6_scaled, rc_channels_scaled->chan7_scaled, rc_channels_scaled->chan8_scaled, rc_channels_scaled->rssi);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RC_CHANNELS_SCALED, (const char *)rc_channels_scaled, MAVLINK_MSG_ID_RC_CHANNELS_SCALED_MIN_LEN, MAVLINK_MSG_ID_RC_CHANNELS_SCALED_LEN, MAVLINK_MSG_ID_RC_CHANNELS_SCALED_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_RC_CHANNELS_SCALED_LEN <= MAVLINK_MAX_PAYLOAD_LEN

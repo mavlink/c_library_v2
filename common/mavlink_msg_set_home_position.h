@@ -262,7 +262,11 @@ static inline void mavlink_msg_set_home_position_send(mavlink_channel_t chan, ui
  */
 static inline void mavlink_msg_set_home_position_send_struct(mavlink_channel_t chan, const mavlink_set_home_position_t* set_home_position)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_set_home_position_send(chan, set_home_position->target_system, set_home_position->latitude, set_home_position->longitude, set_home_position->altitude, set_home_position->x, set_home_position->y, set_home_position->z, set_home_position->q, set_home_position->approach_x, set_home_position->approach_y, set_home_position->approach_z);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SET_HOME_POSITION, (const char *)set_home_position, MAVLINK_MSG_ID_SET_HOME_POSITION_MIN_LEN, MAVLINK_MSG_ID_SET_HOME_POSITION_LEN, MAVLINK_MSG_ID_SET_HOME_POSITION_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_SET_HOME_POSITION_LEN <= MAVLINK_MAX_PAYLOAD_LEN

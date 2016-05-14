@@ -178,7 +178,11 @@ static inline void mavlink_msg_setup_signing_send(mavlink_channel_t chan, uint8_
  */
 static inline void mavlink_msg_setup_signing_send_struct(mavlink_channel_t chan, const mavlink_setup_signing_t* setup_signing)
 {
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_setup_signing_send(chan, setup_signing->target_system, setup_signing->target_component, setup_signing->secret_key, setup_signing->initial_timestamp);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SETUP_SIGNING, (const char *)setup_signing, MAVLINK_MSG_ID_SETUP_SIGNING_MIN_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_CRC);
+#endif
 }
 
 #if MAVLINK_MSG_ID_SETUP_SIGNING_LEN <= MAVLINK_MAX_PAYLOAD_LEN
