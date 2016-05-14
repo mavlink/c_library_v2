@@ -171,6 +171,16 @@ static inline void mavlink_msg_gps_inject_data_send(mavlink_channel_t chan, uint
 #endif
 }
 
+/**
+ * @brief Send a gps_inject_data message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_gps_inject_data_send_struct(mavlink_channel_t chan, const mavlink_gps_inject_data_t* gps_inject_data)
+{
+    mavlink_msg_gps_inject_data_send(chan, gps_inject_data->target_system, gps_inject_data->target_component, gps_inject_data->len, gps_inject_data->data);
+}
+
 #if MAVLINK_MSG_ID_GPS_INJECT_DATA_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

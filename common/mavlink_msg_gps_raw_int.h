@@ -249,6 +249,16 @@ static inline void mavlink_msg_gps_raw_int_send(mavlink_channel_t chan, uint64_t
 #endif
 }
 
+/**
+ * @brief Send a gps_raw_int message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_gps_raw_int_send_struct(mavlink_channel_t chan, const mavlink_gps_raw_int_t* gps_raw_int)
+{
+    mavlink_msg_gps_raw_int_send(chan, gps_raw_int->time_usec, gps_raw_int->fix_type, gps_raw_int->lat, gps_raw_int->lon, gps_raw_int->alt, gps_raw_int->eph, gps_raw_int->epv, gps_raw_int->vel, gps_raw_int->cog, gps_raw_int->satellites_visible);
+}
+
 #if MAVLINK_MSG_ID_GPS_RAW_INT_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

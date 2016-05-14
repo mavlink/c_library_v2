@@ -237,6 +237,16 @@ static inline void mavlink_msg_global_position_int_send(mavlink_channel_t chan, 
 #endif
 }
 
+/**
+ * @brief Send a global_position_int message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_global_position_int_send_struct(mavlink_channel_t chan, const mavlink_global_position_int_t* global_position_int)
+{
+    mavlink_msg_global_position_int_send(chan, global_position_int->time_boot_ms, global_position_int->lat, global_position_int->lon, global_position_int->alt, global_position_int->relative_alt, global_position_int->vx, global_position_int->vy, global_position_int->vz, global_position_int->hdg);
+}
+
 #if MAVLINK_MSG_ID_GLOBAL_POSITION_INT_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

@@ -257,6 +257,16 @@ static inline void mavlink_msg_autopilot_version_send(mavlink_channel_t chan, ui
 #endif
 }
 
+/**
+ * @brief Send a autopilot_version message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_autopilot_version_send_struct(mavlink_channel_t chan, const mavlink_autopilot_version_t* autopilot_version)
+{
+    mavlink_msg_autopilot_version_send(chan, autopilot_version->capabilities, autopilot_version->flight_sw_version, autopilot_version->middleware_sw_version, autopilot_version->os_sw_version, autopilot_version->board_version, autopilot_version->flight_custom_version, autopilot_version->middleware_custom_version, autopilot_version->os_custom_version, autopilot_version->vendor_id, autopilot_version->product_id, autopilot_version->uid);
+}
+
 #if MAVLINK_MSG_ID_AUTOPILOT_VERSION_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

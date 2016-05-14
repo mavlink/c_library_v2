@@ -189,6 +189,16 @@ static inline void mavlink_msg_log_request_data_send(mavlink_channel_t chan, uin
 #endif
 }
 
+/**
+ * @brief Send a log_request_data message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_log_request_data_send_struct(mavlink_channel_t chan, const mavlink_log_request_data_t* log_request_data)
+{
+    mavlink_msg_log_request_data_send(chan, log_request_data->target_system, log_request_data->target_component, log_request_data->id, log_request_data->ofs, log_request_data->count);
+}
+
 #if MAVLINK_MSG_ID_LOG_REQUEST_DATA_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

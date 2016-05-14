@@ -285,6 +285,16 @@ static inline void mavlink_msg_command_int_send(mavlink_channel_t chan, uint8_t 
 #endif
 }
 
+/**
+ * @brief Send a command_int message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_command_int_send_struct(mavlink_channel_t chan, const mavlink_command_int_t* command_int)
+{
+    mavlink_msg_command_int_send(chan, command_int->target_system, command_int->target_component, command_int->frame, command_int->command, command_int->current, command_int->autocontinue, command_int->param1, command_int->param2, command_int->param3, command_int->param4, command_int->x, command_int->y, command_int->z);
+}
+
 #if MAVLINK_MSG_ID_COMMAND_INT_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

@@ -171,6 +171,16 @@ static inline void mavlink_msg_file_transfer_protocol_send(mavlink_channel_t cha
 #endif
 }
 
+/**
+ * @brief Send a file_transfer_protocol message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_file_transfer_protocol_send_struct(mavlink_channel_t chan, const mavlink_file_transfer_protocol_t* file_transfer_protocol)
+{
+    mavlink_msg_file_transfer_protocol_send(chan, file_transfer_protocol->target_network, file_transfer_protocol->target_system, file_transfer_protocol->target_component, file_transfer_protocol->payload);
+}
+
 #if MAVLINK_MSG_ID_FILE_TRANSFER_PROTOCOL_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

@@ -159,6 +159,16 @@ static inline void mavlink_msg_named_value_int_send(mavlink_channel_t chan, uint
 #endif
 }
 
+/**
+ * @brief Send a named_value_int message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_named_value_int_send_struct(mavlink_channel_t chan, const mavlink_named_value_int_t* named_value_int)
+{
+    mavlink_msg_named_value_int_send(chan, named_value_int->time_boot_ms, named_value_int->name, named_value_int->value);
+}
+
 #if MAVLINK_MSG_ID_NAMED_VALUE_INT_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

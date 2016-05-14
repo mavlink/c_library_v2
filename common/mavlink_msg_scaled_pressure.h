@@ -177,6 +177,16 @@ static inline void mavlink_msg_scaled_pressure_send(mavlink_channel_t chan, uint
 #endif
 }
 
+/**
+ * @brief Send a scaled_pressure message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_scaled_pressure_send_struct(mavlink_channel_t chan, const mavlink_scaled_pressure_t* scaled_pressure)
+{
+    mavlink_msg_scaled_pressure_send(chan, scaled_pressure->time_boot_ms, scaled_pressure->press_abs, scaled_pressure->press_diff, scaled_pressure->temperature);
+}
+
 #if MAVLINK_MSG_ID_SCALED_PRESSURE_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

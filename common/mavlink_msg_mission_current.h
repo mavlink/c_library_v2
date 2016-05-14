@@ -141,6 +141,16 @@ static inline void mavlink_msg_mission_current_send(mavlink_channel_t chan, uint
 #endif
 }
 
+/**
+ * @brief Send a mission_current message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_mission_current_send_struct(mavlink_channel_t chan, const mavlink_mission_current_t* mission_current)
+{
+    mavlink_msg_mission_current_send(chan, mission_current->seq);
+}
+
 #if MAVLINK_MSG_ID_MISSION_CURRENT_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

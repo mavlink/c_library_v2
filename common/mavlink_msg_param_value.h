@@ -183,6 +183,16 @@ static inline void mavlink_msg_param_value_send(mavlink_channel_t chan, const ch
 #endif
 }
 
+/**
+ * @brief Send a param_value message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_param_value_send_struct(mavlink_channel_t chan, const mavlink_param_value_t* param_value)
+{
+    mavlink_msg_param_value_send(chan, param_value->param_id, param_value->param_value, param_value->param_type, param_value->param_count, param_value->param_index);
+}
+
 #if MAVLINK_MSG_ID_PARAM_VALUE_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

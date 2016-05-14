@@ -249,6 +249,16 @@ static inline void mavlink_msg_estimator_status_send(mavlink_channel_t chan, uin
 #endif
 }
 
+/**
+ * @brief Send a estimator_status message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_estimator_status_send_struct(mavlink_channel_t chan, const mavlink_estimator_status_t* estimator_status)
+{
+    mavlink_msg_estimator_status_send(chan, estimator_status->time_usec, estimator_status->flags, estimator_status->vel_ratio, estimator_status->pos_horiz_ratio, estimator_status->pos_vert_ratio, estimator_status->mag_ratio, estimator_status->hagl_ratio, estimator_status->tas_ratio, estimator_status->pos_horiz_accuracy, estimator_status->pos_vert_accuracy);
+}
+
 #if MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

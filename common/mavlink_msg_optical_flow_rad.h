@@ -273,6 +273,16 @@ static inline void mavlink_msg_optical_flow_rad_send(mavlink_channel_t chan, uin
 #endif
 }
 
+/**
+ * @brief Send a optical_flow_rad message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_optical_flow_rad_send_struct(mavlink_channel_t chan, const mavlink_optical_flow_rad_t* optical_flow_rad)
+{
+    mavlink_msg_optical_flow_rad_send(chan, optical_flow_rad->time_usec, optical_flow_rad->sensor_id, optical_flow_rad->integration_time_us, optical_flow_rad->integrated_x, optical_flow_rad->integrated_y, optical_flow_rad->integrated_xgyro, optical_flow_rad->integrated_ygyro, optical_flow_rad->integrated_zgyro, optical_flow_rad->temperature, optical_flow_rad->quality, optical_flow_rad->time_delta_distance_us, optical_flow_rad->distance);
+}
+
 #if MAVLINK_MSG_ID_OPTICAL_FLOW_RAD_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

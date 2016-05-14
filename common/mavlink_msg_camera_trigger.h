@@ -153,6 +153,16 @@ static inline void mavlink_msg_camera_trigger_send(mavlink_channel_t chan, uint6
 #endif
 }
 
+/**
+ * @brief Send a camera_trigger message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_camera_trigger_send_struct(mavlink_channel_t chan, const mavlink_camera_trigger_t* camera_trigger)
+{
+    mavlink_msg_camera_trigger_send(chan, camera_trigger->time_usec, camera_trigger->seq);
+}
+
 #if MAVLINK_MSG_ID_CAMERA_TRIGGER_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

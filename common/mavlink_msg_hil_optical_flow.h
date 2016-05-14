@@ -273,6 +273,16 @@ static inline void mavlink_msg_hil_optical_flow_send(mavlink_channel_t chan, uin
 #endif
 }
 
+/**
+ * @brief Send a hil_optical_flow message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_hil_optical_flow_send_struct(mavlink_channel_t chan, const mavlink_hil_optical_flow_t* hil_optical_flow)
+{
+    mavlink_msg_hil_optical_flow_send(chan, hil_optical_flow->time_usec, hil_optical_flow->sensor_id, hil_optical_flow->integration_time_us, hil_optical_flow->integrated_x, hil_optical_flow->integrated_y, hil_optical_flow->integrated_xgyro, hil_optical_flow->integrated_ygyro, hil_optical_flow->integrated_zgyro, hil_optical_flow->temperature, hil_optical_flow->quality, hil_optical_flow->time_delta_distance_us, hil_optical_flow->distance);
+}
+
 #if MAVLINK_MSG_ID_HIL_OPTICAL_FLOW_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

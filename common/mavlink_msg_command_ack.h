@@ -153,6 +153,16 @@ static inline void mavlink_msg_command_ack_send(mavlink_channel_t chan, uint16_t
 #endif
 }
 
+/**
+ * @brief Send a command_ack message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_command_ack_send_struct(mavlink_channel_t chan, const mavlink_command_ack_t* command_ack)
+{
+    mavlink_msg_command_ack_send(chan, command_ack->command, command_ack->result);
+}
+
 #if MAVLINK_MSG_ID_COMMAND_ACK_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

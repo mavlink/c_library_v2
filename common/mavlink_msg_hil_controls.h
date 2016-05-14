@@ -261,6 +261,16 @@ static inline void mavlink_msg_hil_controls_send(mavlink_channel_t chan, uint64_
 #endif
 }
 
+/**
+ * @brief Send a hil_controls message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_hil_controls_send_struct(mavlink_channel_t chan, const mavlink_hil_controls_t* hil_controls)
+{
+    mavlink_msg_hil_controls_send(chan, hil_controls->time_usec, hil_controls->roll_ailerons, hil_controls->pitch_elevator, hil_controls->yaw_rudder, hil_controls->throttle, hil_controls->aux1, hil_controls->aux2, hil_controls->aux3, hil_controls->aux4, hil_controls->mode, hil_controls->nav_mode);
+}
+
 #if MAVLINK_MSG_ID_HIL_CONTROLS_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

@@ -171,6 +171,16 @@ static inline void mavlink_msg_setup_signing_send(mavlink_channel_t chan, uint8_
 #endif
 }
 
+/**
+ * @brief Send a setup_signing message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_setup_signing_send_struct(mavlink_channel_t chan, const mavlink_setup_signing_t* setup_signing)
+{
+    mavlink_msg_setup_signing_send(chan, setup_signing->target_system, setup_signing->target_component, setup_signing->secret_key, setup_signing->initial_timestamp);
+}
+
 #if MAVLINK_MSG_ID_SETUP_SIGNING_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

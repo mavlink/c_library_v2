@@ -249,6 +249,16 @@ static inline void mavlink_msg_scaled_imu2_send(mavlink_channel_t chan, uint32_t
 #endif
 }
 
+/**
+ * @brief Send a scaled_imu2 message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_scaled_imu2_send_struct(mavlink_channel_t chan, const mavlink_scaled_imu2_t* scaled_imu2)
+{
+    mavlink_msg_scaled_imu2_send(chan, scaled_imu2->time_boot_ms, scaled_imu2->xacc, scaled_imu2->yacc, scaled_imu2->zacc, scaled_imu2->xgyro, scaled_imu2->ygyro, scaled_imu2->zgyro, scaled_imu2->xmag, scaled_imu2->ymag, scaled_imu2->zmag);
+}
+
 #if MAVLINK_MSG_ID_SCALED_IMU2_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

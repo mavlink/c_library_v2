@@ -329,6 +329,16 @@ static inline void mavlink_msg_control_system_state_send(mavlink_channel_t chan,
 #endif
 }
 
+/**
+ * @brief Send a control_system_state message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_control_system_state_send_struct(mavlink_channel_t chan, const mavlink_control_system_state_t* control_system_state)
+{
+    mavlink_msg_control_system_state_send(chan, control_system_state->time_usec, control_system_state->x_acc, control_system_state->y_acc, control_system_state->z_acc, control_system_state->x_vel, control_system_state->y_vel, control_system_state->z_vel, control_system_state->x_pos, control_system_state->y_pos, control_system_state->z_pos, control_system_state->airspeed, control_system_state->vel_variance, control_system_state->pos_variance, control_system_state->q, control_system_state->roll_rate, control_system_state->pitch_rate, control_system_state->yaw_rate);
+}
+
 #if MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

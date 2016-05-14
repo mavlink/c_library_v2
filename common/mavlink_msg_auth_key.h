@@ -141,6 +141,16 @@ static inline void mavlink_msg_auth_key_send(mavlink_channel_t chan, const char 
 #endif
 }
 
+/**
+ * @brief Send a auth_key message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_auth_key_send_struct(mavlink_channel_t chan, const mavlink_auth_key_t* auth_key)
+{
+    mavlink_msg_auth_key_send(chan, auth_key->key);
+}
+
 #if MAVLINK_MSG_ID_AUTH_KEY_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

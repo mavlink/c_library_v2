@@ -147,6 +147,16 @@ static inline void mavlink_msg_statustext_send(mavlink_channel_t chan, uint8_t s
 #endif
 }
 
+/**
+ * @brief Send a statustext message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_statustext_send_struct(mavlink_channel_t chan, const mavlink_statustext_t* statustext)
+{
+    mavlink_msg_statustext_send(chan, statustext->severity, statustext->text);
+}
+
 #if MAVLINK_MSG_ID_STATUSTEXT_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

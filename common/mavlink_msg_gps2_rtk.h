@@ -285,6 +285,16 @@ static inline void mavlink_msg_gps2_rtk_send(mavlink_channel_t chan, uint32_t ti
 #endif
 }
 
+/**
+ * @brief Send a gps2_rtk message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_gps2_rtk_send_struct(mavlink_channel_t chan, const mavlink_gps2_rtk_t* gps2_rtk)
+{
+    mavlink_msg_gps2_rtk_send(chan, gps2_rtk->time_last_baseline_ms, gps2_rtk->rtk_receiver_id, gps2_rtk->wn, gps2_rtk->tow, gps2_rtk->rtk_health, gps2_rtk->rtk_rate, gps2_rtk->nsats, gps2_rtk->baseline_coords_type, gps2_rtk->baseline_a_mm, gps2_rtk->baseline_b_mm, gps2_rtk->baseline_c_mm, gps2_rtk->accuracy, gps2_rtk->iar_num_hypotheses);
+}
+
 #if MAVLINK_MSG_ID_GPS2_RTK_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

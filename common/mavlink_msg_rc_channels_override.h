@@ -249,6 +249,16 @@ static inline void mavlink_msg_rc_channels_override_send(mavlink_channel_t chan,
 #endif
 }
 
+/**
+ * @brief Send a rc_channels_override message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_rc_channels_override_send_struct(mavlink_channel_t chan, const mavlink_rc_channels_override_t* rc_channels_override)
+{
+    mavlink_msg_rc_channels_override_send(chan, rc_channels_override->target_system, rc_channels_override->target_component, rc_channels_override->chan1_raw, rc_channels_override->chan2_raw, rc_channels_override->chan3_raw, rc_channels_override->chan4_raw, rc_channels_override->chan5_raw, rc_channels_override->chan6_raw, rc_channels_override->chan7_raw, rc_channels_override->chan8_raw);
+}
+
 #if MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

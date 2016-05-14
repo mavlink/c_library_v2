@@ -213,6 +213,16 @@ static inline void mavlink_msg_global_vision_position_estimate_send(mavlink_chan
 #endif
 }
 
+/**
+ * @brief Send a global_vision_position_estimate message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_global_vision_position_estimate_send_struct(mavlink_channel_t chan, const mavlink_global_vision_position_estimate_t* global_vision_position_estimate)
+{
+    mavlink_msg_global_vision_position_estimate_send(chan, global_vision_position_estimate->usec, global_vision_position_estimate->x, global_vision_position_estimate->y, global_vision_position_estimate->z, global_vision_position_estimate->roll, global_vision_position_estimate->pitch, global_vision_position_estimate->yaw);
+}
+
 #if MAVLINK_MSG_ID_GLOBAL_VISION_POSITION_ESTIMATE_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

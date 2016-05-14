@@ -153,6 +153,16 @@ static inline void mavlink_msg_timesync_send(mavlink_channel_t chan, int64_t tc1
 #endif
 }
 
+/**
+ * @brief Send a timesync message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_timesync_send_struct(mavlink_channel_t chan, const mavlink_timesync_t* timesync)
+{
+    mavlink_msg_timesync_send(chan, timesync->tc1, timesync->ts1);
+}
+
 #if MAVLINK_MSG_ID_TIMESYNC_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

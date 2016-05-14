@@ -213,6 +213,16 @@ static inline void mavlink_msg_local_position_ned_system_global_offset_send(mavl
 #endif
 }
 
+/**
+ * @brief Send a local_position_ned_system_global_offset message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_local_position_ned_system_global_offset_send_struct(mavlink_channel_t chan, const mavlink_local_position_ned_system_global_offset_t* local_position_ned_system_global_offset)
+{
+    mavlink_msg_local_position_ned_system_global_offset_send(chan, local_position_ned_system_global_offset->time_boot_ms, local_position_ned_system_global_offset->x, local_position_ned_system_global_offset->y, local_position_ned_system_global_offset->z, local_position_ned_system_global_offset->roll, local_position_ned_system_global_offset->pitch, local_position_ned_system_global_offset->yaw);
+}
+
 #if MAVLINK_MSG_ID_LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

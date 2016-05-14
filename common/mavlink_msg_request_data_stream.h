@@ -189,6 +189,16 @@ static inline void mavlink_msg_request_data_stream_send(mavlink_channel_t chan, 
 #endif
 }
 
+/**
+ * @brief Send a request_data_stream message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_request_data_stream_send_struct(mavlink_channel_t chan, const mavlink_request_data_stream_t* request_data_stream)
+{
+    mavlink_msg_request_data_stream_send(chan, request_data_stream->target_system, request_data_stream->target_component, request_data_stream->req_stream_id, request_data_stream->req_message_rate, request_data_stream->start_stop);
+}
+
 #if MAVLINK_MSG_ID_REQUEST_DATA_STREAM_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

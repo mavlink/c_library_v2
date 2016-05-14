@@ -321,6 +321,16 @@ static inline void mavlink_msg_hil_state_send(mavlink_channel_t chan, uint64_t t
 #endif
 }
 
+/**
+ * @brief Send a hil_state message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_hil_state_send_struct(mavlink_channel_t chan, const mavlink_hil_state_t* hil_state)
+{
+    mavlink_msg_hil_state_send(chan, hil_state->time_usec, hil_state->roll, hil_state->pitch, hil_state->yaw, hil_state->rollspeed, hil_state->pitchspeed, hil_state->yawspeed, hil_state->lat, hil_state->lon, hil_state->alt, hil_state->vx, hil_state->vy, hil_state->vz, hil_state->xacc, hil_state->yacc, hil_state->zacc);
+}
+
 #if MAVLINK_MSG_ID_HIL_STATE_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

@@ -213,6 +213,16 @@ static inline void mavlink_msg_local_position_ned_send(mavlink_channel_t chan, u
 #endif
 }
 
+/**
+ * @brief Send a local_position_ned message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_local_position_ned_send_struct(mavlink_channel_t chan, const mavlink_local_position_ned_t* local_position_ned)
+{
+    mavlink_msg_local_position_ned_send(chan, local_position_ned->time_boot_ms, local_position_ned->x, local_position_ned->y, local_position_ned->z, local_position_ned->vx, local_position_ned->vy, local_position_ned->vz);
+}
+
 #if MAVLINK_MSG_ID_LOCAL_POSITION_NED_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

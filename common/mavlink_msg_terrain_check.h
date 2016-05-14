@@ -153,6 +153,16 @@ static inline void mavlink_msg_terrain_check_send(mavlink_channel_t chan, int32_
 #endif
 }
 
+/**
+ * @brief Send a terrain_check message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_terrain_check_send_struct(mavlink_channel_t chan, const mavlink_terrain_check_t* terrain_check)
+{
+    mavlink_msg_terrain_check_send(chan, terrain_check->lat, terrain_check->lon);
+}
+
 #if MAVLINK_MSG_ID_TERRAIN_CHECK_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

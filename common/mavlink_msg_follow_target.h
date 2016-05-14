@@ -259,6 +259,16 @@ static inline void mavlink_msg_follow_target_send(mavlink_channel_t chan, uint64
 #endif
 }
 
+/**
+ * @brief Send a follow_target message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_follow_target_send_struct(mavlink_channel_t chan, const mavlink_follow_target_t* follow_target)
+{
+    mavlink_msg_follow_target_send(chan, follow_target->timestamp, follow_target->est_capabilities, follow_target->lat, follow_target->lon, follow_target->alt, follow_target->vel, follow_target->acc, follow_target->attitude_q, follow_target->rates, follow_target->position_cov, follow_target->custom_state);
+}
+
 #if MAVLINK_MSG_ID_FOLLOW_TARGET_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

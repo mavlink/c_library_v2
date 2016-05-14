@@ -207,6 +207,16 @@ static inline void mavlink_msg_attitude_target_send(mavlink_channel_t chan, uint
 #endif
 }
 
+/**
+ * @brief Send a attitude_target message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_attitude_target_send_struct(mavlink_channel_t chan, const mavlink_attitude_target_t* attitude_target)
+{
+    mavlink_msg_attitude_target_send(chan, attitude_target->time_boot_ms, attitude_target->type_mask, attitude_target->q, attitude_target->body_roll_rate, attitude_target->body_pitch_rate, attitude_target->body_yaw_rate, attitude_target->thrust);
+}
+
 #if MAVLINK_MSG_ID_ATTITUDE_TARGET_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

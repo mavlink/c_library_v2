@@ -237,6 +237,16 @@ static inline void mavlink_msg_wind_cov_send(mavlink_channel_t chan, uint64_t ti
 #endif
 }
 
+/**
+ * @brief Send a wind_cov message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_wind_cov_send_struct(mavlink_channel_t chan, const mavlink_wind_cov_t* wind_cov)
+{
+    mavlink_msg_wind_cov_send(chan, wind_cov->time_usec, wind_cov->wind_x, wind_cov->wind_y, wind_cov->wind_z, wind_cov->var_horiz, wind_cov->var_vert, wind_cov->wind_alt, wind_cov->horiz_accuracy, wind_cov->vert_accuracy);
+}
+
 #if MAVLINK_MSG_ID_WIND_COV_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

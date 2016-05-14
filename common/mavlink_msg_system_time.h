@@ -153,6 +153,16 @@ static inline void mavlink_msg_system_time_send(mavlink_channel_t chan, uint64_t
 #endif
 }
 
+/**
+ * @brief Send a system_time message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_system_time_send_struct(mavlink_channel_t chan, const mavlink_system_time_t* system_time)
+{
+    mavlink_msg_system_time_send(chan, system_time->time_unix_usec, system_time->time_boot_ms);
+}
+
 #if MAVLINK_MSG_ID_SYSTEM_TIME_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

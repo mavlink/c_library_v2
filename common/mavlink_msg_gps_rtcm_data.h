@@ -159,6 +159,16 @@ static inline void mavlink_msg_gps_rtcm_data_send(mavlink_channel_t chan, uint8_
 #endif
 }
 
+/**
+ * @brief Send a gps_rtcm_data message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_gps_rtcm_data_send_struct(mavlink_channel_t chan, const mavlink_gps_rtcm_data_t* gps_rtcm_data)
+{
+    mavlink_msg_gps_rtcm_data_send(chan, gps_rtcm_data->flags, gps_rtcm_data->len, gps_rtcm_data->data);
+}
+
 #if MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

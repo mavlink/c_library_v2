@@ -159,6 +159,16 @@ static inline void mavlink_msg_actuator_control_target_send(mavlink_channel_t ch
 #endif
 }
 
+/**
+ * @brief Send a actuator_control_target message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_actuator_control_target_send_struct(mavlink_channel_t chan, const mavlink_actuator_control_target_t* actuator_control_target)
+{
+    mavlink_msg_actuator_control_target_send(chan, actuator_control_target->time_usec, actuator_control_target->group_mlx, actuator_control_target->controls);
+}
+
 #if MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

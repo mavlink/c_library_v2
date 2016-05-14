@@ -183,6 +183,16 @@ static inline void mavlink_msg_v2_extension_send(mavlink_channel_t chan, uint8_t
 #endif
 }
 
+/**
+ * @brief Send a v2_extension message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_v2_extension_send_struct(mavlink_channel_t chan, const mavlink_v2_extension_t* v2_extension)
+{
+    mavlink_msg_v2_extension_send(chan, v2_extension->target_network, v2_extension->target_system, v2_extension->target_component, v2_extension->message_type, v2_extension->payload);
+}
+
 #if MAVLINK_MSG_ID_V2_EXTENSION_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

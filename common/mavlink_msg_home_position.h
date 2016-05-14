@@ -243,6 +243,16 @@ static inline void mavlink_msg_home_position_send(mavlink_channel_t chan, int32_
 #endif
 }
 
+/**
+ * @brief Send a home_position message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_home_position_send_struct(mavlink_channel_t chan, const mavlink_home_position_t* home_position)
+{
+    mavlink_msg_home_position_send(chan, home_position->latitude, home_position->longitude, home_position->altitude, home_position->x, home_position->y, home_position->z, home_position->q, home_position->approach_x, home_position->approach_y, home_position->approach_z);
+}
+
 #if MAVLINK_MSG_ID_HOME_POSITION_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

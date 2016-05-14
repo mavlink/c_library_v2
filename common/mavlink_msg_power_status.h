@@ -165,6 +165,16 @@ static inline void mavlink_msg_power_status_send(mavlink_channel_t chan, uint16_
 #endif
 }
 
+/**
+ * @brief Send a power_status message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_power_status_send_struct(mavlink_channel_t chan, const mavlink_power_status_t* power_status)
+{
+    mavlink_msg_power_status_send(chan, power_status->Vcc, power_status->Vservo, power_status->flags);
+}
+
 #if MAVLINK_MSG_ID_POWER_STATUS_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

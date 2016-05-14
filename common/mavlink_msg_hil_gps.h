@@ -285,6 +285,16 @@ static inline void mavlink_msg_hil_gps_send(mavlink_channel_t chan, uint64_t tim
 #endif
 }
 
+/**
+ * @brief Send a hil_gps message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_hil_gps_send_struct(mavlink_channel_t chan, const mavlink_hil_gps_t* hil_gps)
+{
+    mavlink_msg_hil_gps_send(chan, hil_gps->time_usec, hil_gps->fix_type, hil_gps->lat, hil_gps->lon, hil_gps->alt, hil_gps->eph, hil_gps->epv, hil_gps->vel, hil_gps->vn, hil_gps->ve, hil_gps->vd, hil_gps->cog, hil_gps->satellites_visible);
+}
+
 #if MAVLINK_MSG_ID_HIL_GPS_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

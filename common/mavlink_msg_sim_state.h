@@ -381,6 +381,16 @@ static inline void mavlink_msg_sim_state_send(mavlink_channel_t chan, float q1, 
 #endif
 }
 
+/**
+ * @brief Send a sim_state message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_sim_state_send_struct(mavlink_channel_t chan, const mavlink_sim_state_t* sim_state)
+{
+    mavlink_msg_sim_state_send(chan, sim_state->q1, sim_state->q2, sim_state->q3, sim_state->q4, sim_state->roll, sim_state->pitch, sim_state->yaw, sim_state->xacc, sim_state->yacc, sim_state->zacc, sim_state->xgyro, sim_state->ygyro, sim_state->zgyro, sim_state->lat, sim_state->lon, sim_state->alt, sim_state->std_dev_horz, sim_state->std_dev_vert, sim_state->vn, sim_state->ve, sim_state->vd);
+}
+
 #if MAVLINK_MSG_ID_SIM_STATE_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

@@ -213,6 +213,16 @@ static inline void mavlink_msg_radio_status_send(mavlink_channel_t chan, uint8_t
 #endif
 }
 
+/**
+ * @brief Send a radio_status message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_radio_status_send_struct(mavlink_channel_t chan, const mavlink_radio_status_t* radio_status)
+{
+    mavlink_msg_radio_status_send(chan, radio_status->rssi, radio_status->remrssi, radio_status->txbuf, radio_status->noise, radio_status->remnoise, radio_status->rxerrors, radio_status->fixed);
+}
+
 #if MAVLINK_MSG_ID_RADIO_STATUS_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

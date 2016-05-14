@@ -297,6 +297,16 @@ static inline void mavlink_msg_hil_rc_inputs_raw_send(mavlink_channel_t chan, ui
 #endif
 }
 
+/**
+ * @brief Send a hil_rc_inputs_raw message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_hil_rc_inputs_raw_send_struct(mavlink_channel_t chan, const mavlink_hil_rc_inputs_raw_t* hil_rc_inputs_raw)
+{
+    mavlink_msg_hil_rc_inputs_raw_send(chan, hil_rc_inputs_raw->time_usec, hil_rc_inputs_raw->chan1_raw, hil_rc_inputs_raw->chan2_raw, hil_rc_inputs_raw->chan3_raw, hil_rc_inputs_raw->chan4_raw, hil_rc_inputs_raw->chan5_raw, hil_rc_inputs_raw->chan6_raw, hil_rc_inputs_raw->chan7_raw, hil_rc_inputs_raw->chan8_raw, hil_rc_inputs_raw->chan9_raw, hil_rc_inputs_raw->chan10_raw, hil_rc_inputs_raw->chan11_raw, hil_rc_inputs_raw->chan12_raw, hil_rc_inputs_raw->rssi);
+}
+
 #if MAVLINK_MSG_ID_HIL_RC_INPUTS_RAW_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

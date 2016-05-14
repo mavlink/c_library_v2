@@ -213,6 +213,16 @@ static inline void mavlink_msg_altitude_send(mavlink_channel_t chan, uint64_t ti
 #endif
 }
 
+/**
+ * @brief Send a altitude message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_altitude_send_struct(mavlink_channel_t chan, const mavlink_altitude_t* altitude)
+{
+    mavlink_msg_altitude_send(chan, altitude->time_usec, altitude->altitude_monotonic, altitude->altitude_amsl, altitude->altitude_local, altitude->altitude_relative, altitude->altitude_terrain, altitude->bottom_clearance);
+}
+
 #if MAVLINK_MSG_ID_ALTITUDE_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

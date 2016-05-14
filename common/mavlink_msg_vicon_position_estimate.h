@@ -213,6 +213,16 @@ static inline void mavlink_msg_vicon_position_estimate_send(mavlink_channel_t ch
 #endif
 }
 
+/**
+ * @brief Send a vicon_position_estimate message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_vicon_position_estimate_send_struct(mavlink_channel_t chan, const mavlink_vicon_position_estimate_t* vicon_position_estimate)
+{
+    mavlink_msg_vicon_position_estimate_send(chan, vicon_position_estimate->usec, vicon_position_estimate->x, vicon_position_estimate->y, vicon_position_estimate->z, vicon_position_estimate->roll, vicon_position_estimate->pitch, vicon_position_estimate->yaw);
+}
+
 #if MAVLINK_MSG_ID_VICON_POSITION_ESTIMATE_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

@@ -261,6 +261,16 @@ static inline void mavlink_msg_rc_channels_raw_send(mavlink_channel_t chan, uint
 #endif
 }
 
+/**
+ * @brief Send a rc_channels_raw message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_rc_channels_raw_send_struct(mavlink_channel_t chan, const mavlink_rc_channels_raw_t* rc_channels_raw)
+{
+    mavlink_msg_rc_channels_raw_send(chan, rc_channels_raw->time_boot_ms, rc_channels_raw->port, rc_channels_raw->chan1_raw, rc_channels_raw->chan2_raw, rc_channels_raw->chan3_raw, rc_channels_raw->chan4_raw, rc_channels_raw->chan5_raw, rc_channels_raw->chan6_raw, rc_channels_raw->chan7_raw, rc_channels_raw->chan8_raw, rc_channels_raw->rssi);
+}
+
 #if MAVLINK_MSG_ID_RC_CHANNELS_RAW_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

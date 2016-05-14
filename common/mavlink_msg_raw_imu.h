@@ -249,6 +249,16 @@ static inline void mavlink_msg_raw_imu_send(mavlink_channel_t chan, uint64_t tim
 #endif
 }
 
+/**
+ * @brief Send a raw_imu message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_raw_imu_send_struct(mavlink_channel_t chan, const mavlink_raw_imu_t* raw_imu)
+{
+    mavlink_msg_raw_imu_send(chan, raw_imu->time_usec, raw_imu->xacc, raw_imu->yacc, raw_imu->zacc, raw_imu->xgyro, raw_imu->ygyro, raw_imu->zgyro, raw_imu->xmag, raw_imu->ymag, raw_imu->zmag);
+}
+
 #if MAVLINK_MSG_ID_RAW_IMU_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

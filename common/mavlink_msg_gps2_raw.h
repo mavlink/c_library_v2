@@ -273,6 +273,16 @@ static inline void mavlink_msg_gps2_raw_send(mavlink_channel_t chan, uint64_t ti
 #endif
 }
 
+/**
+ * @brief Send a gps2_raw message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_gps2_raw_send_struct(mavlink_channel_t chan, const mavlink_gps2_raw_t* gps2_raw)
+{
+    mavlink_msg_gps2_raw_send(chan, gps2_raw->time_usec, gps2_raw->fix_type, gps2_raw->lat, gps2_raw->lon, gps2_raw->alt, gps2_raw->eph, gps2_raw->epv, gps2_raw->vel, gps2_raw->cog, gps2_raw->satellites_visible, gps2_raw->dgps_numch, gps2_raw->dgps_age);
+}
+
 #if MAVLINK_MSG_ID_GPS2_RAW_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

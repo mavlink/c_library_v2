@@ -225,6 +225,16 @@ static inline void mavlink_msg_nav_controller_output_send(mavlink_channel_t chan
 #endif
 }
 
+/**
+ * @brief Send a nav_controller_output message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_nav_controller_output_send_struct(mavlink_channel_t chan, const mavlink_nav_controller_output_t* nav_controller_output)
+{
+    mavlink_msg_nav_controller_output_send(chan, nav_controller_output->nav_roll, nav_controller_output->nav_pitch, nav_controller_output->nav_bearing, nav_controller_output->target_bearing, nav_controller_output->wp_dist, nav_controller_output->alt_error, nav_controller_output->aspd_error, nav_controller_output->xtrack_error);
+}
+
 #if MAVLINK_MSG_ID_NAV_CONTROLLER_OUTPUT_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

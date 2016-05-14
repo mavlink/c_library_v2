@@ -165,6 +165,16 @@ static inline void mavlink_msg_set_mode_send(mavlink_channel_t chan, uint8_t tar
 #endif
 }
 
+/**
+ * @brief Send a set_mode message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_set_mode_send_struct(mavlink_channel_t chan, const mavlink_set_mode_t* set_mode)
+{
+    mavlink_msg_set_mode_send(chan, set_mode->target_system, set_mode->base_mode, set_mode->custom_mode);
+}
+
 #if MAVLINK_MSG_ID_SET_MODE_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

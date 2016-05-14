@@ -147,6 +147,16 @@ static inline void mavlink_msg_encapsulated_data_send(mavlink_channel_t chan, ui
 #endif
 }
 
+/**
+ * @brief Send a encapsulated_data message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_encapsulated_data_send_struct(mavlink_channel_t chan, const mavlink_encapsulated_data_t* encapsulated_data)
+{
+    mavlink_msg_encapsulated_data_send(chan, encapsulated_data->seqnr, encapsulated_data->data);
+}
+
 #if MAVLINK_MSG_ID_ENCAPSULATED_DATA_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

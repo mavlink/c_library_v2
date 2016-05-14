@@ -141,6 +141,16 @@ static inline void mavlink_msg_mission_item_reached_send(mavlink_channel_t chan,
 #endif
 }
 
+/**
+ * @brief Send a mission_item_reached message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_mission_item_reached_send_struct(mavlink_channel_t chan, const mavlink_mission_item_reached_t* mission_item_reached)
+{
+    mavlink_msg_mission_item_reached_send(chan, mission_item_reached->seq);
+}
+
 #if MAVLINK_MSG_ID_MISSION_ITEM_REACHED_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

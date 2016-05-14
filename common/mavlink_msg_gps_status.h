@@ -199,6 +199,16 @@ static inline void mavlink_msg_gps_status_send(mavlink_channel_t chan, uint8_t s
 #endif
 }
 
+/**
+ * @brief Send a gps_status message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_gps_status_send_struct(mavlink_channel_t chan, const mavlink_gps_status_t* gps_status)
+{
+    mavlink_msg_gps_status_send(chan, gps_status->satellites_visible, gps_status->satellite_prn, gps_status->satellite_used, gps_status->satellite_elevation, gps_status->satellite_azimuth, gps_status->satellite_snr);
+}
+
 #if MAVLINK_MSG_ID_GPS_STATUS_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

@@ -177,6 +177,16 @@ static inline void mavlink_msg_vision_speed_estimate_send(mavlink_channel_t chan
 #endif
 }
 
+/**
+ * @brief Send a vision_speed_estimate message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_vision_speed_estimate_send_struct(mavlink_channel_t chan, const mavlink_vision_speed_estimate_t* vision_speed_estimate)
+{
+    mavlink_msg_vision_speed_estimate_send(chan, vision_speed_estimate->usec, vision_speed_estimate->x, vision_speed_estimate->y, vision_speed_estimate->z);
+}
+
 #if MAVLINK_MSG_ID_VISION_SPEED_ESTIMATE_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

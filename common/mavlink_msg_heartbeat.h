@@ -198,6 +198,16 @@ static inline void mavlink_msg_heartbeat_send(mavlink_channel_t chan, uint8_t ty
 #endif
 }
 
+/**
+ * @brief Send a heartbeat message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_heartbeat_send_struct(mavlink_channel_t chan, const mavlink_heartbeat_t* heartbeat)
+{
+    mavlink_msg_heartbeat_send(chan, heartbeat->type, heartbeat->autopilot, heartbeat->base_mode, heartbeat->custom_mode, heartbeat->system_status);
+}
+
 #if MAVLINK_MSG_ID_HEARTBEAT_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

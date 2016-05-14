@@ -237,6 +237,16 @@ static inline void mavlink_msg_safety_set_allowed_area_send(mavlink_channel_t ch
 #endif
 }
 
+/**
+ * @brief Send a safety_set_allowed_area message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_safety_set_allowed_area_send_struct(mavlink_channel_t chan, const mavlink_safety_set_allowed_area_t* safety_set_allowed_area)
+{
+    mavlink_msg_safety_set_allowed_area_send(chan, safety_set_allowed_area->target_system, safety_set_allowed_area->target_component, safety_set_allowed_area->frame, safety_set_allowed_area->p1x, safety_set_allowed_area->p1y, safety_set_allowed_area->p1z, safety_set_allowed_area->p2x, safety_set_allowed_area->p2y, safety_set_allowed_area->p2z);
+}
+
 #if MAVLINK_MSG_ID_SAFETY_SET_ALLOWED_AREA_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

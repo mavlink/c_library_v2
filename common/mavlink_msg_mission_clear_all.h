@@ -153,6 +153,16 @@ static inline void mavlink_msg_mission_clear_all_send(mavlink_channel_t chan, ui
 #endif
 }
 
+/**
+ * @brief Send a mission_clear_all message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_mission_clear_all_send_struct(mavlink_channel_t chan, const mavlink_mission_clear_all_t* mission_clear_all)
+{
+    mavlink_msg_mission_clear_all_send(chan, mission_clear_all->target_system, mission_clear_all->target_component);
+}
+
 #if MAVLINK_MSG_ID_MISSION_CLEAR_ALL_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

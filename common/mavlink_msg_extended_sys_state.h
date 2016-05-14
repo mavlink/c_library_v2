@@ -153,6 +153,16 @@ static inline void mavlink_msg_extended_sys_state_send(mavlink_channel_t chan, u
 #endif
 }
 
+/**
+ * @brief Send a extended_sys_state message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_extended_sys_state_send_struct(mavlink_channel_t chan, const mavlink_extended_sys_state_t* extended_sys_state)
+{
+    mavlink_msg_extended_sys_state_send(chan, extended_sys_state->vtol_state, extended_sys_state->landed_state);
+}
+
 #if MAVLINK_MSG_ID_EXTENDED_SYS_STATE_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

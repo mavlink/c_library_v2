@@ -165,6 +165,16 @@ static inline void mavlink_msg_gps_global_origin_send(mavlink_channel_t chan, in
 #endif
 }
 
+/**
+ * @brief Send a gps_global_origin message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_gps_global_origin_send_struct(mavlink_channel_t chan, const mavlink_gps_global_origin_t* gps_global_origin)
+{
+    mavlink_msg_gps_global_origin_send(chan, gps_global_origin->latitude, gps_global_origin->longitude, gps_global_origin->altitude);
+}
+
 #if MAVLINK_MSG_ID_GPS_GLOBAL_ORIGIN_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

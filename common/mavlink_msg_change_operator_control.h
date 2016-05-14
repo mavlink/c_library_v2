@@ -171,6 +171,16 @@ static inline void mavlink_msg_change_operator_control_send(mavlink_channel_t ch
 #endif
 }
 
+/**
+ * @brief Send a change_operator_control message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_change_operator_control_send_struct(mavlink_channel_t chan, const mavlink_change_operator_control_t* change_operator_control)
+{
+    mavlink_msg_change_operator_control_send(chan, change_operator_control->target_system, change_operator_control->control_request, change_operator_control->version, change_operator_control->passkey);
+}
+
 #if MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

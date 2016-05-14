@@ -153,6 +153,16 @@ static inline void mavlink_msg_log_erase_send(mavlink_channel_t chan, uint8_t ta
 #endif
 }
 
+/**
+ * @brief Send a log_erase message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_log_erase_send_struct(mavlink_channel_t chan, const mavlink_log_erase_t* log_erase)
+{
+    mavlink_msg_log_erase_send(chan, log_erase->target_system, log_erase->target_component);
+}
+
 #if MAVLINK_MSG_ID_LOG_ERASE_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

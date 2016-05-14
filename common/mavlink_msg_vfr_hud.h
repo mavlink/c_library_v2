@@ -201,6 +201,16 @@ static inline void mavlink_msg_vfr_hud_send(mavlink_channel_t chan, float airspe
 #endif
 }
 
+/**
+ * @brief Send a vfr_hud message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_vfr_hud_send_struct(mavlink_channel_t chan, const mavlink_vfr_hud_t* vfr_hud)
+{
+    mavlink_msg_vfr_hud_send(chan, vfr_hud->airspeed, vfr_hud->groundspeed, vfr_hud->heading, vfr_hud->throttle, vfr_hud->alt, vfr_hud->climb);
+}
+
 #if MAVLINK_MSG_ID_VFR_HUD_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

@@ -177,6 +177,16 @@ static inline void mavlink_msg_ping_send(mavlink_channel_t chan, uint64_t time_u
 #endif
 }
 
+/**
+ * @brief Send a ping message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_ping_send_struct(mavlink_channel_t chan, const mavlink_ping_t* ping)
+{
+    mavlink_msg_ping_send(chan, ping->time_usec, ping->seq, ping->target_system, ping->target_component);
+}
+
 #if MAVLINK_MSG_ID_PING_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

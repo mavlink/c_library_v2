@@ -196,6 +196,16 @@ static inline void mavlink_msg_attitude_quaternion_cov_send(mavlink_channel_t ch
 #endif
 }
 
+/**
+ * @brief Send a attitude_quaternion_cov message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_attitude_quaternion_cov_send_struct(mavlink_channel_t chan, const mavlink_attitude_quaternion_cov_t* attitude_quaternion_cov)
+{
+    mavlink_msg_attitude_quaternion_cov_send(chan, attitude_quaternion_cov->time_boot_ms, attitude_quaternion_cov->q, attitude_quaternion_cov->rollspeed, attitude_quaternion_cov->pitchspeed, attitude_quaternion_cov->yawspeed, attitude_quaternion_cov->covariance);
+}
+
 #if MAVLINK_MSG_ID_ATTITUDE_QUATERNION_COV_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

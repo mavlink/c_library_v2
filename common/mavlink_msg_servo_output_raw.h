@@ -249,6 +249,16 @@ static inline void mavlink_msg_servo_output_raw_send(mavlink_channel_t chan, uin
 #endif
 }
 
+/**
+ * @brief Send a servo_output_raw message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_servo_output_raw_send_struct(mavlink_channel_t chan, const mavlink_servo_output_raw_t* servo_output_raw)
+{
+    mavlink_msg_servo_output_raw_send(chan, servo_output_raw->time_usec, servo_output_raw->port, servo_output_raw->servo1_raw, servo_output_raw->servo2_raw, servo_output_raw->servo3_raw, servo_output_raw->servo4_raw, servo_output_raw->servo5_raw, servo_output_raw->servo6_raw, servo_output_raw->servo7_raw, servo_output_raw->servo8_raw);
+}
+
 #if MAVLINK_MSG_ID_SERVO_OUTPUT_RAW_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

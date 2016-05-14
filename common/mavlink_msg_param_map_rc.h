@@ -231,6 +231,16 @@ static inline void mavlink_msg_param_map_rc_send(mavlink_channel_t chan, uint8_t
 #endif
 }
 
+/**
+ * @brief Send a param_map_rc message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_param_map_rc_send_struct(mavlink_channel_t chan, const mavlink_param_map_rc_t* param_map_rc)
+{
+    mavlink_msg_param_map_rc_send(chan, param_map_rc->target_system, param_map_rc->target_component, param_map_rc->param_id, param_map_rc->param_index, param_map_rc->parameter_rc_channel_index, param_map_rc->param_value0, param_map_rc->scale, param_map_rc->param_value_min, param_map_rc->param_value_max);
+}
+
 #if MAVLINK_MSG_ID_PARAM_MAP_RC_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

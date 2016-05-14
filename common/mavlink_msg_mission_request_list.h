@@ -153,6 +153,16 @@ static inline void mavlink_msg_mission_request_list_send(mavlink_channel_t chan,
 #endif
 }
 
+/**
+ * @brief Send a mission_request_list message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_mission_request_list_send_struct(mavlink_channel_t chan, const mavlink_mission_request_list_t* mission_request_list)
+{
+    mavlink_msg_mission_request_list_send(chan, mission_request_list->target_system, mission_request_list->target_component);
+}
+
 #if MAVLINK_MSG_ID_MISSION_REQUEST_LIST_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

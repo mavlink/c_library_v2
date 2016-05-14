@@ -213,6 +213,16 @@ static inline void mavlink_msg_data_transmission_handshake_send(mavlink_channel_
 #endif
 }
 
+/**
+ * @brief Send a data_transmission_handshake message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_data_transmission_handshake_send_struct(mavlink_channel_t chan, const mavlink_data_transmission_handshake_t* data_transmission_handshake)
+{
+    mavlink_msg_data_transmission_handshake_send(chan, data_transmission_handshake->type, data_transmission_handshake->size, data_transmission_handshake->width, data_transmission_handshake->height, data_transmission_handshake->packets, data_transmission_handshake->payload, data_transmission_handshake->jpg_quality);
+}
+
 #if MAVLINK_MSG_ID_DATA_TRANSMISSION_HANDSHAKE_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

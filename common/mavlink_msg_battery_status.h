@@ -231,6 +231,16 @@ static inline void mavlink_msg_battery_status_send(mavlink_channel_t chan, uint8
 #endif
 }
 
+/**
+ * @brief Send a battery_status message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_battery_status_send_struct(mavlink_channel_t chan, const mavlink_battery_status_t* battery_status)
+{
+    mavlink_msg_battery_status_send(chan, battery_status->id, battery_status->battery_function, battery_status->type, battery_status->temperature, battery_status->voltages, battery_status->current_battery, battery_status->current_consumed, battery_status->energy_consumed, battery_status->battery_remaining);
+}
+
 #if MAVLINK_MSG_ID_BATTERY_STATUS_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using

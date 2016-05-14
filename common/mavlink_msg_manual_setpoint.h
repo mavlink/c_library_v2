@@ -213,6 +213,16 @@ static inline void mavlink_msg_manual_setpoint_send(mavlink_channel_t chan, uint
 #endif
 }
 
+/**
+ * @brief Send a manual_setpoint message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_manual_setpoint_send_struct(mavlink_channel_t chan, const mavlink_manual_setpoint_t* manual_setpoint)
+{
+    mavlink_msg_manual_setpoint_send(chan, manual_setpoint->time_boot_ms, manual_setpoint->roll, manual_setpoint->pitch, manual_setpoint->yaw, manual_setpoint->thrust, manual_setpoint->mode_switch, manual_setpoint->manual_override_switch);
+}
+
 #if MAVLINK_MSG_ID_MANUAL_SETPOINT_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
   This varient of _send() can be used to save stack space by re-using
