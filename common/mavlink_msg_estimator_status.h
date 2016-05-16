@@ -2,7 +2,7 @@
 
 #define MAVLINK_MSG_ID_ESTIMATOR_STATUS 230
 
-typedef struct __mavlink_estimator_status_t
+typedef struct MAVLINK_PACKED __mavlink_estimator_status_t
 {
  uint64_t time_usec; /*< Timestamp (micros since boot or Unix epoch)*/
  float vel_ratio; /*< Velocity innovation test ratio*/
@@ -17,13 +17,33 @@ typedef struct __mavlink_estimator_status_t
 } mavlink_estimator_status_t;
 
 #define MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN 42
+#define MAVLINK_MSG_ID_ESTIMATOR_STATUS_MIN_LEN 42
 #define MAVLINK_MSG_ID_230_LEN 42
+#define MAVLINK_MSG_ID_230_MIN_LEN 42
 
 #define MAVLINK_MSG_ID_ESTIMATOR_STATUS_CRC 163
 #define MAVLINK_MSG_ID_230_CRC 163
 
 
 
+#if MAVLINK_COMMAND_24BIT
+#define MAVLINK_MESSAGE_INFO_ESTIMATOR_STATUS { \
+	230, \
+	"ESTIMATOR_STATUS", \
+	10, \
+	{  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_estimator_status_t, time_usec) }, \
+         { "vel_ratio", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_estimator_status_t, vel_ratio) }, \
+         { "pos_horiz_ratio", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_estimator_status_t, pos_horiz_ratio) }, \
+         { "pos_vert_ratio", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_estimator_status_t, pos_vert_ratio) }, \
+         { "mag_ratio", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_estimator_status_t, mag_ratio) }, \
+         { "hagl_ratio", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_estimator_status_t, hagl_ratio) }, \
+         { "tas_ratio", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_estimator_status_t, tas_ratio) }, \
+         { "pos_horiz_accuracy", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_estimator_status_t, pos_horiz_accuracy) }, \
+         { "pos_vert_accuracy", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_estimator_status_t, pos_vert_accuracy) }, \
+         { "flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 40, offsetof(mavlink_estimator_status_t, flags) }, \
+         } \
+}
+#else
 #define MAVLINK_MESSAGE_INFO_ESTIMATOR_STATUS { \
 	"ESTIMATOR_STATUS", \
 	10, \
@@ -39,7 +59,7 @@ typedef struct __mavlink_estimator_status_t
          { "flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 40, offsetof(mavlink_estimator_status_t, flags) }, \
          } \
 }
-
+#endif
 
 /**
  * @brief Pack a estimator_status message
@@ -93,11 +113,7 @@ static inline uint16_t mavlink_msg_estimator_status_pack(uint8_t system_id, uint
 #endif
 
 	msg->msgid = MAVLINK_MSG_ID_ESTIMATOR_STATUS;
-#if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_CRC);
-#else
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN);
-#endif
+    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_ESTIMATOR_STATUS_MIN_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_CRC);
 }
 
 /**
@@ -153,11 +169,7 @@ static inline uint16_t mavlink_msg_estimator_status_pack_chan(uint8_t system_id,
 #endif
 
 	msg->msgid = MAVLINK_MSG_ID_ESTIMATOR_STATUS;
-#if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_CRC);
-#else
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN);
-#endif
+    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_ESTIMATOR_STATUS_MIN_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_CRC);
 }
 
 /**
@@ -219,11 +231,7 @@ static inline void mavlink_msg_estimator_status_send(mavlink_channel_t chan, uin
 	_mav_put_float(buf, 36, pos_vert_accuracy);
 	_mav_put_uint16_t(buf, 40, flags);
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ESTIMATOR_STATUS, buf, MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ESTIMATOR_STATUS, buf, MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ESTIMATOR_STATUS, buf, MAVLINK_MSG_ID_ESTIMATOR_STATUS_MIN_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_CRC);
 #else
 	mavlink_estimator_status_t packet;
 	packet.time_usec = time_usec;
@@ -237,11 +245,21 @@ static inline void mavlink_msg_estimator_status_send(mavlink_channel_t chan, uin
 	packet.pos_vert_accuracy = pos_vert_accuracy;
 	packet.flags = flags;
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ESTIMATOR_STATUS, (const char *)&packet, MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ESTIMATOR_STATUS, (const char *)&packet, MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN);
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ESTIMATOR_STATUS, (const char *)&packet, MAVLINK_MSG_ID_ESTIMATOR_STATUS_MIN_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_CRC);
 #endif
+}
+
+/**
+ * @brief Send a estimator_status message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_estimator_status_send_struct(mavlink_channel_t chan, const mavlink_estimator_status_t* estimator_status)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    mavlink_msg_estimator_status_send(chan, estimator_status->time_usec, estimator_status->flags, estimator_status->vel_ratio, estimator_status->pos_horiz_ratio, estimator_status->pos_vert_ratio, estimator_status->mag_ratio, estimator_status->hagl_ratio, estimator_status->tas_ratio, estimator_status->pos_horiz_accuracy, estimator_status->pos_vert_accuracy);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ESTIMATOR_STATUS, (const char *)estimator_status, MAVLINK_MSG_ID_ESTIMATOR_STATUS_MIN_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_CRC);
 #endif
 }
 
@@ -268,11 +286,7 @@ static inline void mavlink_msg_estimator_status_send_buf(mavlink_message_t *msgb
 	_mav_put_float(buf, 36, pos_vert_accuracy);
 	_mav_put_uint16_t(buf, 40, flags);
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ESTIMATOR_STATUS, buf, MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ESTIMATOR_STATUS, buf, MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ESTIMATOR_STATUS, buf, MAVLINK_MSG_ID_ESTIMATOR_STATUS_MIN_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_CRC);
 #else
 	mavlink_estimator_status_t *packet = (mavlink_estimator_status_t *)msgbuf;
 	packet->time_usec = time_usec;
@@ -286,11 +300,7 @@ static inline void mavlink_msg_estimator_status_send_buf(mavlink_message_t *msgb
 	packet->pos_vert_accuracy = pos_vert_accuracy;
 	packet->flags = flags;
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ESTIMATOR_STATUS, (const char *)packet, MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ESTIMATOR_STATUS, (const char *)packet, MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ESTIMATOR_STATUS, (const char *)packet, MAVLINK_MSG_ID_ESTIMATOR_STATUS_MIN_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN, MAVLINK_MSG_ID_ESTIMATOR_STATUS_CRC);
 #endif
 }
 #endif
@@ -408,7 +418,7 @@ static inline float mavlink_msg_estimator_status_get_pos_vert_accuracy(const mav
  */
 static inline void mavlink_msg_estimator_status_decode(const mavlink_message_t* msg, mavlink_estimator_status_t* estimator_status)
 {
-#if MAVLINK_NEED_BYTE_SWAP
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	estimator_status->time_usec = mavlink_msg_estimator_status_get_time_usec(msg);
 	estimator_status->vel_ratio = mavlink_msg_estimator_status_get_vel_ratio(msg);
 	estimator_status->pos_horiz_ratio = mavlink_msg_estimator_status_get_pos_horiz_ratio(msg);
@@ -420,6 +430,8 @@ static inline void mavlink_msg_estimator_status_decode(const mavlink_message_t* 
 	estimator_status->pos_vert_accuracy = mavlink_msg_estimator_status_get_pos_vert_accuracy(msg);
 	estimator_status->flags = mavlink_msg_estimator_status_get_flags(msg);
 #else
-	memcpy(estimator_status, _MAV_PAYLOAD(msg), MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN);
+        uint8_t len = msg->len < MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN? msg->len : MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN;
+        memset(estimator_status, 0, MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN);
+	memcpy(estimator_status, _MAV_PAYLOAD(msg), len);
 #endif
 }

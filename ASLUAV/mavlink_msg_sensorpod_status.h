@@ -2,7 +2,7 @@
 
 #define MAVLINK_MSG_ID_SENSORPOD_STATUS 211
 
-typedef struct __mavlink_sensorpod_status_t
+typedef struct MAVLINK_PACKED __mavlink_sensorpod_status_t
 {
  uint64_t timestamp; /*< Timestamp in linuxtime [ms] (since 1.1.1970)*/
  uint16_t free_space; /*< Free space available in recordings directory in [Gb] * 1e2*/
@@ -15,13 +15,31 @@ typedef struct __mavlink_sensorpod_status_t
 } mavlink_sensorpod_status_t;
 
 #define MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN 16
+#define MAVLINK_MSG_ID_SENSORPOD_STATUS_MIN_LEN 16
 #define MAVLINK_MSG_ID_211_LEN 16
+#define MAVLINK_MSG_ID_211_MIN_LEN 16
 
 #define MAVLINK_MSG_ID_SENSORPOD_STATUS_CRC 54
 #define MAVLINK_MSG_ID_211_CRC 54
 
 
 
+#if MAVLINK_COMMAND_24BIT
+#define MAVLINK_MESSAGE_INFO_SENSORPOD_STATUS { \
+	211, \
+	"SENSORPOD_STATUS", \
+	8, \
+	{  { "timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_sensorpod_status_t, timestamp) }, \
+         { "free_space", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_sensorpod_status_t, free_space) }, \
+         { "visensor_rate_1", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_sensorpod_status_t, visensor_rate_1) }, \
+         { "visensor_rate_2", NULL, MAVLINK_TYPE_UINT8_T, 0, 11, offsetof(mavlink_sensorpod_status_t, visensor_rate_2) }, \
+         { "visensor_rate_3", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_sensorpod_status_t, visensor_rate_3) }, \
+         { "visensor_rate_4", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_sensorpod_status_t, visensor_rate_4) }, \
+         { "recording_nodes_count", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_sensorpod_status_t, recording_nodes_count) }, \
+         { "cpu_temp", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_sensorpod_status_t, cpu_temp) }, \
+         } \
+}
+#else
 #define MAVLINK_MESSAGE_INFO_SENSORPOD_STATUS { \
 	"SENSORPOD_STATUS", \
 	8, \
@@ -35,7 +53,7 @@ typedef struct __mavlink_sensorpod_status_t
          { "cpu_temp", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_sensorpod_status_t, cpu_temp) }, \
          } \
 }
-
+#endif
 
 /**
  * @brief Pack a sensorpod_status message
@@ -83,11 +101,7 @@ static inline uint16_t mavlink_msg_sensorpod_status_pack(uint8_t system_id, uint
 #endif
 
 	msg->msgid = MAVLINK_MSG_ID_SENSORPOD_STATUS;
-#if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN, MAVLINK_MSG_ID_SENSORPOD_STATUS_CRC);
-#else
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN);
-#endif
+    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_SENSORPOD_STATUS_MIN_LEN, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN, MAVLINK_MSG_ID_SENSORPOD_STATUS_CRC);
 }
 
 /**
@@ -137,11 +151,7 @@ static inline uint16_t mavlink_msg_sensorpod_status_pack_chan(uint8_t system_id,
 #endif
 
 	msg->msgid = MAVLINK_MSG_ID_SENSORPOD_STATUS;
-#if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN, MAVLINK_MSG_ID_SENSORPOD_STATUS_CRC);
-#else
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN);
-#endif
+    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_SENSORPOD_STATUS_MIN_LEN, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN, MAVLINK_MSG_ID_SENSORPOD_STATUS_CRC);
 }
 
 /**
@@ -199,11 +209,7 @@ static inline void mavlink_msg_sensorpod_status_send(mavlink_channel_t chan, uin
 	_mav_put_uint8_t(buf, 14, recording_nodes_count);
 	_mav_put_uint8_t(buf, 15, cpu_temp);
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SENSORPOD_STATUS, buf, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN, MAVLINK_MSG_ID_SENSORPOD_STATUS_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SENSORPOD_STATUS, buf, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SENSORPOD_STATUS, buf, MAVLINK_MSG_ID_SENSORPOD_STATUS_MIN_LEN, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN, MAVLINK_MSG_ID_SENSORPOD_STATUS_CRC);
 #else
 	mavlink_sensorpod_status_t packet;
 	packet.timestamp = timestamp;
@@ -215,11 +221,21 @@ static inline void mavlink_msg_sensorpod_status_send(mavlink_channel_t chan, uin
 	packet.recording_nodes_count = recording_nodes_count;
 	packet.cpu_temp = cpu_temp;
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SENSORPOD_STATUS, (const char *)&packet, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN, MAVLINK_MSG_ID_SENSORPOD_STATUS_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SENSORPOD_STATUS, (const char *)&packet, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN);
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SENSORPOD_STATUS, (const char *)&packet, MAVLINK_MSG_ID_SENSORPOD_STATUS_MIN_LEN, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN, MAVLINK_MSG_ID_SENSORPOD_STATUS_CRC);
 #endif
+}
+
+/**
+ * @brief Send a sensorpod_status message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_sensorpod_status_send_struct(mavlink_channel_t chan, const mavlink_sensorpod_status_t* sensorpod_status)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    mavlink_msg_sensorpod_status_send(chan, sensorpod_status->timestamp, sensorpod_status->visensor_rate_1, sensorpod_status->visensor_rate_2, sensorpod_status->visensor_rate_3, sensorpod_status->visensor_rate_4, sensorpod_status->recording_nodes_count, sensorpod_status->cpu_temp, sensorpod_status->free_space);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SENSORPOD_STATUS, (const char *)sensorpod_status, MAVLINK_MSG_ID_SENSORPOD_STATUS_MIN_LEN, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN, MAVLINK_MSG_ID_SENSORPOD_STATUS_CRC);
 #endif
 }
 
@@ -244,11 +260,7 @@ static inline void mavlink_msg_sensorpod_status_send_buf(mavlink_message_t *msgb
 	_mav_put_uint8_t(buf, 14, recording_nodes_count);
 	_mav_put_uint8_t(buf, 15, cpu_temp);
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SENSORPOD_STATUS, buf, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN, MAVLINK_MSG_ID_SENSORPOD_STATUS_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SENSORPOD_STATUS, buf, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SENSORPOD_STATUS, buf, MAVLINK_MSG_ID_SENSORPOD_STATUS_MIN_LEN, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN, MAVLINK_MSG_ID_SENSORPOD_STATUS_CRC);
 #else
 	mavlink_sensorpod_status_t *packet = (mavlink_sensorpod_status_t *)msgbuf;
 	packet->timestamp = timestamp;
@@ -260,11 +272,7 @@ static inline void mavlink_msg_sensorpod_status_send_buf(mavlink_message_t *msgb
 	packet->recording_nodes_count = recording_nodes_count;
 	packet->cpu_temp = cpu_temp;
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SENSORPOD_STATUS, (const char *)packet, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN, MAVLINK_MSG_ID_SENSORPOD_STATUS_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SENSORPOD_STATUS, (const char *)packet, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SENSORPOD_STATUS, (const char *)packet, MAVLINK_MSG_ID_SENSORPOD_STATUS_MIN_LEN, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN, MAVLINK_MSG_ID_SENSORPOD_STATUS_CRC);
 #endif
 }
 #endif
@@ -362,7 +370,7 @@ static inline uint16_t mavlink_msg_sensorpod_status_get_free_space(const mavlink
  */
 static inline void mavlink_msg_sensorpod_status_decode(const mavlink_message_t* msg, mavlink_sensorpod_status_t* sensorpod_status)
 {
-#if MAVLINK_NEED_BYTE_SWAP
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	sensorpod_status->timestamp = mavlink_msg_sensorpod_status_get_timestamp(msg);
 	sensorpod_status->free_space = mavlink_msg_sensorpod_status_get_free_space(msg);
 	sensorpod_status->visensor_rate_1 = mavlink_msg_sensorpod_status_get_visensor_rate_1(msg);
@@ -372,6 +380,8 @@ static inline void mavlink_msg_sensorpod_status_decode(const mavlink_message_t* 
 	sensorpod_status->recording_nodes_count = mavlink_msg_sensorpod_status_get_recording_nodes_count(msg);
 	sensorpod_status->cpu_temp = mavlink_msg_sensorpod_status_get_cpu_temp(msg);
 #else
-	memcpy(sensorpod_status, _MAV_PAYLOAD(msg), MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN);
+        uint8_t len = msg->len < MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN? msg->len : MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN;
+        memset(sensorpod_status, 0, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN);
+	memcpy(sensorpod_status, _MAV_PAYLOAD(msg), len);
 #endif
 }

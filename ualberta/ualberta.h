@@ -73,8 +73,6 @@ typedef enum UALBERTA_PILOT_MODE
 } UALBERTA_PILOT_MODE;
 #endif
 
-#include "../common/common.h"
-
 // MAVLINK VERSION
 
 #ifndef MAVLINK_VERSION
@@ -90,6 +88,13 @@ typedef enum UALBERTA_PILOT_MODE
 #include "./mavlink_msg_nav_filter_bias.h"
 #include "./mavlink_msg_radio_calibration.h"
 #include "./mavlink_msg_ualberta_sys_status.h"
+
+// base include
+#include "../common/common.h"
+
+#if MAVLINK_COMMAND_24BIT
+#include "../mavlink_get_info.h"
+#endif
 
 #ifdef __cplusplus
 }

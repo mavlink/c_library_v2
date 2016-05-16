@@ -201,8 +201,6 @@ typedef enum MAV_DATA_STREAM
 } MAV_DATA_STREAM;
 #endif
 
-#include "../common/common.h"
-
 // MAVLINK VERSION
 
 #ifndef MAVLINK_VERSION
@@ -217,6 +215,13 @@ typedef enum MAV_DATA_STREAM
 // MESSAGE DEFINITIONS
 #include "./mavlink_msg_aq_telemetry_f.h"
 #include "./mavlink_msg_aq_esc_telemetry.h"
+
+// base include
+#include "../common/common.h"
+
+#if MAVLINK_COMMAND_24BIT
+#include "../mavlink_get_info.h"
+#endif
 
 #ifdef __cplusplus
 }

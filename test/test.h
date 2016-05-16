@@ -35,8 +35,6 @@ extern "C" {
 
 
 
-
-
 // MAVLINK VERSION
 
 #ifndef MAVLINK_VERSION
@@ -50,6 +48,13 @@ extern "C" {
 
 // MESSAGE DEFINITIONS
 #include "./mavlink_msg_test_types.h"
+
+// base include
+
+
+#if MAVLINK_COMMAND_24BIT
+#include "../mavlink_get_info.h"
+#endif
 
 #ifdef __cplusplus
 }

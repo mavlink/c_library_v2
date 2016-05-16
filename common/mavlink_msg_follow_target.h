@@ -2,7 +2,7 @@
 
 #define MAVLINK_MSG_ID_FOLLOW_TARGET 144
 
-typedef struct __mavlink_follow_target_t
+typedef struct MAVLINK_PACKED __mavlink_follow_target_t
 {
  uint64_t timestamp; /*< Timestamp in milliseconds since system boot*/
  uint64_t custom_state; /*< button states or switches of a tracker device*/
@@ -18,7 +18,9 @@ typedef struct __mavlink_follow_target_t
 } mavlink_follow_target_t;
 
 #define MAVLINK_MSG_ID_FOLLOW_TARGET_LEN 93
+#define MAVLINK_MSG_ID_FOLLOW_TARGET_MIN_LEN 93
 #define MAVLINK_MSG_ID_144_LEN 93
+#define MAVLINK_MSG_ID_144_MIN_LEN 93
 
 #define MAVLINK_MSG_ID_FOLLOW_TARGET_CRC 127
 #define MAVLINK_MSG_ID_144_CRC 127
@@ -29,6 +31,25 @@ typedef struct __mavlink_follow_target_t
 #define MAVLINK_MSG_FOLLOW_TARGET_FIELD_RATES_LEN 3
 #define MAVLINK_MSG_FOLLOW_TARGET_FIELD_POSITION_COV_LEN 3
 
+#if MAVLINK_COMMAND_24BIT
+#define MAVLINK_MESSAGE_INFO_FOLLOW_TARGET { \
+	144, \
+	"FOLLOW_TARGET", \
+	11, \
+	{  { "timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_follow_target_t, timestamp) }, \
+         { "custom_state", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_follow_target_t, custom_state) }, \
+         { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 16, offsetof(mavlink_follow_target_t, lat) }, \
+         { "lon", NULL, MAVLINK_TYPE_INT32_T, 0, 20, offsetof(mavlink_follow_target_t, lon) }, \
+         { "alt", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_follow_target_t, alt) }, \
+         { "vel", NULL, MAVLINK_TYPE_FLOAT, 3, 28, offsetof(mavlink_follow_target_t, vel) }, \
+         { "acc", NULL, MAVLINK_TYPE_FLOAT, 3, 40, offsetof(mavlink_follow_target_t, acc) }, \
+         { "attitude_q", NULL, MAVLINK_TYPE_FLOAT, 4, 52, offsetof(mavlink_follow_target_t, attitude_q) }, \
+         { "rates", NULL, MAVLINK_TYPE_FLOAT, 3, 68, offsetof(mavlink_follow_target_t, rates) }, \
+         { "position_cov", NULL, MAVLINK_TYPE_FLOAT, 3, 80, offsetof(mavlink_follow_target_t, position_cov) }, \
+         { "est_capabilities", NULL, MAVLINK_TYPE_UINT8_T, 0, 92, offsetof(mavlink_follow_target_t, est_capabilities) }, \
+         } \
+}
+#else
 #define MAVLINK_MESSAGE_INFO_FOLLOW_TARGET { \
 	"FOLLOW_TARGET", \
 	11, \
@@ -45,7 +66,7 @@ typedef struct __mavlink_follow_target_t
          { "est_capabilities", NULL, MAVLINK_TYPE_UINT8_T, 0, 92, offsetof(mavlink_follow_target_t, est_capabilities) }, \
          } \
 }
-
+#endif
 
 /**
  * @brief Pack a follow_target message
@@ -100,11 +121,7 @@ static inline uint16_t mavlink_msg_follow_target_pack(uint8_t system_id, uint8_t
 #endif
 
 	msg->msgid = MAVLINK_MSG_ID_FOLLOW_TARGET;
-#if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_FOLLOW_TARGET_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_CRC);
-#else
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_FOLLOW_TARGET_LEN);
-#endif
+    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_FOLLOW_TARGET_MIN_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_CRC);
 }
 
 /**
@@ -161,11 +178,7 @@ static inline uint16_t mavlink_msg_follow_target_pack_chan(uint8_t system_id, ui
 #endif
 
 	msg->msgid = MAVLINK_MSG_ID_FOLLOW_TARGET;
-#if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_FOLLOW_TARGET_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_CRC);
-#else
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_FOLLOW_TARGET_LEN);
-#endif
+    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_FOLLOW_TARGET_MIN_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_CRC);
 }
 
 /**
@@ -228,11 +241,7 @@ static inline void mavlink_msg_follow_target_send(mavlink_channel_t chan, uint64
 	_mav_put_float_array(buf, 52, attitude_q, 4);
 	_mav_put_float_array(buf, 68, rates, 3);
 	_mav_put_float_array(buf, 80, position_cov, 3);
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FOLLOW_TARGET, buf, MAVLINK_MSG_ID_FOLLOW_TARGET_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FOLLOW_TARGET, buf, MAVLINK_MSG_ID_FOLLOW_TARGET_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FOLLOW_TARGET, buf, MAVLINK_MSG_ID_FOLLOW_TARGET_MIN_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_CRC);
 #else
 	mavlink_follow_target_t packet;
 	packet.timestamp = timestamp;
@@ -246,11 +255,21 @@ static inline void mavlink_msg_follow_target_send(mavlink_channel_t chan, uint64
 	mav_array_memcpy(packet.attitude_q, attitude_q, sizeof(float)*4);
 	mav_array_memcpy(packet.rates, rates, sizeof(float)*3);
 	mav_array_memcpy(packet.position_cov, position_cov, sizeof(float)*3);
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FOLLOW_TARGET, (const char *)&packet, MAVLINK_MSG_ID_FOLLOW_TARGET_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FOLLOW_TARGET, (const char *)&packet, MAVLINK_MSG_ID_FOLLOW_TARGET_LEN);
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FOLLOW_TARGET, (const char *)&packet, MAVLINK_MSG_ID_FOLLOW_TARGET_MIN_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_CRC);
 #endif
+}
+
+/**
+ * @brief Send a follow_target message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_follow_target_send_struct(mavlink_channel_t chan, const mavlink_follow_target_t* follow_target)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    mavlink_msg_follow_target_send(chan, follow_target->timestamp, follow_target->est_capabilities, follow_target->lat, follow_target->lon, follow_target->alt, follow_target->vel, follow_target->acc, follow_target->attitude_q, follow_target->rates, follow_target->position_cov, follow_target->custom_state);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FOLLOW_TARGET, (const char *)follow_target, MAVLINK_MSG_ID_FOLLOW_TARGET_MIN_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_CRC);
 #endif
 }
 
@@ -277,11 +296,7 @@ static inline void mavlink_msg_follow_target_send_buf(mavlink_message_t *msgbuf,
 	_mav_put_float_array(buf, 52, attitude_q, 4);
 	_mav_put_float_array(buf, 68, rates, 3);
 	_mav_put_float_array(buf, 80, position_cov, 3);
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FOLLOW_TARGET, buf, MAVLINK_MSG_ID_FOLLOW_TARGET_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FOLLOW_TARGET, buf, MAVLINK_MSG_ID_FOLLOW_TARGET_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FOLLOW_TARGET, buf, MAVLINK_MSG_ID_FOLLOW_TARGET_MIN_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_CRC);
 #else
 	mavlink_follow_target_t *packet = (mavlink_follow_target_t *)msgbuf;
 	packet->timestamp = timestamp;
@@ -295,11 +310,7 @@ static inline void mavlink_msg_follow_target_send_buf(mavlink_message_t *msgbuf,
 	mav_array_memcpy(packet->attitude_q, attitude_q, sizeof(float)*4);
 	mav_array_memcpy(packet->rates, rates, sizeof(float)*3);
 	mav_array_memcpy(packet->position_cov, position_cov, sizeof(float)*3);
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FOLLOW_TARGET, (const char *)packet, MAVLINK_MSG_ID_FOLLOW_TARGET_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FOLLOW_TARGET, (const char *)packet, MAVLINK_MSG_ID_FOLLOW_TARGET_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FOLLOW_TARGET, (const char *)packet, MAVLINK_MSG_ID_FOLLOW_TARGET_MIN_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_LEN, MAVLINK_MSG_ID_FOLLOW_TARGET_CRC);
 #endif
 }
 #endif
@@ -427,7 +438,7 @@ static inline uint64_t mavlink_msg_follow_target_get_custom_state(const mavlink_
  */
 static inline void mavlink_msg_follow_target_decode(const mavlink_message_t* msg, mavlink_follow_target_t* follow_target)
 {
-#if MAVLINK_NEED_BYTE_SWAP
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	follow_target->timestamp = mavlink_msg_follow_target_get_timestamp(msg);
 	follow_target->custom_state = mavlink_msg_follow_target_get_custom_state(msg);
 	follow_target->lat = mavlink_msg_follow_target_get_lat(msg);
@@ -440,6 +451,8 @@ static inline void mavlink_msg_follow_target_decode(const mavlink_message_t* msg
 	mavlink_msg_follow_target_get_position_cov(msg, follow_target->position_cov);
 	follow_target->est_capabilities = mavlink_msg_follow_target_get_est_capabilities(msg);
 #else
-	memcpy(follow_target, _MAV_PAYLOAD(msg), MAVLINK_MSG_ID_FOLLOW_TARGET_LEN);
+        uint8_t len = msg->len < MAVLINK_MSG_ID_FOLLOW_TARGET_LEN? msg->len : MAVLINK_MSG_ID_FOLLOW_TARGET_LEN;
+        memset(follow_target, 0, MAVLINK_MSG_ID_FOLLOW_TARGET_LEN);
+	memcpy(follow_target, _MAV_PAYLOAD(msg), len);
 #endif
 }

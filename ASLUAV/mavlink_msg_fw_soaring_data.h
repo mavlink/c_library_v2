@@ -2,7 +2,7 @@
 
 #define MAVLINK_MSG_ID_FW_SOARING_DATA 210
 
-typedef struct __mavlink_fw_soaring_data_t
+typedef struct MAVLINK_PACKED __mavlink_fw_soaring_data_t
 {
  uint64_t timestamp; /*< Timestamp [ms]*/
  uint64_t timestampModeChanged; /*< Timestamp since last mode change[ms]*/
@@ -21,13 +21,37 @@ typedef struct __mavlink_fw_soaring_data_t
 } mavlink_fw_soaring_data_t;
 
 #define MAVLINK_MSG_ID_FW_SOARING_DATA_LEN 58
+#define MAVLINK_MSG_ID_FW_SOARING_DATA_MIN_LEN 58
 #define MAVLINK_MSG_ID_210_LEN 58
+#define MAVLINK_MSG_ID_210_MIN_LEN 58
 
 #define MAVLINK_MSG_ID_FW_SOARING_DATA_CRC 129
 #define MAVLINK_MSG_ID_210_CRC 129
 
 
 
+#if MAVLINK_COMMAND_24BIT
+#define MAVLINK_MESSAGE_INFO_FW_SOARING_DATA { \
+	210, \
+	"FW_SOARING_DATA", \
+	14, \
+	{  { "timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_fw_soaring_data_t, timestamp) }, \
+         { "timestampModeChanged", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_fw_soaring_data_t, timestampModeChanged) }, \
+         { "CurrentUpdraftSpeed", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_fw_soaring_data_t, CurrentUpdraftSpeed) }, \
+         { "xW", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_fw_soaring_data_t, xW) }, \
+         { "xR", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_fw_soaring_data_t, xR) }, \
+         { "xLat", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_fw_soaring_data_t, xLat) }, \
+         { "xLon", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_fw_soaring_data_t, xLon) }, \
+         { "VarW", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_fw_soaring_data_t, VarW) }, \
+         { "VarR", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_fw_soaring_data_t, VarR) }, \
+         { "VarLat", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_fw_soaring_data_t, VarLat) }, \
+         { "VarLon", NULL, MAVLINK_TYPE_FLOAT, 0, 48, offsetof(mavlink_fw_soaring_data_t, VarLon) }, \
+         { "LoiterRadius", NULL, MAVLINK_TYPE_FLOAT, 0, 52, offsetof(mavlink_fw_soaring_data_t, LoiterRadius) }, \
+         { "ControlMode", NULL, MAVLINK_TYPE_UINT8_T, 0, 56, offsetof(mavlink_fw_soaring_data_t, ControlMode) }, \
+         { "valid", NULL, MAVLINK_TYPE_UINT8_T, 0, 57, offsetof(mavlink_fw_soaring_data_t, valid) }, \
+         } \
+}
+#else
 #define MAVLINK_MESSAGE_INFO_FW_SOARING_DATA { \
 	"FW_SOARING_DATA", \
 	14, \
@@ -47,7 +71,7 @@ typedef struct __mavlink_fw_soaring_data_t
          { "valid", NULL, MAVLINK_TYPE_UINT8_T, 0, 57, offsetof(mavlink_fw_soaring_data_t, valid) }, \
          } \
 }
-
+#endif
 
 /**
  * @brief Pack a fw_soaring_data message
@@ -113,11 +137,7 @@ static inline uint16_t mavlink_msg_fw_soaring_data_pack(uint8_t system_id, uint8
 #endif
 
 	msg->msgid = MAVLINK_MSG_ID_FW_SOARING_DATA;
-#if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_CRC);
-#else
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN);
-#endif
+    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_FW_SOARING_DATA_MIN_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_CRC);
 }
 
 /**
@@ -185,11 +205,7 @@ static inline uint16_t mavlink_msg_fw_soaring_data_pack_chan(uint8_t system_id, 
 #endif
 
 	msg->msgid = MAVLINK_MSG_ID_FW_SOARING_DATA;
-#if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_CRC);
-#else
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN);
-#endif
+    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_FW_SOARING_DATA_MIN_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_CRC);
 }
 
 /**
@@ -259,11 +275,7 @@ static inline void mavlink_msg_fw_soaring_data_send(mavlink_channel_t chan, uint
 	_mav_put_uint8_t(buf, 56, ControlMode);
 	_mav_put_uint8_t(buf, 57, valid);
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FW_SOARING_DATA, buf, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FW_SOARING_DATA, buf, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FW_SOARING_DATA, buf, MAVLINK_MSG_ID_FW_SOARING_DATA_MIN_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_CRC);
 #else
 	mavlink_fw_soaring_data_t packet;
 	packet.timestamp = timestamp;
@@ -281,11 +293,21 @@ static inline void mavlink_msg_fw_soaring_data_send(mavlink_channel_t chan, uint
 	packet.ControlMode = ControlMode;
 	packet.valid = valid;
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FW_SOARING_DATA, (const char *)&packet, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FW_SOARING_DATA, (const char *)&packet, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN);
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FW_SOARING_DATA, (const char *)&packet, MAVLINK_MSG_ID_FW_SOARING_DATA_MIN_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_CRC);
 #endif
+}
+
+/**
+ * @brief Send a fw_soaring_data message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_fw_soaring_data_send_struct(mavlink_channel_t chan, const mavlink_fw_soaring_data_t* fw_soaring_data)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    mavlink_msg_fw_soaring_data_send(chan, fw_soaring_data->timestamp, fw_soaring_data->timestampModeChanged, fw_soaring_data->CurrentUpdraftSpeed, fw_soaring_data->xW, fw_soaring_data->xR, fw_soaring_data->xLat, fw_soaring_data->xLon, fw_soaring_data->VarW, fw_soaring_data->VarR, fw_soaring_data->VarLat, fw_soaring_data->VarLon, fw_soaring_data->LoiterRadius, fw_soaring_data->ControlMode, fw_soaring_data->valid);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FW_SOARING_DATA, (const char *)fw_soaring_data, MAVLINK_MSG_ID_FW_SOARING_DATA_MIN_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_CRC);
 #endif
 }
 
@@ -316,11 +338,7 @@ static inline void mavlink_msg_fw_soaring_data_send_buf(mavlink_message_t *msgbu
 	_mav_put_uint8_t(buf, 56, ControlMode);
 	_mav_put_uint8_t(buf, 57, valid);
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FW_SOARING_DATA, buf, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FW_SOARING_DATA, buf, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FW_SOARING_DATA, buf, MAVLINK_MSG_ID_FW_SOARING_DATA_MIN_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_CRC);
 #else
 	mavlink_fw_soaring_data_t *packet = (mavlink_fw_soaring_data_t *)msgbuf;
 	packet->timestamp = timestamp;
@@ -338,11 +356,7 @@ static inline void mavlink_msg_fw_soaring_data_send_buf(mavlink_message_t *msgbu
 	packet->ControlMode = ControlMode;
 	packet->valid = valid;
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FW_SOARING_DATA, (const char *)packet, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FW_SOARING_DATA, (const char *)packet, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FW_SOARING_DATA, (const char *)packet, MAVLINK_MSG_ID_FW_SOARING_DATA_MIN_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_CRC);
 #endif
 }
 #endif
@@ -500,7 +514,7 @@ static inline uint8_t mavlink_msg_fw_soaring_data_get_valid(const mavlink_messag
  */
 static inline void mavlink_msg_fw_soaring_data_decode(const mavlink_message_t* msg, mavlink_fw_soaring_data_t* fw_soaring_data)
 {
-#if MAVLINK_NEED_BYTE_SWAP
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	fw_soaring_data->timestamp = mavlink_msg_fw_soaring_data_get_timestamp(msg);
 	fw_soaring_data->timestampModeChanged = mavlink_msg_fw_soaring_data_get_timestampModeChanged(msg);
 	fw_soaring_data->CurrentUpdraftSpeed = mavlink_msg_fw_soaring_data_get_CurrentUpdraftSpeed(msg);
@@ -516,6 +530,8 @@ static inline void mavlink_msg_fw_soaring_data_decode(const mavlink_message_t* m
 	fw_soaring_data->ControlMode = mavlink_msg_fw_soaring_data_get_ControlMode(msg);
 	fw_soaring_data->valid = mavlink_msg_fw_soaring_data_get_valid(msg);
 #else
-	memcpy(fw_soaring_data, _MAV_PAYLOAD(msg), MAVLINK_MSG_ID_FW_SOARING_DATA_LEN);
+        uint8_t len = msg->len < MAVLINK_MSG_ID_FW_SOARING_DATA_LEN? msg->len : MAVLINK_MSG_ID_FW_SOARING_DATA_LEN;
+        memset(fw_soaring_data, 0, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN);
+	memcpy(fw_soaring_data, _MAV_PAYLOAD(msg), len);
 #endif
 }

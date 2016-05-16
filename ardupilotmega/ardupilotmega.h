@@ -673,8 +673,6 @@ typedef enum MAV_REMOTE_LOG_DATA_BLOCK_STATUSES
 } MAV_REMOTE_LOG_DATA_BLOCK_STATUSES;
 #endif
 
-#include "../common/common.h"
-
 // MAVLINK VERSION
 
 #ifndef MAVLINK_VERSION
@@ -736,6 +734,13 @@ typedef enum MAV_REMOTE_LOG_DATA_BLOCK_STATUSES
 #include "./mavlink_msg_gopro_set_request.h"
 #include "./mavlink_msg_gopro_set_response.h"
 #include "./mavlink_msg_rpm.h"
+
+// base include
+#include "../common/common.h"
+
+#if MAVLINK_COMMAND_24BIT
+#include "../mavlink_get_info.h"
+#endif
 
 #ifdef __cplusplus
 }

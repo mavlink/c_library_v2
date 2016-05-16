@@ -181,8 +181,6 @@ typedef enum CONTROL_SURFACE_FLAG
 } CONTROL_SURFACE_FLAG;
 #endif
 
-#include "../common/common.h"
-
 // MAVLINK VERSION
 
 #ifndef MAVLINK_VERSION
@@ -215,6 +213,13 @@ typedef enum CONTROL_SURFACE_FLAG
 #include "./mavlink_msg_novatel_diag.h"
 #include "./mavlink_msg_sensor_diag.h"
 #include "./mavlink_msg_boot.h"
+
+// base include
+#include "../common/common.h"
+
+#if MAVLINK_COMMAND_24BIT
+#include "../mavlink_get_info.h"
+#endif
 
 #ifdef __cplusplus
 }

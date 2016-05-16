@@ -138,8 +138,6 @@ typedef enum MAV_CMD
 } MAV_CMD;
 #endif
 
-#include "../common/common.h"
-
 // MAVLINK VERSION
 
 #ifndef MAVLINK_VERSION
@@ -163,6 +161,13 @@ typedef enum MAV_CMD
 #include "./mavlink_msg_sens_batmon.h"
 #include "./mavlink_msg_fw_soaring_data.h"
 #include "./mavlink_msg_sensorpod_status.h"
+
+// base include
+#include "../common/common.h"
+
+#if MAVLINK_COMMAND_24BIT
+#include "../mavlink_get_info.h"
+#endif
 
 #ifdef __cplusplus
 }

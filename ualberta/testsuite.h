@@ -26,6 +26,12 @@ static void mavlink_test_all(uint8_t system_id, uint8_t component_id, mavlink_me
 
 static void mavlink_test_nav_filter_bias(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+	mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_NAV_FILTER_BIAS >= 256) {
+        	return;
+        }
+#endif
 	mavlink_message_t msg;
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
@@ -34,13 +40,13 @@ static void mavlink_test_nav_filter_bias(uint8_t system_id, uint8_t component_id
     };
 	mavlink_nav_filter_bias_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
-        	packet1.usec = packet_in.usec;
-        	packet1.accel_0 = packet_in.accel_0;
-        	packet1.accel_1 = packet_in.accel_1;
-        	packet1.accel_2 = packet_in.accel_2;
-        	packet1.gyro_0 = packet_in.gyro_0;
-        	packet1.gyro_1 = packet_in.gyro_1;
-        	packet1.gyro_2 = packet_in.gyro_2;
+        packet1.usec = packet_in.usec;
+        packet1.accel_0 = packet_in.accel_0;
+        packet1.accel_1 = packet_in.accel_1;
+        packet1.accel_2 = packet_in.accel_2;
+        packet1.gyro_0 = packet_in.gyro_0;
+        packet1.gyro_1 = packet_in.gyro_1;
+        packet1.gyro_2 = packet_in.gyro_2;
         
         
 
@@ -75,6 +81,12 @@ static void mavlink_test_nav_filter_bias(uint8_t system_id, uint8_t component_id
 
 static void mavlink_test_radio_calibration(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+	mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_RADIO_CALIBRATION >= 256) {
+        	return;
+        }
+#endif
 	mavlink_message_t msg;
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
@@ -84,12 +96,12 @@ static void mavlink_test_radio_calibration(uint8_t system_id, uint8_t component_
 	mavlink_radio_calibration_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         
-        	mav_array_memcpy(packet1.aileron, packet_in.aileron, sizeof(uint16_t)*3);
-        	mav_array_memcpy(packet1.elevator, packet_in.elevator, sizeof(uint16_t)*3);
-        	mav_array_memcpy(packet1.rudder, packet_in.rudder, sizeof(uint16_t)*3);
-        	mav_array_memcpy(packet1.gyro, packet_in.gyro, sizeof(uint16_t)*2);
-        	mav_array_memcpy(packet1.pitch, packet_in.pitch, sizeof(uint16_t)*5);
-        	mav_array_memcpy(packet1.throttle, packet_in.throttle, sizeof(uint16_t)*5);
+        mav_array_memcpy(packet1.aileron, packet_in.aileron, sizeof(uint16_t)*3);
+        mav_array_memcpy(packet1.elevator, packet_in.elevator, sizeof(uint16_t)*3);
+        mav_array_memcpy(packet1.rudder, packet_in.rudder, sizeof(uint16_t)*3);
+        mav_array_memcpy(packet1.gyro, packet_in.gyro, sizeof(uint16_t)*2);
+        mav_array_memcpy(packet1.pitch, packet_in.pitch, sizeof(uint16_t)*5);
+        mav_array_memcpy(packet1.throttle, packet_in.throttle, sizeof(uint16_t)*5);
         
 
         memset(&packet2, 0, sizeof(packet2));
@@ -123,6 +135,12 @@ static void mavlink_test_radio_calibration(uint8_t system_id, uint8_t component_
 
 static void mavlink_test_ualberta_sys_status(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+	mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_UALBERTA_SYS_STATUS >= 256) {
+        	return;
+        }
+#endif
 	mavlink_message_t msg;
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
@@ -131,9 +149,9 @@ static void mavlink_test_ualberta_sys_status(uint8_t system_id, uint8_t componen
     };
 	mavlink_ualberta_sys_status_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
-        	packet1.mode = packet_in.mode;
-        	packet1.nav_mode = packet_in.nav_mode;
-        	packet1.pilot = packet_in.pilot;
+        packet1.mode = packet_in.mode;
+        packet1.nav_mode = packet_in.nav_mode;
+        packet1.pilot = packet_in.pilot;
         
         
 

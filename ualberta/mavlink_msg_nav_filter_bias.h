@@ -2,7 +2,7 @@
 
 #define MAVLINK_MSG_ID_NAV_FILTER_BIAS 220
 
-typedef struct __mavlink_nav_filter_bias_t
+typedef struct MAVLINK_PACKED __mavlink_nav_filter_bias_t
 {
  uint64_t usec; /*< Timestamp (microseconds)*/
  float accel_0; /*< b_f[0]*/
@@ -14,13 +14,30 @@ typedef struct __mavlink_nav_filter_bias_t
 } mavlink_nav_filter_bias_t;
 
 #define MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN 32
+#define MAVLINK_MSG_ID_NAV_FILTER_BIAS_MIN_LEN 32
 #define MAVLINK_MSG_ID_220_LEN 32
+#define MAVLINK_MSG_ID_220_MIN_LEN 32
 
 #define MAVLINK_MSG_ID_NAV_FILTER_BIAS_CRC 34
 #define MAVLINK_MSG_ID_220_CRC 34
 
 
 
+#if MAVLINK_COMMAND_24BIT
+#define MAVLINK_MESSAGE_INFO_NAV_FILTER_BIAS { \
+	220, \
+	"NAV_FILTER_BIAS", \
+	7, \
+	{  { "usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_nav_filter_bias_t, usec) }, \
+         { "accel_0", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_nav_filter_bias_t, accel_0) }, \
+         { "accel_1", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_nav_filter_bias_t, accel_1) }, \
+         { "accel_2", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_nav_filter_bias_t, accel_2) }, \
+         { "gyro_0", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_nav_filter_bias_t, gyro_0) }, \
+         { "gyro_1", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_nav_filter_bias_t, gyro_1) }, \
+         { "gyro_2", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_nav_filter_bias_t, gyro_2) }, \
+         } \
+}
+#else
 #define MAVLINK_MESSAGE_INFO_NAV_FILTER_BIAS { \
 	"NAV_FILTER_BIAS", \
 	7, \
@@ -33,7 +50,7 @@ typedef struct __mavlink_nav_filter_bias_t
          { "gyro_2", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_nav_filter_bias_t, gyro_2) }, \
          } \
 }
-
+#endif
 
 /**
  * @brief Pack a nav_filter_bias message
@@ -78,11 +95,7 @@ static inline uint16_t mavlink_msg_nav_filter_bias_pack(uint8_t system_id, uint8
 #endif
 
 	msg->msgid = MAVLINK_MSG_ID_NAV_FILTER_BIAS;
-#if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_CRC);
-#else
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN);
-#endif
+    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_NAV_FILTER_BIAS_MIN_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_CRC);
 }
 
 /**
@@ -129,11 +142,7 @@ static inline uint16_t mavlink_msg_nav_filter_bias_pack_chan(uint8_t system_id, 
 #endif
 
 	msg->msgid = MAVLINK_MSG_ID_NAV_FILTER_BIAS;
-#if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_CRC);
-#else
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN);
-#endif
+    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_NAV_FILTER_BIAS_MIN_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_CRC);
 }
 
 /**
@@ -189,11 +198,7 @@ static inline void mavlink_msg_nav_filter_bias_send(mavlink_channel_t chan, uint
 	_mav_put_float(buf, 24, gyro_1);
 	_mav_put_float(buf, 28, gyro_2);
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_NAV_FILTER_BIAS, buf, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_NAV_FILTER_BIAS, buf, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_NAV_FILTER_BIAS, buf, MAVLINK_MSG_ID_NAV_FILTER_BIAS_MIN_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_CRC);
 #else
 	mavlink_nav_filter_bias_t packet;
 	packet.usec = usec;
@@ -204,11 +209,21 @@ static inline void mavlink_msg_nav_filter_bias_send(mavlink_channel_t chan, uint
 	packet.gyro_1 = gyro_1;
 	packet.gyro_2 = gyro_2;
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_NAV_FILTER_BIAS, (const char *)&packet, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_NAV_FILTER_BIAS, (const char *)&packet, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN);
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_NAV_FILTER_BIAS, (const char *)&packet, MAVLINK_MSG_ID_NAV_FILTER_BIAS_MIN_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_CRC);
 #endif
+}
+
+/**
+ * @brief Send a nav_filter_bias message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_nav_filter_bias_send_struct(mavlink_channel_t chan, const mavlink_nav_filter_bias_t* nav_filter_bias)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    mavlink_msg_nav_filter_bias_send(chan, nav_filter_bias->usec, nav_filter_bias->accel_0, nav_filter_bias->accel_1, nav_filter_bias->accel_2, nav_filter_bias->gyro_0, nav_filter_bias->gyro_1, nav_filter_bias->gyro_2);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_NAV_FILTER_BIAS, (const char *)nav_filter_bias, MAVLINK_MSG_ID_NAV_FILTER_BIAS_MIN_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_CRC);
 #endif
 }
 
@@ -232,11 +247,7 @@ static inline void mavlink_msg_nav_filter_bias_send_buf(mavlink_message_t *msgbu
 	_mav_put_float(buf, 24, gyro_1);
 	_mav_put_float(buf, 28, gyro_2);
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_NAV_FILTER_BIAS, buf, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_NAV_FILTER_BIAS, buf, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_NAV_FILTER_BIAS, buf, MAVLINK_MSG_ID_NAV_FILTER_BIAS_MIN_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_CRC);
 #else
 	mavlink_nav_filter_bias_t *packet = (mavlink_nav_filter_bias_t *)msgbuf;
 	packet->usec = usec;
@@ -247,11 +258,7 @@ static inline void mavlink_msg_nav_filter_bias_send_buf(mavlink_message_t *msgbu
 	packet->gyro_1 = gyro_1;
 	packet->gyro_2 = gyro_2;
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_NAV_FILTER_BIAS, (const char *)packet, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_NAV_FILTER_BIAS, (const char *)packet, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_NAV_FILTER_BIAS, (const char *)packet, MAVLINK_MSG_ID_NAV_FILTER_BIAS_MIN_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_CRC);
 #endif
 }
 #endif
@@ -339,7 +346,7 @@ static inline float mavlink_msg_nav_filter_bias_get_gyro_2(const mavlink_message
  */
 static inline void mavlink_msg_nav_filter_bias_decode(const mavlink_message_t* msg, mavlink_nav_filter_bias_t* nav_filter_bias)
 {
-#if MAVLINK_NEED_BYTE_SWAP
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	nav_filter_bias->usec = mavlink_msg_nav_filter_bias_get_usec(msg);
 	nav_filter_bias->accel_0 = mavlink_msg_nav_filter_bias_get_accel_0(msg);
 	nav_filter_bias->accel_1 = mavlink_msg_nav_filter_bias_get_accel_1(msg);
@@ -348,6 +355,8 @@ static inline void mavlink_msg_nav_filter_bias_decode(const mavlink_message_t* m
 	nav_filter_bias->gyro_1 = mavlink_msg_nav_filter_bias_get_gyro_1(msg);
 	nav_filter_bias->gyro_2 = mavlink_msg_nav_filter_bias_get_gyro_2(msg);
 #else
-	memcpy(nav_filter_bias, _MAV_PAYLOAD(msg), MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN);
+        uint8_t len = msg->len < MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN? msg->len : MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN;
+        memset(nav_filter_bias, 0, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN);
+	memcpy(nav_filter_bias, _MAV_PAYLOAD(msg), len);
 #endif
 }

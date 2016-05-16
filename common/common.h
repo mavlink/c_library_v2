@@ -855,8 +855,6 @@ typedef enum ESTIMATOR_STATUS_FLAGS
 } ESTIMATOR_STATUS_FLAGS;
 #endif
 
-
-
 // MAVLINK VERSION
 
 #ifndef MAVLINK_VERSION
@@ -1001,6 +999,13 @@ typedef enum ESTIMATOR_STATUS_FLAGS
 #include "./mavlink_msg_named_value_int.h"
 #include "./mavlink_msg_statustext.h"
 #include "./mavlink_msg_debug.h"
+
+// base include
+
+
+#if MAVLINK_COMMAND_24BIT
+#include "../mavlink_get_info.h"
+#endif
 
 #ifdef __cplusplus
 }

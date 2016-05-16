@@ -2,7 +2,7 @@
 
 #define MAVLINK_MSG_ID_UALBERTA_SYS_STATUS 222
 
-typedef struct __mavlink_ualberta_sys_status_t
+typedef struct MAVLINK_PACKED __mavlink_ualberta_sys_status_t
 {
  uint8_t mode; /*< System mode, see UALBERTA_AUTOPILOT_MODE ENUM*/
  uint8_t nav_mode; /*< Navigation mode, see UALBERTA_NAV_MODE ENUM*/
@@ -10,13 +10,26 @@ typedef struct __mavlink_ualberta_sys_status_t
 } mavlink_ualberta_sys_status_t;
 
 #define MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN 3
+#define MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_MIN_LEN 3
 #define MAVLINK_MSG_ID_222_LEN 3
+#define MAVLINK_MSG_ID_222_MIN_LEN 3
 
 #define MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_CRC 15
 #define MAVLINK_MSG_ID_222_CRC 15
 
 
 
+#if MAVLINK_COMMAND_24BIT
+#define MAVLINK_MESSAGE_INFO_UALBERTA_SYS_STATUS { \
+	222, \
+	"UALBERTA_SYS_STATUS", \
+	3, \
+	{  { "mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_ualberta_sys_status_t, mode) }, \
+         { "nav_mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 1, offsetof(mavlink_ualberta_sys_status_t, nav_mode) }, \
+         { "pilot", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_ualberta_sys_status_t, pilot) }, \
+         } \
+}
+#else
 #define MAVLINK_MESSAGE_INFO_UALBERTA_SYS_STATUS { \
 	"UALBERTA_SYS_STATUS", \
 	3, \
@@ -25,7 +38,7 @@ typedef struct __mavlink_ualberta_sys_status_t
          { "pilot", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_ualberta_sys_status_t, pilot) }, \
          } \
 }
-
+#endif
 
 /**
  * @brief Pack a ualberta_sys_status message
@@ -58,11 +71,7 @@ static inline uint16_t mavlink_msg_ualberta_sys_status_pack(uint8_t system_id, u
 #endif
 
 	msg->msgid = MAVLINK_MSG_ID_UALBERTA_SYS_STATUS;
-#if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_CRC);
-#else
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN);
-#endif
+    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_MIN_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_CRC);
 }
 
 /**
@@ -97,11 +106,7 @@ static inline uint16_t mavlink_msg_ualberta_sys_status_pack_chan(uint8_t system_
 #endif
 
 	msg->msgid = MAVLINK_MSG_ID_UALBERTA_SYS_STATUS;
-#if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_CRC);
-#else
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN);
-#endif
+    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_MIN_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_CRC);
 }
 
 /**
@@ -149,22 +154,28 @@ static inline void mavlink_msg_ualberta_sys_status_send(mavlink_channel_t chan, 
 	_mav_put_uint8_t(buf, 1, nav_mode);
 	_mav_put_uint8_t(buf, 2, pilot);
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS, buf, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS, buf, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS, buf, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_MIN_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_CRC);
 #else
 	mavlink_ualberta_sys_status_t packet;
 	packet.mode = mode;
 	packet.nav_mode = nav_mode;
 	packet.pilot = pilot;
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS, (const char *)&packet, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS, (const char *)&packet, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN);
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS, (const char *)&packet, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_MIN_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_CRC);
 #endif
+}
+
+/**
+ * @brief Send a ualberta_sys_status message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_ualberta_sys_status_send_struct(mavlink_channel_t chan, const mavlink_ualberta_sys_status_t* ualberta_sys_status)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    mavlink_msg_ualberta_sys_status_send(chan, ualberta_sys_status->mode, ualberta_sys_status->nav_mode, ualberta_sys_status->pilot);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS, (const char *)ualberta_sys_status, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_MIN_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_CRC);
 #endif
 }
 
@@ -184,22 +195,14 @@ static inline void mavlink_msg_ualberta_sys_status_send_buf(mavlink_message_t *m
 	_mav_put_uint8_t(buf, 1, nav_mode);
 	_mav_put_uint8_t(buf, 2, pilot);
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS, buf, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS, buf, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS, buf, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_MIN_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_CRC);
 #else
 	mavlink_ualberta_sys_status_t *packet = (mavlink_ualberta_sys_status_t *)msgbuf;
 	packet->mode = mode;
 	packet->nav_mode = nav_mode;
 	packet->pilot = pilot;
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS, (const char *)packet, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS, (const char *)packet, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS, (const char *)packet, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_MIN_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_CRC);
 #endif
 }
 #endif
@@ -247,11 +250,13 @@ static inline uint8_t mavlink_msg_ualberta_sys_status_get_pilot(const mavlink_me
  */
 static inline void mavlink_msg_ualberta_sys_status_decode(const mavlink_message_t* msg, mavlink_ualberta_sys_status_t* ualberta_sys_status)
 {
-#if MAVLINK_NEED_BYTE_SWAP
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	ualberta_sys_status->mode = mavlink_msg_ualberta_sys_status_get_mode(msg);
 	ualberta_sys_status->nav_mode = mavlink_msg_ualberta_sys_status_get_nav_mode(msg);
 	ualberta_sys_status->pilot = mavlink_msg_ualberta_sys_status_get_pilot(msg);
 #else
-	memcpy(ualberta_sys_status, _MAV_PAYLOAD(msg), MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN);
+        uint8_t len = msg->len < MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN? msg->len : MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN;
+        memset(ualberta_sys_status, 0, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN);
+	memcpy(ualberta_sys_status, _MAV_PAYLOAD(msg), len);
 #endif
 }

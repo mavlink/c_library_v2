@@ -2,7 +2,7 @@
 
 #define MAVLINK_MSG_ID_GPS_RTCM_DATA 233
 
-typedef struct __mavlink_gps_rtcm_data_t
+typedef struct MAVLINK_PACKED __mavlink_gps_rtcm_data_t
 {
  uint8_t flags; /*< LSB: 1 means message is fragmented*/
  uint8_t len; /*< data length*/
@@ -10,13 +10,26 @@ typedef struct __mavlink_gps_rtcm_data_t
 } mavlink_gps_rtcm_data_t;
 
 #define MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN 182
+#define MAVLINK_MSG_ID_GPS_RTCM_DATA_MIN_LEN 182
 #define MAVLINK_MSG_ID_233_LEN 182
+#define MAVLINK_MSG_ID_233_MIN_LEN 182
 
 #define MAVLINK_MSG_ID_GPS_RTCM_DATA_CRC 35
 #define MAVLINK_MSG_ID_233_CRC 35
 
 #define MAVLINK_MSG_GPS_RTCM_DATA_FIELD_DATA_LEN 180
 
+#if MAVLINK_COMMAND_24BIT
+#define MAVLINK_MESSAGE_INFO_GPS_RTCM_DATA { \
+	233, \
+	"GPS_RTCM_DATA", \
+	3, \
+	{  { "flags", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_gps_rtcm_data_t, flags) }, \
+         { "len", NULL, MAVLINK_TYPE_UINT8_T, 0, 1, offsetof(mavlink_gps_rtcm_data_t, len) }, \
+         { "data", NULL, MAVLINK_TYPE_UINT8_T, 180, 2, offsetof(mavlink_gps_rtcm_data_t, data) }, \
+         } \
+}
+#else
 #define MAVLINK_MESSAGE_INFO_GPS_RTCM_DATA { \
 	"GPS_RTCM_DATA", \
 	3, \
@@ -25,7 +38,7 @@ typedef struct __mavlink_gps_rtcm_data_t
          { "data", NULL, MAVLINK_TYPE_UINT8_T, 180, 2, offsetof(mavlink_gps_rtcm_data_t, data) }, \
          } \
 }
-
+#endif
 
 /**
  * @brief Pack a gps_rtcm_data message
@@ -56,11 +69,7 @@ static inline uint16_t mavlink_msg_gps_rtcm_data_pack(uint8_t system_id, uint8_t
 #endif
 
 	msg->msgid = MAVLINK_MSG_ID_GPS_RTCM_DATA;
-#if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_CRC);
-#else
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN);
-#endif
+    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_GPS_RTCM_DATA_MIN_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_CRC);
 }
 
 /**
@@ -93,11 +102,7 @@ static inline uint16_t mavlink_msg_gps_rtcm_data_pack_chan(uint8_t system_id, ui
 #endif
 
 	msg->msgid = MAVLINK_MSG_ID_GPS_RTCM_DATA;
-#if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_CRC);
-#else
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN);
-#endif
+    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_GPS_RTCM_DATA_MIN_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_CRC);
 }
 
 /**
@@ -144,21 +149,27 @@ static inline void mavlink_msg_gps_rtcm_data_send(mavlink_channel_t chan, uint8_
 	_mav_put_uint8_t(buf, 0, flags);
 	_mav_put_uint8_t(buf, 1, len);
 	_mav_put_uint8_t_array(buf, 2, data, 180);
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GPS_RTCM_DATA, buf, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GPS_RTCM_DATA, buf, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GPS_RTCM_DATA, buf, MAVLINK_MSG_ID_GPS_RTCM_DATA_MIN_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_CRC);
 #else
 	mavlink_gps_rtcm_data_t packet;
 	packet.flags = flags;
 	packet.len = len;
 	mav_array_memcpy(packet.data, data, sizeof(uint8_t)*180);
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GPS_RTCM_DATA, (const char *)&packet, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GPS_RTCM_DATA, (const char *)&packet, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN);
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GPS_RTCM_DATA, (const char *)&packet, MAVLINK_MSG_ID_GPS_RTCM_DATA_MIN_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_CRC);
 #endif
+}
+
+/**
+ * @brief Send a gps_rtcm_data message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_gps_rtcm_data_send_struct(mavlink_channel_t chan, const mavlink_gps_rtcm_data_t* gps_rtcm_data)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    mavlink_msg_gps_rtcm_data_send(chan, gps_rtcm_data->flags, gps_rtcm_data->len, gps_rtcm_data->data);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GPS_RTCM_DATA, (const char *)gps_rtcm_data, MAVLINK_MSG_ID_GPS_RTCM_DATA_MIN_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_CRC);
 #endif
 }
 
@@ -177,21 +188,13 @@ static inline void mavlink_msg_gps_rtcm_data_send_buf(mavlink_message_t *msgbuf,
 	_mav_put_uint8_t(buf, 0, flags);
 	_mav_put_uint8_t(buf, 1, len);
 	_mav_put_uint8_t_array(buf, 2, data, 180);
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GPS_RTCM_DATA, buf, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GPS_RTCM_DATA, buf, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GPS_RTCM_DATA, buf, MAVLINK_MSG_ID_GPS_RTCM_DATA_MIN_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_CRC);
 #else
 	mavlink_gps_rtcm_data_t *packet = (mavlink_gps_rtcm_data_t *)msgbuf;
 	packet->flags = flags;
 	packet->len = len;
 	mav_array_memcpy(packet->data, data, sizeof(uint8_t)*180);
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GPS_RTCM_DATA, (const char *)packet, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GPS_RTCM_DATA, (const char *)packet, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GPS_RTCM_DATA, (const char *)packet, MAVLINK_MSG_ID_GPS_RTCM_DATA_MIN_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN, MAVLINK_MSG_ID_GPS_RTCM_DATA_CRC);
 #endif
 }
 #endif
@@ -239,11 +242,13 @@ static inline uint16_t mavlink_msg_gps_rtcm_data_get_data(const mavlink_message_
  */
 static inline void mavlink_msg_gps_rtcm_data_decode(const mavlink_message_t* msg, mavlink_gps_rtcm_data_t* gps_rtcm_data)
 {
-#if MAVLINK_NEED_BYTE_SWAP
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	gps_rtcm_data->flags = mavlink_msg_gps_rtcm_data_get_flags(msg);
 	gps_rtcm_data->len = mavlink_msg_gps_rtcm_data_get_len(msg);
 	mavlink_msg_gps_rtcm_data_get_data(msg, gps_rtcm_data->data);
 #else
-	memcpy(gps_rtcm_data, _MAV_PAYLOAD(msg), MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN);
+        uint8_t len = msg->len < MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN? msg->len : MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN;
+        memset(gps_rtcm_data, 0, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN);
+	memcpy(gps_rtcm_data, _MAV_PAYLOAD(msg), len);
 #endif
 }
