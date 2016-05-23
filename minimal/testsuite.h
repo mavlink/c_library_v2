@@ -48,7 +48,12 @@ static void mavlink_test_heartbeat(uint8_t system_id, uint8_t component_id, mavl
         packet1.mavlink_version = packet_in.mavlink_version;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_HEARTBEAT_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_HEARTBEAT_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_heartbeat_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_heartbeat_decode(&msg, &packet2);

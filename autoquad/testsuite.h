@@ -63,7 +63,12 @@ static void mavlink_test_aq_telemetry_f(uint8_t system_id, uint8_t component_id,
         packet1.Index = packet_in.Index;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_AQ_TELEMETRY_F_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_AQ_TELEMETRY_F_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_aq_telemetry_f_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_aq_telemetry_f_decode(&msg, &packet2);
@@ -120,7 +125,12 @@ static void mavlink_test_aq_esc_telemetry(uint8_t system_id, uint8_t component_i
         mav_array_memcpy(packet1.escid, packet_in.escid, sizeof(uint8_t)*4);
         mav_array_memcpy(packet1.data_version, packet_in.data_version, sizeof(uint8_t)*4);
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_AQ_ESC_TELEMETRY_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_AQ_ESC_TELEMETRY_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_aq_esc_telemetry_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_aq_esc_telemetry_decode(&msg, &packet2);

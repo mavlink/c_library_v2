@@ -49,7 +49,12 @@ static void mavlink_test_nav_filter_bias(uint8_t system_id, uint8_t component_id
         packet1.gyro_2 = packet_in.gyro_2;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_NAV_FILTER_BIAS_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_NAV_FILTER_BIAS_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_nav_filter_bias_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_nav_filter_bias_decode(&msg, &packet2);
@@ -103,7 +108,12 @@ static void mavlink_test_radio_calibration(uint8_t system_id, uint8_t component_
         mav_array_memcpy(packet1.pitch, packet_in.pitch, sizeof(uint16_t)*5);
         mav_array_memcpy(packet1.throttle, packet_in.throttle, sizeof(uint16_t)*5);
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_RADIO_CALIBRATION_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_RADIO_CALIBRATION_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_radio_calibration_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_radio_calibration_decode(&msg, &packet2);
@@ -154,7 +164,12 @@ static void mavlink_test_ualberta_sys_status(uint8_t system_id, uint8_t componen
         packet1.pilot = packet_in.pilot;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_ualberta_sys_status_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_ualberta_sys_status_decode(&msg, &packet2);

@@ -44,7 +44,12 @@ static void mavlink_test_flexifunction_set(uint8_t system_id, uint8_t component_
         packet1.target_component = packet_in.target_component;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_FLEXIFUNCTION_SET_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_FLEXIFUNCTION_SET_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_flexifunction_set_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_flexifunction_set_decode(&msg, &packet2);
@@ -96,7 +101,12 @@ static void mavlink_test_flexifunction_read_req(uint8_t system_id, uint8_t compo
         packet1.target_component = packet_in.target_component;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_FLEXIFUNCTION_READ_REQ_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_FLEXIFUNCTION_READ_REQ_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_flexifunction_read_req_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_flexifunction_read_req_decode(&msg, &packet2);
@@ -151,7 +161,12 @@ static void mavlink_test_flexifunction_buffer_function(uint8_t system_id, uint8_
         
         mav_array_memcpy(packet1.data, packet_in.data, sizeof(int8_t)*48);
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_flexifunction_buffer_function_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_flexifunction_buffer_function_decode(&msg, &packet2);
@@ -203,7 +218,12 @@ static void mavlink_test_flexifunction_buffer_function_ack(uint8_t system_id, ui
         packet1.target_component = packet_in.target_component;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_ACK_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_ACK_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_flexifunction_buffer_function_ack_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_flexifunction_buffer_function_ack_decode(&msg, &packet2);
@@ -257,7 +277,12 @@ static void mavlink_test_flexifunction_directory(uint8_t system_id, uint8_t comp
         
         mav_array_memcpy(packet1.directory_data, packet_in.directory_data, sizeof(int8_t)*48);
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_flexifunction_directory_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_flexifunction_directory_decode(&msg, &packet2);
@@ -311,7 +336,12 @@ static void mavlink_test_flexifunction_directory_ack(uint8_t system_id, uint8_t 
         packet1.count = packet_in.count;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_ACK_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_ACK_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_flexifunction_directory_ack_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_flexifunction_directory_ack_decode(&msg, &packet2);
@@ -362,7 +392,12 @@ static void mavlink_test_flexifunction_command(uint8_t system_id, uint8_t compon
         packet1.command_type = packet_in.command_type;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_FLEXIFUNCTION_COMMAND_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_FLEXIFUNCTION_COMMAND_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_flexifunction_command_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_flexifunction_command_decode(&msg, &packet2);
@@ -412,7 +447,12 @@ static void mavlink_test_flexifunction_command_ack(uint8_t system_id, uint8_t co
         packet1.result = packet_in.result;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_FLEXIFUNCTION_COMMAND_ACK_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_FLEXIFUNCTION_COMMAND_ACK_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_flexifunction_command_ack_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_flexifunction_command_ack_decode(&msg, &packet2);
@@ -488,7 +528,12 @@ static void mavlink_test_serial_udb_extra_f2_a(uint8_t system_id, uint8_t compon
         packet1.sue_status = packet_in.sue_status;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_serial_udb_extra_f2_a_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_serial_udb_extra_f2_a_decode(&msg, &packet2);
@@ -569,7 +614,12 @@ static void mavlink_test_serial_udb_extra_f2_b(uint8_t system_id, uint8_t compon
         packet1.sue_memory_stack_free = packet_in.sue_memory_stack_free;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_B_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_B_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_serial_udb_extra_f2_b_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_serial_udb_extra_f2_b_decode(&msg, &packet2);
@@ -627,7 +677,12 @@ static void mavlink_test_serial_udb_extra_f4(uint8_t system_id, uint8_t componen
         packet1.sue_RACING_MODE = packet_in.sue_RACING_MODE;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F4_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F4_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_serial_udb_extra_f4_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_serial_udb_extra_f4_decode(&msg, &packet2);
@@ -681,7 +736,12 @@ static void mavlink_test_serial_udb_extra_f5(uint8_t system_id, uint8_t componen
         packet1.sue_AILERON_BOOST = packet_in.sue_AILERON_BOOST;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F5_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F5_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_serial_udb_extra_f5_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_serial_udb_extra_f5_decode(&msg, &packet2);
@@ -734,7 +794,12 @@ static void mavlink_test_serial_udb_extra_f6(uint8_t system_id, uint8_t componen
         packet1.sue_ELEVATOR_BOOST = packet_in.sue_ELEVATOR_BOOST;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F6_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F6_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_serial_udb_extra_f6_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_serial_udb_extra_f6_decode(&msg, &packet2);
@@ -788,7 +853,12 @@ static void mavlink_test_serial_udb_extra_f7(uint8_t system_id, uint8_t componen
         packet1.sue_RTL_PITCH_DOWN = packet_in.sue_RTL_PITCH_DOWN;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F7_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F7_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_serial_udb_extra_f7_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_serial_udb_extra_f7_decode(&msg, &packet2);
@@ -843,7 +913,12 @@ static void mavlink_test_serial_udb_extra_f8(uint8_t system_id, uint8_t componen
         packet1.sue_ALT_HOLD_PITCH_HIGH = packet_in.sue_ALT_HOLD_PITCH_HIGH;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F8_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F8_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_serial_udb_extra_f8_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_serial_udb_extra_f8_decode(&msg, &packet2);
@@ -895,7 +970,12 @@ static void mavlink_test_serial_udb_extra_f13(uint8_t system_id, uint8_t compone
         packet1.sue_week_no = packet_in.sue_week_no;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F13_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F13_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_serial_udb_extra_f13_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_serial_udb_extra_f13_decode(&msg, &packet2);
@@ -954,7 +1034,12 @@ static void mavlink_test_serial_udb_extra_f14(uint8_t system_id, uint8_t compone
         packet1.sue_FLIGHT_PLAN_TYPE = packet_in.sue_FLIGHT_PLAN_TYPE;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F14_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F14_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_serial_udb_extra_f14_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_serial_udb_extra_f14_decode(&msg, &packet2);
@@ -1004,7 +1089,12 @@ static void mavlink_test_serial_udb_extra_f15(uint8_t system_id, uint8_t compone
         mav_array_memcpy(packet1.sue_ID_VEHICLE_MODEL_NAME, packet_in.sue_ID_VEHICLE_MODEL_NAME, sizeof(uint8_t)*40);
         mav_array_memcpy(packet1.sue_ID_VEHICLE_REGISTRATION, packet_in.sue_ID_VEHICLE_REGISTRATION, sizeof(uint8_t)*20);
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F15_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F15_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_serial_udb_extra_f15_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_serial_udb_extra_f15_decode(&msg, &packet2);
@@ -1054,7 +1144,12 @@ static void mavlink_test_serial_udb_extra_f16(uint8_t system_id, uint8_t compone
         mav_array_memcpy(packet1.sue_ID_LEAD_PILOT, packet_in.sue_ID_LEAD_PILOT, sizeof(uint8_t)*40);
         mav_array_memcpy(packet1.sue_ID_DIY_DRONES_URL, packet_in.sue_ID_DIY_DRONES_URL, sizeof(uint8_t)*70);
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_serial_udb_extra_f16_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_serial_udb_extra_f16_decode(&msg, &packet2);
@@ -1109,7 +1204,12 @@ static void mavlink_test_altitudes(uint8_t system_id, uint8_t component_id, mavl
         packet1.alt_extra = packet_in.alt_extra;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_ALTITUDES_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_ALTITUDES_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_altitudes_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_altitudes_decode(&msg, &packet2);
@@ -1164,7 +1264,12 @@ static void mavlink_test_airspeeds(uint8_t system_id, uint8_t component_id, mavl
         packet1.aoy = packet_in.aoy;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_AIRSPEEDS_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_AIRSPEEDS_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_airspeeds_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_airspeeds_decode(&msg, &packet2);

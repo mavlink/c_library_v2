@@ -45,7 +45,12 @@ static void mavlink_test_cpu_load(uint8_t system_id, uint8_t component_id, mavli
         packet1.ctrlLoad = packet_in.ctrlLoad;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_CPU_LOAD_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_CPU_LOAD_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_cpu_load_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_cpu_load_decode(&msg, &packet2);
@@ -99,7 +104,12 @@ static void mavlink_test_sensor_bias(uint8_t system_id, uint8_t component_id, ma
         packet1.gzBias = packet_in.gzBias;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SENSOR_BIAS_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SENSOR_BIAS_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_sensor_bias_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_sensor_bias_decode(&msg, &packet2);
@@ -153,7 +163,12 @@ static void mavlink_test_diagnostic(uint8_t system_id, uint8_t component_id, mav
         packet1.diagSh3 = packet_in.diagSh3;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_DIAGNOSTIC_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_DIAGNOSTIC_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_diagnostic_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_diagnostic_decode(&msg, &packet2);
@@ -211,7 +226,12 @@ static void mavlink_test_slugs_navigation(uint8_t system_id, uint8_t component_i
         packet1.toWP = packet_in.toWP;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SLUGS_NAVIGATION_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SLUGS_NAVIGATION_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_slugs_navigation_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_slugs_navigation_decode(&msg, &packet2);
@@ -265,7 +285,12 @@ static void mavlink_test_data_log(uint8_t system_id, uint8_t component_id, mavli
         packet1.fl_6 = packet_in.fl_6;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_DATA_LOG_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_DATA_LOG_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_data_log_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_data_log_decode(&msg, &packet2);
@@ -325,7 +350,12 @@ static void mavlink_test_gps_date_time(uint8_t system_id, uint8_t component_id, 
         packet1.percentUsed = packet_in.percentUsed;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_GPS_DATE_TIME_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_GPS_DATE_TIME_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_gps_date_time_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_gps_date_time_decode(&msg, &packet2);
@@ -377,7 +407,12 @@ static void mavlink_test_mid_lvl_cmds(uint8_t system_id, uint8_t component_id, m
         packet1.target = packet_in.target;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_MID_LVL_CMDS_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_MID_LVL_CMDS_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_mid_lvl_cmds_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_mid_lvl_cmds_decode(&msg, &packet2);
@@ -427,7 +462,12 @@ static void mavlink_test_ctrl_srfc_pt(uint8_t system_id, uint8_t component_id, m
         packet1.target = packet_in.target;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_CTRL_SRFC_PT_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_CTRL_SRFC_PT_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_ctrl_srfc_pt_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_ctrl_srfc_pt_decode(&msg, &packet2);
@@ -480,7 +520,12 @@ static void mavlink_test_slugs_camera_order(uint8_t system_id, uint8_t component
         packet1.moveHome = packet_in.moveHome;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SLUGS_CAMERA_ORDER_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SLUGS_CAMERA_ORDER_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_slugs_camera_order_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_slugs_camera_order_decode(&msg, &packet2);
@@ -532,7 +577,12 @@ static void mavlink_test_control_surface(uint8_t system_id, uint8_t component_id
         packet1.idSurface = packet_in.idSurface;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_CONTROL_SURFACE_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_CONTROL_SURFACE_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_control_surface_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_control_surface_decode(&msg, &packet2);
@@ -583,7 +633,12 @@ static void mavlink_test_slugs_mobile_location(uint8_t system_id, uint8_t compon
         packet1.target = packet_in.target;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SLUGS_MOBILE_LOCATION_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SLUGS_MOBILE_LOCATION_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_slugs_mobile_location_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_slugs_mobile_location_decode(&msg, &packet2);
@@ -634,7 +689,12 @@ static void mavlink_test_slugs_configuration_camera(uint8_t system_id, uint8_t c
         packet1.order = packet_in.order;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SLUGS_CONFIGURATION_CAMERA_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SLUGS_CONFIGURATION_CAMERA_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_slugs_configuration_camera_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_slugs_configuration_camera_decode(&msg, &packet2);
@@ -689,7 +749,12 @@ static void mavlink_test_isr_location(uint8_t system_id, uint8_t component_id, m
         packet1.option3 = packet_in.option3;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_ISR_LOCATION_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_ISR_LOCATION_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_isr_location_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_isr_location_decode(&msg, &packet2);
@@ -740,7 +805,12 @@ static void mavlink_test_volt_sensor(uint8_t system_id, uint8_t component_id, ma
         packet1.r2Type = packet_in.r2Type;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_VOLT_SENSOR_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_VOLT_SENSOR_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_volt_sensor_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_volt_sensor_decode(&msg, &packet2);
@@ -791,7 +861,12 @@ static void mavlink_test_ptz_status(uint8_t system_id, uint8_t component_id, mav
         packet1.zoom = packet_in.zoom;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_PTZ_STATUS_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_PTZ_STATUS_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_ptz_status_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_ptz_status_decode(&msg, &packet2);
@@ -845,7 +920,12 @@ static void mavlink_test_uav_status(uint8_t system_id, uint8_t component_id, mav
         packet1.target = packet_in.target;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_UAV_STATUS_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_UAV_STATUS_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_uav_status_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_uav_status_decode(&msg, &packet2);
@@ -900,7 +980,12 @@ static void mavlink_test_status_gps(uint8_t system_id, uint8_t component_id, mav
         packet1.modeInd = packet_in.modeInd;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_STATUS_GPS_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_STATUS_GPS_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_status_gps_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_status_gps_decode(&msg, &packet2);
@@ -955,7 +1040,12 @@ static void mavlink_test_novatel_diag(uint8_t system_id, uint8_t component_id, m
         packet1.velType = packet_in.velType;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_NOVATEL_DIAG_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_NOVATEL_DIAG_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_novatel_diag_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_novatel_diag_decode(&msg, &packet2);
@@ -1007,7 +1097,12 @@ static void mavlink_test_sensor_diag(uint8_t system_id, uint8_t component_id, ma
         packet1.char1 = packet_in.char1;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SENSOR_DIAG_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SENSOR_DIAG_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_sensor_diag_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_sensor_diag_decode(&msg, &packet2);
@@ -1056,7 +1151,12 @@ static void mavlink_test_boot(uint8_t system_id, uint8_t component_id, mavlink_m
         packet1.version = packet_in.version;
         
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_BOOT_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_BOOT_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_boot_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_boot_decode(&msg, &packet2);

@@ -64,7 +64,12 @@ static void mavlink_test_test_types(uint8_t system_id, uint8_t component_id, mav
         mav_array_memcpy(packet1.u8_array, packet_in.u8_array, sizeof(uint8_t)*3);
         mav_array_memcpy(packet1.s8_array, packet_in.s8_array, sizeof(int8_t)*3);
         
-
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_TEST_TYPES_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_TEST_TYPES_MIN_LEN);
+        }
+#endif
         memset(&packet2, 0, sizeof(packet2));
 	mavlink_msg_test_types_encode(system_id, component_id, &msg, &packet1);
 	mavlink_msg_test_types_decode(&msg, &packet2);
