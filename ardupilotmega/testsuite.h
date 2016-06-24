@@ -159,12 +159,13 @@ static void mavlink_test_meminfo(uint8_t system_id, uint8_t component_id, mavlin
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_meminfo_t packet_in = {
-		17235,17339
+		17235,17339,963497672
     };
 	mavlink_meminfo_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         packet1.brkval = packet_in.brkval;
         packet1.freemem = packet_in.freemem;
+        packet1.freemem32 = packet_in.freemem32;
         
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -179,12 +180,12 @@ static void mavlink_test_meminfo(uint8_t system_id, uint8_t component_id, mavlin
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_meminfo_pack(system_id, component_id, &msg , packet1.brkval , packet1.freemem );
+	mavlink_msg_meminfo_pack(system_id, component_id, &msg , packet1.brkval , packet1.freemem , packet1.freemem32 );
 	mavlink_msg_meminfo_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_meminfo_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.brkval , packet1.freemem );
+	mavlink_msg_meminfo_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.brkval , packet1.freemem , packet1.freemem32 );
 	mavlink_msg_meminfo_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -197,7 +198,7 @@ static void mavlink_test_meminfo(uint8_t system_id, uint8_t component_id, mavlin
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_meminfo_send(MAVLINK_COMM_1 , packet1.brkval , packet1.freemem );
+	mavlink_msg_meminfo_send(MAVLINK_COMM_1 , packet1.brkval , packet1.freemem , packet1.freemem32 );
 	mavlink_msg_meminfo_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
