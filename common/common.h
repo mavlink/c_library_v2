@@ -223,6 +223,7 @@ typedef enum MAV_COMPONENT
 	MAV_COMP_ID_ADSB=156, /*  | */
 	MAV_COMP_ID_OSD=157, /* On Screen Display (OSD) devices for video links | */
 	MAV_COMP_ID_PERIPHERAL=158, /* Generic autopilot peripheral component ID. Meant for devices that do not implement the parameter sub-protocol | */
+	MAV_COMP_ID_QX1_GIMBAL=159, /*  | */
 	MAV_COMP_ID_MAPPER=180, /*  | */
 	MAV_COMP_ID_MISSIONPLANNER=190, /*  | */
 	MAV_COMP_ID_PATHPLANNER=195, /*  | */
