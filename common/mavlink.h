@@ -25,10 +25,6 @@
 #define MAVLINK_COMMAND_24BIT 1
 #endif
 
-#ifndef MAVLINK_PACKED
-#define MAVLINK_PACKED __attribute__((__packed__))
-#endif
-
 #include "version.h"
 #include "common.h"
 

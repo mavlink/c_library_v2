@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_RAW_IMU 27
 
-typedef struct MAVLINK_PACKED __mavlink_raw_imu_t
-{
+MAVPACKED(
+typedef struct __mavlink_raw_imu_t {
  uint64_t time_usec; /*< Timestamp (microseconds since UNIX epoch or microseconds since system boot)*/
  int16_t xacc; /*< X acceleration (raw)*/
  int16_t yacc; /*< Y acceleration (raw)*/
@@ -14,7 +14,7 @@ typedef struct MAVLINK_PACKED __mavlink_raw_imu_t
  int16_t xmag; /*< X Magnetic field (raw)*/
  int16_t ymag; /*< Y Magnetic field (raw)*/
  int16_t zmag; /*< Z Magnetic field (raw)*/
-} mavlink_raw_imu_t;
+}) mavlink_raw_imu_t;
 
 #define MAVLINK_MSG_ID_RAW_IMU_LEN 26
 #define MAVLINK_MSG_ID_RAW_IMU_MIN_LEN 26

@@ -2,13 +2,13 @@
 
 #define MAVLINK_MSG_ID_FENCE_STATUS 162
 
-typedef struct MAVLINK_PACKED __mavlink_fence_status_t
-{
+MAVPACKED(
+typedef struct __mavlink_fence_status_t {
  uint32_t breach_time; /*< time of last breach in milliseconds since boot*/
  uint16_t breach_count; /*< number of fence breaches*/
  uint8_t breach_status; /*< 0 if currently inside fence, 1 if outside*/
  uint8_t breach_type; /*< last breach type (see FENCE_BREACH_* enum)*/
-} mavlink_fence_status_t;
+}) mavlink_fence_status_t;
 
 #define MAVLINK_MSG_ID_FENCE_STATUS_LEN 8
 #define MAVLINK_MSG_ID_FENCE_STATUS_MIN_LEN 8

@@ -2,11 +2,11 @@
 
 #define MAVLINK_MSG_ID_TERRAIN_CHECK 135
 
-typedef struct MAVLINK_PACKED __mavlink_terrain_check_t
-{
+MAVPACKED(
+typedef struct __mavlink_terrain_check_t {
  int32_t lat; /*< Latitude (degrees *10^7)*/
  int32_t lon; /*< Longitude (degrees *10^7)*/
-} mavlink_terrain_check_t;
+}) mavlink_terrain_check_t;
 
 #define MAVLINK_MSG_ID_TERRAIN_CHECK_LEN 8
 #define MAVLINK_MSG_ID_TERRAIN_CHECK_MIN_LEN 8

@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_VISION_POSITION_ESTIMATE 102
 
-typedef struct MAVLINK_PACKED __mavlink_vision_position_estimate_t
-{
+MAVPACKED(
+typedef struct __mavlink_vision_position_estimate_t {
  uint64_t usec; /*< Timestamp (microseconds, synced to UNIX time or since system boot)*/
  float x; /*< Global X position*/
  float y; /*< Global Y position*/
@@ -11,7 +11,7 @@ typedef struct MAVLINK_PACKED __mavlink_vision_position_estimate_t
  float roll; /*< Roll angle in rad*/
  float pitch; /*< Pitch angle in rad*/
  float yaw; /*< Yaw angle in rad*/
-} mavlink_vision_position_estimate_t;
+}) mavlink_vision_position_estimate_t;
 
 #define MAVLINK_MSG_ID_VISION_POSITION_ESTIMATE_LEN 32
 #define MAVLINK_MSG_ID_VISION_POSITION_ESTIMATE_MIN_LEN 32

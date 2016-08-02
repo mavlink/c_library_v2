@@ -2,15 +2,15 @@
 
 #define MAVLINK_MSG_ID_MOUNT_CONFIGURE 156
 
-typedef struct MAVLINK_PACKED __mavlink_mount_configure_t
-{
+MAVPACKED(
+typedef struct __mavlink_mount_configure_t {
  uint8_t target_system; /*< System ID*/
  uint8_t target_component; /*< Component ID*/
  uint8_t mount_mode; /*< mount operating mode (see MAV_MOUNT_MODE enum)*/
  uint8_t stab_roll; /*< (1 = yes, 0 = no)*/
  uint8_t stab_pitch; /*< (1 = yes, 0 = no)*/
  uint8_t stab_yaw; /*< (1 = yes, 0 = no)*/
-} mavlink_mount_configure_t;
+}) mavlink_mount_configure_t;
 
 #define MAVLINK_MSG_ID_MOUNT_CONFIGURE_LEN 6
 #define MAVLINK_MSG_ID_MOUNT_CONFIGURE_MIN_LEN 6

@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_AIRSPEEDS 182
 
-typedef struct MAVLINK_PACKED __mavlink_airspeeds_t
-{
+MAVPACKED(
+typedef struct __mavlink_airspeeds_t {
  uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
  int16_t airspeed_imu; /*< Airspeed estimate from IMU, cm/s*/
  int16_t airspeed_pitot; /*< Pitot measured forward airpseed, cm/s*/
@@ -11,7 +11,7 @@ typedef struct MAVLINK_PACKED __mavlink_airspeeds_t
  int16_t airspeed_ultrasonic; /*< Ultrasonic measured airspeed, cm/s*/
  int16_t aoa; /*< Angle of attack sensor, degrees * 10*/
  int16_t aoy; /*< Yaw angle sensor, degrees * 10*/
-} mavlink_airspeeds_t;
+}) mavlink_airspeeds_t;
 
 #define MAVLINK_MSG_ID_AIRSPEEDS_LEN 16
 #define MAVLINK_MSG_ID_AIRSPEEDS_MIN_LEN 16

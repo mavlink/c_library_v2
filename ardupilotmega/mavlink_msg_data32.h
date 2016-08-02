@@ -2,12 +2,12 @@
 
 #define MAVLINK_MSG_ID_DATA32 170
 
-typedef struct MAVLINK_PACKED __mavlink_data32_t
-{
+MAVPACKED(
+typedef struct __mavlink_data32_t {
  uint8_t type; /*< data type*/
  uint8_t len; /*< data length*/
  uint8_t data[32]; /*< raw data*/
-} mavlink_data32_t;
+}) mavlink_data32_t;
 
 #define MAVLINK_MSG_ID_DATA32_LEN 34
 #define MAVLINK_MSG_ID_DATA32_MIN_LEN 34

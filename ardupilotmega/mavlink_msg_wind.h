@@ -2,12 +2,12 @@
 
 #define MAVLINK_MSG_ID_WIND 168
 
-typedef struct MAVLINK_PACKED __mavlink_wind_t
-{
+MAVPACKED(
+typedef struct __mavlink_wind_t {
  float direction; /*< wind direction that wind is coming from (degrees)*/
  float speed; /*< wind speed in ground plane (m/s)*/
  float speed_z; /*< vertical wind speed (m/s)*/
-} mavlink_wind_t;
+}) mavlink_wind_t;
 
 #define MAVLINK_MSG_ID_WIND_LEN 12
 #define MAVLINK_MSG_ID_WIND_MIN_LEN 12

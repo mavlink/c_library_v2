@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_HIL_CONTROLS 91
 
-typedef struct MAVLINK_PACKED __mavlink_hil_controls_t
-{
+MAVPACKED(
+typedef struct __mavlink_hil_controls_t {
  uint64_t time_usec; /*< Timestamp (microseconds since UNIX epoch or microseconds since system boot)*/
  float roll_ailerons; /*< Control output -1 .. 1*/
  float pitch_elevator; /*< Control output -1 .. 1*/
@@ -15,7 +15,7 @@ typedef struct MAVLINK_PACKED __mavlink_hil_controls_t
  float aux4; /*< Aux 4, -1 .. 1*/
  uint8_t mode; /*< System mode (MAV_MODE)*/
  uint8_t nav_mode; /*< Navigation mode (MAV_NAV_MODE)*/
-} mavlink_hil_controls_t;
+}) mavlink_hil_controls_t;
 
 #define MAVLINK_MSG_ID_HIL_CONTROLS_LEN 42
 #define MAVLINK_MSG_ID_HIL_CONTROLS_MIN_LEN 42

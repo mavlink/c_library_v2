@@ -2,12 +2,12 @@
 
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_COMMAND 157
 
-typedef struct MAVLINK_PACKED __mavlink_flexifunction_command_t
-{
+MAVPACKED(
+typedef struct __mavlink_flexifunction_command_t {
  uint8_t target_system; /*< System ID*/
  uint8_t target_component; /*< Component ID*/
  uint8_t command_type; /*< Flexifunction command type*/
-} mavlink_flexifunction_command_t;
+}) mavlink_flexifunction_command_t;
 
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_COMMAND_LEN 3
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_COMMAND_MIN_LEN 3

@@ -2,13 +2,13 @@
 
 #define MAVLINK_MSG_ID_CONTROL_SURFACE 185
 
-typedef struct MAVLINK_PACKED __mavlink_control_surface_t
-{
+MAVPACKED(
+typedef struct __mavlink_control_surface_t {
  float mControl; /*< Pending*/
  float bControl; /*< Order to origin*/
  uint8_t target; /*< The system setting the commands*/
  uint8_t idSurface; /*< ID control surface send 0: throttle 1: aileron 2: elevator 3: rudder*/
-} mavlink_control_surface_t;
+}) mavlink_control_surface_t;
 
 #define MAVLINK_MSG_ID_CONTROL_SURFACE_LEN 10
 #define MAVLINK_MSG_ID_CONTROL_SURFACE_MIN_LEN 10

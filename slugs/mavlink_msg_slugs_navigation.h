@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_SLUGS_NAVIGATION 176
 
-typedef struct MAVLINK_PACKED __mavlink_slugs_navigation_t
-{
+MAVPACKED(
+typedef struct __mavlink_slugs_navigation_t {
  float u_m; /*< Measured Airspeed prior to the nav filter in m/s*/
  float phi_c; /*< Commanded Roll*/
  float theta_c; /*< Commanded Pitch*/
@@ -14,7 +14,7 @@ typedef struct MAVLINK_PACKED __mavlink_slugs_navigation_t
  uint16_t h_c; /*< Commanded altitude in 0.1 m*/
  uint8_t fromWP; /*< Origin WP*/
  uint8_t toWP; /*< Destination WP*/
-} mavlink_slugs_navigation_t;
+}) mavlink_slugs_navigation_t;
 
 #define MAVLINK_MSG_ID_SLUGS_NAVIGATION_LEN 32
 #define MAVLINK_MSG_ID_SLUGS_NAVIGATION_MIN_LEN 32

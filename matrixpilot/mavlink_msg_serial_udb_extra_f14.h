@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F14 178
 
-typedef struct MAVLINK_PACKED __mavlink_serial_udb_extra_f14_t
-{
+MAVPACKED(
+typedef struct __mavlink_serial_udb_extra_f14_t {
  uint32_t sue_TRAP_SOURCE; /*< Serial UDB Extra Type Program Address of Last Trap*/
  int16_t sue_RCON; /*< Serial UDB Extra Reboot Regitster of DSPIC*/
  int16_t sue_TRAP_FLAGS; /*< Serial UDB Extra  Last dspic Trap Flags*/
@@ -15,7 +15,7 @@ typedef struct MAVLINK_PACKED __mavlink_serial_udb_extra_f14_t
  uint8_t sue_AIRFRAME; /*< Serial UDB Extra Type of Airframe*/
  uint8_t sue_CLOCK_CONFIG; /*< Serial UDB Extra UDB Internal Clock Configuration*/
  uint8_t sue_FLIGHT_PLAN_TYPE; /*< Serial UDB Extra Type of Flight Plan*/
-} mavlink_serial_udb_extra_f14_t;
+}) mavlink_serial_udb_extra_f14_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F14_LEN 17
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F14_MIN_LEN 17

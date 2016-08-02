@@ -174,7 +174,7 @@ static void mavlink_test_aslctrl_data(uint8_t system_id, uint8_t component_id, m
         packet1.uElev = packet_in.uElev;
         packet1.uThrot = packet_in.uThrot;
         packet1.uThrot2 = packet_in.uThrot2;
-        packet1.aZ = packet_in.aZ;
+        packet1.nZ = packet_in.nZ;
         packet1.AirspeedRef = packet_in.AirspeedRef;
         packet1.YawAngle = packet_in.YawAngle;
         packet1.YawAngleRef = packet_in.YawAngleRef;
@@ -202,12 +202,12 @@ static void mavlink_test_aslctrl_data(uint8_t system_id, uint8_t component_id, m
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_aslctrl_data_pack(system_id, component_id, &msg , packet1.timestamp , packet1.aslctrl_mode , packet1.h , packet1.hRef , packet1.hRef_t , packet1.PitchAngle , packet1.PitchAngleRef , packet1.q , packet1.qRef , packet1.uElev , packet1.uThrot , packet1.uThrot2 , packet1.aZ , packet1.AirspeedRef , packet1.SpoilersEngaged , packet1.YawAngle , packet1.YawAngleRef , packet1.RollAngle , packet1.RollAngleRef , packet1.p , packet1.pRef , packet1.r , packet1.rRef , packet1.uAil , packet1.uRud );
+	mavlink_msg_aslctrl_data_pack(system_id, component_id, &msg , packet1.timestamp , packet1.aslctrl_mode , packet1.h , packet1.hRef , packet1.hRef_t , packet1.PitchAngle , packet1.PitchAngleRef , packet1.q , packet1.qRef , packet1.uElev , packet1.uThrot , packet1.uThrot2 , packet1.nZ , packet1.AirspeedRef , packet1.SpoilersEngaged , packet1.YawAngle , packet1.YawAngleRef , packet1.RollAngle , packet1.RollAngleRef , packet1.p , packet1.pRef , packet1.r , packet1.rRef , packet1.uAil , packet1.uRud );
 	mavlink_msg_aslctrl_data_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_aslctrl_data_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.timestamp , packet1.aslctrl_mode , packet1.h , packet1.hRef , packet1.hRef_t , packet1.PitchAngle , packet1.PitchAngleRef , packet1.q , packet1.qRef , packet1.uElev , packet1.uThrot , packet1.uThrot2 , packet1.aZ , packet1.AirspeedRef , packet1.SpoilersEngaged , packet1.YawAngle , packet1.YawAngleRef , packet1.RollAngle , packet1.RollAngleRef , packet1.p , packet1.pRef , packet1.r , packet1.rRef , packet1.uAil , packet1.uRud );
+	mavlink_msg_aslctrl_data_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.timestamp , packet1.aslctrl_mode , packet1.h , packet1.hRef , packet1.hRef_t , packet1.PitchAngle , packet1.PitchAngleRef , packet1.q , packet1.qRef , packet1.uElev , packet1.uThrot , packet1.uThrot2 , packet1.nZ , packet1.AirspeedRef , packet1.SpoilersEngaged , packet1.YawAngle , packet1.YawAngleRef , packet1.RollAngle , packet1.RollAngleRef , packet1.p , packet1.pRef , packet1.r , packet1.rRef , packet1.uAil , packet1.uRud );
 	mavlink_msg_aslctrl_data_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -220,7 +220,7 @@ static void mavlink_test_aslctrl_data(uint8_t system_id, uint8_t component_id, m
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_aslctrl_data_send(MAVLINK_COMM_1 , packet1.timestamp , packet1.aslctrl_mode , packet1.h , packet1.hRef , packet1.hRef_t , packet1.PitchAngle , packet1.PitchAngleRef , packet1.q , packet1.qRef , packet1.uElev , packet1.uThrot , packet1.uThrot2 , packet1.aZ , packet1.AirspeedRef , packet1.SpoilersEngaged , packet1.YawAngle , packet1.YawAngleRef , packet1.RollAngle , packet1.RollAngleRef , packet1.p , packet1.pRef , packet1.r , packet1.rRef , packet1.uAil , packet1.uRud );
+	mavlink_msg_aslctrl_data_send(MAVLINK_COMM_1 , packet1.timestamp , packet1.aslctrl_mode , packet1.h , packet1.hRef , packet1.hRef_t , packet1.PitchAngle , packet1.PitchAngleRef , packet1.q , packet1.qRef , packet1.uElev , packet1.uThrot , packet1.uThrot2 , packet1.nZ , packet1.AirspeedRef , packet1.SpoilersEngaged , packet1.YawAngle , packet1.YawAngleRef , packet1.RollAngle , packet1.RollAngleRef , packet1.p , packet1.pRef , packet1.r , packet1.rRef , packet1.uAil , packet1.uRud );
 	mavlink_msg_aslctrl_data_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
@@ -600,13 +600,12 @@ static void mavlink_test_fw_soaring_data(uint8_t system_id, uint8_t component_id
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_fw_soaring_data_t packet_in = {
-		93372036854775807ULL,93372036854776311ULL,129.0,157.0,185.0,213.0,241.0,269.0,297.0,325.0,353.0,381.0,173,240
+		93372036854775807ULL,93372036854776311ULL,129.0,157.0,185.0,213.0,241.0,269.0,297.0,325.0,353.0,381.0,409.0,437.0,465.0,493.0,521.0,549.0,577.0,605.0,633.0,661.0,689.0,49,116
     };
 	mavlink_fw_soaring_data_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         packet1.timestamp = packet_in.timestamp;
         packet1.timestampModeChanged = packet_in.timestampModeChanged;
-        packet1.CurrentUpdraftSpeed = packet_in.CurrentUpdraftSpeed;
         packet1.xW = packet_in.xW;
         packet1.xR = packet_in.xR;
         packet1.xLat = packet_in.xLat;
@@ -616,6 +615,18 @@ static void mavlink_test_fw_soaring_data(uint8_t system_id, uint8_t component_id
         packet1.VarLat = packet_in.VarLat;
         packet1.VarLon = packet_in.VarLon;
         packet1.LoiterRadius = packet_in.LoiterRadius;
+        packet1.LoiterDirection = packet_in.LoiterDirection;
+        packet1.DistToSoarPoint = packet_in.DistToSoarPoint;
+        packet1.vSinkExp = packet_in.vSinkExp;
+        packet1.z1_LocalUpdraftSpeed = packet_in.z1_LocalUpdraftSpeed;
+        packet1.z2_DeltaRoll = packet_in.z2_DeltaRoll;
+        packet1.z1_exp = packet_in.z1_exp;
+        packet1.z2_exp = packet_in.z2_exp;
+        packet1.ThermalGSNorth = packet_in.ThermalGSNorth;
+        packet1.ThermalGSEast = packet_in.ThermalGSEast;
+        packet1.TSE_dot = packet_in.TSE_dot;
+        packet1.DebugVar1 = packet_in.DebugVar1;
+        packet1.DebugVar2 = packet_in.DebugVar2;
         packet1.ControlMode = packet_in.ControlMode;
         packet1.valid = packet_in.valid;
         
@@ -632,12 +643,12 @@ static void mavlink_test_fw_soaring_data(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_fw_soaring_data_pack(system_id, component_id, &msg , packet1.timestamp , packet1.timestampModeChanged , packet1.CurrentUpdraftSpeed , packet1.xW , packet1.xR , packet1.xLat , packet1.xLon , packet1.VarW , packet1.VarR , packet1.VarLat , packet1.VarLon , packet1.LoiterRadius , packet1.ControlMode , packet1.valid );
+	mavlink_msg_fw_soaring_data_pack(system_id, component_id, &msg , packet1.timestamp , packet1.timestampModeChanged , packet1.xW , packet1.xR , packet1.xLat , packet1.xLon , packet1.VarW , packet1.VarR , packet1.VarLat , packet1.VarLon , packet1.LoiterRadius , packet1.LoiterDirection , packet1.DistToSoarPoint , packet1.vSinkExp , packet1.z1_LocalUpdraftSpeed , packet1.z2_DeltaRoll , packet1.z1_exp , packet1.z2_exp , packet1.ThermalGSNorth , packet1.ThermalGSEast , packet1.TSE_dot , packet1.DebugVar1 , packet1.DebugVar2 , packet1.ControlMode , packet1.valid );
 	mavlink_msg_fw_soaring_data_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_fw_soaring_data_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.timestamp , packet1.timestampModeChanged , packet1.CurrentUpdraftSpeed , packet1.xW , packet1.xR , packet1.xLat , packet1.xLon , packet1.VarW , packet1.VarR , packet1.VarLat , packet1.VarLon , packet1.LoiterRadius , packet1.ControlMode , packet1.valid );
+	mavlink_msg_fw_soaring_data_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.timestamp , packet1.timestampModeChanged , packet1.xW , packet1.xR , packet1.xLat , packet1.xLon , packet1.VarW , packet1.VarR , packet1.VarLat , packet1.VarLon , packet1.LoiterRadius , packet1.LoiterDirection , packet1.DistToSoarPoint , packet1.vSinkExp , packet1.z1_LocalUpdraftSpeed , packet1.z2_DeltaRoll , packet1.z1_exp , packet1.z2_exp , packet1.ThermalGSNorth , packet1.ThermalGSEast , packet1.TSE_dot , packet1.DebugVar1 , packet1.DebugVar2 , packet1.ControlMode , packet1.valid );
 	mavlink_msg_fw_soaring_data_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -650,7 +661,7 @@ static void mavlink_test_fw_soaring_data(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_fw_soaring_data_send(MAVLINK_COMM_1 , packet1.timestamp , packet1.timestampModeChanged , packet1.CurrentUpdraftSpeed , packet1.xW , packet1.xR , packet1.xLat , packet1.xLon , packet1.VarW , packet1.VarR , packet1.VarLat , packet1.VarLon , packet1.LoiterRadius , packet1.ControlMode , packet1.valid );
+	mavlink_msg_fw_soaring_data_send(MAVLINK_COMM_1 , packet1.timestamp , packet1.timestampModeChanged , packet1.xW , packet1.xR , packet1.xLat , packet1.xLon , packet1.VarW , packet1.VarR , packet1.VarLat , packet1.VarLon , packet1.LoiterRadius , packet1.LoiterDirection , packet1.DistToSoarPoint , packet1.vSinkExp , packet1.z1_LocalUpdraftSpeed , packet1.z2_DeltaRoll , packet1.z1_exp , packet1.z2_exp , packet1.ThermalGSNorth , packet1.ThermalGSEast , packet1.TSE_dot , packet1.DebugVar1 , packet1.DebugVar2 , packet1.ControlMode , packet1.valid );
 	mavlink_msg_fw_soaring_data_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
@@ -716,6 +727,71 @@ static void mavlink_test_sensorpod_status(uint8_t system_id, uint8_t component_i
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
+static void mavlink_test_sens_power_board(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+	mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_SENS_POWER_BOARD >= 256) {
+        	return;
+        }
+#endif
+	mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+	mavlink_sens_power_board_t packet_in = {
+		93372036854775807ULL,73.0,101.0,129.0,157.0,185.0,213.0,241.0,269.0,297.0,137,204
+    };
+	mavlink_sens_power_board_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.timestamp = packet_in.timestamp;
+        packet1.pwr_brd_system_volt = packet_in.pwr_brd_system_volt;
+        packet1.pwr_brd_servo_volt = packet_in.pwr_brd_servo_volt;
+        packet1.pwr_brd_mot_l_amp = packet_in.pwr_brd_mot_l_amp;
+        packet1.pwr_brd_mot_r_amp = packet_in.pwr_brd_mot_r_amp;
+        packet1.pwr_brd_servo_1_amp = packet_in.pwr_brd_servo_1_amp;
+        packet1.pwr_brd_servo_2_amp = packet_in.pwr_brd_servo_2_amp;
+        packet1.pwr_brd_servo_3_amp = packet_in.pwr_brd_servo_3_amp;
+        packet1.pwr_brd_servo_4_amp = packet_in.pwr_brd_servo_4_amp;
+        packet1.pwr_brd_aux_amp = packet_in.pwr_brd_aux_amp;
+        packet1.pwr_brd_status = packet_in.pwr_brd_status;
+        packet1.pwr_brd_led_status = packet_in.pwr_brd_led_status;
+        
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SENS_POWER_BOARD_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SENS_POWER_BOARD_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_sens_power_board_encode(system_id, component_id, &msg, &packet1);
+	mavlink_msg_sens_power_board_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_sens_power_board_pack(system_id, component_id, &msg , packet1.timestamp , packet1.pwr_brd_status , packet1.pwr_brd_led_status , packet1.pwr_brd_system_volt , packet1.pwr_brd_servo_volt , packet1.pwr_brd_mot_l_amp , packet1.pwr_brd_mot_r_amp , packet1.pwr_brd_servo_1_amp , packet1.pwr_brd_servo_2_amp , packet1.pwr_brd_servo_3_amp , packet1.pwr_brd_servo_4_amp , packet1.pwr_brd_aux_amp );
+	mavlink_msg_sens_power_board_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_sens_power_board_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.timestamp , packet1.pwr_brd_status , packet1.pwr_brd_led_status , packet1.pwr_brd_system_volt , packet1.pwr_brd_servo_volt , packet1.pwr_brd_mot_l_amp , packet1.pwr_brd_mot_r_amp , packet1.pwr_brd_servo_1_amp , packet1.pwr_brd_servo_2_amp , packet1.pwr_brd_servo_3_amp , packet1.pwr_brd_servo_4_amp , packet1.pwr_brd_aux_amp );
+	mavlink_msg_sens_power_board_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+        	comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+	mavlink_msg_sens_power_board_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_sens_power_board_send(MAVLINK_COMM_1 , packet1.timestamp , packet1.pwr_brd_status , packet1.pwr_brd_led_status , packet1.pwr_brd_system_volt , packet1.pwr_brd_servo_volt , packet1.pwr_brd_mot_l_amp , packet1.pwr_brd_mot_r_amp , packet1.pwr_brd_servo_1_amp , packet1.pwr_brd_servo_2_amp , packet1.pwr_brd_servo_3_amp , packet1.pwr_brd_servo_4_amp , packet1.pwr_brd_aux_amp );
+	mavlink_msg_sens_power_board_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
 static void mavlink_test_ASLUAV(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
 	mavlink_test_sens_power(system_id, component_id, last_msg);
@@ -729,6 +805,7 @@ static void mavlink_test_ASLUAV(uint8_t system_id, uint8_t component_id, mavlink
 	mavlink_test_sens_batmon(system_id, component_id, last_msg);
 	mavlink_test_fw_soaring_data(system_id, component_id, last_msg);
 	mavlink_test_sensorpod_status(system_id, component_id, last_msg);
+	mavlink_test_sens_power_board(system_id, component_id, last_msg);
 }
 
 #ifdef __cplusplus

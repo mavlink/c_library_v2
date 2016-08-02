@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F8 176
 
-typedef struct MAVLINK_PACKED __mavlink_serial_udb_extra_f8_t
-{
+MAVPACKED(
+typedef struct __mavlink_serial_udb_extra_f8_t {
  float sue_HEIGHT_TARGET_MAX; /*< Serial UDB Extra HEIGHT_TARGET_MAX*/
  float sue_HEIGHT_TARGET_MIN; /*< Serial UDB Extra HEIGHT_TARGET_MIN*/
  float sue_ALT_HOLD_THROTTLE_MIN; /*< Serial UDB Extra ALT_HOLD_THROTTLE_MIN*/
@@ -11,7 +11,7 @@ typedef struct MAVLINK_PACKED __mavlink_serial_udb_extra_f8_t
  float sue_ALT_HOLD_PITCH_MIN; /*< Serial UDB Extra ALT_HOLD_PITCH_MIN*/
  float sue_ALT_HOLD_PITCH_MAX; /*< Serial UDB Extra ALT_HOLD_PITCH_MAX*/
  float sue_ALT_HOLD_PITCH_HIGH; /*< Serial UDB Extra ALT_HOLD_PITCH_HIGH*/
-} mavlink_serial_udb_extra_f8_t;
+}) mavlink_serial_udb_extra_f8_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F8_LEN 28
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F8_MIN_LEN 28

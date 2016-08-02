@@ -2,11 +2,11 @@
 
 #define MAVLINK_MSG_ID_AUTOPILOT_VERSION_REQUEST 183
 
-typedef struct MAVLINK_PACKED __mavlink_autopilot_version_request_t
-{
+MAVPACKED(
+typedef struct __mavlink_autopilot_version_request_t {
  uint8_t target_system; /*< System ID*/
  uint8_t target_component; /*< Component ID*/
-} mavlink_autopilot_version_request_t;
+}) mavlink_autopilot_version_request_t;
 
 #define MAVLINK_MSG_ID_AUTOPILOT_VERSION_REQUEST_LEN 2
 #define MAVLINK_MSG_ID_AUTOPILOT_VERSION_REQUEST_MIN_LEN 2

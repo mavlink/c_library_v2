@@ -23,10 +23,6 @@ extern "C" {
 #define MAVLINK_MESSAGE_CRCS {{0, 103, 179, 0, 0, 0}}
 #endif
 
-#ifndef MAVLINK_MESSAGE_INFO
-#define MAVLINK_MESSAGE_INFO {MAVLINK_MESSAGE_INFO_TEST_TYPES}
-#endif
-
 #include "../protocol.h"
 
 #define MAVLINK_ENABLED_TEST
@@ -51,6 +47,10 @@ extern "C" {
 
 // base include
 
+
+#ifndef MAVLINK_MESSAGE_INFO
+#define MAVLINK_MESSAGE_INFO {MAVLINK_MESSAGE_INFO_TEST_TYPES}
+#endif
 
 #if MAVLINK_COMMAND_24BIT
 #include "../mavlink_get_info.h"

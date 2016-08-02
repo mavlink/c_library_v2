@@ -2,11 +2,11 @@
 
 #define MAVLINK_MSG_ID_SENS_ATMOS 208
 
-typedef struct MAVLINK_PACKED __mavlink_sens_atmos_t
-{
+MAVPACKED(
+typedef struct __mavlink_sens_atmos_t {
  float TempAmbient; /*<  Ambient temperature [degrees Celsius]*/
  float Humidity; /*<  Relative humidity [%]*/
-} mavlink_sens_atmos_t;
+}) mavlink_sens_atmos_t;
 
 #define MAVLINK_MSG_ID_SENS_ATMOS_LEN 8
 #define MAVLINK_MSG_ID_SENS_ATMOS_MIN_LEN 8

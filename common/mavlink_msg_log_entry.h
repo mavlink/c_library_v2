@@ -2,14 +2,14 @@
 
 #define MAVLINK_MSG_ID_LOG_ENTRY 118
 
-typedef struct MAVLINK_PACKED __mavlink_log_entry_t
-{
+MAVPACKED(
+typedef struct __mavlink_log_entry_t {
  uint32_t time_utc; /*< UTC timestamp of log in seconds since 1970, or 0 if not available*/
  uint32_t size; /*< Size of the log (may be approximate) in bytes*/
  uint16_t id; /*< Log id*/
  uint16_t num_logs; /*< Total number of logs*/
  uint16_t last_log_num; /*< High log number*/
-} mavlink_log_entry_t;
+}) mavlink_log_entry_t;
 
 #define MAVLINK_MSG_ID_LOG_ENTRY_LEN 14
 #define MAVLINK_MSG_ID_LOG_ENTRY_MIN_LEN 14

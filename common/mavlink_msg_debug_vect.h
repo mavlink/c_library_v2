@@ -2,14 +2,14 @@
 
 #define MAVLINK_MSG_ID_DEBUG_VECT 250
 
-typedef struct MAVLINK_PACKED __mavlink_debug_vect_t
-{
+MAVPACKED(
+typedef struct __mavlink_debug_vect_t {
  uint64_t time_usec; /*< Timestamp*/
  float x; /*< x*/
  float y; /*< y*/
  float z; /*< z*/
  char name[10]; /*< Name*/
-} mavlink_debug_vect_t;
+}) mavlink_debug_vect_t;
 
 #define MAVLINK_MSG_ID_DEBUG_VECT_LEN 30
 #define MAVLINK_MSG_ID_DEBUG_VECT_MIN_LEN 30

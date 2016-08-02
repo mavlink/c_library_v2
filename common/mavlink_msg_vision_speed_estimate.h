@@ -2,13 +2,13 @@
 
 #define MAVLINK_MSG_ID_VISION_SPEED_ESTIMATE 103
 
-typedef struct MAVLINK_PACKED __mavlink_vision_speed_estimate_t
-{
+MAVPACKED(
+typedef struct __mavlink_vision_speed_estimate_t {
  uint64_t usec; /*< Timestamp (microseconds, synced to UNIX time or since system boot)*/
  float x; /*< Global X speed*/
  float y; /*< Global Y speed*/
  float z; /*< Global Z speed*/
-} mavlink_vision_speed_estimate_t;
+}) mavlink_vision_speed_estimate_t;
 
 #define MAVLINK_MSG_ID_VISION_SPEED_ESTIMATE_LEN 20
 #define MAVLINK_MSG_ID_VISION_SPEED_ESTIMATE_MIN_LEN 20

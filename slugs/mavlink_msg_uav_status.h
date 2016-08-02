@@ -2,15 +2,15 @@
 
 #define MAVLINK_MSG_ID_UAV_STATUS 193
 
-typedef struct MAVLINK_PACKED __mavlink_uav_status_t
-{
+MAVPACKED(
+typedef struct __mavlink_uav_status_t {
  float latitude; /*< Latitude UAV*/
  float longitude; /*< Longitude UAV*/
  float altitude; /*< Altitude UAV*/
  float speed; /*< Speed UAV*/
  float course; /*< Course UAV*/
  uint8_t target; /*< The ID system reporting the action*/
-} mavlink_uav_status_t;
+}) mavlink_uav_status_t;
 
 #define MAVLINK_MSG_ID_UAV_STATUS_LEN 21
 #define MAVLINK_MSG_ID_UAV_STATUS_MIN_LEN 21

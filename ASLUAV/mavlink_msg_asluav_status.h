@@ -2,13 +2,13 @@
 
 #define MAVLINK_MSG_ID_ASLUAV_STATUS 205
 
-typedef struct MAVLINK_PACKED __mavlink_asluav_status_t
-{
+MAVPACKED(
+typedef struct __mavlink_asluav_status_t {
  float Motor_rpm; /*<  Motor RPM */
  uint8_t LED_status; /*<  Status of the position-indicator LEDs*/
  uint8_t SATCOM_status; /*<  Status of the IRIDIUM satellite communication system*/
  uint8_t Servo_status[8]; /*<  Status vector for up to 8 servos*/
-} mavlink_asluav_status_t;
+}) mavlink_asluav_status_t;
 
 #define MAVLINK_MSG_ID_ASLUAV_STATUS_LEN 14
 #define MAVLINK_MSG_ID_ASLUAV_STATUS_MIN_LEN 14

@@ -2,14 +2,14 @@
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F6 174
 
-typedef struct MAVLINK_PACKED __mavlink_serial_udb_extra_f6_t
-{
+MAVPACKED(
+typedef struct __mavlink_serial_udb_extra_f6_t {
  float sue_PITCHGAIN; /*< Serial UDB Extra PITCHGAIN Proportional Control*/
  float sue_PITCHKD; /*< Serial UDB Extra Pitch Rate Control*/
  float sue_RUDDER_ELEV_MIX; /*< Serial UDB Extra Rudder to Elevator Mix*/
  float sue_ROLL_ELEV_MIX; /*< Serial UDB Extra Roll to Elevator Mix*/
  float sue_ELEVATOR_BOOST; /*< Gain For Boosting Manual Elevator control When Plane Stabilized*/
-} mavlink_serial_udb_extra_f6_t;
+}) mavlink_serial_udb_extra_f6_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F6_LEN 20
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F6_MIN_LEN 20

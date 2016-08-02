@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_GIMBAL_REPORT 200
 
-typedef struct MAVLINK_PACKED __mavlink_gimbal_report_t
-{
+MAVPACKED(
+typedef struct __mavlink_gimbal_report_t {
  float delta_time; /*< Time since last update (seconds)*/
  float delta_angle_x; /*< Delta angle X (radians)*/
  float delta_angle_y; /*< Delta angle Y (radians)*/
@@ -16,7 +16,7 @@ typedef struct MAVLINK_PACKED __mavlink_gimbal_report_t
  float joint_az; /*< Joint AZ (radians)*/
  uint8_t target_system; /*< System ID*/
  uint8_t target_component; /*< Component ID*/
-} mavlink_gimbal_report_t;
+}) mavlink_gimbal_report_t;
 
 #define MAVLINK_MSG_ID_GIMBAL_REPORT_LEN 42
 #define MAVLINK_MSG_ID_GIMBAL_REPORT_MIN_LEN 42

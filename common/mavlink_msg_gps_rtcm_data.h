@@ -2,12 +2,12 @@
 
 #define MAVLINK_MSG_ID_GPS_RTCM_DATA 233
 
-typedef struct MAVLINK_PACKED __mavlink_gps_rtcm_data_t
-{
+MAVPACKED(
+typedef struct __mavlink_gps_rtcm_data_t {
  uint8_t flags; /*< LSB: 1 means message is fragmented*/
  uint8_t len; /*< data length*/
  uint8_t data[180]; /*< RTCM message (may be fragmented)*/
-} mavlink_gps_rtcm_data_t;
+}) mavlink_gps_rtcm_data_t;
 
 #define MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN 182
 #define MAVLINK_MSG_ID_GPS_RTCM_DATA_MIN_LEN 182

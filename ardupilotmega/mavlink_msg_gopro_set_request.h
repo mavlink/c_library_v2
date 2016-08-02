@@ -2,13 +2,13 @@
 
 #define MAVLINK_MSG_ID_GOPRO_SET_REQUEST 218
 
-typedef struct MAVLINK_PACKED __mavlink_gopro_set_request_t
-{
+MAVPACKED(
+typedef struct __mavlink_gopro_set_request_t {
  uint8_t target_system; /*< System ID*/
  uint8_t target_component; /*< Component ID*/
  uint8_t cmd_id; /*< Command ID*/
  uint8_t value[4]; /*< Value*/
-} mavlink_gopro_set_request_t;
+}) mavlink_gopro_set_request_t;
 
 #define MAVLINK_MSG_ID_GOPRO_SET_REQUEST_LEN 7
 #define MAVLINK_MSG_ID_GOPRO_SET_REQUEST_MIN_LEN 7

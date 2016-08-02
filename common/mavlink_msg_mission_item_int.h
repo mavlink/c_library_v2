@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_MISSION_ITEM_INT 73
 
-typedef struct MAVLINK_PACKED __mavlink_mission_item_int_t
-{
+MAVPACKED(
+typedef struct __mavlink_mission_item_int_t {
  float param1; /*< PARAM1, see MAV_CMD enum*/
  float param2; /*< PARAM2, see MAV_CMD enum*/
  float param3; /*< PARAM3, see MAV_CMD enum*/
@@ -18,7 +18,7 @@ typedef struct MAVLINK_PACKED __mavlink_mission_item_int_t
  uint8_t frame; /*< The coordinate system of the MISSION. see MAV_FRAME in mavlink_types.h*/
  uint8_t current; /*< false:0, true:1*/
  uint8_t autocontinue; /*< autocontinue to next wp*/
-} mavlink_mission_item_int_t;
+}) mavlink_mission_item_int_t;
 
 #define MAVLINK_MSG_ID_MISSION_ITEM_INT_LEN 37
 #define MAVLINK_MSG_ID_MISSION_ITEM_INT_MIN_LEN 37

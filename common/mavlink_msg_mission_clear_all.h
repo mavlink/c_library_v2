@@ -2,11 +2,11 @@
 
 #define MAVLINK_MSG_ID_MISSION_CLEAR_ALL 45
 
-typedef struct MAVLINK_PACKED __mavlink_mission_clear_all_t
-{
+MAVPACKED(
+typedef struct __mavlink_mission_clear_all_t {
  uint8_t target_system; /*< System ID*/
  uint8_t target_component; /*< Component ID*/
-} mavlink_mission_clear_all_t;
+}) mavlink_mission_clear_all_t;
 
 #define MAVLINK_MSG_ID_MISSION_CLEAR_ALL_LEN 2
 #define MAVLINK_MSG_ID_MISSION_CLEAR_ALL_MIN_LEN 2

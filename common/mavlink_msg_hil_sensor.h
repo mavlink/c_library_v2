@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_HIL_SENSOR 107
 
-typedef struct MAVLINK_PACKED __mavlink_hil_sensor_t
-{
+MAVPACKED(
+typedef struct __mavlink_hil_sensor_t {
  uint64_t time_usec; /*< Timestamp (microseconds, synced to UNIX time or since system boot)*/
  float xacc; /*< X acceleration (m/s^2)*/
  float yacc; /*< Y acceleration (m/s^2)*/
@@ -19,7 +19,7 @@ typedef struct MAVLINK_PACKED __mavlink_hil_sensor_t
  float pressure_alt; /*< Altitude calculated from pressure*/
  float temperature; /*< Temperature in degrees celsius*/
  uint32_t fields_updated; /*< Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.*/
-} mavlink_hil_sensor_t;
+}) mavlink_hil_sensor_t;
 
 #define MAVLINK_MSG_ID_HIL_SENSOR_LEN 64
 #define MAVLINK_MSG_ID_HIL_SENSOR_MIN_LEN 64

@@ -2,12 +2,12 @@
 
 #define MAVLINK_MSG_ID_DEBUG 254
 
-typedef struct MAVLINK_PACKED __mavlink_debug_t
-{
+MAVPACKED(
+typedef struct __mavlink_debug_t {
  uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
  float value; /*< DEBUG value*/
  uint8_t ind; /*< index of debug variable*/
-} mavlink_debug_t;
+}) mavlink_debug_t;
 
 #define MAVLINK_MSG_ID_DEBUG_LEN 9
 #define MAVLINK_MSG_ID_DEBUG_MIN_LEN 9

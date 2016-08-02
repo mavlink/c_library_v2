@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_HIL_OPTICAL_FLOW 114
 
-typedef struct MAVLINK_PACKED __mavlink_hil_optical_flow_t
-{
+MAVPACKED(
+typedef struct __mavlink_hil_optical_flow_t {
  uint64_t time_usec; /*< Timestamp (microseconds, synced to UNIX time or since system boot)*/
  uint32_t integration_time_us; /*< Integration time in microseconds. Divide integrated_x and integrated_y by the integration time to obtain average flow. The integration time also indicates the.*/
  float integrated_x; /*< Flow in radians around X axis (Sensor RH rotation about the X axis induces a positive flow. Sensor linear motion along the positive Y axis induces a negative flow.)*/
@@ -16,7 +16,7 @@ typedef struct MAVLINK_PACKED __mavlink_hil_optical_flow_t
  int16_t temperature; /*< Temperature * 100 in centi-degrees Celsius*/
  uint8_t sensor_id; /*< Sensor ID*/
  uint8_t quality; /*< Optical flow quality / confidence. 0: no valid flow, 255: maximum quality*/
-} mavlink_hil_optical_flow_t;
+}) mavlink_hil_optical_flow_t;
 
 #define MAVLINK_MSG_ID_HIL_OPTICAL_FLOW_LEN 44
 #define MAVLINK_MSG_ID_HIL_OPTICAL_FLOW_MIN_LEN 44

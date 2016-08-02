@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_HIL_GPS 113
 
-typedef struct MAVLINK_PACKED __mavlink_hil_gps_t
-{
+MAVPACKED(
+typedef struct __mavlink_hil_gps_t {
  uint64_t time_usec; /*< Timestamp (microseconds since UNIX epoch or microseconds since system boot)*/
  int32_t lat; /*< Latitude (WGS84), in degrees * 1E7*/
  int32_t lon; /*< Longitude (WGS84), in degrees * 1E7*/
@@ -17,7 +17,7 @@ typedef struct MAVLINK_PACKED __mavlink_hil_gps_t
  uint16_t cog; /*< Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: 65535*/
  uint8_t fix_type; /*< 0-1: no fix, 2: 2D fix, 3: 3D fix. Some applications will not use the value of this field unless it is at least two, so always correctly fill in the fix.*/
  uint8_t satellites_visible; /*< Number of satellites visible. If unknown, set to 255*/
-} mavlink_hil_gps_t;
+}) mavlink_hil_gps_t;
 
 #define MAVLINK_MSG_ID_HIL_GPS_LEN 36
 #define MAVLINK_MSG_ID_HIL_GPS_MIN_LEN 36

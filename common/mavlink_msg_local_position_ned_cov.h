@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_LOCAL_POSITION_NED_COV 64
 
-typedef struct MAVLINK_PACKED __mavlink_local_position_ned_cov_t
-{
+MAVPACKED(
+typedef struct __mavlink_local_position_ned_cov_t {
  uint64_t time_utc; /*< Timestamp (microseconds since UNIX epoch) in UTC. 0 for unknown. Commonly filled by the precision time source of a GPS receiver.*/
  uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot). 0 for system without monotonic timestamp*/
  float x; /*< X Position*/
@@ -17,7 +17,7 @@ typedef struct MAVLINK_PACKED __mavlink_local_position_ned_cov_t
  float az; /*< Z Acceleration (m/s^2)*/
  float covariance[45]; /*< Covariance matrix upper right triangular (first nine entries are the first ROW, next eight entries are the second row, etc.)*/
  uint8_t estimator_type; /*< Class id of the estimator this estimate originated from.*/
-} mavlink_local_position_ned_cov_t;
+}) mavlink_local_position_ned_cov_t;
 
 #define MAVLINK_MSG_ID_LOCAL_POSITION_NED_COV_LEN 229
 #define MAVLINK_MSG_ID_LOCAL_POSITION_NED_COV_MIN_LEN 229

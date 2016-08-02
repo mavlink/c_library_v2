@@ -2,15 +2,15 @@
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F7 175
 
-typedef struct MAVLINK_PACKED __mavlink_serial_udb_extra_f7_t
-{
+MAVPACKED(
+typedef struct __mavlink_serial_udb_extra_f7_t {
  float sue_YAWKP_RUDDER; /*< Serial UDB YAWKP_RUDDER Gain for Proporional control of navigation*/
  float sue_YAWKD_RUDDER; /*< Serial UDB YAWKD_RUDDER Gain for Rate control of navigation*/
  float sue_ROLLKP_RUDDER; /*< Serial UDB Extra ROLLKP_RUDDER Gain for Proportional control of roll stabilization*/
  float sue_ROLLKD_RUDDER; /*< Serial UDB Extra ROLLKD_RUDDER Gain for Rate control of roll stabilization*/
  float sue_RUDDER_BOOST; /*< SERIAL UDB EXTRA Rudder Boost Gain to Manual Control when stabilized*/
  float sue_RTL_PITCH_DOWN; /*< Serial UDB Extra Return To Landing - Angle to Pitch Plane Down*/
-} mavlink_serial_udb_extra_f7_t;
+}) mavlink_serial_udb_extra_f7_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F7_LEN 24
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F7_MIN_LEN 24

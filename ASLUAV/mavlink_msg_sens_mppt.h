@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_SENS_MPPT 202
 
-typedef struct MAVLINK_PACKED __mavlink_sens_mppt_t
-{
+MAVPACKED(
+typedef struct __mavlink_sens_mppt_t {
  uint64_t mppt_timestamp; /*<  MPPT last timestamp */
  float mppt1_volt; /*<  MPPT1 voltage */
  float mppt1_amp; /*<  MPPT1 current */
@@ -17,7 +17,7 @@ typedef struct MAVLINK_PACKED __mavlink_sens_mppt_t
  uint8_t mppt1_status; /*<  MPPT1 status */
  uint8_t mppt2_status; /*<  MPPT2 status */
  uint8_t mppt3_status; /*<  MPPT3 status */
-} mavlink_sens_mppt_t;
+}) mavlink_sens_mppt_t;
 
 #define MAVLINK_MSG_ID_SENS_MPPT_LEN 41
 #define MAVLINK_MSG_ID_SENS_MPPT_MIN_LEN 41

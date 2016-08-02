@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_ISR_LOCATION 189
 
-typedef struct MAVLINK_PACKED __mavlink_isr_location_t
-{
+MAVPACKED(
+typedef struct __mavlink_isr_location_t {
  float latitude; /*< ISR Latitude*/
  float longitude; /*< ISR Longitude*/
  float height; /*< ISR Height*/
@@ -11,7 +11,7 @@ typedef struct MAVLINK_PACKED __mavlink_isr_location_t
  uint8_t option1; /*< Option 1*/
  uint8_t option2; /*< Option 2*/
  uint8_t option3; /*< Option 3*/
-} mavlink_isr_location_t;
+}) mavlink_isr_location_t;
 
 #define MAVLINK_MSG_ID_ISR_LOCATION_LEN 16
 #define MAVLINK_MSG_ID_ISR_LOCATION_MIN_LEN 16

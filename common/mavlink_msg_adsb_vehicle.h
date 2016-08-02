@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_ADSB_VEHICLE 246
 
-typedef struct MAVLINK_PACKED __mavlink_adsb_vehicle_t
-{
+MAVPACKED(
+typedef struct __mavlink_adsb_vehicle_t {
  uint32_t ICAO_address; /*< ICAO address*/
  int32_t lat; /*< Latitude, expressed as degrees * 1E7*/
  int32_t lon; /*< Longitude, expressed as degrees * 1E7*/
@@ -17,7 +17,7 @@ typedef struct MAVLINK_PACKED __mavlink_adsb_vehicle_t
  char callsign[9]; /*< The callsign, 8+null*/
  uint8_t emitter_type; /*< Type from ADSB_EMITTER_TYPE enum*/
  uint8_t tslc; /*< Time since last communication in seconds*/
-} mavlink_adsb_vehicle_t;
+}) mavlink_adsb_vehicle_t;
 
 #define MAVLINK_MSG_ID_ADSB_VEHICLE_LEN 38
 #define MAVLINK_MSG_ID_ADSB_VEHICLE_MIN_LEN 38

@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_RC_CHANNELS 65
 
-typedef struct MAVLINK_PACKED __mavlink_rc_channels_t
-{
+MAVPACKED(
+typedef struct __mavlink_rc_channels_t {
  uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
  uint16_t chan1_raw; /*< RC channel 1 value, in microseconds. A value of UINT16_MAX implies the channel is unused.*/
  uint16_t chan2_raw; /*< RC channel 2 value, in microseconds. A value of UINT16_MAX implies the channel is unused.*/
@@ -25,7 +25,7 @@ typedef struct MAVLINK_PACKED __mavlink_rc_channels_t
  uint16_t chan18_raw; /*< RC channel 18 value, in microseconds. A value of UINT16_MAX implies the channel is unused.*/
  uint8_t chancount; /*< Total number of RC channels being received. This can be larger than 18, indicating that more channels are available but not given in this message. This value should be 0 when no RC channels are available.*/
  uint8_t rssi; /*< Receive signal strength indicator, 0: 0%, 100: 100%, 255: invalid/unknown.*/
-} mavlink_rc_channels_t;
+}) mavlink_rc_channels_t;
 
 #define MAVLINK_MSG_ID_RC_CHANNELS_LEN 42
 #define MAVLINK_MSG_ID_RC_CHANNELS_MIN_LEN 42

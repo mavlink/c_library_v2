@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_ATTITUDE 30
 
-typedef struct MAVLINK_PACKED __mavlink_attitude_t
-{
+MAVPACKED(
+typedef struct __mavlink_attitude_t {
  uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
  float roll; /*< Roll angle (rad, -pi..+pi)*/
  float pitch; /*< Pitch angle (rad, -pi..+pi)*/
@@ -11,7 +11,7 @@ typedef struct MAVLINK_PACKED __mavlink_attitude_t
  float rollspeed; /*< Roll angular speed (rad/s)*/
  float pitchspeed; /*< Pitch angular speed (rad/s)*/
  float yawspeed; /*< Yaw angular speed (rad/s)*/
-} mavlink_attitude_t;
+}) mavlink_attitude_t;
 
 #define MAVLINK_MSG_ID_ATTITUDE_LEN 28
 #define MAVLINK_MSG_ID_ATTITUDE_MIN_LEN 28

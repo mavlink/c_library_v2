@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_GPS2_RAW 124
 
-typedef struct MAVLINK_PACKED __mavlink_gps2_raw_t
-{
+MAVPACKED(
+typedef struct __mavlink_gps2_raw_t {
  uint64_t time_usec; /*< Timestamp (microseconds since UNIX epoch or microseconds since system boot)*/
  int32_t lat; /*< Latitude (WGS84), in degrees * 1E7*/
  int32_t lon; /*< Longitude (WGS84), in degrees * 1E7*/
@@ -16,7 +16,7 @@ typedef struct MAVLINK_PACKED __mavlink_gps2_raw_t
  uint8_t fix_type; /*< 0-1: no fix, 2: 2D fix, 3: 3D fix, 4: DGPS fix, 5: RTK Fix. Some applications will not use the value of this field unless it is at least two, so always correctly fill in the fix.*/
  uint8_t satellites_visible; /*< Number of satellites visible. If unknown, set to 255*/
  uint8_t dgps_numch; /*< Number of DGPS satellites*/
-} mavlink_gps2_raw_t;
+}) mavlink_gps2_raw_t;
 
 #define MAVLINK_MSG_ID_GPS2_RAW_LEN 35
 #define MAVLINK_MSG_ID_GPS2_RAW_MIN_LEN 35

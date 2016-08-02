@@ -2,12 +2,12 @@
 
 #define MAVLINK_MSG_ID_SLUGS_CONFIGURATION_CAMERA 188
 
-typedef struct MAVLINK_PACKED __mavlink_slugs_configuration_camera_t
-{
+MAVPACKED(
+typedef struct __mavlink_slugs_configuration_camera_t {
  uint8_t target; /*< The system setting the commands*/
  uint8_t idOrder; /*< ID 0: brightness 1: aperture 2: iris 3: ICR 4: backlight*/
  uint8_t order; /*<  1: up/on 2: down/off 3: auto/reset/no action*/
-} mavlink_slugs_configuration_camera_t;
+}) mavlink_slugs_configuration_camera_t;
 
 #define MAVLINK_MSG_ID_SLUGS_CONFIGURATION_CAMERA_LEN 3
 #define MAVLINK_MSG_ID_SLUGS_CONFIGURATION_CAMERA_MIN_LEN 3

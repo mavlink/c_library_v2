@@ -2,15 +2,15 @@
 
 #define MAVLINK_MSG_ID_HEARTBEAT 0
 
-typedef struct MAVLINK_PACKED __mavlink_heartbeat_t
-{
+MAVPACKED(
+typedef struct __mavlink_heartbeat_t {
  uint32_t custom_mode; /*< A bitfield for use for autopilot-specific flags.*/
  uint8_t type; /*< Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in MAV_TYPE ENUM)*/
  uint8_t autopilot; /*< Autopilot type / class. defined in MAV_AUTOPILOT ENUM*/
  uint8_t base_mode; /*< System mode bitfield, see MAV_MODE_FLAGS ENUM in mavlink/include/mavlink_types.h*/
  uint8_t system_status; /*< System status flag, see MAV_STATE ENUM*/
  uint8_t mavlink_version; /*< MAVLink version*/
-} mavlink_heartbeat_t;
+}) mavlink_heartbeat_t;
 
 #define MAVLINK_MSG_ID_HEARTBEAT_LEN 9
 #define MAVLINK_MSG_ID_HEARTBEAT_MIN_LEN 9

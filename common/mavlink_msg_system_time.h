@@ -2,11 +2,11 @@
 
 #define MAVLINK_MSG_ID_SYSTEM_TIME 2
 
-typedef struct MAVLINK_PACKED __mavlink_system_time_t
-{
+MAVPACKED(
+typedef struct __mavlink_system_time_t {
  uint64_t time_unix_usec; /*< Timestamp of the master clock in microseconds since UNIX epoch.*/
  uint32_t time_boot_ms; /*< Timestamp of the component clock since boot time in milliseconds.*/
-} mavlink_system_time_t;
+}) mavlink_system_time_t;
 
 #define MAVLINK_MSG_ID_SYSTEM_TIME_LEN 12
 #define MAVLINK_MSG_ID_SYSTEM_TIME_MIN_LEN 12

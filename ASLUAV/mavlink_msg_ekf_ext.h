@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_EKF_EXT 206
 
-typedef struct MAVLINK_PACKED __mavlink_ekf_ext_t
-{
+MAVPACKED(
+typedef struct __mavlink_ekf_ext_t {
  uint64_t timestamp; /*<  Time since system start [us]*/
  float Windspeed; /*<  Magnitude of wind velocity (in lateral inertial plane) [m/s]*/
  float WindDir; /*<  Wind heading angle from North [rad]*/
@@ -11,7 +11,7 @@ typedef struct MAVLINK_PACKED __mavlink_ekf_ext_t
  float Airspeed; /*<  Magnitude of air velocity [m/s]*/
  float beta; /*<  Sideslip angle [rad]*/
  float alpha; /*<  Angle of attack [rad]*/
-} mavlink_ekf_ext_t;
+}) mavlink_ekf_ext_t;
 
 #define MAVLINK_MSG_ID_EKF_EXT_LEN 32
 #define MAVLINK_MSG_ID_EKF_EXT_MIN_LEN 32

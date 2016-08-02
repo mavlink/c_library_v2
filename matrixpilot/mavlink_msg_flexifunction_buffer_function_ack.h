@@ -2,13 +2,13 @@
 
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_ACK 153
 
-typedef struct MAVLINK_PACKED __mavlink_flexifunction_buffer_function_ack_t
-{
+MAVPACKED(
+typedef struct __mavlink_flexifunction_buffer_function_ack_t {
  uint16_t func_index; /*< Function index*/
  uint16_t result; /*< result of acknowledge, 0=fail, 1=good*/
  uint8_t target_system; /*< System ID*/
  uint8_t target_component; /*< Component ID*/
-} mavlink_flexifunction_buffer_function_ack_t;
+}) mavlink_flexifunction_buffer_function_ack_t;
 
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_ACK_LEN 6
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_ACK_MIN_LEN 6

@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_SENS_BATMON 209
 
-typedef struct MAVLINK_PACKED __mavlink_sens_batmon_t
-{
+MAVPACKED(
+typedef struct __mavlink_sens_batmon_t {
  float temperature; /*< Battery pack temperature in [deg C]*/
  uint16_t voltage; /*< Battery pack voltage in [mV]*/
  int16_t current; /*< Battery pack current in [mA]*/
@@ -17,7 +17,7 @@ typedef struct MAVLINK_PACKED __mavlink_sens_batmon_t
  uint16_t cellvoltage5; /*< Battery pack cell 5 voltage in [mV]*/
  uint16_t cellvoltage6; /*< Battery pack cell 6 voltage in [mV]*/
  uint8_t SoC; /*< Battery pack state-of-charge*/
-} mavlink_sens_batmon_t;
+}) mavlink_sens_batmon_t;
 
 #define MAVLINK_MSG_ID_SENS_BATMON_LEN 27
 #define MAVLINK_MSG_ID_SENS_BATMON_MIN_LEN 27

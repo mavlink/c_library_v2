@@ -2,12 +2,12 @@
 
 #define MAVLINK_MSG_ID_POWER_STATUS 125
 
-typedef struct MAVLINK_PACKED __mavlink_power_status_t
-{
+MAVPACKED(
+typedef struct __mavlink_power_status_t {
  uint16_t Vcc; /*< 5V rail voltage in millivolts*/
  uint16_t Vservo; /*< servo rail voltage in millivolts*/
  uint16_t flags; /*< power supply status flags (see MAV_POWER_STATUS enum)*/
-} mavlink_power_status_t;
+}) mavlink_power_status_t;
 
 #define MAVLINK_MSG_ID_POWER_STATUS_LEN 6
 #define MAVLINK_MSG_ID_POWER_STATUS_MIN_LEN 6

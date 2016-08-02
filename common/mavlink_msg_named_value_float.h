@@ -2,12 +2,12 @@
 
 #define MAVLINK_MSG_ID_NAMED_VALUE_FLOAT 251
 
-typedef struct MAVLINK_PACKED __mavlink_named_value_float_t
-{
+MAVPACKED(
+typedef struct __mavlink_named_value_float_t {
  uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
  float value; /*< Floating point value*/
  char name[10]; /*< Name of the debug variable*/
-} mavlink_named_value_float_t;
+}) mavlink_named_value_float_t;
 
 #define MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN 18
 #define MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_MIN_LEN 18

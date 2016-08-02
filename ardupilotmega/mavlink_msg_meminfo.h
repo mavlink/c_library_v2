@@ -2,12 +2,12 @@
 
 #define MAVLINK_MSG_ID_MEMINFO 152
 
-typedef struct MAVLINK_PACKED __mavlink_meminfo_t
-{
+MAVPACKED(
+typedef struct __mavlink_meminfo_t {
  uint16_t brkval; /*< heap top*/
  uint16_t freemem; /*< free memory*/
  uint32_t freemem32; /*< free memory (32 bit)*/
-} mavlink_meminfo_t;
+}) mavlink_meminfo_t;
 
 #define MAVLINK_MSG_ID_MEMINFO_LEN 8
 #define MAVLINK_MSG_ID_MEMINFO_MIN_LEN 4

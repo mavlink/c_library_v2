@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_B 171
 
-typedef struct MAVLINK_PACKED __mavlink_serial_udb_extra_f2_b_t
-{
+MAVPACKED(
+typedef struct __mavlink_serial_udb_extra_f2_b_t {
  uint32_t sue_time; /*< Serial UDB Extra Time*/
  uint32_t sue_flags; /*< Serial UDB Extra Status Flags*/
  int16_t sue_pwm_input_1; /*< Serial UDB Extra PWM Input Channel 1*/
@@ -37,7 +37,7 @@ typedef struct MAVLINK_PACKED __mavlink_serial_udb_extra_f2_b_t
  int16_t sue_waypoint_goal_y; /*< Serial UDB Extra Current Waypoint Goal Y*/
  int16_t sue_waypoint_goal_z; /*< Serial UDB Extra Current Waypoint Goal Z*/
  int16_t sue_memory_stack_free; /*< Serial UDB Extra Stack Memory Free*/
-} mavlink_serial_udb_extra_f2_b_t;
+}) mavlink_serial_udb_extra_f2_b_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_B_LEN 70
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_B_MIN_LEN 70

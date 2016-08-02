@@ -2,15 +2,15 @@
 
 #define MAVLINK_MSG_ID_SENSOR_BIAS 172
 
-typedef struct MAVLINK_PACKED __mavlink_sensor_bias_t
-{
+MAVPACKED(
+typedef struct __mavlink_sensor_bias_t {
  float axBias; /*< Accelerometer X bias (m/s)*/
  float ayBias; /*< Accelerometer Y bias (m/s)*/
  float azBias; /*< Accelerometer Z bias (m/s)*/
  float gxBias; /*< Gyro X bias (rad/s)*/
  float gyBias; /*< Gyro Y bias (rad/s)*/
  float gzBias; /*< Gyro Z bias (rad/s)*/
-} mavlink_sensor_bias_t;
+}) mavlink_sensor_bias_t;
 
 #define MAVLINK_MSG_ID_SENSOR_BIAS_LEN 24
 #define MAVLINK_MSG_ID_SENSOR_BIAS_MIN_LEN 24

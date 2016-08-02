@@ -2,11 +2,11 @@
 
 #define MAVLINK_MSG_ID_CAMERA_TRIGGER 112
 
-typedef struct MAVLINK_PACKED __mavlink_camera_trigger_t
-{
+MAVPACKED(
+typedef struct __mavlink_camera_trigger_t {
  uint64_t time_usec; /*< Timestamp for the image frame in microseconds*/
  uint32_t seq; /*< Image frame sequence*/
-} mavlink_camera_trigger_t;
+}) mavlink_camera_trigger_t;
 
 #define MAVLINK_MSG_ID_CAMERA_TRIGGER_LEN 12
 #define MAVLINK_MSG_ID_CAMERA_TRIGGER_MIN_LEN 12

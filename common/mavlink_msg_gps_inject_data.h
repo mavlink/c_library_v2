@@ -2,13 +2,13 @@
 
 #define MAVLINK_MSG_ID_GPS_INJECT_DATA 123
 
-typedef struct MAVLINK_PACKED __mavlink_gps_inject_data_t
-{
+MAVPACKED(
+typedef struct __mavlink_gps_inject_data_t {
  uint8_t target_system; /*< System ID*/
  uint8_t target_component; /*< Component ID*/
  uint8_t len; /*< data length*/
  uint8_t data[110]; /*< raw data (110 is enough for 12 satellites of RTCMv2)*/
-} mavlink_gps_inject_data_t;
+}) mavlink_gps_inject_data_t;
 
 #define MAVLINK_MSG_ID_GPS_INJECT_DATA_LEN 113
 #define MAVLINK_MSG_ID_GPS_INJECT_DATA_MIN_LEN 113

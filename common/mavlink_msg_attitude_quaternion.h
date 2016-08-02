@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_ATTITUDE_QUATERNION 31
 
-typedef struct MAVLINK_PACKED __mavlink_attitude_quaternion_t
-{
+MAVPACKED(
+typedef struct __mavlink_attitude_quaternion_t {
  uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
  float q1; /*< Quaternion component 1, w (1 in null-rotation)*/
  float q2; /*< Quaternion component 2, x (0 in null-rotation)*/
@@ -12,7 +12,7 @@ typedef struct MAVLINK_PACKED __mavlink_attitude_quaternion_t
  float rollspeed; /*< Roll angular speed (rad/s)*/
  float pitchspeed; /*< Pitch angular speed (rad/s)*/
  float yawspeed; /*< Yaw angular speed (rad/s)*/
-} mavlink_attitude_quaternion_t;
+}) mavlink_attitude_quaternion_t;
 
 #define MAVLINK_MSG_ID_ATTITUDE_QUATERNION_LEN 32
 #define MAVLINK_MSG_ID_ATTITUDE_QUATERNION_MIN_LEN 32

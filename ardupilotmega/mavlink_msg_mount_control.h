@@ -2,15 +2,15 @@
 
 #define MAVLINK_MSG_ID_MOUNT_CONTROL 157
 
-typedef struct MAVLINK_PACKED __mavlink_mount_control_t
-{
+MAVPACKED(
+typedef struct __mavlink_mount_control_t {
  int32_t input_a; /*< pitch(deg*100) or lat, depending on mount mode*/
  int32_t input_b; /*< roll(deg*100) or lon depending on mount mode*/
  int32_t input_c; /*< yaw(deg*100) or alt (in cm) depending on mount mode*/
  uint8_t target_system; /*< System ID*/
  uint8_t target_component; /*< Component ID*/
  uint8_t save_position; /*< if "1" it will save current trimmed position on EEPROM (just valid for NEUTRAL and LANDING)*/
-} mavlink_mount_control_t;
+}) mavlink_mount_control_t;
 
 #define MAVLINK_MSG_ID_MOUNT_CONTROL_LEN 15
 #define MAVLINK_MSG_ID_MOUNT_CONTROL_MIN_LEN 15

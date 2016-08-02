@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_VIBRATION 241
 
-typedef struct MAVLINK_PACKED __mavlink_vibration_t
-{
+MAVPACKED(
+typedef struct __mavlink_vibration_t {
  uint64_t time_usec; /*< Timestamp (micros since boot or Unix epoch)*/
  float vibration_x; /*< Vibration levels on X-axis*/
  float vibration_y; /*< Vibration levels on Y-axis*/
@@ -11,7 +11,7 @@ typedef struct MAVLINK_PACKED __mavlink_vibration_t
  uint32_t clipping_0; /*< first accelerometer clipping count*/
  uint32_t clipping_1; /*< second accelerometer clipping count*/
  uint32_t clipping_2; /*< third accelerometer clipping count*/
-} mavlink_vibration_t;
+}) mavlink_vibration_t;
 
 #define MAVLINK_MSG_ID_VIBRATION_LEN 32
 #define MAVLINK_MSG_ID_VIBRATION_MIN_LEN 32

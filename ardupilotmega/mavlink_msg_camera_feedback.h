@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_CAMERA_FEEDBACK 180
 
-typedef struct MAVLINK_PACKED __mavlink_camera_feedback_t
-{
+MAVPACKED(
+typedef struct __mavlink_camera_feedback_t {
  uint64_t time_usec; /*< Image timestamp (microseconds since UNIX epoch), as passed in by CAMERA_STATUS message (or autopilot if no CCB)*/
  int32_t lat; /*< Latitude in (deg * 1E7)*/
  int32_t lng; /*< Longitude in (deg * 1E7)*/
@@ -17,7 +17,7 @@ typedef struct MAVLINK_PACKED __mavlink_camera_feedback_t
  uint8_t target_system; /*< System ID*/
  uint8_t cam_idx; /*< Camera ID*/
  uint8_t flags; /*< See CAMERA_FEEDBACK_FLAGS enum for definition of the bitmask*/
-} mavlink_camera_feedback_t;
+}) mavlink_camera_feedback_t;
 
 #define MAVLINK_MSG_ID_CAMERA_FEEDBACK_LEN 45
 #define MAVLINK_MSG_ID_CAMERA_FEEDBACK_MIN_LEN 45

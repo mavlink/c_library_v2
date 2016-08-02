@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_OPTICAL_FLOW 100
 
-typedef struct MAVLINK_PACKED __mavlink_optical_flow_t
-{
+MAVPACKED(
+typedef struct __mavlink_optical_flow_t {
  uint64_t time_usec; /*< Timestamp (UNIX)*/
  float flow_comp_m_x; /*< Flow in meters in x-sensor direction, angular-speed compensated*/
  float flow_comp_m_y; /*< Flow in meters in y-sensor direction, angular-speed compensated*/
@@ -12,7 +12,7 @@ typedef struct MAVLINK_PACKED __mavlink_optical_flow_t
  int16_t flow_y; /*< Flow in pixels * 10 in y-sensor direction (dezi-pixels)*/
  uint8_t sensor_id; /*< Sensor ID*/
  uint8_t quality; /*< Optical flow quality / confidence. 0: bad, 255: maximum quality*/
-} mavlink_optical_flow_t;
+}) mavlink_optical_flow_t;
 
 #define MAVLINK_MSG_ID_OPTICAL_FLOW_LEN 26
 #define MAVLINK_MSG_ID_OPTICAL_FLOW_MIN_LEN 26

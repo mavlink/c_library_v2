@@ -2,12 +2,12 @@
 
 #define MAVLINK_MSG_ID_MISSION_COUNT 44
 
-typedef struct MAVLINK_PACKED __mavlink_mission_count_t
-{
+MAVPACKED(
+typedef struct __mavlink_mission_count_t {
  uint16_t count; /*< Number of mission items in the sequence*/
  uint8_t target_system; /*< System ID*/
  uint8_t target_component; /*< Component ID*/
-} mavlink_mission_count_t;
+}) mavlink_mission_count_t;
 
 #define MAVLINK_MSG_ID_MISSION_COUNT_LEN 4
 #define MAVLINK_MSG_ID_MISSION_COUNT_MIN_LEN 4

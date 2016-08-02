@@ -2,14 +2,14 @@
 
 #define MAVLINK_MSG_ID_RAW_PRESSURE 28
 
-typedef struct MAVLINK_PACKED __mavlink_raw_pressure_t
-{
+MAVPACKED(
+typedef struct __mavlink_raw_pressure_t {
  uint64_t time_usec; /*< Timestamp (microseconds since UNIX epoch or microseconds since system boot)*/
  int16_t press_abs; /*< Absolute pressure (raw)*/
  int16_t press_diff1; /*< Differential pressure 1 (raw, 0 if nonexistant)*/
  int16_t press_diff2; /*< Differential pressure 2 (raw, 0 if nonexistant)*/
  int16_t temperature; /*< Raw Temperature measurement (raw)*/
-} mavlink_raw_pressure_t;
+}) mavlink_raw_pressure_t;
 
 #define MAVLINK_MSG_ID_RAW_PRESSURE_LEN 16
 #define MAVLINK_MSG_ID_RAW_PRESSURE_MIN_LEN 16

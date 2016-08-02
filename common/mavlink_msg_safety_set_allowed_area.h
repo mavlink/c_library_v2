@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_SAFETY_SET_ALLOWED_AREA 54
 
-typedef struct MAVLINK_PACKED __mavlink_safety_set_allowed_area_t
-{
+MAVPACKED(
+typedef struct __mavlink_safety_set_allowed_area_t {
  float p1x; /*< x position 1 / Latitude 1*/
  float p1y; /*< y position 1 / Longitude 1*/
  float p1z; /*< z position 1 / Altitude 1*/
@@ -13,7 +13,7 @@ typedef struct MAVLINK_PACKED __mavlink_safety_set_allowed_area_t
  uint8_t target_system; /*< System ID*/
  uint8_t target_component; /*< Component ID*/
  uint8_t frame; /*< Coordinate frame, as defined by MAV_FRAME enum in mavlink_types.h. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down.*/
-} mavlink_safety_set_allowed_area_t;
+}) mavlink_safety_set_allowed_area_t;
 
 #define MAVLINK_MSG_ID_SAFETY_SET_ALLOWED_AREA_LEN 27
 #define MAVLINK_MSG_ID_SAFETY_SET_ALLOWED_AREA_MIN_LEN 27

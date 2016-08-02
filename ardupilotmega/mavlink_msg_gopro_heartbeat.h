@@ -2,12 +2,12 @@
 
 #define MAVLINK_MSG_ID_GOPRO_HEARTBEAT 215
 
-typedef struct MAVLINK_PACKED __mavlink_gopro_heartbeat_t
-{
+MAVPACKED(
+typedef struct __mavlink_gopro_heartbeat_t {
  uint8_t status; /*< Status*/
  uint8_t capture_mode; /*< Current capture mode*/
  uint8_t flags; /*< additional status bits*/
-} mavlink_gopro_heartbeat_t;
+}) mavlink_gopro_heartbeat_t;
 
 #define MAVLINK_MSG_ID_GOPRO_HEARTBEAT_LEN 3
 #define MAVLINK_MSG_ID_GOPRO_HEARTBEAT_MIN_LEN 3

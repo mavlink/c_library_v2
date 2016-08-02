@@ -2,13 +2,13 @@
 
 #define MAVLINK_MSG_ID_SENS_POWER 201
 
-typedef struct MAVLINK_PACKED __mavlink_sens_power_t
-{
+MAVPACKED(
+typedef struct __mavlink_sens_power_t {
  float adc121_vspb_volt; /*<  Power board voltage sensor reading in volts*/
  float adc121_cspb_amp; /*<  Power board current sensor reading in amps*/
  float adc121_cs1_amp; /*<  Board current sensor 1 reading in amps*/
  float adc121_cs2_amp; /*<  Board current sensor 2 reading in amps*/
-} mavlink_sens_power_t;
+}) mavlink_sens_power_t;
 
 #define MAVLINK_MSG_ID_SENS_POWER_LEN 16
 #define MAVLINK_MSG_ID_SENS_POWER_MIN_LEN 16

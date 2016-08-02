@@ -2,10 +2,10 @@
 
 #define MAVLINK_MSG_ID_AUTH_KEY 7
 
-typedef struct MAVLINK_PACKED __mavlink_auth_key_t
-{
+MAVPACKED(
+typedef struct __mavlink_auth_key_t {
  char key[32]; /*< key*/
-} mavlink_auth_key_t;
+}) mavlink_auth_key_t;
 
 #define MAVLINK_MSG_ID_AUTH_KEY_LEN 32
 #define MAVLINK_MSG_ID_AUTH_KEY_MIN_LEN 32

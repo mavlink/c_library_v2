@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_MAG_CAL_PROGRESS 191
 
-typedef struct MAVLINK_PACKED __mavlink_mag_cal_progress_t
-{
+MAVPACKED(
+typedef struct __mavlink_mag_cal_progress_t {
  float direction_x; /*< Body frame direction vector for display*/
  float direction_y; /*< Body frame direction vector for display*/
  float direction_z; /*< Body frame direction vector for display*/
@@ -13,7 +13,7 @@ typedef struct MAVLINK_PACKED __mavlink_mag_cal_progress_t
  uint8_t attempt; /*< Attempt number*/
  uint8_t completion_pct; /*< Completion percentage*/
  uint8_t completion_mask[10]; /*< Bitmask of sphere sections (see http://en.wikipedia.org/wiki/Geodesic_grid)*/
-} mavlink_mag_cal_progress_t;
+}) mavlink_mag_cal_progress_t;
 
 #define MAVLINK_MSG_ID_MAG_CAL_PROGRESS_LEN 27
 #define MAVLINK_MSG_ID_MAG_CAL_PROGRESS_MIN_LEN 27

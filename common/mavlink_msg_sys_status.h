@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_SYS_STATUS 1
 
-typedef struct MAVLINK_PACKED __mavlink_sys_status_t
-{
+MAVPACKED(
+typedef struct __mavlink_sys_status_t {
  uint32_t onboard_control_sensors_present; /*< Bitmask showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present. Indices defined by ENUM MAV_SYS_STATUS_SENSOR*/
  uint32_t onboard_control_sensors_enabled; /*< Bitmask showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled. Indices defined by ENUM MAV_SYS_STATUS_SENSOR*/
  uint32_t onboard_control_sensors_health; /*< Bitmask showing which onboard controllers and sensors are operational or have an error:  Value of 0: not enabled. Value of 1: enabled. Indices defined by ENUM MAV_SYS_STATUS_SENSOR*/
@@ -17,7 +17,7 @@ typedef struct MAVLINK_PACKED __mavlink_sys_status_t
  uint16_t errors_count3; /*< Autopilot-specific errors*/
  uint16_t errors_count4; /*< Autopilot-specific errors*/
  int8_t battery_remaining; /*< Remaining battery energy: (0%: 0, 100%: 100), -1: autopilot estimate the remaining battery*/
-} mavlink_sys_status_t;
+}) mavlink_sys_status_t;
 
 #define MAVLINK_MSG_ID_SYS_STATUS_LEN 31
 #define MAVLINK_MSG_ID_SYS_STATUS_MIN_LEN 31

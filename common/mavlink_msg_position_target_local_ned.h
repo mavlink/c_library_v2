@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_POSITION_TARGET_LOCAL_NED 85
 
-typedef struct MAVLINK_PACKED __mavlink_position_target_local_ned_t
-{
+MAVPACKED(
+typedef struct __mavlink_position_target_local_ned_t {
  uint32_t time_boot_ms; /*< Timestamp in milliseconds since system boot*/
  float x; /*< X Position in NED frame in meters*/
  float y; /*< Y Position in NED frame in meters*/
@@ -18,7 +18,7 @@ typedef struct MAVLINK_PACKED __mavlink_position_target_local_ned_t
  float yaw_rate; /*< yaw rate setpoint in rad/s*/
  uint16_t type_mask; /*< Bitmask to indicate which dimensions should be ignored by the vehicle: a value of 0b0000000000000000 or 0b0000001000000000 indicates that none of the setpoint dimensions should be ignored. If bit 10 is set the floats afx afy afz should be interpreted as force instead of acceleration. Mapping: bit 1: x, bit 2: y, bit 3: z, bit 4: vx, bit 5: vy, bit 6: vz, bit 7: ax, bit 8: ay, bit 9: az, bit 10: is force setpoint, bit 11: yaw, bit 12: yaw rate*/
  uint8_t coordinate_frame; /*< Valid options are: MAV_FRAME_LOCAL_NED = 1, MAV_FRAME_LOCAL_OFFSET_NED = 7, MAV_FRAME_BODY_NED = 8, MAV_FRAME_BODY_OFFSET_NED = 9*/
-} mavlink_position_target_local_ned_t;
+}) mavlink_position_target_local_ned_t;
 
 #define MAVLINK_MSG_ID_POSITION_TARGET_LOCAL_NED_LEN 51
 #define MAVLINK_MSG_ID_POSITION_TARGET_LOCAL_NED_MIN_LEN 51

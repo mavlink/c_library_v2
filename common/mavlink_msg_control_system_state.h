@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE 146
 
-typedef struct MAVLINK_PACKED __mavlink_control_system_state_t
-{
+MAVPACKED(
+typedef struct __mavlink_control_system_state_t {
  uint64_t time_usec; /*< Timestamp (micros since boot or Unix epoch)*/
  float x_acc; /*< X acceleration in body frame*/
  float y_acc; /*< Y acceleration in body frame*/
@@ -21,7 +21,7 @@ typedef struct MAVLINK_PACKED __mavlink_control_system_state_t
  float roll_rate; /*< Angular rate in roll axis*/
  float pitch_rate; /*< Angular rate in pitch axis*/
  float yaw_rate; /*< Angular rate in yaw axis*/
-} mavlink_control_system_state_t;
+}) mavlink_control_system_state_t;
 
 #define MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE_LEN 100
 #define MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE_MIN_LEN 100

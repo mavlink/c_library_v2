@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_HIL_RC_INPUTS_RAW 92
 
-typedef struct MAVLINK_PACKED __mavlink_hil_rc_inputs_raw_t
-{
+MAVPACKED(
+typedef struct __mavlink_hil_rc_inputs_raw_t {
  uint64_t time_usec; /*< Timestamp (microseconds since UNIX epoch or microseconds since system boot)*/
  uint16_t chan1_raw; /*< RC channel 1 value, in microseconds*/
  uint16_t chan2_raw; /*< RC channel 2 value, in microseconds*/
@@ -18,7 +18,7 @@ typedef struct MAVLINK_PACKED __mavlink_hil_rc_inputs_raw_t
  uint16_t chan11_raw; /*< RC channel 11 value, in microseconds*/
  uint16_t chan12_raw; /*< RC channel 12 value, in microseconds*/
  uint8_t rssi; /*< Receive signal strength indicator, 0: 0%, 255: 100%*/
-} mavlink_hil_rc_inputs_raw_t;
+}) mavlink_hil_rc_inputs_raw_t;
 
 #define MAVLINK_MSG_ID_HIL_RC_INPUTS_RAW_LEN 33
 #define MAVLINK_MSG_ID_HIL_RC_INPUTS_RAW_MIN_LEN 33

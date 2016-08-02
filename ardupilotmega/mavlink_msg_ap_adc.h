@@ -2,15 +2,15 @@
 
 #define MAVLINK_MSG_ID_AP_ADC 153
 
-typedef struct MAVLINK_PACKED __mavlink_ap_adc_t
-{
+MAVPACKED(
+typedef struct __mavlink_ap_adc_t {
  uint16_t adc1; /*< ADC output 1*/
  uint16_t adc2; /*< ADC output 2*/
  uint16_t adc3; /*< ADC output 3*/
  uint16_t adc4; /*< ADC output 4*/
  uint16_t adc5; /*< ADC output 5*/
  uint16_t adc6; /*< ADC output 6*/
-} mavlink_ap_adc_t;
+}) mavlink_ap_adc_t;
 
 #define MAVLINK_MSG_ID_AP_ADC_LEN 12
 #define MAVLINK_MSG_ID_AP_ADC_MIN_LEN 12

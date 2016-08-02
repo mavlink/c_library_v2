@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_SENSOR_OFFSETS 150
 
-typedef struct MAVLINK_PACKED __mavlink_sensor_offsets_t
-{
+MAVPACKED(
+typedef struct __mavlink_sensor_offsets_t {
  float mag_declination; /*< magnetic declination (radians)*/
  int32_t raw_press; /*< raw pressure from barometer*/
  int32_t raw_temp; /*< raw temperature from barometer*/
@@ -16,7 +16,7 @@ typedef struct MAVLINK_PACKED __mavlink_sensor_offsets_t
  int16_t mag_ofs_x; /*< magnetometer X offset*/
  int16_t mag_ofs_y; /*< magnetometer Y offset*/
  int16_t mag_ofs_z; /*< magnetometer Z offset*/
-} mavlink_sensor_offsets_t;
+}) mavlink_sensor_offsets_t;
 
 #define MAVLINK_MSG_ID_SENSOR_OFFSETS_LEN 42
 #define MAVLINK_MSG_ID_SENSOR_OFFSETS_MIN_LEN 42

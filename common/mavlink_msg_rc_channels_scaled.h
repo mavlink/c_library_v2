@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_RC_CHANNELS_SCALED 34
 
-typedef struct MAVLINK_PACKED __mavlink_rc_channels_scaled_t
-{
+MAVPACKED(
+typedef struct __mavlink_rc_channels_scaled_t {
  uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
  int16_t chan1_scaled; /*< RC channel 1 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX.*/
  int16_t chan2_scaled; /*< RC channel 2 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX.*/
@@ -15,7 +15,7 @@ typedef struct MAVLINK_PACKED __mavlink_rc_channels_scaled_t
  int16_t chan8_scaled; /*< RC channel 8 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX.*/
  uint8_t port; /*< Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows for more than 8 servos.*/
  uint8_t rssi; /*< Receive signal strength indicator, 0: 0%, 100: 100%, 255: invalid/unknown.*/
-} mavlink_rc_channels_scaled_t;
+}) mavlink_rc_channels_scaled_t;
 
 #define MAVLINK_MSG_ID_RC_CHANNELS_SCALED_LEN 22
 #define MAVLINK_MSG_ID_RC_CHANNELS_SCALED_MIN_LEN 22

@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_WIND_COV 231
 
-typedef struct MAVLINK_PACKED __mavlink_wind_cov_t
-{
+MAVPACKED(
+typedef struct __mavlink_wind_cov_t {
  uint64_t time_usec; /*< Timestamp (micros since boot or Unix epoch)*/
  float wind_x; /*< Wind in X (NED) direction in m/s*/
  float wind_y; /*< Wind in Y (NED) direction in m/s*/
@@ -13,7 +13,7 @@ typedef struct MAVLINK_PACKED __mavlink_wind_cov_t
  float wind_alt; /*< AMSL altitude (m) this measurement was taken at*/
  float horiz_accuracy; /*< Horizontal speed 1-STD accuracy*/
  float vert_accuracy; /*< Vertical speed 1-STD accuracy*/
-} mavlink_wind_cov_t;
+}) mavlink_wind_cov_t;
 
 #define MAVLINK_MSG_ID_WIND_COV_LEN 40
 #define MAVLINK_MSG_ID_WIND_COV_MIN_LEN 40

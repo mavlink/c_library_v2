@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE 70
 
-typedef struct MAVLINK_PACKED __mavlink_rc_channels_override_t
-{
+MAVPACKED(
+typedef struct __mavlink_rc_channels_override_t {
  uint16_t chan1_raw; /*< RC channel 1 value, in microseconds. A value of UINT16_MAX means to ignore this field.*/
  uint16_t chan2_raw; /*< RC channel 2 value, in microseconds. A value of UINT16_MAX means to ignore this field.*/
  uint16_t chan3_raw; /*< RC channel 3 value, in microseconds. A value of UINT16_MAX means to ignore this field.*/
@@ -14,7 +14,7 @@ typedef struct MAVLINK_PACKED __mavlink_rc_channels_override_t
  uint16_t chan8_raw; /*< RC channel 8 value, in microseconds. A value of UINT16_MAX means to ignore this field.*/
  uint8_t target_system; /*< System ID*/
  uint8_t target_component; /*< Component ID*/
-} mavlink_rc_channels_override_t;
+}) mavlink_rc_channels_override_t;
 
 #define MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_LEN 18
 #define MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_MIN_LEN 18

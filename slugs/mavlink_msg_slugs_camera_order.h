@@ -2,14 +2,14 @@
 
 #define MAVLINK_MSG_ID_SLUGS_CAMERA_ORDER 184
 
-typedef struct MAVLINK_PACKED __mavlink_slugs_camera_order_t
-{
+MAVPACKED(
+typedef struct __mavlink_slugs_camera_order_t {
  uint8_t target; /*< The system reporting the action*/
  int8_t pan; /*< Order the mount to pan: -1 left, 0 No pan motion, +1 right*/
  int8_t tilt; /*< Order the mount to tilt: -1 down, 0 No tilt motion, +1 up*/
  int8_t zoom; /*< Order the zoom values 0 to 10*/
  int8_t moveHome; /*< Orders the camera mount to move home. The other fields are ignored when this field is set. 1: move home, 0 ignored*/
-} mavlink_slugs_camera_order_t;
+}) mavlink_slugs_camera_order_t;
 
 #define MAVLINK_MSG_ID_SLUGS_CAMERA_ORDER_LEN 5
 #define MAVLINK_MSG_ID_SLUGS_CAMERA_ORDER_MIN_LEN 5

@@ -2,11 +2,11 @@
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F15 179
 
-typedef struct MAVLINK_PACKED __mavlink_serial_udb_extra_f15_t
-{
+MAVPACKED(
+typedef struct __mavlink_serial_udb_extra_f15_t {
  uint8_t sue_ID_VEHICLE_MODEL_NAME[40]; /*< Serial UDB Extra Model Name Of Vehicle*/
  uint8_t sue_ID_VEHICLE_REGISTRATION[20]; /*< Serial UDB Extra Registraton Number of Vehicle*/
-} mavlink_serial_udb_extra_f15_t;
+}) mavlink_serial_udb_extra_f15_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F15_LEN 60
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F15_MIN_LEN 60

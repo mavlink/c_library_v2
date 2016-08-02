@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_GLOBAL_POSITION_INT_COV 63
 
-typedef struct MAVLINK_PACKED __mavlink_global_position_int_cov_t
-{
+MAVPACKED(
+typedef struct __mavlink_global_position_int_cov_t {
  uint64_t time_utc; /*< Timestamp (microseconds since UNIX epoch) in UTC. 0 for unknown. Commonly filled by the precision time source of a GPS receiver.*/
  uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
  int32_t lat; /*< Latitude, expressed as degrees * 1E7*/
@@ -15,7 +15,7 @@ typedef struct MAVLINK_PACKED __mavlink_global_position_int_cov_t
  float vz; /*< Ground Z Speed (Altitude), expressed as m/s*/
  float covariance[36]; /*< Covariance matrix (first six entries are the first ROW, next six entries are the second row, etc.)*/
  uint8_t estimator_type; /*< Class id of the estimator this estimate originated from.*/
-} mavlink_global_position_int_cov_t;
+}) mavlink_global_position_int_cov_t;
 
 #define MAVLINK_MSG_ID_GLOBAL_POSITION_INT_COV_LEN 185
 #define MAVLINK_MSG_ID_GLOBAL_POSITION_INT_COV_MIN_LEN 185

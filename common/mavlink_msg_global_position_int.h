@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_GLOBAL_POSITION_INT 33
 
-typedef struct MAVLINK_PACKED __mavlink_global_position_int_t
-{
+MAVPACKED(
+typedef struct __mavlink_global_position_int_t {
  uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
  int32_t lat; /*< Latitude, expressed as degrees * 1E7*/
  int32_t lon; /*< Longitude, expressed as degrees * 1E7*/
@@ -13,7 +13,7 @@ typedef struct MAVLINK_PACKED __mavlink_global_position_int_t
  int16_t vy; /*< Ground Y Speed (Longitude, positive east), expressed as m/s * 100*/
  int16_t vz; /*< Ground Z Speed (Altitude, positive down), expressed as m/s * 100*/
  uint16_t hdg; /*< Vehicle heading (yaw angle) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX*/
-} mavlink_global_position_int_t;
+}) mavlink_global_position_int_t;
 
 #define MAVLINK_MSG_ID_GLOBAL_POSITION_INT_LEN 28
 #define MAVLINK_MSG_ID_GLOBAL_POSITION_INT_MIN_LEN 28

@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_ASL_OBCTRL 207
 
-typedef struct MAVLINK_PACKED __mavlink_asl_obctrl_t
-{
+MAVPACKED(
+typedef struct __mavlink_asl_obctrl_t {
  uint64_t timestamp; /*<  Time since system start [us]*/
  float uElev; /*<  Elevator command [~]*/
  float uThrot; /*<  Throttle command [~]*/
@@ -12,7 +12,7 @@ typedef struct MAVLINK_PACKED __mavlink_asl_obctrl_t
  float uAilR; /*<  Right aileron command [~]*/
  float uRud; /*<  Rudder command [~]*/
  uint8_t obctrl_status; /*<  Off-board computer status*/
-} mavlink_asl_obctrl_t;
+}) mavlink_asl_obctrl_t;
 
 #define MAVLINK_MSG_ID_ASL_OBCTRL_LEN 33
 #define MAVLINK_MSG_ID_ASL_OBCTRL_MIN_LEN 33

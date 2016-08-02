@@ -2,12 +2,12 @@
 
 #define MAVLINK_MSG_ID_VOLT_SENSOR 191
 
-typedef struct MAVLINK_PACKED __mavlink_volt_sensor_t
-{
+MAVPACKED(
+typedef struct __mavlink_volt_sensor_t {
  uint16_t voltage; /*< Voltage in uS of PWM. 0 uS = 0V, 20 uS = 21.5V */
  uint16_t reading2; /*< Depends on the value of r2Type (0) Current consumption in uS of PWM, 20 uS = 90Amp (1) Distance in cm (2) Distance in cm (3) Absolute value*/
  uint8_t r2Type; /*< It is the value of reading 2: 0 - Current, 1 - Foreward Sonar, 2 - Back Sonar, 3 - RPM*/
-} mavlink_volt_sensor_t;
+}) mavlink_volt_sensor_t;
 
 #define MAVLINK_MSG_ID_VOLT_SENSOR_LEN 5
 #define MAVLINK_MSG_ID_VOLT_SENSOR_MIN_LEN 5

@@ -23,10 +23,6 @@ extern "C" {
 #define MAVLINK_MESSAGE_CRCS {{0, 50, 9, 0, 0, 0}}
 #endif
 
-#ifndef MAVLINK_MESSAGE_INFO
-#define MAVLINK_MESSAGE_INFO {MAVLINK_MESSAGE_INFO_HEARTBEAT}
-#endif
-
 #include "../protocol.h"
 
 #define MAVLINK_ENABLED_MINIMAL
@@ -148,6 +144,10 @@ typedef enum MAV_STATE
 
 // base include
 
+
+#ifndef MAVLINK_MESSAGE_INFO
+#define MAVLINK_MESSAGE_INFO {MAVLINK_MESSAGE_INFO_HEARTBEAT}
+#endif
 
 #if MAVLINK_COMMAND_24BIT
 #include "../mavlink_get_info.h"

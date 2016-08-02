@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_ESTIMATOR_STATUS 230
 
-typedef struct MAVLINK_PACKED __mavlink_estimator_status_t
-{
+MAVPACKED(
+typedef struct __mavlink_estimator_status_t {
  uint64_t time_usec; /*< Timestamp (micros since boot or Unix epoch)*/
  float vel_ratio; /*< Velocity innovation test ratio*/
  float pos_horiz_ratio; /*< Horizontal position innovation test ratio*/
@@ -14,7 +14,7 @@ typedef struct MAVLINK_PACKED __mavlink_estimator_status_t
  float pos_horiz_accuracy; /*< Horizontal position 1-STD accuracy relative to the EKF local origin (m)*/
  float pos_vert_accuracy; /*< Vertical position 1-STD accuracy relative to the EKF local origin (m)*/
  uint16_t flags; /*< Integer bitmask indicating which EKF outputs are valid. See definition for ESTIMATOR_STATUS_FLAGS.*/
-} mavlink_estimator_status_t;
+}) mavlink_estimator_status_t;
 
 #define MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN 42
 #define MAVLINK_MSG_ID_ESTIMATOR_STATUS_MIN_LEN 42

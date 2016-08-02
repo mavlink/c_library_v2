@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_DISTANCE_SENSOR 132
 
-typedef struct MAVLINK_PACKED __mavlink_distance_sensor_t
-{
+MAVPACKED(
+typedef struct __mavlink_distance_sensor_t {
  uint32_t time_boot_ms; /*< Time since system boot*/
  uint16_t min_distance; /*< Minimum distance the sensor can measure in centimeters*/
  uint16_t max_distance; /*< Maximum distance the sensor can measure in centimeters*/
@@ -12,7 +12,7 @@ typedef struct MAVLINK_PACKED __mavlink_distance_sensor_t
  uint8_t id; /*< Onboard ID of the sensor*/
  uint8_t orientation; /*< Direction the sensor faces from MAV_SENSOR_ORIENTATION enum.*/
  uint8_t covariance; /*< Measurement covariance in centimeters, 0 for unknown / invalid readings*/
-} mavlink_distance_sensor_t;
+}) mavlink_distance_sensor_t;
 
 #define MAVLINK_MSG_ID_DISTANCE_SENSOR_LEN 14
 #define MAVLINK_MSG_ID_DISTANCE_SENSOR_MIN_LEN 14

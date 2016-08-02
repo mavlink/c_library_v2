@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_DIGICAM_CONTROL 155
 
-typedef struct MAVLINK_PACKED __mavlink_digicam_control_t
-{
+MAVPACKED(
+typedef struct __mavlink_digicam_control_t {
  float extra_value; /*< Correspondent value to given extra_param*/
  uint8_t target_system; /*< System ID*/
  uint8_t target_component; /*< Component ID*/
@@ -14,7 +14,7 @@ typedef struct MAVLINK_PACKED __mavlink_digicam_control_t
  uint8_t shot; /*< 0: ignore, 1: shot or start filming*/
  uint8_t command_id; /*< Command Identity (incremental loop: 0 to 255)//A command sent multiple times will be executed or pooled just once*/
  uint8_t extra_param; /*< Extra parameters enumeration (0 means ignore)*/
-} mavlink_digicam_control_t;
+}) mavlink_digicam_control_t;
 
 #define MAVLINK_MSG_ID_DIGICAM_CONTROL_LEN 13
 #define MAVLINK_MSG_ID_DIGICAM_CONTROL_MIN_LEN 13

@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A 170
 
-typedef struct MAVLINK_PACKED __mavlink_serial_udb_extra_f2_a_t
-{
+MAVPACKED(
+typedef struct __mavlink_serial_udb_extra_f2_a_t {
  uint32_t sue_time; /*< Serial UDB Extra Time*/
  int32_t sue_latitude; /*< Serial UDB Extra Latitude*/
  int32_t sue_longitude; /*< Serial UDB Extra Longitude*/
@@ -32,7 +32,7 @@ typedef struct MAVLINK_PACKED __mavlink_serial_udb_extra_f2_a_t
  int16_t sue_svs; /*< Serial UDB Extra Number of Sattelites in View*/
  int16_t sue_hdop; /*< Serial UDB Extra GPS Horizontal Dilution of Precision*/
  uint8_t sue_status; /*< Serial UDB Extra Status*/
-} mavlink_serial_udb_extra_f2_a_t;
+}) mavlink_serial_udb_extra_f2_a_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_LEN 63
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_MIN_LEN 63

@@ -2,15 +2,15 @@
 
 #define MAVLINK_MSG_ID_AHRS2 178
 
-typedef struct MAVLINK_PACKED __mavlink_ahrs2_t
-{
+MAVPACKED(
+typedef struct __mavlink_ahrs2_t {
  float roll; /*< Roll angle (rad)*/
  float pitch; /*< Pitch angle (rad)*/
  float yaw; /*< Yaw angle (rad)*/
  float altitude; /*< Altitude (MSL)*/
  int32_t lat; /*< Latitude in degrees * 1E7*/
  int32_t lng; /*< Longitude in degrees * 1E7*/
-} mavlink_ahrs2_t;
+}) mavlink_ahrs2_t;
 
 #define MAVLINK_MSG_ID_AHRS2_LEN 24
 #define MAVLINK_MSG_ID_AHRS2_MIN_LEN 24

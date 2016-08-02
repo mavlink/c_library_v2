@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_NOVATEL_DIAG 195
 
-typedef struct MAVLINK_PACKED __mavlink_novatel_diag_t
-{
+MAVPACKED(
+typedef struct __mavlink_novatel_diag_t {
  uint32_t receiverStatus; /*< Status Bitfield. See table 69 page 350 Novatel OEMstar Manual*/
  float posSolAge; /*< Age of the position solution in seconds*/
  uint16_t csFails; /*< Times the CRC has failed since boot*/
@@ -11,7 +11,7 @@ typedef struct MAVLINK_PACKED __mavlink_novatel_diag_t
  uint8_t solStatus; /*< solution Status. See table 44 page 197*/
  uint8_t posType; /*< position type. See table 43 page 196*/
  uint8_t velType; /*< velocity type. See table 43 page 196*/
-} mavlink_novatel_diag_t;
+}) mavlink_novatel_diag_t;
 
 #define MAVLINK_MSG_ID_NOVATEL_DIAG_LEN 14
 #define MAVLINK_MSG_ID_NOVATEL_DIAG_MIN_LEN 14

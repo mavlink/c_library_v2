@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F4 172
 
-typedef struct MAVLINK_PACKED __mavlink_serial_udb_extra_f4_t
-{
+MAVPACKED(
+typedef struct __mavlink_serial_udb_extra_f4_t {
  uint8_t sue_ROLL_STABILIZATION_AILERONS; /*< Serial UDB Extra Roll Stabilization with Ailerons Enabled*/
  uint8_t sue_ROLL_STABILIZATION_RUDDER; /*< Serial UDB Extra Roll Stabilization with Rudder Enabled*/
  uint8_t sue_PITCH_STABILIZATION; /*< Serial UDB Extra Pitch Stabilization Enabled*/
@@ -14,7 +14,7 @@ typedef struct MAVLINK_PACKED __mavlink_serial_udb_extra_f4_t
  uint8_t sue_ALTITUDEHOLD_STABILIZED; /*< Serial UDB Extra Type of Alitude Hold when in Stabilized Mode*/
  uint8_t sue_ALTITUDEHOLD_WAYPOINT; /*< Serial UDB Extra Type of Alitude Hold when in Waypoint Mode*/
  uint8_t sue_RACING_MODE; /*< Serial UDB Extra Firmware racing mode enabled*/
-} mavlink_serial_udb_extra_f4_t;
+}) mavlink_serial_udb_extra_f4_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F4_LEN 10
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F4_MIN_LEN 10

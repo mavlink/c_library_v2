@@ -2,10 +2,10 @@
 
 #define MAVLINK_MSG_ID_BOOT 197
 
-typedef struct MAVLINK_PACKED __mavlink_boot_t
-{
+MAVPACKED(
+typedef struct __mavlink_boot_t {
  uint32_t version; /*< The onboard software version*/
-} mavlink_boot_t;
+}) mavlink_boot_t;
 
 #define MAVLINK_MSG_ID_BOOT_LEN 4
 #define MAVLINK_MSG_ID_BOOT_MIN_LEN 4

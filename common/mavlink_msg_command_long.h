@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_COMMAND_LONG 76
 
-typedef struct MAVLINK_PACKED __mavlink_command_long_t
-{
+MAVPACKED(
+typedef struct __mavlink_command_long_t {
  float param1; /*< Parameter 1, as defined by MAV_CMD enum.*/
  float param2; /*< Parameter 2, as defined by MAV_CMD enum.*/
  float param3; /*< Parameter 3, as defined by MAV_CMD enum.*/
@@ -15,7 +15,7 @@ typedef struct MAVLINK_PACKED __mavlink_command_long_t
  uint8_t target_system; /*< System which should execute the command*/
  uint8_t target_component; /*< Component which should execute the command, 0 for all components*/
  uint8_t confirmation; /*< 0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)*/
-} mavlink_command_long_t;
+}) mavlink_command_long_t;
 
 #define MAVLINK_MSG_ID_COMMAND_LONG_LEN 33
 #define MAVLINK_MSG_ID_COMMAND_LONG_MIN_LEN 33

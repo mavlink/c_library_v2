@@ -2,12 +2,12 @@
 
 #define MAVLINK_MSG_ID_DATA_STREAM 67
 
-typedef struct MAVLINK_PACKED __mavlink_data_stream_t
-{
+MAVPACKED(
+typedef struct __mavlink_data_stream_t {
  uint16_t message_rate; /*< The message rate*/
  uint8_t stream_id; /*< The ID of the requested data stream*/
  uint8_t on_off; /*< 1 stream is enabled, 0 stream is stopped.*/
-} mavlink_data_stream_t;
+}) mavlink_data_stream_t;
 
 #define MAVLINK_MSG_ID_DATA_STREAM_LEN 4
 #define MAVLINK_MSG_ID_DATA_STREAM_MIN_LEN 4

@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_MAG_CAL_REPORT 192
 
-typedef struct MAVLINK_PACKED __mavlink_mag_cal_report_t
-{
+MAVPACKED(
+typedef struct __mavlink_mag_cal_report_t {
  float fitness; /*< RMS milligauss residuals*/
  float ofs_x; /*< X offset*/
  float ofs_y; /*< Y offset*/
@@ -18,7 +18,7 @@ typedef struct MAVLINK_PACKED __mavlink_mag_cal_report_t
  uint8_t cal_mask; /*< Bitmask of compasses being calibrated*/
  uint8_t cal_status; /*< Status (see MAG_CAL_STATUS enum)*/
  uint8_t autosaved; /*< 0=requires a MAV_CMD_DO_ACCEPT_MAG_CAL, 1=saved to parameters*/
-} mavlink_mag_cal_report_t;
+}) mavlink_mag_cal_report_t;
 
 #define MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN 44
 #define MAVLINK_MSG_ID_MAG_CAL_REPORT_MIN_LEN 44

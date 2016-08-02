@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_CAMERA_STATUS 179
 
-typedef struct MAVLINK_PACKED __mavlink_camera_status_t
-{
+MAVPACKED(
+typedef struct __mavlink_camera_status_t {
  uint64_t time_usec; /*< Image timestamp (microseconds since UNIX epoch, according to camera clock)*/
  float p1; /*< Parameter 1 (meaning depends on event, see CAMERA_STATUS_TYPES enum)*/
  float p2; /*< Parameter 2 (meaning depends on event, see CAMERA_STATUS_TYPES enum)*/
@@ -13,7 +13,7 @@ typedef struct MAVLINK_PACKED __mavlink_camera_status_t
  uint8_t target_system; /*< System ID*/
  uint8_t cam_idx; /*< Camera ID*/
  uint8_t event_id; /*< See CAMERA_STATUS_TYPES enum for definition of the bitmask*/
-} mavlink_camera_status_t;
+}) mavlink_camera_status_t;
 
 #define MAVLINK_MSG_ID_CAMERA_STATUS_LEN 29
 #define MAVLINK_MSG_ID_CAMERA_STATUS_MIN_LEN 29

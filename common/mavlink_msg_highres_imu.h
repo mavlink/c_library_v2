@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_HIGHRES_IMU 105
 
-typedef struct MAVLINK_PACKED __mavlink_highres_imu_t
-{
+MAVPACKED(
+typedef struct __mavlink_highres_imu_t {
  uint64_t time_usec; /*< Timestamp (microseconds, synced to UNIX time or since system boot)*/
  float xacc; /*< X acceleration (m/s^2)*/
  float yacc; /*< Y acceleration (m/s^2)*/
@@ -19,7 +19,7 @@ typedef struct MAVLINK_PACKED __mavlink_highres_imu_t
  float pressure_alt; /*< Altitude calculated from pressure*/
  float temperature; /*< Temperature in degrees celsius*/
  uint16_t fields_updated; /*< Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature*/
-} mavlink_highres_imu_t;
+}) mavlink_highres_imu_t;
 
 #define MAVLINK_MSG_ID_HIGHRES_IMU_LEN 62
 #define MAVLINK_MSG_ID_HIGHRES_IMU_MIN_LEN 62

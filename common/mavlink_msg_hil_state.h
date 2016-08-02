@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_HIL_STATE 90
 
-typedef struct MAVLINK_PACKED __mavlink_hil_state_t
-{
+MAVPACKED(
+typedef struct __mavlink_hil_state_t {
  uint64_t time_usec; /*< Timestamp (microseconds since UNIX epoch or microseconds since system boot)*/
  float roll; /*< Roll angle (rad)*/
  float pitch; /*< Pitch angle (rad)*/
@@ -20,7 +20,7 @@ typedef struct MAVLINK_PACKED __mavlink_hil_state_t
  int16_t xacc; /*< X acceleration (mg)*/
  int16_t yacc; /*< Y acceleration (mg)*/
  int16_t zacc; /*< Z acceleration (mg)*/
-} mavlink_hil_state_t;
+}) mavlink_hil_state_t;
 
 #define MAVLINK_MSG_ID_HIL_STATE_LEN 56
 #define MAVLINK_MSG_ID_HIL_STATE_MIN_LEN 56

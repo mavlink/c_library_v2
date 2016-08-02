@@ -2,12 +2,12 @@
 
 #define MAVLINK_MSG_ID_CPU_LOAD 170
 
-typedef struct MAVLINK_PACKED __mavlink_cpu_load_t
-{
+MAVPACKED(
+typedef struct __mavlink_cpu_load_t {
  uint16_t batVolt; /*< Battery Voltage in millivolts*/
  uint8_t sensLoad; /*< Sensor DSC Load*/
  uint8_t ctrlLoad; /*< Control DSC Load*/
-} mavlink_cpu_load_t;
+}) mavlink_cpu_load_t;
 
 #define MAVLINK_MSG_ID_CPU_LOAD_LEN 4
 #define MAVLINK_MSG_ID_CPU_LOAD_MIN_LEN 4

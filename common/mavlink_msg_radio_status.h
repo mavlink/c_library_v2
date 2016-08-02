@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_RADIO_STATUS 109
 
-typedef struct MAVLINK_PACKED __mavlink_radio_status_t
-{
+MAVPACKED(
+typedef struct __mavlink_radio_status_t {
  uint16_t rxerrors; /*< Receive errors*/
  uint16_t fixed; /*< Count of error corrected packets*/
  uint8_t rssi; /*< Local signal strength*/
@@ -11,7 +11,7 @@ typedef struct MAVLINK_PACKED __mavlink_radio_status_t
  uint8_t txbuf; /*< Remaining free buffer space in percent.*/
  uint8_t noise; /*< Background noise level*/
  uint8_t remnoise; /*< Remote background noise level*/
-} mavlink_radio_status_t;
+}) mavlink_radio_status_t;
 
 #define MAVLINK_MSG_ID_RADIO_STATUS_LEN 9
 #define MAVLINK_MSG_ID_RADIO_STATUS_MIN_LEN 9

@@ -2,8 +2,8 @@
 
 #define MAVLINK_MSG_ID_HIL_STATE_QUATERNION 115
 
-typedef struct MAVLINK_PACKED __mavlink_hil_state_quaternion_t
-{
+MAVPACKED(
+typedef struct __mavlink_hil_state_quaternion_t {
  uint64_t time_usec; /*< Timestamp (microseconds since UNIX epoch or microseconds since system boot)*/
  float attitude_quaternion[4]; /*< Vehicle attitude expressed as normalized quaternion in w, x, y, z order (with 1 0 0 0 being the null-rotation)*/
  float rollspeed; /*< Body frame roll / phi angular speed (rad/s)*/
@@ -20,7 +20,7 @@ typedef struct MAVLINK_PACKED __mavlink_hil_state_quaternion_t
  int16_t xacc; /*< X acceleration (mg)*/
  int16_t yacc; /*< Y acceleration (mg)*/
  int16_t zacc; /*< Z acceleration (mg)*/
-} mavlink_hil_state_quaternion_t;
+}) mavlink_hil_state_quaternion_t;
 
 #define MAVLINK_MSG_ID_HIL_STATE_QUATERNION_LEN 64
 #define MAVLINK_MSG_ID_HIL_STATE_QUATERNION_MIN_LEN 64
