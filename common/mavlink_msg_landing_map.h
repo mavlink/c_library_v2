@@ -11,18 +11,18 @@ typedef struct __mavlink_landing_map_t {
  float local_x; /*< Position on X-axis*/
  float local_y; /*< Position on Y-axis*/
  float local_z; /*< Position on Z-axis*/
- uint8_t factors[225]; /*< LSB 0-2: Score between 0 and 7, LSB 3-7: Distance to the vehicle in meters.*/
+ uint8_t factors[169]; /*< LSB 0-2: Score between 0 and 7, LSB 3-7: Distance to the vehicle in meters.*/
 }) mavlink_landing_map_t;
 
-#define MAVLINK_MSG_ID_LANDING_MAP_LEN 257
-#define MAVLINK_MSG_ID_LANDING_MAP_MIN_LEN 257
-#define MAVLINK_MSG_ID_240_LEN 257
-#define MAVLINK_MSG_ID_240_MIN_LEN 257
+#define MAVLINK_MSG_ID_LANDING_MAP_LEN 201
+#define MAVLINK_MSG_ID_LANDING_MAP_MIN_LEN 201
+#define MAVLINK_MSG_ID_240_LEN 201
+#define MAVLINK_MSG_ID_240_MIN_LEN 201
 
-#define MAVLINK_MSG_ID_LANDING_MAP_CRC 8
-#define MAVLINK_MSG_ID_240_CRC 8
+#define MAVLINK_MSG_ID_LANDING_MAP_CRC 138
+#define MAVLINK_MSG_ID_240_CRC 138
 
-#define MAVLINK_MSG_LANDING_MAP_FIELD_FACTORS_LEN 225
+#define MAVLINK_MSG_LANDING_MAP_FIELD_FACTORS_LEN 169
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_LANDING_MAP { \
@@ -36,7 +36,7 @@ typedef struct __mavlink_landing_map_t {
          { "local_x", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_landing_map_t, local_x) }, \
          { "local_y", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_landing_map_t, local_y) }, \
          { "local_z", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_landing_map_t, local_z) }, \
-         { "factors", NULL, MAVLINK_TYPE_UINT8_T, 225, 32, offsetof(mavlink_landing_map_t, factors) }, \
+         { "factors", NULL, MAVLINK_TYPE_UINT8_T, 169, 32, offsetof(mavlink_landing_map_t, factors) }, \
          } \
 }
 #else
@@ -50,7 +50,7 @@ typedef struct __mavlink_landing_map_t {
          { "local_x", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_landing_map_t, local_x) }, \
          { "local_y", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_landing_map_t, local_y) }, \
          { "local_z", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_landing_map_t, local_z) }, \
-         { "factors", NULL, MAVLINK_TYPE_UINT8_T, 225, 32, offsetof(mavlink_landing_map_t, factors) }, \
+         { "factors", NULL, MAVLINK_TYPE_UINT8_T, 169, 32, offsetof(mavlink_landing_map_t, factors) }, \
          } \
 }
 #endif
@@ -83,7 +83,7 @@ static inline uint16_t mavlink_msg_landing_map_pack(uint8_t system_id, uint8_t c
 	_mav_put_float(buf, 20, local_x);
 	_mav_put_float(buf, 24, local_y);
 	_mav_put_float(buf, 28, local_z);
-	_mav_put_uint8_t_array(buf, 32, factors, 225);
+	_mav_put_uint8_t_array(buf, 32, factors, 169);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_LANDING_MAP_LEN);
 #else
 	mavlink_landing_map_t packet;
@@ -94,7 +94,7 @@ static inline uint16_t mavlink_msg_landing_map_pack(uint8_t system_id, uint8_t c
 	packet.local_x = local_x;
 	packet.local_y = local_y;
 	packet.local_z = local_z;
-	mav_array_memcpy(packet.factors, factors, sizeof(uint8_t)*225);
+	mav_array_memcpy(packet.factors, factors, sizeof(uint8_t)*169);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_LANDING_MAP_LEN);
 #endif
 
@@ -131,7 +131,7 @@ static inline uint16_t mavlink_msg_landing_map_pack_chan(uint8_t system_id, uint
 	_mav_put_float(buf, 20, local_x);
 	_mav_put_float(buf, 24, local_y);
 	_mav_put_float(buf, 28, local_z);
-	_mav_put_uint8_t_array(buf, 32, factors, 225);
+	_mav_put_uint8_t_array(buf, 32, factors, 169);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_LANDING_MAP_LEN);
 #else
 	mavlink_landing_map_t packet;
@@ -142,7 +142,7 @@ static inline uint16_t mavlink_msg_landing_map_pack_chan(uint8_t system_id, uint
 	packet.local_x = local_x;
 	packet.local_y = local_y;
 	packet.local_z = local_z;
-	mav_array_memcpy(packet.factors, factors, sizeof(uint8_t)*225);
+	mav_array_memcpy(packet.factors, factors, sizeof(uint8_t)*169);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_LANDING_MAP_LEN);
 #endif
 
@@ -203,7 +203,7 @@ static inline void mavlink_msg_landing_map_send(mavlink_channel_t chan, uint64_t
 	_mav_put_float(buf, 20, local_x);
 	_mav_put_float(buf, 24, local_y);
 	_mav_put_float(buf, 28, local_z);
-	_mav_put_uint8_t_array(buf, 32, factors, 225);
+	_mav_put_uint8_t_array(buf, 32, factors, 169);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LANDING_MAP, buf, MAVLINK_MSG_ID_LANDING_MAP_MIN_LEN, MAVLINK_MSG_ID_LANDING_MAP_LEN, MAVLINK_MSG_ID_LANDING_MAP_CRC);
 #else
 	mavlink_landing_map_t packet;
@@ -214,7 +214,7 @@ static inline void mavlink_msg_landing_map_send(mavlink_channel_t chan, uint64_t
 	packet.local_x = local_x;
 	packet.local_y = local_y;
 	packet.local_z = local_z;
-	mav_array_memcpy(packet.factors, factors, sizeof(uint8_t)*225);
+	mav_array_memcpy(packet.factors, factors, sizeof(uint8_t)*169);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LANDING_MAP, (const char *)&packet, MAVLINK_MSG_ID_LANDING_MAP_MIN_LEN, MAVLINK_MSG_ID_LANDING_MAP_LEN, MAVLINK_MSG_ID_LANDING_MAP_CRC);
 #endif
 }
@@ -252,7 +252,7 @@ static inline void mavlink_msg_landing_map_send_buf(mavlink_message_t *msgbuf, m
 	_mav_put_float(buf, 20, local_x);
 	_mav_put_float(buf, 24, local_y);
 	_mav_put_float(buf, 28, local_z);
-	_mav_put_uint8_t_array(buf, 32, factors, 225);
+	_mav_put_uint8_t_array(buf, 32, factors, 169);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LANDING_MAP, buf, MAVLINK_MSG_ID_LANDING_MAP_MIN_LEN, MAVLINK_MSG_ID_LANDING_MAP_LEN, MAVLINK_MSG_ID_LANDING_MAP_CRC);
 #else
 	mavlink_landing_map_t *packet = (mavlink_landing_map_t *)msgbuf;
@@ -263,7 +263,7 @@ static inline void mavlink_msg_landing_map_send_buf(mavlink_message_t *msgbuf, m
 	packet->local_x = local_x;
 	packet->local_y = local_y;
 	packet->local_z = local_z;
-	mav_array_memcpy(packet->factors, factors, sizeof(uint8_t)*225);
+	mav_array_memcpy(packet->factors, factors, sizeof(uint8_t)*169);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LANDING_MAP, (const char *)packet, MAVLINK_MSG_ID_LANDING_MAP_MIN_LEN, MAVLINK_MSG_ID_LANDING_MAP_LEN, MAVLINK_MSG_ID_LANDING_MAP_CRC);
 #endif
 }
@@ -351,7 +351,7 @@ static inline float mavlink_msg_landing_map_get_local_z(const mavlink_message_t*
  */
 static inline uint16_t mavlink_msg_landing_map_get_factors(const mavlink_message_t* msg, uint8_t *factors)
 {
-	return _MAV_RETURN_uint8_t_array(msg, factors, 225,  32);
+	return _MAV_RETURN_uint8_t_array(msg, factors, 169,  32);
 }
 
 /**
