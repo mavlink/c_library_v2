@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE SIM_STATE PACKING
 
 #define MAVLINK_MSG_ID_SIM_STATE 108

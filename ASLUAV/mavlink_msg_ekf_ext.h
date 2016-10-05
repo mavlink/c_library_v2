@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE EKF_EXT PACKING
 
 #define MAVLINK_MSG_ID_EKF_EXT 206

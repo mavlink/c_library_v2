@@ -2,6 +2,7 @@
  *	@brief MAVLink comm protocol testsuite generated from autoquad.xml
  *	@see http://qgroundcontrol.org/mavlink/
  */
+#pragma once
 #ifndef AUTOQUAD_TESTSUITE_H
 #define AUTOQUAD_TESTSUITE_H
 

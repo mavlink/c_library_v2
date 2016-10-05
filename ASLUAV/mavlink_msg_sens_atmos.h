@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE SENS_ATMOS PACKING
 
 #define MAVLINK_MSG_ID_SENS_ATMOS 208

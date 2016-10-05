@@ -2,12 +2,16 @@
  *	@brief MAVLink comm protocol generated from uAvionix.xml
  *	@see http://mavlink.org
  */
+#pragma once
 #ifndef MAVLINK_UAVIONIX_H
 #define MAVLINK_UAVIONIX_H
 
 #ifndef MAVLINK_H
     #error Wrong include order: MAVLINK_UAVIONIX.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
+
+#undef MAVLINK_THIS_XML_IDX
+#define MAVLINK_THIS_XML_IDX 2
 
 #ifdef __cplusplus
 extern "C" {
@@ -173,12 +177,14 @@ typedef enum UAVIONIX_ADSB_EMERGENCY_STATUS
 // base include
 
 
-#ifndef MAVLINK_MESSAGE_INFO
-#define MAVLINK_MESSAGE_INFO {MAVLINK_MESSAGE_INFO_UAVIONIX_ADSB_OUT_CFG, MAVLINK_MESSAGE_INFO_UAVIONIX_ADSB_OUT_DYNAMIC, MAVLINK_MESSAGE_INFO_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT}
-#endif
+#undef MAVLINK_THIS_XML_IDX
+#define MAVLINK_THIS_XML_IDX 2
 
-#if MAVLINK_COMMAND_24BIT
-#include "../mavlink_get_info.h"
+#if MAVLINK_THIS_XML_IDX == MAVLINK_PRIMARY_XML_IDX
+# define MAVLINK_MESSAGE_INFO {MAVLINK_MESSAGE_INFO_UAVIONIX_ADSB_OUT_CFG, MAVLINK_MESSAGE_INFO_UAVIONIX_ADSB_OUT_DYNAMIC, MAVLINK_MESSAGE_INFO_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT}
+# if MAVLINK_COMMAND_24BIT
+#  include "../mavlink_get_info.h"
+# endif
 #endif
 
 #ifdef __cplusplus

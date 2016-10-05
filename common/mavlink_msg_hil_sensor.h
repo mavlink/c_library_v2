@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE HIL_SENSOR PACKING
 
 #define MAVLINK_MSG_ID_HIL_SENSOR 107

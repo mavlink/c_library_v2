@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE BATTERY2 PACKING
 
 #define MAVLINK_MSG_ID_BATTERY2 181

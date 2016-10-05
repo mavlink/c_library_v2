@@ -2,6 +2,7 @@
  *	@brief MAVLink comm protocol testsuite generated from matrixpilot.xml
  *	@see http://qgroundcontrol.org/mavlink/
  */
+#pragma once
 #ifndef MATRIXPILOT_TESTSUITE_H
 #define MATRIXPILOT_TESTSUITE_H
 

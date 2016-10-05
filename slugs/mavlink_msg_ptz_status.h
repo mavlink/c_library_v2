@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE PTZ_STATUS PACKING
 
 #define MAVLINK_MSG_ID_PTZ_STATUS 192

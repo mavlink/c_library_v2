@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE WIND PACKING
 
 #define MAVLINK_MSG_ID_WIND 168

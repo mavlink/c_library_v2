@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE BOOT PACKING
 
 #define MAVLINK_MSG_ID_BOOT 197

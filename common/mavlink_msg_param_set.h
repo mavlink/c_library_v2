@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE PARAM_SET PACKING
 
 #define MAVLINK_MSG_ID_PARAM_SET 23

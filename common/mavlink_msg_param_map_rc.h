@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE PARAM_MAP_RC PACKING
 
 #define MAVLINK_MSG_ID_PARAM_MAP_RC 50

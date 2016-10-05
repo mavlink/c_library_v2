@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE UAV_STATUS PACKING
 
 #define MAVLINK_MSG_ID_UAV_STATUS 193

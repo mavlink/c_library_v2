@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE SENS_POWER PACKING
 
 #define MAVLINK_MSG_ID_SENS_POWER 201

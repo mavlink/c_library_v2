@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE TEST_TYPES PACKING
 
 #define MAVLINK_MSG_ID_TEST_TYPES 0

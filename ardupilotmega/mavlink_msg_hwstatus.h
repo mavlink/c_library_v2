@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE HWSTATUS PACKING
 
 #define MAVLINK_MSG_ID_HWSTATUS 165

@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE DEBUG_VECT PACKING
 
 #define MAVLINK_MSG_ID_DEBUG_VECT 250

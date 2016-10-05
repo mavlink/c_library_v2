@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE GPS2_RTK PACKING
 
 #define MAVLINK_MSG_ID_GPS2_RTK 128

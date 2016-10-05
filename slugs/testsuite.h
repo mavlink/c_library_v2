@@ -2,6 +2,7 @@
  *	@brief MAVLink comm protocol testsuite generated from slugs.xml
  *	@see http://qgroundcontrol.org/mavlink/
  */
+#pragma once
 #ifndef SLUGS_TESTSUITE_H
 #define SLUGS_TESTSUITE_H
 

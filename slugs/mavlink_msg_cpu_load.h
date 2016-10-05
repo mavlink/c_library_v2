@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE CPU_LOAD PACKING
 
 #define MAVLINK_MSG_ID_CPU_LOAD 170

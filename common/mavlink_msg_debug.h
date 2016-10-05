@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE DEBUG PACKING
 
 #define MAVLINK_MSG_ID_DEBUG 254

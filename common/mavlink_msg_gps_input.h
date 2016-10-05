@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE GPS_INPUT PACKING
 
 #define MAVLINK_MSG_ID_GPS_INPUT 232

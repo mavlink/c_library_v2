@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE SYSTEM_TIME PACKING
 
 #define MAVLINK_MSG_ID_SYSTEM_TIME 2

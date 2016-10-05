@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE MEMINFO PACKING
 
 #define MAVLINK_MSG_ID_MEMINFO 152

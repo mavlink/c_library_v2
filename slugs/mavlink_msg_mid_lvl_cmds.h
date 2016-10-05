@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE MID_LVL_CMDS PACKING
 
 #define MAVLINK_MSG_ID_MID_LVL_CMDS 180

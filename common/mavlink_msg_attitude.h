@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE ATTITUDE PACKING
 
 #define MAVLINK_MSG_ID_ATTITUDE 30

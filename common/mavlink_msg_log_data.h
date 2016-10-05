@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE LOG_DATA PACKING
 
 #define MAVLINK_MSG_ID_LOG_DATA 120

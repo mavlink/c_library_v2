@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE PING PACKING
 
 #define MAVLINK_MSG_ID_PING 4

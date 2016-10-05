@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE CTRL_SRFC_PT PACKING
 
 #define MAVLINK_MSG_ID_CTRL_SRFC_PT 181

@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE RAW_IMU PACKING
 
 #define MAVLINK_MSG_ID_RAW_IMU 27

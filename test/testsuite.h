@@ -2,6 +2,7 @@
  *	@brief MAVLink comm protocol testsuite generated from test.xml
  *	@see http://qgroundcontrol.org/mavlink/
  */
+#pragma once
 #ifndef TEST_TESTSUITE_H
 #define TEST_TESTSUITE_H
 

@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE PLAY_TUNE PACKING
 
 #define MAVLINK_MSG_ID_PLAY_TUNE 258

@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE RADIO PACKING
 
 #define MAVLINK_MSG_ID_RADIO 166

@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE HEARTBEAT PACKING
 
 #define MAVLINK_MSG_ID_HEARTBEAT 0

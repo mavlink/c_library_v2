@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE HIL_STATE PACKING
 
 #define MAVLINK_MSG_ID_HIL_STATE 90

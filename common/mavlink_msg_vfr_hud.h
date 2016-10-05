@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE VFR_HUD PACKING
 
 #define MAVLINK_MSG_ID_VFR_HUD 74

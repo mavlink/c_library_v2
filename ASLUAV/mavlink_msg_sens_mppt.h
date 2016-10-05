@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE SENS_MPPT PACKING
 
 #define MAVLINK_MSG_ID_SENS_MPPT 202

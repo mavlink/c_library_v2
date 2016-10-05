@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE DATA64 PACKING
 
 #define MAVLINK_MSG_ID_DATA64 171

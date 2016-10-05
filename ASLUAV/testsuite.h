@@ -2,6 +2,7 @@
  *	@brief MAVLink comm protocol testsuite generated from ASLUAV.xml
  *	@see http://qgroundcontrol.org/mavlink/
  */
+#pragma once
 #ifndef ASLUAV_TESTSUITE_H
 #define ASLUAV_TESTSUITE_H
 

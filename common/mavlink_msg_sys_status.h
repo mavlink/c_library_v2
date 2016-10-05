@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE SYS_STATUS PACKING
 
 #define MAVLINK_MSG_ID_SYS_STATUS 1

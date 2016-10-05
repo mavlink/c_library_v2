@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE HIL_GPS PACKING
 
 #define MAVLINK_MSG_ID_HIL_GPS 113

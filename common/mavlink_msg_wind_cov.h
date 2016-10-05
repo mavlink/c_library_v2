@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE WIND_COV PACKING
 
 #define MAVLINK_MSG_ID_WIND_COV 231

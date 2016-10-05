@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE GPS2_RAW PACKING
 
 #define MAVLINK_MSG_ID_GPS2_RAW 124

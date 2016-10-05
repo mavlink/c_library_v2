@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE ASL_OBCTRL PACKING
 
 #define MAVLINK_MSG_ID_ASL_OBCTRL 207

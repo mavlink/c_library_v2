@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE TIMESYNC PACKING
 
 #define MAVLINK_MSG_ID_TIMESYNC 111

@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE PID_TUNING PACKING
 
 #define MAVLINK_MSG_ID_PID_TUNING 194

@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE AHRS PACKING
 
 #define MAVLINK_MSG_ID_AHRS 163

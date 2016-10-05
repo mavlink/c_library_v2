@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE RPM PACKING
 
 #define MAVLINK_MSG_ID_RPM 226

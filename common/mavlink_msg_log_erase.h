@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE LOG_ERASE PACKING
 
 #define MAVLINK_MSG_ID_LOG_ERASE 121

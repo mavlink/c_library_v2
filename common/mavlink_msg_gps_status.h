@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE GPS_STATUS PACKING
 
 #define MAVLINK_MSG_ID_GPS_STATUS 25
