@@ -20,17 +20,17 @@ typedef struct __mavlink_uavionix_adsb_transceiver_health_report_t {
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT { \
-	10003, \
-	"UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT", \
-	1, \
-	{  { "rfHealth", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_uavionix_adsb_transceiver_health_report_t, rfHealth) }, \
+    10003, \
+    "UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT", \
+    1, \
+    {  { "rfHealth", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_uavionix_adsb_transceiver_health_report_t, rfHealth) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT { \
-	"UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT", \
-	1, \
-	{  { "rfHealth", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_uavionix_adsb_transceiver_health_report_t, rfHealth) }, \
+    "UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT", \
+    1, \
+    {  { "rfHealth", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_uavionix_adsb_transceiver_health_report_t, rfHealth) }, \
          } \
 }
 #endif
@@ -45,21 +45,21 @@ typedef struct __mavlink_uavionix_adsb_transceiver_health_report_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_uavionix_adsb_transceiver_health_report_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-						       uint8_t rfHealth)
+                               uint8_t rfHealth)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN];
-	_mav_put_uint8_t(buf, 0, rfHealth);
+    char buf[MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN];
+    _mav_put_uint8_t(buf, 0, rfHealth);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN);
 #else
-	mavlink_uavionix_adsb_transceiver_health_report_t packet;
-	packet.rfHealth = rfHealth;
+    mavlink_uavionix_adsb_transceiver_health_report_t packet;
+    packet.rfHealth = rfHealth;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN);
 #endif
 
-	msg->msgid = MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT;
+    msg->msgid = MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT;
     return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_CRC);
 }
 
@@ -73,22 +73,22 @@ static inline uint16_t mavlink_msg_uavionix_adsb_transceiver_health_report_pack(
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_uavionix_adsb_transceiver_health_report_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
-							   mavlink_message_t* msg,
-						           uint8_t rfHealth)
+                               mavlink_message_t* msg,
+                                   uint8_t rfHealth)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN];
-	_mav_put_uint8_t(buf, 0, rfHealth);
+    char buf[MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN];
+    _mav_put_uint8_t(buf, 0, rfHealth);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN);
 #else
-	mavlink_uavionix_adsb_transceiver_health_report_t packet;
-	packet.rfHealth = rfHealth;
+    mavlink_uavionix_adsb_transceiver_health_report_t packet;
+    packet.rfHealth = rfHealth;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN);
 #endif
 
-	msg->msgid = MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT;
+    msg->msgid = MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT;
     return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_CRC);
 }
 
@@ -102,7 +102,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_transceiver_health_report_pack_
  */
 static inline uint16_t mavlink_msg_uavionix_adsb_transceiver_health_report_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_uavionix_adsb_transceiver_health_report_t* uavionix_adsb_transceiver_health_report)
 {
-	return mavlink_msg_uavionix_adsb_transceiver_health_report_pack(system_id, component_id, msg, uavionix_adsb_transceiver_health_report->rfHealth);
+    return mavlink_msg_uavionix_adsb_transceiver_health_report_pack(system_id, component_id, msg, uavionix_adsb_transceiver_health_report->rfHealth);
 }
 
 /**
@@ -116,7 +116,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_transceiver_health_report_encod
  */
 static inline uint16_t mavlink_msg_uavionix_adsb_transceiver_health_report_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_uavionix_adsb_transceiver_health_report_t* uavionix_adsb_transceiver_health_report)
 {
-	return mavlink_msg_uavionix_adsb_transceiver_health_report_pack_chan(system_id, component_id, chan, msg, uavionix_adsb_transceiver_health_report->rfHealth);
+    return mavlink_msg_uavionix_adsb_transceiver_health_report_pack_chan(system_id, component_id, chan, msg, uavionix_adsb_transceiver_health_report->rfHealth);
 }
 
 /**
@@ -130,13 +130,13 @@ static inline uint16_t mavlink_msg_uavionix_adsb_transceiver_health_report_encod
 static inline void mavlink_msg_uavionix_adsb_transceiver_health_report_send(mavlink_channel_t chan, uint8_t rfHealth)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN];
-	_mav_put_uint8_t(buf, 0, rfHealth);
+    char buf[MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN];
+    _mav_put_uint8_t(buf, 0, rfHealth);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT, buf, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_CRC);
 #else
-	mavlink_uavionix_adsb_transceiver_health_report_t packet;
-	packet.rfHealth = rfHealth;
+    mavlink_uavionix_adsb_transceiver_health_report_t packet;
+    packet.rfHealth = rfHealth;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT, (const char *)&packet, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_CRC);
 #endif
@@ -167,13 +167,13 @@ static inline void mavlink_msg_uavionix_adsb_transceiver_health_report_send_stru
 static inline void mavlink_msg_uavionix_adsb_transceiver_health_report_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t rfHealth)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char *buf = (char *)msgbuf;
-	_mav_put_uint8_t(buf, 0, rfHealth);
+    char *buf = (char *)msgbuf;
+    _mav_put_uint8_t(buf, 0, rfHealth);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT, buf, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_CRC);
 #else
-	mavlink_uavionix_adsb_transceiver_health_report_t *packet = (mavlink_uavionix_adsb_transceiver_health_report_t *)msgbuf;
-	packet->rfHealth = rfHealth;
+    mavlink_uavionix_adsb_transceiver_health_report_t *packet = (mavlink_uavionix_adsb_transceiver_health_report_t *)msgbuf;
+    packet->rfHealth = rfHealth;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT, (const char *)packet, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_CRC);
 #endif
@@ -192,7 +192,7 @@ static inline void mavlink_msg_uavionix_adsb_transceiver_health_report_send_buf(
  */
 static inline uint8_t mavlink_msg_uavionix_adsb_transceiver_health_report_get_rfHealth(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint8_t(msg,  0);
+    return _MAV_RETURN_uint8_t(msg,  0);
 }
 
 /**
@@ -204,10 +204,10 @@ static inline uint8_t mavlink_msg_uavionix_adsb_transceiver_health_report_get_rf
 static inline void mavlink_msg_uavionix_adsb_transceiver_health_report_decode(const mavlink_message_t* msg, mavlink_uavionix_adsb_transceiver_health_report_t* uavionix_adsb_transceiver_health_report)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	uavionix_adsb_transceiver_health_report->rfHealth = mavlink_msg_uavionix_adsb_transceiver_health_report_get_rfHealth(msg);
+    uavionix_adsb_transceiver_health_report->rfHealth = mavlink_msg_uavionix_adsb_transceiver_health_report_get_rfHealth(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN? msg->len : MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN;
         memset(uavionix_adsb_transceiver_health_report, 0, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN);
-	memcpy(uavionix_adsb_transceiver_health_report, _MAV_PAYLOAD(msg), len);
+    memcpy(uavionix_adsb_transceiver_health_report, _MAV_PAYLOAD(msg), len);
 #endif
 }

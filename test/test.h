@@ -1,6 +1,6 @@
 /** @file
- *	@brief MAVLink comm protocol generated from test.xml
- *	@see http://mavlink.org
+ *  @brief MAVLink comm protocol generated from test.xml
+ *  @see http://mavlink.org
  */
 #pragma once
 #ifndef MAVLINK_TEST_H

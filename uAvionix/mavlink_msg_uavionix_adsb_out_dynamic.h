@@ -35,10 +35,10 @@ typedef struct __mavlink_uavionix_adsb_out_dynamic_t {
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_UAVIONIX_ADSB_OUT_DYNAMIC { \
-	10002, \
-	"UAVIONIX_ADSB_OUT_DYNAMIC", \
-	16, \
-	{  { "utcTime", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_uavionix_adsb_out_dynamic_t, utcTime) }, \
+    10002, \
+    "UAVIONIX_ADSB_OUT_DYNAMIC", \
+    16, \
+    {  { "utcTime", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_uavionix_adsb_out_dynamic_t, utcTime) }, \
          { "gpsLat", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_uavionix_adsb_out_dynamic_t, gpsLat) }, \
          { "gpsLon", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_uavionix_adsb_out_dynamic_t, gpsLon) }, \
          { "gpsAlt", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_uavionix_adsb_out_dynamic_t, gpsAlt) }, \
@@ -58,9 +58,9 @@ typedef struct __mavlink_uavionix_adsb_out_dynamic_t {
 }
 #else
 #define MAVLINK_MESSAGE_INFO_UAVIONIX_ADSB_OUT_DYNAMIC { \
-	"UAVIONIX_ADSB_OUT_DYNAMIC", \
-	16, \
-	{  { "utcTime", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_uavionix_adsb_out_dynamic_t, utcTime) }, \
+    "UAVIONIX_ADSB_OUT_DYNAMIC", \
+    16, \
+    {  { "utcTime", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_uavionix_adsb_out_dynamic_t, utcTime) }, \
          { "gpsLat", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_uavionix_adsb_out_dynamic_t, gpsLat) }, \
          { "gpsLon", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_uavionix_adsb_out_dynamic_t, gpsLon) }, \
          { "gpsAlt", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_uavionix_adsb_out_dynamic_t, gpsAlt) }, \
@@ -105,51 +105,51 @@ typedef struct __mavlink_uavionix_adsb_out_dynamic_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_uavionix_adsb_out_dynamic_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-						       uint32_t utcTime, int32_t gpsLat, int32_t gpsLon, int32_t gpsAlt, uint8_t gpsFix, uint8_t numSats, int32_t baroAltMSL, uint32_t accuracyHor, uint16_t accuracyVert, uint16_t accuracyVel, int16_t velVert, int16_t velNS, int16_t VelEW, uint8_t emergencyStatus, uint16_t state, uint16_t squawk)
+                               uint32_t utcTime, int32_t gpsLat, int32_t gpsLon, int32_t gpsAlt, uint8_t gpsFix, uint8_t numSats, int32_t baroAltMSL, uint32_t accuracyHor, uint16_t accuracyVert, uint16_t accuracyVel, int16_t velVert, int16_t velNS, int16_t VelEW, uint8_t emergencyStatus, uint16_t state, uint16_t squawk)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN];
-	_mav_put_uint32_t(buf, 0, utcTime);
-	_mav_put_int32_t(buf, 4, gpsLat);
-	_mav_put_int32_t(buf, 8, gpsLon);
-	_mav_put_int32_t(buf, 12, gpsAlt);
-	_mav_put_int32_t(buf, 16, baroAltMSL);
-	_mav_put_uint32_t(buf, 20, accuracyHor);
-	_mav_put_uint16_t(buf, 24, accuracyVert);
-	_mav_put_uint16_t(buf, 26, accuracyVel);
-	_mav_put_int16_t(buf, 28, velVert);
-	_mav_put_int16_t(buf, 30, velNS);
-	_mav_put_int16_t(buf, 32, VelEW);
-	_mav_put_uint16_t(buf, 34, state);
-	_mav_put_uint16_t(buf, 36, squawk);
-	_mav_put_uint8_t(buf, 38, gpsFix);
-	_mav_put_uint8_t(buf, 39, numSats);
-	_mav_put_uint8_t(buf, 40, emergencyStatus);
+    char buf[MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN];
+    _mav_put_uint32_t(buf, 0, utcTime);
+    _mav_put_int32_t(buf, 4, gpsLat);
+    _mav_put_int32_t(buf, 8, gpsLon);
+    _mav_put_int32_t(buf, 12, gpsAlt);
+    _mav_put_int32_t(buf, 16, baroAltMSL);
+    _mav_put_uint32_t(buf, 20, accuracyHor);
+    _mav_put_uint16_t(buf, 24, accuracyVert);
+    _mav_put_uint16_t(buf, 26, accuracyVel);
+    _mav_put_int16_t(buf, 28, velVert);
+    _mav_put_int16_t(buf, 30, velNS);
+    _mav_put_int16_t(buf, 32, VelEW);
+    _mav_put_uint16_t(buf, 34, state);
+    _mav_put_uint16_t(buf, 36, squawk);
+    _mav_put_uint8_t(buf, 38, gpsFix);
+    _mav_put_uint8_t(buf, 39, numSats);
+    _mav_put_uint8_t(buf, 40, emergencyStatus);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN);
 #else
-	mavlink_uavionix_adsb_out_dynamic_t packet;
-	packet.utcTime = utcTime;
-	packet.gpsLat = gpsLat;
-	packet.gpsLon = gpsLon;
-	packet.gpsAlt = gpsAlt;
-	packet.baroAltMSL = baroAltMSL;
-	packet.accuracyHor = accuracyHor;
-	packet.accuracyVert = accuracyVert;
-	packet.accuracyVel = accuracyVel;
-	packet.velVert = velVert;
-	packet.velNS = velNS;
-	packet.VelEW = VelEW;
-	packet.state = state;
-	packet.squawk = squawk;
-	packet.gpsFix = gpsFix;
-	packet.numSats = numSats;
-	packet.emergencyStatus = emergencyStatus;
+    mavlink_uavionix_adsb_out_dynamic_t packet;
+    packet.utcTime = utcTime;
+    packet.gpsLat = gpsLat;
+    packet.gpsLon = gpsLon;
+    packet.gpsAlt = gpsAlt;
+    packet.baroAltMSL = baroAltMSL;
+    packet.accuracyHor = accuracyHor;
+    packet.accuracyVert = accuracyVert;
+    packet.accuracyVel = accuracyVel;
+    packet.velVert = velVert;
+    packet.velNS = velNS;
+    packet.VelEW = VelEW;
+    packet.state = state;
+    packet.squawk = squawk;
+    packet.gpsFix = gpsFix;
+    packet.numSats = numSats;
+    packet.emergencyStatus = emergencyStatus;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN);
 #endif
 
-	msg->msgid = MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC;
+    msg->msgid = MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC;
     return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_CRC);
 }
 
@@ -178,52 +178,52 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_dynamic_pack(uint8_t system
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_uavionix_adsb_out_dynamic_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
-							   mavlink_message_t* msg,
-						           uint32_t utcTime,int32_t gpsLat,int32_t gpsLon,int32_t gpsAlt,uint8_t gpsFix,uint8_t numSats,int32_t baroAltMSL,uint32_t accuracyHor,uint16_t accuracyVert,uint16_t accuracyVel,int16_t velVert,int16_t velNS,int16_t VelEW,uint8_t emergencyStatus,uint16_t state,uint16_t squawk)
+                               mavlink_message_t* msg,
+                                   uint32_t utcTime,int32_t gpsLat,int32_t gpsLon,int32_t gpsAlt,uint8_t gpsFix,uint8_t numSats,int32_t baroAltMSL,uint32_t accuracyHor,uint16_t accuracyVert,uint16_t accuracyVel,int16_t velVert,int16_t velNS,int16_t VelEW,uint8_t emergencyStatus,uint16_t state,uint16_t squawk)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN];
-	_mav_put_uint32_t(buf, 0, utcTime);
-	_mav_put_int32_t(buf, 4, gpsLat);
-	_mav_put_int32_t(buf, 8, gpsLon);
-	_mav_put_int32_t(buf, 12, gpsAlt);
-	_mav_put_int32_t(buf, 16, baroAltMSL);
-	_mav_put_uint32_t(buf, 20, accuracyHor);
-	_mav_put_uint16_t(buf, 24, accuracyVert);
-	_mav_put_uint16_t(buf, 26, accuracyVel);
-	_mav_put_int16_t(buf, 28, velVert);
-	_mav_put_int16_t(buf, 30, velNS);
-	_mav_put_int16_t(buf, 32, VelEW);
-	_mav_put_uint16_t(buf, 34, state);
-	_mav_put_uint16_t(buf, 36, squawk);
-	_mav_put_uint8_t(buf, 38, gpsFix);
-	_mav_put_uint8_t(buf, 39, numSats);
-	_mav_put_uint8_t(buf, 40, emergencyStatus);
+    char buf[MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN];
+    _mav_put_uint32_t(buf, 0, utcTime);
+    _mav_put_int32_t(buf, 4, gpsLat);
+    _mav_put_int32_t(buf, 8, gpsLon);
+    _mav_put_int32_t(buf, 12, gpsAlt);
+    _mav_put_int32_t(buf, 16, baroAltMSL);
+    _mav_put_uint32_t(buf, 20, accuracyHor);
+    _mav_put_uint16_t(buf, 24, accuracyVert);
+    _mav_put_uint16_t(buf, 26, accuracyVel);
+    _mav_put_int16_t(buf, 28, velVert);
+    _mav_put_int16_t(buf, 30, velNS);
+    _mav_put_int16_t(buf, 32, VelEW);
+    _mav_put_uint16_t(buf, 34, state);
+    _mav_put_uint16_t(buf, 36, squawk);
+    _mav_put_uint8_t(buf, 38, gpsFix);
+    _mav_put_uint8_t(buf, 39, numSats);
+    _mav_put_uint8_t(buf, 40, emergencyStatus);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN);
 #else
-	mavlink_uavionix_adsb_out_dynamic_t packet;
-	packet.utcTime = utcTime;
-	packet.gpsLat = gpsLat;
-	packet.gpsLon = gpsLon;
-	packet.gpsAlt = gpsAlt;
-	packet.baroAltMSL = baroAltMSL;
-	packet.accuracyHor = accuracyHor;
-	packet.accuracyVert = accuracyVert;
-	packet.accuracyVel = accuracyVel;
-	packet.velVert = velVert;
-	packet.velNS = velNS;
-	packet.VelEW = VelEW;
-	packet.state = state;
-	packet.squawk = squawk;
-	packet.gpsFix = gpsFix;
-	packet.numSats = numSats;
-	packet.emergencyStatus = emergencyStatus;
+    mavlink_uavionix_adsb_out_dynamic_t packet;
+    packet.utcTime = utcTime;
+    packet.gpsLat = gpsLat;
+    packet.gpsLon = gpsLon;
+    packet.gpsAlt = gpsAlt;
+    packet.baroAltMSL = baroAltMSL;
+    packet.accuracyHor = accuracyHor;
+    packet.accuracyVert = accuracyVert;
+    packet.accuracyVel = accuracyVel;
+    packet.velVert = velVert;
+    packet.velNS = velNS;
+    packet.VelEW = VelEW;
+    packet.state = state;
+    packet.squawk = squawk;
+    packet.gpsFix = gpsFix;
+    packet.numSats = numSats;
+    packet.emergencyStatus = emergencyStatus;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN);
 #endif
 
-	msg->msgid = MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC;
+    msg->msgid = MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC;
     return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_CRC);
 }
 
@@ -237,7 +237,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_dynamic_pack_chan(uint8_t s
  */
 static inline uint16_t mavlink_msg_uavionix_adsb_out_dynamic_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_uavionix_adsb_out_dynamic_t* uavionix_adsb_out_dynamic)
 {
-	return mavlink_msg_uavionix_adsb_out_dynamic_pack(system_id, component_id, msg, uavionix_adsb_out_dynamic->utcTime, uavionix_adsb_out_dynamic->gpsLat, uavionix_adsb_out_dynamic->gpsLon, uavionix_adsb_out_dynamic->gpsAlt, uavionix_adsb_out_dynamic->gpsFix, uavionix_adsb_out_dynamic->numSats, uavionix_adsb_out_dynamic->baroAltMSL, uavionix_adsb_out_dynamic->accuracyHor, uavionix_adsb_out_dynamic->accuracyVert, uavionix_adsb_out_dynamic->accuracyVel, uavionix_adsb_out_dynamic->velVert, uavionix_adsb_out_dynamic->velNS, uavionix_adsb_out_dynamic->VelEW, uavionix_adsb_out_dynamic->emergencyStatus, uavionix_adsb_out_dynamic->state, uavionix_adsb_out_dynamic->squawk);
+    return mavlink_msg_uavionix_adsb_out_dynamic_pack(system_id, component_id, msg, uavionix_adsb_out_dynamic->utcTime, uavionix_adsb_out_dynamic->gpsLat, uavionix_adsb_out_dynamic->gpsLon, uavionix_adsb_out_dynamic->gpsAlt, uavionix_adsb_out_dynamic->gpsFix, uavionix_adsb_out_dynamic->numSats, uavionix_adsb_out_dynamic->baroAltMSL, uavionix_adsb_out_dynamic->accuracyHor, uavionix_adsb_out_dynamic->accuracyVert, uavionix_adsb_out_dynamic->accuracyVel, uavionix_adsb_out_dynamic->velVert, uavionix_adsb_out_dynamic->velNS, uavionix_adsb_out_dynamic->VelEW, uavionix_adsb_out_dynamic->emergencyStatus, uavionix_adsb_out_dynamic->state, uavionix_adsb_out_dynamic->squawk);
 }
 
 /**
@@ -251,7 +251,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_dynamic_encode(uint8_t syst
  */
 static inline uint16_t mavlink_msg_uavionix_adsb_out_dynamic_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_uavionix_adsb_out_dynamic_t* uavionix_adsb_out_dynamic)
 {
-	return mavlink_msg_uavionix_adsb_out_dynamic_pack_chan(system_id, component_id, chan, msg, uavionix_adsb_out_dynamic->utcTime, uavionix_adsb_out_dynamic->gpsLat, uavionix_adsb_out_dynamic->gpsLon, uavionix_adsb_out_dynamic->gpsAlt, uavionix_adsb_out_dynamic->gpsFix, uavionix_adsb_out_dynamic->numSats, uavionix_adsb_out_dynamic->baroAltMSL, uavionix_adsb_out_dynamic->accuracyHor, uavionix_adsb_out_dynamic->accuracyVert, uavionix_adsb_out_dynamic->accuracyVel, uavionix_adsb_out_dynamic->velVert, uavionix_adsb_out_dynamic->velNS, uavionix_adsb_out_dynamic->VelEW, uavionix_adsb_out_dynamic->emergencyStatus, uavionix_adsb_out_dynamic->state, uavionix_adsb_out_dynamic->squawk);
+    return mavlink_msg_uavionix_adsb_out_dynamic_pack_chan(system_id, component_id, chan, msg, uavionix_adsb_out_dynamic->utcTime, uavionix_adsb_out_dynamic->gpsLat, uavionix_adsb_out_dynamic->gpsLon, uavionix_adsb_out_dynamic->gpsAlt, uavionix_adsb_out_dynamic->gpsFix, uavionix_adsb_out_dynamic->numSats, uavionix_adsb_out_dynamic->baroAltMSL, uavionix_adsb_out_dynamic->accuracyHor, uavionix_adsb_out_dynamic->accuracyVert, uavionix_adsb_out_dynamic->accuracyVel, uavionix_adsb_out_dynamic->velVert, uavionix_adsb_out_dynamic->velNS, uavionix_adsb_out_dynamic->VelEW, uavionix_adsb_out_dynamic->emergencyStatus, uavionix_adsb_out_dynamic->state, uavionix_adsb_out_dynamic->squawk);
 }
 
 /**
@@ -280,43 +280,43 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_dynamic_encode_chan(uint8_t
 static inline void mavlink_msg_uavionix_adsb_out_dynamic_send(mavlink_channel_t chan, uint32_t utcTime, int32_t gpsLat, int32_t gpsLon, int32_t gpsAlt, uint8_t gpsFix, uint8_t numSats, int32_t baroAltMSL, uint32_t accuracyHor, uint16_t accuracyVert, uint16_t accuracyVel, int16_t velVert, int16_t velNS, int16_t VelEW, uint8_t emergencyStatus, uint16_t state, uint16_t squawk)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN];
-	_mav_put_uint32_t(buf, 0, utcTime);
-	_mav_put_int32_t(buf, 4, gpsLat);
-	_mav_put_int32_t(buf, 8, gpsLon);
-	_mav_put_int32_t(buf, 12, gpsAlt);
-	_mav_put_int32_t(buf, 16, baroAltMSL);
-	_mav_put_uint32_t(buf, 20, accuracyHor);
-	_mav_put_uint16_t(buf, 24, accuracyVert);
-	_mav_put_uint16_t(buf, 26, accuracyVel);
-	_mav_put_int16_t(buf, 28, velVert);
-	_mav_put_int16_t(buf, 30, velNS);
-	_mav_put_int16_t(buf, 32, VelEW);
-	_mav_put_uint16_t(buf, 34, state);
-	_mav_put_uint16_t(buf, 36, squawk);
-	_mav_put_uint8_t(buf, 38, gpsFix);
-	_mav_put_uint8_t(buf, 39, numSats);
-	_mav_put_uint8_t(buf, 40, emergencyStatus);
+    char buf[MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN];
+    _mav_put_uint32_t(buf, 0, utcTime);
+    _mav_put_int32_t(buf, 4, gpsLat);
+    _mav_put_int32_t(buf, 8, gpsLon);
+    _mav_put_int32_t(buf, 12, gpsAlt);
+    _mav_put_int32_t(buf, 16, baroAltMSL);
+    _mav_put_uint32_t(buf, 20, accuracyHor);
+    _mav_put_uint16_t(buf, 24, accuracyVert);
+    _mav_put_uint16_t(buf, 26, accuracyVel);
+    _mav_put_int16_t(buf, 28, velVert);
+    _mav_put_int16_t(buf, 30, velNS);
+    _mav_put_int16_t(buf, 32, VelEW);
+    _mav_put_uint16_t(buf, 34, state);
+    _mav_put_uint16_t(buf, 36, squawk);
+    _mav_put_uint8_t(buf, 38, gpsFix);
+    _mav_put_uint8_t(buf, 39, numSats);
+    _mav_put_uint8_t(buf, 40, emergencyStatus);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC, buf, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_CRC);
 #else
-	mavlink_uavionix_adsb_out_dynamic_t packet;
-	packet.utcTime = utcTime;
-	packet.gpsLat = gpsLat;
-	packet.gpsLon = gpsLon;
-	packet.gpsAlt = gpsAlt;
-	packet.baroAltMSL = baroAltMSL;
-	packet.accuracyHor = accuracyHor;
-	packet.accuracyVert = accuracyVert;
-	packet.accuracyVel = accuracyVel;
-	packet.velVert = velVert;
-	packet.velNS = velNS;
-	packet.VelEW = VelEW;
-	packet.state = state;
-	packet.squawk = squawk;
-	packet.gpsFix = gpsFix;
-	packet.numSats = numSats;
-	packet.emergencyStatus = emergencyStatus;
+    mavlink_uavionix_adsb_out_dynamic_t packet;
+    packet.utcTime = utcTime;
+    packet.gpsLat = gpsLat;
+    packet.gpsLon = gpsLon;
+    packet.gpsAlt = gpsAlt;
+    packet.baroAltMSL = baroAltMSL;
+    packet.accuracyHor = accuracyHor;
+    packet.accuracyVert = accuracyVert;
+    packet.accuracyVel = accuracyVel;
+    packet.velVert = velVert;
+    packet.velNS = velNS;
+    packet.VelEW = VelEW;
+    packet.state = state;
+    packet.squawk = squawk;
+    packet.gpsFix = gpsFix;
+    packet.numSats = numSats;
+    packet.emergencyStatus = emergencyStatus;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC, (const char *)&packet, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_CRC);
 #endif
@@ -347,43 +347,43 @@ static inline void mavlink_msg_uavionix_adsb_out_dynamic_send_struct(mavlink_cha
 static inline void mavlink_msg_uavionix_adsb_out_dynamic_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t utcTime, int32_t gpsLat, int32_t gpsLon, int32_t gpsAlt, uint8_t gpsFix, uint8_t numSats, int32_t baroAltMSL, uint32_t accuracyHor, uint16_t accuracyVert, uint16_t accuracyVel, int16_t velVert, int16_t velNS, int16_t VelEW, uint8_t emergencyStatus, uint16_t state, uint16_t squawk)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char *buf = (char *)msgbuf;
-	_mav_put_uint32_t(buf, 0, utcTime);
-	_mav_put_int32_t(buf, 4, gpsLat);
-	_mav_put_int32_t(buf, 8, gpsLon);
-	_mav_put_int32_t(buf, 12, gpsAlt);
-	_mav_put_int32_t(buf, 16, baroAltMSL);
-	_mav_put_uint32_t(buf, 20, accuracyHor);
-	_mav_put_uint16_t(buf, 24, accuracyVert);
-	_mav_put_uint16_t(buf, 26, accuracyVel);
-	_mav_put_int16_t(buf, 28, velVert);
-	_mav_put_int16_t(buf, 30, velNS);
-	_mav_put_int16_t(buf, 32, VelEW);
-	_mav_put_uint16_t(buf, 34, state);
-	_mav_put_uint16_t(buf, 36, squawk);
-	_mav_put_uint8_t(buf, 38, gpsFix);
-	_mav_put_uint8_t(buf, 39, numSats);
-	_mav_put_uint8_t(buf, 40, emergencyStatus);
+    char *buf = (char *)msgbuf;
+    _mav_put_uint32_t(buf, 0, utcTime);
+    _mav_put_int32_t(buf, 4, gpsLat);
+    _mav_put_int32_t(buf, 8, gpsLon);
+    _mav_put_int32_t(buf, 12, gpsAlt);
+    _mav_put_int32_t(buf, 16, baroAltMSL);
+    _mav_put_uint32_t(buf, 20, accuracyHor);
+    _mav_put_uint16_t(buf, 24, accuracyVert);
+    _mav_put_uint16_t(buf, 26, accuracyVel);
+    _mav_put_int16_t(buf, 28, velVert);
+    _mav_put_int16_t(buf, 30, velNS);
+    _mav_put_int16_t(buf, 32, VelEW);
+    _mav_put_uint16_t(buf, 34, state);
+    _mav_put_uint16_t(buf, 36, squawk);
+    _mav_put_uint8_t(buf, 38, gpsFix);
+    _mav_put_uint8_t(buf, 39, numSats);
+    _mav_put_uint8_t(buf, 40, emergencyStatus);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC, buf, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_CRC);
 #else
-	mavlink_uavionix_adsb_out_dynamic_t *packet = (mavlink_uavionix_adsb_out_dynamic_t *)msgbuf;
-	packet->utcTime = utcTime;
-	packet->gpsLat = gpsLat;
-	packet->gpsLon = gpsLon;
-	packet->gpsAlt = gpsAlt;
-	packet->baroAltMSL = baroAltMSL;
-	packet->accuracyHor = accuracyHor;
-	packet->accuracyVert = accuracyVert;
-	packet->accuracyVel = accuracyVel;
-	packet->velVert = velVert;
-	packet->velNS = velNS;
-	packet->VelEW = VelEW;
-	packet->state = state;
-	packet->squawk = squawk;
-	packet->gpsFix = gpsFix;
-	packet->numSats = numSats;
-	packet->emergencyStatus = emergencyStatus;
+    mavlink_uavionix_adsb_out_dynamic_t *packet = (mavlink_uavionix_adsb_out_dynamic_t *)msgbuf;
+    packet->utcTime = utcTime;
+    packet->gpsLat = gpsLat;
+    packet->gpsLon = gpsLon;
+    packet->gpsAlt = gpsAlt;
+    packet->baroAltMSL = baroAltMSL;
+    packet->accuracyHor = accuracyHor;
+    packet->accuracyVert = accuracyVert;
+    packet->accuracyVel = accuracyVel;
+    packet->velVert = velVert;
+    packet->velNS = velNS;
+    packet->VelEW = VelEW;
+    packet->state = state;
+    packet->squawk = squawk;
+    packet->gpsFix = gpsFix;
+    packet->numSats = numSats;
+    packet->emergencyStatus = emergencyStatus;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC, (const char *)packet, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_CRC);
 #endif
@@ -402,7 +402,7 @@ static inline void mavlink_msg_uavionix_adsb_out_dynamic_send_buf(mavlink_messag
  */
 static inline uint32_t mavlink_msg_uavionix_adsb_out_dynamic_get_utcTime(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint32_t(msg,  0);
+    return _MAV_RETURN_uint32_t(msg,  0);
 }
 
 /**
@@ -412,7 +412,7 @@ static inline uint32_t mavlink_msg_uavionix_adsb_out_dynamic_get_utcTime(const m
  */
 static inline int32_t mavlink_msg_uavionix_adsb_out_dynamic_get_gpsLat(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int32_t(msg,  4);
+    return _MAV_RETURN_int32_t(msg,  4);
 }
 
 /**
@@ -422,7 +422,7 @@ static inline int32_t mavlink_msg_uavionix_adsb_out_dynamic_get_gpsLat(const mav
  */
 static inline int32_t mavlink_msg_uavionix_adsb_out_dynamic_get_gpsLon(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int32_t(msg,  8);
+    return _MAV_RETURN_int32_t(msg,  8);
 }
 
 /**
@@ -432,7 +432,7 @@ static inline int32_t mavlink_msg_uavionix_adsb_out_dynamic_get_gpsLon(const mav
  */
 static inline int32_t mavlink_msg_uavionix_adsb_out_dynamic_get_gpsAlt(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int32_t(msg,  12);
+    return _MAV_RETURN_int32_t(msg,  12);
 }
 
 /**
@@ -442,7 +442,7 @@ static inline int32_t mavlink_msg_uavionix_adsb_out_dynamic_get_gpsAlt(const mav
  */
 static inline uint8_t mavlink_msg_uavionix_adsb_out_dynamic_get_gpsFix(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint8_t(msg,  38);
+    return _MAV_RETURN_uint8_t(msg,  38);
 }
 
 /**
@@ -452,7 +452,7 @@ static inline uint8_t mavlink_msg_uavionix_adsb_out_dynamic_get_gpsFix(const mav
  */
 static inline uint8_t mavlink_msg_uavionix_adsb_out_dynamic_get_numSats(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint8_t(msg,  39);
+    return _MAV_RETURN_uint8_t(msg,  39);
 }
 
 /**
@@ -462,7 +462,7 @@ static inline uint8_t mavlink_msg_uavionix_adsb_out_dynamic_get_numSats(const ma
  */
 static inline int32_t mavlink_msg_uavionix_adsb_out_dynamic_get_baroAltMSL(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int32_t(msg,  16);
+    return _MAV_RETURN_int32_t(msg,  16);
 }
 
 /**
@@ -472,7 +472,7 @@ static inline int32_t mavlink_msg_uavionix_adsb_out_dynamic_get_baroAltMSL(const
  */
 static inline uint32_t mavlink_msg_uavionix_adsb_out_dynamic_get_accuracyHor(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint32_t(msg,  20);
+    return _MAV_RETURN_uint32_t(msg,  20);
 }
 
 /**
@@ -482,7 +482,7 @@ static inline uint32_t mavlink_msg_uavionix_adsb_out_dynamic_get_accuracyHor(con
  */
 static inline uint16_t mavlink_msg_uavionix_adsb_out_dynamic_get_accuracyVert(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint16_t(msg,  24);
+    return _MAV_RETURN_uint16_t(msg,  24);
 }
 
 /**
@@ -492,7 +492,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_dynamic_get_accuracyVert(co
  */
 static inline uint16_t mavlink_msg_uavionix_adsb_out_dynamic_get_accuracyVel(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint16_t(msg,  26);
+    return _MAV_RETURN_uint16_t(msg,  26);
 }
 
 /**
@@ -502,7 +502,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_dynamic_get_accuracyVel(con
  */
 static inline int16_t mavlink_msg_uavionix_adsb_out_dynamic_get_velVert(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  28);
+    return _MAV_RETURN_int16_t(msg,  28);
 }
 
 /**
@@ -512,7 +512,7 @@ static inline int16_t mavlink_msg_uavionix_adsb_out_dynamic_get_velVert(const ma
  */
 static inline int16_t mavlink_msg_uavionix_adsb_out_dynamic_get_velNS(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  30);
+    return _MAV_RETURN_int16_t(msg,  30);
 }
 
 /**
@@ -522,7 +522,7 @@ static inline int16_t mavlink_msg_uavionix_adsb_out_dynamic_get_velNS(const mavl
  */
 static inline int16_t mavlink_msg_uavionix_adsb_out_dynamic_get_VelEW(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  32);
+    return _MAV_RETURN_int16_t(msg,  32);
 }
 
 /**
@@ -532,7 +532,7 @@ static inline int16_t mavlink_msg_uavionix_adsb_out_dynamic_get_VelEW(const mavl
  */
 static inline uint8_t mavlink_msg_uavionix_adsb_out_dynamic_get_emergencyStatus(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint8_t(msg,  40);
+    return _MAV_RETURN_uint8_t(msg,  40);
 }
 
 /**
@@ -542,7 +542,7 @@ static inline uint8_t mavlink_msg_uavionix_adsb_out_dynamic_get_emergencyStatus(
  */
 static inline uint16_t mavlink_msg_uavionix_adsb_out_dynamic_get_state(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint16_t(msg,  34);
+    return _MAV_RETURN_uint16_t(msg,  34);
 }
 
 /**
@@ -552,7 +552,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_dynamic_get_state(const mav
  */
 static inline uint16_t mavlink_msg_uavionix_adsb_out_dynamic_get_squawk(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint16_t(msg,  36);
+    return _MAV_RETURN_uint16_t(msg,  36);
 }
 
 /**
@@ -564,25 +564,25 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_dynamic_get_squawk(const ma
 static inline void mavlink_msg_uavionix_adsb_out_dynamic_decode(const mavlink_message_t* msg, mavlink_uavionix_adsb_out_dynamic_t* uavionix_adsb_out_dynamic)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	uavionix_adsb_out_dynamic->utcTime = mavlink_msg_uavionix_adsb_out_dynamic_get_utcTime(msg);
-	uavionix_adsb_out_dynamic->gpsLat = mavlink_msg_uavionix_adsb_out_dynamic_get_gpsLat(msg);
-	uavionix_adsb_out_dynamic->gpsLon = mavlink_msg_uavionix_adsb_out_dynamic_get_gpsLon(msg);
-	uavionix_adsb_out_dynamic->gpsAlt = mavlink_msg_uavionix_adsb_out_dynamic_get_gpsAlt(msg);
-	uavionix_adsb_out_dynamic->baroAltMSL = mavlink_msg_uavionix_adsb_out_dynamic_get_baroAltMSL(msg);
-	uavionix_adsb_out_dynamic->accuracyHor = mavlink_msg_uavionix_adsb_out_dynamic_get_accuracyHor(msg);
-	uavionix_adsb_out_dynamic->accuracyVert = mavlink_msg_uavionix_adsb_out_dynamic_get_accuracyVert(msg);
-	uavionix_adsb_out_dynamic->accuracyVel = mavlink_msg_uavionix_adsb_out_dynamic_get_accuracyVel(msg);
-	uavionix_adsb_out_dynamic->velVert = mavlink_msg_uavionix_adsb_out_dynamic_get_velVert(msg);
-	uavionix_adsb_out_dynamic->velNS = mavlink_msg_uavionix_adsb_out_dynamic_get_velNS(msg);
-	uavionix_adsb_out_dynamic->VelEW = mavlink_msg_uavionix_adsb_out_dynamic_get_VelEW(msg);
-	uavionix_adsb_out_dynamic->state = mavlink_msg_uavionix_adsb_out_dynamic_get_state(msg);
-	uavionix_adsb_out_dynamic->squawk = mavlink_msg_uavionix_adsb_out_dynamic_get_squawk(msg);
-	uavionix_adsb_out_dynamic->gpsFix = mavlink_msg_uavionix_adsb_out_dynamic_get_gpsFix(msg);
-	uavionix_adsb_out_dynamic->numSats = mavlink_msg_uavionix_adsb_out_dynamic_get_numSats(msg);
-	uavionix_adsb_out_dynamic->emergencyStatus = mavlink_msg_uavionix_adsb_out_dynamic_get_emergencyStatus(msg);
+    uavionix_adsb_out_dynamic->utcTime = mavlink_msg_uavionix_adsb_out_dynamic_get_utcTime(msg);
+    uavionix_adsb_out_dynamic->gpsLat = mavlink_msg_uavionix_adsb_out_dynamic_get_gpsLat(msg);
+    uavionix_adsb_out_dynamic->gpsLon = mavlink_msg_uavionix_adsb_out_dynamic_get_gpsLon(msg);
+    uavionix_adsb_out_dynamic->gpsAlt = mavlink_msg_uavionix_adsb_out_dynamic_get_gpsAlt(msg);
+    uavionix_adsb_out_dynamic->baroAltMSL = mavlink_msg_uavionix_adsb_out_dynamic_get_baroAltMSL(msg);
+    uavionix_adsb_out_dynamic->accuracyHor = mavlink_msg_uavionix_adsb_out_dynamic_get_accuracyHor(msg);
+    uavionix_adsb_out_dynamic->accuracyVert = mavlink_msg_uavionix_adsb_out_dynamic_get_accuracyVert(msg);
+    uavionix_adsb_out_dynamic->accuracyVel = mavlink_msg_uavionix_adsb_out_dynamic_get_accuracyVel(msg);
+    uavionix_adsb_out_dynamic->velVert = mavlink_msg_uavionix_adsb_out_dynamic_get_velVert(msg);
+    uavionix_adsb_out_dynamic->velNS = mavlink_msg_uavionix_adsb_out_dynamic_get_velNS(msg);
+    uavionix_adsb_out_dynamic->VelEW = mavlink_msg_uavionix_adsb_out_dynamic_get_VelEW(msg);
+    uavionix_adsb_out_dynamic->state = mavlink_msg_uavionix_adsb_out_dynamic_get_state(msg);
+    uavionix_adsb_out_dynamic->squawk = mavlink_msg_uavionix_adsb_out_dynamic_get_squawk(msg);
+    uavionix_adsb_out_dynamic->gpsFix = mavlink_msg_uavionix_adsb_out_dynamic_get_gpsFix(msg);
+    uavionix_adsb_out_dynamic->numSats = mavlink_msg_uavionix_adsb_out_dynamic_get_numSats(msg);
+    uavionix_adsb_out_dynamic->emergencyStatus = mavlink_msg_uavionix_adsb_out_dynamic_get_emergencyStatus(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN? msg->len : MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN;
         memset(uavionix_adsb_out_dynamic, 0, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN);
-	memcpy(uavionix_adsb_out_dynamic, _MAV_PAYLOAD(msg), len);
+    memcpy(uavionix_adsb_out_dynamic, _MAV_PAYLOAD(msg), len);
 #endif
 }

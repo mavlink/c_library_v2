@@ -1,6 +1,6 @@
 /** @file
- *	@brief MAVLink comm protocol built from slugs.xml
- *	@see http://mavlink.org
+ *  @brief MAVLink comm protocol built from slugs.xml
+ *  @see http://mavlink.org
  */
 #pragma once
 #ifndef MAVLINK_H
