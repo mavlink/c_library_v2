@@ -6,7 +6,7 @@
 MAVPACKED(
 typedef struct __mavlink_serial_udb_extra_f14_t {
  uint32_t sue_TRAP_SOURCE; /*< Serial UDB Extra Type Program Address of Last Trap*/
- int16_t sue_RCON; /*< Serial UDB Extra Reboot Regitster of DSPIC*/
+ int16_t sue_RCON; /*< Serial UDB Extra Reboot Register of DSPIC*/
  int16_t sue_TRAP_FLAGS; /*< Serial UDB Extra  Last dspic Trap Flags*/
  int16_t sue_osc_fail_count; /*< Serial UDB Extra Number of Ocillator Failures*/
  uint8_t sue_WIND_ESTIMATION; /*< Serial UDB Extra Wind Estimation Enabled*/
@@ -76,7 +76,7 @@ typedef struct __mavlink_serial_udb_extra_f14_t {
  * @param sue_DR Serial UDB Extra Dead Reckoning Enabled
  * @param sue_BOARD_TYPE Serial UDB Extra Type of UDB Hardware
  * @param sue_AIRFRAME Serial UDB Extra Type of Airframe
- * @param sue_RCON Serial UDB Extra Reboot Regitster of DSPIC
+ * @param sue_RCON Serial UDB Extra Reboot Register of DSPIC
  * @param sue_TRAP_FLAGS Serial UDB Extra  Last dspic Trap Flags
  * @param sue_TRAP_SOURCE Serial UDB Extra Type Program Address of Last Trap
  * @param sue_osc_fail_count Serial UDB Extra Number of Ocillator Failures
@@ -134,7 +134,7 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f14_pack(uint8_t system_id, 
  * @param sue_DR Serial UDB Extra Dead Reckoning Enabled
  * @param sue_BOARD_TYPE Serial UDB Extra Type of UDB Hardware
  * @param sue_AIRFRAME Serial UDB Extra Type of Airframe
- * @param sue_RCON Serial UDB Extra Reboot Regitster of DSPIC
+ * @param sue_RCON Serial UDB Extra Reboot Register of DSPIC
  * @param sue_TRAP_FLAGS Serial UDB Extra  Last dspic Trap Flags
  * @param sue_TRAP_SOURCE Serial UDB Extra Type Program Address of Last Trap
  * @param sue_osc_fail_count Serial UDB Extra Number of Ocillator Failures
@@ -218,7 +218,7 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f14_encode_chan(uint8_t syst
  * @param sue_DR Serial UDB Extra Dead Reckoning Enabled
  * @param sue_BOARD_TYPE Serial UDB Extra Type of UDB Hardware
  * @param sue_AIRFRAME Serial UDB Extra Type of Airframe
- * @param sue_RCON Serial UDB Extra Reboot Regitster of DSPIC
+ * @param sue_RCON Serial UDB Extra Reboot Register of DSPIC
  * @param sue_TRAP_FLAGS Serial UDB Extra  Last dspic Trap Flags
  * @param sue_TRAP_SOURCE Serial UDB Extra Type Program Address of Last Trap
  * @param sue_osc_fail_count Serial UDB Extra Number of Ocillator Failures
@@ -378,7 +378,7 @@ static inline uint8_t mavlink_msg_serial_udb_extra_f14_get_sue_AIRFRAME(const ma
 /**
  * @brief Get field sue_RCON from serial_udb_extra_f14 message
  *
- * @return Serial UDB Extra Reboot Regitster of DSPIC
+ * @return Serial UDB Extra Reboot Register of DSPIC
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f14_get_sue_RCON(const mavlink_message_t* msg)
 {

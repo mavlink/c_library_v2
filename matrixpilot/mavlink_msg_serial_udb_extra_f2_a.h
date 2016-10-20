@@ -22,7 +22,6 @@ typedef struct __mavlink_serial_udb_extra_f2_a_t {
  uint16_t sue_cog; /*< Serial UDB Extra GPS Course Over Ground*/
  int16_t sue_sog; /*< Serial UDB Extra Speed Over Ground*/
  uint16_t sue_cpu_load; /*< Serial UDB Extra CPU Load*/
- int16_t sue_voltage_milis; /*< Serial UDB Extra Voltage in MilliVolts*/
  uint16_t sue_air_speed_3DIMU; /*< Serial UDB Extra 3D IMU Air Speed*/
  int16_t sue_estimated_wind_0; /*< Serial UDB Extra Estimated Wind 0*/
  int16_t sue_estimated_wind_1; /*< Serial UDB Extra Estimated Wind 1*/
@@ -35,13 +34,13 @@ typedef struct __mavlink_serial_udb_extra_f2_a_t {
  uint8_t sue_status; /*< Serial UDB Extra Status*/
 }) mavlink_serial_udb_extra_f2_a_t;
 
-#define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_LEN 63
-#define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_MIN_LEN 63
-#define MAVLINK_MSG_ID_170_LEN 63
-#define MAVLINK_MSG_ID_170_MIN_LEN 63
+#define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_LEN 61
+#define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_MIN_LEN 61
+#define MAVLINK_MSG_ID_170_LEN 61
+#define MAVLINK_MSG_ID_170_MIN_LEN 61
 
-#define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_CRC 150
-#define MAVLINK_MSG_ID_170_CRC 150
+#define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_CRC 103
+#define MAVLINK_MSG_ID_170_CRC 103
 
 
 
@@ -49,7 +48,7 @@ typedef struct __mavlink_serial_udb_extra_f2_a_t {
 #define MAVLINK_MESSAGE_INFO_SERIAL_UDB_EXTRA_F2_A { \
     170, \
     "SERIAL_UDB_EXTRA_F2_A", \
-    28, \
+    27, \
     {  { "sue_time", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_time) }, \
          { "sue_latitude", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_latitude) }, \
          { "sue_longitude", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_longitude) }, \
@@ -67,23 +66,22 @@ typedef struct __mavlink_serial_udb_extra_f2_a_t {
          { "sue_cog", NULL, MAVLINK_TYPE_UINT16_T, 0, 36, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_cog) }, \
          { "sue_sog", NULL, MAVLINK_TYPE_INT16_T, 0, 38, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_sog) }, \
          { "sue_cpu_load", NULL, MAVLINK_TYPE_UINT16_T, 0, 40, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_cpu_load) }, \
-         { "sue_voltage_milis", NULL, MAVLINK_TYPE_INT16_T, 0, 42, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_voltage_milis) }, \
-         { "sue_air_speed_3DIMU", NULL, MAVLINK_TYPE_UINT16_T, 0, 44, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_air_speed_3DIMU) }, \
-         { "sue_estimated_wind_0", NULL, MAVLINK_TYPE_INT16_T, 0, 46, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_estimated_wind_0) }, \
-         { "sue_estimated_wind_1", NULL, MAVLINK_TYPE_INT16_T, 0, 48, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_estimated_wind_1) }, \
-         { "sue_estimated_wind_2", NULL, MAVLINK_TYPE_INT16_T, 0, 50, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_estimated_wind_2) }, \
-         { "sue_magFieldEarth0", NULL, MAVLINK_TYPE_INT16_T, 0, 52, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_magFieldEarth0) }, \
-         { "sue_magFieldEarth1", NULL, MAVLINK_TYPE_INT16_T, 0, 54, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_magFieldEarth1) }, \
-         { "sue_magFieldEarth2", NULL, MAVLINK_TYPE_INT16_T, 0, 56, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_magFieldEarth2) }, \
-         { "sue_svs", NULL, MAVLINK_TYPE_INT16_T, 0, 58, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_svs) }, \
-         { "sue_hdop", NULL, MAVLINK_TYPE_INT16_T, 0, 60, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_hdop) }, \
-         { "sue_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 62, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_status) }, \
+         { "sue_air_speed_3DIMU", NULL, MAVLINK_TYPE_UINT16_T, 0, 42, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_air_speed_3DIMU) }, \
+         { "sue_estimated_wind_0", NULL, MAVLINK_TYPE_INT16_T, 0, 44, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_estimated_wind_0) }, \
+         { "sue_estimated_wind_1", NULL, MAVLINK_TYPE_INT16_T, 0, 46, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_estimated_wind_1) }, \
+         { "sue_estimated_wind_2", NULL, MAVLINK_TYPE_INT16_T, 0, 48, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_estimated_wind_2) }, \
+         { "sue_magFieldEarth0", NULL, MAVLINK_TYPE_INT16_T, 0, 50, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_magFieldEarth0) }, \
+         { "sue_magFieldEarth1", NULL, MAVLINK_TYPE_INT16_T, 0, 52, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_magFieldEarth1) }, \
+         { "sue_magFieldEarth2", NULL, MAVLINK_TYPE_INT16_T, 0, 54, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_magFieldEarth2) }, \
+         { "sue_svs", NULL, MAVLINK_TYPE_INT16_T, 0, 56, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_svs) }, \
+         { "sue_hdop", NULL, MAVLINK_TYPE_INT16_T, 0, 58, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_hdop) }, \
+         { "sue_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 60, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_status) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_SERIAL_UDB_EXTRA_F2_A { \
     "SERIAL_UDB_EXTRA_F2_A", \
-    28, \
+    27, \
     {  { "sue_time", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_time) }, \
          { "sue_latitude", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_latitude) }, \
          { "sue_longitude", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_longitude) }, \
@@ -101,17 +99,16 @@ typedef struct __mavlink_serial_udb_extra_f2_a_t {
          { "sue_cog", NULL, MAVLINK_TYPE_UINT16_T, 0, 36, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_cog) }, \
          { "sue_sog", NULL, MAVLINK_TYPE_INT16_T, 0, 38, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_sog) }, \
          { "sue_cpu_load", NULL, MAVLINK_TYPE_UINT16_T, 0, 40, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_cpu_load) }, \
-         { "sue_voltage_milis", NULL, MAVLINK_TYPE_INT16_T, 0, 42, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_voltage_milis) }, \
-         { "sue_air_speed_3DIMU", NULL, MAVLINK_TYPE_UINT16_T, 0, 44, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_air_speed_3DIMU) }, \
-         { "sue_estimated_wind_0", NULL, MAVLINK_TYPE_INT16_T, 0, 46, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_estimated_wind_0) }, \
-         { "sue_estimated_wind_1", NULL, MAVLINK_TYPE_INT16_T, 0, 48, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_estimated_wind_1) }, \
-         { "sue_estimated_wind_2", NULL, MAVLINK_TYPE_INT16_T, 0, 50, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_estimated_wind_2) }, \
-         { "sue_magFieldEarth0", NULL, MAVLINK_TYPE_INT16_T, 0, 52, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_magFieldEarth0) }, \
-         { "sue_magFieldEarth1", NULL, MAVLINK_TYPE_INT16_T, 0, 54, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_magFieldEarth1) }, \
-         { "sue_magFieldEarth2", NULL, MAVLINK_TYPE_INT16_T, 0, 56, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_magFieldEarth2) }, \
-         { "sue_svs", NULL, MAVLINK_TYPE_INT16_T, 0, 58, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_svs) }, \
-         { "sue_hdop", NULL, MAVLINK_TYPE_INT16_T, 0, 60, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_hdop) }, \
-         { "sue_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 62, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_status) }, \
+         { "sue_air_speed_3DIMU", NULL, MAVLINK_TYPE_UINT16_T, 0, 42, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_air_speed_3DIMU) }, \
+         { "sue_estimated_wind_0", NULL, MAVLINK_TYPE_INT16_T, 0, 44, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_estimated_wind_0) }, \
+         { "sue_estimated_wind_1", NULL, MAVLINK_TYPE_INT16_T, 0, 46, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_estimated_wind_1) }, \
+         { "sue_estimated_wind_2", NULL, MAVLINK_TYPE_INT16_T, 0, 48, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_estimated_wind_2) }, \
+         { "sue_magFieldEarth0", NULL, MAVLINK_TYPE_INT16_T, 0, 50, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_magFieldEarth0) }, \
+         { "sue_magFieldEarth1", NULL, MAVLINK_TYPE_INT16_T, 0, 52, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_magFieldEarth1) }, \
+         { "sue_magFieldEarth2", NULL, MAVLINK_TYPE_INT16_T, 0, 54, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_magFieldEarth2) }, \
+         { "sue_svs", NULL, MAVLINK_TYPE_INT16_T, 0, 56, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_svs) }, \
+         { "sue_hdop", NULL, MAVLINK_TYPE_INT16_T, 0, 58, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_hdop) }, \
+         { "sue_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 60, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_status) }, \
          } \
 }
 #endif
@@ -140,7 +137,6 @@ typedef struct __mavlink_serial_udb_extra_f2_a_t {
  * @param sue_cog Serial UDB Extra GPS Course Over Ground
  * @param sue_sog Serial UDB Extra Speed Over Ground
  * @param sue_cpu_load Serial UDB Extra CPU Load
- * @param sue_voltage_milis Serial UDB Extra Voltage in MilliVolts
  * @param sue_air_speed_3DIMU Serial UDB Extra 3D IMU Air Speed
  * @param sue_estimated_wind_0 Serial UDB Extra Estimated Wind 0
  * @param sue_estimated_wind_1 Serial UDB Extra Estimated Wind 1
@@ -153,7 +149,7 @@ typedef struct __mavlink_serial_udb_extra_f2_a_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint32_t sue_time, uint8_t sue_status, int32_t sue_latitude, int32_t sue_longitude, int32_t sue_altitude, uint16_t sue_waypoint_index, int16_t sue_rmat0, int16_t sue_rmat1, int16_t sue_rmat2, int16_t sue_rmat3, int16_t sue_rmat4, int16_t sue_rmat5, int16_t sue_rmat6, int16_t sue_rmat7, int16_t sue_rmat8, uint16_t sue_cog, int16_t sue_sog, uint16_t sue_cpu_load, int16_t sue_voltage_milis, uint16_t sue_air_speed_3DIMU, int16_t sue_estimated_wind_0, int16_t sue_estimated_wind_1, int16_t sue_estimated_wind_2, int16_t sue_magFieldEarth0, int16_t sue_magFieldEarth1, int16_t sue_magFieldEarth2, int16_t sue_svs, int16_t sue_hdop)
+                               uint32_t sue_time, uint8_t sue_status, int32_t sue_latitude, int32_t sue_longitude, int32_t sue_altitude, uint16_t sue_waypoint_index, int16_t sue_rmat0, int16_t sue_rmat1, int16_t sue_rmat2, int16_t sue_rmat3, int16_t sue_rmat4, int16_t sue_rmat5, int16_t sue_rmat6, int16_t sue_rmat7, int16_t sue_rmat8, uint16_t sue_cog, int16_t sue_sog, uint16_t sue_cpu_load, uint16_t sue_air_speed_3DIMU, int16_t sue_estimated_wind_0, int16_t sue_estimated_wind_1, int16_t sue_estimated_wind_2, int16_t sue_magFieldEarth0, int16_t sue_magFieldEarth1, int16_t sue_magFieldEarth2, int16_t sue_svs, int16_t sue_hdop)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_LEN];
@@ -174,17 +170,16 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_pack(uint8_t system_id,
     _mav_put_uint16_t(buf, 36, sue_cog);
     _mav_put_int16_t(buf, 38, sue_sog);
     _mav_put_uint16_t(buf, 40, sue_cpu_load);
-    _mav_put_int16_t(buf, 42, sue_voltage_milis);
-    _mav_put_uint16_t(buf, 44, sue_air_speed_3DIMU);
-    _mav_put_int16_t(buf, 46, sue_estimated_wind_0);
-    _mav_put_int16_t(buf, 48, sue_estimated_wind_1);
-    _mav_put_int16_t(buf, 50, sue_estimated_wind_2);
-    _mav_put_int16_t(buf, 52, sue_magFieldEarth0);
-    _mav_put_int16_t(buf, 54, sue_magFieldEarth1);
-    _mav_put_int16_t(buf, 56, sue_magFieldEarth2);
-    _mav_put_int16_t(buf, 58, sue_svs);
-    _mav_put_int16_t(buf, 60, sue_hdop);
-    _mav_put_uint8_t(buf, 62, sue_status);
+    _mav_put_uint16_t(buf, 42, sue_air_speed_3DIMU);
+    _mav_put_int16_t(buf, 44, sue_estimated_wind_0);
+    _mav_put_int16_t(buf, 46, sue_estimated_wind_1);
+    _mav_put_int16_t(buf, 48, sue_estimated_wind_2);
+    _mav_put_int16_t(buf, 50, sue_magFieldEarth0);
+    _mav_put_int16_t(buf, 52, sue_magFieldEarth1);
+    _mav_put_int16_t(buf, 54, sue_magFieldEarth2);
+    _mav_put_int16_t(buf, 56, sue_svs);
+    _mav_put_int16_t(buf, 58, sue_hdop);
+    _mav_put_uint8_t(buf, 60, sue_status);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_LEN);
 #else
@@ -206,7 +201,6 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_pack(uint8_t system_id,
     packet.sue_cog = sue_cog;
     packet.sue_sog = sue_sog;
     packet.sue_cpu_load = sue_cpu_load;
-    packet.sue_voltage_milis = sue_voltage_milis;
     packet.sue_air_speed_3DIMU = sue_air_speed_3DIMU;
     packet.sue_estimated_wind_0 = sue_estimated_wind_0;
     packet.sue_estimated_wind_1 = sue_estimated_wind_1;
@@ -249,7 +243,6 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_pack(uint8_t system_id,
  * @param sue_cog Serial UDB Extra GPS Course Over Ground
  * @param sue_sog Serial UDB Extra Speed Over Ground
  * @param sue_cpu_load Serial UDB Extra CPU Load
- * @param sue_voltage_milis Serial UDB Extra Voltage in MilliVolts
  * @param sue_air_speed_3DIMU Serial UDB Extra 3D IMU Air Speed
  * @param sue_estimated_wind_0 Serial UDB Extra Estimated Wind 0
  * @param sue_estimated_wind_1 Serial UDB Extra Estimated Wind 1
@@ -263,7 +256,7 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_pack(uint8_t system_id,
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint32_t sue_time,uint8_t sue_status,int32_t sue_latitude,int32_t sue_longitude,int32_t sue_altitude,uint16_t sue_waypoint_index,int16_t sue_rmat0,int16_t sue_rmat1,int16_t sue_rmat2,int16_t sue_rmat3,int16_t sue_rmat4,int16_t sue_rmat5,int16_t sue_rmat6,int16_t sue_rmat7,int16_t sue_rmat8,uint16_t sue_cog,int16_t sue_sog,uint16_t sue_cpu_load,int16_t sue_voltage_milis,uint16_t sue_air_speed_3DIMU,int16_t sue_estimated_wind_0,int16_t sue_estimated_wind_1,int16_t sue_estimated_wind_2,int16_t sue_magFieldEarth0,int16_t sue_magFieldEarth1,int16_t sue_magFieldEarth2,int16_t sue_svs,int16_t sue_hdop)
+                                   uint32_t sue_time,uint8_t sue_status,int32_t sue_latitude,int32_t sue_longitude,int32_t sue_altitude,uint16_t sue_waypoint_index,int16_t sue_rmat0,int16_t sue_rmat1,int16_t sue_rmat2,int16_t sue_rmat3,int16_t sue_rmat4,int16_t sue_rmat5,int16_t sue_rmat6,int16_t sue_rmat7,int16_t sue_rmat8,uint16_t sue_cog,int16_t sue_sog,uint16_t sue_cpu_load,uint16_t sue_air_speed_3DIMU,int16_t sue_estimated_wind_0,int16_t sue_estimated_wind_1,int16_t sue_estimated_wind_2,int16_t sue_magFieldEarth0,int16_t sue_magFieldEarth1,int16_t sue_magFieldEarth2,int16_t sue_svs,int16_t sue_hdop)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_LEN];
@@ -284,17 +277,16 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_pack_chan(uint8_t syste
     _mav_put_uint16_t(buf, 36, sue_cog);
     _mav_put_int16_t(buf, 38, sue_sog);
     _mav_put_uint16_t(buf, 40, sue_cpu_load);
-    _mav_put_int16_t(buf, 42, sue_voltage_milis);
-    _mav_put_uint16_t(buf, 44, sue_air_speed_3DIMU);
-    _mav_put_int16_t(buf, 46, sue_estimated_wind_0);
-    _mav_put_int16_t(buf, 48, sue_estimated_wind_1);
-    _mav_put_int16_t(buf, 50, sue_estimated_wind_2);
-    _mav_put_int16_t(buf, 52, sue_magFieldEarth0);
-    _mav_put_int16_t(buf, 54, sue_magFieldEarth1);
-    _mav_put_int16_t(buf, 56, sue_magFieldEarth2);
-    _mav_put_int16_t(buf, 58, sue_svs);
-    _mav_put_int16_t(buf, 60, sue_hdop);
-    _mav_put_uint8_t(buf, 62, sue_status);
+    _mav_put_uint16_t(buf, 42, sue_air_speed_3DIMU);
+    _mav_put_int16_t(buf, 44, sue_estimated_wind_0);
+    _mav_put_int16_t(buf, 46, sue_estimated_wind_1);
+    _mav_put_int16_t(buf, 48, sue_estimated_wind_2);
+    _mav_put_int16_t(buf, 50, sue_magFieldEarth0);
+    _mav_put_int16_t(buf, 52, sue_magFieldEarth1);
+    _mav_put_int16_t(buf, 54, sue_magFieldEarth2);
+    _mav_put_int16_t(buf, 56, sue_svs);
+    _mav_put_int16_t(buf, 58, sue_hdop);
+    _mav_put_uint8_t(buf, 60, sue_status);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_LEN);
 #else
@@ -316,7 +308,6 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_pack_chan(uint8_t syste
     packet.sue_cog = sue_cog;
     packet.sue_sog = sue_sog;
     packet.sue_cpu_load = sue_cpu_load;
-    packet.sue_voltage_milis = sue_voltage_milis;
     packet.sue_air_speed_3DIMU = sue_air_speed_3DIMU;
     packet.sue_estimated_wind_0 = sue_estimated_wind_0;
     packet.sue_estimated_wind_1 = sue_estimated_wind_1;
@@ -345,7 +336,7 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_pack_chan(uint8_t syste
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_serial_udb_extra_f2_a_t* serial_udb_extra_f2_a)
 {
-    return mavlink_msg_serial_udb_extra_f2_a_pack(system_id, component_id, msg, serial_udb_extra_f2_a->sue_time, serial_udb_extra_f2_a->sue_status, serial_udb_extra_f2_a->sue_latitude, serial_udb_extra_f2_a->sue_longitude, serial_udb_extra_f2_a->sue_altitude, serial_udb_extra_f2_a->sue_waypoint_index, serial_udb_extra_f2_a->sue_rmat0, serial_udb_extra_f2_a->sue_rmat1, serial_udb_extra_f2_a->sue_rmat2, serial_udb_extra_f2_a->sue_rmat3, serial_udb_extra_f2_a->sue_rmat4, serial_udb_extra_f2_a->sue_rmat5, serial_udb_extra_f2_a->sue_rmat6, serial_udb_extra_f2_a->sue_rmat7, serial_udb_extra_f2_a->sue_rmat8, serial_udb_extra_f2_a->sue_cog, serial_udb_extra_f2_a->sue_sog, serial_udb_extra_f2_a->sue_cpu_load, serial_udb_extra_f2_a->sue_voltage_milis, serial_udb_extra_f2_a->sue_air_speed_3DIMU, serial_udb_extra_f2_a->sue_estimated_wind_0, serial_udb_extra_f2_a->sue_estimated_wind_1, serial_udb_extra_f2_a->sue_estimated_wind_2, serial_udb_extra_f2_a->sue_magFieldEarth0, serial_udb_extra_f2_a->sue_magFieldEarth1, serial_udb_extra_f2_a->sue_magFieldEarth2, serial_udb_extra_f2_a->sue_svs, serial_udb_extra_f2_a->sue_hdop);
+    return mavlink_msg_serial_udb_extra_f2_a_pack(system_id, component_id, msg, serial_udb_extra_f2_a->sue_time, serial_udb_extra_f2_a->sue_status, serial_udb_extra_f2_a->sue_latitude, serial_udb_extra_f2_a->sue_longitude, serial_udb_extra_f2_a->sue_altitude, serial_udb_extra_f2_a->sue_waypoint_index, serial_udb_extra_f2_a->sue_rmat0, serial_udb_extra_f2_a->sue_rmat1, serial_udb_extra_f2_a->sue_rmat2, serial_udb_extra_f2_a->sue_rmat3, serial_udb_extra_f2_a->sue_rmat4, serial_udb_extra_f2_a->sue_rmat5, serial_udb_extra_f2_a->sue_rmat6, serial_udb_extra_f2_a->sue_rmat7, serial_udb_extra_f2_a->sue_rmat8, serial_udb_extra_f2_a->sue_cog, serial_udb_extra_f2_a->sue_sog, serial_udb_extra_f2_a->sue_cpu_load, serial_udb_extra_f2_a->sue_air_speed_3DIMU, serial_udb_extra_f2_a->sue_estimated_wind_0, serial_udb_extra_f2_a->sue_estimated_wind_1, serial_udb_extra_f2_a->sue_estimated_wind_2, serial_udb_extra_f2_a->sue_magFieldEarth0, serial_udb_extra_f2_a->sue_magFieldEarth1, serial_udb_extra_f2_a->sue_magFieldEarth2, serial_udb_extra_f2_a->sue_svs, serial_udb_extra_f2_a->sue_hdop);
 }
 
 /**
@@ -359,7 +350,7 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_encode(uint8_t system_i
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_serial_udb_extra_f2_a_t* serial_udb_extra_f2_a)
 {
-    return mavlink_msg_serial_udb_extra_f2_a_pack_chan(system_id, component_id, chan, msg, serial_udb_extra_f2_a->sue_time, serial_udb_extra_f2_a->sue_status, serial_udb_extra_f2_a->sue_latitude, serial_udb_extra_f2_a->sue_longitude, serial_udb_extra_f2_a->sue_altitude, serial_udb_extra_f2_a->sue_waypoint_index, serial_udb_extra_f2_a->sue_rmat0, serial_udb_extra_f2_a->sue_rmat1, serial_udb_extra_f2_a->sue_rmat2, serial_udb_extra_f2_a->sue_rmat3, serial_udb_extra_f2_a->sue_rmat4, serial_udb_extra_f2_a->sue_rmat5, serial_udb_extra_f2_a->sue_rmat6, serial_udb_extra_f2_a->sue_rmat7, serial_udb_extra_f2_a->sue_rmat8, serial_udb_extra_f2_a->sue_cog, serial_udb_extra_f2_a->sue_sog, serial_udb_extra_f2_a->sue_cpu_load, serial_udb_extra_f2_a->sue_voltage_milis, serial_udb_extra_f2_a->sue_air_speed_3DIMU, serial_udb_extra_f2_a->sue_estimated_wind_0, serial_udb_extra_f2_a->sue_estimated_wind_1, serial_udb_extra_f2_a->sue_estimated_wind_2, serial_udb_extra_f2_a->sue_magFieldEarth0, serial_udb_extra_f2_a->sue_magFieldEarth1, serial_udb_extra_f2_a->sue_magFieldEarth2, serial_udb_extra_f2_a->sue_svs, serial_udb_extra_f2_a->sue_hdop);
+    return mavlink_msg_serial_udb_extra_f2_a_pack_chan(system_id, component_id, chan, msg, serial_udb_extra_f2_a->sue_time, serial_udb_extra_f2_a->sue_status, serial_udb_extra_f2_a->sue_latitude, serial_udb_extra_f2_a->sue_longitude, serial_udb_extra_f2_a->sue_altitude, serial_udb_extra_f2_a->sue_waypoint_index, serial_udb_extra_f2_a->sue_rmat0, serial_udb_extra_f2_a->sue_rmat1, serial_udb_extra_f2_a->sue_rmat2, serial_udb_extra_f2_a->sue_rmat3, serial_udb_extra_f2_a->sue_rmat4, serial_udb_extra_f2_a->sue_rmat5, serial_udb_extra_f2_a->sue_rmat6, serial_udb_extra_f2_a->sue_rmat7, serial_udb_extra_f2_a->sue_rmat8, serial_udb_extra_f2_a->sue_cog, serial_udb_extra_f2_a->sue_sog, serial_udb_extra_f2_a->sue_cpu_load, serial_udb_extra_f2_a->sue_air_speed_3DIMU, serial_udb_extra_f2_a->sue_estimated_wind_0, serial_udb_extra_f2_a->sue_estimated_wind_1, serial_udb_extra_f2_a->sue_estimated_wind_2, serial_udb_extra_f2_a->sue_magFieldEarth0, serial_udb_extra_f2_a->sue_magFieldEarth1, serial_udb_extra_f2_a->sue_magFieldEarth2, serial_udb_extra_f2_a->sue_svs, serial_udb_extra_f2_a->sue_hdop);
 }
 
 /**
@@ -384,7 +375,6 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_encode_chan(uint8_t sys
  * @param sue_cog Serial UDB Extra GPS Course Over Ground
  * @param sue_sog Serial UDB Extra Speed Over Ground
  * @param sue_cpu_load Serial UDB Extra CPU Load
- * @param sue_voltage_milis Serial UDB Extra Voltage in MilliVolts
  * @param sue_air_speed_3DIMU Serial UDB Extra 3D IMU Air Speed
  * @param sue_estimated_wind_0 Serial UDB Extra Estimated Wind 0
  * @param sue_estimated_wind_1 Serial UDB Extra Estimated Wind 1
@@ -397,7 +387,7 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_encode_chan(uint8_t sys
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_serial_udb_extra_f2_a_send(mavlink_channel_t chan, uint32_t sue_time, uint8_t sue_status, int32_t sue_latitude, int32_t sue_longitude, int32_t sue_altitude, uint16_t sue_waypoint_index, int16_t sue_rmat0, int16_t sue_rmat1, int16_t sue_rmat2, int16_t sue_rmat3, int16_t sue_rmat4, int16_t sue_rmat5, int16_t sue_rmat6, int16_t sue_rmat7, int16_t sue_rmat8, uint16_t sue_cog, int16_t sue_sog, uint16_t sue_cpu_load, int16_t sue_voltage_milis, uint16_t sue_air_speed_3DIMU, int16_t sue_estimated_wind_0, int16_t sue_estimated_wind_1, int16_t sue_estimated_wind_2, int16_t sue_magFieldEarth0, int16_t sue_magFieldEarth1, int16_t sue_magFieldEarth2, int16_t sue_svs, int16_t sue_hdop)
+static inline void mavlink_msg_serial_udb_extra_f2_a_send(mavlink_channel_t chan, uint32_t sue_time, uint8_t sue_status, int32_t sue_latitude, int32_t sue_longitude, int32_t sue_altitude, uint16_t sue_waypoint_index, int16_t sue_rmat0, int16_t sue_rmat1, int16_t sue_rmat2, int16_t sue_rmat3, int16_t sue_rmat4, int16_t sue_rmat5, int16_t sue_rmat6, int16_t sue_rmat7, int16_t sue_rmat8, uint16_t sue_cog, int16_t sue_sog, uint16_t sue_cpu_load, uint16_t sue_air_speed_3DIMU, int16_t sue_estimated_wind_0, int16_t sue_estimated_wind_1, int16_t sue_estimated_wind_2, int16_t sue_magFieldEarth0, int16_t sue_magFieldEarth1, int16_t sue_magFieldEarth2, int16_t sue_svs, int16_t sue_hdop)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_LEN];
@@ -418,17 +408,16 @@ static inline void mavlink_msg_serial_udb_extra_f2_a_send(mavlink_channel_t chan
     _mav_put_uint16_t(buf, 36, sue_cog);
     _mav_put_int16_t(buf, 38, sue_sog);
     _mav_put_uint16_t(buf, 40, sue_cpu_load);
-    _mav_put_int16_t(buf, 42, sue_voltage_milis);
-    _mav_put_uint16_t(buf, 44, sue_air_speed_3DIMU);
-    _mav_put_int16_t(buf, 46, sue_estimated_wind_0);
-    _mav_put_int16_t(buf, 48, sue_estimated_wind_1);
-    _mav_put_int16_t(buf, 50, sue_estimated_wind_2);
-    _mav_put_int16_t(buf, 52, sue_magFieldEarth0);
-    _mav_put_int16_t(buf, 54, sue_magFieldEarth1);
-    _mav_put_int16_t(buf, 56, sue_magFieldEarth2);
-    _mav_put_int16_t(buf, 58, sue_svs);
-    _mav_put_int16_t(buf, 60, sue_hdop);
-    _mav_put_uint8_t(buf, 62, sue_status);
+    _mav_put_uint16_t(buf, 42, sue_air_speed_3DIMU);
+    _mav_put_int16_t(buf, 44, sue_estimated_wind_0);
+    _mav_put_int16_t(buf, 46, sue_estimated_wind_1);
+    _mav_put_int16_t(buf, 48, sue_estimated_wind_2);
+    _mav_put_int16_t(buf, 50, sue_magFieldEarth0);
+    _mav_put_int16_t(buf, 52, sue_magFieldEarth1);
+    _mav_put_int16_t(buf, 54, sue_magFieldEarth2);
+    _mav_put_int16_t(buf, 56, sue_svs);
+    _mav_put_int16_t(buf, 58, sue_hdop);
+    _mav_put_uint8_t(buf, 60, sue_status);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A, buf, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_CRC);
 #else
@@ -450,7 +439,6 @@ static inline void mavlink_msg_serial_udb_extra_f2_a_send(mavlink_channel_t chan
     packet.sue_cog = sue_cog;
     packet.sue_sog = sue_sog;
     packet.sue_cpu_load = sue_cpu_load;
-    packet.sue_voltage_milis = sue_voltage_milis;
     packet.sue_air_speed_3DIMU = sue_air_speed_3DIMU;
     packet.sue_estimated_wind_0 = sue_estimated_wind_0;
     packet.sue_estimated_wind_1 = sue_estimated_wind_1;
@@ -474,7 +462,7 @@ static inline void mavlink_msg_serial_udb_extra_f2_a_send(mavlink_channel_t chan
 static inline void mavlink_msg_serial_udb_extra_f2_a_send_struct(mavlink_channel_t chan, const mavlink_serial_udb_extra_f2_a_t* serial_udb_extra_f2_a)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_serial_udb_extra_f2_a_send(chan, serial_udb_extra_f2_a->sue_time, serial_udb_extra_f2_a->sue_status, serial_udb_extra_f2_a->sue_latitude, serial_udb_extra_f2_a->sue_longitude, serial_udb_extra_f2_a->sue_altitude, serial_udb_extra_f2_a->sue_waypoint_index, serial_udb_extra_f2_a->sue_rmat0, serial_udb_extra_f2_a->sue_rmat1, serial_udb_extra_f2_a->sue_rmat2, serial_udb_extra_f2_a->sue_rmat3, serial_udb_extra_f2_a->sue_rmat4, serial_udb_extra_f2_a->sue_rmat5, serial_udb_extra_f2_a->sue_rmat6, serial_udb_extra_f2_a->sue_rmat7, serial_udb_extra_f2_a->sue_rmat8, serial_udb_extra_f2_a->sue_cog, serial_udb_extra_f2_a->sue_sog, serial_udb_extra_f2_a->sue_cpu_load, serial_udb_extra_f2_a->sue_voltage_milis, serial_udb_extra_f2_a->sue_air_speed_3DIMU, serial_udb_extra_f2_a->sue_estimated_wind_0, serial_udb_extra_f2_a->sue_estimated_wind_1, serial_udb_extra_f2_a->sue_estimated_wind_2, serial_udb_extra_f2_a->sue_magFieldEarth0, serial_udb_extra_f2_a->sue_magFieldEarth1, serial_udb_extra_f2_a->sue_magFieldEarth2, serial_udb_extra_f2_a->sue_svs, serial_udb_extra_f2_a->sue_hdop);
+    mavlink_msg_serial_udb_extra_f2_a_send(chan, serial_udb_extra_f2_a->sue_time, serial_udb_extra_f2_a->sue_status, serial_udb_extra_f2_a->sue_latitude, serial_udb_extra_f2_a->sue_longitude, serial_udb_extra_f2_a->sue_altitude, serial_udb_extra_f2_a->sue_waypoint_index, serial_udb_extra_f2_a->sue_rmat0, serial_udb_extra_f2_a->sue_rmat1, serial_udb_extra_f2_a->sue_rmat2, serial_udb_extra_f2_a->sue_rmat3, serial_udb_extra_f2_a->sue_rmat4, serial_udb_extra_f2_a->sue_rmat5, serial_udb_extra_f2_a->sue_rmat6, serial_udb_extra_f2_a->sue_rmat7, serial_udb_extra_f2_a->sue_rmat8, serial_udb_extra_f2_a->sue_cog, serial_udb_extra_f2_a->sue_sog, serial_udb_extra_f2_a->sue_cpu_load, serial_udb_extra_f2_a->sue_air_speed_3DIMU, serial_udb_extra_f2_a->sue_estimated_wind_0, serial_udb_extra_f2_a->sue_estimated_wind_1, serial_udb_extra_f2_a->sue_estimated_wind_2, serial_udb_extra_f2_a->sue_magFieldEarth0, serial_udb_extra_f2_a->sue_magFieldEarth1, serial_udb_extra_f2_a->sue_magFieldEarth2, serial_udb_extra_f2_a->sue_svs, serial_udb_extra_f2_a->sue_hdop);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A, (const char *)serial_udb_extra_f2_a, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_CRC);
 #endif
@@ -488,7 +476,7 @@ static inline void mavlink_msg_serial_udb_extra_f2_a_send_struct(mavlink_channel
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_serial_udb_extra_f2_a_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t sue_time, uint8_t sue_status, int32_t sue_latitude, int32_t sue_longitude, int32_t sue_altitude, uint16_t sue_waypoint_index, int16_t sue_rmat0, int16_t sue_rmat1, int16_t sue_rmat2, int16_t sue_rmat3, int16_t sue_rmat4, int16_t sue_rmat5, int16_t sue_rmat6, int16_t sue_rmat7, int16_t sue_rmat8, uint16_t sue_cog, int16_t sue_sog, uint16_t sue_cpu_load, int16_t sue_voltage_milis, uint16_t sue_air_speed_3DIMU, int16_t sue_estimated_wind_0, int16_t sue_estimated_wind_1, int16_t sue_estimated_wind_2, int16_t sue_magFieldEarth0, int16_t sue_magFieldEarth1, int16_t sue_magFieldEarth2, int16_t sue_svs, int16_t sue_hdop)
+static inline void mavlink_msg_serial_udb_extra_f2_a_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t sue_time, uint8_t sue_status, int32_t sue_latitude, int32_t sue_longitude, int32_t sue_altitude, uint16_t sue_waypoint_index, int16_t sue_rmat0, int16_t sue_rmat1, int16_t sue_rmat2, int16_t sue_rmat3, int16_t sue_rmat4, int16_t sue_rmat5, int16_t sue_rmat6, int16_t sue_rmat7, int16_t sue_rmat8, uint16_t sue_cog, int16_t sue_sog, uint16_t sue_cpu_load, uint16_t sue_air_speed_3DIMU, int16_t sue_estimated_wind_0, int16_t sue_estimated_wind_1, int16_t sue_estimated_wind_2, int16_t sue_magFieldEarth0, int16_t sue_magFieldEarth1, int16_t sue_magFieldEarth2, int16_t sue_svs, int16_t sue_hdop)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -509,17 +497,16 @@ static inline void mavlink_msg_serial_udb_extra_f2_a_send_buf(mavlink_message_t 
     _mav_put_uint16_t(buf, 36, sue_cog);
     _mav_put_int16_t(buf, 38, sue_sog);
     _mav_put_uint16_t(buf, 40, sue_cpu_load);
-    _mav_put_int16_t(buf, 42, sue_voltage_milis);
-    _mav_put_uint16_t(buf, 44, sue_air_speed_3DIMU);
-    _mav_put_int16_t(buf, 46, sue_estimated_wind_0);
-    _mav_put_int16_t(buf, 48, sue_estimated_wind_1);
-    _mav_put_int16_t(buf, 50, sue_estimated_wind_2);
-    _mav_put_int16_t(buf, 52, sue_magFieldEarth0);
-    _mav_put_int16_t(buf, 54, sue_magFieldEarth1);
-    _mav_put_int16_t(buf, 56, sue_magFieldEarth2);
-    _mav_put_int16_t(buf, 58, sue_svs);
-    _mav_put_int16_t(buf, 60, sue_hdop);
-    _mav_put_uint8_t(buf, 62, sue_status);
+    _mav_put_uint16_t(buf, 42, sue_air_speed_3DIMU);
+    _mav_put_int16_t(buf, 44, sue_estimated_wind_0);
+    _mav_put_int16_t(buf, 46, sue_estimated_wind_1);
+    _mav_put_int16_t(buf, 48, sue_estimated_wind_2);
+    _mav_put_int16_t(buf, 50, sue_magFieldEarth0);
+    _mav_put_int16_t(buf, 52, sue_magFieldEarth1);
+    _mav_put_int16_t(buf, 54, sue_magFieldEarth2);
+    _mav_put_int16_t(buf, 56, sue_svs);
+    _mav_put_int16_t(buf, 58, sue_hdop);
+    _mav_put_uint8_t(buf, 60, sue_status);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A, buf, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_CRC);
 #else
@@ -541,7 +528,6 @@ static inline void mavlink_msg_serial_udb_extra_f2_a_send_buf(mavlink_message_t 
     packet->sue_cog = sue_cog;
     packet->sue_sog = sue_sog;
     packet->sue_cpu_load = sue_cpu_load;
-    packet->sue_voltage_milis = sue_voltage_milis;
     packet->sue_air_speed_3DIMU = sue_air_speed_3DIMU;
     packet->sue_estimated_wind_0 = sue_estimated_wind_0;
     packet->sue_estimated_wind_1 = sue_estimated_wind_1;
@@ -580,7 +566,7 @@ static inline uint32_t mavlink_msg_serial_udb_extra_f2_a_get_sue_time(const mavl
  */
 static inline uint8_t mavlink_msg_serial_udb_extra_f2_a_get_sue_status(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  62);
+    return _MAV_RETURN_uint8_t(msg,  60);
 }
 
 /**
@@ -744,23 +730,13 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_cpu_load(const 
 }
 
 /**
- * @brief Get field sue_voltage_milis from serial_udb_extra_f2_a message
- *
- * @return Serial UDB Extra Voltage in MilliVolts
- */
-static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_voltage_milis(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_int16_t(msg,  42);
-}
-
-/**
  * @brief Get field sue_air_speed_3DIMU from serial_udb_extra_f2_a message
  *
  * @return Serial UDB Extra 3D IMU Air Speed
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_air_speed_3DIMU(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint16_t(msg,  44);
+    return _MAV_RETURN_uint16_t(msg,  42);
 }
 
 /**
@@ -770,7 +746,7 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_air_speed_3DIMU
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_estimated_wind_0(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  46);
+    return _MAV_RETURN_int16_t(msg,  44);
 }
 
 /**
@@ -780,7 +756,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_estimated_wind_0
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_estimated_wind_1(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  48);
+    return _MAV_RETURN_int16_t(msg,  46);
 }
 
 /**
@@ -790,7 +766,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_estimated_wind_1
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_estimated_wind_2(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  50);
+    return _MAV_RETURN_int16_t(msg,  48);
 }
 
 /**
@@ -800,7 +776,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_estimated_wind_2
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_magFieldEarth0(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  52);
+    return _MAV_RETURN_int16_t(msg,  50);
 }
 
 /**
@@ -810,7 +786,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_magFieldEarth0(c
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_magFieldEarth1(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  54);
+    return _MAV_RETURN_int16_t(msg,  52);
 }
 
 /**
@@ -820,7 +796,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_magFieldEarth1(c
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_magFieldEarth2(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  56);
+    return _MAV_RETURN_int16_t(msg,  54);
 }
 
 /**
@@ -830,7 +806,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_magFieldEarth2(c
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_svs(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  58);
+    return _MAV_RETURN_int16_t(msg,  56);
 }
 
 /**
@@ -840,7 +816,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_svs(const mavlin
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_hdop(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  60);
+    return _MAV_RETURN_int16_t(msg,  58);
 }
 
 /**
@@ -869,7 +845,6 @@ static inline void mavlink_msg_serial_udb_extra_f2_a_decode(const mavlink_messag
     serial_udb_extra_f2_a->sue_cog = mavlink_msg_serial_udb_extra_f2_a_get_sue_cog(msg);
     serial_udb_extra_f2_a->sue_sog = mavlink_msg_serial_udb_extra_f2_a_get_sue_sog(msg);
     serial_udb_extra_f2_a->sue_cpu_load = mavlink_msg_serial_udb_extra_f2_a_get_sue_cpu_load(msg);
-    serial_udb_extra_f2_a->sue_voltage_milis = mavlink_msg_serial_udb_extra_f2_a_get_sue_voltage_milis(msg);
     serial_udb_extra_f2_a->sue_air_speed_3DIMU = mavlink_msg_serial_udb_extra_f2_a_get_sue_air_speed_3DIMU(msg);
     serial_udb_extra_f2_a->sue_estimated_wind_0 = mavlink_msg_serial_udb_extra_f2_a_get_sue_estimated_wind_0(msg);
     serial_udb_extra_f2_a->sue_estimated_wind_1 = mavlink_msg_serial_udb_extra_f2_a_get_sue_estimated_wind_1(msg);

@@ -495,7 +495,7 @@ static void mavlink_test_serial_udb_extra_f2_a(uint8_t system_id, uint8_t compon
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_serial_udb_extra_f2_a_t packet_in = {
-        963497464,963497672,963497880,963498088,18067,18171,18275,18379,18483,18587,18691,18795,18899,19003,19107,19211,19315,19419,19523,19627,19731,19835,19939,20043,20147,20251,20355,63
+        963497464,963497672,963497880,963498088,18067,18171,18275,18379,18483,18587,18691,18795,18899,19003,19107,19211,19315,19419,19523,19627,19731,19835,19939,20043,20147,20251,185
     };
     mavlink_serial_udb_extra_f2_a_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -516,7 +516,6 @@ static void mavlink_test_serial_udb_extra_f2_a(uint8_t system_id, uint8_t compon
         packet1.sue_cog = packet_in.sue_cog;
         packet1.sue_sog = packet_in.sue_sog;
         packet1.sue_cpu_load = packet_in.sue_cpu_load;
-        packet1.sue_voltage_milis = packet_in.sue_voltage_milis;
         packet1.sue_air_speed_3DIMU = packet_in.sue_air_speed_3DIMU;
         packet1.sue_estimated_wind_0 = packet_in.sue_estimated_wind_0;
         packet1.sue_estimated_wind_1 = packet_in.sue_estimated_wind_1;
@@ -541,12 +540,12 @@ static void mavlink_test_serial_udb_extra_f2_a(uint8_t system_id, uint8_t compon
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_serial_udb_extra_f2_a_pack(system_id, component_id, &msg , packet1.sue_time , packet1.sue_status , packet1.sue_latitude , packet1.sue_longitude , packet1.sue_altitude , packet1.sue_waypoint_index , packet1.sue_rmat0 , packet1.sue_rmat1 , packet1.sue_rmat2 , packet1.sue_rmat3 , packet1.sue_rmat4 , packet1.sue_rmat5 , packet1.sue_rmat6 , packet1.sue_rmat7 , packet1.sue_rmat8 , packet1.sue_cog , packet1.sue_sog , packet1.sue_cpu_load , packet1.sue_voltage_milis , packet1.sue_air_speed_3DIMU , packet1.sue_estimated_wind_0 , packet1.sue_estimated_wind_1 , packet1.sue_estimated_wind_2 , packet1.sue_magFieldEarth0 , packet1.sue_magFieldEarth1 , packet1.sue_magFieldEarth2 , packet1.sue_svs , packet1.sue_hdop );
+    mavlink_msg_serial_udb_extra_f2_a_pack(system_id, component_id, &msg , packet1.sue_time , packet1.sue_status , packet1.sue_latitude , packet1.sue_longitude , packet1.sue_altitude , packet1.sue_waypoint_index , packet1.sue_rmat0 , packet1.sue_rmat1 , packet1.sue_rmat2 , packet1.sue_rmat3 , packet1.sue_rmat4 , packet1.sue_rmat5 , packet1.sue_rmat6 , packet1.sue_rmat7 , packet1.sue_rmat8 , packet1.sue_cog , packet1.sue_sog , packet1.sue_cpu_load , packet1.sue_air_speed_3DIMU , packet1.sue_estimated_wind_0 , packet1.sue_estimated_wind_1 , packet1.sue_estimated_wind_2 , packet1.sue_magFieldEarth0 , packet1.sue_magFieldEarth1 , packet1.sue_magFieldEarth2 , packet1.sue_svs , packet1.sue_hdop );
     mavlink_msg_serial_udb_extra_f2_a_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_serial_udb_extra_f2_a_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.sue_time , packet1.sue_status , packet1.sue_latitude , packet1.sue_longitude , packet1.sue_altitude , packet1.sue_waypoint_index , packet1.sue_rmat0 , packet1.sue_rmat1 , packet1.sue_rmat2 , packet1.sue_rmat3 , packet1.sue_rmat4 , packet1.sue_rmat5 , packet1.sue_rmat6 , packet1.sue_rmat7 , packet1.sue_rmat8 , packet1.sue_cog , packet1.sue_sog , packet1.sue_cpu_load , packet1.sue_voltage_milis , packet1.sue_air_speed_3DIMU , packet1.sue_estimated_wind_0 , packet1.sue_estimated_wind_1 , packet1.sue_estimated_wind_2 , packet1.sue_magFieldEarth0 , packet1.sue_magFieldEarth1 , packet1.sue_magFieldEarth2 , packet1.sue_svs , packet1.sue_hdop );
+    mavlink_msg_serial_udb_extra_f2_a_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.sue_time , packet1.sue_status , packet1.sue_latitude , packet1.sue_longitude , packet1.sue_altitude , packet1.sue_waypoint_index , packet1.sue_rmat0 , packet1.sue_rmat1 , packet1.sue_rmat2 , packet1.sue_rmat3 , packet1.sue_rmat4 , packet1.sue_rmat5 , packet1.sue_rmat6 , packet1.sue_rmat7 , packet1.sue_rmat8 , packet1.sue_cog , packet1.sue_sog , packet1.sue_cpu_load , packet1.sue_air_speed_3DIMU , packet1.sue_estimated_wind_0 , packet1.sue_estimated_wind_1 , packet1.sue_estimated_wind_2 , packet1.sue_magFieldEarth0 , packet1.sue_magFieldEarth1 , packet1.sue_magFieldEarth2 , packet1.sue_svs , packet1.sue_hdop );
     mavlink_msg_serial_udb_extra_f2_a_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -559,7 +558,7 @@ static void mavlink_test_serial_udb_extra_f2_a(uint8_t system_id, uint8_t compon
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_serial_udb_extra_f2_a_send(MAVLINK_COMM_1 , packet1.sue_time , packet1.sue_status , packet1.sue_latitude , packet1.sue_longitude , packet1.sue_altitude , packet1.sue_waypoint_index , packet1.sue_rmat0 , packet1.sue_rmat1 , packet1.sue_rmat2 , packet1.sue_rmat3 , packet1.sue_rmat4 , packet1.sue_rmat5 , packet1.sue_rmat6 , packet1.sue_rmat7 , packet1.sue_rmat8 , packet1.sue_cog , packet1.sue_sog , packet1.sue_cpu_load , packet1.sue_voltage_milis , packet1.sue_air_speed_3DIMU , packet1.sue_estimated_wind_0 , packet1.sue_estimated_wind_1 , packet1.sue_estimated_wind_2 , packet1.sue_magFieldEarth0 , packet1.sue_magFieldEarth1 , packet1.sue_magFieldEarth2 , packet1.sue_svs , packet1.sue_hdop );
+    mavlink_msg_serial_udb_extra_f2_a_send(MAVLINK_COMM_1 , packet1.sue_time , packet1.sue_status , packet1.sue_latitude , packet1.sue_longitude , packet1.sue_altitude , packet1.sue_waypoint_index , packet1.sue_rmat0 , packet1.sue_rmat1 , packet1.sue_rmat2 , packet1.sue_rmat3 , packet1.sue_rmat4 , packet1.sue_rmat5 , packet1.sue_rmat6 , packet1.sue_rmat7 , packet1.sue_rmat8 , packet1.sue_cog , packet1.sue_sog , packet1.sue_cpu_load , packet1.sue_air_speed_3DIMU , packet1.sue_estimated_wind_0 , packet1.sue_estimated_wind_1 , packet1.sue_estimated_wind_2 , packet1.sue_magFieldEarth0 , packet1.sue_magFieldEarth1 , packet1.sue_magFieldEarth2 , packet1.sue_svs , packet1.sue_hdop );
     mavlink_msg_serial_udb_extra_f2_a_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
@@ -576,12 +575,14 @@ static void mavlink_test_serial_udb_extra_f2_b(uint8_t system_id, uint8_t compon
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_serial_udb_extra_f2_b_t packet_in = {
-        963497464,963497672,17651,17755,17859,17963,18067,18171,18275,18379,18483,18587,18691,18795,18899,19003,19107,19211,19315,19419,19523,19627,19731,19835,19939,20043,20147,20251,20355,20459,20563,20667,20771
+        963497464,963497672,963497880,963498088,18067,18171,18275,18379,18483,18587,18691,18795,18899,19003,19107,19211,19315,19419,19523,19627,19731,19835,19939,20043,20147,20251,20355,20459,20563,20667,20771,20875,20979,21083,21187,21291,21395,21499,21603,21707,21811,21915,22019,22123,22227,22331,22435,22539,22643,22747
     };
     mavlink_serial_udb_extra_f2_b_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         packet1.sue_time = packet_in.sue_time;
         packet1.sue_flags = packet_in.sue_flags;
+        packet1.sue_barom_press = packet_in.sue_barom_press;
+        packet1.sue_barom_alt = packet_in.sue_barom_alt;
         packet1.sue_pwm_input_1 = packet_in.sue_pwm_input_1;
         packet1.sue_pwm_input_2 = packet_in.sue_pwm_input_2;
         packet1.sue_pwm_input_3 = packet_in.sue_pwm_input_3;
@@ -592,6 +593,8 @@ static void mavlink_test_serial_udb_extra_f2_b(uint8_t system_id, uint8_t compon
         packet1.sue_pwm_input_8 = packet_in.sue_pwm_input_8;
         packet1.sue_pwm_input_9 = packet_in.sue_pwm_input_9;
         packet1.sue_pwm_input_10 = packet_in.sue_pwm_input_10;
+        packet1.sue_pwm_input_11 = packet_in.sue_pwm_input_11;
+        packet1.sue_pwm_input_12 = packet_in.sue_pwm_input_12;
         packet1.sue_pwm_output_1 = packet_in.sue_pwm_output_1;
         packet1.sue_pwm_output_2 = packet_in.sue_pwm_output_2;
         packet1.sue_pwm_output_3 = packet_in.sue_pwm_output_3;
@@ -602,9 +605,14 @@ static void mavlink_test_serial_udb_extra_f2_b(uint8_t system_id, uint8_t compon
         packet1.sue_pwm_output_8 = packet_in.sue_pwm_output_8;
         packet1.sue_pwm_output_9 = packet_in.sue_pwm_output_9;
         packet1.sue_pwm_output_10 = packet_in.sue_pwm_output_10;
+        packet1.sue_pwm_output_11 = packet_in.sue_pwm_output_11;
+        packet1.sue_pwm_output_12 = packet_in.sue_pwm_output_12;
         packet1.sue_imu_location_x = packet_in.sue_imu_location_x;
         packet1.sue_imu_location_y = packet_in.sue_imu_location_y;
         packet1.sue_imu_location_z = packet_in.sue_imu_location_z;
+        packet1.sue_location_error_earth_x = packet_in.sue_location_error_earth_x;
+        packet1.sue_location_error_earth_y = packet_in.sue_location_error_earth_y;
+        packet1.sue_location_error_earth_z = packet_in.sue_location_error_earth_z;
         packet1.sue_osc_fails = packet_in.sue_osc_fails;
         packet1.sue_imu_velocity_x = packet_in.sue_imu_velocity_x;
         packet1.sue_imu_velocity_y = packet_in.sue_imu_velocity_y;
@@ -612,6 +620,14 @@ static void mavlink_test_serial_udb_extra_f2_b(uint8_t system_id, uint8_t compon
         packet1.sue_waypoint_goal_x = packet_in.sue_waypoint_goal_x;
         packet1.sue_waypoint_goal_y = packet_in.sue_waypoint_goal_y;
         packet1.sue_waypoint_goal_z = packet_in.sue_waypoint_goal_z;
+        packet1.sue_aero_x = packet_in.sue_aero_x;
+        packet1.sue_aero_y = packet_in.sue_aero_y;
+        packet1.sue_aero_z = packet_in.sue_aero_z;
+        packet1.sue_barom_temp = packet_in.sue_barom_temp;
+        packet1.sue_bat_volt = packet_in.sue_bat_volt;
+        packet1.sue_bat_amp = packet_in.sue_bat_amp;
+        packet1.sue_bat_amp_hours = packet_in.sue_bat_amp_hours;
+        packet1.sue_desired_height = packet_in.sue_desired_height;
         packet1.sue_memory_stack_free = packet_in.sue_memory_stack_free;
         
         
@@ -627,12 +643,12 @@ static void mavlink_test_serial_udb_extra_f2_b(uint8_t system_id, uint8_t compon
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_serial_udb_extra_f2_b_pack(system_id, component_id, &msg , packet1.sue_time , packet1.sue_pwm_input_1 , packet1.sue_pwm_input_2 , packet1.sue_pwm_input_3 , packet1.sue_pwm_input_4 , packet1.sue_pwm_input_5 , packet1.sue_pwm_input_6 , packet1.sue_pwm_input_7 , packet1.sue_pwm_input_8 , packet1.sue_pwm_input_9 , packet1.sue_pwm_input_10 , packet1.sue_pwm_output_1 , packet1.sue_pwm_output_2 , packet1.sue_pwm_output_3 , packet1.sue_pwm_output_4 , packet1.sue_pwm_output_5 , packet1.sue_pwm_output_6 , packet1.sue_pwm_output_7 , packet1.sue_pwm_output_8 , packet1.sue_pwm_output_9 , packet1.sue_pwm_output_10 , packet1.sue_imu_location_x , packet1.sue_imu_location_y , packet1.sue_imu_location_z , packet1.sue_flags , packet1.sue_osc_fails , packet1.sue_imu_velocity_x , packet1.sue_imu_velocity_y , packet1.sue_imu_velocity_z , packet1.sue_waypoint_goal_x , packet1.sue_waypoint_goal_y , packet1.sue_waypoint_goal_z , packet1.sue_memory_stack_free );
+    mavlink_msg_serial_udb_extra_f2_b_pack(system_id, component_id, &msg , packet1.sue_time , packet1.sue_pwm_input_1 , packet1.sue_pwm_input_2 , packet1.sue_pwm_input_3 , packet1.sue_pwm_input_4 , packet1.sue_pwm_input_5 , packet1.sue_pwm_input_6 , packet1.sue_pwm_input_7 , packet1.sue_pwm_input_8 , packet1.sue_pwm_input_9 , packet1.sue_pwm_input_10 , packet1.sue_pwm_input_11 , packet1.sue_pwm_input_12 , packet1.sue_pwm_output_1 , packet1.sue_pwm_output_2 , packet1.sue_pwm_output_3 , packet1.sue_pwm_output_4 , packet1.sue_pwm_output_5 , packet1.sue_pwm_output_6 , packet1.sue_pwm_output_7 , packet1.sue_pwm_output_8 , packet1.sue_pwm_output_9 , packet1.sue_pwm_output_10 , packet1.sue_pwm_output_11 , packet1.sue_pwm_output_12 , packet1.sue_imu_location_x , packet1.sue_imu_location_y , packet1.sue_imu_location_z , packet1.sue_location_error_earth_x , packet1.sue_location_error_earth_y , packet1.sue_location_error_earth_z , packet1.sue_flags , packet1.sue_osc_fails , packet1.sue_imu_velocity_x , packet1.sue_imu_velocity_y , packet1.sue_imu_velocity_z , packet1.sue_waypoint_goal_x , packet1.sue_waypoint_goal_y , packet1.sue_waypoint_goal_z , packet1.sue_aero_x , packet1.sue_aero_y , packet1.sue_aero_z , packet1.sue_barom_temp , packet1.sue_barom_press , packet1.sue_barom_alt , packet1.sue_bat_volt , packet1.sue_bat_amp , packet1.sue_bat_amp_hours , packet1.sue_desired_height , packet1.sue_memory_stack_free );
     mavlink_msg_serial_udb_extra_f2_b_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_serial_udb_extra_f2_b_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.sue_time , packet1.sue_pwm_input_1 , packet1.sue_pwm_input_2 , packet1.sue_pwm_input_3 , packet1.sue_pwm_input_4 , packet1.sue_pwm_input_5 , packet1.sue_pwm_input_6 , packet1.sue_pwm_input_7 , packet1.sue_pwm_input_8 , packet1.sue_pwm_input_9 , packet1.sue_pwm_input_10 , packet1.sue_pwm_output_1 , packet1.sue_pwm_output_2 , packet1.sue_pwm_output_3 , packet1.sue_pwm_output_4 , packet1.sue_pwm_output_5 , packet1.sue_pwm_output_6 , packet1.sue_pwm_output_7 , packet1.sue_pwm_output_8 , packet1.sue_pwm_output_9 , packet1.sue_pwm_output_10 , packet1.sue_imu_location_x , packet1.sue_imu_location_y , packet1.sue_imu_location_z , packet1.sue_flags , packet1.sue_osc_fails , packet1.sue_imu_velocity_x , packet1.sue_imu_velocity_y , packet1.sue_imu_velocity_z , packet1.sue_waypoint_goal_x , packet1.sue_waypoint_goal_y , packet1.sue_waypoint_goal_z , packet1.sue_memory_stack_free );
+    mavlink_msg_serial_udb_extra_f2_b_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.sue_time , packet1.sue_pwm_input_1 , packet1.sue_pwm_input_2 , packet1.sue_pwm_input_3 , packet1.sue_pwm_input_4 , packet1.sue_pwm_input_5 , packet1.sue_pwm_input_6 , packet1.sue_pwm_input_7 , packet1.sue_pwm_input_8 , packet1.sue_pwm_input_9 , packet1.sue_pwm_input_10 , packet1.sue_pwm_input_11 , packet1.sue_pwm_input_12 , packet1.sue_pwm_output_1 , packet1.sue_pwm_output_2 , packet1.sue_pwm_output_3 , packet1.sue_pwm_output_4 , packet1.sue_pwm_output_5 , packet1.sue_pwm_output_6 , packet1.sue_pwm_output_7 , packet1.sue_pwm_output_8 , packet1.sue_pwm_output_9 , packet1.sue_pwm_output_10 , packet1.sue_pwm_output_11 , packet1.sue_pwm_output_12 , packet1.sue_imu_location_x , packet1.sue_imu_location_y , packet1.sue_imu_location_z , packet1.sue_location_error_earth_x , packet1.sue_location_error_earth_y , packet1.sue_location_error_earth_z , packet1.sue_flags , packet1.sue_osc_fails , packet1.sue_imu_velocity_x , packet1.sue_imu_velocity_y , packet1.sue_imu_velocity_z , packet1.sue_waypoint_goal_x , packet1.sue_waypoint_goal_y , packet1.sue_waypoint_goal_z , packet1.sue_aero_x , packet1.sue_aero_y , packet1.sue_aero_z , packet1.sue_barom_temp , packet1.sue_barom_press , packet1.sue_barom_alt , packet1.sue_bat_volt , packet1.sue_bat_amp , packet1.sue_bat_amp_hours , packet1.sue_desired_height , packet1.sue_memory_stack_free );
     mavlink_msg_serial_udb_extra_f2_b_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -645,7 +661,7 @@ static void mavlink_test_serial_udb_extra_f2_b(uint8_t system_id, uint8_t compon
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_serial_udb_extra_f2_b_send(MAVLINK_COMM_1 , packet1.sue_time , packet1.sue_pwm_input_1 , packet1.sue_pwm_input_2 , packet1.sue_pwm_input_3 , packet1.sue_pwm_input_4 , packet1.sue_pwm_input_5 , packet1.sue_pwm_input_6 , packet1.sue_pwm_input_7 , packet1.sue_pwm_input_8 , packet1.sue_pwm_input_9 , packet1.sue_pwm_input_10 , packet1.sue_pwm_output_1 , packet1.sue_pwm_output_2 , packet1.sue_pwm_output_3 , packet1.sue_pwm_output_4 , packet1.sue_pwm_output_5 , packet1.sue_pwm_output_6 , packet1.sue_pwm_output_7 , packet1.sue_pwm_output_8 , packet1.sue_pwm_output_9 , packet1.sue_pwm_output_10 , packet1.sue_imu_location_x , packet1.sue_imu_location_y , packet1.sue_imu_location_z , packet1.sue_flags , packet1.sue_osc_fails , packet1.sue_imu_velocity_x , packet1.sue_imu_velocity_y , packet1.sue_imu_velocity_z , packet1.sue_waypoint_goal_x , packet1.sue_waypoint_goal_y , packet1.sue_waypoint_goal_z , packet1.sue_memory_stack_free );
+    mavlink_msg_serial_udb_extra_f2_b_send(MAVLINK_COMM_1 , packet1.sue_time , packet1.sue_pwm_input_1 , packet1.sue_pwm_input_2 , packet1.sue_pwm_input_3 , packet1.sue_pwm_input_4 , packet1.sue_pwm_input_5 , packet1.sue_pwm_input_6 , packet1.sue_pwm_input_7 , packet1.sue_pwm_input_8 , packet1.sue_pwm_input_9 , packet1.sue_pwm_input_10 , packet1.sue_pwm_input_11 , packet1.sue_pwm_input_12 , packet1.sue_pwm_output_1 , packet1.sue_pwm_output_2 , packet1.sue_pwm_output_3 , packet1.sue_pwm_output_4 , packet1.sue_pwm_output_5 , packet1.sue_pwm_output_6 , packet1.sue_pwm_output_7 , packet1.sue_pwm_output_8 , packet1.sue_pwm_output_9 , packet1.sue_pwm_output_10 , packet1.sue_pwm_output_11 , packet1.sue_pwm_output_12 , packet1.sue_imu_location_x , packet1.sue_imu_location_y , packet1.sue_imu_location_z , packet1.sue_location_error_earth_x , packet1.sue_location_error_earth_y , packet1.sue_location_error_earth_z , packet1.sue_flags , packet1.sue_osc_fails , packet1.sue_imu_velocity_x , packet1.sue_imu_velocity_y , packet1.sue_imu_velocity_z , packet1.sue_waypoint_goal_x , packet1.sue_waypoint_goal_y , packet1.sue_waypoint_goal_z , packet1.sue_aero_x , packet1.sue_aero_y , packet1.sue_aero_z , packet1.sue_barom_temp , packet1.sue_barom_press , packet1.sue_barom_alt , packet1.sue_bat_volt , packet1.sue_bat_amp , packet1.sue_bat_amp_hours , packet1.sue_desired_height , packet1.sue_memory_stack_free );
     mavlink_msg_serial_udb_extra_f2_b_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
@@ -725,7 +741,7 @@ static void mavlink_test_serial_udb_extra_f5(uint8_t system_id, uint8_t componen
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_serial_udb_extra_f5_t packet_in = {
-        17.0,45.0,73.0,101.0,129.0,157.0
+        17.0,45.0,73.0,101.0
     };
     mavlink_serial_udb_extra_f5_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -733,8 +749,6 @@ static void mavlink_test_serial_udb_extra_f5(uint8_t system_id, uint8_t componen
         packet1.sue_YAWKD_AILERON = packet_in.sue_YAWKD_AILERON;
         packet1.sue_ROLLKP = packet_in.sue_ROLLKP;
         packet1.sue_ROLLKD = packet_in.sue_ROLLKD;
-        packet1.sue_YAW_STABILIZATION_AILERON = packet_in.sue_YAW_STABILIZATION_AILERON;
-        packet1.sue_AILERON_BOOST = packet_in.sue_AILERON_BOOST;
         
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -749,12 +763,12 @@ static void mavlink_test_serial_udb_extra_f5(uint8_t system_id, uint8_t componen
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_serial_udb_extra_f5_pack(system_id, component_id, &msg , packet1.sue_YAWKP_AILERON , packet1.sue_YAWKD_AILERON , packet1.sue_ROLLKP , packet1.sue_ROLLKD , packet1.sue_YAW_STABILIZATION_AILERON , packet1.sue_AILERON_BOOST );
+    mavlink_msg_serial_udb_extra_f5_pack(system_id, component_id, &msg , packet1.sue_YAWKP_AILERON , packet1.sue_YAWKD_AILERON , packet1.sue_ROLLKP , packet1.sue_ROLLKD );
     mavlink_msg_serial_udb_extra_f5_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_serial_udb_extra_f5_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.sue_YAWKP_AILERON , packet1.sue_YAWKD_AILERON , packet1.sue_ROLLKP , packet1.sue_ROLLKD , packet1.sue_YAW_STABILIZATION_AILERON , packet1.sue_AILERON_BOOST );
+    mavlink_msg_serial_udb_extra_f5_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.sue_YAWKP_AILERON , packet1.sue_YAWKD_AILERON , packet1.sue_ROLLKP , packet1.sue_ROLLKD );
     mavlink_msg_serial_udb_extra_f5_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -767,7 +781,7 @@ static void mavlink_test_serial_udb_extra_f5(uint8_t system_id, uint8_t componen
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_serial_udb_extra_f5_send(MAVLINK_COMM_1 , packet1.sue_YAWKP_AILERON , packet1.sue_YAWKD_AILERON , packet1.sue_ROLLKP , packet1.sue_ROLLKD , packet1.sue_YAW_STABILIZATION_AILERON , packet1.sue_AILERON_BOOST );
+    mavlink_msg_serial_udb_extra_f5_send(MAVLINK_COMM_1 , packet1.sue_YAWKP_AILERON , packet1.sue_YAWKD_AILERON , packet1.sue_ROLLKP , packet1.sue_ROLLKD );
     mavlink_msg_serial_udb_extra_f5_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
@@ -1300,6 +1314,365 @@ static void mavlink_test_airspeeds(uint8_t system_id, uint8_t component_id, mavl
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
+static void mavlink_test_serial_udb_extra_f17(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F17 >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_serial_udb_extra_f17_t packet_in = {
+        17.0,45.0,73.0
+    };
+    mavlink_serial_udb_extra_f17_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.sue_feed_forward = packet_in.sue_feed_forward;
+        packet1.sue_turn_rate_nav = packet_in.sue_turn_rate_nav;
+        packet1.sue_turn_rate_fbw = packet_in.sue_turn_rate_fbw;
+        
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F17_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F17_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f17_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_serial_udb_extra_f17_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f17_pack(system_id, component_id, &msg , packet1.sue_feed_forward , packet1.sue_turn_rate_nav , packet1.sue_turn_rate_fbw );
+    mavlink_msg_serial_udb_extra_f17_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f17_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.sue_feed_forward , packet1.sue_turn_rate_nav , packet1.sue_turn_rate_fbw );
+    mavlink_msg_serial_udb_extra_f17_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_serial_udb_extra_f17_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f17_send(MAVLINK_COMM_1 , packet1.sue_feed_forward , packet1.sue_turn_rate_nav , packet1.sue_turn_rate_fbw );
+    mavlink_msg_serial_udb_extra_f17_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
+static void mavlink_test_serial_udb_extra_f18(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F18 >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_serial_udb_extra_f18_t packet_in = {
+        17.0,45.0,73.0,101.0,129.0
+    };
+    mavlink_serial_udb_extra_f18_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.angle_of_attack_normal = packet_in.angle_of_attack_normal;
+        packet1.angle_of_attack_inverted = packet_in.angle_of_attack_inverted;
+        packet1.elevator_trim_normal = packet_in.elevator_trim_normal;
+        packet1.elevator_trim_inverted = packet_in.elevator_trim_inverted;
+        packet1.reference_speed = packet_in.reference_speed;
+        
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F18_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F18_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f18_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_serial_udb_extra_f18_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f18_pack(system_id, component_id, &msg , packet1.angle_of_attack_normal , packet1.angle_of_attack_inverted , packet1.elevator_trim_normal , packet1.elevator_trim_inverted , packet1.reference_speed );
+    mavlink_msg_serial_udb_extra_f18_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f18_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.angle_of_attack_normal , packet1.angle_of_attack_inverted , packet1.elevator_trim_normal , packet1.elevator_trim_inverted , packet1.reference_speed );
+    mavlink_msg_serial_udb_extra_f18_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_serial_udb_extra_f18_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f18_send(MAVLINK_COMM_1 , packet1.angle_of_attack_normal , packet1.angle_of_attack_inverted , packet1.elevator_trim_normal , packet1.elevator_trim_inverted , packet1.reference_speed );
+    mavlink_msg_serial_udb_extra_f18_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
+static void mavlink_test_serial_udb_extra_f19(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F19 >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_serial_udb_extra_f19_t packet_in = {
+        5,72,139,206,17,84,151,218
+    };
+    mavlink_serial_udb_extra_f19_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.sue_aileron_output_channel = packet_in.sue_aileron_output_channel;
+        packet1.sue_aileron_reversed = packet_in.sue_aileron_reversed;
+        packet1.sue_elevator_output_channel = packet_in.sue_elevator_output_channel;
+        packet1.sue_elevator_reversed = packet_in.sue_elevator_reversed;
+        packet1.sue_throttle_output_channel = packet_in.sue_throttle_output_channel;
+        packet1.sue_throttle_reversed = packet_in.sue_throttle_reversed;
+        packet1.sue_rudder_output_channel = packet_in.sue_rudder_output_channel;
+        packet1.sue_rudder_reversed = packet_in.sue_rudder_reversed;
+        
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F19_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F19_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f19_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_serial_udb_extra_f19_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f19_pack(system_id, component_id, &msg , packet1.sue_aileron_output_channel , packet1.sue_aileron_reversed , packet1.sue_elevator_output_channel , packet1.sue_elevator_reversed , packet1.sue_throttle_output_channel , packet1.sue_throttle_reversed , packet1.sue_rudder_output_channel , packet1.sue_rudder_reversed );
+    mavlink_msg_serial_udb_extra_f19_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f19_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.sue_aileron_output_channel , packet1.sue_aileron_reversed , packet1.sue_elevator_output_channel , packet1.sue_elevator_reversed , packet1.sue_throttle_output_channel , packet1.sue_throttle_reversed , packet1.sue_rudder_output_channel , packet1.sue_rudder_reversed );
+    mavlink_msg_serial_udb_extra_f19_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_serial_udb_extra_f19_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f19_send(MAVLINK_COMM_1 , packet1.sue_aileron_output_channel , packet1.sue_aileron_reversed , packet1.sue_elevator_output_channel , packet1.sue_elevator_reversed , packet1.sue_throttle_output_channel , packet1.sue_throttle_reversed , packet1.sue_rudder_output_channel , packet1.sue_rudder_reversed );
+    mavlink_msg_serial_udb_extra_f19_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
+static void mavlink_test_serial_udb_extra_f20(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F20 >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_serial_udb_extra_f20_t packet_in = {
+        17235,17339,17443,17547,17651,17755,17859,17963,18067,18171,18275,18379,77
+    };
+    mavlink_serial_udb_extra_f20_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.sue_trim_value_input_1 = packet_in.sue_trim_value_input_1;
+        packet1.sue_trim_value_input_2 = packet_in.sue_trim_value_input_2;
+        packet1.sue_trim_value_input_3 = packet_in.sue_trim_value_input_3;
+        packet1.sue_trim_value_input_4 = packet_in.sue_trim_value_input_4;
+        packet1.sue_trim_value_input_5 = packet_in.sue_trim_value_input_5;
+        packet1.sue_trim_value_input_6 = packet_in.sue_trim_value_input_6;
+        packet1.sue_trim_value_input_7 = packet_in.sue_trim_value_input_7;
+        packet1.sue_trim_value_input_8 = packet_in.sue_trim_value_input_8;
+        packet1.sue_trim_value_input_9 = packet_in.sue_trim_value_input_9;
+        packet1.sue_trim_value_input_10 = packet_in.sue_trim_value_input_10;
+        packet1.sue_trim_value_input_11 = packet_in.sue_trim_value_input_11;
+        packet1.sue_trim_value_input_12 = packet_in.sue_trim_value_input_12;
+        packet1.sue_number_of_inputs = packet_in.sue_number_of_inputs;
+        
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F20_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F20_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f20_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_serial_udb_extra_f20_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f20_pack(system_id, component_id, &msg , packet1.sue_number_of_inputs , packet1.sue_trim_value_input_1 , packet1.sue_trim_value_input_2 , packet1.sue_trim_value_input_3 , packet1.sue_trim_value_input_4 , packet1.sue_trim_value_input_5 , packet1.sue_trim_value_input_6 , packet1.sue_trim_value_input_7 , packet1.sue_trim_value_input_8 , packet1.sue_trim_value_input_9 , packet1.sue_trim_value_input_10 , packet1.sue_trim_value_input_11 , packet1.sue_trim_value_input_12 );
+    mavlink_msg_serial_udb_extra_f20_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f20_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.sue_number_of_inputs , packet1.sue_trim_value_input_1 , packet1.sue_trim_value_input_2 , packet1.sue_trim_value_input_3 , packet1.sue_trim_value_input_4 , packet1.sue_trim_value_input_5 , packet1.sue_trim_value_input_6 , packet1.sue_trim_value_input_7 , packet1.sue_trim_value_input_8 , packet1.sue_trim_value_input_9 , packet1.sue_trim_value_input_10 , packet1.sue_trim_value_input_11 , packet1.sue_trim_value_input_12 );
+    mavlink_msg_serial_udb_extra_f20_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_serial_udb_extra_f20_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f20_send(MAVLINK_COMM_1 , packet1.sue_number_of_inputs , packet1.sue_trim_value_input_1 , packet1.sue_trim_value_input_2 , packet1.sue_trim_value_input_3 , packet1.sue_trim_value_input_4 , packet1.sue_trim_value_input_5 , packet1.sue_trim_value_input_6 , packet1.sue_trim_value_input_7 , packet1.sue_trim_value_input_8 , packet1.sue_trim_value_input_9 , packet1.sue_trim_value_input_10 , packet1.sue_trim_value_input_11 , packet1.sue_trim_value_input_12 );
+    mavlink_msg_serial_udb_extra_f20_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
+static void mavlink_test_serial_udb_extra_f21(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F21 >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_serial_udb_extra_f21_t packet_in = {
+        17235,17339,17443,17547,17651,17755
+    };
+    mavlink_serial_udb_extra_f21_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.sue_accel_x_offset = packet_in.sue_accel_x_offset;
+        packet1.sue_accel_y_offset = packet_in.sue_accel_y_offset;
+        packet1.sue_accel_z_offset = packet_in.sue_accel_z_offset;
+        packet1.sue_gyro_x_offset = packet_in.sue_gyro_x_offset;
+        packet1.sue_gyro_y_offset = packet_in.sue_gyro_y_offset;
+        packet1.sue_gyro_z_offset = packet_in.sue_gyro_z_offset;
+        
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F21_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F21_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f21_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_serial_udb_extra_f21_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f21_pack(system_id, component_id, &msg , packet1.sue_accel_x_offset , packet1.sue_accel_y_offset , packet1.sue_accel_z_offset , packet1.sue_gyro_x_offset , packet1.sue_gyro_y_offset , packet1.sue_gyro_z_offset );
+    mavlink_msg_serial_udb_extra_f21_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f21_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.sue_accel_x_offset , packet1.sue_accel_y_offset , packet1.sue_accel_z_offset , packet1.sue_gyro_x_offset , packet1.sue_gyro_y_offset , packet1.sue_gyro_z_offset );
+    mavlink_msg_serial_udb_extra_f21_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_serial_udb_extra_f21_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f21_send(MAVLINK_COMM_1 , packet1.sue_accel_x_offset , packet1.sue_accel_y_offset , packet1.sue_accel_z_offset , packet1.sue_gyro_x_offset , packet1.sue_gyro_y_offset , packet1.sue_gyro_z_offset );
+    mavlink_msg_serial_udb_extra_f21_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
+static void mavlink_test_serial_udb_extra_f22(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F22 >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_serial_udb_extra_f22_t packet_in = {
+        17235,17339,17443,17547,17651,17755
+    };
+    mavlink_serial_udb_extra_f22_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.sue_accel_x_at_calibration = packet_in.sue_accel_x_at_calibration;
+        packet1.sue_accel_y_at_calibration = packet_in.sue_accel_y_at_calibration;
+        packet1.sue_accel_z_at_calibration = packet_in.sue_accel_z_at_calibration;
+        packet1.sue_gyro_x_at_calibration = packet_in.sue_gyro_x_at_calibration;
+        packet1.sue_gyro_y_at_calibration = packet_in.sue_gyro_y_at_calibration;
+        packet1.sue_gyro_z_at_calibration = packet_in.sue_gyro_z_at_calibration;
+        
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F22_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F22_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f22_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_serial_udb_extra_f22_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f22_pack(system_id, component_id, &msg , packet1.sue_accel_x_at_calibration , packet1.sue_accel_y_at_calibration , packet1.sue_accel_z_at_calibration , packet1.sue_gyro_x_at_calibration , packet1.sue_gyro_y_at_calibration , packet1.sue_gyro_z_at_calibration );
+    mavlink_msg_serial_udb_extra_f22_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f22_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.sue_accel_x_at_calibration , packet1.sue_accel_y_at_calibration , packet1.sue_accel_z_at_calibration , packet1.sue_gyro_x_at_calibration , packet1.sue_gyro_y_at_calibration , packet1.sue_gyro_z_at_calibration );
+    mavlink_msg_serial_udb_extra_f22_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_serial_udb_extra_f22_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_serial_udb_extra_f22_send(MAVLINK_COMM_1 , packet1.sue_accel_x_at_calibration , packet1.sue_accel_y_at_calibration , packet1.sue_accel_z_at_calibration , packet1.sue_gyro_x_at_calibration , packet1.sue_gyro_y_at_calibration , packet1.sue_gyro_z_at_calibration );
+    mavlink_msg_serial_udb_extra_f22_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
 static void mavlink_test_matrixpilot(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
     mavlink_test_flexifunction_set(system_id, component_id, last_msg);
@@ -1323,6 +1696,12 @@ static void mavlink_test_matrixpilot(uint8_t system_id, uint8_t component_id, ma
     mavlink_test_serial_udb_extra_f16(system_id, component_id, last_msg);
     mavlink_test_altitudes(system_id, component_id, last_msg);
     mavlink_test_airspeeds(system_id, component_id, last_msg);
+    mavlink_test_serial_udb_extra_f17(system_id, component_id, last_msg);
+    mavlink_test_serial_udb_extra_f18(system_id, component_id, last_msg);
+    mavlink_test_serial_udb_extra_f19(system_id, component_id, last_msg);
+    mavlink_test_serial_udb_extra_f20(system_id, component_id, last_msg);
+    mavlink_test_serial_udb_extra_f21(system_id, component_id, last_msg);
+    mavlink_test_serial_udb_extra_f22(system_id, component_id, last_msg);
 }
 
 #ifdef __cplusplus
