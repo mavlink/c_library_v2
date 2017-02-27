@@ -15,19 +15,19 @@ typedef struct __mavlink_camera_image_captured_t {
  int32_t image_index; /*< Zero based index of this image (image count since armed -1)*/
  uint8_t camera_id; /*< Camera ID if there are multiple*/
  int8_t capture_result; /*< Boolean indicating success (1) or failure (0) while capturing this image.*/
- char file_url[210]; /*< URL of image taken. Either local storage or http://foo.jpg if camera provides an HTTP interface.*/
+ char file_url[205]; /*< URL of image taken. Either local storage or http://foo.jpg if camera provides an HTTP interface.*/
 }) mavlink_camera_image_captured_t;
 
-#define MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_LEN 260
-#define MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_MIN_LEN 260
-#define MAVLINK_MSG_ID_263_LEN 260
-#define MAVLINK_MSG_ID_263_MIN_LEN 260
+#define MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_LEN 255
+#define MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_MIN_LEN 255
+#define MAVLINK_MSG_ID_263_LEN 255
+#define MAVLINK_MSG_ID_263_MIN_LEN 255
 
-#define MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_CRC 27
-#define MAVLINK_MSG_ID_263_CRC 27
+#define MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_CRC 133
+#define MAVLINK_MSG_ID_263_CRC 133
 
 #define MAVLINK_MSG_CAMERA_IMAGE_CAPTURED_FIELD_Q_LEN 4
-#define MAVLINK_MSG_CAMERA_IMAGE_CAPTURED_FIELD_FILE_URL_LEN 210
+#define MAVLINK_MSG_CAMERA_IMAGE_CAPTURED_FIELD_FILE_URL_LEN 205
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_CAMERA_IMAGE_CAPTURED { \
@@ -44,7 +44,7 @@ typedef struct __mavlink_camera_image_captured_t {
          { "image_index", NULL, MAVLINK_TYPE_INT32_T, 0, 44, offsetof(mavlink_camera_image_captured_t, image_index) }, \
          { "camera_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 48, offsetof(mavlink_camera_image_captured_t, camera_id) }, \
          { "capture_result", NULL, MAVLINK_TYPE_INT8_T, 0, 49, offsetof(mavlink_camera_image_captured_t, capture_result) }, \
-         { "file_url", NULL, MAVLINK_TYPE_CHAR, 210, 50, offsetof(mavlink_camera_image_captured_t, file_url) }, \
+         { "file_url", NULL, MAVLINK_TYPE_CHAR, 205, 50, offsetof(mavlink_camera_image_captured_t, file_url) }, \
          } \
 }
 #else
@@ -61,7 +61,7 @@ typedef struct __mavlink_camera_image_captured_t {
          { "image_index", NULL, MAVLINK_TYPE_INT32_T, 0, 44, offsetof(mavlink_camera_image_captured_t, image_index) }, \
          { "camera_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 48, offsetof(mavlink_camera_image_captured_t, camera_id) }, \
          { "capture_result", NULL, MAVLINK_TYPE_INT8_T, 0, 49, offsetof(mavlink_camera_image_captured_t, capture_result) }, \
-         { "file_url", NULL, MAVLINK_TYPE_CHAR, 210, 50, offsetof(mavlink_camera_image_captured_t, file_url) }, \
+         { "file_url", NULL, MAVLINK_TYPE_CHAR, 205, 50, offsetof(mavlink_camera_image_captured_t, file_url) }, \
          } \
 }
 #endif
@@ -100,7 +100,7 @@ static inline uint16_t mavlink_msg_camera_image_captured_pack(uint8_t system_id,
     _mav_put_uint8_t(buf, 48, camera_id);
     _mav_put_int8_t(buf, 49, capture_result);
     _mav_put_float_array(buf, 28, q, 4);
-    _mav_put_char_array(buf, 50, file_url, 210);
+    _mav_put_char_array(buf, 50, file_url, 205);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_LEN);
 #else
     mavlink_camera_image_captured_t packet;
@@ -114,7 +114,7 @@ static inline uint16_t mavlink_msg_camera_image_captured_pack(uint8_t system_id,
     packet.camera_id = camera_id;
     packet.capture_result = capture_result;
     mav_array_memcpy(packet.q, q, sizeof(float)*4);
-    mav_array_memcpy(packet.file_url, file_url, sizeof(char)*210);
+    mav_array_memcpy(packet.file_url, file_url, sizeof(char)*205);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_LEN);
 #endif
 
@@ -157,7 +157,7 @@ static inline uint16_t mavlink_msg_camera_image_captured_pack_chan(uint8_t syste
     _mav_put_uint8_t(buf, 48, camera_id);
     _mav_put_int8_t(buf, 49, capture_result);
     _mav_put_float_array(buf, 28, q, 4);
-    _mav_put_char_array(buf, 50, file_url, 210);
+    _mav_put_char_array(buf, 50, file_url, 205);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_LEN);
 #else
     mavlink_camera_image_captured_t packet;
@@ -171,7 +171,7 @@ static inline uint16_t mavlink_msg_camera_image_captured_pack_chan(uint8_t syste
     packet.camera_id = camera_id;
     packet.capture_result = capture_result;
     mav_array_memcpy(packet.q, q, sizeof(float)*4);
-    mav_array_memcpy(packet.file_url, file_url, sizeof(char)*210);
+    mav_array_memcpy(packet.file_url, file_url, sizeof(char)*205);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_LEN);
 #endif
 
@@ -238,7 +238,7 @@ static inline void mavlink_msg_camera_image_captured_send(mavlink_channel_t chan
     _mav_put_uint8_t(buf, 48, camera_id);
     _mav_put_int8_t(buf, 49, capture_result);
     _mav_put_float_array(buf, 28, q, 4);
-    _mav_put_char_array(buf, 50, file_url, 210);
+    _mav_put_char_array(buf, 50, file_url, 205);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED, buf, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_MIN_LEN, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_LEN, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_CRC);
 #else
     mavlink_camera_image_captured_t packet;
@@ -252,7 +252,7 @@ static inline void mavlink_msg_camera_image_captured_send(mavlink_channel_t chan
     packet.camera_id = camera_id;
     packet.capture_result = capture_result;
     mav_array_memcpy(packet.q, q, sizeof(float)*4);
-    mav_array_memcpy(packet.file_url, file_url, sizeof(char)*210);
+    mav_array_memcpy(packet.file_url, file_url, sizeof(char)*205);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED, (const char *)&packet, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_MIN_LEN, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_LEN, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_CRC);
 #endif
 }
@@ -293,7 +293,7 @@ static inline void mavlink_msg_camera_image_captured_send_buf(mavlink_message_t 
     _mav_put_uint8_t(buf, 48, camera_id);
     _mav_put_int8_t(buf, 49, capture_result);
     _mav_put_float_array(buf, 28, q, 4);
-    _mav_put_char_array(buf, 50, file_url, 210);
+    _mav_put_char_array(buf, 50, file_url, 205);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED, buf, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_MIN_LEN, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_LEN, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_CRC);
 #else
     mavlink_camera_image_captured_t *packet = (mavlink_camera_image_captured_t *)msgbuf;
@@ -307,7 +307,7 @@ static inline void mavlink_msg_camera_image_captured_send_buf(mavlink_message_t 
     packet->camera_id = camera_id;
     packet->capture_result = capture_result;
     mav_array_memcpy(packet->q, q, sizeof(float)*4);
-    mav_array_memcpy(packet->file_url, file_url, sizeof(char)*210);
+    mav_array_memcpy(packet->file_url, file_url, sizeof(char)*205);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED, (const char *)packet, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_MIN_LEN, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_LEN, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_CRC);
 #endif
 }
@@ -425,7 +425,7 @@ static inline int8_t mavlink_msg_camera_image_captured_get_capture_result(const 
  */
 static inline uint16_t mavlink_msg_camera_image_captured_get_file_url(const mavlink_message_t* msg, char *file_url)
 {
-    return _MAV_RETURN_char_array(msg, file_url, 210,  50);
+    return _MAV_RETURN_char_array(msg, file_url, 205,  50);
 }
 
 /**

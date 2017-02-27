@@ -8684,7 +8684,7 @@ static void mavlink_test_camera_image_captured(uint8_t system_id, uint8_t compon
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_camera_image_captured_t packet_in = {
-        93372036854775807ULL,963497880,963498088,963498296,963498504,963498712,{ 213.0, 214.0, 215.0, 216.0 },963499752,149,216,"YZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXY"
+        93372036854775807ULL,963497880,963498088,963498296,963498504,963498712,{ 213.0, 214.0, 215.0, 216.0 },963499752,149,216,"YZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRST"
     };
     mavlink_camera_image_captured_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -8699,7 +8699,7 @@ static void mavlink_test_camera_image_captured(uint8_t system_id, uint8_t compon
         packet1.capture_result = packet_in.capture_result;
         
         mav_array_memcpy(packet1.q, packet_in.q, sizeof(float)*4);
-        mav_array_memcpy(packet1.file_url, packet_in.file_url, sizeof(char)*210);
+        mav_array_memcpy(packet1.file_url, packet_in.file_url, sizeof(char)*205);
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
         if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
