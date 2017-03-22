@@ -135,6 +135,14 @@ typedef enum MAV_CMD
                    | */
    MAV_CMD_SET_GUIDED_SUBMODE_CIRCLE=4001, /* This command sets submode circle when vehicle is in guided mode. Vehicle flies along a circle facing the center of the circle. The user can input the velocity along the circle and change the radius. If no input is given the vehicle will hold position.
                    |Radius of desired circle in CIRCLE_MODE| User defined| User defined| User defined| Unscaled target latitude of center of circle in CIRCLE_MODE| Unscaled target longitude of center of circle in CIRCLE_MODE|  */
+   MAV_CMD_NAV_FENCE_RETURN_POINT=5000, /* Fence return point. There can only be one fence return point.
+         |Reserved| Reserved| Reserved| Reserved| Latitude| Longitude| Altitude|  */
+   MAV_CMD_NAV_FENCE_POLYGON_VERTEX_INCLUSION=5001, /* Fence vertex for an inclusion polygon. The vehicle must stay within this area. Minimum of 3 vertices required.
+         |Polygon vertex count| Reserved| Reserved| Reserved| Latitude| Longitude| Reserved|  */
+   MAV_CMD_NAV_FENCE_POLYGON_VERTEX_EXCLUSION=5002, /* Fence vertex for an exclusion polygon. The vehicle must stay outside this area. Minimum of 3 vertices required.
+         |Polygon vertex count| Reserved| Reserved| Reserved| Latitude| Longitude| Reserved|  */
+   MAV_CMD_NAV_RALLY_POINT=5100, /* Rally point. You can have multiple rally points defined.
+         |Reserved| Reserved| Reserved| Reserved| Latitude| Longitude| Altitude|  */
    MAV_CMD_DO_NOTHING=10001, /* Does nothing. |1 to arm, 0 to disarm|  */
    MAV_CMD_RETURN_TO_BASE=10011, /* Return vehicle to base. |0: return to base, 1: track mobile base|  */
    MAV_CMD_STOP_RETURN_TO_BASE=10012, /* Stops the vehicle from returning to base and resumes flight.  | */
