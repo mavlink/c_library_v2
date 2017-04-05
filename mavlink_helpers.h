@@ -12,6 +12,10 @@
 
 #include "mavlink_sha256.h"
 
+#ifdef MAVLINK_USE_CXX_NAMESPACE
+namespace mavlink {
+#endif
+
 /*
  * Internal function to give access to the channel status for each channel
  */
@@ -195,10 +199,9 @@ MAVLINK_HELPER bool mavlink_signature_check(mavlink_signing_t *signing,
  * @param system_id Id of the sending (this) system, 1-127
  * @param length Message length
  */
-MAVLINK_HELPER uint16_t mavlink_finalize_message_chan(mavlink_message_t* msg, uint8_t system_id, uint8_t component_id, 
-						      uint8_t chan, uint8_t min_length, uint8_t length, uint8_t crc_extra)
+MAVLINK_HELPER uint16_t mavlink_finalize_message_buffer(mavlink_message_t* msg, uint8_t system_id, uint8_t component_id,
+						      mavlink_status_t* status, uint8_t min_length, uint8_t length, uint8_t crc_extra)
 {
-	mavlink_status_t *status = mavlink_get_channel_status(chan);
 	bool mavlink1 = (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) != 0;
 	bool signing = 	(!mavlink1) && status->signing && (status->signing->flags & MAVLINK_SIGNING_FLAG_SIGN_OUTGOING);
 	uint8_t signature_len = signing? MAVLINK_SIGNATURE_BLOCK_LEN : 0;
@@ -257,6 +260,12 @@ MAVLINK_HELPER uint16_t mavlink_finalize_message_chan(mavlink_message_t* msg, ui
 	return msg->len + header_len + 2 + signature_len;
 }
 
+MAVLINK_HELPER uint16_t mavlink_finalize_message_chan(mavlink_message_t* msg, uint8_t system_id, uint8_t component_id,
+						      uint8_t chan, uint8_t min_length, uint8_t length, uint8_t crc_extra)
+{
+	mavlink_status_t *status = mavlink_get_channel_status(chan);
+	return mavlink_finalize_message_buffer(msg, system_id, component_id, status, min_length, length, crc_extra);
+}
 
 /**
  * @brief Finalize a MAVLink message with MAVLINK_COMM_0 as default channel
@@ -367,7 +376,7 @@ MAVLINK_HELPER void _mavlink_resend_uart(mavlink_channel_t chan, const mavlink_m
             signature_len = 0;
             MAVLINK_START_UART_SEND(chan, header_len + msg->len + 2 + signature_len);
             // we can't send the structure directly as it has extra mavlink2 elements in it
-            uint8_t buf[header_len];
+            uint8_t buf[MAVLINK_CORE_HEADER_MAVLINK1_LEN + 1];
             buf[0] = msg->magic;
             buf[1] = msg->len;
             buf[2] = msg->seq;
@@ -379,7 +388,7 @@ MAVLINK_HELPER void _mavlink_resend_uart(mavlink_channel_t chan, const mavlink_m
             header_len = MAVLINK_CORE_HEADER_LEN + 1;
             signature_len = (msg->incompat_flags & MAVLINK_IFLAG_SIGNED)?MAVLINK_SIGNATURE_BLOCK_LEN:0;
             MAVLINK_START_UART_SEND(chan, header_len + msg->len + 2 + signature_len);
-            uint8_t buf[header_len];
+            uint8_t buf[MAVLINK_CORE_HEADER_LEN + 1];
             buf[0] = msg->magic;
             buf[1] = msg->len;
             buf[2] = msg->incompat_flags;
@@ -470,6 +479,7 @@ MAVLINK_HELPER void mavlink_update_checksum(mavlink_message_t* msg, uint8_t c)
 /*
   return the crc_entry value for a msgid
 */
+#ifndef MAVLINK_GET_MSG_ENTRY
 MAVLINK_HELPER const mavlink_msg_entry_t *mavlink_get_msg_entry(uint32_t msgid)
 {
 	static const mavlink_msg_entry_t mavlink_message_crcs[] = MAVLINK_MESSAGE_CRCS;
@@ -497,6 +507,7 @@ MAVLINK_HELPER const mavlink_msg_entry_t *mavlink_get_msg_entry(uint32_t msgid)
         }
         return &mavlink_message_crcs[low];
 }
+#endif // MAVLINK_GET_MSG_ENTRY
 
 /*
   return the crc_extra value for a message
@@ -735,32 +746,41 @@ MAVLINK_HELPER uint8_t mavlink_frame_char_buffer(mavlink_message_t* rxmsg,
 		} else {
 			// Successfully got message
 			status->msg_received = MAVLINK_FRAMING_OK;
-                }
-                rxmsg->ck[1] = c;
+		}
+		rxmsg->ck[1] = c;
+
 		if (rxmsg->incompat_flags & MAVLINK_IFLAG_SIGNED) {
 			status->parse_state = MAVLINK_PARSE_STATE_SIGNATURE_WAIT;
 			status->signature_wait = MAVLINK_SIGNATURE_BLOCK_LEN;
-			status->msg_received = MAVLINK_FRAMING_INCOMPLETE;
+
+			// If the CRC is already wrong, don't overwrite msg_received,
+			// otherwise we can end up with garbage flagged as valid.
+			if (status->msg_received != MAVLINK_FRAMING_BAD_CRC) {
+				status->msg_received = MAVLINK_FRAMING_INCOMPLETE;
+			}
 		} else {
 			if (status->signing &&
-			    (status->signing->accept_unsigned_callback == NULL ||
-			     !status->signing->accept_unsigned_callback(status, rxmsg->msgid))) {
-				// don't accept this unsigned packet
-				status->msg_received = MAVLINK_FRAMING_BAD_SIGNATURE;
+			   	(status->signing->accept_unsigned_callback == NULL ||
+			   	 !status->signing->accept_unsigned_callback(status, rxmsg->msgid))) {
+
+				// If the CRC is already wrong, don't overwrite msg_received.
+				if (status->msg_received != MAVLINK_FRAMING_BAD_CRC) {
+					status->msg_received = MAVLINK_FRAMING_BAD_SIGNATURE;
+				}
 			}
 			status->parse_state = MAVLINK_PARSE_STATE_IDLE;
 			memcpy(r_message, rxmsg, sizeof(mavlink_message_t));
 		}
 		break;
 	case MAVLINK_PARSE_STATE_SIGNATURE_WAIT:
-                rxmsg->signature[MAVLINK_SIGNATURE_BLOCK_LEN-status->signature_wait] = c;
+		rxmsg->signature[MAVLINK_SIGNATURE_BLOCK_LEN-status->signature_wait] = c;
 		status->signature_wait--;
 		if (status->signature_wait == 0) {
 			// we have the whole signature, check it is OK
 			bool sig_ok = mavlink_signature_check(status->signing, status->signing_streams, rxmsg);
 			if (!sig_ok &&
-			    (status->signing->accept_unsigned_callback &&
-			     status->signing->accept_unsigned_callback(status, rxmsg->msgid))) {
+			   	(status->signing->accept_unsigned_callback &&
+			   	 status->signing->accept_unsigned_callback(status, rxmsg->msgid))) {
 				// accepted via application level override
 				sig_ok = true;
 			}
@@ -1094,5 +1114,6 @@ MAVLINK_HELPER void _mavlink_send_uart(mavlink_channel_t chan, const char *buf, 
 }
 #endif // MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-
-
+#ifdef MAVLINK_USE_CXX_NAMESPACE
+} // namespace mavlink
+#endif
