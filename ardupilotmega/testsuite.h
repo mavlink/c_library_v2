@@ -3221,6 +3221,64 @@ static void mavlink_test_adap_tuning(uint8_t system_id, uint8_t component_id, ma
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
+static void mavlink_test_vision_position_delta(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_VISION_POSITION_DELTA >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_vision_position_delta_t packet_in = {
+        93372036854775807ULL,93372036854776311ULL,{ 129.0, 130.0, 131.0 },{ 213.0, 214.0, 215.0 },297.0
+    };
+    mavlink_vision_position_delta_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.time_usec = packet_in.time_usec;
+        packet1.time_delta_usec = packet_in.time_delta_usec;
+        packet1.confidence = packet_in.confidence;
+        
+        mav_array_memcpy(packet1.angle_delta, packet_in.angle_delta, sizeof(float)*3);
+        mav_array_memcpy(packet1.position_delta, packet_in.position_delta, sizeof(float)*3);
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_VISION_POSITION_DELTA_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_VISION_POSITION_DELTA_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_vision_position_delta_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_vision_position_delta_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_vision_position_delta_pack(system_id, component_id, &msg , packet1.time_usec , packet1.time_delta_usec , packet1.angle_delta , packet1.position_delta , packet1.confidence );
+    mavlink_msg_vision_position_delta_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_vision_position_delta_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_usec , packet1.time_delta_usec , packet1.angle_delta , packet1.position_delta , packet1.confidence );
+    mavlink_msg_vision_position_delta_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_vision_position_delta_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_vision_position_delta_send(MAVLINK_COMM_1 , packet1.time_usec , packet1.time_delta_usec , packet1.angle_delta , packet1.position_delta , packet1.confidence );
+    mavlink_msg_vision_position_delta_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
 static void mavlink_test_ardupilotmega(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
     mavlink_test_sensor_offsets(system_id, component_id, last_msg);
@@ -3277,6 +3335,7 @@ static void mavlink_test_ardupilotmega(uint8_t system_id, uint8_t component_id, 
     mavlink_test_device_op_write(system_id, component_id, last_msg);
     mavlink_test_device_op_write_reply(system_id, component_id, last_msg);
     mavlink_test_adap_tuning(system_id, component_id, last_msg);
+    mavlink_test_vision_position_delta(system_id, component_id, last_msg);
 }
 
 #ifdef __cplusplus
