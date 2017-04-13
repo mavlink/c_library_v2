@@ -13,11 +13,11 @@ typedef struct __mavlink_hil_state_quaternion_t {
  int32_t lat; /*< Latitude, expressed as * 1E7*/
  int32_t lon; /*< Longitude, expressed as * 1E7*/
  int32_t alt; /*< Altitude in meters, expressed as * 1000 (millimeters)*/
- int16_t vx; /*< Ground X Speed (Latitude), expressed as m/s * 100*/
- int16_t vy; /*< Ground Y Speed (Longitude), expressed as m/s * 100*/
- int16_t vz; /*< Ground Z Speed (Altitude), expressed as m/s * 100*/
- uint16_t ind_airspeed; /*< Indicated airspeed, expressed as m/s * 100*/
- uint16_t true_airspeed; /*< True airspeed, expressed as m/s * 100*/
+ int16_t vx; /*< Ground X Speed (Latitude), expressed as cm/s*/
+ int16_t vy; /*< Ground Y Speed (Longitude), expressed as cm/s*/
+ int16_t vz; /*< Ground Z Speed (Altitude), expressed as cm/s*/
+ uint16_t ind_airspeed; /*< Indicated airspeed, expressed as cm/s*/
+ uint16_t true_airspeed; /*< True airspeed, expressed as cm/s*/
  int16_t xacc; /*< X acceleration (mg)*/
  int16_t yacc; /*< Y acceleration (mg)*/
  int16_t zacc; /*< Z acceleration (mg)*/
@@ -94,11 +94,11 @@ typedef struct __mavlink_hil_state_quaternion_t {
  * @param lat Latitude, expressed as * 1E7
  * @param lon Longitude, expressed as * 1E7
  * @param alt Altitude in meters, expressed as * 1000 (millimeters)
- * @param vx Ground X Speed (Latitude), expressed as m/s * 100
- * @param vy Ground Y Speed (Longitude), expressed as m/s * 100
- * @param vz Ground Z Speed (Altitude), expressed as m/s * 100
- * @param ind_airspeed Indicated airspeed, expressed as m/s * 100
- * @param true_airspeed True airspeed, expressed as m/s * 100
+ * @param vx Ground X Speed (Latitude), expressed as cm/s
+ * @param vy Ground Y Speed (Longitude), expressed as cm/s
+ * @param vz Ground Z Speed (Altitude), expressed as cm/s
+ * @param ind_airspeed Indicated airspeed, expressed as cm/s
+ * @param true_airspeed True airspeed, expressed as cm/s
  * @param xacc X acceleration (mg)
  * @param yacc Y acceleration (mg)
  * @param zacc Z acceleration (mg)
@@ -165,11 +165,11 @@ static inline uint16_t mavlink_msg_hil_state_quaternion_pack(uint8_t system_id, 
  * @param lat Latitude, expressed as * 1E7
  * @param lon Longitude, expressed as * 1E7
  * @param alt Altitude in meters, expressed as * 1000 (millimeters)
- * @param vx Ground X Speed (Latitude), expressed as m/s * 100
- * @param vy Ground Y Speed (Longitude), expressed as m/s * 100
- * @param vz Ground Z Speed (Altitude), expressed as m/s * 100
- * @param ind_airspeed Indicated airspeed, expressed as m/s * 100
- * @param true_airspeed True airspeed, expressed as m/s * 100
+ * @param vx Ground X Speed (Latitude), expressed as cm/s
+ * @param vy Ground Y Speed (Longitude), expressed as cm/s
+ * @param vz Ground Z Speed (Altitude), expressed as cm/s
+ * @param ind_airspeed Indicated airspeed, expressed as cm/s
+ * @param true_airspeed True airspeed, expressed as cm/s
  * @param xacc X acceleration (mg)
  * @param yacc Y acceleration (mg)
  * @param zacc Z acceleration (mg)
@@ -262,11 +262,11 @@ static inline uint16_t mavlink_msg_hil_state_quaternion_encode_chan(uint8_t syst
  * @param lat Latitude, expressed as * 1E7
  * @param lon Longitude, expressed as * 1E7
  * @param alt Altitude in meters, expressed as * 1000 (millimeters)
- * @param vx Ground X Speed (Latitude), expressed as m/s * 100
- * @param vy Ground Y Speed (Longitude), expressed as m/s * 100
- * @param vz Ground Z Speed (Altitude), expressed as m/s * 100
- * @param ind_airspeed Indicated airspeed, expressed as m/s * 100
- * @param true_airspeed True airspeed, expressed as m/s * 100
+ * @param vx Ground X Speed (Latitude), expressed as cm/s
+ * @param vy Ground Y Speed (Longitude), expressed as cm/s
+ * @param vz Ground Z Speed (Altitude), expressed as cm/s
+ * @param ind_airspeed Indicated airspeed, expressed as cm/s
+ * @param true_airspeed True airspeed, expressed as cm/s
  * @param xacc X acceleration (mg)
  * @param yacc Y acceleration (mg)
  * @param zacc Z acceleration (mg)
@@ -470,7 +470,7 @@ static inline int32_t mavlink_msg_hil_state_quaternion_get_alt(const mavlink_mes
 /**
  * @brief Get field vx from hil_state_quaternion message
  *
- * @return Ground X Speed (Latitude), expressed as m/s * 100
+ * @return Ground X Speed (Latitude), expressed as cm/s
  */
 static inline int16_t mavlink_msg_hil_state_quaternion_get_vx(const mavlink_message_t* msg)
 {
@@ -480,7 +480,7 @@ static inline int16_t mavlink_msg_hil_state_quaternion_get_vx(const mavlink_mess
 /**
  * @brief Get field vy from hil_state_quaternion message
  *
- * @return Ground Y Speed (Longitude), expressed as m/s * 100
+ * @return Ground Y Speed (Longitude), expressed as cm/s
  */
 static inline int16_t mavlink_msg_hil_state_quaternion_get_vy(const mavlink_message_t* msg)
 {
@@ -490,7 +490,7 @@ static inline int16_t mavlink_msg_hil_state_quaternion_get_vy(const mavlink_mess
 /**
  * @brief Get field vz from hil_state_quaternion message
  *
- * @return Ground Z Speed (Altitude), expressed as m/s * 100
+ * @return Ground Z Speed (Altitude), expressed as cm/s
  */
 static inline int16_t mavlink_msg_hil_state_quaternion_get_vz(const mavlink_message_t* msg)
 {
@@ -500,7 +500,7 @@ static inline int16_t mavlink_msg_hil_state_quaternion_get_vz(const mavlink_mess
 /**
  * @brief Get field ind_airspeed from hil_state_quaternion message
  *
- * @return Indicated airspeed, expressed as m/s * 100
+ * @return Indicated airspeed, expressed as cm/s
  */
 static inline uint16_t mavlink_msg_hil_state_quaternion_get_ind_airspeed(const mavlink_message_t* msg)
 {
@@ -510,7 +510,7 @@ static inline uint16_t mavlink_msg_hil_state_quaternion_get_ind_airspeed(const m
 /**
  * @brief Get field true_airspeed from hil_state_quaternion message
  *
- * @return True airspeed, expressed as m/s * 100
+ * @return True airspeed, expressed as cm/s
  */
 static inline uint16_t mavlink_msg_hil_state_quaternion_get_true_airspeed(const mavlink_message_t* msg)
 {

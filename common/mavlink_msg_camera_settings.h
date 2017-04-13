@@ -9,7 +9,7 @@ typedef struct __mavlink_camera_settings_t {
  float aperture; /*< Aperture is 1/value*/
  float shutter_speed; /*< Shutter speed in s*/
  float iso_sensitivity; /*< ISO sensitivity*/
- float white_balance; /*< Color temperature in K*/
+ float white_balance; /*< Color temperature in degrees Kelvin*/
  uint8_t camera_id; /*< Camera ID if there are multiple*/
  uint8_t aperture_locked; /*< Aperture locked (0: auto, 1: locked)*/
  uint8_t shutter_speed_locked; /*< Shutter speed locked (0: auto, 1: locked)*/
@@ -85,7 +85,7 @@ typedef struct __mavlink_camera_settings_t {
  * @param shutter_speed_locked Shutter speed locked (0: auto, 1: locked)
  * @param iso_sensitivity ISO sensitivity
  * @param iso_sensitivity_locked ISO sensitivity locked (0: auto, 1: locked)
- * @param white_balance Color temperature in K
+ * @param white_balance Color temperature in degrees Kelvin
  * @param white_balance_locked Color temperature locked (0: auto, 1: locked)
  * @param mode_id Reserved for a camera mode ID
  * @param color_mode_id Reserved for a color mode ID
@@ -149,7 +149,7 @@ static inline uint16_t mavlink_msg_camera_settings_pack(uint8_t system_id, uint8
  * @param shutter_speed_locked Shutter speed locked (0: auto, 1: locked)
  * @param iso_sensitivity ISO sensitivity
  * @param iso_sensitivity_locked ISO sensitivity locked (0: auto, 1: locked)
- * @param white_balance Color temperature in K
+ * @param white_balance Color temperature in degrees Kelvin
  * @param white_balance_locked Color temperature locked (0: auto, 1: locked)
  * @param mode_id Reserved for a camera mode ID
  * @param color_mode_id Reserved for a color mode ID
@@ -239,7 +239,7 @@ static inline uint16_t mavlink_msg_camera_settings_encode_chan(uint8_t system_id
  * @param shutter_speed_locked Shutter speed locked (0: auto, 1: locked)
  * @param iso_sensitivity ISO sensitivity
  * @param iso_sensitivity_locked ISO sensitivity locked (0: auto, 1: locked)
- * @param white_balance Color temperature in K
+ * @param white_balance Color temperature in degrees Kelvin
  * @param white_balance_locked Color temperature locked (0: auto, 1: locked)
  * @param mode_id Reserved for a camera mode ID
  * @param color_mode_id Reserved for a color mode ID
@@ -436,7 +436,7 @@ static inline uint8_t mavlink_msg_camera_settings_get_iso_sensitivity_locked(con
 /**
  * @brief Get field white_balance from camera_settings message
  *
- * @return Color temperature in K
+ * @return Color temperature in degrees Kelvin
  */
 static inline float mavlink_msg_camera_settings_get_white_balance(const mavlink_message_t* msg)
 {
