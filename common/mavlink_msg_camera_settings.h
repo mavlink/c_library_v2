@@ -9,24 +9,25 @@ typedef struct __mavlink_camera_settings_t {
  float aperture; /*< Aperture is 1/value*/
  float shutter_speed; /*< Shutter speed in s*/
  float iso_sensitivity; /*< ISO sensitivity*/
- float white_balance; /*< Color temperature in degrees Kelvin*/
+ float ev; /*< Exposure Value*/
+ float white_balance; /*< Color temperature in degrees Kelvin. (0: Auto WB)*/
  uint8_t camera_id; /*< Camera ID if there are multiple*/
- uint8_t aperture_locked; /*< Aperture locked (0: auto, 1: locked)*/
- uint8_t shutter_speed_locked; /*< Shutter speed locked (0: auto, 1: locked)*/
- uint8_t iso_sensitivity_locked; /*< ISO sensitivity locked (0: auto, 1: locked)*/
- uint8_t white_balance_locked; /*< Color temperature locked (0: auto, 1: locked)*/
- uint8_t mode_id; /*< Reserved for a camera mode ID*/
- uint8_t color_mode_id; /*< Reserved for a color mode ID*/
- uint8_t image_format_id; /*< Reserved for image format ID*/
+ uint8_t exposure_mode; /*< 0: full auto 1: full manual 2: aperture priority 3: shutter priority*/
+ uint8_t mode_id; /*< Reserved for a camera mode ID. (0: Photo 1: Video)*/
+ uint8_t audio_recording; /*< Audio recording enabled (0: off 1: on)*/
+ uint8_t color_mode_id; /*< Reserved for a color mode ID (Neutral, Vivid, etc.)*/
+ uint8_t image_format_id; /*< Reserved for image format ID (Jpeg/Raw/Jpeg+Raw)*/
+ uint8_t image_quality_id; /*< Reserved for image quality ID (Compression)*/
+ uint8_t metering_mode_id; /*< Reserved for metering mode ID (Average, Center, Spot, etc.)*/
 }) mavlink_camera_settings_t;
 
-#define MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN 28
-#define MAVLINK_MSG_ID_CAMERA_SETTINGS_MIN_LEN 28
-#define MAVLINK_MSG_ID_260_LEN 28
-#define MAVLINK_MSG_ID_260_MIN_LEN 28
+#define MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN 32
+#define MAVLINK_MSG_ID_CAMERA_SETTINGS_MIN_LEN 32
+#define MAVLINK_MSG_ID_260_LEN 32
+#define MAVLINK_MSG_ID_260_MIN_LEN 32
 
-#define MAVLINK_MSG_ID_CAMERA_SETTINGS_CRC 8
-#define MAVLINK_MSG_ID_260_CRC 8
+#define MAVLINK_MSG_ID_CAMERA_SETTINGS_CRC 61
+#define MAVLINK_MSG_ID_260_CRC 61
 
 
 
@@ -34,39 +35,41 @@ typedef struct __mavlink_camera_settings_t {
 #define MAVLINK_MESSAGE_INFO_CAMERA_SETTINGS { \
     260, \
     "CAMERA_SETTINGS", \
-    13, \
+    14, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_camera_settings_t, time_boot_ms) }, \
          { "aperture", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_camera_settings_t, aperture) }, \
          { "shutter_speed", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_camera_settings_t, shutter_speed) }, \
          { "iso_sensitivity", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_camera_settings_t, iso_sensitivity) }, \
-         { "white_balance", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_camera_settings_t, white_balance) }, \
-         { "camera_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 20, offsetof(mavlink_camera_settings_t, camera_id) }, \
-         { "aperture_locked", NULL, MAVLINK_TYPE_UINT8_T, 0, 21, offsetof(mavlink_camera_settings_t, aperture_locked) }, \
-         { "shutter_speed_locked", NULL, MAVLINK_TYPE_UINT8_T, 0, 22, offsetof(mavlink_camera_settings_t, shutter_speed_locked) }, \
-         { "iso_sensitivity_locked", NULL, MAVLINK_TYPE_UINT8_T, 0, 23, offsetof(mavlink_camera_settings_t, iso_sensitivity_locked) }, \
-         { "white_balance_locked", NULL, MAVLINK_TYPE_UINT8_T, 0, 24, offsetof(mavlink_camera_settings_t, white_balance_locked) }, \
-         { "mode_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 25, offsetof(mavlink_camera_settings_t, mode_id) }, \
-         { "color_mode_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_camera_settings_t, color_mode_id) }, \
-         { "image_format_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 27, offsetof(mavlink_camera_settings_t, image_format_id) }, \
+         { "ev", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_camera_settings_t, ev) }, \
+         { "white_balance", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_camera_settings_t, white_balance) }, \
+         { "camera_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 24, offsetof(mavlink_camera_settings_t, camera_id) }, \
+         { "exposure_mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 25, offsetof(mavlink_camera_settings_t, exposure_mode) }, \
+         { "mode_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_camera_settings_t, mode_id) }, \
+         { "audio_recording", NULL, MAVLINK_TYPE_UINT8_T, 0, 27, offsetof(mavlink_camera_settings_t, audio_recording) }, \
+         { "color_mode_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 28, offsetof(mavlink_camera_settings_t, color_mode_id) }, \
+         { "image_format_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 29, offsetof(mavlink_camera_settings_t, image_format_id) }, \
+         { "image_quality_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 30, offsetof(mavlink_camera_settings_t, image_quality_id) }, \
+         { "metering_mode_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 31, offsetof(mavlink_camera_settings_t, metering_mode_id) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_CAMERA_SETTINGS { \
     "CAMERA_SETTINGS", \
-    13, \
+    14, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_camera_settings_t, time_boot_ms) }, \
          { "aperture", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_camera_settings_t, aperture) }, \
          { "shutter_speed", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_camera_settings_t, shutter_speed) }, \
          { "iso_sensitivity", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_camera_settings_t, iso_sensitivity) }, \
-         { "white_balance", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_camera_settings_t, white_balance) }, \
-         { "camera_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 20, offsetof(mavlink_camera_settings_t, camera_id) }, \
-         { "aperture_locked", NULL, MAVLINK_TYPE_UINT8_T, 0, 21, offsetof(mavlink_camera_settings_t, aperture_locked) }, \
-         { "shutter_speed_locked", NULL, MAVLINK_TYPE_UINT8_T, 0, 22, offsetof(mavlink_camera_settings_t, shutter_speed_locked) }, \
-         { "iso_sensitivity_locked", NULL, MAVLINK_TYPE_UINT8_T, 0, 23, offsetof(mavlink_camera_settings_t, iso_sensitivity_locked) }, \
-         { "white_balance_locked", NULL, MAVLINK_TYPE_UINT8_T, 0, 24, offsetof(mavlink_camera_settings_t, white_balance_locked) }, \
-         { "mode_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 25, offsetof(mavlink_camera_settings_t, mode_id) }, \
-         { "color_mode_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_camera_settings_t, color_mode_id) }, \
-         { "image_format_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 27, offsetof(mavlink_camera_settings_t, image_format_id) }, \
+         { "ev", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_camera_settings_t, ev) }, \
+         { "white_balance", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_camera_settings_t, white_balance) }, \
+         { "camera_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 24, offsetof(mavlink_camera_settings_t, camera_id) }, \
+         { "exposure_mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 25, offsetof(mavlink_camera_settings_t, exposure_mode) }, \
+         { "mode_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_camera_settings_t, mode_id) }, \
+         { "audio_recording", NULL, MAVLINK_TYPE_UINT8_T, 0, 27, offsetof(mavlink_camera_settings_t, audio_recording) }, \
+         { "color_mode_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 28, offsetof(mavlink_camera_settings_t, color_mode_id) }, \
+         { "image_format_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 29, offsetof(mavlink_camera_settings_t, image_format_id) }, \
+         { "image_quality_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 30, offsetof(mavlink_camera_settings_t, image_quality_id) }, \
+         { "metering_mode_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 31, offsetof(mavlink_camera_settings_t, metering_mode_id) }, \
          } \
 }
 #endif
@@ -79,21 +82,22 @@ typedef struct __mavlink_camera_settings_t {
  *
  * @param time_boot_ms Timestamp (milliseconds since system boot)
  * @param camera_id Camera ID if there are multiple
+ * @param exposure_mode 0: full auto 1: full manual 2: aperture priority 3: shutter priority
  * @param aperture Aperture is 1/value
- * @param aperture_locked Aperture locked (0: auto, 1: locked)
  * @param shutter_speed Shutter speed in s
- * @param shutter_speed_locked Shutter speed locked (0: auto, 1: locked)
  * @param iso_sensitivity ISO sensitivity
- * @param iso_sensitivity_locked ISO sensitivity locked (0: auto, 1: locked)
- * @param white_balance Color temperature in degrees Kelvin
- * @param white_balance_locked Color temperature locked (0: auto, 1: locked)
- * @param mode_id Reserved for a camera mode ID
- * @param color_mode_id Reserved for a color mode ID
- * @param image_format_id Reserved for image format ID
+ * @param ev Exposure Value
+ * @param white_balance Color temperature in degrees Kelvin. (0: Auto WB)
+ * @param mode_id Reserved for a camera mode ID. (0: Photo 1: Video)
+ * @param audio_recording Audio recording enabled (0: off 1: on)
+ * @param color_mode_id Reserved for a color mode ID (Neutral, Vivid, etc.)
+ * @param image_format_id Reserved for image format ID (Jpeg/Raw/Jpeg+Raw)
+ * @param image_quality_id Reserved for image quality ID (Compression)
+ * @param metering_mode_id Reserved for metering mode ID (Average, Center, Spot, etc.)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_camera_settings_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint32_t time_boot_ms, uint8_t camera_id, float aperture, uint8_t aperture_locked, float shutter_speed, uint8_t shutter_speed_locked, float iso_sensitivity, uint8_t iso_sensitivity_locked, float white_balance, uint8_t white_balance_locked, uint8_t mode_id, uint8_t color_mode_id, uint8_t image_format_id)
+                               uint32_t time_boot_ms, uint8_t camera_id, uint8_t exposure_mode, float aperture, float shutter_speed, float iso_sensitivity, float ev, float white_balance, uint8_t mode_id, uint8_t audio_recording, uint8_t color_mode_id, uint8_t image_format_id, uint8_t image_quality_id, uint8_t metering_mode_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN];
@@ -101,15 +105,16 @@ static inline uint16_t mavlink_msg_camera_settings_pack(uint8_t system_id, uint8
     _mav_put_float(buf, 4, aperture);
     _mav_put_float(buf, 8, shutter_speed);
     _mav_put_float(buf, 12, iso_sensitivity);
-    _mav_put_float(buf, 16, white_balance);
-    _mav_put_uint8_t(buf, 20, camera_id);
-    _mav_put_uint8_t(buf, 21, aperture_locked);
-    _mav_put_uint8_t(buf, 22, shutter_speed_locked);
-    _mav_put_uint8_t(buf, 23, iso_sensitivity_locked);
-    _mav_put_uint8_t(buf, 24, white_balance_locked);
-    _mav_put_uint8_t(buf, 25, mode_id);
-    _mav_put_uint8_t(buf, 26, color_mode_id);
-    _mav_put_uint8_t(buf, 27, image_format_id);
+    _mav_put_float(buf, 16, ev);
+    _mav_put_float(buf, 20, white_balance);
+    _mav_put_uint8_t(buf, 24, camera_id);
+    _mav_put_uint8_t(buf, 25, exposure_mode);
+    _mav_put_uint8_t(buf, 26, mode_id);
+    _mav_put_uint8_t(buf, 27, audio_recording);
+    _mav_put_uint8_t(buf, 28, color_mode_id);
+    _mav_put_uint8_t(buf, 29, image_format_id);
+    _mav_put_uint8_t(buf, 30, image_quality_id);
+    _mav_put_uint8_t(buf, 31, metering_mode_id);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN);
 #else
@@ -118,15 +123,16 @@ static inline uint16_t mavlink_msg_camera_settings_pack(uint8_t system_id, uint8
     packet.aperture = aperture;
     packet.shutter_speed = shutter_speed;
     packet.iso_sensitivity = iso_sensitivity;
+    packet.ev = ev;
     packet.white_balance = white_balance;
     packet.camera_id = camera_id;
-    packet.aperture_locked = aperture_locked;
-    packet.shutter_speed_locked = shutter_speed_locked;
-    packet.iso_sensitivity_locked = iso_sensitivity_locked;
-    packet.white_balance_locked = white_balance_locked;
+    packet.exposure_mode = exposure_mode;
     packet.mode_id = mode_id;
+    packet.audio_recording = audio_recording;
     packet.color_mode_id = color_mode_id;
     packet.image_format_id = image_format_id;
+    packet.image_quality_id = image_quality_id;
+    packet.metering_mode_id = metering_mode_id;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN);
 #endif
@@ -143,22 +149,23 @@ static inline uint16_t mavlink_msg_camera_settings_pack(uint8_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param time_boot_ms Timestamp (milliseconds since system boot)
  * @param camera_id Camera ID if there are multiple
+ * @param exposure_mode 0: full auto 1: full manual 2: aperture priority 3: shutter priority
  * @param aperture Aperture is 1/value
- * @param aperture_locked Aperture locked (0: auto, 1: locked)
  * @param shutter_speed Shutter speed in s
- * @param shutter_speed_locked Shutter speed locked (0: auto, 1: locked)
  * @param iso_sensitivity ISO sensitivity
- * @param iso_sensitivity_locked ISO sensitivity locked (0: auto, 1: locked)
- * @param white_balance Color temperature in degrees Kelvin
- * @param white_balance_locked Color temperature locked (0: auto, 1: locked)
- * @param mode_id Reserved for a camera mode ID
- * @param color_mode_id Reserved for a color mode ID
- * @param image_format_id Reserved for image format ID
+ * @param ev Exposure Value
+ * @param white_balance Color temperature in degrees Kelvin. (0: Auto WB)
+ * @param mode_id Reserved for a camera mode ID. (0: Photo 1: Video)
+ * @param audio_recording Audio recording enabled (0: off 1: on)
+ * @param color_mode_id Reserved for a color mode ID (Neutral, Vivid, etc.)
+ * @param image_format_id Reserved for image format ID (Jpeg/Raw/Jpeg+Raw)
+ * @param image_quality_id Reserved for image quality ID (Compression)
+ * @param metering_mode_id Reserved for metering mode ID (Average, Center, Spot, etc.)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_camera_settings_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint32_t time_boot_ms,uint8_t camera_id,float aperture,uint8_t aperture_locked,float shutter_speed,uint8_t shutter_speed_locked,float iso_sensitivity,uint8_t iso_sensitivity_locked,float white_balance,uint8_t white_balance_locked,uint8_t mode_id,uint8_t color_mode_id,uint8_t image_format_id)
+                                   uint32_t time_boot_ms,uint8_t camera_id,uint8_t exposure_mode,float aperture,float shutter_speed,float iso_sensitivity,float ev,float white_balance,uint8_t mode_id,uint8_t audio_recording,uint8_t color_mode_id,uint8_t image_format_id,uint8_t image_quality_id,uint8_t metering_mode_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN];
@@ -166,15 +173,16 @@ static inline uint16_t mavlink_msg_camera_settings_pack_chan(uint8_t system_id, 
     _mav_put_float(buf, 4, aperture);
     _mav_put_float(buf, 8, shutter_speed);
     _mav_put_float(buf, 12, iso_sensitivity);
-    _mav_put_float(buf, 16, white_balance);
-    _mav_put_uint8_t(buf, 20, camera_id);
-    _mav_put_uint8_t(buf, 21, aperture_locked);
-    _mav_put_uint8_t(buf, 22, shutter_speed_locked);
-    _mav_put_uint8_t(buf, 23, iso_sensitivity_locked);
-    _mav_put_uint8_t(buf, 24, white_balance_locked);
-    _mav_put_uint8_t(buf, 25, mode_id);
-    _mav_put_uint8_t(buf, 26, color_mode_id);
-    _mav_put_uint8_t(buf, 27, image_format_id);
+    _mav_put_float(buf, 16, ev);
+    _mav_put_float(buf, 20, white_balance);
+    _mav_put_uint8_t(buf, 24, camera_id);
+    _mav_put_uint8_t(buf, 25, exposure_mode);
+    _mav_put_uint8_t(buf, 26, mode_id);
+    _mav_put_uint8_t(buf, 27, audio_recording);
+    _mav_put_uint8_t(buf, 28, color_mode_id);
+    _mav_put_uint8_t(buf, 29, image_format_id);
+    _mav_put_uint8_t(buf, 30, image_quality_id);
+    _mav_put_uint8_t(buf, 31, metering_mode_id);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN);
 #else
@@ -183,15 +191,16 @@ static inline uint16_t mavlink_msg_camera_settings_pack_chan(uint8_t system_id, 
     packet.aperture = aperture;
     packet.shutter_speed = shutter_speed;
     packet.iso_sensitivity = iso_sensitivity;
+    packet.ev = ev;
     packet.white_balance = white_balance;
     packet.camera_id = camera_id;
-    packet.aperture_locked = aperture_locked;
-    packet.shutter_speed_locked = shutter_speed_locked;
-    packet.iso_sensitivity_locked = iso_sensitivity_locked;
-    packet.white_balance_locked = white_balance_locked;
+    packet.exposure_mode = exposure_mode;
     packet.mode_id = mode_id;
+    packet.audio_recording = audio_recording;
     packet.color_mode_id = color_mode_id;
     packet.image_format_id = image_format_id;
+    packet.image_quality_id = image_quality_id;
+    packet.metering_mode_id = metering_mode_id;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN);
 #endif
@@ -210,7 +219,7 @@ static inline uint16_t mavlink_msg_camera_settings_pack_chan(uint8_t system_id, 
  */
 static inline uint16_t mavlink_msg_camera_settings_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_camera_settings_t* camera_settings)
 {
-    return mavlink_msg_camera_settings_pack(system_id, component_id, msg, camera_settings->time_boot_ms, camera_settings->camera_id, camera_settings->aperture, camera_settings->aperture_locked, camera_settings->shutter_speed, camera_settings->shutter_speed_locked, camera_settings->iso_sensitivity, camera_settings->iso_sensitivity_locked, camera_settings->white_balance, camera_settings->white_balance_locked, camera_settings->mode_id, camera_settings->color_mode_id, camera_settings->image_format_id);
+    return mavlink_msg_camera_settings_pack(system_id, component_id, msg, camera_settings->time_boot_ms, camera_settings->camera_id, camera_settings->exposure_mode, camera_settings->aperture, camera_settings->shutter_speed, camera_settings->iso_sensitivity, camera_settings->ev, camera_settings->white_balance, camera_settings->mode_id, camera_settings->audio_recording, camera_settings->color_mode_id, camera_settings->image_format_id, camera_settings->image_quality_id, camera_settings->metering_mode_id);
 }
 
 /**
@@ -224,7 +233,7 @@ static inline uint16_t mavlink_msg_camera_settings_encode(uint8_t system_id, uin
  */
 static inline uint16_t mavlink_msg_camera_settings_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_camera_settings_t* camera_settings)
 {
-    return mavlink_msg_camera_settings_pack_chan(system_id, component_id, chan, msg, camera_settings->time_boot_ms, camera_settings->camera_id, camera_settings->aperture, camera_settings->aperture_locked, camera_settings->shutter_speed, camera_settings->shutter_speed_locked, camera_settings->iso_sensitivity, camera_settings->iso_sensitivity_locked, camera_settings->white_balance, camera_settings->white_balance_locked, camera_settings->mode_id, camera_settings->color_mode_id, camera_settings->image_format_id);
+    return mavlink_msg_camera_settings_pack_chan(system_id, component_id, chan, msg, camera_settings->time_boot_ms, camera_settings->camera_id, camera_settings->exposure_mode, camera_settings->aperture, camera_settings->shutter_speed, camera_settings->iso_sensitivity, camera_settings->ev, camera_settings->white_balance, camera_settings->mode_id, camera_settings->audio_recording, camera_settings->color_mode_id, camera_settings->image_format_id, camera_settings->image_quality_id, camera_settings->metering_mode_id);
 }
 
 /**
@@ -233,21 +242,22 @@ static inline uint16_t mavlink_msg_camera_settings_encode_chan(uint8_t system_id
  *
  * @param time_boot_ms Timestamp (milliseconds since system boot)
  * @param camera_id Camera ID if there are multiple
+ * @param exposure_mode 0: full auto 1: full manual 2: aperture priority 3: shutter priority
  * @param aperture Aperture is 1/value
- * @param aperture_locked Aperture locked (0: auto, 1: locked)
  * @param shutter_speed Shutter speed in s
- * @param shutter_speed_locked Shutter speed locked (0: auto, 1: locked)
  * @param iso_sensitivity ISO sensitivity
- * @param iso_sensitivity_locked ISO sensitivity locked (0: auto, 1: locked)
- * @param white_balance Color temperature in degrees Kelvin
- * @param white_balance_locked Color temperature locked (0: auto, 1: locked)
- * @param mode_id Reserved for a camera mode ID
- * @param color_mode_id Reserved for a color mode ID
- * @param image_format_id Reserved for image format ID
+ * @param ev Exposure Value
+ * @param white_balance Color temperature in degrees Kelvin. (0: Auto WB)
+ * @param mode_id Reserved for a camera mode ID. (0: Photo 1: Video)
+ * @param audio_recording Audio recording enabled (0: off 1: on)
+ * @param color_mode_id Reserved for a color mode ID (Neutral, Vivid, etc.)
+ * @param image_format_id Reserved for image format ID (Jpeg/Raw/Jpeg+Raw)
+ * @param image_quality_id Reserved for image quality ID (Compression)
+ * @param metering_mode_id Reserved for metering mode ID (Average, Center, Spot, etc.)
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_camera_settings_send(mavlink_channel_t chan, uint32_t time_boot_ms, uint8_t camera_id, float aperture, uint8_t aperture_locked, float shutter_speed, uint8_t shutter_speed_locked, float iso_sensitivity, uint8_t iso_sensitivity_locked, float white_balance, uint8_t white_balance_locked, uint8_t mode_id, uint8_t color_mode_id, uint8_t image_format_id)
+static inline void mavlink_msg_camera_settings_send(mavlink_channel_t chan, uint32_t time_boot_ms, uint8_t camera_id, uint8_t exposure_mode, float aperture, float shutter_speed, float iso_sensitivity, float ev, float white_balance, uint8_t mode_id, uint8_t audio_recording, uint8_t color_mode_id, uint8_t image_format_id, uint8_t image_quality_id, uint8_t metering_mode_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN];
@@ -255,15 +265,16 @@ static inline void mavlink_msg_camera_settings_send(mavlink_channel_t chan, uint
     _mav_put_float(buf, 4, aperture);
     _mav_put_float(buf, 8, shutter_speed);
     _mav_put_float(buf, 12, iso_sensitivity);
-    _mav_put_float(buf, 16, white_balance);
-    _mav_put_uint8_t(buf, 20, camera_id);
-    _mav_put_uint8_t(buf, 21, aperture_locked);
-    _mav_put_uint8_t(buf, 22, shutter_speed_locked);
-    _mav_put_uint8_t(buf, 23, iso_sensitivity_locked);
-    _mav_put_uint8_t(buf, 24, white_balance_locked);
-    _mav_put_uint8_t(buf, 25, mode_id);
-    _mav_put_uint8_t(buf, 26, color_mode_id);
-    _mav_put_uint8_t(buf, 27, image_format_id);
+    _mav_put_float(buf, 16, ev);
+    _mav_put_float(buf, 20, white_balance);
+    _mav_put_uint8_t(buf, 24, camera_id);
+    _mav_put_uint8_t(buf, 25, exposure_mode);
+    _mav_put_uint8_t(buf, 26, mode_id);
+    _mav_put_uint8_t(buf, 27, audio_recording);
+    _mav_put_uint8_t(buf, 28, color_mode_id);
+    _mav_put_uint8_t(buf, 29, image_format_id);
+    _mav_put_uint8_t(buf, 30, image_quality_id);
+    _mav_put_uint8_t(buf, 31, metering_mode_id);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAMERA_SETTINGS, buf, MAVLINK_MSG_ID_CAMERA_SETTINGS_MIN_LEN, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN, MAVLINK_MSG_ID_CAMERA_SETTINGS_CRC);
 #else
@@ -272,15 +283,16 @@ static inline void mavlink_msg_camera_settings_send(mavlink_channel_t chan, uint
     packet.aperture = aperture;
     packet.shutter_speed = shutter_speed;
     packet.iso_sensitivity = iso_sensitivity;
+    packet.ev = ev;
     packet.white_balance = white_balance;
     packet.camera_id = camera_id;
-    packet.aperture_locked = aperture_locked;
-    packet.shutter_speed_locked = shutter_speed_locked;
-    packet.iso_sensitivity_locked = iso_sensitivity_locked;
-    packet.white_balance_locked = white_balance_locked;
+    packet.exposure_mode = exposure_mode;
     packet.mode_id = mode_id;
+    packet.audio_recording = audio_recording;
     packet.color_mode_id = color_mode_id;
     packet.image_format_id = image_format_id;
+    packet.image_quality_id = image_quality_id;
+    packet.metering_mode_id = metering_mode_id;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAMERA_SETTINGS, (const char *)&packet, MAVLINK_MSG_ID_CAMERA_SETTINGS_MIN_LEN, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN, MAVLINK_MSG_ID_CAMERA_SETTINGS_CRC);
 #endif
@@ -294,7 +306,7 @@ static inline void mavlink_msg_camera_settings_send(mavlink_channel_t chan, uint
 static inline void mavlink_msg_camera_settings_send_struct(mavlink_channel_t chan, const mavlink_camera_settings_t* camera_settings)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_camera_settings_send(chan, camera_settings->time_boot_ms, camera_settings->camera_id, camera_settings->aperture, camera_settings->aperture_locked, camera_settings->shutter_speed, camera_settings->shutter_speed_locked, camera_settings->iso_sensitivity, camera_settings->iso_sensitivity_locked, camera_settings->white_balance, camera_settings->white_balance_locked, camera_settings->mode_id, camera_settings->color_mode_id, camera_settings->image_format_id);
+    mavlink_msg_camera_settings_send(chan, camera_settings->time_boot_ms, camera_settings->camera_id, camera_settings->exposure_mode, camera_settings->aperture, camera_settings->shutter_speed, camera_settings->iso_sensitivity, camera_settings->ev, camera_settings->white_balance, camera_settings->mode_id, camera_settings->audio_recording, camera_settings->color_mode_id, camera_settings->image_format_id, camera_settings->image_quality_id, camera_settings->metering_mode_id);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAMERA_SETTINGS, (const char *)camera_settings, MAVLINK_MSG_ID_CAMERA_SETTINGS_MIN_LEN, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN, MAVLINK_MSG_ID_CAMERA_SETTINGS_CRC);
 #endif
@@ -308,7 +320,7 @@ static inline void mavlink_msg_camera_settings_send_struct(mavlink_channel_t cha
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_camera_settings_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, uint8_t camera_id, float aperture, uint8_t aperture_locked, float shutter_speed, uint8_t shutter_speed_locked, float iso_sensitivity, uint8_t iso_sensitivity_locked, float white_balance, uint8_t white_balance_locked, uint8_t mode_id, uint8_t color_mode_id, uint8_t image_format_id)
+static inline void mavlink_msg_camera_settings_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, uint8_t camera_id, uint8_t exposure_mode, float aperture, float shutter_speed, float iso_sensitivity, float ev, float white_balance, uint8_t mode_id, uint8_t audio_recording, uint8_t color_mode_id, uint8_t image_format_id, uint8_t image_quality_id, uint8_t metering_mode_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -316,15 +328,16 @@ static inline void mavlink_msg_camera_settings_send_buf(mavlink_message_t *msgbu
     _mav_put_float(buf, 4, aperture);
     _mav_put_float(buf, 8, shutter_speed);
     _mav_put_float(buf, 12, iso_sensitivity);
-    _mav_put_float(buf, 16, white_balance);
-    _mav_put_uint8_t(buf, 20, camera_id);
-    _mav_put_uint8_t(buf, 21, aperture_locked);
-    _mav_put_uint8_t(buf, 22, shutter_speed_locked);
-    _mav_put_uint8_t(buf, 23, iso_sensitivity_locked);
-    _mav_put_uint8_t(buf, 24, white_balance_locked);
-    _mav_put_uint8_t(buf, 25, mode_id);
-    _mav_put_uint8_t(buf, 26, color_mode_id);
-    _mav_put_uint8_t(buf, 27, image_format_id);
+    _mav_put_float(buf, 16, ev);
+    _mav_put_float(buf, 20, white_balance);
+    _mav_put_uint8_t(buf, 24, camera_id);
+    _mav_put_uint8_t(buf, 25, exposure_mode);
+    _mav_put_uint8_t(buf, 26, mode_id);
+    _mav_put_uint8_t(buf, 27, audio_recording);
+    _mav_put_uint8_t(buf, 28, color_mode_id);
+    _mav_put_uint8_t(buf, 29, image_format_id);
+    _mav_put_uint8_t(buf, 30, image_quality_id);
+    _mav_put_uint8_t(buf, 31, metering_mode_id);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAMERA_SETTINGS, buf, MAVLINK_MSG_ID_CAMERA_SETTINGS_MIN_LEN, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN, MAVLINK_MSG_ID_CAMERA_SETTINGS_CRC);
 #else
@@ -333,15 +346,16 @@ static inline void mavlink_msg_camera_settings_send_buf(mavlink_message_t *msgbu
     packet->aperture = aperture;
     packet->shutter_speed = shutter_speed;
     packet->iso_sensitivity = iso_sensitivity;
+    packet->ev = ev;
     packet->white_balance = white_balance;
     packet->camera_id = camera_id;
-    packet->aperture_locked = aperture_locked;
-    packet->shutter_speed_locked = shutter_speed_locked;
-    packet->iso_sensitivity_locked = iso_sensitivity_locked;
-    packet->white_balance_locked = white_balance_locked;
+    packet->exposure_mode = exposure_mode;
     packet->mode_id = mode_id;
+    packet->audio_recording = audio_recording;
     packet->color_mode_id = color_mode_id;
     packet->image_format_id = image_format_id;
+    packet->image_quality_id = image_quality_id;
+    packet->metering_mode_id = metering_mode_id;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAMERA_SETTINGS, (const char *)packet, MAVLINK_MSG_ID_CAMERA_SETTINGS_MIN_LEN, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN, MAVLINK_MSG_ID_CAMERA_SETTINGS_CRC);
 #endif
@@ -370,7 +384,17 @@ static inline uint32_t mavlink_msg_camera_settings_get_time_boot_ms(const mavlin
  */
 static inline uint8_t mavlink_msg_camera_settings_get_camera_id(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  20);
+    return _MAV_RETURN_uint8_t(msg,  24);
+}
+
+/**
+ * @brief Get field exposure_mode from camera_settings message
+ *
+ * @return 0: full auto 1: full manual 2: aperture priority 3: shutter priority
+ */
+static inline uint8_t mavlink_msg_camera_settings_get_exposure_mode(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint8_t(msg,  25);
 }
 
 /**
@@ -384,16 +408,6 @@ static inline float mavlink_msg_camera_settings_get_aperture(const mavlink_messa
 }
 
 /**
- * @brief Get field aperture_locked from camera_settings message
- *
- * @return Aperture locked (0: auto, 1: locked)
- */
-static inline uint8_t mavlink_msg_camera_settings_get_aperture_locked(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint8_t(msg,  21);
-}
-
-/**
  * @brief Get field shutter_speed from camera_settings message
  *
  * @return Shutter speed in s
@@ -401,16 +415,6 @@ static inline uint8_t mavlink_msg_camera_settings_get_aperture_locked(const mavl
 static inline float mavlink_msg_camera_settings_get_shutter_speed(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  8);
-}
-
-/**
- * @brief Get field shutter_speed_locked from camera_settings message
- *
- * @return Shutter speed locked (0: auto, 1: locked)
- */
-static inline uint8_t mavlink_msg_camera_settings_get_shutter_speed_locked(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint8_t(msg,  22);
 }
 
 /**
@@ -424,63 +428,83 @@ static inline float mavlink_msg_camera_settings_get_iso_sensitivity(const mavlin
 }
 
 /**
- * @brief Get field iso_sensitivity_locked from camera_settings message
+ * @brief Get field ev from camera_settings message
  *
- * @return ISO sensitivity locked (0: auto, 1: locked)
+ * @return Exposure Value
  */
-static inline uint8_t mavlink_msg_camera_settings_get_iso_sensitivity_locked(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint8_t(msg,  23);
-}
-
-/**
- * @brief Get field white_balance from camera_settings message
- *
- * @return Color temperature in degrees Kelvin
- */
-static inline float mavlink_msg_camera_settings_get_white_balance(const mavlink_message_t* msg)
+static inline float mavlink_msg_camera_settings_get_ev(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  16);
 }
 
 /**
- * @brief Get field white_balance_locked from camera_settings message
+ * @brief Get field white_balance from camera_settings message
  *
- * @return Color temperature locked (0: auto, 1: locked)
+ * @return Color temperature in degrees Kelvin. (0: Auto WB)
  */
-static inline uint8_t mavlink_msg_camera_settings_get_white_balance_locked(const mavlink_message_t* msg)
+static inline float mavlink_msg_camera_settings_get_white_balance(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  24);
+    return _MAV_RETURN_float(msg,  20);
 }
 
 /**
  * @brief Get field mode_id from camera_settings message
  *
- * @return Reserved for a camera mode ID
+ * @return Reserved for a camera mode ID. (0: Photo 1: Video)
  */
 static inline uint8_t mavlink_msg_camera_settings_get_mode_id(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint8_t(msg,  25);
-}
-
-/**
- * @brief Get field color_mode_id from camera_settings message
- *
- * @return Reserved for a color mode ID
- */
-static inline uint8_t mavlink_msg_camera_settings_get_color_mode_id(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  26);
 }
 
 /**
+ * @brief Get field audio_recording from camera_settings message
+ *
+ * @return Audio recording enabled (0: off 1: on)
+ */
+static inline uint8_t mavlink_msg_camera_settings_get_audio_recording(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint8_t(msg,  27);
+}
+
+/**
+ * @brief Get field color_mode_id from camera_settings message
+ *
+ * @return Reserved for a color mode ID (Neutral, Vivid, etc.)
+ */
+static inline uint8_t mavlink_msg_camera_settings_get_color_mode_id(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint8_t(msg,  28);
+}
+
+/**
  * @brief Get field image_format_id from camera_settings message
  *
- * @return Reserved for image format ID
+ * @return Reserved for image format ID (Jpeg/Raw/Jpeg+Raw)
  */
 static inline uint8_t mavlink_msg_camera_settings_get_image_format_id(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  27);
+    return _MAV_RETURN_uint8_t(msg,  29);
+}
+
+/**
+ * @brief Get field image_quality_id from camera_settings message
+ *
+ * @return Reserved for image quality ID (Compression)
+ */
+static inline uint8_t mavlink_msg_camera_settings_get_image_quality_id(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint8_t(msg,  30);
+}
+
+/**
+ * @brief Get field metering_mode_id from camera_settings message
+ *
+ * @return Reserved for metering mode ID (Average, Center, Spot, etc.)
+ */
+static inline uint8_t mavlink_msg_camera_settings_get_metering_mode_id(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint8_t(msg,  31);
 }
 
 /**
@@ -496,15 +520,16 @@ static inline void mavlink_msg_camera_settings_decode(const mavlink_message_t* m
     camera_settings->aperture = mavlink_msg_camera_settings_get_aperture(msg);
     camera_settings->shutter_speed = mavlink_msg_camera_settings_get_shutter_speed(msg);
     camera_settings->iso_sensitivity = mavlink_msg_camera_settings_get_iso_sensitivity(msg);
+    camera_settings->ev = mavlink_msg_camera_settings_get_ev(msg);
     camera_settings->white_balance = mavlink_msg_camera_settings_get_white_balance(msg);
     camera_settings->camera_id = mavlink_msg_camera_settings_get_camera_id(msg);
-    camera_settings->aperture_locked = mavlink_msg_camera_settings_get_aperture_locked(msg);
-    camera_settings->shutter_speed_locked = mavlink_msg_camera_settings_get_shutter_speed_locked(msg);
-    camera_settings->iso_sensitivity_locked = mavlink_msg_camera_settings_get_iso_sensitivity_locked(msg);
-    camera_settings->white_balance_locked = mavlink_msg_camera_settings_get_white_balance_locked(msg);
+    camera_settings->exposure_mode = mavlink_msg_camera_settings_get_exposure_mode(msg);
     camera_settings->mode_id = mavlink_msg_camera_settings_get_mode_id(msg);
+    camera_settings->audio_recording = mavlink_msg_camera_settings_get_audio_recording(msg);
     camera_settings->color_mode_id = mavlink_msg_camera_settings_get_color_mode_id(msg);
     camera_settings->image_format_id = mavlink_msg_camera_settings_get_image_format_id(msg);
+    camera_settings->image_quality_id = mavlink_msg_camera_settings_get_image_quality_id(msg);
+    camera_settings->metering_mode_id = mavlink_msg_camera_settings_get_metering_mode_id(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN? msg->len : MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN;
         memset(camera_settings, 0, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN);
