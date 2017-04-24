@@ -7,11 +7,11 @@ MAVPACKED(
 typedef struct __mavlink_camera_settings_t {
  uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
  float aperture; /*< Aperture is 1/value*/
- float shutter_speed; /*< Shutter speed in s*/
+ float shutter_speed; /*< Shutter speed in seconds*/
  float iso_sensitivity; /*< ISO sensitivity*/
  float ev; /*< Exposure Value*/
  float white_balance; /*< Color temperature in degrees Kelvin. (0: Auto WB)*/
- uint8_t camera_id; /*< Camera ID if there are multiple*/
+ uint8_t camera_id; /*< Camera ID (1 for first, 2 for second, etc.)*/
  uint8_t exposure_mode; /*< 0: full auto 1: full manual 2: aperture priority 3: shutter priority*/
  uint8_t mode_id; /*< Reserved for a camera mode ID. (0: Photo 1: Video)*/
  uint8_t audio_recording; /*< Audio recording enabled (0: off 1: on)*/
@@ -81,10 +81,10 @@ typedef struct __mavlink_camera_settings_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param camera_id Camera ID if there are multiple
+ * @param camera_id Camera ID (1 for first, 2 for second, etc.)
  * @param exposure_mode 0: full auto 1: full manual 2: aperture priority 3: shutter priority
  * @param aperture Aperture is 1/value
- * @param shutter_speed Shutter speed in s
+ * @param shutter_speed Shutter speed in seconds
  * @param iso_sensitivity ISO sensitivity
  * @param ev Exposure Value
  * @param white_balance Color temperature in degrees Kelvin. (0: Auto WB)
@@ -148,10 +148,10 @@ static inline uint16_t mavlink_msg_camera_settings_pack(uint8_t system_id, uint8
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param camera_id Camera ID if there are multiple
+ * @param camera_id Camera ID (1 for first, 2 for second, etc.)
  * @param exposure_mode 0: full auto 1: full manual 2: aperture priority 3: shutter priority
  * @param aperture Aperture is 1/value
- * @param shutter_speed Shutter speed in s
+ * @param shutter_speed Shutter speed in seconds
  * @param iso_sensitivity ISO sensitivity
  * @param ev Exposure Value
  * @param white_balance Color temperature in degrees Kelvin. (0: Auto WB)
@@ -241,10 +241,10 @@ static inline uint16_t mavlink_msg_camera_settings_encode_chan(uint8_t system_id
  * @param chan MAVLink channel to send the message
  *
  * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param camera_id Camera ID if there are multiple
+ * @param camera_id Camera ID (1 for first, 2 for second, etc.)
  * @param exposure_mode 0: full auto 1: full manual 2: aperture priority 3: shutter priority
  * @param aperture Aperture is 1/value
- * @param shutter_speed Shutter speed in s
+ * @param shutter_speed Shutter speed in seconds
  * @param iso_sensitivity ISO sensitivity
  * @param ev Exposure Value
  * @param white_balance Color temperature in degrees Kelvin. (0: Auto WB)
@@ -380,7 +380,7 @@ static inline uint32_t mavlink_msg_camera_settings_get_time_boot_ms(const mavlin
 /**
  * @brief Get field camera_id from camera_settings message
  *
- * @return Camera ID if there are multiple
+ * @return Camera ID (1 for first, 2 for second, etc.)
  */
 static inline uint8_t mavlink_msg_camera_settings_get_camera_id(const mavlink_message_t* msg)
 {
@@ -410,7 +410,7 @@ static inline float mavlink_msg_camera_settings_get_aperture(const mavlink_messa
 /**
  * @brief Get field shutter_speed from camera_settings message
  *
- * @return Shutter speed in s
+ * @return Shutter speed in seconds
  */
 static inline float mavlink_msg_camera_settings_get_shutter_speed(const mavlink_message_t* msg)
 {
