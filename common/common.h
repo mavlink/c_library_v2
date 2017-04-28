@@ -566,7 +566,8 @@ typedef enum MAV_RESULT
    MAV_RESULT_DENIED=2, /* Command PERMANENTLY DENIED | */
    MAV_RESULT_UNSUPPORTED=3, /* Command UNKNOWN/UNSUPPORTED | */
    MAV_RESULT_FAILED=4, /* Command executed, but failed | */
-   MAV_RESULT_ENUM_END=5, /*  | */
+   MAV_RESULT_IN_PROGRESS=5, /* WIP: Command being executed | */
+   MAV_RESULT_ENUM_END=6, /*  | */
 } MAV_RESULT;
 #endif
 
