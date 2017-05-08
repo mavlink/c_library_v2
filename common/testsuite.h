@@ -8507,7 +8507,7 @@ static void mavlink_test_camera_settings(uint8_t system_id, uint8_t component_id
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_camera_settings_t packet_in = {
-        963497464,45.0,73.0,101.0,129.0,157.0,77,144,211,22,89,156,223,34
+        963497464,45.0,73.0,101.0,129.0,157.0,77,144,211,22,89,156,223,34,101
     };
     mavlink_camera_settings_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -8525,6 +8525,7 @@ static void mavlink_test_camera_settings(uint8_t system_id, uint8_t component_id
         packet1.image_format_id = packet_in.image_format_id;
         packet1.image_quality_id = packet_in.image_quality_id;
         packet1.metering_mode_id = packet_in.metering_mode_id;
+        packet1.flicker_mode_id = packet_in.flicker_mode_id;
         
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -8539,12 +8540,12 @@ static void mavlink_test_camera_settings(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_camera_settings_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.camera_id , packet1.exposure_mode , packet1.aperture , packet1.shutter_speed , packet1.iso_sensitivity , packet1.ev , packet1.white_balance , packet1.mode_id , packet1.audio_recording , packet1.color_mode_id , packet1.image_format_id , packet1.image_quality_id , packet1.metering_mode_id );
+    mavlink_msg_camera_settings_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.camera_id , packet1.exposure_mode , packet1.aperture , packet1.shutter_speed , packet1.iso_sensitivity , packet1.ev , packet1.white_balance , packet1.mode_id , packet1.audio_recording , packet1.color_mode_id , packet1.image_format_id , packet1.image_quality_id , packet1.metering_mode_id , packet1.flicker_mode_id );
     mavlink_msg_camera_settings_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_camera_settings_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.camera_id , packet1.exposure_mode , packet1.aperture , packet1.shutter_speed , packet1.iso_sensitivity , packet1.ev , packet1.white_balance , packet1.mode_id , packet1.audio_recording , packet1.color_mode_id , packet1.image_format_id , packet1.image_quality_id , packet1.metering_mode_id );
+    mavlink_msg_camera_settings_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.camera_id , packet1.exposure_mode , packet1.aperture , packet1.shutter_speed , packet1.iso_sensitivity , packet1.ev , packet1.white_balance , packet1.mode_id , packet1.audio_recording , packet1.color_mode_id , packet1.image_format_id , packet1.image_quality_id , packet1.metering_mode_id , packet1.flicker_mode_id );
     mavlink_msg_camera_settings_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -8557,7 +8558,7 @@ static void mavlink_test_camera_settings(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_camera_settings_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.camera_id , packet1.exposure_mode , packet1.aperture , packet1.shutter_speed , packet1.iso_sensitivity , packet1.ev , packet1.white_balance , packet1.mode_id , packet1.audio_recording , packet1.color_mode_id , packet1.image_format_id , packet1.image_quality_id , packet1.metering_mode_id );
+    mavlink_msg_camera_settings_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.camera_id , packet1.exposure_mode , packet1.aperture , packet1.shutter_speed , packet1.iso_sensitivity , packet1.ev , packet1.white_balance , packet1.mode_id , packet1.audio_recording , packet1.color_mode_id , packet1.image_format_id , packet1.image_quality_id , packet1.metering_mode_id , packet1.flicker_mode_id );
     mavlink_msg_camera_settings_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
