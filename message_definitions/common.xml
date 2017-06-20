@@ -595,6 +595,41 @@
         <description>Load neutral position and start to point to Lat,Lon,Alt</description>
       </entry>
     </enum>
+    <!-- UAVCAN node health enumeration -->
+    <enum name="UAVCAN_NODE_HEALTH">
+      <description>Generalized UAVCAN node health</description>
+      <entry value="0" name="UAVCAN_NODE_HEALTH_OK">
+        <description>The node is functioning properly.</description>
+      </entry>
+      <entry value="1" name="UAVCAN_NODE_HEALTH_WARNING">
+        <description>A critical parameter went out of range or the node has encountered a minor failure.</description>
+      </entry>
+      <entry value="2" name="UAVCAN_NODE_HEALTH_ERROR">
+        <description>The node has encountered a major failure.</description>
+      </entry>
+      <entry value="3" name="UAVCAN_NODE_HEALTH_CRITICAL">
+        <description>The node has suffered a fatal malfunction.</description>
+      </entry>
+    </enum>
+    <!-- UAVCAN node mode enumeration -->
+    <enum name="UAVCAN_NODE_MODE">
+      <description>Generalized UAVCAN node mode</description>
+      <entry value="0" name="UAVCAN_NODE_MODE_OPERATIONAL">
+        <description>The node is performing its primary functions.</description>
+      </entry>
+      <entry value="1" name="UAVCAN_NODE_MODE_INITIALIZATION">
+        <description>The node is initializing; this mode is entered immediately after startup.</description>
+      </entry>
+      <entry value="2" name="UAVCAN_NODE_MODE_MAINTENANCE">
+        <description>The node is under maintenance.</description>
+      </entry>
+      <entry value="3" name="UAVCAN_NODE_MODE_SOFTWARE_UPDATE">
+        <description>The node is in the process of updating its software.</description>
+      </entry>
+      <entry value="7" name="UAVCAN_NODE_MODE_OFFLINE">
+        <description>The node is no longer available online.</description>
+      </entry>
+    </enum>
     <enum name="MAV_CMD">
       <description>Commands to be executed by the MAV. They can be executed on user request, or as part of a mission script. If the action is used in a mission, the parameter mapping to the waypoint/mission message is as follows: Param 1, Param 2, Param 3, Param 4, X: Param 5, Y:Param 6, Z:Param 7. This command list is similar what ARINC 424 is for commercial aircraft: A data format how to interpret waypoint/mission data.</description>
       <entry value="16" name="MAV_CMD_NAV_WAYPOINT">
@@ -1582,6 +1617,19 @@
         <param index="6">Longitude</param>
         <param index="7">Altitude</param>
       </entry>
+      <!-- Values in the range [5200, 5210) should be reserved for UAVCAN.  -->
+      <!-- BEGIN UAVCAN range -->
+      <entry value="5200" name="MAV_CMD_UAVCAN_GET_NODE_INFO">
+        <description>Commands the vehicle to respond with a sequence of messages UAVCAN_NODE_INFO, one message per every UAVCAN node that is online. Note that some of the response messages can be lost, which the receiver can detect easily by checking whether every received UAVCAN_NODE_STATUS has a matching message UAVCAN_NODE_INFO received earlier; if not, this command should be sent again in order to request re-transmission of the node information messages.</description>
+        <param index="1">Reserved (set to 0)</param>
+        <param index="2">Reserved (set to 0)</param>
+        <param index="3">Reserved (set to 0)</param>
+        <param index="4">Reserved (set to 0)</param>
+        <param index="5">Reserved (set to 0)</param>
+        <param index="6">Reserved (set to 0)</param>
+        <param index="7">Reserved (set to 0)</param>
+      </entry>
+      <!-- END of UAVCAN range -->
       <!-- VALUES FROM 0-40000 are reserved for the common message set. Values from 40000 to UINT16_MAX are available for dialects -->
       <!-- BEGIN of payload range (30000 to 30999) -->
       <entry value="30001" name="MAV_CMD_PAYLOAD_PREPARE_DEPLOY">
@@ -4133,6 +4181,28 @@
       <field type="uint16_t" name="max_version">Maximum MAVLink version supported (set to the same value as version by default)</field>
       <field type="uint8_t[8]" name="spec_version_hash">The first 8 bytes (not characters printed in hex!) of the git hash.</field>
       <field type="uint8_t[8]" name="library_version_hash">The first 8 bytes (not characters printed in hex!) of the git hash.</field>
+    </message>
+    <!-- UAVCAN related messages. Please keep the range [310, 320) reserved for UAVCAN. -->
+    <message id="310" name="UAVCAN_NODE_STATUS">
+      <description>General status information of an UAVCAN node. Please refer to the definition of the UAVCAN message "uavcan.protocol.NodeStatus" for the background information. The UAVCAN specification is available at http://uavcan.org.</description>
+      <field type="uint64_t" name="time_usec" units="us">Timestamp (microseconds since UNIX epoch or microseconds since system boot)</field>
+      <field type="uint32_t" name="uptime_sec" units="s">The number of seconds since the start-up of the node.</field>
+      <field type="uint8_t" name="health" enum="UAVCAN_NODE_HEALTH">Generalized node health status.</field>
+      <field type="uint8_t" name="mode" enum="UAVCAN_NODE_MODE">Generalized operating mode.</field>
+      <field type="uint8_t" name="sub_mode">Not used currently.</field>
+      <field type="uint16_t" name="vendor_specific_status_code">Vendor-specific status information.</field>
+    </message>
+    <message id="311" name="UAVCAN_NODE_INFO">
+      <description>General information describing a particular UAVCAN node. Please refer to the definition of the UAVCAN service "uavcan.protocol.GetNodeInfo" for the background information. This message should be emitted by the system whenever a new node appears online, or an existing node reboots. Additionally, it can be emitted upon request from the other end of the MAVLink channel (see MAV_CMD_UAVCAN_GET_NODE_INFO). It is also not prohibited to emit this message unconditionally at a low frequency. The UAVCAN specification is available at http://uavcan.org.</description>
+      <field type="uint64_t" name="time_usec" units="us">Timestamp (microseconds since UNIX epoch or microseconds since system boot)</field>
+      <field type="uint32_t" name="uptime_sec" units="s">The number of seconds since the start-up of the node.</field>
+      <field type="char[80]" name="name">Node name string. For example, "sapog.px4.io".</field>
+      <field type="uint8_t" name="hw_version_major">Hardware major version number.</field>
+      <field type="uint8_t" name="hw_version_minor">Hardware minor version number.</field>
+      <field type="uint8_t[16]" name="hw_unique_id">Hardware unique 128-bit ID.</field>
+      <field type="uint8_t" name="sw_version_major">Software major version number.</field>
+      <field type="uint8_t" name="sw_version_minor">Software minor version number.</field>
+      <field type="uint32_t" name="sw_vcs_commit">Version control system (VCS) revision identifier (e.g. git short commit hash). Zero if unknown.</field>
     </message>
   </messages>
 </mavlink>
