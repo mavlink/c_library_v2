@@ -20,15 +20,17 @@ typedef struct __mavlink_camera_settings_t {
  uint8_t image_quality_id; /*< Reserved for image quality ID (Compression)*/
  uint8_t metering_mode_id; /*< Reserved for metering mode ID (Average, Center, Spot, etc.)*/
  uint8_t flicker_mode_id; /*< Reserved for flicker mode ID (Auto, 60Hz, 50Hz, etc.)*/
+ uint8_t photo_resolution_id; /*< Photo resolution ID (4000x3000, 2560x1920, etc.)*/
+ uint8_t video_resolution_and_rate_id; /*< Video resolution and rate ID (4K 60 Hz, 4K 30 Hz, HD 60 Hz, HD 30 Hz, etc.)*/
 }) mavlink_camera_settings_t;
 
-#define MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN 33
-#define MAVLINK_MSG_ID_CAMERA_SETTINGS_MIN_LEN 33
-#define MAVLINK_MSG_ID_260_LEN 33
-#define MAVLINK_MSG_ID_260_MIN_LEN 33
+#define MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN 35
+#define MAVLINK_MSG_ID_CAMERA_SETTINGS_MIN_LEN 35
+#define MAVLINK_MSG_ID_260_LEN 35
+#define MAVLINK_MSG_ID_260_MIN_LEN 35
 
-#define MAVLINK_MSG_ID_CAMERA_SETTINGS_CRC 175
-#define MAVLINK_MSG_ID_260_CRC 175
+#define MAVLINK_MSG_ID_CAMERA_SETTINGS_CRC 147
+#define MAVLINK_MSG_ID_260_CRC 147
 
 
 
@@ -36,7 +38,7 @@ typedef struct __mavlink_camera_settings_t {
 #define MAVLINK_MESSAGE_INFO_CAMERA_SETTINGS { \
     260, \
     "CAMERA_SETTINGS", \
-    15, \
+    17, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_camera_settings_t, time_boot_ms) }, \
          { "aperture", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_camera_settings_t, aperture) }, \
          { "shutter_speed", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_camera_settings_t, shutter_speed) }, \
@@ -52,12 +54,14 @@ typedef struct __mavlink_camera_settings_t {
          { "image_quality_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 30, offsetof(mavlink_camera_settings_t, image_quality_id) }, \
          { "metering_mode_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 31, offsetof(mavlink_camera_settings_t, metering_mode_id) }, \
          { "flicker_mode_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 32, offsetof(mavlink_camera_settings_t, flicker_mode_id) }, \
+         { "photo_resolution_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 33, offsetof(mavlink_camera_settings_t, photo_resolution_id) }, \
+         { "video_resolution_and_rate_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 34, offsetof(mavlink_camera_settings_t, video_resolution_and_rate_id) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_CAMERA_SETTINGS { \
     "CAMERA_SETTINGS", \
-    15, \
+    17, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_camera_settings_t, time_boot_ms) }, \
          { "aperture", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_camera_settings_t, aperture) }, \
          { "shutter_speed", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_camera_settings_t, shutter_speed) }, \
@@ -73,6 +77,8 @@ typedef struct __mavlink_camera_settings_t {
          { "image_quality_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 30, offsetof(mavlink_camera_settings_t, image_quality_id) }, \
          { "metering_mode_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 31, offsetof(mavlink_camera_settings_t, metering_mode_id) }, \
          { "flicker_mode_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 32, offsetof(mavlink_camera_settings_t, flicker_mode_id) }, \
+         { "photo_resolution_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 33, offsetof(mavlink_camera_settings_t, photo_resolution_id) }, \
+         { "video_resolution_and_rate_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 34, offsetof(mavlink_camera_settings_t, video_resolution_and_rate_id) }, \
          } \
 }
 #endif
@@ -98,10 +104,12 @@ typedef struct __mavlink_camera_settings_t {
  * @param image_quality_id Reserved for image quality ID (Compression)
  * @param metering_mode_id Reserved for metering mode ID (Average, Center, Spot, etc.)
  * @param flicker_mode_id Reserved for flicker mode ID (Auto, 60Hz, 50Hz, etc.)
+ * @param photo_resolution_id Photo resolution ID (4000x3000, 2560x1920, etc.)
+ * @param video_resolution_and_rate_id Video resolution and rate ID (4K 60 Hz, 4K 30 Hz, HD 60 Hz, HD 30 Hz, etc.)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_camera_settings_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint32_t time_boot_ms, uint8_t camera_id, uint8_t exposure_mode, float aperture, float shutter_speed, float iso_sensitivity, float ev, float white_balance, uint8_t mode_id, uint8_t audio_recording, uint8_t color_mode_id, uint8_t image_format_id, uint8_t image_quality_id, uint8_t metering_mode_id, uint8_t flicker_mode_id)
+                               uint32_t time_boot_ms, uint8_t camera_id, uint8_t exposure_mode, float aperture, float shutter_speed, float iso_sensitivity, float ev, float white_balance, uint8_t mode_id, uint8_t audio_recording, uint8_t color_mode_id, uint8_t image_format_id, uint8_t image_quality_id, uint8_t metering_mode_id, uint8_t flicker_mode_id, uint8_t photo_resolution_id, uint8_t video_resolution_and_rate_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN];
@@ -120,6 +128,8 @@ static inline uint16_t mavlink_msg_camera_settings_pack(uint8_t system_id, uint8
     _mav_put_uint8_t(buf, 30, image_quality_id);
     _mav_put_uint8_t(buf, 31, metering_mode_id);
     _mav_put_uint8_t(buf, 32, flicker_mode_id);
+    _mav_put_uint8_t(buf, 33, photo_resolution_id);
+    _mav_put_uint8_t(buf, 34, video_resolution_and_rate_id);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN);
 #else
@@ -139,6 +149,8 @@ static inline uint16_t mavlink_msg_camera_settings_pack(uint8_t system_id, uint8
     packet.image_quality_id = image_quality_id;
     packet.metering_mode_id = metering_mode_id;
     packet.flicker_mode_id = flicker_mode_id;
+    packet.photo_resolution_id = photo_resolution_id;
+    packet.video_resolution_and_rate_id = video_resolution_and_rate_id;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN);
 #endif
@@ -168,11 +180,13 @@ static inline uint16_t mavlink_msg_camera_settings_pack(uint8_t system_id, uint8
  * @param image_quality_id Reserved for image quality ID (Compression)
  * @param metering_mode_id Reserved for metering mode ID (Average, Center, Spot, etc.)
  * @param flicker_mode_id Reserved for flicker mode ID (Auto, 60Hz, 50Hz, etc.)
+ * @param photo_resolution_id Photo resolution ID (4000x3000, 2560x1920, etc.)
+ * @param video_resolution_and_rate_id Video resolution and rate ID (4K 60 Hz, 4K 30 Hz, HD 60 Hz, HD 30 Hz, etc.)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_camera_settings_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint32_t time_boot_ms,uint8_t camera_id,uint8_t exposure_mode,float aperture,float shutter_speed,float iso_sensitivity,float ev,float white_balance,uint8_t mode_id,uint8_t audio_recording,uint8_t color_mode_id,uint8_t image_format_id,uint8_t image_quality_id,uint8_t metering_mode_id,uint8_t flicker_mode_id)
+                                   uint32_t time_boot_ms,uint8_t camera_id,uint8_t exposure_mode,float aperture,float shutter_speed,float iso_sensitivity,float ev,float white_balance,uint8_t mode_id,uint8_t audio_recording,uint8_t color_mode_id,uint8_t image_format_id,uint8_t image_quality_id,uint8_t metering_mode_id,uint8_t flicker_mode_id,uint8_t photo_resolution_id,uint8_t video_resolution_and_rate_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN];
@@ -191,6 +205,8 @@ static inline uint16_t mavlink_msg_camera_settings_pack_chan(uint8_t system_id, 
     _mav_put_uint8_t(buf, 30, image_quality_id);
     _mav_put_uint8_t(buf, 31, metering_mode_id);
     _mav_put_uint8_t(buf, 32, flicker_mode_id);
+    _mav_put_uint8_t(buf, 33, photo_resolution_id);
+    _mav_put_uint8_t(buf, 34, video_resolution_and_rate_id);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN);
 #else
@@ -210,6 +226,8 @@ static inline uint16_t mavlink_msg_camera_settings_pack_chan(uint8_t system_id, 
     packet.image_quality_id = image_quality_id;
     packet.metering_mode_id = metering_mode_id;
     packet.flicker_mode_id = flicker_mode_id;
+    packet.photo_resolution_id = photo_resolution_id;
+    packet.video_resolution_and_rate_id = video_resolution_and_rate_id;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN);
 #endif
@@ -228,7 +246,7 @@ static inline uint16_t mavlink_msg_camera_settings_pack_chan(uint8_t system_id, 
  */
 static inline uint16_t mavlink_msg_camera_settings_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_camera_settings_t* camera_settings)
 {
-    return mavlink_msg_camera_settings_pack(system_id, component_id, msg, camera_settings->time_boot_ms, camera_settings->camera_id, camera_settings->exposure_mode, camera_settings->aperture, camera_settings->shutter_speed, camera_settings->iso_sensitivity, camera_settings->ev, camera_settings->white_balance, camera_settings->mode_id, camera_settings->audio_recording, camera_settings->color_mode_id, camera_settings->image_format_id, camera_settings->image_quality_id, camera_settings->metering_mode_id, camera_settings->flicker_mode_id);
+    return mavlink_msg_camera_settings_pack(system_id, component_id, msg, camera_settings->time_boot_ms, camera_settings->camera_id, camera_settings->exposure_mode, camera_settings->aperture, camera_settings->shutter_speed, camera_settings->iso_sensitivity, camera_settings->ev, camera_settings->white_balance, camera_settings->mode_id, camera_settings->audio_recording, camera_settings->color_mode_id, camera_settings->image_format_id, camera_settings->image_quality_id, camera_settings->metering_mode_id, camera_settings->flicker_mode_id, camera_settings->photo_resolution_id, camera_settings->video_resolution_and_rate_id);
 }
 
 /**
@@ -242,7 +260,7 @@ static inline uint16_t mavlink_msg_camera_settings_encode(uint8_t system_id, uin
  */
 static inline uint16_t mavlink_msg_camera_settings_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_camera_settings_t* camera_settings)
 {
-    return mavlink_msg_camera_settings_pack_chan(system_id, component_id, chan, msg, camera_settings->time_boot_ms, camera_settings->camera_id, camera_settings->exposure_mode, camera_settings->aperture, camera_settings->shutter_speed, camera_settings->iso_sensitivity, camera_settings->ev, camera_settings->white_balance, camera_settings->mode_id, camera_settings->audio_recording, camera_settings->color_mode_id, camera_settings->image_format_id, camera_settings->image_quality_id, camera_settings->metering_mode_id, camera_settings->flicker_mode_id);
+    return mavlink_msg_camera_settings_pack_chan(system_id, component_id, chan, msg, camera_settings->time_boot_ms, camera_settings->camera_id, camera_settings->exposure_mode, camera_settings->aperture, camera_settings->shutter_speed, camera_settings->iso_sensitivity, camera_settings->ev, camera_settings->white_balance, camera_settings->mode_id, camera_settings->audio_recording, camera_settings->color_mode_id, camera_settings->image_format_id, camera_settings->image_quality_id, camera_settings->metering_mode_id, camera_settings->flicker_mode_id, camera_settings->photo_resolution_id, camera_settings->video_resolution_and_rate_id);
 }
 
 /**
@@ -264,10 +282,12 @@ static inline uint16_t mavlink_msg_camera_settings_encode_chan(uint8_t system_id
  * @param image_quality_id Reserved for image quality ID (Compression)
  * @param metering_mode_id Reserved for metering mode ID (Average, Center, Spot, etc.)
  * @param flicker_mode_id Reserved for flicker mode ID (Auto, 60Hz, 50Hz, etc.)
+ * @param photo_resolution_id Photo resolution ID (4000x3000, 2560x1920, etc.)
+ * @param video_resolution_and_rate_id Video resolution and rate ID (4K 60 Hz, 4K 30 Hz, HD 60 Hz, HD 30 Hz, etc.)
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_camera_settings_send(mavlink_channel_t chan, uint32_t time_boot_ms, uint8_t camera_id, uint8_t exposure_mode, float aperture, float shutter_speed, float iso_sensitivity, float ev, float white_balance, uint8_t mode_id, uint8_t audio_recording, uint8_t color_mode_id, uint8_t image_format_id, uint8_t image_quality_id, uint8_t metering_mode_id, uint8_t flicker_mode_id)
+static inline void mavlink_msg_camera_settings_send(mavlink_channel_t chan, uint32_t time_boot_ms, uint8_t camera_id, uint8_t exposure_mode, float aperture, float shutter_speed, float iso_sensitivity, float ev, float white_balance, uint8_t mode_id, uint8_t audio_recording, uint8_t color_mode_id, uint8_t image_format_id, uint8_t image_quality_id, uint8_t metering_mode_id, uint8_t flicker_mode_id, uint8_t photo_resolution_id, uint8_t video_resolution_and_rate_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN];
@@ -286,6 +306,8 @@ static inline void mavlink_msg_camera_settings_send(mavlink_channel_t chan, uint
     _mav_put_uint8_t(buf, 30, image_quality_id);
     _mav_put_uint8_t(buf, 31, metering_mode_id);
     _mav_put_uint8_t(buf, 32, flicker_mode_id);
+    _mav_put_uint8_t(buf, 33, photo_resolution_id);
+    _mav_put_uint8_t(buf, 34, video_resolution_and_rate_id);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAMERA_SETTINGS, buf, MAVLINK_MSG_ID_CAMERA_SETTINGS_MIN_LEN, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN, MAVLINK_MSG_ID_CAMERA_SETTINGS_CRC);
 #else
@@ -305,6 +327,8 @@ static inline void mavlink_msg_camera_settings_send(mavlink_channel_t chan, uint
     packet.image_quality_id = image_quality_id;
     packet.metering_mode_id = metering_mode_id;
     packet.flicker_mode_id = flicker_mode_id;
+    packet.photo_resolution_id = photo_resolution_id;
+    packet.video_resolution_and_rate_id = video_resolution_and_rate_id;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAMERA_SETTINGS, (const char *)&packet, MAVLINK_MSG_ID_CAMERA_SETTINGS_MIN_LEN, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN, MAVLINK_MSG_ID_CAMERA_SETTINGS_CRC);
 #endif
@@ -318,7 +342,7 @@ static inline void mavlink_msg_camera_settings_send(mavlink_channel_t chan, uint
 static inline void mavlink_msg_camera_settings_send_struct(mavlink_channel_t chan, const mavlink_camera_settings_t* camera_settings)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_camera_settings_send(chan, camera_settings->time_boot_ms, camera_settings->camera_id, camera_settings->exposure_mode, camera_settings->aperture, camera_settings->shutter_speed, camera_settings->iso_sensitivity, camera_settings->ev, camera_settings->white_balance, camera_settings->mode_id, camera_settings->audio_recording, camera_settings->color_mode_id, camera_settings->image_format_id, camera_settings->image_quality_id, camera_settings->metering_mode_id, camera_settings->flicker_mode_id);
+    mavlink_msg_camera_settings_send(chan, camera_settings->time_boot_ms, camera_settings->camera_id, camera_settings->exposure_mode, camera_settings->aperture, camera_settings->shutter_speed, camera_settings->iso_sensitivity, camera_settings->ev, camera_settings->white_balance, camera_settings->mode_id, camera_settings->audio_recording, camera_settings->color_mode_id, camera_settings->image_format_id, camera_settings->image_quality_id, camera_settings->metering_mode_id, camera_settings->flicker_mode_id, camera_settings->photo_resolution_id, camera_settings->video_resolution_and_rate_id);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAMERA_SETTINGS, (const char *)camera_settings, MAVLINK_MSG_ID_CAMERA_SETTINGS_MIN_LEN, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN, MAVLINK_MSG_ID_CAMERA_SETTINGS_CRC);
 #endif
@@ -332,7 +356,7 @@ static inline void mavlink_msg_camera_settings_send_struct(mavlink_channel_t cha
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_camera_settings_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, uint8_t camera_id, uint8_t exposure_mode, float aperture, float shutter_speed, float iso_sensitivity, float ev, float white_balance, uint8_t mode_id, uint8_t audio_recording, uint8_t color_mode_id, uint8_t image_format_id, uint8_t image_quality_id, uint8_t metering_mode_id, uint8_t flicker_mode_id)
+static inline void mavlink_msg_camera_settings_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, uint8_t camera_id, uint8_t exposure_mode, float aperture, float shutter_speed, float iso_sensitivity, float ev, float white_balance, uint8_t mode_id, uint8_t audio_recording, uint8_t color_mode_id, uint8_t image_format_id, uint8_t image_quality_id, uint8_t metering_mode_id, uint8_t flicker_mode_id, uint8_t photo_resolution_id, uint8_t video_resolution_and_rate_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -351,6 +375,8 @@ static inline void mavlink_msg_camera_settings_send_buf(mavlink_message_t *msgbu
     _mav_put_uint8_t(buf, 30, image_quality_id);
     _mav_put_uint8_t(buf, 31, metering_mode_id);
     _mav_put_uint8_t(buf, 32, flicker_mode_id);
+    _mav_put_uint8_t(buf, 33, photo_resolution_id);
+    _mav_put_uint8_t(buf, 34, video_resolution_and_rate_id);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAMERA_SETTINGS, buf, MAVLINK_MSG_ID_CAMERA_SETTINGS_MIN_LEN, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN, MAVLINK_MSG_ID_CAMERA_SETTINGS_CRC);
 #else
@@ -370,6 +396,8 @@ static inline void mavlink_msg_camera_settings_send_buf(mavlink_message_t *msgbu
     packet->image_quality_id = image_quality_id;
     packet->metering_mode_id = metering_mode_id;
     packet->flicker_mode_id = flicker_mode_id;
+    packet->photo_resolution_id = photo_resolution_id;
+    packet->video_resolution_and_rate_id = video_resolution_and_rate_id;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAMERA_SETTINGS, (const char *)packet, MAVLINK_MSG_ID_CAMERA_SETTINGS_MIN_LEN, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN, MAVLINK_MSG_ID_CAMERA_SETTINGS_CRC);
 #endif
@@ -532,6 +560,26 @@ static inline uint8_t mavlink_msg_camera_settings_get_flicker_mode_id(const mavl
 }
 
 /**
+ * @brief Get field photo_resolution_id from camera_settings message
+ *
+ * @return Photo resolution ID (4000x3000, 2560x1920, etc.)
+ */
+static inline uint8_t mavlink_msg_camera_settings_get_photo_resolution_id(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint8_t(msg,  33);
+}
+
+/**
+ * @brief Get field video_resolution_and_rate_id from camera_settings message
+ *
+ * @return Video resolution and rate ID (4K 60 Hz, 4K 30 Hz, HD 60 Hz, HD 30 Hz, etc.)
+ */
+static inline uint8_t mavlink_msg_camera_settings_get_video_resolution_and_rate_id(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint8_t(msg,  34);
+}
+
+/**
  * @brief Decode a camera_settings message into a struct
  *
  * @param msg The message to decode
@@ -555,6 +603,8 @@ static inline void mavlink_msg_camera_settings_decode(const mavlink_message_t* m
     camera_settings->image_quality_id = mavlink_msg_camera_settings_get_image_quality_id(msg);
     camera_settings->metering_mode_id = mavlink_msg_camera_settings_get_metering_mode_id(msg);
     camera_settings->flicker_mode_id = mavlink_msg_camera_settings_get_flicker_mode_id(msg);
+    camera_settings->photo_resolution_id = mavlink_msg_camera_settings_get_photo_resolution_id(msg);
+    camera_settings->video_resolution_and_rate_id = mavlink_msg_camera_settings_get_video_resolution_and_rate_id(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN? msg->len : MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN;
         memset(camera_settings, 0, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN);
