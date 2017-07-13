@@ -10,7 +10,7 @@ typedef struct __mavlink_camera_settings_t {
  float shutter_speed; /*< Shutter speed in seconds*/
  float iso_sensitivity; /*< ISO sensitivity*/
  float ev; /*< Exposure Value*/
- float white_balance; /*< Color temperature in degrees Kelvin. (0: Auto WB)*/
+ float white_balance; /*< Color temperature in degrees Kelvin. (0: Auto WB, -1: Locked at auto value)*/
  uint8_t camera_id; /*< Camera ID (1 for first, 2 for second, etc.)*/
  uint8_t exposure_mode; /*< 0: full auto 1: full manual 2: aperture priority 3: shutter priority*/
  uint8_t mode_id; /*< Reserved for a camera mode ID. (0: Photo 1: Video)*/
@@ -96,7 +96,7 @@ typedef struct __mavlink_camera_settings_t {
  * @param shutter_speed Shutter speed in seconds
  * @param iso_sensitivity ISO sensitivity
  * @param ev Exposure Value
- * @param white_balance Color temperature in degrees Kelvin. (0: Auto WB)
+ * @param white_balance Color temperature in degrees Kelvin. (0: Auto WB, -1: Locked at auto value)
  * @param mode_id Reserved for a camera mode ID. (0: Photo 1: Video)
  * @param audio_recording Audio recording enabled (0: off 1: on)
  * @param color_mode_id Reserved for a color mode ID (Neutral, Vivid, etc.)
@@ -172,7 +172,7 @@ static inline uint16_t mavlink_msg_camera_settings_pack(uint8_t system_id, uint8
  * @param shutter_speed Shutter speed in seconds
  * @param iso_sensitivity ISO sensitivity
  * @param ev Exposure Value
- * @param white_balance Color temperature in degrees Kelvin. (0: Auto WB)
+ * @param white_balance Color temperature in degrees Kelvin. (0: Auto WB, -1: Locked at auto value)
  * @param mode_id Reserved for a camera mode ID. (0: Photo 1: Video)
  * @param audio_recording Audio recording enabled (0: off 1: on)
  * @param color_mode_id Reserved for a color mode ID (Neutral, Vivid, etc.)
@@ -274,7 +274,7 @@ static inline uint16_t mavlink_msg_camera_settings_encode_chan(uint8_t system_id
  * @param shutter_speed Shutter speed in seconds
  * @param iso_sensitivity ISO sensitivity
  * @param ev Exposure Value
- * @param white_balance Color temperature in degrees Kelvin. (0: Auto WB)
+ * @param white_balance Color temperature in degrees Kelvin. (0: Auto WB, -1: Locked at auto value)
  * @param mode_id Reserved for a camera mode ID. (0: Photo 1: Video)
  * @param audio_recording Audio recording enabled (0: off 1: on)
  * @param color_mode_id Reserved for a color mode ID (Neutral, Vivid, etc.)
@@ -482,7 +482,7 @@ static inline float mavlink_msg_camera_settings_get_ev(const mavlink_message_t* 
 /**
  * @brief Get field white_balance from camera_settings message
  *
- * @return Color temperature in degrees Kelvin. (0: Auto WB)
+ * @return Color temperature in degrees Kelvin. (0: Auto WB, -1: Locked at auto value)
  */
 static inline float mavlink_msg_camera_settings_get_white_balance(const mavlink_message_t* msg)
 {
