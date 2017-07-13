@@ -10,8 +10,8 @@ typedef struct __mavlink_camera_capture_status_t {
  uint32_t recording_time_ms; /*< Time in milliseconds since recording started*/
  float available_capacity; /*< Available storage capacity in MiB*/
  uint8_t camera_id; /*< Camera ID (1 for first, 2 for second, etc.)*/
- uint8_t image_status; /*< Current status of image capturing (0: not running, 1: interval capture in progress)*/
- uint8_t video_status; /*< Current status of video capturing (0: not running, 1: capture in progress)*/
+ uint8_t image_status; /*< Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)*/
+ uint8_t video_status; /*< Current status of video capturing (0: idle, 1: capture in progress)*/
 }) mavlink_camera_capture_status_t;
 
 #define MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_LEN 19
@@ -61,8 +61,8 @@ typedef struct __mavlink_camera_capture_status_t {
  *
  * @param time_boot_ms Timestamp (milliseconds since system boot)
  * @param camera_id Camera ID (1 for first, 2 for second, etc.)
- * @param image_status Current status of image capturing (0: not running, 1: interval capture in progress)
- * @param video_status Current status of video capturing (0: not running, 1: capture in progress)
+ * @param image_status Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)
+ * @param video_status Current status of video capturing (0: idle, 1: capture in progress)
  * @param image_interval Image capture interval in seconds
  * @param recording_time_ms Time in milliseconds since recording started
  * @param available_capacity Available storage capacity in MiB
@@ -107,8 +107,8 @@ static inline uint16_t mavlink_msg_camera_capture_status_pack(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param time_boot_ms Timestamp (milliseconds since system boot)
  * @param camera_id Camera ID (1 for first, 2 for second, etc.)
- * @param image_status Current status of image capturing (0: not running, 1: interval capture in progress)
- * @param video_status Current status of video capturing (0: not running, 1: capture in progress)
+ * @param image_status Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)
+ * @param video_status Current status of video capturing (0: idle, 1: capture in progress)
  * @param image_interval Image capture interval in seconds
  * @param recording_time_ms Time in milliseconds since recording started
  * @param available_capacity Available storage capacity in MiB
@@ -179,8 +179,8 @@ static inline uint16_t mavlink_msg_camera_capture_status_encode_chan(uint8_t sys
  *
  * @param time_boot_ms Timestamp (milliseconds since system boot)
  * @param camera_id Camera ID (1 for first, 2 for second, etc.)
- * @param image_status Current status of image capturing (0: not running, 1: interval capture in progress)
- * @param video_status Current status of video capturing (0: not running, 1: capture in progress)
+ * @param image_status Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)
+ * @param video_status Current status of video capturing (0: idle, 1: capture in progress)
  * @param image_interval Image capture interval in seconds
  * @param recording_time_ms Time in milliseconds since recording started
  * @param available_capacity Available storage capacity in MiB
@@ -292,7 +292,7 @@ static inline uint8_t mavlink_msg_camera_capture_status_get_camera_id(const mavl
 /**
  * @brief Get field image_status from camera_capture_status message
  *
- * @return Current status of image capturing (0: not running, 1: interval capture in progress)
+ * @return Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)
  */
 static inline uint8_t mavlink_msg_camera_capture_status_get_image_status(const mavlink_message_t* msg)
 {
@@ -302,7 +302,7 @@ static inline uint8_t mavlink_msg_camera_capture_status_get_image_status(const m
 /**
  * @brief Get field video_status from camera_capture_status message
  *
- * @return Current status of video capturing (0: not running, 1: capture in progress)
+ * @return Current status of video capturing (0: idle, 1: capture in progress)
  */
 static inline uint8_t mavlink_msg_camera_capture_status_get_video_status(const mavlink_message_t* msg)
 {
