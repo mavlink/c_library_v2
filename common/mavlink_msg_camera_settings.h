@@ -6,22 +6,22 @@
 MAVPACKED(
 typedef struct __mavlink_camera_settings_t {
  uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
- float aperture; /*< Aperture is 1/value*/
- float shutter_speed; /*< Shutter speed in seconds*/
- float iso_sensitivity; /*< ISO sensitivity*/
- float ev; /*< Exposure Value*/
- float white_balance; /*< Color temperature in degrees Kelvin. (0: Auto WB, -1: Locked at auto value)*/
- uint8_t camera_id; /*< Camera ID (1 for first, 2 for second, etc.)*/
- uint8_t exposure_mode; /*< 0: full auto 1: full manual 2: aperture priority 3: shutter priority*/
- uint8_t mode_id; /*< Reserved for a camera mode ID. (0: Photo 1: Video)*/
- uint8_t audio_recording; /*< Audio recording enabled (0: off 1: on)*/
- uint8_t color_mode_id; /*< Reserved for a color mode ID (Neutral, Vivid, etc.)*/
- uint8_t image_format_id; /*< Reserved for image format ID (Jpeg/Raw/Jpeg+Raw)*/
- uint8_t image_quality_id; /*< Reserved for image quality ID (Compression)*/
- uint8_t metering_mode_id; /*< Reserved for metering mode ID (Average, Center, Spot, etc.)*/
- uint8_t flicker_mode_id; /*< Reserved for flicker mode ID (Auto, 60Hz, 50Hz, etc.)*/
- uint8_t photo_resolution_id; /*< Photo resolution ID (4000x3000, 2560x1920, etc.)*/
- uint8_t video_resolution_and_rate_id; /*< Video resolution and rate ID (4K 60 Hz, 4K 30 Hz, HD 60 Hz, HD 30 Hz, etc.)*/
+ float aperture; /*< Aperture is 1/value. (EXPERIMENTAL: IT WILL BE REMOVED)*/
+ float shutter_speed; /*< Shutter speed in seconds. (EXPERIMENTAL: IT WILL BE REMOVED)*/
+ float iso_sensitivity; /*< ISO sensitivity. (EXPERIMENTAL: IT WILL BE REMOVED)*/
+ float ev; /*< Exposure Value. (EXPERIMENTAL: IT WILL BE REMOVED)*/
+ float white_balance; /*< Color temperature in degrees Kelvin. (0: Auto WB, -1: Locked at auto value). (EXPERIMENTAL: IT WILL BE REMOVED)*/
+ uint8_t camera_id; /*< Camera ID (1 for first, 2 for second, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)*/
+ uint8_t exposure_mode; /*< 0: full auto 1: full manual 2: aperture priority 3: shutter priority. (EXPERIMENTAL: IT WILL BE REMOVED)*/
+ uint8_t mode_id; /*< Camera mode ID (0: Photo 1: Video)*/
+ uint8_t audio_recording; /*< Audio recording enabled (0: off 1: on). (EXPERIMENTAL: IT WILL BE REMOVED)*/
+ uint8_t color_mode_id; /*< Reserved for a color mode ID (Neutral, Vivid, etc.). (EXPERIMENTAL: IT WILL BE REMOVED)*/
+ uint8_t image_format_id; /*< Reserved for image format ID (Jpeg/Raw/Jpeg+Raw). (EXPERIMENTAL: IT WILL BE REMOVED)*/
+ uint8_t image_quality_id; /*< Reserved for image quality ID (Compression). (EXPERIMENTAL: IT WILL BE REMOVED)*/
+ uint8_t metering_mode_id; /*< Reserved for metering mode ID (Average, Center, Spot, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)*/
+ uint8_t flicker_mode_id; /*< Reserved for flicker mode ID (Auto, 60Hz, 50Hz, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)*/
+ uint8_t photo_resolution_id; /*< Photo resolution ID (4000x3000, 2560x1920, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)*/
+ uint8_t video_resolution_and_rate_id; /*< Video resolution and rate ID (4K 60 Hz, 4K 30 Hz, HD 60 Hz, HD 30 Hz, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)*/
 }) mavlink_camera_settings_t;
 
 #define MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN 35
@@ -90,22 +90,22 @@ typedef struct __mavlink_camera_settings_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param camera_id Camera ID (1 for first, 2 for second, etc.)
- * @param exposure_mode 0: full auto 1: full manual 2: aperture priority 3: shutter priority
- * @param aperture Aperture is 1/value
- * @param shutter_speed Shutter speed in seconds
- * @param iso_sensitivity ISO sensitivity
- * @param ev Exposure Value
- * @param white_balance Color temperature in degrees Kelvin. (0: Auto WB, -1: Locked at auto value)
- * @param mode_id Reserved for a camera mode ID. (0: Photo 1: Video)
- * @param audio_recording Audio recording enabled (0: off 1: on)
- * @param color_mode_id Reserved for a color mode ID (Neutral, Vivid, etc.)
- * @param image_format_id Reserved for image format ID (Jpeg/Raw/Jpeg+Raw)
- * @param image_quality_id Reserved for image quality ID (Compression)
- * @param metering_mode_id Reserved for metering mode ID (Average, Center, Spot, etc.)
- * @param flicker_mode_id Reserved for flicker mode ID (Auto, 60Hz, 50Hz, etc.)
- * @param photo_resolution_id Photo resolution ID (4000x3000, 2560x1920, etc.)
- * @param video_resolution_and_rate_id Video resolution and rate ID (4K 60 Hz, 4K 30 Hz, HD 60 Hz, HD 30 Hz, etc.)
+ * @param camera_id Camera ID (1 for first, 2 for second, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param exposure_mode 0: full auto 1: full manual 2: aperture priority 3: shutter priority. (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param aperture Aperture is 1/value. (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param shutter_speed Shutter speed in seconds. (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param iso_sensitivity ISO sensitivity. (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param ev Exposure Value. (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param white_balance Color temperature in degrees Kelvin. (0: Auto WB, -1: Locked at auto value). (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param mode_id Camera mode ID (0: Photo 1: Video)
+ * @param audio_recording Audio recording enabled (0: off 1: on). (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param color_mode_id Reserved for a color mode ID (Neutral, Vivid, etc.). (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param image_format_id Reserved for image format ID (Jpeg/Raw/Jpeg+Raw). (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param image_quality_id Reserved for image quality ID (Compression). (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param metering_mode_id Reserved for metering mode ID (Average, Center, Spot, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param flicker_mode_id Reserved for flicker mode ID (Auto, 60Hz, 50Hz, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param photo_resolution_id Photo resolution ID (4000x3000, 2560x1920, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param video_resolution_and_rate_id Video resolution and rate ID (4K 60 Hz, 4K 30 Hz, HD 60 Hz, HD 30 Hz, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_camera_settings_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -166,22 +166,22 @@ static inline uint16_t mavlink_msg_camera_settings_pack(uint8_t system_id, uint8
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param camera_id Camera ID (1 for first, 2 for second, etc.)
- * @param exposure_mode 0: full auto 1: full manual 2: aperture priority 3: shutter priority
- * @param aperture Aperture is 1/value
- * @param shutter_speed Shutter speed in seconds
- * @param iso_sensitivity ISO sensitivity
- * @param ev Exposure Value
- * @param white_balance Color temperature in degrees Kelvin. (0: Auto WB, -1: Locked at auto value)
- * @param mode_id Reserved for a camera mode ID. (0: Photo 1: Video)
- * @param audio_recording Audio recording enabled (0: off 1: on)
- * @param color_mode_id Reserved for a color mode ID (Neutral, Vivid, etc.)
- * @param image_format_id Reserved for image format ID (Jpeg/Raw/Jpeg+Raw)
- * @param image_quality_id Reserved for image quality ID (Compression)
- * @param metering_mode_id Reserved for metering mode ID (Average, Center, Spot, etc.)
- * @param flicker_mode_id Reserved for flicker mode ID (Auto, 60Hz, 50Hz, etc.)
- * @param photo_resolution_id Photo resolution ID (4000x3000, 2560x1920, etc.)
- * @param video_resolution_and_rate_id Video resolution and rate ID (4K 60 Hz, 4K 30 Hz, HD 60 Hz, HD 30 Hz, etc.)
+ * @param camera_id Camera ID (1 for first, 2 for second, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param exposure_mode 0: full auto 1: full manual 2: aperture priority 3: shutter priority. (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param aperture Aperture is 1/value. (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param shutter_speed Shutter speed in seconds. (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param iso_sensitivity ISO sensitivity. (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param ev Exposure Value. (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param white_balance Color temperature in degrees Kelvin. (0: Auto WB, -1: Locked at auto value). (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param mode_id Camera mode ID (0: Photo 1: Video)
+ * @param audio_recording Audio recording enabled (0: off 1: on). (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param color_mode_id Reserved for a color mode ID (Neutral, Vivid, etc.). (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param image_format_id Reserved for image format ID (Jpeg/Raw/Jpeg+Raw). (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param image_quality_id Reserved for image quality ID (Compression). (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param metering_mode_id Reserved for metering mode ID (Average, Center, Spot, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param flicker_mode_id Reserved for flicker mode ID (Auto, 60Hz, 50Hz, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param photo_resolution_id Photo resolution ID (4000x3000, 2560x1920, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param video_resolution_and_rate_id Video resolution and rate ID (4K 60 Hz, 4K 30 Hz, HD 60 Hz, HD 30 Hz, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_camera_settings_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -268,22 +268,22 @@ static inline uint16_t mavlink_msg_camera_settings_encode_chan(uint8_t system_id
  * @param chan MAVLink channel to send the message
  *
  * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param camera_id Camera ID (1 for first, 2 for second, etc.)
- * @param exposure_mode 0: full auto 1: full manual 2: aperture priority 3: shutter priority
- * @param aperture Aperture is 1/value
- * @param shutter_speed Shutter speed in seconds
- * @param iso_sensitivity ISO sensitivity
- * @param ev Exposure Value
- * @param white_balance Color temperature in degrees Kelvin. (0: Auto WB, -1: Locked at auto value)
- * @param mode_id Reserved for a camera mode ID. (0: Photo 1: Video)
- * @param audio_recording Audio recording enabled (0: off 1: on)
- * @param color_mode_id Reserved for a color mode ID (Neutral, Vivid, etc.)
- * @param image_format_id Reserved for image format ID (Jpeg/Raw/Jpeg+Raw)
- * @param image_quality_id Reserved for image quality ID (Compression)
- * @param metering_mode_id Reserved for metering mode ID (Average, Center, Spot, etc.)
- * @param flicker_mode_id Reserved for flicker mode ID (Auto, 60Hz, 50Hz, etc.)
- * @param photo_resolution_id Photo resolution ID (4000x3000, 2560x1920, etc.)
- * @param video_resolution_and_rate_id Video resolution and rate ID (4K 60 Hz, 4K 30 Hz, HD 60 Hz, HD 30 Hz, etc.)
+ * @param camera_id Camera ID (1 for first, 2 for second, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param exposure_mode 0: full auto 1: full manual 2: aperture priority 3: shutter priority. (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param aperture Aperture is 1/value. (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param shutter_speed Shutter speed in seconds. (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param iso_sensitivity ISO sensitivity. (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param ev Exposure Value. (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param white_balance Color temperature in degrees Kelvin. (0: Auto WB, -1: Locked at auto value). (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param mode_id Camera mode ID (0: Photo 1: Video)
+ * @param audio_recording Audio recording enabled (0: off 1: on). (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param color_mode_id Reserved for a color mode ID (Neutral, Vivid, etc.). (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param image_format_id Reserved for image format ID (Jpeg/Raw/Jpeg+Raw). (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param image_quality_id Reserved for image quality ID (Compression). (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param metering_mode_id Reserved for metering mode ID (Average, Center, Spot, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param flicker_mode_id Reserved for flicker mode ID (Auto, 60Hz, 50Hz, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param photo_resolution_id Photo resolution ID (4000x3000, 2560x1920, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)
+ * @param video_resolution_and_rate_id Video resolution and rate ID (4K 60 Hz, 4K 30 Hz, HD 60 Hz, HD 30 Hz, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -422,7 +422,7 @@ static inline uint32_t mavlink_msg_camera_settings_get_time_boot_ms(const mavlin
 /**
  * @brief Get field camera_id from camera_settings message
  *
- * @return Camera ID (1 for first, 2 for second, etc.)
+ * @return Camera ID (1 for first, 2 for second, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)
  */
 static inline uint8_t mavlink_msg_camera_settings_get_camera_id(const mavlink_message_t* msg)
 {
@@ -432,7 +432,7 @@ static inline uint8_t mavlink_msg_camera_settings_get_camera_id(const mavlink_me
 /**
  * @brief Get field exposure_mode from camera_settings message
  *
- * @return 0: full auto 1: full manual 2: aperture priority 3: shutter priority
+ * @return 0: full auto 1: full manual 2: aperture priority 3: shutter priority. (EXPERIMENTAL: IT WILL BE REMOVED)
  */
 static inline uint8_t mavlink_msg_camera_settings_get_exposure_mode(const mavlink_message_t* msg)
 {
@@ -442,7 +442,7 @@ static inline uint8_t mavlink_msg_camera_settings_get_exposure_mode(const mavlin
 /**
  * @brief Get field aperture from camera_settings message
  *
- * @return Aperture is 1/value
+ * @return Aperture is 1/value. (EXPERIMENTAL: IT WILL BE REMOVED)
  */
 static inline float mavlink_msg_camera_settings_get_aperture(const mavlink_message_t* msg)
 {
@@ -452,7 +452,7 @@ static inline float mavlink_msg_camera_settings_get_aperture(const mavlink_messa
 /**
  * @brief Get field shutter_speed from camera_settings message
  *
- * @return Shutter speed in seconds
+ * @return Shutter speed in seconds. (EXPERIMENTAL: IT WILL BE REMOVED)
  */
 static inline float mavlink_msg_camera_settings_get_shutter_speed(const mavlink_message_t* msg)
 {
@@ -462,7 +462,7 @@ static inline float mavlink_msg_camera_settings_get_shutter_speed(const mavlink_
 /**
  * @brief Get field iso_sensitivity from camera_settings message
  *
- * @return ISO sensitivity
+ * @return ISO sensitivity. (EXPERIMENTAL: IT WILL BE REMOVED)
  */
 static inline float mavlink_msg_camera_settings_get_iso_sensitivity(const mavlink_message_t* msg)
 {
@@ -472,7 +472,7 @@ static inline float mavlink_msg_camera_settings_get_iso_sensitivity(const mavlin
 /**
  * @brief Get field ev from camera_settings message
  *
- * @return Exposure Value
+ * @return Exposure Value. (EXPERIMENTAL: IT WILL BE REMOVED)
  */
 static inline float mavlink_msg_camera_settings_get_ev(const mavlink_message_t* msg)
 {
@@ -482,7 +482,7 @@ static inline float mavlink_msg_camera_settings_get_ev(const mavlink_message_t* 
 /**
  * @brief Get field white_balance from camera_settings message
  *
- * @return Color temperature in degrees Kelvin. (0: Auto WB, -1: Locked at auto value)
+ * @return Color temperature in degrees Kelvin. (0: Auto WB, -1: Locked at auto value). (EXPERIMENTAL: IT WILL BE REMOVED)
  */
 static inline float mavlink_msg_camera_settings_get_white_balance(const mavlink_message_t* msg)
 {
@@ -492,7 +492,7 @@ static inline float mavlink_msg_camera_settings_get_white_balance(const mavlink_
 /**
  * @brief Get field mode_id from camera_settings message
  *
- * @return Reserved for a camera mode ID. (0: Photo 1: Video)
+ * @return Camera mode ID (0: Photo 1: Video)
  */
 static inline uint8_t mavlink_msg_camera_settings_get_mode_id(const mavlink_message_t* msg)
 {
@@ -502,7 +502,7 @@ static inline uint8_t mavlink_msg_camera_settings_get_mode_id(const mavlink_mess
 /**
  * @brief Get field audio_recording from camera_settings message
  *
- * @return Audio recording enabled (0: off 1: on)
+ * @return Audio recording enabled (0: off 1: on). (EXPERIMENTAL: IT WILL BE REMOVED)
  */
 static inline uint8_t mavlink_msg_camera_settings_get_audio_recording(const mavlink_message_t* msg)
 {
@@ -512,7 +512,7 @@ static inline uint8_t mavlink_msg_camera_settings_get_audio_recording(const mavl
 /**
  * @brief Get field color_mode_id from camera_settings message
  *
- * @return Reserved for a color mode ID (Neutral, Vivid, etc.)
+ * @return Reserved for a color mode ID (Neutral, Vivid, etc.). (EXPERIMENTAL: IT WILL BE REMOVED)
  */
 static inline uint8_t mavlink_msg_camera_settings_get_color_mode_id(const mavlink_message_t* msg)
 {
@@ -522,7 +522,7 @@ static inline uint8_t mavlink_msg_camera_settings_get_color_mode_id(const mavlin
 /**
  * @brief Get field image_format_id from camera_settings message
  *
- * @return Reserved for image format ID (Jpeg/Raw/Jpeg+Raw)
+ * @return Reserved for image format ID (Jpeg/Raw/Jpeg+Raw). (EXPERIMENTAL: IT WILL BE REMOVED)
  */
 static inline uint8_t mavlink_msg_camera_settings_get_image_format_id(const mavlink_message_t* msg)
 {
@@ -532,7 +532,7 @@ static inline uint8_t mavlink_msg_camera_settings_get_image_format_id(const mavl
 /**
  * @brief Get field image_quality_id from camera_settings message
  *
- * @return Reserved for image quality ID (Compression)
+ * @return Reserved for image quality ID (Compression). (EXPERIMENTAL: IT WILL BE REMOVED)
  */
 static inline uint8_t mavlink_msg_camera_settings_get_image_quality_id(const mavlink_message_t* msg)
 {
@@ -542,7 +542,7 @@ static inline uint8_t mavlink_msg_camera_settings_get_image_quality_id(const mav
 /**
  * @brief Get field metering_mode_id from camera_settings message
  *
- * @return Reserved for metering mode ID (Average, Center, Spot, etc.)
+ * @return Reserved for metering mode ID (Average, Center, Spot, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)
  */
 static inline uint8_t mavlink_msg_camera_settings_get_metering_mode_id(const mavlink_message_t* msg)
 {
@@ -552,7 +552,7 @@ static inline uint8_t mavlink_msg_camera_settings_get_metering_mode_id(const mav
 /**
  * @brief Get field flicker_mode_id from camera_settings message
  *
- * @return Reserved for flicker mode ID (Auto, 60Hz, 50Hz, etc.)
+ * @return Reserved for flicker mode ID (Auto, 60Hz, 50Hz, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)
  */
 static inline uint8_t mavlink_msg_camera_settings_get_flicker_mode_id(const mavlink_message_t* msg)
 {
@@ -562,7 +562,7 @@ static inline uint8_t mavlink_msg_camera_settings_get_flicker_mode_id(const mavl
 /**
  * @brief Get field photo_resolution_id from camera_settings message
  *
- * @return Photo resolution ID (4000x3000, 2560x1920, etc.)
+ * @return Photo resolution ID (4000x3000, 2560x1920, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)
  */
 static inline uint8_t mavlink_msg_camera_settings_get_photo_resolution_id(const mavlink_message_t* msg)
 {
@@ -572,7 +572,7 @@ static inline uint8_t mavlink_msg_camera_settings_get_photo_resolution_id(const 
 /**
  * @brief Get field video_resolution_and_rate_id from camera_settings message
  *
- * @return Video resolution and rate ID (4K 60 Hz, 4K 30 Hz, HD 60 Hz, HD 30 Hz, etc.)
+ * @return Video resolution and rate ID (4K 60 Hz, 4K 30 Hz, HD 60 Hz, HD 30 Hz, etc.) (EXPERIMENTAL: IT WILL BE REMOVED)
  */
 static inline uint8_t mavlink_msg_camera_settings_get_video_resolution_and_rate_id(const mavlink_message_t* msg)
 {
