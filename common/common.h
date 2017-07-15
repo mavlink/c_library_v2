@@ -1035,7 +1035,8 @@ typedef enum GPS_FIX_TYPE
    GPS_FIX_TYPE_RTK_FLOAT=5, /* RTK float, 3D position | */
    GPS_FIX_TYPE_RTK_FIXED=6, /* RTK Fixed, 3D position | */
    GPS_FIX_TYPE_STATIC=7, /* Static fixed, typically used for base stations | */
-   GPS_FIX_TYPE_ENUM_END=8, /*  | */
+   GPS_FIX_TYPE_PPP=8, /* PPP, 3D position. | */
+   GPS_FIX_TYPE_ENUM_END=9, /*  | */
 } GPS_FIX_TYPE;
 #endif
 
