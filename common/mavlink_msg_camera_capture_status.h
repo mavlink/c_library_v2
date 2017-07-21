@@ -9,18 +9,17 @@ typedef struct __mavlink_camera_capture_status_t {
  float image_interval; /*< Image capture interval in seconds*/
  uint32_t recording_time_ms; /*< Time in milliseconds since recording started*/
  float available_capacity; /*< Available storage capacity in MiB*/
- uint8_t camera_id; /*< Camera ID (1 for first, 2 for second, etc.)*/
  uint8_t image_status; /*< Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)*/
  uint8_t video_status; /*< Current status of video capturing (0: idle, 1: capture in progress)*/
 }) mavlink_camera_capture_status_t;
 
-#define MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_LEN 19
-#define MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_MIN_LEN 19
-#define MAVLINK_MSG_ID_262_LEN 19
-#define MAVLINK_MSG_ID_262_MIN_LEN 19
+#define MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_LEN 18
+#define MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_MIN_LEN 18
+#define MAVLINK_MSG_ID_262_LEN 18
+#define MAVLINK_MSG_ID_262_MIN_LEN 18
 
-#define MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_CRC 254
-#define MAVLINK_MSG_ID_262_CRC 254
+#define MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_CRC 12
+#define MAVLINK_MSG_ID_262_CRC 12
 
 
 
@@ -28,27 +27,25 @@ typedef struct __mavlink_camera_capture_status_t {
 #define MAVLINK_MESSAGE_INFO_CAMERA_CAPTURE_STATUS { \
     262, \
     "CAMERA_CAPTURE_STATUS", \
-    7, \
+    6, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_camera_capture_status_t, time_boot_ms) }, \
          { "image_interval", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_camera_capture_status_t, image_interval) }, \
          { "recording_time_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_camera_capture_status_t, recording_time_ms) }, \
          { "available_capacity", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_camera_capture_status_t, available_capacity) }, \
-         { "camera_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_camera_capture_status_t, camera_id) }, \
-         { "image_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_camera_capture_status_t, image_status) }, \
-         { "video_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 18, offsetof(mavlink_camera_capture_status_t, video_status) }, \
+         { "image_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_camera_capture_status_t, image_status) }, \
+         { "video_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_camera_capture_status_t, video_status) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_CAMERA_CAPTURE_STATUS { \
     "CAMERA_CAPTURE_STATUS", \
-    7, \
+    6, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_camera_capture_status_t, time_boot_ms) }, \
          { "image_interval", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_camera_capture_status_t, image_interval) }, \
          { "recording_time_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_camera_capture_status_t, recording_time_ms) }, \
          { "available_capacity", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_camera_capture_status_t, available_capacity) }, \
-         { "camera_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_camera_capture_status_t, camera_id) }, \
-         { "image_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_camera_capture_status_t, image_status) }, \
-         { "video_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 18, offsetof(mavlink_camera_capture_status_t, video_status) }, \
+         { "image_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_camera_capture_status_t, image_status) }, \
+         { "video_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_camera_capture_status_t, video_status) }, \
          } \
 }
 #endif
@@ -60,7 +57,6 @@ typedef struct __mavlink_camera_capture_status_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param camera_id Camera ID (1 for first, 2 for second, etc.)
  * @param image_status Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)
  * @param video_status Current status of video capturing (0: idle, 1: capture in progress)
  * @param image_interval Image capture interval in seconds
@@ -69,7 +65,7 @@ typedef struct __mavlink_camera_capture_status_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_camera_capture_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint32_t time_boot_ms, uint8_t camera_id, uint8_t image_status, uint8_t video_status, float image_interval, uint32_t recording_time_ms, float available_capacity)
+                               uint32_t time_boot_ms, uint8_t image_status, uint8_t video_status, float image_interval, uint32_t recording_time_ms, float available_capacity)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_LEN];
@@ -77,9 +73,8 @@ static inline uint16_t mavlink_msg_camera_capture_status_pack(uint8_t system_id,
     _mav_put_float(buf, 4, image_interval);
     _mav_put_uint32_t(buf, 8, recording_time_ms);
     _mav_put_float(buf, 12, available_capacity);
-    _mav_put_uint8_t(buf, 16, camera_id);
-    _mav_put_uint8_t(buf, 17, image_status);
-    _mav_put_uint8_t(buf, 18, video_status);
+    _mav_put_uint8_t(buf, 16, image_status);
+    _mav_put_uint8_t(buf, 17, video_status);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_LEN);
 #else
@@ -88,7 +83,6 @@ static inline uint16_t mavlink_msg_camera_capture_status_pack(uint8_t system_id,
     packet.image_interval = image_interval;
     packet.recording_time_ms = recording_time_ms;
     packet.available_capacity = available_capacity;
-    packet.camera_id = camera_id;
     packet.image_status = image_status;
     packet.video_status = video_status;
 
@@ -106,7 +100,6 @@ static inline uint16_t mavlink_msg_camera_capture_status_pack(uint8_t system_id,
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param camera_id Camera ID (1 for first, 2 for second, etc.)
  * @param image_status Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)
  * @param video_status Current status of video capturing (0: idle, 1: capture in progress)
  * @param image_interval Image capture interval in seconds
@@ -116,7 +109,7 @@ static inline uint16_t mavlink_msg_camera_capture_status_pack(uint8_t system_id,
  */
 static inline uint16_t mavlink_msg_camera_capture_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint32_t time_boot_ms,uint8_t camera_id,uint8_t image_status,uint8_t video_status,float image_interval,uint32_t recording_time_ms,float available_capacity)
+                                   uint32_t time_boot_ms,uint8_t image_status,uint8_t video_status,float image_interval,uint32_t recording_time_ms,float available_capacity)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_LEN];
@@ -124,9 +117,8 @@ static inline uint16_t mavlink_msg_camera_capture_status_pack_chan(uint8_t syste
     _mav_put_float(buf, 4, image_interval);
     _mav_put_uint32_t(buf, 8, recording_time_ms);
     _mav_put_float(buf, 12, available_capacity);
-    _mav_put_uint8_t(buf, 16, camera_id);
-    _mav_put_uint8_t(buf, 17, image_status);
-    _mav_put_uint8_t(buf, 18, video_status);
+    _mav_put_uint8_t(buf, 16, image_status);
+    _mav_put_uint8_t(buf, 17, video_status);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_LEN);
 #else
@@ -135,7 +127,6 @@ static inline uint16_t mavlink_msg_camera_capture_status_pack_chan(uint8_t syste
     packet.image_interval = image_interval;
     packet.recording_time_ms = recording_time_ms;
     packet.available_capacity = available_capacity;
-    packet.camera_id = camera_id;
     packet.image_status = image_status;
     packet.video_status = video_status;
 
@@ -156,7 +147,7 @@ static inline uint16_t mavlink_msg_camera_capture_status_pack_chan(uint8_t syste
  */
 static inline uint16_t mavlink_msg_camera_capture_status_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_camera_capture_status_t* camera_capture_status)
 {
-    return mavlink_msg_camera_capture_status_pack(system_id, component_id, msg, camera_capture_status->time_boot_ms, camera_capture_status->camera_id, camera_capture_status->image_status, camera_capture_status->video_status, camera_capture_status->image_interval, camera_capture_status->recording_time_ms, camera_capture_status->available_capacity);
+    return mavlink_msg_camera_capture_status_pack(system_id, component_id, msg, camera_capture_status->time_boot_ms, camera_capture_status->image_status, camera_capture_status->video_status, camera_capture_status->image_interval, camera_capture_status->recording_time_ms, camera_capture_status->available_capacity);
 }
 
 /**
@@ -170,7 +161,7 @@ static inline uint16_t mavlink_msg_camera_capture_status_encode(uint8_t system_i
  */
 static inline uint16_t mavlink_msg_camera_capture_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_camera_capture_status_t* camera_capture_status)
 {
-    return mavlink_msg_camera_capture_status_pack_chan(system_id, component_id, chan, msg, camera_capture_status->time_boot_ms, camera_capture_status->camera_id, camera_capture_status->image_status, camera_capture_status->video_status, camera_capture_status->image_interval, camera_capture_status->recording_time_ms, camera_capture_status->available_capacity);
+    return mavlink_msg_camera_capture_status_pack_chan(system_id, component_id, chan, msg, camera_capture_status->time_boot_ms, camera_capture_status->image_status, camera_capture_status->video_status, camera_capture_status->image_interval, camera_capture_status->recording_time_ms, camera_capture_status->available_capacity);
 }
 
 /**
@@ -178,7 +169,6 @@ static inline uint16_t mavlink_msg_camera_capture_status_encode_chan(uint8_t sys
  * @param chan MAVLink channel to send the message
  *
  * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param camera_id Camera ID (1 for first, 2 for second, etc.)
  * @param image_status Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)
  * @param video_status Current status of video capturing (0: idle, 1: capture in progress)
  * @param image_interval Image capture interval in seconds
@@ -187,7 +177,7 @@ static inline uint16_t mavlink_msg_camera_capture_status_encode_chan(uint8_t sys
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_camera_capture_status_send(mavlink_channel_t chan, uint32_t time_boot_ms, uint8_t camera_id, uint8_t image_status, uint8_t video_status, float image_interval, uint32_t recording_time_ms, float available_capacity)
+static inline void mavlink_msg_camera_capture_status_send(mavlink_channel_t chan, uint32_t time_boot_ms, uint8_t image_status, uint8_t video_status, float image_interval, uint32_t recording_time_ms, float available_capacity)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_LEN];
@@ -195,9 +185,8 @@ static inline void mavlink_msg_camera_capture_status_send(mavlink_channel_t chan
     _mav_put_float(buf, 4, image_interval);
     _mav_put_uint32_t(buf, 8, recording_time_ms);
     _mav_put_float(buf, 12, available_capacity);
-    _mav_put_uint8_t(buf, 16, camera_id);
-    _mav_put_uint8_t(buf, 17, image_status);
-    _mav_put_uint8_t(buf, 18, video_status);
+    _mav_put_uint8_t(buf, 16, image_status);
+    _mav_put_uint8_t(buf, 17, video_status);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS, buf, MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_MIN_LEN, MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_LEN, MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_CRC);
 #else
@@ -206,7 +195,6 @@ static inline void mavlink_msg_camera_capture_status_send(mavlink_channel_t chan
     packet.image_interval = image_interval;
     packet.recording_time_ms = recording_time_ms;
     packet.available_capacity = available_capacity;
-    packet.camera_id = camera_id;
     packet.image_status = image_status;
     packet.video_status = video_status;
 
@@ -222,7 +210,7 @@ static inline void mavlink_msg_camera_capture_status_send(mavlink_channel_t chan
 static inline void mavlink_msg_camera_capture_status_send_struct(mavlink_channel_t chan, const mavlink_camera_capture_status_t* camera_capture_status)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_camera_capture_status_send(chan, camera_capture_status->time_boot_ms, camera_capture_status->camera_id, camera_capture_status->image_status, camera_capture_status->video_status, camera_capture_status->image_interval, camera_capture_status->recording_time_ms, camera_capture_status->available_capacity);
+    mavlink_msg_camera_capture_status_send(chan, camera_capture_status->time_boot_ms, camera_capture_status->image_status, camera_capture_status->video_status, camera_capture_status->image_interval, camera_capture_status->recording_time_ms, camera_capture_status->available_capacity);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS, (const char *)camera_capture_status, MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_MIN_LEN, MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_LEN, MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_CRC);
 #endif
@@ -236,7 +224,7 @@ static inline void mavlink_msg_camera_capture_status_send_struct(mavlink_channel
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_camera_capture_status_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, uint8_t camera_id, uint8_t image_status, uint8_t video_status, float image_interval, uint32_t recording_time_ms, float available_capacity)
+static inline void mavlink_msg_camera_capture_status_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, uint8_t image_status, uint8_t video_status, float image_interval, uint32_t recording_time_ms, float available_capacity)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -244,9 +232,8 @@ static inline void mavlink_msg_camera_capture_status_send_buf(mavlink_message_t 
     _mav_put_float(buf, 4, image_interval);
     _mav_put_uint32_t(buf, 8, recording_time_ms);
     _mav_put_float(buf, 12, available_capacity);
-    _mav_put_uint8_t(buf, 16, camera_id);
-    _mav_put_uint8_t(buf, 17, image_status);
-    _mav_put_uint8_t(buf, 18, video_status);
+    _mav_put_uint8_t(buf, 16, image_status);
+    _mav_put_uint8_t(buf, 17, video_status);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS, buf, MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_MIN_LEN, MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_LEN, MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_CRC);
 #else
@@ -255,7 +242,6 @@ static inline void mavlink_msg_camera_capture_status_send_buf(mavlink_message_t 
     packet->image_interval = image_interval;
     packet->recording_time_ms = recording_time_ms;
     packet->available_capacity = available_capacity;
-    packet->camera_id = camera_id;
     packet->image_status = image_status;
     packet->video_status = video_status;
 
@@ -280,23 +266,13 @@ static inline uint32_t mavlink_msg_camera_capture_status_get_time_boot_ms(const 
 }
 
 /**
- * @brief Get field camera_id from camera_capture_status message
- *
- * @return Camera ID (1 for first, 2 for second, etc.)
- */
-static inline uint8_t mavlink_msg_camera_capture_status_get_camera_id(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint8_t(msg,  16);
-}
-
-/**
  * @brief Get field image_status from camera_capture_status message
  *
  * @return Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)
  */
 static inline uint8_t mavlink_msg_camera_capture_status_get_image_status(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  17);
+    return _MAV_RETURN_uint8_t(msg,  16);
 }
 
 /**
@@ -306,7 +282,7 @@ static inline uint8_t mavlink_msg_camera_capture_status_get_image_status(const m
  */
 static inline uint8_t mavlink_msg_camera_capture_status_get_video_status(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  18);
+    return _MAV_RETURN_uint8_t(msg,  17);
 }
 
 /**
@@ -352,7 +328,6 @@ static inline void mavlink_msg_camera_capture_status_decode(const mavlink_messag
     camera_capture_status->image_interval = mavlink_msg_camera_capture_status_get_image_interval(msg);
     camera_capture_status->recording_time_ms = mavlink_msg_camera_capture_status_get_recording_time_ms(msg);
     camera_capture_status->available_capacity = mavlink_msg_camera_capture_status_get_available_capacity(msg);
-    camera_capture_status->camera_id = mavlink_msg_camera_capture_status_get_camera_id(msg);
     camera_capture_status->image_status = mavlink_msg_camera_capture_status_get_image_status(msg);
     camera_capture_status->video_status = mavlink_msg_camera_capture_status_get_video_status(msg);
 #else
