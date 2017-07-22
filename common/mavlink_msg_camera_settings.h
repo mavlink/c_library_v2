@@ -6,7 +6,7 @@
 MAVPACKED(
 typedef struct __mavlink_camera_settings_t {
  uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
- uint8_t mode_id; /*< Camera mode (CAM_MODE)*/
+ uint8_t mode_id; /*< Camera mode (CAMERA_MODE)*/
 }) mavlink_camera_settings_t;
 
 #define MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN 5
@@ -45,7 +45,7 @@ typedef struct __mavlink_camera_settings_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param mode_id Camera mode (CAM_MODE)
+ * @param mode_id Camera mode (CAMERA_MODE)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_camera_settings_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -76,7 +76,7 @@ static inline uint16_t mavlink_msg_camera_settings_pack(uint8_t system_id, uint8
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param mode_id Camera mode (CAM_MODE)
+ * @param mode_id Camera mode (CAMERA_MODE)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_camera_settings_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -133,7 +133,7 @@ static inline uint16_t mavlink_msg_camera_settings_encode_chan(uint8_t system_id
  * @param chan MAVLink channel to send the message
  *
  * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param mode_id Camera mode (CAM_MODE)
+ * @param mode_id Camera mode (CAMERA_MODE)
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -212,7 +212,7 @@ static inline uint32_t mavlink_msg_camera_settings_get_time_boot_ms(const mavlin
 /**
  * @brief Get field mode_id from camera_settings message
  *
- * @return Camera mode (CAM_MODE)
+ * @return Camera mode (CAMERA_MODE)
  */
 static inline uint8_t mavlink_msg_camera_settings_get_mode_id(const mavlink_message_t* msg)
 {
