@@ -475,7 +475,7 @@ typedef enum MAV_CMD
    MAV_CMD_REQUEST_CAMERA_CAPTURE_STATUS=527, /* WIP: Request camera capture status (CAMERA_CAPTURE_STATUS) |0: No Action 1: Request camera capture status| Reserved (all remaining params)|  */
    MAV_CMD_REQUEST_FLIGHT_INFORMATION=528, /* WIP: Request flight information (FLIGHT_INFORMATION) |1: Request flight information| Reserved (all remaining params)|  */
    MAV_CMD_RESET_CAMERA_SETTINGS=529, /* WIP: Reset all camera settings to Factory Default |0: No Action 1: Reset all settings| Reserved (all remaining params)|  */
-   MAV_CMD_SET_CAMERA_MODE=530, /* Set camera running mode. Use NAN for reserved values. |Reserved (Set to 0)| Camera mode (CAMERA_MODE 0: photo/image mode, 1: video mode)| Reserved (all remaining params)|  */
+   MAV_CMD_SET_CAMERA_MODE=530, /* Set camera running mode. Use NAN for reserved values. |Reserved (Set to 0)| Camera mode (see CAMERA_MODE enum)| Reserved (all remaining params)|  */
    MAV_CMD_IMAGE_START_CAPTURE=2000, /* Start image capture sequence. Sends CAMERA_IMAGE_CAPTURED after each capture. Use NAN for reserved values. |Reserved (Set to 0)| Duration between two consecutive pictures (in seconds)| Number of images to capture total - 0 for unlimited capture| Reserved (all remaining params)|  */
    MAV_CMD_IMAGE_STOP_CAPTURE=2001, /* Stop image capture sequence Use NAN for reserved values. |Reserved (Set to 0)| Reserved (all remaining params)|  */
    MAV_CMD_REQUEST_CAMERA_IMAGE_CAPTURE=2002, /* WIP: Re-request a CAMERA_IMAGE_CAPTURE packet. Use NAN for reserved values. |Sequence number for missing CAMERA_IMAGE_CAPTURE packet| Reserved (all remaining params)|  */
@@ -1067,7 +1067,8 @@ typedef enum CAMERA_CAP_FLAGS
    CAMERA_CAP_FLAGS_HAS_MODES=4, /* Camera has separate Video and Image/Photo modes (MAV_CMD_SET_CAMERA_MODE) | */
    CAMERA_CAP_FLAGS_CAN_CAPTURE_IMAGE_IN_VIDEO_MODE=8, /* Camera can capture images while in video mode | */
    CAMERA_CAP_FLAGS_CAN_CAPTURE_VIDEO_IN_IMAGE_MODE=16, /* Camera can capture videos while in Photo/Image mode | */
-   CAMERA_CAP_FLAGS_ENUM_END=17, /*  | */
+   CAMERA_CAP_FLAGS_HAS_IMAGE_SURVEY_MODE=32, /* Camera has image survey mode (MAV_CMD_SET_CAMERA_MODE) | */
+   CAMERA_CAP_FLAGS_ENUM_END=33, /*  | */
 } CAMERA_CAP_FLAGS;
 #endif
 
@@ -1091,7 +1092,8 @@ typedef enum CAMERA_MODE
 {
    CAMERA_MODE_IMAGE=0, /* Camera is in image/photo capture mode. | */
    CAMERA_MODE_VIDEO=1, /* Camera is in video capture mode. | */
-   CAMERA_MODE_ENUM_END=2, /*  | */
+   CAMERA_MODE_IMAGE_SURVEY=2, /* Camera is in image survey capture mode. It allows for camera controller to do specific settings for surveys. | */
+   CAMERA_MODE_ENUM_END=3, /*  | */
 } CAMERA_MODE;
 #endif
 
