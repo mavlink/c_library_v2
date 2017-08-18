@@ -36,6 +36,9 @@ typedef struct __mavlink_camera_feedback_t {
     "CAMERA_FEEDBACK", \
     13, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_camera_feedback_t, time_usec) }, \
+         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 42, offsetof(mavlink_camera_feedback_t, target_system) }, \
+         { "cam_idx", NULL, MAVLINK_TYPE_UINT8_T, 0, 43, offsetof(mavlink_camera_feedback_t, cam_idx) }, \
+         { "img_idx", NULL, MAVLINK_TYPE_UINT16_T, 0, 40, offsetof(mavlink_camera_feedback_t, img_idx) }, \
          { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_camera_feedback_t, lat) }, \
          { "lng", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_camera_feedback_t, lng) }, \
          { "alt_msl", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_camera_feedback_t, alt_msl) }, \
@@ -44,9 +47,6 @@ typedef struct __mavlink_camera_feedback_t {
          { "pitch", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_camera_feedback_t, pitch) }, \
          { "yaw", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_camera_feedback_t, yaw) }, \
          { "foc_len", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_camera_feedback_t, foc_len) }, \
-         { "img_idx", NULL, MAVLINK_TYPE_UINT16_T, 0, 40, offsetof(mavlink_camera_feedback_t, img_idx) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 42, offsetof(mavlink_camera_feedback_t, target_system) }, \
-         { "cam_idx", NULL, MAVLINK_TYPE_UINT8_T, 0, 43, offsetof(mavlink_camera_feedback_t, cam_idx) }, \
          { "flags", NULL, MAVLINK_TYPE_UINT8_T, 0, 44, offsetof(mavlink_camera_feedback_t, flags) }, \
          } \
 }
@@ -55,6 +55,9 @@ typedef struct __mavlink_camera_feedback_t {
     "CAMERA_FEEDBACK", \
     13, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_camera_feedback_t, time_usec) }, \
+         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 42, offsetof(mavlink_camera_feedback_t, target_system) }, \
+         { "cam_idx", NULL, MAVLINK_TYPE_UINT8_T, 0, 43, offsetof(mavlink_camera_feedback_t, cam_idx) }, \
+         { "img_idx", NULL, MAVLINK_TYPE_UINT16_T, 0, 40, offsetof(mavlink_camera_feedback_t, img_idx) }, \
          { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_camera_feedback_t, lat) }, \
          { "lng", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_camera_feedback_t, lng) }, \
          { "alt_msl", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_camera_feedback_t, alt_msl) }, \
@@ -63,9 +66,6 @@ typedef struct __mavlink_camera_feedback_t {
          { "pitch", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_camera_feedback_t, pitch) }, \
          { "yaw", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_camera_feedback_t, yaw) }, \
          { "foc_len", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_camera_feedback_t, foc_len) }, \
-         { "img_idx", NULL, MAVLINK_TYPE_UINT16_T, 0, 40, offsetof(mavlink_camera_feedback_t, img_idx) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 42, offsetof(mavlink_camera_feedback_t, target_system) }, \
-         { "cam_idx", NULL, MAVLINK_TYPE_UINT8_T, 0, 43, offsetof(mavlink_camera_feedback_t, cam_idx) }, \
          { "flags", NULL, MAVLINK_TYPE_UINT8_T, 0, 44, offsetof(mavlink_camera_feedback_t, flags) }, \
          } \
 }

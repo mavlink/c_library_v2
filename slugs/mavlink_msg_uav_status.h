@@ -28,24 +28,24 @@ typedef struct __mavlink_uav_status_t {
     193, \
     "UAV_STATUS", \
     6, \
-    {  { "latitude", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_uav_status_t, latitude) }, \
+    {  { "target", NULL, MAVLINK_TYPE_UINT8_T, 0, 20, offsetof(mavlink_uav_status_t, target) }, \
+         { "latitude", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_uav_status_t, latitude) }, \
          { "longitude", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_uav_status_t, longitude) }, \
          { "altitude", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_uav_status_t, altitude) }, \
          { "speed", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_uav_status_t, speed) }, \
          { "course", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_uav_status_t, course) }, \
-         { "target", NULL, MAVLINK_TYPE_UINT8_T, 0, 20, offsetof(mavlink_uav_status_t, target) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_UAV_STATUS { \
     "UAV_STATUS", \
     6, \
-    {  { "latitude", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_uav_status_t, latitude) }, \
+    {  { "target", NULL, MAVLINK_TYPE_UINT8_T, 0, 20, offsetof(mavlink_uav_status_t, target) }, \
+         { "latitude", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_uav_status_t, latitude) }, \
          { "longitude", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_uav_status_t, longitude) }, \
          { "altitude", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_uav_status_t, altitude) }, \
          { "speed", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_uav_status_t, speed) }, \
          { "course", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_uav_status_t, course) }, \
-         { "target", NULL, MAVLINK_TYPE_UINT8_T, 0, 20, offsetof(mavlink_uav_status_t, target) }, \
          } \
 }
 #endif

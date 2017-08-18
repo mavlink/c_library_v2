@@ -27,22 +27,22 @@ typedef struct __mavlink_log_entry_t {
     118, \
     "LOG_ENTRY", \
     5, \
-    {  { "time_utc", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_log_entry_t, time_utc) }, \
-         { "size", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_log_entry_t, size) }, \
-         { "id", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_log_entry_t, id) }, \
+    {  { "id", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_log_entry_t, id) }, \
          { "num_logs", NULL, MAVLINK_TYPE_UINT16_T, 0, 10, offsetof(mavlink_log_entry_t, num_logs) }, \
          { "last_log_num", NULL, MAVLINK_TYPE_UINT16_T, 0, 12, offsetof(mavlink_log_entry_t, last_log_num) }, \
+         { "time_utc", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_log_entry_t, time_utc) }, \
+         { "size", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_log_entry_t, size) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_LOG_ENTRY { \
     "LOG_ENTRY", \
     5, \
-    {  { "time_utc", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_log_entry_t, time_utc) }, \
-         { "size", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_log_entry_t, size) }, \
-         { "id", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_log_entry_t, id) }, \
+    {  { "id", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_log_entry_t, id) }, \
          { "num_logs", NULL, MAVLINK_TYPE_UINT16_T, 0, 10, offsetof(mavlink_log_entry_t, num_logs) }, \
          { "last_log_num", NULL, MAVLINK_TYPE_UINT16_T, 0, 12, offsetof(mavlink_log_entry_t, last_log_num) }, \
+         { "time_utc", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_log_entry_t, time_utc) }, \
+         { "size", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_log_entry_t, size) }, \
          } \
 }
 #endif

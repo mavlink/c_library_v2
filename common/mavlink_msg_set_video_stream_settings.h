@@ -31,14 +31,14 @@ typedef struct __mavlink_set_video_stream_settings_t {
     270, \
     "SET_VIDEO_STREAM_SETTINGS", \
     9, \
-    {  { "framerate", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_set_video_stream_settings_t, framerate) }, \
-         { "bitrate", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_set_video_stream_settings_t, bitrate) }, \
-         { "resolution_h", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_set_video_stream_settings_t, resolution_h) }, \
-         { "resolution_v", NULL, MAVLINK_TYPE_UINT16_T, 0, 10, offsetof(mavlink_set_video_stream_settings_t, resolution_v) }, \
-         { "rotation", NULL, MAVLINK_TYPE_UINT16_T, 0, 12, offsetof(mavlink_set_video_stream_settings_t, rotation) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_set_video_stream_settings_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_set_video_stream_settings_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_set_video_stream_settings_t, target_component) }, \
          { "camera_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_set_video_stream_settings_t, camera_id) }, \
+         { "framerate", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_set_video_stream_settings_t, framerate) }, \
+         { "resolution_h", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_set_video_stream_settings_t, resolution_h) }, \
+         { "resolution_v", NULL, MAVLINK_TYPE_UINT16_T, 0, 10, offsetof(mavlink_set_video_stream_settings_t, resolution_v) }, \
+         { "bitrate", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_set_video_stream_settings_t, bitrate) }, \
+         { "rotation", NULL, MAVLINK_TYPE_UINT16_T, 0, 12, offsetof(mavlink_set_video_stream_settings_t, rotation) }, \
          { "uri", NULL, MAVLINK_TYPE_CHAR, 230, 17, offsetof(mavlink_set_video_stream_settings_t, uri) }, \
          } \
 }
@@ -46,14 +46,14 @@ typedef struct __mavlink_set_video_stream_settings_t {
 #define MAVLINK_MESSAGE_INFO_SET_VIDEO_STREAM_SETTINGS { \
     "SET_VIDEO_STREAM_SETTINGS", \
     9, \
-    {  { "framerate", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_set_video_stream_settings_t, framerate) }, \
-         { "bitrate", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_set_video_stream_settings_t, bitrate) }, \
-         { "resolution_h", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_set_video_stream_settings_t, resolution_h) }, \
-         { "resolution_v", NULL, MAVLINK_TYPE_UINT16_T, 0, 10, offsetof(mavlink_set_video_stream_settings_t, resolution_v) }, \
-         { "rotation", NULL, MAVLINK_TYPE_UINT16_T, 0, 12, offsetof(mavlink_set_video_stream_settings_t, rotation) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_set_video_stream_settings_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_set_video_stream_settings_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_set_video_stream_settings_t, target_component) }, \
          { "camera_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_set_video_stream_settings_t, camera_id) }, \
+         { "framerate", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_set_video_stream_settings_t, framerate) }, \
+         { "resolution_h", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_set_video_stream_settings_t, resolution_h) }, \
+         { "resolution_v", NULL, MAVLINK_TYPE_UINT16_T, 0, 10, offsetof(mavlink_set_video_stream_settings_t, resolution_v) }, \
+         { "bitrate", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_set_video_stream_settings_t, bitrate) }, \
+         { "rotation", NULL, MAVLINK_TYPE_UINT16_T, 0, 12, offsetof(mavlink_set_video_stream_settings_t, rotation) }, \
          { "uri", NULL, MAVLINK_TYPE_CHAR, 230, 17, offsetof(mavlink_set_video_stream_settings_t, uri) }, \
          } \
 }

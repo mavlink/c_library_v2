@@ -44,6 +44,7 @@ typedef struct __mavlink_rc_channels_t {
     "RC_CHANNELS", \
     21, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_rc_channels_t, time_boot_ms) }, \
+         { "chancount", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_rc_channels_t, chancount) }, \
          { "chan1_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_rc_channels_t, chan1_raw) }, \
          { "chan2_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 6, offsetof(mavlink_rc_channels_t, chan2_raw) }, \
          { "chan3_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_rc_channels_t, chan3_raw) }, \
@@ -62,7 +63,6 @@ typedef struct __mavlink_rc_channels_t {
          { "chan16_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 34, offsetof(mavlink_rc_channels_t, chan16_raw) }, \
          { "chan17_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 36, offsetof(mavlink_rc_channels_t, chan17_raw) }, \
          { "chan18_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 38, offsetof(mavlink_rc_channels_t, chan18_raw) }, \
-         { "chancount", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_rc_channels_t, chancount) }, \
          { "rssi", NULL, MAVLINK_TYPE_UINT8_T, 0, 41, offsetof(mavlink_rc_channels_t, rssi) }, \
          } \
 }
@@ -71,6 +71,7 @@ typedef struct __mavlink_rc_channels_t {
     "RC_CHANNELS", \
     21, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_rc_channels_t, time_boot_ms) }, \
+         { "chancount", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_rc_channels_t, chancount) }, \
          { "chan1_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_rc_channels_t, chan1_raw) }, \
          { "chan2_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 6, offsetof(mavlink_rc_channels_t, chan2_raw) }, \
          { "chan3_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_rc_channels_t, chan3_raw) }, \
@@ -89,7 +90,6 @@ typedef struct __mavlink_rc_channels_t {
          { "chan16_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 34, offsetof(mavlink_rc_channels_t, chan16_raw) }, \
          { "chan17_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 36, offsetof(mavlink_rc_channels_t, chan17_raw) }, \
          { "chan18_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 38, offsetof(mavlink_rc_channels_t, chan18_raw) }, \
-         { "chancount", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_rc_channels_t, chancount) }, \
          { "rssi", NULL, MAVLINK_TYPE_UINT8_T, 0, 41, offsetof(mavlink_rc_channels_t, rssi) }, \
          } \
 }

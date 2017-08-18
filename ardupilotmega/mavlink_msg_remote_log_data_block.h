@@ -26,9 +26,9 @@ typedef struct __mavlink_remote_log_data_block_t {
     184, \
     "REMOTE_LOG_DATA_BLOCK", \
     4, \
-    {  { "seqno", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_remote_log_data_block_t, seqno) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_remote_log_data_block_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_remote_log_data_block_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_remote_log_data_block_t, target_component) }, \
+         { "seqno", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_remote_log_data_block_t, seqno) }, \
          { "data", NULL, MAVLINK_TYPE_UINT8_T, 200, 6, offsetof(mavlink_remote_log_data_block_t, data) }, \
          } \
 }
@@ -36,9 +36,9 @@ typedef struct __mavlink_remote_log_data_block_t {
 #define MAVLINK_MESSAGE_INFO_REMOTE_LOG_DATA_BLOCK { \
     "REMOTE_LOG_DATA_BLOCK", \
     4, \
-    {  { "seqno", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_remote_log_data_block_t, seqno) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_remote_log_data_block_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_remote_log_data_block_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_remote_log_data_block_t, target_component) }, \
+         { "seqno", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_remote_log_data_block_t, seqno) }, \
          { "data", NULL, MAVLINK_TYPE_UINT8_T, 200, 6, offsetof(mavlink_remote_log_data_block_t, data) }, \
          } \
 }

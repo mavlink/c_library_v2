@@ -38,7 +38,7 @@ typedef struct __mavlink_follow_target_t {
     "FOLLOW_TARGET", \
     11, \
     {  { "timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_follow_target_t, timestamp) }, \
-         { "custom_state", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_follow_target_t, custom_state) }, \
+         { "est_capabilities", NULL, MAVLINK_TYPE_UINT8_T, 0, 92, offsetof(mavlink_follow_target_t, est_capabilities) }, \
          { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 16, offsetof(mavlink_follow_target_t, lat) }, \
          { "lon", NULL, MAVLINK_TYPE_INT32_T, 0, 20, offsetof(mavlink_follow_target_t, lon) }, \
          { "alt", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_follow_target_t, alt) }, \
@@ -47,7 +47,7 @@ typedef struct __mavlink_follow_target_t {
          { "attitude_q", NULL, MAVLINK_TYPE_FLOAT, 4, 52, offsetof(mavlink_follow_target_t, attitude_q) }, \
          { "rates", NULL, MAVLINK_TYPE_FLOAT, 3, 68, offsetof(mavlink_follow_target_t, rates) }, \
          { "position_cov", NULL, MAVLINK_TYPE_FLOAT, 3, 80, offsetof(mavlink_follow_target_t, position_cov) }, \
-         { "est_capabilities", NULL, MAVLINK_TYPE_UINT8_T, 0, 92, offsetof(mavlink_follow_target_t, est_capabilities) }, \
+         { "custom_state", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_follow_target_t, custom_state) }, \
          } \
 }
 #else
@@ -55,7 +55,7 @@ typedef struct __mavlink_follow_target_t {
     "FOLLOW_TARGET", \
     11, \
     {  { "timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_follow_target_t, timestamp) }, \
-         { "custom_state", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_follow_target_t, custom_state) }, \
+         { "est_capabilities", NULL, MAVLINK_TYPE_UINT8_T, 0, 92, offsetof(mavlink_follow_target_t, est_capabilities) }, \
          { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 16, offsetof(mavlink_follow_target_t, lat) }, \
          { "lon", NULL, MAVLINK_TYPE_INT32_T, 0, 20, offsetof(mavlink_follow_target_t, lon) }, \
          { "alt", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_follow_target_t, alt) }, \
@@ -64,7 +64,7 @@ typedef struct __mavlink_follow_target_t {
          { "attitude_q", NULL, MAVLINK_TYPE_FLOAT, 4, 52, offsetof(mavlink_follow_target_t, attitude_q) }, \
          { "rates", NULL, MAVLINK_TYPE_FLOAT, 3, 68, offsetof(mavlink_follow_target_t, rates) }, \
          { "position_cov", NULL, MAVLINK_TYPE_FLOAT, 3, 80, offsetof(mavlink_follow_target_t, position_cov) }, \
-         { "est_capabilities", NULL, MAVLINK_TYPE_UINT8_T, 0, 92, offsetof(mavlink_follow_target_t, est_capabilities) }, \
+         { "custom_state", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_follow_target_t, custom_state) }, \
          } \
 }
 #endif

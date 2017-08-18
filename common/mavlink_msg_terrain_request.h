@@ -26,20 +26,20 @@ typedef struct __mavlink_terrain_request_t {
     133, \
     "TERRAIN_REQUEST", \
     4, \
-    {  { "mask", "0x%07x", MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_terrain_request_t, mask) }, \
-         { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_terrain_request_t, lat) }, \
+    {  { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_terrain_request_t, lat) }, \
          { "lon", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_terrain_request_t, lon) }, \
          { "grid_spacing", NULL, MAVLINK_TYPE_UINT16_T, 0, 16, offsetof(mavlink_terrain_request_t, grid_spacing) }, \
+         { "mask", "0x%07x", MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_terrain_request_t, mask) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_TERRAIN_REQUEST { \
     "TERRAIN_REQUEST", \
     4, \
-    {  { "mask", "0x%07x", MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_terrain_request_t, mask) }, \
-         { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_terrain_request_t, lat) }, \
+    {  { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_terrain_request_t, lat) }, \
          { "lon", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_terrain_request_t, lon) }, \
          { "grid_spacing", NULL, MAVLINK_TYPE_UINT16_T, 0, 16, offsetof(mavlink_terrain_request_t, grid_spacing) }, \
+         { "mask", "0x%07x", MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_terrain_request_t, mask) }, \
          } \
 }
 #endif

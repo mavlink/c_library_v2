@@ -27,10 +27,10 @@ typedef struct __mavlink_mission_request_partial_list_t {
     37, \
     "MISSION_REQUEST_PARTIAL_LIST", \
     5, \
-    {  { "start_index", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_mission_request_partial_list_t, start_index) }, \
-         { "end_index", NULL, MAVLINK_TYPE_INT16_T, 0, 2, offsetof(mavlink_mission_request_partial_list_t, end_index) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_mission_request_partial_list_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_mission_request_partial_list_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_mission_request_partial_list_t, target_component) }, \
+         { "start_index", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_mission_request_partial_list_t, start_index) }, \
+         { "end_index", NULL, MAVLINK_TYPE_INT16_T, 0, 2, offsetof(mavlink_mission_request_partial_list_t, end_index) }, \
          { "mission_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_mission_request_partial_list_t, mission_type) }, \
          } \
 }
@@ -38,10 +38,10 @@ typedef struct __mavlink_mission_request_partial_list_t {
 #define MAVLINK_MESSAGE_INFO_MISSION_REQUEST_PARTIAL_LIST { \
     "MISSION_REQUEST_PARTIAL_LIST", \
     5, \
-    {  { "start_index", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_mission_request_partial_list_t, start_index) }, \
-         { "end_index", NULL, MAVLINK_TYPE_INT16_T, 0, 2, offsetof(mavlink_mission_request_partial_list_t, end_index) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_mission_request_partial_list_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_mission_request_partial_list_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_mission_request_partial_list_t, target_component) }, \
+         { "start_index", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_mission_request_partial_list_t, start_index) }, \
+         { "end_index", NULL, MAVLINK_TYPE_INT16_T, 0, 2, offsetof(mavlink_mission_request_partial_list_t, end_index) }, \
          { "mission_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_mission_request_partial_list_t, mission_type) }, \
          } \
 }

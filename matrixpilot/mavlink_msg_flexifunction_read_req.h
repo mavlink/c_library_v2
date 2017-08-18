@@ -26,20 +26,20 @@ typedef struct __mavlink_flexifunction_read_req_t {
     151, \
     "FLEXIFUNCTION_READ_REQ", \
     4, \
-    {  { "read_req_type", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_flexifunction_read_req_t, read_req_type) }, \
-         { "data_index", NULL, MAVLINK_TYPE_INT16_T, 0, 2, offsetof(mavlink_flexifunction_read_req_t, data_index) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_flexifunction_read_req_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_flexifunction_read_req_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_flexifunction_read_req_t, target_component) }, \
+         { "read_req_type", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_flexifunction_read_req_t, read_req_type) }, \
+         { "data_index", NULL, MAVLINK_TYPE_INT16_T, 0, 2, offsetof(mavlink_flexifunction_read_req_t, data_index) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_FLEXIFUNCTION_READ_REQ { \
     "FLEXIFUNCTION_READ_REQ", \
     4, \
-    {  { "read_req_type", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_flexifunction_read_req_t, read_req_type) }, \
-         { "data_index", NULL, MAVLINK_TYPE_INT16_T, 0, 2, offsetof(mavlink_flexifunction_read_req_t, data_index) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_flexifunction_read_req_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_flexifunction_read_req_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_flexifunction_read_req_t, target_component) }, \
+         { "read_req_type", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_flexifunction_read_req_t, read_req_type) }, \
+         { "data_index", NULL, MAVLINK_TYPE_INT16_T, 0, 2, offsetof(mavlink_flexifunction_read_req_t, data_index) }, \
          } \
 }
 #endif

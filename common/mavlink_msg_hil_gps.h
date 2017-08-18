@@ -36,6 +36,7 @@ typedef struct __mavlink_hil_gps_t {
     "HIL_GPS", \
     13, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_hil_gps_t, time_usec) }, \
+         { "fix_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 34, offsetof(mavlink_hil_gps_t, fix_type) }, \
          { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_hil_gps_t, lat) }, \
          { "lon", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_hil_gps_t, lon) }, \
          { "alt", NULL, MAVLINK_TYPE_INT32_T, 0, 16, offsetof(mavlink_hil_gps_t, alt) }, \
@@ -46,7 +47,6 @@ typedef struct __mavlink_hil_gps_t {
          { "ve", NULL, MAVLINK_TYPE_INT16_T, 0, 28, offsetof(mavlink_hil_gps_t, ve) }, \
          { "vd", NULL, MAVLINK_TYPE_INT16_T, 0, 30, offsetof(mavlink_hil_gps_t, vd) }, \
          { "cog", NULL, MAVLINK_TYPE_UINT16_T, 0, 32, offsetof(mavlink_hil_gps_t, cog) }, \
-         { "fix_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 34, offsetof(mavlink_hil_gps_t, fix_type) }, \
          { "satellites_visible", NULL, MAVLINK_TYPE_UINT8_T, 0, 35, offsetof(mavlink_hil_gps_t, satellites_visible) }, \
          } \
 }
@@ -55,6 +55,7 @@ typedef struct __mavlink_hil_gps_t {
     "HIL_GPS", \
     13, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_hil_gps_t, time_usec) }, \
+         { "fix_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 34, offsetof(mavlink_hil_gps_t, fix_type) }, \
          { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_hil_gps_t, lat) }, \
          { "lon", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_hil_gps_t, lon) }, \
          { "alt", NULL, MAVLINK_TYPE_INT32_T, 0, 16, offsetof(mavlink_hil_gps_t, alt) }, \
@@ -65,7 +66,6 @@ typedef struct __mavlink_hil_gps_t {
          { "ve", NULL, MAVLINK_TYPE_INT16_T, 0, 28, offsetof(mavlink_hil_gps_t, ve) }, \
          { "vd", NULL, MAVLINK_TYPE_INT16_T, 0, 30, offsetof(mavlink_hil_gps_t, vd) }, \
          { "cog", NULL, MAVLINK_TYPE_UINT16_T, 0, 32, offsetof(mavlink_hil_gps_t, cog) }, \
-         { "fix_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 34, offsetof(mavlink_hil_gps_t, fix_type) }, \
          { "satellites_visible", NULL, MAVLINK_TYPE_UINT8_T, 0, 35, offsetof(mavlink_hil_gps_t, satellites_visible) }, \
          } \
 }

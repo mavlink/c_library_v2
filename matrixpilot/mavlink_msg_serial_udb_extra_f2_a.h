@@ -50,6 +50,7 @@ typedef struct __mavlink_serial_udb_extra_f2_a_t {
     "SERIAL_UDB_EXTRA_F2_A", \
     27, \
     {  { "sue_time", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_time) }, \
+         { "sue_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 60, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_status) }, \
          { "sue_latitude", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_latitude) }, \
          { "sue_longitude", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_longitude) }, \
          { "sue_altitude", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_altitude) }, \
@@ -75,7 +76,6 @@ typedef struct __mavlink_serial_udb_extra_f2_a_t {
          { "sue_magFieldEarth2", NULL, MAVLINK_TYPE_INT16_T, 0, 54, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_magFieldEarth2) }, \
          { "sue_svs", NULL, MAVLINK_TYPE_INT16_T, 0, 56, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_svs) }, \
          { "sue_hdop", NULL, MAVLINK_TYPE_INT16_T, 0, 58, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_hdop) }, \
-         { "sue_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 60, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_status) }, \
          } \
 }
 #else
@@ -83,6 +83,7 @@ typedef struct __mavlink_serial_udb_extra_f2_a_t {
     "SERIAL_UDB_EXTRA_F2_A", \
     27, \
     {  { "sue_time", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_time) }, \
+         { "sue_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 60, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_status) }, \
          { "sue_latitude", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_latitude) }, \
          { "sue_longitude", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_longitude) }, \
          { "sue_altitude", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_altitude) }, \
@@ -108,7 +109,6 @@ typedef struct __mavlink_serial_udb_extra_f2_a_t {
          { "sue_magFieldEarth2", NULL, MAVLINK_TYPE_INT16_T, 0, 54, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_magFieldEarth2) }, \
          { "sue_svs", NULL, MAVLINK_TYPE_INT16_T, 0, 56, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_svs) }, \
          { "sue_hdop", NULL, MAVLINK_TYPE_INT16_T, 0, 58, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_hdop) }, \
-         { "sue_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 60, offsetof(mavlink_serial_udb_extra_f2_a_t, sue_status) }, \
          } \
 }
 #endif

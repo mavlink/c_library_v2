@@ -33,9 +33,9 @@ typedef struct __mavlink_device_op_write_t {
     11002, \
     "DEVICE_OP_WRITE", \
     10, \
-    {  { "request_id", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_device_op_write_t, request_id) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_device_op_write_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_device_op_write_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_device_op_write_t, target_component) }, \
+         { "request_id", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_device_op_write_t, request_id) }, \
          { "bustype", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_device_op_write_t, bustype) }, \
          { "bus", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_device_op_write_t, bus) }, \
          { "address", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_device_op_write_t, address) }, \
@@ -49,9 +49,9 @@ typedef struct __mavlink_device_op_write_t {
 #define MAVLINK_MESSAGE_INFO_DEVICE_OP_WRITE { \
     "DEVICE_OP_WRITE", \
     10, \
-    {  { "request_id", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_device_op_write_t, request_id) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_device_op_write_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_device_op_write_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_device_op_write_t, target_component) }, \
+         { "request_id", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_device_op_write_t, request_id) }, \
          { "bustype", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_device_op_write_t, bustype) }, \
          { "bus", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_device_op_write_t, bus) }, \
          { "address", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_device_op_write_t, address) }, \

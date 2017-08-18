@@ -35,38 +35,38 @@ typedef struct __mavlink_command_int_t {
     75, \
     "COMMAND_INT", \
     13, \
-    {  { "param1", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_command_int_t, param1) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 30, offsetof(mavlink_command_int_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 31, offsetof(mavlink_command_int_t, target_component) }, \
+         { "frame", NULL, MAVLINK_TYPE_UINT8_T, 0, 32, offsetof(mavlink_command_int_t, frame) }, \
+         { "command", NULL, MAVLINK_TYPE_UINT16_T, 0, 28, offsetof(mavlink_command_int_t, command) }, \
+         { "current", NULL, MAVLINK_TYPE_UINT8_T, 0, 33, offsetof(mavlink_command_int_t, current) }, \
+         { "autocontinue", NULL, MAVLINK_TYPE_UINT8_T, 0, 34, offsetof(mavlink_command_int_t, autocontinue) }, \
+         { "param1", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_command_int_t, param1) }, \
          { "param2", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_command_int_t, param2) }, \
          { "param3", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_command_int_t, param3) }, \
          { "param4", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_command_int_t, param4) }, \
          { "x", NULL, MAVLINK_TYPE_INT32_T, 0, 16, offsetof(mavlink_command_int_t, x) }, \
          { "y", NULL, MAVLINK_TYPE_INT32_T, 0, 20, offsetof(mavlink_command_int_t, y) }, \
          { "z", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_command_int_t, z) }, \
-         { "command", NULL, MAVLINK_TYPE_UINT16_T, 0, 28, offsetof(mavlink_command_int_t, command) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 30, offsetof(mavlink_command_int_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 31, offsetof(mavlink_command_int_t, target_component) }, \
-         { "frame", NULL, MAVLINK_TYPE_UINT8_T, 0, 32, offsetof(mavlink_command_int_t, frame) }, \
-         { "current", NULL, MAVLINK_TYPE_UINT8_T, 0, 33, offsetof(mavlink_command_int_t, current) }, \
-         { "autocontinue", NULL, MAVLINK_TYPE_UINT8_T, 0, 34, offsetof(mavlink_command_int_t, autocontinue) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_COMMAND_INT { \
     "COMMAND_INT", \
     13, \
-    {  { "param1", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_command_int_t, param1) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 30, offsetof(mavlink_command_int_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 31, offsetof(mavlink_command_int_t, target_component) }, \
+         { "frame", NULL, MAVLINK_TYPE_UINT8_T, 0, 32, offsetof(mavlink_command_int_t, frame) }, \
+         { "command", NULL, MAVLINK_TYPE_UINT16_T, 0, 28, offsetof(mavlink_command_int_t, command) }, \
+         { "current", NULL, MAVLINK_TYPE_UINT8_T, 0, 33, offsetof(mavlink_command_int_t, current) }, \
+         { "autocontinue", NULL, MAVLINK_TYPE_UINT8_T, 0, 34, offsetof(mavlink_command_int_t, autocontinue) }, \
+         { "param1", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_command_int_t, param1) }, \
          { "param2", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_command_int_t, param2) }, \
          { "param3", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_command_int_t, param3) }, \
          { "param4", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_command_int_t, param4) }, \
          { "x", NULL, MAVLINK_TYPE_INT32_T, 0, 16, offsetof(mavlink_command_int_t, x) }, \
          { "y", NULL, MAVLINK_TYPE_INT32_T, 0, 20, offsetof(mavlink_command_int_t, y) }, \
          { "z", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_command_int_t, z) }, \
-         { "command", NULL, MAVLINK_TYPE_UINT16_T, 0, 28, offsetof(mavlink_command_int_t, command) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 30, offsetof(mavlink_command_int_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 31, offsetof(mavlink_command_int_t, target_component) }, \
-         { "frame", NULL, MAVLINK_TYPE_UINT8_T, 0, 32, offsetof(mavlink_command_int_t, frame) }, \
-         { "current", NULL, MAVLINK_TYPE_UINT8_T, 0, 33, offsetof(mavlink_command_int_t, current) }, \
-         { "autocontinue", NULL, MAVLINK_TYPE_UINT8_T, 0, 34, offsetof(mavlink_command_int_t, autocontinue) }, \
          } \
 }
 #endif

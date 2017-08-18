@@ -32,14 +32,14 @@ typedef struct __mavlink_storage_information_t {
     "STORAGE_INFORMATION", \
     9, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_storage_information_t, time_boot_ms) }, \
+         { "storage_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 24, offsetof(mavlink_storage_information_t, storage_id) }, \
+         { "storage_count", NULL, MAVLINK_TYPE_UINT8_T, 0, 25, offsetof(mavlink_storage_information_t, storage_count) }, \
+         { "status", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_storage_information_t, status) }, \
          { "total_capacity", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_storage_information_t, total_capacity) }, \
          { "used_capacity", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_storage_information_t, used_capacity) }, \
          { "available_capacity", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_storage_information_t, available_capacity) }, \
          { "read_speed", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_storage_information_t, read_speed) }, \
          { "write_speed", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_storage_information_t, write_speed) }, \
-         { "storage_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 24, offsetof(mavlink_storage_information_t, storage_id) }, \
-         { "storage_count", NULL, MAVLINK_TYPE_UINT8_T, 0, 25, offsetof(mavlink_storage_information_t, storage_count) }, \
-         { "status", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_storage_information_t, status) }, \
          } \
 }
 #else
@@ -47,14 +47,14 @@ typedef struct __mavlink_storage_information_t {
     "STORAGE_INFORMATION", \
     9, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_storage_information_t, time_boot_ms) }, \
+         { "storage_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 24, offsetof(mavlink_storage_information_t, storage_id) }, \
+         { "storage_count", NULL, MAVLINK_TYPE_UINT8_T, 0, 25, offsetof(mavlink_storage_information_t, storage_count) }, \
+         { "status", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_storage_information_t, status) }, \
          { "total_capacity", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_storage_information_t, total_capacity) }, \
          { "used_capacity", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_storage_information_t, used_capacity) }, \
          { "available_capacity", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_storage_information_t, available_capacity) }, \
          { "read_speed", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_storage_information_t, read_speed) }, \
          { "write_speed", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_storage_information_t, write_speed) }, \
-         { "storage_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 24, offsetof(mavlink_storage_information_t, storage_id) }, \
-         { "storage_count", NULL, MAVLINK_TYPE_UINT8_T, 0, 25, offsetof(mavlink_storage_information_t, storage_count) }, \
-         { "status", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_storage_information_t, status) }, \
          } \
 }
 #endif

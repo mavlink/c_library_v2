@@ -29,11 +29,11 @@ typedef struct __mavlink_data_transmission_handshake_t {
     130, \
     "DATA_TRANSMISSION_HANDSHAKE", \
     7, \
-    {  { "size", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_data_transmission_handshake_t, size) }, \
+    {  { "type", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_data_transmission_handshake_t, type) }, \
+         { "size", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_data_transmission_handshake_t, size) }, \
          { "width", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_data_transmission_handshake_t, width) }, \
          { "height", NULL, MAVLINK_TYPE_UINT16_T, 0, 6, offsetof(mavlink_data_transmission_handshake_t, height) }, \
          { "packets", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_data_transmission_handshake_t, packets) }, \
-         { "type", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_data_transmission_handshake_t, type) }, \
          { "payload", NULL, MAVLINK_TYPE_UINT8_T, 0, 11, offsetof(mavlink_data_transmission_handshake_t, payload) }, \
          { "jpg_quality", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_data_transmission_handshake_t, jpg_quality) }, \
          } \
@@ -42,11 +42,11 @@ typedef struct __mavlink_data_transmission_handshake_t {
 #define MAVLINK_MESSAGE_INFO_DATA_TRANSMISSION_HANDSHAKE { \
     "DATA_TRANSMISSION_HANDSHAKE", \
     7, \
-    {  { "size", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_data_transmission_handshake_t, size) }, \
+    {  { "type", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_data_transmission_handshake_t, type) }, \
+         { "size", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_data_transmission_handshake_t, size) }, \
          { "width", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_data_transmission_handshake_t, width) }, \
          { "height", NULL, MAVLINK_TYPE_UINT16_T, 0, 6, offsetof(mavlink_data_transmission_handshake_t, height) }, \
          { "packets", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_data_transmission_handshake_t, packets) }, \
-         { "type", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_data_transmission_handshake_t, type) }, \
          { "payload", NULL, MAVLINK_TYPE_UINT8_T, 0, 11, offsetof(mavlink_data_transmission_handshake_t, payload) }, \
          { "jpg_quality", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_data_transmission_handshake_t, jpg_quality) }, \
          } \

@@ -41,7 +41,11 @@ typedef struct __mavlink_gps_input_t {
     "GPS_INPUT", \
     18, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_gps_input_t, time_usec) }, \
+         { "gps_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 60, offsetof(mavlink_gps_input_t, gps_id) }, \
+         { "ignore_flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 56, offsetof(mavlink_gps_input_t, ignore_flags) }, \
          { "time_week_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_gps_input_t, time_week_ms) }, \
+         { "time_week", NULL, MAVLINK_TYPE_UINT16_T, 0, 58, offsetof(mavlink_gps_input_t, time_week) }, \
+         { "fix_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 61, offsetof(mavlink_gps_input_t, fix_type) }, \
          { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_gps_input_t, lat) }, \
          { "lon", NULL, MAVLINK_TYPE_INT32_T, 0, 16, offsetof(mavlink_gps_input_t, lon) }, \
          { "alt", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_gps_input_t, alt) }, \
@@ -53,10 +57,6 @@ typedef struct __mavlink_gps_input_t {
          { "speed_accuracy", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_gps_input_t, speed_accuracy) }, \
          { "horiz_accuracy", NULL, MAVLINK_TYPE_FLOAT, 0, 48, offsetof(mavlink_gps_input_t, horiz_accuracy) }, \
          { "vert_accuracy", NULL, MAVLINK_TYPE_FLOAT, 0, 52, offsetof(mavlink_gps_input_t, vert_accuracy) }, \
-         { "ignore_flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 56, offsetof(mavlink_gps_input_t, ignore_flags) }, \
-         { "time_week", NULL, MAVLINK_TYPE_UINT16_T, 0, 58, offsetof(mavlink_gps_input_t, time_week) }, \
-         { "gps_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 60, offsetof(mavlink_gps_input_t, gps_id) }, \
-         { "fix_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 61, offsetof(mavlink_gps_input_t, fix_type) }, \
          { "satellites_visible", NULL, MAVLINK_TYPE_UINT8_T, 0, 62, offsetof(mavlink_gps_input_t, satellites_visible) }, \
          } \
 }
@@ -65,7 +65,11 @@ typedef struct __mavlink_gps_input_t {
     "GPS_INPUT", \
     18, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_gps_input_t, time_usec) }, \
+         { "gps_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 60, offsetof(mavlink_gps_input_t, gps_id) }, \
+         { "ignore_flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 56, offsetof(mavlink_gps_input_t, ignore_flags) }, \
          { "time_week_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_gps_input_t, time_week_ms) }, \
+         { "time_week", NULL, MAVLINK_TYPE_UINT16_T, 0, 58, offsetof(mavlink_gps_input_t, time_week) }, \
+         { "fix_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 61, offsetof(mavlink_gps_input_t, fix_type) }, \
          { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_gps_input_t, lat) }, \
          { "lon", NULL, MAVLINK_TYPE_INT32_T, 0, 16, offsetof(mavlink_gps_input_t, lon) }, \
          { "alt", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_gps_input_t, alt) }, \
@@ -77,10 +81,6 @@ typedef struct __mavlink_gps_input_t {
          { "speed_accuracy", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_gps_input_t, speed_accuracy) }, \
          { "horiz_accuracy", NULL, MAVLINK_TYPE_FLOAT, 0, 48, offsetof(mavlink_gps_input_t, horiz_accuracy) }, \
          { "vert_accuracy", NULL, MAVLINK_TYPE_FLOAT, 0, 52, offsetof(mavlink_gps_input_t, vert_accuracy) }, \
-         { "ignore_flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 56, offsetof(mavlink_gps_input_t, ignore_flags) }, \
-         { "time_week", NULL, MAVLINK_TYPE_UINT16_T, 0, 58, offsetof(mavlink_gps_input_t, time_week) }, \
-         { "gps_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 60, offsetof(mavlink_gps_input_t, gps_id) }, \
-         { "fix_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 61, offsetof(mavlink_gps_input_t, fix_type) }, \
          { "satellites_visible", NULL, MAVLINK_TYPE_UINT8_T, 0, 62, offsetof(mavlink_gps_input_t, satellites_visible) }, \
          } \
 }

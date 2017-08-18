@@ -26,20 +26,20 @@ typedef struct __mavlink_flight_information_t {
     264, \
     "FLIGHT_INFORMATION", \
     4, \
-    {  { "arming_time_utc", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_flight_information_t, arming_time_utc) }, \
+    {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 24, offsetof(mavlink_flight_information_t, time_boot_ms) }, \
+         { "arming_time_utc", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_flight_information_t, arming_time_utc) }, \
          { "takeoff_time_utc", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_flight_information_t, takeoff_time_utc) }, \
          { "flight_uuid", NULL, MAVLINK_TYPE_UINT64_T, 0, 16, offsetof(mavlink_flight_information_t, flight_uuid) }, \
-         { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 24, offsetof(mavlink_flight_information_t, time_boot_ms) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_FLIGHT_INFORMATION { \
     "FLIGHT_INFORMATION", \
     4, \
-    {  { "arming_time_utc", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_flight_information_t, arming_time_utc) }, \
+    {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 24, offsetof(mavlink_flight_information_t, time_boot_ms) }, \
+         { "arming_time_utc", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_flight_information_t, arming_time_utc) }, \
          { "takeoff_time_utc", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_flight_information_t, takeoff_time_utc) }, \
          { "flight_uuid", NULL, MAVLINK_TYPE_UINT64_T, 0, 16, offsetof(mavlink_flight_information_t, flight_uuid) }, \
-         { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 24, offsetof(mavlink_flight_information_t, time_boot_ms) }, \
          } \
 }
 #endif

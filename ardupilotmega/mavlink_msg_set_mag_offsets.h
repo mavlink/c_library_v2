@@ -27,22 +27,22 @@ typedef struct __mavlink_set_mag_offsets_t {
     151, \
     "SET_MAG_OFFSETS", \
     5, \
-    {  { "mag_ofs_x", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_set_mag_offsets_t, mag_ofs_x) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_set_mag_offsets_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_set_mag_offsets_t, target_component) }, \
+         { "mag_ofs_x", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_set_mag_offsets_t, mag_ofs_x) }, \
          { "mag_ofs_y", NULL, MAVLINK_TYPE_INT16_T, 0, 2, offsetof(mavlink_set_mag_offsets_t, mag_ofs_y) }, \
          { "mag_ofs_z", NULL, MAVLINK_TYPE_INT16_T, 0, 4, offsetof(mavlink_set_mag_offsets_t, mag_ofs_z) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_set_mag_offsets_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_set_mag_offsets_t, target_component) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_SET_MAG_OFFSETS { \
     "SET_MAG_OFFSETS", \
     5, \
-    {  { "mag_ofs_x", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_set_mag_offsets_t, mag_ofs_x) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_set_mag_offsets_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_set_mag_offsets_t, target_component) }, \
+         { "mag_ofs_x", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_set_mag_offsets_t, mag_ofs_x) }, \
          { "mag_ofs_y", NULL, MAVLINK_TYPE_INT16_T, 0, 2, offsetof(mavlink_set_mag_offsets_t, mag_ofs_y) }, \
          { "mag_ofs_z", NULL, MAVLINK_TYPE_INT16_T, 0, 4, offsetof(mavlink_set_mag_offsets_t, mag_ofs_z) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_set_mag_offsets_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_set_mag_offsets_t, target_component) }, \
          } \
 }
 #endif

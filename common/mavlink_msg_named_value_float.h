@@ -26,8 +26,8 @@ typedef struct __mavlink_named_value_float_t {
     "NAMED_VALUE_FLOAT", \
     3, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_named_value_float_t, time_boot_ms) }, \
-         { "value", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_named_value_float_t, value) }, \
          { "name", NULL, MAVLINK_TYPE_CHAR, 10, 8, offsetof(mavlink_named_value_float_t, name) }, \
+         { "value", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_named_value_float_t, value) }, \
          } \
 }
 #else
@@ -35,8 +35,8 @@ typedef struct __mavlink_named_value_float_t {
     "NAMED_VALUE_FLOAT", \
     3, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_named_value_float_t, time_boot_ms) }, \
-         { "value", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_named_value_float_t, value) }, \
          { "name", NULL, MAVLINK_TYPE_CHAR, 10, 8, offsetof(mavlink_named_value_float_t, name) }, \
+         { "value", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_named_value_float_t, value) }, \
          } \
 }
 #endif

@@ -26,9 +26,9 @@ typedef struct __mavlink_mission_count_t {
     44, \
     "MISSION_COUNT", \
     4, \
-    {  { "count", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_mission_count_t, count) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_mission_count_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_mission_count_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 3, offsetof(mavlink_mission_count_t, target_component) }, \
+         { "count", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_mission_count_t, count) }, \
          { "mission_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_mission_count_t, mission_type) }, \
          } \
 }
@@ -36,9 +36,9 @@ typedef struct __mavlink_mission_count_t {
 #define MAVLINK_MESSAGE_INFO_MISSION_COUNT { \
     "MISSION_COUNT", \
     4, \
-    {  { "count", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_mission_count_t, count) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_mission_count_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_mission_count_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 3, offsetof(mavlink_mission_count_t, target_component) }, \
+         { "count", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_mission_count_t, count) }, \
          { "mission_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_mission_count_t, mission_type) }, \
          } \
 }

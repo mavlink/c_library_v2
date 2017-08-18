@@ -26,20 +26,20 @@ typedef struct __mavlink_control_surface_t {
     185, \
     "CONTROL_SURFACE", \
     4, \
-    {  { "mControl", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_control_surface_t, mControl) }, \
-         { "bControl", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_control_surface_t, bControl) }, \
-         { "target", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_control_surface_t, target) }, \
+    {  { "target", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_control_surface_t, target) }, \
          { "idSurface", NULL, MAVLINK_TYPE_UINT8_T, 0, 9, offsetof(mavlink_control_surface_t, idSurface) }, \
+         { "mControl", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_control_surface_t, mControl) }, \
+         { "bControl", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_control_surface_t, bControl) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_CONTROL_SURFACE { \
     "CONTROL_SURFACE", \
     4, \
-    {  { "mControl", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_control_surface_t, mControl) }, \
-         { "bControl", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_control_surface_t, bControl) }, \
-         { "target", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_control_surface_t, target) }, \
+    {  { "target", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_control_surface_t, target) }, \
          { "idSurface", NULL, MAVLINK_TYPE_UINT8_T, 0, 9, offsetof(mavlink_control_surface_t, idSurface) }, \
+         { "mControl", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_control_surface_t, mControl) }, \
+         { "bControl", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_control_surface_t, bControl) }, \
          } \
 }
 #endif

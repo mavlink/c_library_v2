@@ -27,9 +27,9 @@ typedef struct __mavlink_hil_actuator_controls_t {
     "HIL_ACTUATOR_CONTROLS", \
     4, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_hil_actuator_controls_t, time_usec) }, \
-         { "flags", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_hil_actuator_controls_t, flags) }, \
          { "controls", NULL, MAVLINK_TYPE_FLOAT, 16, 16, offsetof(mavlink_hil_actuator_controls_t, controls) }, \
          { "mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 80, offsetof(mavlink_hil_actuator_controls_t, mode) }, \
+         { "flags", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_hil_actuator_controls_t, flags) }, \
          } \
 }
 #else
@@ -37,9 +37,9 @@ typedef struct __mavlink_hil_actuator_controls_t {
     "HIL_ACTUATOR_CONTROLS", \
     4, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_hil_actuator_controls_t, time_usec) }, \
-         { "flags", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_hil_actuator_controls_t, flags) }, \
          { "controls", NULL, MAVLINK_TYPE_FLOAT, 16, 16, offsetof(mavlink_hil_actuator_controls_t, controls) }, \
          { "mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 80, offsetof(mavlink_hil_actuator_controls_t, mode) }, \
+         { "flags", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_hil_actuator_controls_t, flags) }, \
          } \
 }
 #endif

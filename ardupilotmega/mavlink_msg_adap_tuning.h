@@ -35,7 +35,8 @@ typedef struct __mavlink_adap_tuning_t {
     11010, \
     "ADAP_TUNING", \
     13, \
-    {  { "desired", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_adap_tuning_t, desired) }, \
+    {  { "axis", NULL, MAVLINK_TYPE_UINT8_T, 0, 48, offsetof(mavlink_adap_tuning_t, axis) }, \
+         { "desired", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_adap_tuning_t, desired) }, \
          { "achieved", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_adap_tuning_t, achieved) }, \
          { "error", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_adap_tuning_t, error) }, \
          { "theta", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_adap_tuning_t, theta) }, \
@@ -47,14 +48,14 @@ typedef struct __mavlink_adap_tuning_t {
          { "f", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_adap_tuning_t, f) }, \
          { "f_dot", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_adap_tuning_t, f_dot) }, \
          { "u", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_adap_tuning_t, u) }, \
-         { "axis", NULL, MAVLINK_TYPE_UINT8_T, 0, 48, offsetof(mavlink_adap_tuning_t, axis) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_ADAP_TUNING { \
     "ADAP_TUNING", \
     13, \
-    {  { "desired", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_adap_tuning_t, desired) }, \
+    {  { "axis", NULL, MAVLINK_TYPE_UINT8_T, 0, 48, offsetof(mavlink_adap_tuning_t, axis) }, \
+         { "desired", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_adap_tuning_t, desired) }, \
          { "achieved", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_adap_tuning_t, achieved) }, \
          { "error", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_adap_tuning_t, error) }, \
          { "theta", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_adap_tuning_t, theta) }, \
@@ -66,7 +67,6 @@ typedef struct __mavlink_adap_tuning_t {
          { "f", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_adap_tuning_t, f) }, \
          { "f_dot", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_adap_tuning_t, f_dot) }, \
          { "u", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_adap_tuning_t, u) }, \
-         { "axis", NULL, MAVLINK_TYPE_UINT8_T, 0, 48, offsetof(mavlink_adap_tuning_t, axis) }, \
          } \
 }
 #endif

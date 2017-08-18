@@ -31,9 +31,9 @@ typedef struct __mavlink_terrain_report_t {
     7, \
     {  { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_terrain_report_t, lat) }, \
          { "lon", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_terrain_report_t, lon) }, \
+         { "spacing", NULL, MAVLINK_TYPE_UINT16_T, 0, 16, offsetof(mavlink_terrain_report_t, spacing) }, \
          { "terrain_height", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_terrain_report_t, terrain_height) }, \
          { "current_height", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_terrain_report_t, current_height) }, \
-         { "spacing", NULL, MAVLINK_TYPE_UINT16_T, 0, 16, offsetof(mavlink_terrain_report_t, spacing) }, \
          { "pending", NULL, MAVLINK_TYPE_UINT16_T, 0, 18, offsetof(mavlink_terrain_report_t, pending) }, \
          { "loaded", NULL, MAVLINK_TYPE_UINT16_T, 0, 20, offsetof(mavlink_terrain_report_t, loaded) }, \
          } \
@@ -44,9 +44,9 @@ typedef struct __mavlink_terrain_report_t {
     7, \
     {  { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_terrain_report_t, lat) }, \
          { "lon", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_terrain_report_t, lon) }, \
+         { "spacing", NULL, MAVLINK_TYPE_UINT16_T, 0, 16, offsetof(mavlink_terrain_report_t, spacing) }, \
          { "terrain_height", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_terrain_report_t, terrain_height) }, \
          { "current_height", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_terrain_report_t, current_height) }, \
-         { "spacing", NULL, MAVLINK_TYPE_UINT16_T, 0, 16, offsetof(mavlink_terrain_report_t, spacing) }, \
          { "pending", NULL, MAVLINK_TYPE_UINT16_T, 0, 18, offsetof(mavlink_terrain_report_t, pending) }, \
          { "loaded", NULL, MAVLINK_TYPE_UINT16_T, 0, 20, offsetof(mavlink_terrain_report_t, loaded) }, \
          } \

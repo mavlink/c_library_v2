@@ -29,26 +29,26 @@ typedef struct __mavlink_novatel_diag_t {
     195, \
     "NOVATEL_DIAG", \
     7, \
-    {  { "receiverStatus", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_novatel_diag_t, receiverStatus) }, \
-         { "posSolAge", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_novatel_diag_t, posSolAge) }, \
-         { "csFails", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_novatel_diag_t, csFails) }, \
-         { "timeStatus", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_novatel_diag_t, timeStatus) }, \
+    {  { "timeStatus", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_novatel_diag_t, timeStatus) }, \
+         { "receiverStatus", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_novatel_diag_t, receiverStatus) }, \
          { "solStatus", NULL, MAVLINK_TYPE_UINT8_T, 0, 11, offsetof(mavlink_novatel_diag_t, solStatus) }, \
          { "posType", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_novatel_diag_t, posType) }, \
          { "velType", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_novatel_diag_t, velType) }, \
+         { "posSolAge", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_novatel_diag_t, posSolAge) }, \
+         { "csFails", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_novatel_diag_t, csFails) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_NOVATEL_DIAG { \
     "NOVATEL_DIAG", \
     7, \
-    {  { "receiverStatus", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_novatel_diag_t, receiverStatus) }, \
-         { "posSolAge", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_novatel_diag_t, posSolAge) }, \
-         { "csFails", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_novatel_diag_t, csFails) }, \
-         { "timeStatus", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_novatel_diag_t, timeStatus) }, \
+    {  { "timeStatus", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_novatel_diag_t, timeStatus) }, \
+         { "receiverStatus", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_novatel_diag_t, receiverStatus) }, \
          { "solStatus", NULL, MAVLINK_TYPE_UINT8_T, 0, 11, offsetof(mavlink_novatel_diag_t, solStatus) }, \
          { "posType", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_novatel_diag_t, posType) }, \
          { "velType", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_novatel_diag_t, velType) }, \
+         { "posSolAge", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_novatel_diag_t, posSolAge) }, \
+         { "csFails", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_novatel_diag_t, csFails) }, \
          } \
 }
 #endif

@@ -29,26 +29,26 @@ typedef struct __mavlink_collision_t {
     247, \
     "COLLISION", \
     7, \
-    {  { "id", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_collision_t, id) }, \
+    {  { "src", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_collision_t, src) }, \
+         { "id", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_collision_t, id) }, \
+         { "action", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_collision_t, action) }, \
+         { "threat_level", NULL, MAVLINK_TYPE_UINT8_T, 0, 18, offsetof(mavlink_collision_t, threat_level) }, \
          { "time_to_minimum_delta", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_collision_t, time_to_minimum_delta) }, \
          { "altitude_minimum_delta", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_collision_t, altitude_minimum_delta) }, \
          { "horizontal_minimum_delta", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_collision_t, horizontal_minimum_delta) }, \
-         { "src", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_collision_t, src) }, \
-         { "action", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_collision_t, action) }, \
-         { "threat_level", NULL, MAVLINK_TYPE_UINT8_T, 0, 18, offsetof(mavlink_collision_t, threat_level) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_COLLISION { \
     "COLLISION", \
     7, \
-    {  { "id", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_collision_t, id) }, \
+    {  { "src", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_collision_t, src) }, \
+         { "id", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_collision_t, id) }, \
+         { "action", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_collision_t, action) }, \
+         { "threat_level", NULL, MAVLINK_TYPE_UINT8_T, 0, 18, offsetof(mavlink_collision_t, threat_level) }, \
          { "time_to_minimum_delta", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_collision_t, time_to_minimum_delta) }, \
          { "altitude_minimum_delta", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_collision_t, altitude_minimum_delta) }, \
          { "horizontal_minimum_delta", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_collision_t, horizontal_minimum_delta) }, \
-         { "src", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_collision_t, src) }, \
-         { "action", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_collision_t, action) }, \
-         { "threat_level", NULL, MAVLINK_TYPE_UINT8_T, 0, 18, offsetof(mavlink_collision_t, threat_level) }, \
          } \
 }
 #endif

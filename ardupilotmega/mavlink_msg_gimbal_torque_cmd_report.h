@@ -27,22 +27,22 @@ typedef struct __mavlink_gimbal_torque_cmd_report_t {
     214, \
     "GIMBAL_TORQUE_CMD_REPORT", \
     5, \
-    {  { "rl_torque_cmd", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_gimbal_torque_cmd_report_t, rl_torque_cmd) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_gimbal_torque_cmd_report_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_gimbal_torque_cmd_report_t, target_component) }, \
+         { "rl_torque_cmd", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_gimbal_torque_cmd_report_t, rl_torque_cmd) }, \
          { "el_torque_cmd", NULL, MAVLINK_TYPE_INT16_T, 0, 2, offsetof(mavlink_gimbal_torque_cmd_report_t, el_torque_cmd) }, \
          { "az_torque_cmd", NULL, MAVLINK_TYPE_INT16_T, 0, 4, offsetof(mavlink_gimbal_torque_cmd_report_t, az_torque_cmd) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_gimbal_torque_cmd_report_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_gimbal_torque_cmd_report_t, target_component) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_GIMBAL_TORQUE_CMD_REPORT { \
     "GIMBAL_TORQUE_CMD_REPORT", \
     5, \
-    {  { "rl_torque_cmd", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_gimbal_torque_cmd_report_t, rl_torque_cmd) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_gimbal_torque_cmd_report_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_gimbal_torque_cmd_report_t, target_component) }, \
+         { "rl_torque_cmd", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_gimbal_torque_cmd_report_t, rl_torque_cmd) }, \
          { "el_torque_cmd", NULL, MAVLINK_TYPE_INT16_T, 0, 2, offsetof(mavlink_gimbal_torque_cmd_report_t, el_torque_cmd) }, \
          { "az_torque_cmd", NULL, MAVLINK_TYPE_INT16_T, 0, 4, offsetof(mavlink_gimbal_torque_cmd_report_t, az_torque_cmd) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_gimbal_torque_cmd_report_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_gimbal_torque_cmd_report_t, target_component) }, \
          } \
 }
 #endif

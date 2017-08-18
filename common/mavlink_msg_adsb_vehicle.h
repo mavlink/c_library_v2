@@ -38,16 +38,16 @@ typedef struct __mavlink_adsb_vehicle_t {
     {  { "ICAO_address", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_adsb_vehicle_t, ICAO_address) }, \
          { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_adsb_vehicle_t, lat) }, \
          { "lon", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_adsb_vehicle_t, lon) }, \
+         { "altitude_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_adsb_vehicle_t, altitude_type) }, \
          { "altitude", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_adsb_vehicle_t, altitude) }, \
          { "heading", NULL, MAVLINK_TYPE_UINT16_T, 0, 16, offsetof(mavlink_adsb_vehicle_t, heading) }, \
          { "hor_velocity", NULL, MAVLINK_TYPE_UINT16_T, 0, 18, offsetof(mavlink_adsb_vehicle_t, hor_velocity) }, \
          { "ver_velocity", NULL, MAVLINK_TYPE_INT16_T, 0, 20, offsetof(mavlink_adsb_vehicle_t, ver_velocity) }, \
-         { "flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 22, offsetof(mavlink_adsb_vehicle_t, flags) }, \
-         { "squawk", NULL, MAVLINK_TYPE_UINT16_T, 0, 24, offsetof(mavlink_adsb_vehicle_t, squawk) }, \
-         { "altitude_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_adsb_vehicle_t, altitude_type) }, \
          { "callsign", NULL, MAVLINK_TYPE_CHAR, 9, 27, offsetof(mavlink_adsb_vehicle_t, callsign) }, \
          { "emitter_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 36, offsetof(mavlink_adsb_vehicle_t, emitter_type) }, \
          { "tslc", NULL, MAVLINK_TYPE_UINT8_T, 0, 37, offsetof(mavlink_adsb_vehicle_t, tslc) }, \
+         { "flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 22, offsetof(mavlink_adsb_vehicle_t, flags) }, \
+         { "squawk", NULL, MAVLINK_TYPE_UINT16_T, 0, 24, offsetof(mavlink_adsb_vehicle_t, squawk) }, \
          } \
 }
 #else
@@ -57,16 +57,16 @@ typedef struct __mavlink_adsb_vehicle_t {
     {  { "ICAO_address", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_adsb_vehicle_t, ICAO_address) }, \
          { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_adsb_vehicle_t, lat) }, \
          { "lon", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_adsb_vehicle_t, lon) }, \
+         { "altitude_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_adsb_vehicle_t, altitude_type) }, \
          { "altitude", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_adsb_vehicle_t, altitude) }, \
          { "heading", NULL, MAVLINK_TYPE_UINT16_T, 0, 16, offsetof(mavlink_adsb_vehicle_t, heading) }, \
          { "hor_velocity", NULL, MAVLINK_TYPE_UINT16_T, 0, 18, offsetof(mavlink_adsb_vehicle_t, hor_velocity) }, \
          { "ver_velocity", NULL, MAVLINK_TYPE_INT16_T, 0, 20, offsetof(mavlink_adsb_vehicle_t, ver_velocity) }, \
-         { "flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 22, offsetof(mavlink_adsb_vehicle_t, flags) }, \
-         { "squawk", NULL, MAVLINK_TYPE_UINT16_T, 0, 24, offsetof(mavlink_adsb_vehicle_t, squawk) }, \
-         { "altitude_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_adsb_vehicle_t, altitude_type) }, \
          { "callsign", NULL, MAVLINK_TYPE_CHAR, 9, 27, offsetof(mavlink_adsb_vehicle_t, callsign) }, \
          { "emitter_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 36, offsetof(mavlink_adsb_vehicle_t, emitter_type) }, \
          { "tslc", NULL, MAVLINK_TYPE_UINT8_T, 0, 37, offsetof(mavlink_adsb_vehicle_t, tslc) }, \
+         { "flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 22, offsetof(mavlink_adsb_vehicle_t, flags) }, \
+         { "squawk", NULL, MAVLINK_TYPE_UINT16_T, 0, 24, offsetof(mavlink_adsb_vehicle_t, squawk) }, \
          } \
 }
 #endif

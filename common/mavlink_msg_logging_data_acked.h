@@ -28,9 +28,9 @@ typedef struct __mavlink_logging_data_acked_t {
     267, \
     "LOGGING_DATA_ACKED", \
     6, \
-    {  { "sequence", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_logging_data_acked_t, sequence) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_logging_data_acked_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_logging_data_acked_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 3, offsetof(mavlink_logging_data_acked_t, target_component) }, \
+         { "sequence", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_logging_data_acked_t, sequence) }, \
          { "length", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_logging_data_acked_t, length) }, \
          { "first_message_offset", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_logging_data_acked_t, first_message_offset) }, \
          { "data", NULL, MAVLINK_TYPE_UINT8_T, 249, 6, offsetof(mavlink_logging_data_acked_t, data) }, \
@@ -40,9 +40,9 @@ typedef struct __mavlink_logging_data_acked_t {
 #define MAVLINK_MESSAGE_INFO_LOGGING_DATA_ACKED { \
     "LOGGING_DATA_ACKED", \
     6, \
-    {  { "sequence", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_logging_data_acked_t, sequence) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_logging_data_acked_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_logging_data_acked_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 3, offsetof(mavlink_logging_data_acked_t, target_component) }, \
+         { "sequence", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_logging_data_acked_t, sequence) }, \
          { "length", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_logging_data_acked_t, length) }, \
          { "first_message_offset", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_logging_data_acked_t, first_message_offset) }, \
          { "data", NULL, MAVLINK_TYPE_UINT8_T, 249, 6, offsetof(mavlink_logging_data_acked_t, data) }, \

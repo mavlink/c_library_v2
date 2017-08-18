@@ -29,12 +29,12 @@ typedef struct __mavlink_flexifunction_buffer_function_t {
     152, \
     "FLEXIFUNCTION_BUFFER_FUNCTION", \
     7, \
-    {  { "func_index", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_flexifunction_buffer_function_t, func_index) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_flexifunction_buffer_function_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 9, offsetof(mavlink_flexifunction_buffer_function_t, target_component) }, \
+         { "func_index", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_flexifunction_buffer_function_t, func_index) }, \
          { "func_count", NULL, MAVLINK_TYPE_UINT16_T, 0, 2, offsetof(mavlink_flexifunction_buffer_function_t, func_count) }, \
          { "data_address", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_flexifunction_buffer_function_t, data_address) }, \
          { "data_size", NULL, MAVLINK_TYPE_UINT16_T, 0, 6, offsetof(mavlink_flexifunction_buffer_function_t, data_size) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_flexifunction_buffer_function_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 9, offsetof(mavlink_flexifunction_buffer_function_t, target_component) }, \
          { "data", NULL, MAVLINK_TYPE_INT8_T, 48, 10, offsetof(mavlink_flexifunction_buffer_function_t, data) }, \
          } \
 }
@@ -42,12 +42,12 @@ typedef struct __mavlink_flexifunction_buffer_function_t {
 #define MAVLINK_MESSAGE_INFO_FLEXIFUNCTION_BUFFER_FUNCTION { \
     "FLEXIFUNCTION_BUFFER_FUNCTION", \
     7, \
-    {  { "func_index", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_flexifunction_buffer_function_t, func_index) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_flexifunction_buffer_function_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 9, offsetof(mavlink_flexifunction_buffer_function_t, target_component) }, \
+         { "func_index", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_flexifunction_buffer_function_t, func_index) }, \
          { "func_count", NULL, MAVLINK_TYPE_UINT16_T, 0, 2, offsetof(mavlink_flexifunction_buffer_function_t, func_count) }, \
          { "data_address", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_flexifunction_buffer_function_t, data_address) }, \
          { "data_size", NULL, MAVLINK_TYPE_UINT16_T, 0, 6, offsetof(mavlink_flexifunction_buffer_function_t, data_size) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_flexifunction_buffer_function_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 9, offsetof(mavlink_flexifunction_buffer_function_t, target_component) }, \
          { "data", NULL, MAVLINK_TYPE_INT8_T, 48, 10, offsetof(mavlink_flexifunction_buffer_function_t, data) }, \
          } \
 }

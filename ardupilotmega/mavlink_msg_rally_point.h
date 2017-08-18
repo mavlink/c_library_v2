@@ -32,15 +32,15 @@ typedef struct __mavlink_rally_point_t {
     175, \
     "RALLY_POINT", \
     10, \
-    {  { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_rally_point_t, lat) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_rally_point_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_rally_point_t, target_component) }, \
+         { "idx", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_rally_point_t, idx) }, \
+         { "count", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_rally_point_t, count) }, \
+         { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_rally_point_t, lat) }, \
          { "lng", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_rally_point_t, lng) }, \
          { "alt", NULL, MAVLINK_TYPE_INT16_T, 0, 8, offsetof(mavlink_rally_point_t, alt) }, \
          { "break_alt", NULL, MAVLINK_TYPE_INT16_T, 0, 10, offsetof(mavlink_rally_point_t, break_alt) }, \
          { "land_dir", NULL, MAVLINK_TYPE_UINT16_T, 0, 12, offsetof(mavlink_rally_point_t, land_dir) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_rally_point_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_rally_point_t, target_component) }, \
-         { "idx", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_rally_point_t, idx) }, \
-         { "count", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_rally_point_t, count) }, \
          { "flags", NULL, MAVLINK_TYPE_UINT8_T, 0, 18, offsetof(mavlink_rally_point_t, flags) }, \
          } \
 }
@@ -48,15 +48,15 @@ typedef struct __mavlink_rally_point_t {
 #define MAVLINK_MESSAGE_INFO_RALLY_POINT { \
     "RALLY_POINT", \
     10, \
-    {  { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_rally_point_t, lat) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_rally_point_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_rally_point_t, target_component) }, \
+         { "idx", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_rally_point_t, idx) }, \
+         { "count", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_rally_point_t, count) }, \
+         { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_rally_point_t, lat) }, \
          { "lng", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_rally_point_t, lng) }, \
          { "alt", NULL, MAVLINK_TYPE_INT16_T, 0, 8, offsetof(mavlink_rally_point_t, alt) }, \
          { "break_alt", NULL, MAVLINK_TYPE_INT16_T, 0, 10, offsetof(mavlink_rally_point_t, break_alt) }, \
          { "land_dir", NULL, MAVLINK_TYPE_UINT16_T, 0, 12, offsetof(mavlink_rally_point_t, land_dir) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_rally_point_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_rally_point_t, target_component) }, \
-         { "idx", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_rally_point_t, idx) }, \
-         { "count", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_rally_point_t, count) }, \
          { "flags", NULL, MAVLINK_TYPE_UINT8_T, 0, 18, offsetof(mavlink_rally_point_t, flags) }, \
          } \
 }

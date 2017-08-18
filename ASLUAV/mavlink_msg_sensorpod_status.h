@@ -31,13 +31,13 @@ typedef struct __mavlink_sensorpod_status_t {
     "SENSORPOD_STATUS", \
     8, \
     {  { "timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_sensorpod_status_t, timestamp) }, \
-         { "free_space", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_sensorpod_status_t, free_space) }, \
          { "visensor_rate_1", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_sensorpod_status_t, visensor_rate_1) }, \
          { "visensor_rate_2", NULL, MAVLINK_TYPE_UINT8_T, 0, 11, offsetof(mavlink_sensorpod_status_t, visensor_rate_2) }, \
          { "visensor_rate_3", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_sensorpod_status_t, visensor_rate_3) }, \
          { "visensor_rate_4", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_sensorpod_status_t, visensor_rate_4) }, \
          { "recording_nodes_count", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_sensorpod_status_t, recording_nodes_count) }, \
          { "cpu_temp", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_sensorpod_status_t, cpu_temp) }, \
+         { "free_space", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_sensorpod_status_t, free_space) }, \
          } \
 }
 #else
@@ -45,13 +45,13 @@ typedef struct __mavlink_sensorpod_status_t {
     "SENSORPOD_STATUS", \
     8, \
     {  { "timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_sensorpod_status_t, timestamp) }, \
-         { "free_space", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_sensorpod_status_t, free_space) }, \
          { "visensor_rate_1", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_sensorpod_status_t, visensor_rate_1) }, \
          { "visensor_rate_2", NULL, MAVLINK_TYPE_UINT8_T, 0, 11, offsetof(mavlink_sensorpod_status_t, visensor_rate_2) }, \
          { "visensor_rate_3", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_sensorpod_status_t, visensor_rate_3) }, \
          { "visensor_rate_4", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_sensorpod_status_t, visensor_rate_4) }, \
          { "recording_nodes_count", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_sensorpod_status_t, recording_nodes_count) }, \
          { "cpu_temp", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_sensorpod_status_t, cpu_temp) }, \
+         { "free_space", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_sensorpod_status_t, free_space) }, \
          } \
 }
 #endif

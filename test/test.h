@@ -57,6 +57,7 @@ extern "C" {
 
 #if MAVLINK_THIS_XML_IDX == MAVLINK_PRIMARY_XML_IDX
 # define MAVLINK_MESSAGE_INFO {MAVLINK_MESSAGE_INFO_TEST_TYPES}
+# define MAVLINK_MESSAGE_NAMES {{ "TEST_TYPES", 0 }}
 # if MAVLINK_COMMAND_24BIT
 #  include "../mavlink_get_info.h"
 # endif

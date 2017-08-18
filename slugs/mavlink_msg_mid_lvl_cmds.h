@@ -26,20 +26,20 @@ typedef struct __mavlink_mid_lvl_cmds_t {
     180, \
     "MID_LVL_CMDS", \
     4, \
-    {  { "hCommand", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_mid_lvl_cmds_t, hCommand) }, \
+    {  { "target", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_mid_lvl_cmds_t, target) }, \
+         { "hCommand", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_mid_lvl_cmds_t, hCommand) }, \
          { "uCommand", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_mid_lvl_cmds_t, uCommand) }, \
          { "rCommand", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_mid_lvl_cmds_t, rCommand) }, \
-         { "target", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_mid_lvl_cmds_t, target) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_MID_LVL_CMDS { \
     "MID_LVL_CMDS", \
     4, \
-    {  { "hCommand", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_mid_lvl_cmds_t, hCommand) }, \
+    {  { "target", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_mid_lvl_cmds_t, target) }, \
+         { "hCommand", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_mid_lvl_cmds_t, hCommand) }, \
          { "uCommand", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_mid_lvl_cmds_t, uCommand) }, \
          { "rCommand", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_mid_lvl_cmds_t, rCommand) }, \
-         { "target", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_mid_lvl_cmds_t, target) }, \
          } \
 }
 #endif

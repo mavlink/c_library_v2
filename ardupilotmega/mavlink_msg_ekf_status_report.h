@@ -28,24 +28,24 @@ typedef struct __mavlink_ekf_status_report_t {
     193, \
     "EKF_STATUS_REPORT", \
     6, \
-    {  { "velocity_variance", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_ekf_status_report_t, velocity_variance) }, \
+    {  { "flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 20, offsetof(mavlink_ekf_status_report_t, flags) }, \
+         { "velocity_variance", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_ekf_status_report_t, velocity_variance) }, \
          { "pos_horiz_variance", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_ekf_status_report_t, pos_horiz_variance) }, \
          { "pos_vert_variance", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_ekf_status_report_t, pos_vert_variance) }, \
          { "compass_variance", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_ekf_status_report_t, compass_variance) }, \
          { "terrain_alt_variance", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_ekf_status_report_t, terrain_alt_variance) }, \
-         { "flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 20, offsetof(mavlink_ekf_status_report_t, flags) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_EKF_STATUS_REPORT { \
     "EKF_STATUS_REPORT", \
     6, \
-    {  { "velocity_variance", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_ekf_status_report_t, velocity_variance) }, \
+    {  { "flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 20, offsetof(mavlink_ekf_status_report_t, flags) }, \
+         { "velocity_variance", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_ekf_status_report_t, velocity_variance) }, \
          { "pos_horiz_variance", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_ekf_status_report_t, pos_horiz_variance) }, \
          { "pos_vert_variance", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_ekf_status_report_t, pos_vert_variance) }, \
          { "compass_variance", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_ekf_status_report_t, compass_variance) }, \
          { "terrain_alt_variance", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_ekf_status_report_t, terrain_alt_variance) }, \
-         { "flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 20, offsetof(mavlink_ekf_status_report_t, flags) }, \
          } \
 }
 #endif

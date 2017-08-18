@@ -26,20 +26,20 @@ typedef struct __mavlink_flexifunction_buffer_function_ack_t {
     153, \
     "FLEXIFUNCTION_BUFFER_FUNCTION_ACK", \
     4, \
-    {  { "func_index", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_flexifunction_buffer_function_ack_t, func_index) }, \
-         { "result", NULL, MAVLINK_TYPE_UINT16_T, 0, 2, offsetof(mavlink_flexifunction_buffer_function_ack_t, result) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_flexifunction_buffer_function_ack_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_flexifunction_buffer_function_ack_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_flexifunction_buffer_function_ack_t, target_component) }, \
+         { "func_index", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_flexifunction_buffer_function_ack_t, func_index) }, \
+         { "result", NULL, MAVLINK_TYPE_UINT16_T, 0, 2, offsetof(mavlink_flexifunction_buffer_function_ack_t, result) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_FLEXIFUNCTION_BUFFER_FUNCTION_ACK { \
     "FLEXIFUNCTION_BUFFER_FUNCTION_ACK", \
     4, \
-    {  { "func_index", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_flexifunction_buffer_function_ack_t, func_index) }, \
-         { "result", NULL, MAVLINK_TYPE_UINT16_T, 0, 2, offsetof(mavlink_flexifunction_buffer_function_ack_t, result) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_flexifunction_buffer_function_ack_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_flexifunction_buffer_function_ack_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_flexifunction_buffer_function_ack_t, target_component) }, \
+         { "func_index", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_flexifunction_buffer_function_ack_t, func_index) }, \
+         { "result", NULL, MAVLINK_TYPE_UINT16_T, 0, 2, offsetof(mavlink_flexifunction_buffer_function_ack_t, result) }, \
          } \
 }
 #endif

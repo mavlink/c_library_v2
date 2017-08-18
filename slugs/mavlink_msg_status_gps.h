@@ -29,11 +29,11 @@ typedef struct __mavlink_status_gps_t {
     194, \
     "STATUS_GPS", \
     7, \
-    {  { "magVar", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_status_gps_t, magVar) }, \
-         { "csFails", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_status_gps_t, csFails) }, \
+    {  { "csFails", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_status_gps_t, csFails) }, \
          { "gpsQuality", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_status_gps_t, gpsQuality) }, \
          { "msgsType", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_status_gps_t, msgsType) }, \
          { "posStatus", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_status_gps_t, posStatus) }, \
+         { "magVar", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_status_gps_t, magVar) }, \
          { "magDir", NULL, MAVLINK_TYPE_INT8_T, 0, 9, offsetof(mavlink_status_gps_t, magDir) }, \
          { "modeInd", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_status_gps_t, modeInd) }, \
          } \
@@ -42,11 +42,11 @@ typedef struct __mavlink_status_gps_t {
 #define MAVLINK_MESSAGE_INFO_STATUS_GPS { \
     "STATUS_GPS", \
     7, \
-    {  { "magVar", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_status_gps_t, magVar) }, \
-         { "csFails", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_status_gps_t, csFails) }, \
+    {  { "csFails", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_status_gps_t, csFails) }, \
          { "gpsQuality", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_status_gps_t, gpsQuality) }, \
          { "msgsType", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_status_gps_t, msgsType) }, \
          { "posStatus", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_status_gps_t, posStatus) }, \
+         { "magVar", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_status_gps_t, magVar) }, \
          { "magDir", NULL, MAVLINK_TYPE_INT8_T, 0, 9, offsetof(mavlink_status_gps_t, magDir) }, \
          { "modeInd", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_status_gps_t, modeInd) }, \
          } \

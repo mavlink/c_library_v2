@@ -26,20 +26,20 @@ typedef struct __mavlink_fence_status_t {
     162, \
     "FENCE_STATUS", \
     4, \
-    {  { "breach_time", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_fence_status_t, breach_time) }, \
+    {  { "breach_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_fence_status_t, breach_status) }, \
          { "breach_count", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_fence_status_t, breach_count) }, \
-         { "breach_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_fence_status_t, breach_status) }, \
          { "breach_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_fence_status_t, breach_type) }, \
+         { "breach_time", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_fence_status_t, breach_time) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_FENCE_STATUS { \
     "FENCE_STATUS", \
     4, \
-    {  { "breach_time", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_fence_status_t, breach_time) }, \
+    {  { "breach_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_fence_status_t, breach_status) }, \
          { "breach_count", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_fence_status_t, breach_count) }, \
-         { "breach_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_fence_status_t, breach_status) }, \
          { "breach_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_fence_status_t, breach_type) }, \
+         { "breach_time", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_fence_status_t, breach_time) }, \
          } \
 }
 #endif

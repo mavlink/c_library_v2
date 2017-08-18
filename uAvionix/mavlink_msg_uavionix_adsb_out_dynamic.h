@@ -42,6 +42,8 @@ typedef struct __mavlink_uavionix_adsb_out_dynamic_t {
          { "gpsLat", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_uavionix_adsb_out_dynamic_t, gpsLat) }, \
          { "gpsLon", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_uavionix_adsb_out_dynamic_t, gpsLon) }, \
          { "gpsAlt", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_uavionix_adsb_out_dynamic_t, gpsAlt) }, \
+         { "gpsFix", NULL, MAVLINK_TYPE_UINT8_T, 0, 38, offsetof(mavlink_uavionix_adsb_out_dynamic_t, gpsFix) }, \
+         { "numSats", NULL, MAVLINK_TYPE_UINT8_T, 0, 39, offsetof(mavlink_uavionix_adsb_out_dynamic_t, numSats) }, \
          { "baroAltMSL", NULL, MAVLINK_TYPE_INT32_T, 0, 16, offsetof(mavlink_uavionix_adsb_out_dynamic_t, baroAltMSL) }, \
          { "accuracyHor", NULL, MAVLINK_TYPE_UINT32_T, 0, 20, offsetof(mavlink_uavionix_adsb_out_dynamic_t, accuracyHor) }, \
          { "accuracyVert", NULL, MAVLINK_TYPE_UINT16_T, 0, 24, offsetof(mavlink_uavionix_adsb_out_dynamic_t, accuracyVert) }, \
@@ -49,11 +51,9 @@ typedef struct __mavlink_uavionix_adsb_out_dynamic_t {
          { "velVert", NULL, MAVLINK_TYPE_INT16_T, 0, 28, offsetof(mavlink_uavionix_adsb_out_dynamic_t, velVert) }, \
          { "velNS", NULL, MAVLINK_TYPE_INT16_T, 0, 30, offsetof(mavlink_uavionix_adsb_out_dynamic_t, velNS) }, \
          { "VelEW", NULL, MAVLINK_TYPE_INT16_T, 0, 32, offsetof(mavlink_uavionix_adsb_out_dynamic_t, VelEW) }, \
+         { "emergencyStatus", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_uavionix_adsb_out_dynamic_t, emergencyStatus) }, \
          { "state", NULL, MAVLINK_TYPE_UINT16_T, 0, 34, offsetof(mavlink_uavionix_adsb_out_dynamic_t, state) }, \
          { "squawk", NULL, MAVLINK_TYPE_UINT16_T, 0, 36, offsetof(mavlink_uavionix_adsb_out_dynamic_t, squawk) }, \
-         { "gpsFix", NULL, MAVLINK_TYPE_UINT8_T, 0, 38, offsetof(mavlink_uavionix_adsb_out_dynamic_t, gpsFix) }, \
-         { "numSats", NULL, MAVLINK_TYPE_UINT8_T, 0, 39, offsetof(mavlink_uavionix_adsb_out_dynamic_t, numSats) }, \
-         { "emergencyStatus", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_uavionix_adsb_out_dynamic_t, emergencyStatus) }, \
          } \
 }
 #else
@@ -64,6 +64,8 @@ typedef struct __mavlink_uavionix_adsb_out_dynamic_t {
          { "gpsLat", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_uavionix_adsb_out_dynamic_t, gpsLat) }, \
          { "gpsLon", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_uavionix_adsb_out_dynamic_t, gpsLon) }, \
          { "gpsAlt", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_uavionix_adsb_out_dynamic_t, gpsAlt) }, \
+         { "gpsFix", NULL, MAVLINK_TYPE_UINT8_T, 0, 38, offsetof(mavlink_uavionix_adsb_out_dynamic_t, gpsFix) }, \
+         { "numSats", NULL, MAVLINK_TYPE_UINT8_T, 0, 39, offsetof(mavlink_uavionix_adsb_out_dynamic_t, numSats) }, \
          { "baroAltMSL", NULL, MAVLINK_TYPE_INT32_T, 0, 16, offsetof(mavlink_uavionix_adsb_out_dynamic_t, baroAltMSL) }, \
          { "accuracyHor", NULL, MAVLINK_TYPE_UINT32_T, 0, 20, offsetof(mavlink_uavionix_adsb_out_dynamic_t, accuracyHor) }, \
          { "accuracyVert", NULL, MAVLINK_TYPE_UINT16_T, 0, 24, offsetof(mavlink_uavionix_adsb_out_dynamic_t, accuracyVert) }, \
@@ -71,11 +73,9 @@ typedef struct __mavlink_uavionix_adsb_out_dynamic_t {
          { "velVert", NULL, MAVLINK_TYPE_INT16_T, 0, 28, offsetof(mavlink_uavionix_adsb_out_dynamic_t, velVert) }, \
          { "velNS", NULL, MAVLINK_TYPE_INT16_T, 0, 30, offsetof(mavlink_uavionix_adsb_out_dynamic_t, velNS) }, \
          { "VelEW", NULL, MAVLINK_TYPE_INT16_T, 0, 32, offsetof(mavlink_uavionix_adsb_out_dynamic_t, VelEW) }, \
+         { "emergencyStatus", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_uavionix_adsb_out_dynamic_t, emergencyStatus) }, \
          { "state", NULL, MAVLINK_TYPE_UINT16_T, 0, 34, offsetof(mavlink_uavionix_adsb_out_dynamic_t, state) }, \
          { "squawk", NULL, MAVLINK_TYPE_UINT16_T, 0, 36, offsetof(mavlink_uavionix_adsb_out_dynamic_t, squawk) }, \
-         { "gpsFix", NULL, MAVLINK_TYPE_UINT8_T, 0, 38, offsetof(mavlink_uavionix_adsb_out_dynamic_t, gpsFix) }, \
-         { "numSats", NULL, MAVLINK_TYPE_UINT8_T, 0, 39, offsetof(mavlink_uavionix_adsb_out_dynamic_t, numSats) }, \
-         { "emergencyStatus", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_uavionix_adsb_out_dynamic_t, emergencyStatus) }, \
          } \
 }
 #endif

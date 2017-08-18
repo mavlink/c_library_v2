@@ -36,14 +36,14 @@ typedef struct __mavlink_aq_esc_telemetry_t {
     "AQ_ESC_TELEMETRY", \
     9, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_aq_esc_telemetry_t, time_boot_ms) }, \
-         { "data0", NULL, MAVLINK_TYPE_UINT32_T, 4, 4, offsetof(mavlink_aq_esc_telemetry_t, data0) }, \
-         { "data1", NULL, MAVLINK_TYPE_UINT32_T, 4, 20, offsetof(mavlink_aq_esc_telemetry_t, data1) }, \
-         { "status_age", NULL, MAVLINK_TYPE_UINT16_T, 4, 36, offsetof(mavlink_aq_esc_telemetry_t, status_age) }, \
          { "seq", NULL, MAVLINK_TYPE_UINT8_T, 0, 44, offsetof(mavlink_aq_esc_telemetry_t, seq) }, \
          { "num_motors", NULL, MAVLINK_TYPE_UINT8_T, 0, 45, offsetof(mavlink_aq_esc_telemetry_t, num_motors) }, \
          { "num_in_seq", NULL, MAVLINK_TYPE_UINT8_T, 0, 46, offsetof(mavlink_aq_esc_telemetry_t, num_in_seq) }, \
          { "escid", NULL, MAVLINK_TYPE_UINT8_T, 4, 47, offsetof(mavlink_aq_esc_telemetry_t, escid) }, \
+         { "status_age", NULL, MAVLINK_TYPE_UINT16_T, 4, 36, offsetof(mavlink_aq_esc_telemetry_t, status_age) }, \
          { "data_version", NULL, MAVLINK_TYPE_UINT8_T, 4, 51, offsetof(mavlink_aq_esc_telemetry_t, data_version) }, \
+         { "data0", NULL, MAVLINK_TYPE_UINT32_T, 4, 4, offsetof(mavlink_aq_esc_telemetry_t, data0) }, \
+         { "data1", NULL, MAVLINK_TYPE_UINT32_T, 4, 20, offsetof(mavlink_aq_esc_telemetry_t, data1) }, \
          } \
 }
 #else
@@ -51,14 +51,14 @@ typedef struct __mavlink_aq_esc_telemetry_t {
     "AQ_ESC_TELEMETRY", \
     9, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_aq_esc_telemetry_t, time_boot_ms) }, \
-         { "data0", NULL, MAVLINK_TYPE_UINT32_T, 4, 4, offsetof(mavlink_aq_esc_telemetry_t, data0) }, \
-         { "data1", NULL, MAVLINK_TYPE_UINT32_T, 4, 20, offsetof(mavlink_aq_esc_telemetry_t, data1) }, \
-         { "status_age", NULL, MAVLINK_TYPE_UINT16_T, 4, 36, offsetof(mavlink_aq_esc_telemetry_t, status_age) }, \
          { "seq", NULL, MAVLINK_TYPE_UINT8_T, 0, 44, offsetof(mavlink_aq_esc_telemetry_t, seq) }, \
          { "num_motors", NULL, MAVLINK_TYPE_UINT8_T, 0, 45, offsetof(mavlink_aq_esc_telemetry_t, num_motors) }, \
          { "num_in_seq", NULL, MAVLINK_TYPE_UINT8_T, 0, 46, offsetof(mavlink_aq_esc_telemetry_t, num_in_seq) }, \
          { "escid", NULL, MAVLINK_TYPE_UINT8_T, 4, 47, offsetof(mavlink_aq_esc_telemetry_t, escid) }, \
+         { "status_age", NULL, MAVLINK_TYPE_UINT16_T, 4, 36, offsetof(mavlink_aq_esc_telemetry_t, status_age) }, \
          { "data_version", NULL, MAVLINK_TYPE_UINT8_T, 4, 51, offsetof(mavlink_aq_esc_telemetry_t, data_version) }, \
+         { "data0", NULL, MAVLINK_TYPE_UINT32_T, 4, 4, offsetof(mavlink_aq_esc_telemetry_t, data0) }, \
+         { "data1", NULL, MAVLINK_TYPE_UINT32_T, 4, 20, offsetof(mavlink_aq_esc_telemetry_t, data1) }, \
          } \
 }
 #endif

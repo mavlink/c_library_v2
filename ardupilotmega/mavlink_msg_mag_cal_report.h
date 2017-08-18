@@ -36,7 +36,11 @@ typedef struct __mavlink_mag_cal_report_t {
     192, \
     "MAG_CAL_REPORT", \
     14, \
-    {  { "fitness", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_mag_cal_report_t, fitness) }, \
+    {  { "compass_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_mag_cal_report_t, compass_id) }, \
+         { "cal_mask", NULL, MAVLINK_TYPE_UINT8_T, 0, 41, offsetof(mavlink_mag_cal_report_t, cal_mask) }, \
+         { "cal_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 42, offsetof(mavlink_mag_cal_report_t, cal_status) }, \
+         { "autosaved", NULL, MAVLINK_TYPE_UINT8_T, 0, 43, offsetof(mavlink_mag_cal_report_t, autosaved) }, \
+         { "fitness", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_mag_cal_report_t, fitness) }, \
          { "ofs_x", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_mag_cal_report_t, ofs_x) }, \
          { "ofs_y", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_mag_cal_report_t, ofs_y) }, \
          { "ofs_z", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_mag_cal_report_t, ofs_z) }, \
@@ -46,17 +50,17 @@ typedef struct __mavlink_mag_cal_report_t {
          { "offdiag_x", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_mag_cal_report_t, offdiag_x) }, \
          { "offdiag_y", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_mag_cal_report_t, offdiag_y) }, \
          { "offdiag_z", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_mag_cal_report_t, offdiag_z) }, \
-         { "compass_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_mag_cal_report_t, compass_id) }, \
-         { "cal_mask", NULL, MAVLINK_TYPE_UINT8_T, 0, 41, offsetof(mavlink_mag_cal_report_t, cal_mask) }, \
-         { "cal_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 42, offsetof(mavlink_mag_cal_report_t, cal_status) }, \
-         { "autosaved", NULL, MAVLINK_TYPE_UINT8_T, 0, 43, offsetof(mavlink_mag_cal_report_t, autosaved) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_MAG_CAL_REPORT { \
     "MAG_CAL_REPORT", \
     14, \
-    {  { "fitness", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_mag_cal_report_t, fitness) }, \
+    {  { "compass_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_mag_cal_report_t, compass_id) }, \
+         { "cal_mask", NULL, MAVLINK_TYPE_UINT8_T, 0, 41, offsetof(mavlink_mag_cal_report_t, cal_mask) }, \
+         { "cal_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 42, offsetof(mavlink_mag_cal_report_t, cal_status) }, \
+         { "autosaved", NULL, MAVLINK_TYPE_UINT8_T, 0, 43, offsetof(mavlink_mag_cal_report_t, autosaved) }, \
+         { "fitness", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_mag_cal_report_t, fitness) }, \
          { "ofs_x", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_mag_cal_report_t, ofs_x) }, \
          { "ofs_y", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_mag_cal_report_t, ofs_y) }, \
          { "ofs_z", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_mag_cal_report_t, ofs_z) }, \
@@ -66,10 +70,6 @@ typedef struct __mavlink_mag_cal_report_t {
          { "offdiag_x", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_mag_cal_report_t, offdiag_x) }, \
          { "offdiag_y", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_mag_cal_report_t, offdiag_y) }, \
          { "offdiag_z", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_mag_cal_report_t, offdiag_z) }, \
-         { "compass_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_mag_cal_report_t, compass_id) }, \
-         { "cal_mask", NULL, MAVLINK_TYPE_UINT8_T, 0, 41, offsetof(mavlink_mag_cal_report_t, cal_mask) }, \
-         { "cal_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 42, offsetof(mavlink_mag_cal_report_t, cal_status) }, \
-         { "autosaved", NULL, MAVLINK_TYPE_UINT8_T, 0, 43, offsetof(mavlink_mag_cal_report_t, autosaved) }, \
          } \
 }
 #endif

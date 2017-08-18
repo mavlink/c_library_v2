@@ -28,11 +28,11 @@ typedef struct __mavlink_mount_control_t {
     157, \
     "MOUNT_CONTROL", \
     6, \
-    {  { "input_a", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_mount_control_t, input_a) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_mount_control_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_mount_control_t, target_component) }, \
+         { "input_a", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_mount_control_t, input_a) }, \
          { "input_b", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_mount_control_t, input_b) }, \
          { "input_c", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_mount_control_t, input_c) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_mount_control_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_mount_control_t, target_component) }, \
          { "save_position", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_mount_control_t, save_position) }, \
          } \
 }
@@ -40,11 +40,11 @@ typedef struct __mavlink_mount_control_t {
 #define MAVLINK_MESSAGE_INFO_MOUNT_CONTROL { \
     "MOUNT_CONTROL", \
     6, \
-    {  { "input_a", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_mount_control_t, input_a) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_mount_control_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_mount_control_t, target_component) }, \
+         { "input_a", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_mount_control_t, input_a) }, \
          { "input_b", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_mount_control_t, input_b) }, \
          { "input_c", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_mount_control_t, input_c) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_mount_control_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_mount_control_t, target_component) }, \
          { "save_position", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_mount_control_t, save_position) }, \
          } \
 }

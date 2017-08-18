@@ -30,13 +30,13 @@ typedef struct __mavlink_video_stream_information_t {
     269, \
     "VIDEO_STREAM_INFORMATION", \
     8, \
-    {  { "framerate", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_video_stream_information_t, framerate) }, \
-         { "bitrate", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_video_stream_information_t, bitrate) }, \
+    {  { "camera_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_video_stream_information_t, camera_id) }, \
+         { "status", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_video_stream_information_t, status) }, \
+         { "framerate", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_video_stream_information_t, framerate) }, \
          { "resolution_h", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_video_stream_information_t, resolution_h) }, \
          { "resolution_v", NULL, MAVLINK_TYPE_UINT16_T, 0, 10, offsetof(mavlink_video_stream_information_t, resolution_v) }, \
+         { "bitrate", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_video_stream_information_t, bitrate) }, \
          { "rotation", NULL, MAVLINK_TYPE_UINT16_T, 0, 12, offsetof(mavlink_video_stream_information_t, rotation) }, \
-         { "camera_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_video_stream_information_t, camera_id) }, \
-         { "status", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_video_stream_information_t, status) }, \
          { "uri", NULL, MAVLINK_TYPE_CHAR, 230, 16, offsetof(mavlink_video_stream_information_t, uri) }, \
          } \
 }
@@ -44,13 +44,13 @@ typedef struct __mavlink_video_stream_information_t {
 #define MAVLINK_MESSAGE_INFO_VIDEO_STREAM_INFORMATION { \
     "VIDEO_STREAM_INFORMATION", \
     8, \
-    {  { "framerate", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_video_stream_information_t, framerate) }, \
-         { "bitrate", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_video_stream_information_t, bitrate) }, \
+    {  { "camera_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_video_stream_information_t, camera_id) }, \
+         { "status", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_video_stream_information_t, status) }, \
+         { "framerate", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_video_stream_information_t, framerate) }, \
          { "resolution_h", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_video_stream_information_t, resolution_h) }, \
          { "resolution_v", NULL, MAVLINK_TYPE_UINT16_T, 0, 10, offsetof(mavlink_video_stream_information_t, resolution_v) }, \
+         { "bitrate", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_video_stream_information_t, bitrate) }, \
          { "rotation", NULL, MAVLINK_TYPE_UINT16_T, 0, 12, offsetof(mavlink_video_stream_information_t, rotation) }, \
-         { "camera_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_video_stream_information_t, camera_id) }, \
-         { "status", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_video_stream_information_t, status) }, \
          { "uri", NULL, MAVLINK_TYPE_CHAR, 230, 16, offsetof(mavlink_video_stream_information_t, uri) }, \
          } \
 }

@@ -28,10 +28,10 @@ typedef struct __mavlink_set_actuator_control_target_t {
     "SET_ACTUATOR_CONTROL_TARGET", \
     5, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_set_actuator_control_target_t, time_usec) }, \
-         { "controls", NULL, MAVLINK_TYPE_FLOAT, 8, 8, offsetof(mavlink_set_actuator_control_target_t, controls) }, \
          { "group_mlx", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_set_actuator_control_target_t, group_mlx) }, \
          { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 41, offsetof(mavlink_set_actuator_control_target_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 42, offsetof(mavlink_set_actuator_control_target_t, target_component) }, \
+         { "controls", NULL, MAVLINK_TYPE_FLOAT, 8, 8, offsetof(mavlink_set_actuator_control_target_t, controls) }, \
          } \
 }
 #else
@@ -39,10 +39,10 @@ typedef struct __mavlink_set_actuator_control_target_t {
     "SET_ACTUATOR_CONTROL_TARGET", \
     5, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_set_actuator_control_target_t, time_usec) }, \
-         { "controls", NULL, MAVLINK_TYPE_FLOAT, 8, 8, offsetof(mavlink_set_actuator_control_target_t, controls) }, \
          { "group_mlx", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_set_actuator_control_target_t, group_mlx) }, \
          { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 41, offsetof(mavlink_set_actuator_control_target_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 42, offsetof(mavlink_set_actuator_control_target_t, target_component) }, \
+         { "controls", NULL, MAVLINK_TYPE_FLOAT, 8, 8, offsetof(mavlink_set_actuator_control_target_t, controls) }, \
          } \
 }
 #endif

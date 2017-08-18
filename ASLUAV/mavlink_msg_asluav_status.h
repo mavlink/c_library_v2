@@ -26,20 +26,20 @@ typedef struct __mavlink_asluav_status_t {
     205, \
     "ASLUAV_STATUS", \
     4, \
-    {  { "Motor_rpm", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_asluav_status_t, Motor_rpm) }, \
-         { "LED_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_asluav_status_t, LED_status) }, \
+    {  { "LED_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_asluav_status_t, LED_status) }, \
          { "SATCOM_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_asluav_status_t, SATCOM_status) }, \
          { "Servo_status", NULL, MAVLINK_TYPE_UINT8_T, 8, 6, offsetof(mavlink_asluav_status_t, Servo_status) }, \
+         { "Motor_rpm", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_asluav_status_t, Motor_rpm) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_ASLUAV_STATUS { \
     "ASLUAV_STATUS", \
     4, \
-    {  { "Motor_rpm", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_asluav_status_t, Motor_rpm) }, \
-         { "LED_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_asluav_status_t, LED_status) }, \
+    {  { "LED_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_asluav_status_t, LED_status) }, \
          { "SATCOM_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_asluav_status_t, SATCOM_status) }, \
          { "Servo_status", NULL, MAVLINK_TYPE_UINT8_T, 8, 6, offsetof(mavlink_asluav_status_t, Servo_status) }, \
+         { "Motor_rpm", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_asluav_status_t, Motor_rpm) }, \
          } \
 }
 #endif

@@ -30,12 +30,12 @@ typedef struct __mavlink_attitude_target_t {
     "ATTITUDE_TARGET", \
     7, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_attitude_target_t, time_boot_ms) }, \
+         { "type_mask", NULL, MAVLINK_TYPE_UINT8_T, 0, 36, offsetof(mavlink_attitude_target_t, type_mask) }, \
          { "q", NULL, MAVLINK_TYPE_FLOAT, 4, 4, offsetof(mavlink_attitude_target_t, q) }, \
          { "body_roll_rate", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_attitude_target_t, body_roll_rate) }, \
          { "body_pitch_rate", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_attitude_target_t, body_pitch_rate) }, \
          { "body_yaw_rate", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_attitude_target_t, body_yaw_rate) }, \
          { "thrust", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_attitude_target_t, thrust) }, \
-         { "type_mask", NULL, MAVLINK_TYPE_UINT8_T, 0, 36, offsetof(mavlink_attitude_target_t, type_mask) }, \
          } \
 }
 #else
@@ -43,12 +43,12 @@ typedef struct __mavlink_attitude_target_t {
     "ATTITUDE_TARGET", \
     7, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_attitude_target_t, time_boot_ms) }, \
+         { "type_mask", NULL, MAVLINK_TYPE_UINT8_T, 0, 36, offsetof(mavlink_attitude_target_t, type_mask) }, \
          { "q", NULL, MAVLINK_TYPE_FLOAT, 4, 4, offsetof(mavlink_attitude_target_t, q) }, \
          { "body_roll_rate", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_attitude_target_t, body_roll_rate) }, \
          { "body_pitch_rate", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_attitude_target_t, body_pitch_rate) }, \
          { "body_yaw_rate", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_attitude_target_t, body_yaw_rate) }, \
          { "thrust", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_attitude_target_t, thrust) }, \
-         { "type_mask", NULL, MAVLINK_TYPE_UINT8_T, 0, 36, offsetof(mavlink_attitude_target_t, type_mask) }, \
          } \
 }
 #endif

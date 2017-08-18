@@ -29,10 +29,10 @@ typedef struct __mavlink_isr_location_t {
     189, \
     "ISR_LOCATION", \
     7, \
-    {  { "latitude", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_isr_location_t, latitude) }, \
+    {  { "target", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_isr_location_t, target) }, \
+         { "latitude", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_isr_location_t, latitude) }, \
          { "longitude", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_isr_location_t, longitude) }, \
          { "height", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_isr_location_t, height) }, \
-         { "target", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_isr_location_t, target) }, \
          { "option1", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_isr_location_t, option1) }, \
          { "option2", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_isr_location_t, option2) }, \
          { "option3", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_isr_location_t, option3) }, \
@@ -42,10 +42,10 @@ typedef struct __mavlink_isr_location_t {
 #define MAVLINK_MESSAGE_INFO_ISR_LOCATION { \
     "ISR_LOCATION", \
     7, \
-    {  { "latitude", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_isr_location_t, latitude) }, \
+    {  { "target", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_isr_location_t, target) }, \
+         { "latitude", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_isr_location_t, latitude) }, \
          { "longitude", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_isr_location_t, longitude) }, \
          { "height", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_isr_location_t, height) }, \
-         { "target", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_isr_location_t, target) }, \
          { "option1", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_isr_location_t, option1) }, \
          { "option2", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_isr_location_t, option2) }, \
          { "option3", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_isr_location_t, option3) }, \

@@ -32,8 +32,7 @@ typedef struct __mavlink_digicam_control_t {
     155, \
     "DIGICAM_CONTROL", \
     10, \
-    {  { "extra_value", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_digicam_control_t, extra_value) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_digicam_control_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_digicam_control_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_digicam_control_t, target_component) }, \
          { "session", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_digicam_control_t, session) }, \
          { "zoom_pos", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_digicam_control_t, zoom_pos) }, \
@@ -42,14 +41,14 @@ typedef struct __mavlink_digicam_control_t {
          { "shot", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_digicam_control_t, shot) }, \
          { "command_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 11, offsetof(mavlink_digicam_control_t, command_id) }, \
          { "extra_param", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_digicam_control_t, extra_param) }, \
+         { "extra_value", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_digicam_control_t, extra_value) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_DIGICAM_CONTROL { \
     "DIGICAM_CONTROL", \
     10, \
-    {  { "extra_value", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_digicam_control_t, extra_value) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_digicam_control_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_digicam_control_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_digicam_control_t, target_component) }, \
          { "session", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_digicam_control_t, session) }, \
          { "zoom_pos", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_digicam_control_t, zoom_pos) }, \
@@ -58,6 +57,7 @@ typedef struct __mavlink_digicam_control_t {
          { "shot", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_digicam_control_t, shot) }, \
          { "command_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 11, offsetof(mavlink_digicam_control_t, command_id) }, \
          { "extra_param", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_digicam_control_t, extra_param) }, \
+         { "extra_value", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_digicam_control_t, extra_value) }, \
          } \
 }
 #endif

@@ -26,20 +26,20 @@ typedef struct __mavlink_serial_udb_extra_f13_t {
     177, \
     "SERIAL_UDB_EXTRA_F13", \
     4, \
-    {  { "sue_lat_origin", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_serial_udb_extra_f13_t, sue_lat_origin) }, \
+    {  { "sue_week_no", NULL, MAVLINK_TYPE_INT16_T, 0, 12, offsetof(mavlink_serial_udb_extra_f13_t, sue_week_no) }, \
+         { "sue_lat_origin", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_serial_udb_extra_f13_t, sue_lat_origin) }, \
          { "sue_lon_origin", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_serial_udb_extra_f13_t, sue_lon_origin) }, \
          { "sue_alt_origin", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_serial_udb_extra_f13_t, sue_alt_origin) }, \
-         { "sue_week_no", NULL, MAVLINK_TYPE_INT16_T, 0, 12, offsetof(mavlink_serial_udb_extra_f13_t, sue_week_no) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_SERIAL_UDB_EXTRA_F13 { \
     "SERIAL_UDB_EXTRA_F13", \
     4, \
-    {  { "sue_lat_origin", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_serial_udb_extra_f13_t, sue_lat_origin) }, \
+    {  { "sue_week_no", NULL, MAVLINK_TYPE_INT16_T, 0, 12, offsetof(mavlink_serial_udb_extra_f13_t, sue_week_no) }, \
+         { "sue_lat_origin", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_serial_udb_extra_f13_t, sue_lat_origin) }, \
          { "sue_lon_origin", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_serial_udb_extra_f13_t, sue_lon_origin) }, \
          { "sue_alt_origin", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_serial_udb_extra_f13_t, sue_alt_origin) }, \
-         { "sue_week_no", NULL, MAVLINK_TYPE_INT16_T, 0, 12, offsetof(mavlink_serial_udb_extra_f13_t, sue_week_no) }, \
          } \
 }
 #endif

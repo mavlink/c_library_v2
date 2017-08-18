@@ -25,18 +25,18 @@ typedef struct __mavlink_cpu_load_t {
     170, \
     "CPU_LOAD", \
     3, \
-    {  { "batVolt", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_cpu_load_t, batVolt) }, \
-         { "sensLoad", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_cpu_load_t, sensLoad) }, \
+    {  { "sensLoad", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_cpu_load_t, sensLoad) }, \
          { "ctrlLoad", NULL, MAVLINK_TYPE_UINT8_T, 0, 3, offsetof(mavlink_cpu_load_t, ctrlLoad) }, \
+         { "batVolt", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_cpu_load_t, batVolt) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_CPU_LOAD { \
     "CPU_LOAD", \
     3, \
-    {  { "batVolt", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_cpu_load_t, batVolt) }, \
-         { "sensLoad", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_cpu_load_t, sensLoad) }, \
+    {  { "sensLoad", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_cpu_load_t, sensLoad) }, \
          { "ctrlLoad", NULL, MAVLINK_TYPE_UINT8_T, 0, 3, offsetof(mavlink_cpu_load_t, ctrlLoad) }, \
+         { "batVolt", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_cpu_load_t, batVolt) }, \
          } \
 }
 #endif

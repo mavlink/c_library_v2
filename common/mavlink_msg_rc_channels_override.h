@@ -32,7 +32,9 @@ typedef struct __mavlink_rc_channels_override_t {
     70, \
     "RC_CHANNELS_OVERRIDE", \
     10, \
-    {  { "chan1_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_rc_channels_override_t, chan1_raw) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_rc_channels_override_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_rc_channels_override_t, target_component) }, \
+         { "chan1_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_rc_channels_override_t, chan1_raw) }, \
          { "chan2_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 2, offsetof(mavlink_rc_channels_override_t, chan2_raw) }, \
          { "chan3_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_rc_channels_override_t, chan3_raw) }, \
          { "chan4_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 6, offsetof(mavlink_rc_channels_override_t, chan4_raw) }, \
@@ -40,15 +42,15 @@ typedef struct __mavlink_rc_channels_override_t {
          { "chan6_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 10, offsetof(mavlink_rc_channels_override_t, chan6_raw) }, \
          { "chan7_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 12, offsetof(mavlink_rc_channels_override_t, chan7_raw) }, \
          { "chan8_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 14, offsetof(mavlink_rc_channels_override_t, chan8_raw) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_rc_channels_override_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_rc_channels_override_t, target_component) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_RC_CHANNELS_OVERRIDE { \
     "RC_CHANNELS_OVERRIDE", \
     10, \
-    {  { "chan1_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_rc_channels_override_t, chan1_raw) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_rc_channels_override_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_rc_channels_override_t, target_component) }, \
+         { "chan1_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_rc_channels_override_t, chan1_raw) }, \
          { "chan2_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 2, offsetof(mavlink_rc_channels_override_t, chan2_raw) }, \
          { "chan3_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_rc_channels_override_t, chan3_raw) }, \
          { "chan4_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 6, offsetof(mavlink_rc_channels_override_t, chan4_raw) }, \
@@ -56,8 +58,6 @@ typedef struct __mavlink_rc_channels_override_t {
          { "chan6_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 10, offsetof(mavlink_rc_channels_override_t, chan6_raw) }, \
          { "chan7_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 12, offsetof(mavlink_rc_channels_override_t, chan7_raw) }, \
          { "chan8_raw", NULL, MAVLINK_TYPE_UINT16_T, 0, 14, offsetof(mavlink_rc_channels_override_t, chan8_raw) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_rc_channels_override_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_rc_channels_override_t, target_component) }, \
          } \
 }
 #endif

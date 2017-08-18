@@ -25,8 +25,8 @@ typedef struct __mavlink_data_stream_t {
     67, \
     "DATA_STREAM", \
     3, \
-    {  { "message_rate", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_data_stream_t, message_rate) }, \
-         { "stream_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_data_stream_t, stream_id) }, \
+    {  { "stream_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_data_stream_t, stream_id) }, \
+         { "message_rate", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_data_stream_t, message_rate) }, \
          { "on_off", NULL, MAVLINK_TYPE_UINT8_T, 0, 3, offsetof(mavlink_data_stream_t, on_off) }, \
          } \
 }
@@ -34,8 +34,8 @@ typedef struct __mavlink_data_stream_t {
 #define MAVLINK_MESSAGE_INFO_DATA_STREAM { \
     "DATA_STREAM", \
     3, \
-    {  { "message_rate", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_data_stream_t, message_rate) }, \
-         { "stream_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_data_stream_t, stream_id) }, \
+    {  { "stream_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_data_stream_t, stream_id) }, \
+         { "message_rate", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_data_stream_t, message_rate) }, \
          { "on_off", NULL, MAVLINK_TYPE_UINT8_T, 0, 3, offsetof(mavlink_data_stream_t, on_off) }, \
          } \
 }

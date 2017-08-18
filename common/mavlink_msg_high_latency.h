@@ -46,19 +46,18 @@ typedef struct __mavlink_high_latency_t {
     234, \
     "HIGH_LATENCY", \
     24, \
-    {  { "custom_mode", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_high_latency_t, custom_mode) }, \
-         { "latitude", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_high_latency_t, latitude) }, \
-         { "longitude", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_high_latency_t, longitude) }, \
+    {  { "base_mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_high_latency_t, base_mode) }, \
+         { "custom_mode", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_high_latency_t, custom_mode) }, \
+         { "landed_state", NULL, MAVLINK_TYPE_UINT8_T, 0, 27, offsetof(mavlink_high_latency_t, landed_state) }, \
          { "roll", NULL, MAVLINK_TYPE_INT16_T, 0, 12, offsetof(mavlink_high_latency_t, roll) }, \
          { "pitch", NULL, MAVLINK_TYPE_INT16_T, 0, 14, offsetof(mavlink_high_latency_t, pitch) }, \
          { "heading", NULL, MAVLINK_TYPE_UINT16_T, 0, 16, offsetof(mavlink_high_latency_t, heading) }, \
+         { "throttle", NULL, MAVLINK_TYPE_INT8_T, 0, 28, offsetof(mavlink_high_latency_t, throttle) }, \
          { "heading_sp", NULL, MAVLINK_TYPE_INT16_T, 0, 18, offsetof(mavlink_high_latency_t, heading_sp) }, \
+         { "latitude", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_high_latency_t, latitude) }, \
+         { "longitude", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_high_latency_t, longitude) }, \
          { "altitude_amsl", NULL, MAVLINK_TYPE_INT16_T, 0, 20, offsetof(mavlink_high_latency_t, altitude_amsl) }, \
          { "altitude_sp", NULL, MAVLINK_TYPE_INT16_T, 0, 22, offsetof(mavlink_high_latency_t, altitude_sp) }, \
-         { "wp_distance", NULL, MAVLINK_TYPE_UINT16_T, 0, 24, offsetof(mavlink_high_latency_t, wp_distance) }, \
-         { "base_mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_high_latency_t, base_mode) }, \
-         { "landed_state", NULL, MAVLINK_TYPE_UINT8_T, 0, 27, offsetof(mavlink_high_latency_t, landed_state) }, \
-         { "throttle", NULL, MAVLINK_TYPE_INT8_T, 0, 28, offsetof(mavlink_high_latency_t, throttle) }, \
          { "airspeed", NULL, MAVLINK_TYPE_UINT8_T, 0, 29, offsetof(mavlink_high_latency_t, airspeed) }, \
          { "airspeed_sp", NULL, MAVLINK_TYPE_UINT8_T, 0, 30, offsetof(mavlink_high_latency_t, airspeed_sp) }, \
          { "groundspeed", NULL, MAVLINK_TYPE_UINT8_T, 0, 31, offsetof(mavlink_high_latency_t, groundspeed) }, \
@@ -70,25 +69,25 @@ typedef struct __mavlink_high_latency_t {
          { "temperature_air", NULL, MAVLINK_TYPE_INT8_T, 0, 37, offsetof(mavlink_high_latency_t, temperature_air) }, \
          { "failsafe", NULL, MAVLINK_TYPE_UINT8_T, 0, 38, offsetof(mavlink_high_latency_t, failsafe) }, \
          { "wp_num", NULL, MAVLINK_TYPE_UINT8_T, 0, 39, offsetof(mavlink_high_latency_t, wp_num) }, \
+         { "wp_distance", NULL, MAVLINK_TYPE_UINT16_T, 0, 24, offsetof(mavlink_high_latency_t, wp_distance) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_HIGH_LATENCY { \
     "HIGH_LATENCY", \
     24, \
-    {  { "custom_mode", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_high_latency_t, custom_mode) }, \
-         { "latitude", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_high_latency_t, latitude) }, \
-         { "longitude", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_high_latency_t, longitude) }, \
+    {  { "base_mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_high_latency_t, base_mode) }, \
+         { "custom_mode", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_high_latency_t, custom_mode) }, \
+         { "landed_state", NULL, MAVLINK_TYPE_UINT8_T, 0, 27, offsetof(mavlink_high_latency_t, landed_state) }, \
          { "roll", NULL, MAVLINK_TYPE_INT16_T, 0, 12, offsetof(mavlink_high_latency_t, roll) }, \
          { "pitch", NULL, MAVLINK_TYPE_INT16_T, 0, 14, offsetof(mavlink_high_latency_t, pitch) }, \
          { "heading", NULL, MAVLINK_TYPE_UINT16_T, 0, 16, offsetof(mavlink_high_latency_t, heading) }, \
+         { "throttle", NULL, MAVLINK_TYPE_INT8_T, 0, 28, offsetof(mavlink_high_latency_t, throttle) }, \
          { "heading_sp", NULL, MAVLINK_TYPE_INT16_T, 0, 18, offsetof(mavlink_high_latency_t, heading_sp) }, \
+         { "latitude", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_high_latency_t, latitude) }, \
+         { "longitude", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_high_latency_t, longitude) }, \
          { "altitude_amsl", NULL, MAVLINK_TYPE_INT16_T, 0, 20, offsetof(mavlink_high_latency_t, altitude_amsl) }, \
          { "altitude_sp", NULL, MAVLINK_TYPE_INT16_T, 0, 22, offsetof(mavlink_high_latency_t, altitude_sp) }, \
-         { "wp_distance", NULL, MAVLINK_TYPE_UINT16_T, 0, 24, offsetof(mavlink_high_latency_t, wp_distance) }, \
-         { "base_mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_high_latency_t, base_mode) }, \
-         { "landed_state", NULL, MAVLINK_TYPE_UINT8_T, 0, 27, offsetof(mavlink_high_latency_t, landed_state) }, \
-         { "throttle", NULL, MAVLINK_TYPE_INT8_T, 0, 28, offsetof(mavlink_high_latency_t, throttle) }, \
          { "airspeed", NULL, MAVLINK_TYPE_UINT8_T, 0, 29, offsetof(mavlink_high_latency_t, airspeed) }, \
          { "airspeed_sp", NULL, MAVLINK_TYPE_UINT8_T, 0, 30, offsetof(mavlink_high_latency_t, airspeed_sp) }, \
          { "groundspeed", NULL, MAVLINK_TYPE_UINT8_T, 0, 31, offsetof(mavlink_high_latency_t, groundspeed) }, \
@@ -100,6 +99,7 @@ typedef struct __mavlink_high_latency_t {
          { "temperature_air", NULL, MAVLINK_TYPE_INT8_T, 0, 37, offsetof(mavlink_high_latency_t, temperature_air) }, \
          { "failsafe", NULL, MAVLINK_TYPE_UINT8_T, 0, 38, offsetof(mavlink_high_latency_t, failsafe) }, \
          { "wp_num", NULL, MAVLINK_TYPE_UINT8_T, 0, 39, offsetof(mavlink_high_latency_t, wp_num) }, \
+         { "wp_distance", NULL, MAVLINK_TYPE_UINT16_T, 0, 24, offsetof(mavlink_high_latency_t, wp_distance) }, \
          } \
 }
 #endif

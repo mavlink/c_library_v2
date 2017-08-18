@@ -25,18 +25,18 @@ typedef struct __mavlink_volt_sensor_t {
     191, \
     "VOLT_SENSOR", \
     3, \
-    {  { "voltage", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_volt_sensor_t, voltage) }, \
+    {  { "r2Type", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_volt_sensor_t, r2Type) }, \
+         { "voltage", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_volt_sensor_t, voltage) }, \
          { "reading2", NULL, MAVLINK_TYPE_UINT16_T, 0, 2, offsetof(mavlink_volt_sensor_t, reading2) }, \
-         { "r2Type", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_volt_sensor_t, r2Type) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_VOLT_SENSOR { \
     "VOLT_SENSOR", \
     3, \
-    {  { "voltage", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_volt_sensor_t, voltage) }, \
+    {  { "r2Type", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_volt_sensor_t, r2Type) }, \
+         { "voltage", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_volt_sensor_t, voltage) }, \
          { "reading2", NULL, MAVLINK_TYPE_UINT16_T, 0, 2, offsetof(mavlink_volt_sensor_t, reading2) }, \
-         { "r2Type", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_volt_sensor_t, r2Type) }, \
          } \
 }
 #endif

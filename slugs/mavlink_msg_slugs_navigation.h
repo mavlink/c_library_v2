@@ -39,9 +39,9 @@ typedef struct __mavlink_slugs_navigation_t {
          { "ay_body", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_slugs_navigation_t, ay_body) }, \
          { "totalDist", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_slugs_navigation_t, totalDist) }, \
          { "dist2Go", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_slugs_navigation_t, dist2Go) }, \
-         { "h_c", NULL, MAVLINK_TYPE_UINT16_T, 0, 28, offsetof(mavlink_slugs_navigation_t, h_c) }, \
          { "fromWP", NULL, MAVLINK_TYPE_UINT8_T, 0, 30, offsetof(mavlink_slugs_navigation_t, fromWP) }, \
          { "toWP", NULL, MAVLINK_TYPE_UINT8_T, 0, 31, offsetof(mavlink_slugs_navigation_t, toWP) }, \
+         { "h_c", NULL, MAVLINK_TYPE_UINT16_T, 0, 28, offsetof(mavlink_slugs_navigation_t, h_c) }, \
          } \
 }
 #else
@@ -55,9 +55,9 @@ typedef struct __mavlink_slugs_navigation_t {
          { "ay_body", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_slugs_navigation_t, ay_body) }, \
          { "totalDist", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_slugs_navigation_t, totalDist) }, \
          { "dist2Go", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_slugs_navigation_t, dist2Go) }, \
-         { "h_c", NULL, MAVLINK_TYPE_UINT16_T, 0, 28, offsetof(mavlink_slugs_navigation_t, h_c) }, \
          { "fromWP", NULL, MAVLINK_TYPE_UINT8_T, 0, 30, offsetof(mavlink_slugs_navigation_t, fromWP) }, \
          { "toWP", NULL, MAVLINK_TYPE_UINT8_T, 0, 31, offsetof(mavlink_slugs_navigation_t, toWP) }, \
+         { "h_c", NULL, MAVLINK_TYPE_UINT16_T, 0, 28, offsetof(mavlink_slugs_navigation_t, h_c) }, \
          } \
 }
 #endif

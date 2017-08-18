@@ -37,6 +37,8 @@ typedef struct __mavlink_position_target_global_int_t {
     "POSITION_TARGET_GLOBAL_INT", \
     14, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_position_target_global_int_t, time_boot_ms) }, \
+         { "coordinate_frame", NULL, MAVLINK_TYPE_UINT8_T, 0, 50, offsetof(mavlink_position_target_global_int_t, coordinate_frame) }, \
+         { "type_mask", NULL, MAVLINK_TYPE_UINT16_T, 0, 48, offsetof(mavlink_position_target_global_int_t, type_mask) }, \
          { "lat_int", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_position_target_global_int_t, lat_int) }, \
          { "lon_int", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_position_target_global_int_t, lon_int) }, \
          { "alt", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_position_target_global_int_t, alt) }, \
@@ -48,8 +50,6 @@ typedef struct __mavlink_position_target_global_int_t {
          { "afz", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_position_target_global_int_t, afz) }, \
          { "yaw", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_position_target_global_int_t, yaw) }, \
          { "yaw_rate", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_position_target_global_int_t, yaw_rate) }, \
-         { "type_mask", NULL, MAVLINK_TYPE_UINT16_T, 0, 48, offsetof(mavlink_position_target_global_int_t, type_mask) }, \
-         { "coordinate_frame", NULL, MAVLINK_TYPE_UINT8_T, 0, 50, offsetof(mavlink_position_target_global_int_t, coordinate_frame) }, \
          } \
 }
 #else
@@ -57,6 +57,8 @@ typedef struct __mavlink_position_target_global_int_t {
     "POSITION_TARGET_GLOBAL_INT", \
     14, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_position_target_global_int_t, time_boot_ms) }, \
+         { "coordinate_frame", NULL, MAVLINK_TYPE_UINT8_T, 0, 50, offsetof(mavlink_position_target_global_int_t, coordinate_frame) }, \
+         { "type_mask", NULL, MAVLINK_TYPE_UINT16_T, 0, 48, offsetof(mavlink_position_target_global_int_t, type_mask) }, \
          { "lat_int", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_position_target_global_int_t, lat_int) }, \
          { "lon_int", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_position_target_global_int_t, lon_int) }, \
          { "alt", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_position_target_global_int_t, alt) }, \
@@ -68,8 +70,6 @@ typedef struct __mavlink_position_target_global_int_t {
          { "afz", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_position_target_global_int_t, afz) }, \
          { "yaw", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_position_target_global_int_t, yaw) }, \
          { "yaw_rate", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_position_target_global_int_t, yaw_rate) }, \
-         { "type_mask", NULL, MAVLINK_TYPE_UINT16_T, 0, 48, offsetof(mavlink_position_target_global_int_t, type_mask) }, \
-         { "coordinate_frame", NULL, MAVLINK_TYPE_UINT8_T, 0, 50, offsetof(mavlink_position_target_global_int_t, coordinate_frame) }, \
          } \
 }
 #endif

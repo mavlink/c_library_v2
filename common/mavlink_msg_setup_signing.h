@@ -26,20 +26,20 @@ typedef struct __mavlink_setup_signing_t {
     256, \
     "SETUP_SIGNING", \
     4, \
-    {  { "initial_timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_setup_signing_t, initial_timestamp) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_setup_signing_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_setup_signing_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 9, offsetof(mavlink_setup_signing_t, target_component) }, \
          { "secret_key", NULL, MAVLINK_TYPE_UINT8_T, 32, 10, offsetof(mavlink_setup_signing_t, secret_key) }, \
+         { "initial_timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_setup_signing_t, initial_timestamp) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_SETUP_SIGNING { \
     "SETUP_SIGNING", \
     4, \
-    {  { "initial_timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_setup_signing_t, initial_timestamp) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_setup_signing_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_setup_signing_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 9, offsetof(mavlink_setup_signing_t, target_component) }, \
          { "secret_key", NULL, MAVLINK_TYPE_UINT8_T, 32, 10, offsetof(mavlink_setup_signing_t, secret_key) }, \
+         { "initial_timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_setup_signing_t, initial_timestamp) }, \
          } \
 }
 #endif

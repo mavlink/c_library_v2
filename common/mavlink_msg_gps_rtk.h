@@ -36,18 +36,18 @@ typedef struct __mavlink_gps_rtk_t {
     "GPS_RTK", \
     13, \
     {  { "time_last_baseline_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_gps_rtk_t, time_last_baseline_ms) }, \
+         { "rtk_receiver_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 30, offsetof(mavlink_gps_rtk_t, rtk_receiver_id) }, \
+         { "wn", NULL, MAVLINK_TYPE_UINT16_T, 0, 28, offsetof(mavlink_gps_rtk_t, wn) }, \
          { "tow", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_gps_rtk_t, tow) }, \
+         { "rtk_health", NULL, MAVLINK_TYPE_UINT8_T, 0, 31, offsetof(mavlink_gps_rtk_t, rtk_health) }, \
+         { "rtk_rate", NULL, MAVLINK_TYPE_UINT8_T, 0, 32, offsetof(mavlink_gps_rtk_t, rtk_rate) }, \
+         { "nsats", NULL, MAVLINK_TYPE_UINT8_T, 0, 33, offsetof(mavlink_gps_rtk_t, nsats) }, \
+         { "baseline_coords_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 34, offsetof(mavlink_gps_rtk_t, baseline_coords_type) }, \
          { "baseline_a_mm", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_gps_rtk_t, baseline_a_mm) }, \
          { "baseline_b_mm", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_gps_rtk_t, baseline_b_mm) }, \
          { "baseline_c_mm", NULL, MAVLINK_TYPE_INT32_T, 0, 16, offsetof(mavlink_gps_rtk_t, baseline_c_mm) }, \
          { "accuracy", NULL, MAVLINK_TYPE_UINT32_T, 0, 20, offsetof(mavlink_gps_rtk_t, accuracy) }, \
          { "iar_num_hypotheses", NULL, MAVLINK_TYPE_INT32_T, 0, 24, offsetof(mavlink_gps_rtk_t, iar_num_hypotheses) }, \
-         { "wn", NULL, MAVLINK_TYPE_UINT16_T, 0, 28, offsetof(mavlink_gps_rtk_t, wn) }, \
-         { "rtk_receiver_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 30, offsetof(mavlink_gps_rtk_t, rtk_receiver_id) }, \
-         { "rtk_health", NULL, MAVLINK_TYPE_UINT8_T, 0, 31, offsetof(mavlink_gps_rtk_t, rtk_health) }, \
-         { "rtk_rate", NULL, MAVLINK_TYPE_UINT8_T, 0, 32, offsetof(mavlink_gps_rtk_t, rtk_rate) }, \
-         { "nsats", NULL, MAVLINK_TYPE_UINT8_T, 0, 33, offsetof(mavlink_gps_rtk_t, nsats) }, \
-         { "baseline_coords_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 34, offsetof(mavlink_gps_rtk_t, baseline_coords_type) }, \
          } \
 }
 #else
@@ -55,18 +55,18 @@ typedef struct __mavlink_gps_rtk_t {
     "GPS_RTK", \
     13, \
     {  { "time_last_baseline_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_gps_rtk_t, time_last_baseline_ms) }, \
+         { "rtk_receiver_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 30, offsetof(mavlink_gps_rtk_t, rtk_receiver_id) }, \
+         { "wn", NULL, MAVLINK_TYPE_UINT16_T, 0, 28, offsetof(mavlink_gps_rtk_t, wn) }, \
          { "tow", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_gps_rtk_t, tow) }, \
+         { "rtk_health", NULL, MAVLINK_TYPE_UINT8_T, 0, 31, offsetof(mavlink_gps_rtk_t, rtk_health) }, \
+         { "rtk_rate", NULL, MAVLINK_TYPE_UINT8_T, 0, 32, offsetof(mavlink_gps_rtk_t, rtk_rate) }, \
+         { "nsats", NULL, MAVLINK_TYPE_UINT8_T, 0, 33, offsetof(mavlink_gps_rtk_t, nsats) }, \
+         { "baseline_coords_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 34, offsetof(mavlink_gps_rtk_t, baseline_coords_type) }, \
          { "baseline_a_mm", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_gps_rtk_t, baseline_a_mm) }, \
          { "baseline_b_mm", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_gps_rtk_t, baseline_b_mm) }, \
          { "baseline_c_mm", NULL, MAVLINK_TYPE_INT32_T, 0, 16, offsetof(mavlink_gps_rtk_t, baseline_c_mm) }, \
          { "accuracy", NULL, MAVLINK_TYPE_UINT32_T, 0, 20, offsetof(mavlink_gps_rtk_t, accuracy) }, \
          { "iar_num_hypotheses", NULL, MAVLINK_TYPE_INT32_T, 0, 24, offsetof(mavlink_gps_rtk_t, iar_num_hypotheses) }, \
-         { "wn", NULL, MAVLINK_TYPE_UINT16_T, 0, 28, offsetof(mavlink_gps_rtk_t, wn) }, \
-         { "rtk_receiver_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 30, offsetof(mavlink_gps_rtk_t, rtk_receiver_id) }, \
-         { "rtk_health", NULL, MAVLINK_TYPE_UINT8_T, 0, 31, offsetof(mavlink_gps_rtk_t, rtk_health) }, \
-         { "rtk_rate", NULL, MAVLINK_TYPE_UINT8_T, 0, 32, offsetof(mavlink_gps_rtk_t, rtk_rate) }, \
-         { "nsats", NULL, MAVLINK_TYPE_UINT8_T, 0, 33, offsetof(mavlink_gps_rtk_t, nsats) }, \
-         { "baseline_coords_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 34, offsetof(mavlink_gps_rtk_t, baseline_coords_type) }, \
          } \
 }
 #endif

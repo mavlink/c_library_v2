@@ -31,30 +31,30 @@ typedef struct __mavlink_mag_cal_progress_t {
     191, \
     "MAG_CAL_PROGRESS", \
     9, \
-    {  { "direction_x", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_mag_cal_progress_t, direction_x) }, \
-         { "direction_y", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_mag_cal_progress_t, direction_y) }, \
-         { "direction_z", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_mag_cal_progress_t, direction_z) }, \
-         { "compass_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_mag_cal_progress_t, compass_id) }, \
+    {  { "compass_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_mag_cal_progress_t, compass_id) }, \
          { "cal_mask", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_mag_cal_progress_t, cal_mask) }, \
          { "cal_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_mag_cal_progress_t, cal_status) }, \
          { "attempt", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_mag_cal_progress_t, attempt) }, \
          { "completion_pct", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_mag_cal_progress_t, completion_pct) }, \
          { "completion_mask", NULL, MAVLINK_TYPE_UINT8_T, 10, 17, offsetof(mavlink_mag_cal_progress_t, completion_mask) }, \
+         { "direction_x", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_mag_cal_progress_t, direction_x) }, \
+         { "direction_y", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_mag_cal_progress_t, direction_y) }, \
+         { "direction_z", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_mag_cal_progress_t, direction_z) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_MAG_CAL_PROGRESS { \
     "MAG_CAL_PROGRESS", \
     9, \
-    {  { "direction_x", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_mag_cal_progress_t, direction_x) }, \
-         { "direction_y", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_mag_cal_progress_t, direction_y) }, \
-         { "direction_z", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_mag_cal_progress_t, direction_z) }, \
-         { "compass_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_mag_cal_progress_t, compass_id) }, \
+    {  { "compass_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_mag_cal_progress_t, compass_id) }, \
          { "cal_mask", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_mag_cal_progress_t, cal_mask) }, \
          { "cal_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_mag_cal_progress_t, cal_status) }, \
          { "attempt", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_mag_cal_progress_t, attempt) }, \
          { "completion_pct", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_mag_cal_progress_t, completion_pct) }, \
          { "completion_mask", NULL, MAVLINK_TYPE_UINT8_T, 10, 17, offsetof(mavlink_mag_cal_progress_t, completion_mask) }, \
+         { "direction_x", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_mag_cal_progress_t, direction_x) }, \
+         { "direction_y", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_mag_cal_progress_t, direction_y) }, \
+         { "direction_z", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_mag_cal_progress_t, direction_z) }, \
          } \
 }
 #endif

@@ -27,22 +27,22 @@ typedef struct __mavlink_gimbal_control_t {
     201, \
     "GIMBAL_CONTROL", \
     5, \
-    {  { "demanded_rate_x", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_gimbal_control_t, demanded_rate_x) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_gimbal_control_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_gimbal_control_t, target_component) }, \
+         { "demanded_rate_x", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_gimbal_control_t, demanded_rate_x) }, \
          { "demanded_rate_y", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_gimbal_control_t, demanded_rate_y) }, \
          { "demanded_rate_z", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_gimbal_control_t, demanded_rate_z) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_gimbal_control_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_gimbal_control_t, target_component) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_GIMBAL_CONTROL { \
     "GIMBAL_CONTROL", \
     5, \
-    {  { "demanded_rate_x", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_gimbal_control_t, demanded_rate_x) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_gimbal_control_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_gimbal_control_t, target_component) }, \
+         { "demanded_rate_x", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_gimbal_control_t, demanded_rate_x) }, \
          { "demanded_rate_y", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_gimbal_control_t, demanded_rate_y) }, \
          { "demanded_rate_z", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_gimbal_control_t, demanded_rate_z) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_gimbal_control_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_gimbal_control_t, target_component) }, \
          } \
 }
 #endif

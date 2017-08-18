@@ -48,6 +48,7 @@ typedef struct __mavlink_aslctrl_data_t {
     "ASLCTRL_DATA", \
     25, \
     {  { "timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_aslctrl_data_t, timestamp) }, \
+         { "aslctrl_mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 96, offsetof(mavlink_aslctrl_data_t, aslctrl_mode) }, \
          { "h", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_aslctrl_data_t, h) }, \
          { "hRef", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_aslctrl_data_t, hRef) }, \
          { "hRef_t", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_aslctrl_data_t, hRef_t) }, \
@@ -60,6 +61,7 @@ typedef struct __mavlink_aslctrl_data_t {
          { "uThrot2", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_aslctrl_data_t, uThrot2) }, \
          { "nZ", NULL, MAVLINK_TYPE_FLOAT, 0, 48, offsetof(mavlink_aslctrl_data_t, nZ) }, \
          { "AirspeedRef", NULL, MAVLINK_TYPE_FLOAT, 0, 52, offsetof(mavlink_aslctrl_data_t, AirspeedRef) }, \
+         { "SpoilersEngaged", NULL, MAVLINK_TYPE_UINT8_T, 0, 97, offsetof(mavlink_aslctrl_data_t, SpoilersEngaged) }, \
          { "YawAngle", NULL, MAVLINK_TYPE_FLOAT, 0, 56, offsetof(mavlink_aslctrl_data_t, YawAngle) }, \
          { "YawAngleRef", NULL, MAVLINK_TYPE_FLOAT, 0, 60, offsetof(mavlink_aslctrl_data_t, YawAngleRef) }, \
          { "RollAngle", NULL, MAVLINK_TYPE_FLOAT, 0, 64, offsetof(mavlink_aslctrl_data_t, RollAngle) }, \
@@ -70,8 +72,6 @@ typedef struct __mavlink_aslctrl_data_t {
          { "rRef", NULL, MAVLINK_TYPE_FLOAT, 0, 84, offsetof(mavlink_aslctrl_data_t, rRef) }, \
          { "uAil", NULL, MAVLINK_TYPE_FLOAT, 0, 88, offsetof(mavlink_aslctrl_data_t, uAil) }, \
          { "uRud", NULL, MAVLINK_TYPE_FLOAT, 0, 92, offsetof(mavlink_aslctrl_data_t, uRud) }, \
-         { "aslctrl_mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 96, offsetof(mavlink_aslctrl_data_t, aslctrl_mode) }, \
-         { "SpoilersEngaged", NULL, MAVLINK_TYPE_UINT8_T, 0, 97, offsetof(mavlink_aslctrl_data_t, SpoilersEngaged) }, \
          } \
 }
 #else
@@ -79,6 +79,7 @@ typedef struct __mavlink_aslctrl_data_t {
     "ASLCTRL_DATA", \
     25, \
     {  { "timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_aslctrl_data_t, timestamp) }, \
+         { "aslctrl_mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 96, offsetof(mavlink_aslctrl_data_t, aslctrl_mode) }, \
          { "h", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_aslctrl_data_t, h) }, \
          { "hRef", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_aslctrl_data_t, hRef) }, \
          { "hRef_t", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_aslctrl_data_t, hRef_t) }, \
@@ -91,6 +92,7 @@ typedef struct __mavlink_aslctrl_data_t {
          { "uThrot2", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_aslctrl_data_t, uThrot2) }, \
          { "nZ", NULL, MAVLINK_TYPE_FLOAT, 0, 48, offsetof(mavlink_aslctrl_data_t, nZ) }, \
          { "AirspeedRef", NULL, MAVLINK_TYPE_FLOAT, 0, 52, offsetof(mavlink_aslctrl_data_t, AirspeedRef) }, \
+         { "SpoilersEngaged", NULL, MAVLINK_TYPE_UINT8_T, 0, 97, offsetof(mavlink_aslctrl_data_t, SpoilersEngaged) }, \
          { "YawAngle", NULL, MAVLINK_TYPE_FLOAT, 0, 56, offsetof(mavlink_aslctrl_data_t, YawAngle) }, \
          { "YawAngleRef", NULL, MAVLINK_TYPE_FLOAT, 0, 60, offsetof(mavlink_aslctrl_data_t, YawAngleRef) }, \
          { "RollAngle", NULL, MAVLINK_TYPE_FLOAT, 0, 64, offsetof(mavlink_aslctrl_data_t, RollAngle) }, \
@@ -101,8 +103,6 @@ typedef struct __mavlink_aslctrl_data_t {
          { "rRef", NULL, MAVLINK_TYPE_FLOAT, 0, 84, offsetof(mavlink_aslctrl_data_t, rRef) }, \
          { "uAil", NULL, MAVLINK_TYPE_FLOAT, 0, 88, offsetof(mavlink_aslctrl_data_t, uAil) }, \
          { "uRud", NULL, MAVLINK_TYPE_FLOAT, 0, 92, offsetof(mavlink_aslctrl_data_t, uRud) }, \
-         { "aslctrl_mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 96, offsetof(mavlink_aslctrl_data_t, aslctrl_mode) }, \
-         { "SpoilersEngaged", NULL, MAVLINK_TYPE_UINT8_T, 0, 97, offsetof(mavlink_aslctrl_data_t, SpoilersEngaged) }, \
          } \
 }
 #endif

@@ -29,26 +29,26 @@ typedef struct __mavlink_pid_tuning_t {
     194, \
     "PID_TUNING", \
     7, \
-    {  { "desired", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_pid_tuning_t, desired) }, \
+    {  { "axis", NULL, MAVLINK_TYPE_UINT8_T, 0, 24, offsetof(mavlink_pid_tuning_t, axis) }, \
+         { "desired", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_pid_tuning_t, desired) }, \
          { "achieved", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_pid_tuning_t, achieved) }, \
          { "FF", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_pid_tuning_t, FF) }, \
          { "P", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_pid_tuning_t, P) }, \
          { "I", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_pid_tuning_t, I) }, \
          { "D", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_pid_tuning_t, D) }, \
-         { "axis", NULL, MAVLINK_TYPE_UINT8_T, 0, 24, offsetof(mavlink_pid_tuning_t, axis) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_PID_TUNING { \
     "PID_TUNING", \
     7, \
-    {  { "desired", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_pid_tuning_t, desired) }, \
+    {  { "axis", NULL, MAVLINK_TYPE_UINT8_T, 0, 24, offsetof(mavlink_pid_tuning_t, axis) }, \
+         { "desired", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_pid_tuning_t, desired) }, \
          { "achieved", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_pid_tuning_t, achieved) }, \
          { "FF", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_pid_tuning_t, FF) }, \
          { "P", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_pid_tuning_t, P) }, \
          { "I", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_pid_tuning_t, I) }, \
          { "D", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_pid_tuning_t, D) }, \
-         { "axis", NULL, MAVLINK_TYPE_UINT8_T, 0, 24, offsetof(mavlink_pid_tuning_t, axis) }, \
          } \
 }
 #endif

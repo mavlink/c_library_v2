@@ -33,15 +33,15 @@ typedef struct __mavlink_serial_udb_extra_f14_t {
     178, \
     "SERIAL_UDB_EXTRA_F14", \
     11, \
-    {  { "sue_TRAP_SOURCE", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_serial_udb_extra_f14_t, sue_TRAP_SOURCE) }, \
-         { "sue_RCON", NULL, MAVLINK_TYPE_INT16_T, 0, 4, offsetof(mavlink_serial_udb_extra_f14_t, sue_RCON) }, \
-         { "sue_TRAP_FLAGS", NULL, MAVLINK_TYPE_INT16_T, 0, 6, offsetof(mavlink_serial_udb_extra_f14_t, sue_TRAP_FLAGS) }, \
-         { "sue_osc_fail_count", NULL, MAVLINK_TYPE_INT16_T, 0, 8, offsetof(mavlink_serial_udb_extra_f14_t, sue_osc_fail_count) }, \
-         { "sue_WIND_ESTIMATION", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_serial_udb_extra_f14_t, sue_WIND_ESTIMATION) }, \
+    {  { "sue_WIND_ESTIMATION", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_serial_udb_extra_f14_t, sue_WIND_ESTIMATION) }, \
          { "sue_GPS_TYPE", NULL, MAVLINK_TYPE_UINT8_T, 0, 11, offsetof(mavlink_serial_udb_extra_f14_t, sue_GPS_TYPE) }, \
          { "sue_DR", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_serial_udb_extra_f14_t, sue_DR) }, \
          { "sue_BOARD_TYPE", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_serial_udb_extra_f14_t, sue_BOARD_TYPE) }, \
          { "sue_AIRFRAME", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_serial_udb_extra_f14_t, sue_AIRFRAME) }, \
+         { "sue_RCON", NULL, MAVLINK_TYPE_INT16_T, 0, 4, offsetof(mavlink_serial_udb_extra_f14_t, sue_RCON) }, \
+         { "sue_TRAP_FLAGS", NULL, MAVLINK_TYPE_INT16_T, 0, 6, offsetof(mavlink_serial_udb_extra_f14_t, sue_TRAP_FLAGS) }, \
+         { "sue_TRAP_SOURCE", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_serial_udb_extra_f14_t, sue_TRAP_SOURCE) }, \
+         { "sue_osc_fail_count", NULL, MAVLINK_TYPE_INT16_T, 0, 8, offsetof(mavlink_serial_udb_extra_f14_t, sue_osc_fail_count) }, \
          { "sue_CLOCK_CONFIG", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_serial_udb_extra_f14_t, sue_CLOCK_CONFIG) }, \
          { "sue_FLIGHT_PLAN_TYPE", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_serial_udb_extra_f14_t, sue_FLIGHT_PLAN_TYPE) }, \
          } \
@@ -50,15 +50,15 @@ typedef struct __mavlink_serial_udb_extra_f14_t {
 #define MAVLINK_MESSAGE_INFO_SERIAL_UDB_EXTRA_F14 { \
     "SERIAL_UDB_EXTRA_F14", \
     11, \
-    {  { "sue_TRAP_SOURCE", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_serial_udb_extra_f14_t, sue_TRAP_SOURCE) }, \
-         { "sue_RCON", NULL, MAVLINK_TYPE_INT16_T, 0, 4, offsetof(mavlink_serial_udb_extra_f14_t, sue_RCON) }, \
-         { "sue_TRAP_FLAGS", NULL, MAVLINK_TYPE_INT16_T, 0, 6, offsetof(mavlink_serial_udb_extra_f14_t, sue_TRAP_FLAGS) }, \
-         { "sue_osc_fail_count", NULL, MAVLINK_TYPE_INT16_T, 0, 8, offsetof(mavlink_serial_udb_extra_f14_t, sue_osc_fail_count) }, \
-         { "sue_WIND_ESTIMATION", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_serial_udb_extra_f14_t, sue_WIND_ESTIMATION) }, \
+    {  { "sue_WIND_ESTIMATION", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_serial_udb_extra_f14_t, sue_WIND_ESTIMATION) }, \
          { "sue_GPS_TYPE", NULL, MAVLINK_TYPE_UINT8_T, 0, 11, offsetof(mavlink_serial_udb_extra_f14_t, sue_GPS_TYPE) }, \
          { "sue_DR", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_serial_udb_extra_f14_t, sue_DR) }, \
          { "sue_BOARD_TYPE", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_serial_udb_extra_f14_t, sue_BOARD_TYPE) }, \
          { "sue_AIRFRAME", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_serial_udb_extra_f14_t, sue_AIRFRAME) }, \
+         { "sue_RCON", NULL, MAVLINK_TYPE_INT16_T, 0, 4, offsetof(mavlink_serial_udb_extra_f14_t, sue_RCON) }, \
+         { "sue_TRAP_FLAGS", NULL, MAVLINK_TYPE_INT16_T, 0, 6, offsetof(mavlink_serial_udb_extra_f14_t, sue_TRAP_FLAGS) }, \
+         { "sue_TRAP_SOURCE", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_serial_udb_extra_f14_t, sue_TRAP_SOURCE) }, \
+         { "sue_osc_fail_count", NULL, MAVLINK_TYPE_INT16_T, 0, 8, offsetof(mavlink_serial_udb_extra_f14_t, sue_osc_fail_count) }, \
          { "sue_CLOCK_CONFIG", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_serial_udb_extra_f14_t, sue_CLOCK_CONFIG) }, \
          { "sue_FLIGHT_PLAN_TYPE", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_serial_udb_extra_f14_t, sue_FLIGHT_PLAN_TYPE) }, \
          } \

@@ -28,22 +28,22 @@ typedef struct __mavlink_param_ext_value_t {
     322, \
     "PARAM_EXT_VALUE", \
     5, \
-    {  { "param_count", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_param_ext_value_t, param_count) }, \
-         { "param_index", NULL, MAVLINK_TYPE_UINT16_T, 0, 2, offsetof(mavlink_param_ext_value_t, param_index) }, \
-         { "param_id", NULL, MAVLINK_TYPE_CHAR, 16, 4, offsetof(mavlink_param_ext_value_t, param_id) }, \
+    {  { "param_id", NULL, MAVLINK_TYPE_CHAR, 16, 4, offsetof(mavlink_param_ext_value_t, param_id) }, \
          { "param_value", NULL, MAVLINK_TYPE_CHAR, 128, 20, offsetof(mavlink_param_ext_value_t, param_value) }, \
          { "param_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 148, offsetof(mavlink_param_ext_value_t, param_type) }, \
+         { "param_count", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_param_ext_value_t, param_count) }, \
+         { "param_index", NULL, MAVLINK_TYPE_UINT16_T, 0, 2, offsetof(mavlink_param_ext_value_t, param_index) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_PARAM_EXT_VALUE { \
     "PARAM_EXT_VALUE", \
     5, \
-    {  { "param_count", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_param_ext_value_t, param_count) }, \
-         { "param_index", NULL, MAVLINK_TYPE_UINT16_T, 0, 2, offsetof(mavlink_param_ext_value_t, param_index) }, \
-         { "param_id", NULL, MAVLINK_TYPE_CHAR, 16, 4, offsetof(mavlink_param_ext_value_t, param_id) }, \
+    {  { "param_id", NULL, MAVLINK_TYPE_CHAR, 16, 4, offsetof(mavlink_param_ext_value_t, param_id) }, \
          { "param_value", NULL, MAVLINK_TYPE_CHAR, 128, 20, offsetof(mavlink_param_ext_value_t, param_value) }, \
          { "param_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 148, offsetof(mavlink_param_ext_value_t, param_type) }, \
+         { "param_count", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_param_ext_value_t, param_count) }, \
+         { "param_index", NULL, MAVLINK_TYPE_UINT16_T, 0, 2, offsetof(mavlink_param_ext_value_t, param_index) }, \
          } \
 }
 #endif

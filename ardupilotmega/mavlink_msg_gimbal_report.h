@@ -34,7 +34,9 @@ typedef struct __mavlink_gimbal_report_t {
     200, \
     "GIMBAL_REPORT", \
     12, \
-    {  { "delta_time", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_gimbal_report_t, delta_time) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_gimbal_report_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 41, offsetof(mavlink_gimbal_report_t, target_component) }, \
+         { "delta_time", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_gimbal_report_t, delta_time) }, \
          { "delta_angle_x", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_gimbal_report_t, delta_angle_x) }, \
          { "delta_angle_y", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_gimbal_report_t, delta_angle_y) }, \
          { "delta_angle_z", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_gimbal_report_t, delta_angle_z) }, \
@@ -44,15 +46,15 @@ typedef struct __mavlink_gimbal_report_t {
          { "joint_roll", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_gimbal_report_t, joint_roll) }, \
          { "joint_el", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_gimbal_report_t, joint_el) }, \
          { "joint_az", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_gimbal_report_t, joint_az) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_gimbal_report_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 41, offsetof(mavlink_gimbal_report_t, target_component) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_GIMBAL_REPORT { \
     "GIMBAL_REPORT", \
     12, \
-    {  { "delta_time", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_gimbal_report_t, delta_time) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_gimbal_report_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 41, offsetof(mavlink_gimbal_report_t, target_component) }, \
+         { "delta_time", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_gimbal_report_t, delta_time) }, \
          { "delta_angle_x", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_gimbal_report_t, delta_angle_x) }, \
          { "delta_angle_y", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_gimbal_report_t, delta_angle_y) }, \
          { "delta_angle_z", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_gimbal_report_t, delta_angle_z) }, \
@@ -62,8 +64,6 @@ typedef struct __mavlink_gimbal_report_t {
          { "joint_roll", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_gimbal_report_t, joint_roll) }, \
          { "joint_el", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_gimbal_report_t, joint_el) }, \
          { "joint_az", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_gimbal_report_t, joint_az) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_gimbal_report_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 41, offsetof(mavlink_gimbal_report_t, target_component) }, \
          } \
 }
 #endif

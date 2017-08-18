@@ -31,12 +31,12 @@ typedef struct __mavlink_limits_status_t {
     167, \
     "LIMITS_STATUS", \
     9, \
-    {  { "last_trigger", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_limits_status_t, last_trigger) }, \
+    {  { "limits_state", NULL, MAVLINK_TYPE_UINT8_T, 0, 18, offsetof(mavlink_limits_status_t, limits_state) }, \
+         { "last_trigger", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_limits_status_t, last_trigger) }, \
          { "last_action", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_limits_status_t, last_action) }, \
          { "last_recovery", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_limits_status_t, last_recovery) }, \
          { "last_clear", NULL, MAVLINK_TYPE_UINT32_T, 0, 12, offsetof(mavlink_limits_status_t, last_clear) }, \
          { "breach_count", NULL, MAVLINK_TYPE_UINT16_T, 0, 16, offsetof(mavlink_limits_status_t, breach_count) }, \
-         { "limits_state", NULL, MAVLINK_TYPE_UINT8_T, 0, 18, offsetof(mavlink_limits_status_t, limits_state) }, \
          { "mods_enabled", NULL, MAVLINK_TYPE_UINT8_T, 0, 19, offsetof(mavlink_limits_status_t, mods_enabled) }, \
          { "mods_required", NULL, MAVLINK_TYPE_UINT8_T, 0, 20, offsetof(mavlink_limits_status_t, mods_required) }, \
          { "mods_triggered", NULL, MAVLINK_TYPE_UINT8_T, 0, 21, offsetof(mavlink_limits_status_t, mods_triggered) }, \
@@ -46,12 +46,12 @@ typedef struct __mavlink_limits_status_t {
 #define MAVLINK_MESSAGE_INFO_LIMITS_STATUS { \
     "LIMITS_STATUS", \
     9, \
-    {  { "last_trigger", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_limits_status_t, last_trigger) }, \
+    {  { "limits_state", NULL, MAVLINK_TYPE_UINT8_T, 0, 18, offsetof(mavlink_limits_status_t, limits_state) }, \
+         { "last_trigger", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_limits_status_t, last_trigger) }, \
          { "last_action", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_limits_status_t, last_action) }, \
          { "last_recovery", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_limits_status_t, last_recovery) }, \
          { "last_clear", NULL, MAVLINK_TYPE_UINT32_T, 0, 12, offsetof(mavlink_limits_status_t, last_clear) }, \
          { "breach_count", NULL, MAVLINK_TYPE_UINT16_T, 0, 16, offsetof(mavlink_limits_status_t, breach_count) }, \
-         { "limits_state", NULL, MAVLINK_TYPE_UINT8_T, 0, 18, offsetof(mavlink_limits_status_t, limits_state) }, \
          { "mods_enabled", NULL, MAVLINK_TYPE_UINT8_T, 0, 19, offsetof(mavlink_limits_status_t, mods_enabled) }, \
          { "mods_required", NULL, MAVLINK_TYPE_UINT8_T, 0, 20, offsetof(mavlink_limits_status_t, mods_required) }, \
          { "mods_triggered", NULL, MAVLINK_TYPE_UINT8_T, 0, 21, offsetof(mavlink_limits_status_t, mods_triggered) }, \

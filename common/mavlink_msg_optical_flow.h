@@ -33,13 +33,13 @@ typedef struct __mavlink_optical_flow_t {
     "OPTICAL_FLOW", \
     10, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_optical_flow_t, time_usec) }, \
-         { "flow_comp_m_x", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_optical_flow_t, flow_comp_m_x) }, \
-         { "flow_comp_m_y", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_optical_flow_t, flow_comp_m_y) }, \
-         { "ground_distance", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_optical_flow_t, ground_distance) }, \
+         { "sensor_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 24, offsetof(mavlink_optical_flow_t, sensor_id) }, \
          { "flow_x", NULL, MAVLINK_TYPE_INT16_T, 0, 20, offsetof(mavlink_optical_flow_t, flow_x) }, \
          { "flow_y", NULL, MAVLINK_TYPE_INT16_T, 0, 22, offsetof(mavlink_optical_flow_t, flow_y) }, \
-         { "sensor_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 24, offsetof(mavlink_optical_flow_t, sensor_id) }, \
+         { "flow_comp_m_x", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_optical_flow_t, flow_comp_m_x) }, \
+         { "flow_comp_m_y", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_optical_flow_t, flow_comp_m_y) }, \
          { "quality", NULL, MAVLINK_TYPE_UINT8_T, 0, 25, offsetof(mavlink_optical_flow_t, quality) }, \
+         { "ground_distance", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_optical_flow_t, ground_distance) }, \
          { "flow_rate_x", NULL, MAVLINK_TYPE_FLOAT, 0, 26, offsetof(mavlink_optical_flow_t, flow_rate_x) }, \
          { "flow_rate_y", NULL, MAVLINK_TYPE_FLOAT, 0, 30, offsetof(mavlink_optical_flow_t, flow_rate_y) }, \
          } \
@@ -49,13 +49,13 @@ typedef struct __mavlink_optical_flow_t {
     "OPTICAL_FLOW", \
     10, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_optical_flow_t, time_usec) }, \
-         { "flow_comp_m_x", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_optical_flow_t, flow_comp_m_x) }, \
-         { "flow_comp_m_y", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_optical_flow_t, flow_comp_m_y) }, \
-         { "ground_distance", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_optical_flow_t, ground_distance) }, \
+         { "sensor_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 24, offsetof(mavlink_optical_flow_t, sensor_id) }, \
          { "flow_x", NULL, MAVLINK_TYPE_INT16_T, 0, 20, offsetof(mavlink_optical_flow_t, flow_x) }, \
          { "flow_y", NULL, MAVLINK_TYPE_INT16_T, 0, 22, offsetof(mavlink_optical_flow_t, flow_y) }, \
-         { "sensor_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 24, offsetof(mavlink_optical_flow_t, sensor_id) }, \
+         { "flow_comp_m_x", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_optical_flow_t, flow_comp_m_x) }, \
+         { "flow_comp_m_y", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_optical_flow_t, flow_comp_m_y) }, \
          { "quality", NULL, MAVLINK_TYPE_UINT8_T, 0, 25, offsetof(mavlink_optical_flow_t, quality) }, \
+         { "ground_distance", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_optical_flow_t, ground_distance) }, \
          { "flow_rate_x", NULL, MAVLINK_TYPE_FLOAT, 0, 26, offsetof(mavlink_optical_flow_t, flow_rate_x) }, \
          { "flow_rate_y", NULL, MAVLINK_TYPE_FLOAT, 0, 30, offsetof(mavlink_optical_flow_t, flow_rate_y) }, \
          } \

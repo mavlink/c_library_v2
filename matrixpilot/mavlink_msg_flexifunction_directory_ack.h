@@ -28,24 +28,24 @@ typedef struct __mavlink_flexifunction_directory_ack_t {
     156, \
     "FLEXIFUNCTION_DIRECTORY_ACK", \
     6, \
-    {  { "result", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_flexifunction_directory_ack_t, result) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_flexifunction_directory_ack_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_flexifunction_directory_ack_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 3, offsetof(mavlink_flexifunction_directory_ack_t, target_component) }, \
          { "directory_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_flexifunction_directory_ack_t, directory_type) }, \
          { "start_index", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_flexifunction_directory_ack_t, start_index) }, \
          { "count", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_flexifunction_directory_ack_t, count) }, \
+         { "result", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_flexifunction_directory_ack_t, result) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_FLEXIFUNCTION_DIRECTORY_ACK { \
     "FLEXIFUNCTION_DIRECTORY_ACK", \
     6, \
-    {  { "result", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_flexifunction_directory_ack_t, result) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_flexifunction_directory_ack_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_flexifunction_directory_ack_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 3, offsetof(mavlink_flexifunction_directory_ack_t, target_component) }, \
          { "directory_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_flexifunction_directory_ack_t, directory_type) }, \
          { "start_index", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_flexifunction_directory_ack_t, start_index) }, \
          { "count", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_flexifunction_directory_ack_t, count) }, \
+         { "result", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_flexifunction_directory_ack_t, result) }, \
          } \
 }
 #endif

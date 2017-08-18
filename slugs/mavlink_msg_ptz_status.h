@@ -25,18 +25,18 @@ typedef struct __mavlink_ptz_status_t {
     192, \
     "PTZ_STATUS", \
     3, \
-    {  { "pan", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_ptz_status_t, pan) }, \
+    {  { "zoom", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_ptz_status_t, zoom) }, \
+         { "pan", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_ptz_status_t, pan) }, \
          { "tilt", NULL, MAVLINK_TYPE_INT16_T, 0, 2, offsetof(mavlink_ptz_status_t, tilt) }, \
-         { "zoom", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_ptz_status_t, zoom) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_PTZ_STATUS { \
     "PTZ_STATUS", \
     3, \
-    {  { "pan", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_ptz_status_t, pan) }, \
+    {  { "zoom", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_ptz_status_t, zoom) }, \
+         { "pan", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_ptz_status_t, pan) }, \
          { "tilt", NULL, MAVLINK_TYPE_INT16_T, 0, 2, offsetof(mavlink_ptz_status_t, tilt) }, \
-         { "zoom", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_ptz_status_t, zoom) }, \
          } \
 }
 #endif

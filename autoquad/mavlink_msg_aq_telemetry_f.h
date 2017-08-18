@@ -43,7 +43,8 @@ typedef struct __mavlink_aq_telemetry_f_t {
     150, \
     "AQ_TELEMETRY_F", \
     21, \
-    {  { "value1", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_aq_telemetry_f_t, value1) }, \
+    {  { "Index", NULL, MAVLINK_TYPE_UINT16_T, 0, 80, offsetof(mavlink_aq_telemetry_f_t, Index) }, \
+         { "value1", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_aq_telemetry_f_t, value1) }, \
          { "value2", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_aq_telemetry_f_t, value2) }, \
          { "value3", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_aq_telemetry_f_t, value3) }, \
          { "value4", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_aq_telemetry_f_t, value4) }, \
@@ -63,14 +64,14 @@ typedef struct __mavlink_aq_telemetry_f_t {
          { "value18", NULL, MAVLINK_TYPE_FLOAT, 0, 68, offsetof(mavlink_aq_telemetry_f_t, value18) }, \
          { "value19", NULL, MAVLINK_TYPE_FLOAT, 0, 72, offsetof(mavlink_aq_telemetry_f_t, value19) }, \
          { "value20", NULL, MAVLINK_TYPE_FLOAT, 0, 76, offsetof(mavlink_aq_telemetry_f_t, value20) }, \
-         { "Index", NULL, MAVLINK_TYPE_UINT16_T, 0, 80, offsetof(mavlink_aq_telemetry_f_t, Index) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_AQ_TELEMETRY_F { \
     "AQ_TELEMETRY_F", \
     21, \
-    {  { "value1", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_aq_telemetry_f_t, value1) }, \
+    {  { "Index", NULL, MAVLINK_TYPE_UINT16_T, 0, 80, offsetof(mavlink_aq_telemetry_f_t, Index) }, \
+         { "value1", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_aq_telemetry_f_t, value1) }, \
          { "value2", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_aq_telemetry_f_t, value2) }, \
          { "value3", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_aq_telemetry_f_t, value3) }, \
          { "value4", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_aq_telemetry_f_t, value4) }, \
@@ -90,7 +91,6 @@ typedef struct __mavlink_aq_telemetry_f_t {
          { "value18", NULL, MAVLINK_TYPE_FLOAT, 0, 68, offsetof(mavlink_aq_telemetry_f_t, value18) }, \
          { "value19", NULL, MAVLINK_TYPE_FLOAT, 0, 72, offsetof(mavlink_aq_telemetry_f_t, value19) }, \
          { "value20", NULL, MAVLINK_TYPE_FLOAT, 0, 76, offsetof(mavlink_aq_telemetry_f_t, value20) }, \
-         { "Index", NULL, MAVLINK_TYPE_UINT16_T, 0, 80, offsetof(mavlink_aq_telemetry_f_t, Index) }, \
          } \
 }
 #endif

@@ -25,18 +25,18 @@ typedef struct __mavlink_slugs_mobile_location_t {
     186, \
     "SLUGS_MOBILE_LOCATION", \
     3, \
-    {  { "latitude", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_slugs_mobile_location_t, latitude) }, \
+    {  { "target", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_slugs_mobile_location_t, target) }, \
+         { "latitude", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_slugs_mobile_location_t, latitude) }, \
          { "longitude", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_slugs_mobile_location_t, longitude) }, \
-         { "target", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_slugs_mobile_location_t, target) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_SLUGS_MOBILE_LOCATION { \
     "SLUGS_MOBILE_LOCATION", \
     3, \
-    {  { "latitude", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_slugs_mobile_location_t, latitude) }, \
+    {  { "target", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_slugs_mobile_location_t, target) }, \
+         { "latitude", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_slugs_mobile_location_t, latitude) }, \
          { "longitude", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_slugs_mobile_location_t, longitude) }, \
-         { "target", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_slugs_mobile_location_t, target) }, \
          } \
 }
 #endif

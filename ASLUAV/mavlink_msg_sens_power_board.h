@@ -35,6 +35,8 @@ typedef struct __mavlink_sens_power_board_t {
     "SENS_POWER_BOARD", \
     12, \
     {  { "timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_sens_power_board_t, timestamp) }, \
+         { "pwr_brd_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 44, offsetof(mavlink_sens_power_board_t, pwr_brd_status) }, \
+         { "pwr_brd_led_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 45, offsetof(mavlink_sens_power_board_t, pwr_brd_led_status) }, \
          { "pwr_brd_system_volt", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_sens_power_board_t, pwr_brd_system_volt) }, \
          { "pwr_brd_servo_volt", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_sens_power_board_t, pwr_brd_servo_volt) }, \
          { "pwr_brd_mot_l_amp", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_sens_power_board_t, pwr_brd_mot_l_amp) }, \
@@ -44,8 +46,6 @@ typedef struct __mavlink_sens_power_board_t {
          { "pwr_brd_servo_3_amp", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_sens_power_board_t, pwr_brd_servo_3_amp) }, \
          { "pwr_brd_servo_4_amp", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_sens_power_board_t, pwr_brd_servo_4_amp) }, \
          { "pwr_brd_aux_amp", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_sens_power_board_t, pwr_brd_aux_amp) }, \
-         { "pwr_brd_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 44, offsetof(mavlink_sens_power_board_t, pwr_brd_status) }, \
-         { "pwr_brd_led_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 45, offsetof(mavlink_sens_power_board_t, pwr_brd_led_status) }, \
          } \
 }
 #else
@@ -53,6 +53,8 @@ typedef struct __mavlink_sens_power_board_t {
     "SENS_POWER_BOARD", \
     12, \
     {  { "timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_sens_power_board_t, timestamp) }, \
+         { "pwr_brd_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 44, offsetof(mavlink_sens_power_board_t, pwr_brd_status) }, \
+         { "pwr_brd_led_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 45, offsetof(mavlink_sens_power_board_t, pwr_brd_led_status) }, \
          { "pwr_brd_system_volt", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_sens_power_board_t, pwr_brd_system_volt) }, \
          { "pwr_brd_servo_volt", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_sens_power_board_t, pwr_brd_servo_volt) }, \
          { "pwr_brd_mot_l_amp", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_sens_power_board_t, pwr_brd_mot_l_amp) }, \
@@ -62,8 +64,6 @@ typedef struct __mavlink_sens_power_board_t {
          { "pwr_brd_servo_3_amp", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_sens_power_board_t, pwr_brd_servo_3_amp) }, \
          { "pwr_brd_servo_4_amp", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_sens_power_board_t, pwr_brd_servo_4_amp) }, \
          { "pwr_brd_aux_amp", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_sens_power_board_t, pwr_brd_aux_amp) }, \
-         { "pwr_brd_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 44, offsetof(mavlink_sens_power_board_t, pwr_brd_status) }, \
-         { "pwr_brd_led_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 45, offsetof(mavlink_sens_power_board_t, pwr_brd_led_status) }, \
          } \
 }
 #endif

@@ -27,22 +27,22 @@ typedef struct __mavlink_mount_status_t {
     158, \
     "MOUNT_STATUS", \
     5, \
-    {  { "pointing_a", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_mount_status_t, pointing_a) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_mount_status_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_mount_status_t, target_component) }, \
+         { "pointing_a", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_mount_status_t, pointing_a) }, \
          { "pointing_b", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_mount_status_t, pointing_b) }, \
          { "pointing_c", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_mount_status_t, pointing_c) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_mount_status_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_mount_status_t, target_component) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_MOUNT_STATUS { \
     "MOUNT_STATUS", \
     5, \
-    {  { "pointing_a", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_mount_status_t, pointing_a) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_mount_status_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_mount_status_t, target_component) }, \
+         { "pointing_a", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_mount_status_t, pointing_a) }, \
          { "pointing_b", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_mount_status_t, pointing_b) }, \
          { "pointing_c", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_mount_status_t, pointing_c) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_mount_status_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_mount_status_t, target_component) }, \
          } \
 }
 #endif

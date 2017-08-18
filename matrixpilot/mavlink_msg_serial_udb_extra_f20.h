@@ -35,7 +35,8 @@ typedef struct __mavlink_serial_udb_extra_f20_t {
     186, \
     "SERIAL_UDB_EXTRA_F20", \
     13, \
-    {  { "sue_trim_value_input_1", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_serial_udb_extra_f20_t, sue_trim_value_input_1) }, \
+    {  { "sue_number_of_inputs", NULL, MAVLINK_TYPE_UINT8_T, 0, 24, offsetof(mavlink_serial_udb_extra_f20_t, sue_number_of_inputs) }, \
+         { "sue_trim_value_input_1", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_serial_udb_extra_f20_t, sue_trim_value_input_1) }, \
          { "sue_trim_value_input_2", NULL, MAVLINK_TYPE_INT16_T, 0, 2, offsetof(mavlink_serial_udb_extra_f20_t, sue_trim_value_input_2) }, \
          { "sue_trim_value_input_3", NULL, MAVLINK_TYPE_INT16_T, 0, 4, offsetof(mavlink_serial_udb_extra_f20_t, sue_trim_value_input_3) }, \
          { "sue_trim_value_input_4", NULL, MAVLINK_TYPE_INT16_T, 0, 6, offsetof(mavlink_serial_udb_extra_f20_t, sue_trim_value_input_4) }, \
@@ -47,14 +48,14 @@ typedef struct __mavlink_serial_udb_extra_f20_t {
          { "sue_trim_value_input_10", NULL, MAVLINK_TYPE_INT16_T, 0, 18, offsetof(mavlink_serial_udb_extra_f20_t, sue_trim_value_input_10) }, \
          { "sue_trim_value_input_11", NULL, MAVLINK_TYPE_INT16_T, 0, 20, offsetof(mavlink_serial_udb_extra_f20_t, sue_trim_value_input_11) }, \
          { "sue_trim_value_input_12", NULL, MAVLINK_TYPE_INT16_T, 0, 22, offsetof(mavlink_serial_udb_extra_f20_t, sue_trim_value_input_12) }, \
-         { "sue_number_of_inputs", NULL, MAVLINK_TYPE_UINT8_T, 0, 24, offsetof(mavlink_serial_udb_extra_f20_t, sue_number_of_inputs) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_SERIAL_UDB_EXTRA_F20 { \
     "SERIAL_UDB_EXTRA_F20", \
     13, \
-    {  { "sue_trim_value_input_1", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_serial_udb_extra_f20_t, sue_trim_value_input_1) }, \
+    {  { "sue_number_of_inputs", NULL, MAVLINK_TYPE_UINT8_T, 0, 24, offsetof(mavlink_serial_udb_extra_f20_t, sue_number_of_inputs) }, \
+         { "sue_trim_value_input_1", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_serial_udb_extra_f20_t, sue_trim_value_input_1) }, \
          { "sue_trim_value_input_2", NULL, MAVLINK_TYPE_INT16_T, 0, 2, offsetof(mavlink_serial_udb_extra_f20_t, sue_trim_value_input_2) }, \
          { "sue_trim_value_input_3", NULL, MAVLINK_TYPE_INT16_T, 0, 4, offsetof(mavlink_serial_udb_extra_f20_t, sue_trim_value_input_3) }, \
          { "sue_trim_value_input_4", NULL, MAVLINK_TYPE_INT16_T, 0, 6, offsetof(mavlink_serial_udb_extra_f20_t, sue_trim_value_input_4) }, \
@@ -66,7 +67,6 @@ typedef struct __mavlink_serial_udb_extra_f20_t {
          { "sue_trim_value_input_10", NULL, MAVLINK_TYPE_INT16_T, 0, 18, offsetof(mavlink_serial_udb_extra_f20_t, sue_trim_value_input_10) }, \
          { "sue_trim_value_input_11", NULL, MAVLINK_TYPE_INT16_T, 0, 20, offsetof(mavlink_serial_udb_extra_f20_t, sue_trim_value_input_11) }, \
          { "sue_trim_value_input_12", NULL, MAVLINK_TYPE_INT16_T, 0, 22, offsetof(mavlink_serial_udb_extra_f20_t, sue_trim_value_input_12) }, \
-         { "sue_number_of_inputs", NULL, MAVLINK_TYPE_UINT8_T, 0, 24, offsetof(mavlink_serial_udb_extra_f20_t, sue_number_of_inputs) }, \
          } \
 }
 #endif

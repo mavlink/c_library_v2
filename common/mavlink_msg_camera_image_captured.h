@@ -34,15 +34,15 @@ typedef struct __mavlink_camera_image_captured_t {
     263, \
     "CAMERA_IMAGE_CAPTURED", \
     11, \
-    {  { "time_utc", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_camera_image_captured_t, time_utc) }, \
-         { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_camera_image_captured_t, time_boot_ms) }, \
+    {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_camera_image_captured_t, time_boot_ms) }, \
+         { "time_utc", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_camera_image_captured_t, time_utc) }, \
+         { "camera_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 48, offsetof(mavlink_camera_image_captured_t, camera_id) }, \
          { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_camera_image_captured_t, lat) }, \
          { "lon", NULL, MAVLINK_TYPE_INT32_T, 0, 16, offsetof(mavlink_camera_image_captured_t, lon) }, \
          { "alt", NULL, MAVLINK_TYPE_INT32_T, 0, 20, offsetof(mavlink_camera_image_captured_t, alt) }, \
          { "relative_alt", NULL, MAVLINK_TYPE_INT32_T, 0, 24, offsetof(mavlink_camera_image_captured_t, relative_alt) }, \
          { "q", NULL, MAVLINK_TYPE_FLOAT, 4, 28, offsetof(mavlink_camera_image_captured_t, q) }, \
          { "image_index", NULL, MAVLINK_TYPE_INT32_T, 0, 44, offsetof(mavlink_camera_image_captured_t, image_index) }, \
-         { "camera_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 48, offsetof(mavlink_camera_image_captured_t, camera_id) }, \
          { "capture_result", NULL, MAVLINK_TYPE_INT8_T, 0, 49, offsetof(mavlink_camera_image_captured_t, capture_result) }, \
          { "file_url", NULL, MAVLINK_TYPE_CHAR, 205, 50, offsetof(mavlink_camera_image_captured_t, file_url) }, \
          } \
@@ -51,15 +51,15 @@ typedef struct __mavlink_camera_image_captured_t {
 #define MAVLINK_MESSAGE_INFO_CAMERA_IMAGE_CAPTURED { \
     "CAMERA_IMAGE_CAPTURED", \
     11, \
-    {  { "time_utc", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_camera_image_captured_t, time_utc) }, \
-         { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_camera_image_captured_t, time_boot_ms) }, \
+    {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_camera_image_captured_t, time_boot_ms) }, \
+         { "time_utc", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_camera_image_captured_t, time_utc) }, \
+         { "camera_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 48, offsetof(mavlink_camera_image_captured_t, camera_id) }, \
          { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_camera_image_captured_t, lat) }, \
          { "lon", NULL, MAVLINK_TYPE_INT32_T, 0, 16, offsetof(mavlink_camera_image_captured_t, lon) }, \
          { "alt", NULL, MAVLINK_TYPE_INT32_T, 0, 20, offsetof(mavlink_camera_image_captured_t, alt) }, \
          { "relative_alt", NULL, MAVLINK_TYPE_INT32_T, 0, 24, offsetof(mavlink_camera_image_captured_t, relative_alt) }, \
          { "q", NULL, MAVLINK_TYPE_FLOAT, 4, 28, offsetof(mavlink_camera_image_captured_t, q) }, \
          { "image_index", NULL, MAVLINK_TYPE_INT32_T, 0, 44, offsetof(mavlink_camera_image_captured_t, image_index) }, \
-         { "camera_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 48, offsetof(mavlink_camera_image_captured_t, camera_id) }, \
          { "capture_result", NULL, MAVLINK_TYPE_INT8_T, 0, 49, offsetof(mavlink_camera_image_captured_t, capture_result) }, \
          { "file_url", NULL, MAVLINK_TYPE_CHAR, 205, 50, offsetof(mavlink_camera_image_captured_t, file_url) }, \
          } \

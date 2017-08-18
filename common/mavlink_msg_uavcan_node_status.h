@@ -30,10 +30,10 @@ typedef struct __mavlink_uavcan_node_status_t {
     6, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_uavcan_node_status_t, time_usec) }, \
          { "uptime_sec", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_uavcan_node_status_t, uptime_sec) }, \
-         { "vendor_specific_status_code", NULL, MAVLINK_TYPE_UINT16_T, 0, 12, offsetof(mavlink_uavcan_node_status_t, vendor_specific_status_code) }, \
          { "health", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_uavcan_node_status_t, health) }, \
          { "mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_uavcan_node_status_t, mode) }, \
          { "sub_mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_uavcan_node_status_t, sub_mode) }, \
+         { "vendor_specific_status_code", NULL, MAVLINK_TYPE_UINT16_T, 0, 12, offsetof(mavlink_uavcan_node_status_t, vendor_specific_status_code) }, \
          } \
 }
 #else
@@ -42,10 +42,10 @@ typedef struct __mavlink_uavcan_node_status_t {
     6, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_uavcan_node_status_t, time_usec) }, \
          { "uptime_sec", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_uavcan_node_status_t, uptime_sec) }, \
-         { "vendor_specific_status_code", NULL, MAVLINK_TYPE_UINT16_T, 0, 12, offsetof(mavlink_uavcan_node_status_t, vendor_specific_status_code) }, \
          { "health", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_uavcan_node_status_t, health) }, \
          { "mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_uavcan_node_status_t, mode) }, \
          { "sub_mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_uavcan_node_status_t, sub_mode) }, \
+         { "vendor_specific_status_code", NULL, MAVLINK_TYPE_UINT16_T, 0, 12, offsetof(mavlink_uavcan_node_status_t, vendor_specific_status_code) }, \
          } \
 }
 #endif

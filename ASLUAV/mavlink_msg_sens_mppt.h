@@ -38,15 +38,15 @@ typedef struct __mavlink_sens_mppt_t {
     {  { "mppt_timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_sens_mppt_t, mppt_timestamp) }, \
          { "mppt1_volt", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_sens_mppt_t, mppt1_volt) }, \
          { "mppt1_amp", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_sens_mppt_t, mppt1_amp) }, \
+         { "mppt1_pwm", NULL, MAVLINK_TYPE_UINT16_T, 0, 32, offsetof(mavlink_sens_mppt_t, mppt1_pwm) }, \
+         { "mppt1_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 38, offsetof(mavlink_sens_mppt_t, mppt1_status) }, \
          { "mppt2_volt", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_sens_mppt_t, mppt2_volt) }, \
          { "mppt2_amp", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_sens_mppt_t, mppt2_amp) }, \
+         { "mppt2_pwm", NULL, MAVLINK_TYPE_UINT16_T, 0, 34, offsetof(mavlink_sens_mppt_t, mppt2_pwm) }, \
+         { "mppt2_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 39, offsetof(mavlink_sens_mppt_t, mppt2_status) }, \
          { "mppt3_volt", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_sens_mppt_t, mppt3_volt) }, \
          { "mppt3_amp", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_sens_mppt_t, mppt3_amp) }, \
-         { "mppt1_pwm", NULL, MAVLINK_TYPE_UINT16_T, 0, 32, offsetof(mavlink_sens_mppt_t, mppt1_pwm) }, \
-         { "mppt2_pwm", NULL, MAVLINK_TYPE_UINT16_T, 0, 34, offsetof(mavlink_sens_mppt_t, mppt2_pwm) }, \
          { "mppt3_pwm", NULL, MAVLINK_TYPE_UINT16_T, 0, 36, offsetof(mavlink_sens_mppt_t, mppt3_pwm) }, \
-         { "mppt1_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 38, offsetof(mavlink_sens_mppt_t, mppt1_status) }, \
-         { "mppt2_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 39, offsetof(mavlink_sens_mppt_t, mppt2_status) }, \
          { "mppt3_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_sens_mppt_t, mppt3_status) }, \
          } \
 }
@@ -57,15 +57,15 @@ typedef struct __mavlink_sens_mppt_t {
     {  { "mppt_timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_sens_mppt_t, mppt_timestamp) }, \
          { "mppt1_volt", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_sens_mppt_t, mppt1_volt) }, \
          { "mppt1_amp", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_sens_mppt_t, mppt1_amp) }, \
+         { "mppt1_pwm", NULL, MAVLINK_TYPE_UINT16_T, 0, 32, offsetof(mavlink_sens_mppt_t, mppt1_pwm) }, \
+         { "mppt1_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 38, offsetof(mavlink_sens_mppt_t, mppt1_status) }, \
          { "mppt2_volt", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_sens_mppt_t, mppt2_volt) }, \
          { "mppt2_amp", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_sens_mppt_t, mppt2_amp) }, \
+         { "mppt2_pwm", NULL, MAVLINK_TYPE_UINT16_T, 0, 34, offsetof(mavlink_sens_mppt_t, mppt2_pwm) }, \
+         { "mppt2_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 39, offsetof(mavlink_sens_mppt_t, mppt2_status) }, \
          { "mppt3_volt", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_sens_mppt_t, mppt3_volt) }, \
          { "mppt3_amp", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_sens_mppt_t, mppt3_amp) }, \
-         { "mppt1_pwm", NULL, MAVLINK_TYPE_UINT16_T, 0, 32, offsetof(mavlink_sens_mppt_t, mppt1_pwm) }, \
-         { "mppt2_pwm", NULL, MAVLINK_TYPE_UINT16_T, 0, 34, offsetof(mavlink_sens_mppt_t, mppt2_pwm) }, \
          { "mppt3_pwm", NULL, MAVLINK_TYPE_UINT16_T, 0, 36, offsetof(mavlink_sens_mppt_t, mppt3_pwm) }, \
-         { "mppt1_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 38, offsetof(mavlink_sens_mppt_t, mppt1_status) }, \
-         { "mppt2_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 39, offsetof(mavlink_sens_mppt_t, mppt2_status) }, \
          { "mppt3_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_sens_mppt_t, mppt3_status) }, \
          } \
 }

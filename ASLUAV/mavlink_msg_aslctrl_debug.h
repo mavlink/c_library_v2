@@ -34,6 +34,8 @@ typedef struct __mavlink_aslctrl_debug_t {
     "ASLCTRL_DEBUG", \
     11, \
     {  { "i32_1", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_aslctrl_debug_t, i32_1) }, \
+         { "i8_1", NULL, MAVLINK_TYPE_UINT8_T, 0, 36, offsetof(mavlink_aslctrl_debug_t, i8_1) }, \
+         { "i8_2", NULL, MAVLINK_TYPE_UINT8_T, 0, 37, offsetof(mavlink_aslctrl_debug_t, i8_2) }, \
          { "f_1", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_aslctrl_debug_t, f_1) }, \
          { "f_2", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_aslctrl_debug_t, f_2) }, \
          { "f_3", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_aslctrl_debug_t, f_3) }, \
@@ -42,8 +44,6 @@ typedef struct __mavlink_aslctrl_debug_t {
          { "f_6", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_aslctrl_debug_t, f_6) }, \
          { "f_7", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_aslctrl_debug_t, f_7) }, \
          { "f_8", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_aslctrl_debug_t, f_8) }, \
-         { "i8_1", NULL, MAVLINK_TYPE_UINT8_T, 0, 36, offsetof(mavlink_aslctrl_debug_t, i8_1) }, \
-         { "i8_2", NULL, MAVLINK_TYPE_UINT8_T, 0, 37, offsetof(mavlink_aslctrl_debug_t, i8_2) }, \
          } \
 }
 #else
@@ -51,6 +51,8 @@ typedef struct __mavlink_aslctrl_debug_t {
     "ASLCTRL_DEBUG", \
     11, \
     {  { "i32_1", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_aslctrl_debug_t, i32_1) }, \
+         { "i8_1", NULL, MAVLINK_TYPE_UINT8_T, 0, 36, offsetof(mavlink_aslctrl_debug_t, i8_1) }, \
+         { "i8_2", NULL, MAVLINK_TYPE_UINT8_T, 0, 37, offsetof(mavlink_aslctrl_debug_t, i8_2) }, \
          { "f_1", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_aslctrl_debug_t, f_1) }, \
          { "f_2", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_aslctrl_debug_t, f_2) }, \
          { "f_3", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_aslctrl_debug_t, f_3) }, \
@@ -59,8 +61,6 @@ typedef struct __mavlink_aslctrl_debug_t {
          { "f_6", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_aslctrl_debug_t, f_6) }, \
          { "f_7", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_aslctrl_debug_t, f_7) }, \
          { "f_8", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_aslctrl_debug_t, f_8) }, \
-         { "i8_1", NULL, MAVLINK_TYPE_UINT8_T, 0, 36, offsetof(mavlink_aslctrl_debug_t, i8_1) }, \
-         { "i8_2", NULL, MAVLINK_TYPE_UINT8_T, 0, 37, offsetof(mavlink_aslctrl_debug_t, i8_2) }, \
          } \
 }
 #endif

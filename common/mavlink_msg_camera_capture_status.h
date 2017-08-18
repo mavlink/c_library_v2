@@ -29,11 +29,11 @@ typedef struct __mavlink_camera_capture_status_t {
     "CAMERA_CAPTURE_STATUS", \
     6, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_camera_capture_status_t, time_boot_ms) }, \
+         { "image_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_camera_capture_status_t, image_status) }, \
+         { "video_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_camera_capture_status_t, video_status) }, \
          { "image_interval", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_camera_capture_status_t, image_interval) }, \
          { "recording_time_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_camera_capture_status_t, recording_time_ms) }, \
          { "available_capacity", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_camera_capture_status_t, available_capacity) }, \
-         { "image_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_camera_capture_status_t, image_status) }, \
-         { "video_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_camera_capture_status_t, video_status) }, \
          } \
 }
 #else
@@ -41,11 +41,11 @@ typedef struct __mavlink_camera_capture_status_t {
     "CAMERA_CAPTURE_STATUS", \
     6, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_camera_capture_status_t, time_boot_ms) }, \
+         { "image_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_camera_capture_status_t, image_status) }, \
+         { "video_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_camera_capture_status_t, video_status) }, \
          { "image_interval", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_camera_capture_status_t, image_interval) }, \
          { "recording_time_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_camera_capture_status_t, recording_time_ms) }, \
          { "available_capacity", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_camera_capture_status_t, available_capacity) }, \
-         { "image_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_camera_capture_status_t, image_status) }, \
-         { "video_status", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_camera_capture_status_t, video_status) }, \
          } \
 }
 #endif

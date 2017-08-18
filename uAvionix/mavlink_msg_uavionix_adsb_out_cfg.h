@@ -31,12 +31,12 @@ typedef struct __mavlink_uavionix_adsb_out_cfg_t {
     "UAVIONIX_ADSB_OUT_CFG", \
     8, \
     {  { "ICAO", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_uavionix_adsb_out_cfg_t, ICAO) }, \
-         { "stallSpeed", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_uavionix_adsb_out_cfg_t, stallSpeed) }, \
          { "callsign", NULL, MAVLINK_TYPE_CHAR, 9, 6, offsetof(mavlink_uavionix_adsb_out_cfg_t, callsign) }, \
          { "emitterType", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_uavionix_adsb_out_cfg_t, emitterType) }, \
          { "aircraftSize", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_uavionix_adsb_out_cfg_t, aircraftSize) }, \
          { "gpsOffsetLat", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_uavionix_adsb_out_cfg_t, gpsOffsetLat) }, \
          { "gpsOffsetLon", NULL, MAVLINK_TYPE_UINT8_T, 0, 18, offsetof(mavlink_uavionix_adsb_out_cfg_t, gpsOffsetLon) }, \
+         { "stallSpeed", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_uavionix_adsb_out_cfg_t, stallSpeed) }, \
          { "rfSelect", NULL, MAVLINK_TYPE_UINT8_T, 0, 19, offsetof(mavlink_uavionix_adsb_out_cfg_t, rfSelect) }, \
          } \
 }
@@ -45,12 +45,12 @@ typedef struct __mavlink_uavionix_adsb_out_cfg_t {
     "UAVIONIX_ADSB_OUT_CFG", \
     8, \
     {  { "ICAO", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_uavionix_adsb_out_cfg_t, ICAO) }, \
-         { "stallSpeed", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_uavionix_adsb_out_cfg_t, stallSpeed) }, \
          { "callsign", NULL, MAVLINK_TYPE_CHAR, 9, 6, offsetof(mavlink_uavionix_adsb_out_cfg_t, callsign) }, \
          { "emitterType", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_uavionix_adsb_out_cfg_t, emitterType) }, \
          { "aircraftSize", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_uavionix_adsb_out_cfg_t, aircraftSize) }, \
          { "gpsOffsetLat", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_uavionix_adsb_out_cfg_t, gpsOffsetLat) }, \
          { "gpsOffsetLon", NULL, MAVLINK_TYPE_UINT8_T, 0, 18, offsetof(mavlink_uavionix_adsb_out_cfg_t, gpsOffsetLon) }, \
+         { "stallSpeed", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_uavionix_adsb_out_cfg_t, stallSpeed) }, \
          { "rfSelect", NULL, MAVLINK_TYPE_UINT8_T, 0, 19, offsetof(mavlink_uavionix_adsb_out_cfg_t, rfSelect) }, \
          } \
 }

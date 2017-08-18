@@ -38,6 +38,7 @@ typedef struct __mavlink_sens_batmon_t {
     {  { "temperature", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_sens_batmon_t, temperature) }, \
          { "voltage", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_sens_batmon_t, voltage) }, \
          { "current", NULL, MAVLINK_TYPE_INT16_T, 0, 6, offsetof(mavlink_sens_batmon_t, current) }, \
+         { "SoC", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_sens_batmon_t, SoC) }, \
          { "batterystatus", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_sens_batmon_t, batterystatus) }, \
          { "serialnumber", NULL, MAVLINK_TYPE_UINT16_T, 0, 10, offsetof(mavlink_sens_batmon_t, serialnumber) }, \
          { "hostfetcontrol", NULL, MAVLINK_TYPE_UINT16_T, 0, 12, offsetof(mavlink_sens_batmon_t, hostfetcontrol) }, \
@@ -47,7 +48,6 @@ typedef struct __mavlink_sens_batmon_t {
          { "cellvoltage4", NULL, MAVLINK_TYPE_UINT16_T, 0, 20, offsetof(mavlink_sens_batmon_t, cellvoltage4) }, \
          { "cellvoltage5", NULL, MAVLINK_TYPE_UINT16_T, 0, 22, offsetof(mavlink_sens_batmon_t, cellvoltage5) }, \
          { "cellvoltage6", NULL, MAVLINK_TYPE_UINT16_T, 0, 24, offsetof(mavlink_sens_batmon_t, cellvoltage6) }, \
-         { "SoC", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_sens_batmon_t, SoC) }, \
          } \
 }
 #else
@@ -57,6 +57,7 @@ typedef struct __mavlink_sens_batmon_t {
     {  { "temperature", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_sens_batmon_t, temperature) }, \
          { "voltage", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_sens_batmon_t, voltage) }, \
          { "current", NULL, MAVLINK_TYPE_INT16_T, 0, 6, offsetof(mavlink_sens_batmon_t, current) }, \
+         { "SoC", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_sens_batmon_t, SoC) }, \
          { "batterystatus", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_sens_batmon_t, batterystatus) }, \
          { "serialnumber", NULL, MAVLINK_TYPE_UINT16_T, 0, 10, offsetof(mavlink_sens_batmon_t, serialnumber) }, \
          { "hostfetcontrol", NULL, MAVLINK_TYPE_UINT16_T, 0, 12, offsetof(mavlink_sens_batmon_t, hostfetcontrol) }, \
@@ -66,7 +67,6 @@ typedef struct __mavlink_sens_batmon_t {
          { "cellvoltage4", NULL, MAVLINK_TYPE_UINT16_T, 0, 20, offsetof(mavlink_sens_batmon_t, cellvoltage4) }, \
          { "cellvoltage5", NULL, MAVLINK_TYPE_UINT16_T, 0, 22, offsetof(mavlink_sens_batmon_t, cellvoltage5) }, \
          { "cellvoltage6", NULL, MAVLINK_TYPE_UINT16_T, 0, 24, offsetof(mavlink_sens_batmon_t, cellvoltage6) }, \
-         { "SoC", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_sens_batmon_t, SoC) }, \
          } \
 }
 #endif

@@ -26,8 +26,8 @@ typedef struct __mavlink_log_data_t {
     120, \
     "LOG_DATA", \
     4, \
-    {  { "ofs", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_log_data_t, ofs) }, \
-         { "id", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_log_data_t, id) }, \
+    {  { "id", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_log_data_t, id) }, \
+         { "ofs", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_log_data_t, ofs) }, \
          { "count", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_log_data_t, count) }, \
          { "data", NULL, MAVLINK_TYPE_UINT8_T, 90, 7, offsetof(mavlink_log_data_t, data) }, \
          } \
@@ -36,8 +36,8 @@ typedef struct __mavlink_log_data_t {
 #define MAVLINK_MESSAGE_INFO_LOG_DATA { \
     "LOG_DATA", \
     4, \
-    {  { "ofs", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_log_data_t, ofs) }, \
-         { "id", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_log_data_t, id) }, \
+    {  { "id", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_log_data_t, id) }, \
+         { "ofs", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_log_data_t, ofs) }, \
          { "count", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_log_data_t, count) }, \
          { "data", NULL, MAVLINK_TYPE_UINT8_T, 90, 7, offsetof(mavlink_log_data_t, data) }, \
          } \

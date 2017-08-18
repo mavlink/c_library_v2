@@ -33,34 +33,34 @@ typedef struct __mavlink_digicam_configure_t {
     154, \
     "DIGICAM_CONFIGURE", \
     11, \
-    {  { "extra_value", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_digicam_configure_t, extra_value) }, \
-         { "shutter_speed", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_digicam_configure_t, shutter_speed) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_digicam_configure_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_digicam_configure_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_digicam_configure_t, target_component) }, \
          { "mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_digicam_configure_t, mode) }, \
+         { "shutter_speed", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_digicam_configure_t, shutter_speed) }, \
          { "aperture", NULL, MAVLINK_TYPE_UINT8_T, 0, 9, offsetof(mavlink_digicam_configure_t, aperture) }, \
          { "iso", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_digicam_configure_t, iso) }, \
          { "exposure_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 11, offsetof(mavlink_digicam_configure_t, exposure_type) }, \
          { "command_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_digicam_configure_t, command_id) }, \
          { "engine_cut_off", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_digicam_configure_t, engine_cut_off) }, \
          { "extra_param", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_digicam_configure_t, extra_param) }, \
+         { "extra_value", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_digicam_configure_t, extra_value) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_DIGICAM_CONFIGURE { \
     "DIGICAM_CONFIGURE", \
     11, \
-    {  { "extra_value", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_digicam_configure_t, extra_value) }, \
-         { "shutter_speed", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_digicam_configure_t, shutter_speed) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_digicam_configure_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_digicam_configure_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_digicam_configure_t, target_component) }, \
          { "mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_digicam_configure_t, mode) }, \
+         { "shutter_speed", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_digicam_configure_t, shutter_speed) }, \
          { "aperture", NULL, MAVLINK_TYPE_UINT8_T, 0, 9, offsetof(mavlink_digicam_configure_t, aperture) }, \
          { "iso", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_digicam_configure_t, iso) }, \
          { "exposure_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 11, offsetof(mavlink_digicam_configure_t, exposure_type) }, \
          { "command_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_digicam_configure_t, command_id) }, \
          { "engine_cut_off", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_digicam_configure_t, engine_cut_off) }, \
          { "extra_param", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_digicam_configure_t, extra_param) }, \
+         { "extra_value", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_digicam_configure_t, extra_value) }, \
          } \
 }
 #endif

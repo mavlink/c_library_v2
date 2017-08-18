@@ -73,9 +73,6 @@ typedef struct __mavlink_serial_udb_extra_f2_b_t {
     "SERIAL_UDB_EXTRA_F2_B", \
     50, \
     {  { "sue_time", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_time) }, \
-         { "sue_flags", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_flags) }, \
-         { "sue_barom_press", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_barom_press) }, \
-         { "sue_barom_alt", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_barom_alt) }, \
          { "sue_pwm_input_1", NULL, MAVLINK_TYPE_INT16_T, 0, 16, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_pwm_input_1) }, \
          { "sue_pwm_input_2", NULL, MAVLINK_TYPE_INT16_T, 0, 18, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_pwm_input_2) }, \
          { "sue_pwm_input_3", NULL, MAVLINK_TYPE_INT16_T, 0, 20, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_pwm_input_3) }, \
@@ -106,6 +103,7 @@ typedef struct __mavlink_serial_udb_extra_f2_b_t {
          { "sue_location_error_earth_x", NULL, MAVLINK_TYPE_INT16_T, 0, 70, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_location_error_earth_x) }, \
          { "sue_location_error_earth_y", NULL, MAVLINK_TYPE_INT16_T, 0, 72, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_location_error_earth_y) }, \
          { "sue_location_error_earth_z", NULL, MAVLINK_TYPE_INT16_T, 0, 74, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_location_error_earth_z) }, \
+         { "sue_flags", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_flags) }, \
          { "sue_osc_fails", NULL, MAVLINK_TYPE_INT16_T, 0, 76, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_osc_fails) }, \
          { "sue_imu_velocity_x", NULL, MAVLINK_TYPE_INT16_T, 0, 78, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_imu_velocity_x) }, \
          { "sue_imu_velocity_y", NULL, MAVLINK_TYPE_INT16_T, 0, 80, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_imu_velocity_y) }, \
@@ -117,6 +115,8 @@ typedef struct __mavlink_serial_udb_extra_f2_b_t {
          { "sue_aero_y", NULL, MAVLINK_TYPE_INT16_T, 0, 92, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_aero_y) }, \
          { "sue_aero_z", NULL, MAVLINK_TYPE_INT16_T, 0, 94, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_aero_z) }, \
          { "sue_barom_temp", NULL, MAVLINK_TYPE_INT16_T, 0, 96, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_barom_temp) }, \
+         { "sue_barom_press", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_barom_press) }, \
+         { "sue_barom_alt", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_barom_alt) }, \
          { "sue_bat_volt", NULL, MAVLINK_TYPE_INT16_T, 0, 98, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_bat_volt) }, \
          { "sue_bat_amp", NULL, MAVLINK_TYPE_INT16_T, 0, 100, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_bat_amp) }, \
          { "sue_bat_amp_hours", NULL, MAVLINK_TYPE_INT16_T, 0, 102, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_bat_amp_hours) }, \
@@ -129,9 +129,6 @@ typedef struct __mavlink_serial_udb_extra_f2_b_t {
     "SERIAL_UDB_EXTRA_F2_B", \
     50, \
     {  { "sue_time", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_time) }, \
-         { "sue_flags", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_flags) }, \
-         { "sue_barom_press", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_barom_press) }, \
-         { "sue_barom_alt", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_barom_alt) }, \
          { "sue_pwm_input_1", NULL, MAVLINK_TYPE_INT16_T, 0, 16, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_pwm_input_1) }, \
          { "sue_pwm_input_2", NULL, MAVLINK_TYPE_INT16_T, 0, 18, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_pwm_input_2) }, \
          { "sue_pwm_input_3", NULL, MAVLINK_TYPE_INT16_T, 0, 20, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_pwm_input_3) }, \
@@ -162,6 +159,7 @@ typedef struct __mavlink_serial_udb_extra_f2_b_t {
          { "sue_location_error_earth_x", NULL, MAVLINK_TYPE_INT16_T, 0, 70, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_location_error_earth_x) }, \
          { "sue_location_error_earth_y", NULL, MAVLINK_TYPE_INT16_T, 0, 72, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_location_error_earth_y) }, \
          { "sue_location_error_earth_z", NULL, MAVLINK_TYPE_INT16_T, 0, 74, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_location_error_earth_z) }, \
+         { "sue_flags", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_flags) }, \
          { "sue_osc_fails", NULL, MAVLINK_TYPE_INT16_T, 0, 76, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_osc_fails) }, \
          { "sue_imu_velocity_x", NULL, MAVLINK_TYPE_INT16_T, 0, 78, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_imu_velocity_x) }, \
          { "sue_imu_velocity_y", NULL, MAVLINK_TYPE_INT16_T, 0, 80, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_imu_velocity_y) }, \
@@ -173,6 +171,8 @@ typedef struct __mavlink_serial_udb_extra_f2_b_t {
          { "sue_aero_y", NULL, MAVLINK_TYPE_INT16_T, 0, 92, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_aero_y) }, \
          { "sue_aero_z", NULL, MAVLINK_TYPE_INT16_T, 0, 94, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_aero_z) }, \
          { "sue_barom_temp", NULL, MAVLINK_TYPE_INT16_T, 0, 96, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_barom_temp) }, \
+         { "sue_barom_press", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_barom_press) }, \
+         { "sue_barom_alt", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_barom_alt) }, \
          { "sue_bat_volt", NULL, MAVLINK_TYPE_INT16_T, 0, 98, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_bat_volt) }, \
          { "sue_bat_amp", NULL, MAVLINK_TYPE_INT16_T, 0, 100, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_bat_amp) }, \
          { "sue_bat_amp_hours", NULL, MAVLINK_TYPE_INT16_T, 0, 102, offsetof(mavlink_serial_udb_extra_f2_b_t, sue_bat_amp_hours) }, \

@@ -28,24 +28,24 @@ typedef struct __mavlink_fence_point_t {
     160, \
     "FENCE_POINT", \
     6, \
-    {  { "lat", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_fence_point_t, lat) }, \
-         { "lng", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_fence_point_t, lng) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_fence_point_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_fence_point_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 9, offsetof(mavlink_fence_point_t, target_component) }, \
          { "idx", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_fence_point_t, idx) }, \
          { "count", NULL, MAVLINK_TYPE_UINT8_T, 0, 11, offsetof(mavlink_fence_point_t, count) }, \
+         { "lat", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_fence_point_t, lat) }, \
+         { "lng", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_fence_point_t, lng) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_FENCE_POINT { \
     "FENCE_POINT", \
     6, \
-    {  { "lat", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_fence_point_t, lat) }, \
-         { "lng", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_fence_point_t, lng) }, \
-         { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_fence_point_t, target_system) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_fence_point_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 9, offsetof(mavlink_fence_point_t, target_component) }, \
          { "idx", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_fence_point_t, idx) }, \
          { "count", NULL, MAVLINK_TYPE_UINT8_T, 0, 11, offsetof(mavlink_fence_point_t, count) }, \
+         { "lat", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_fence_point_t, lat) }, \
+         { "lng", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_fence_point_t, lng) }, \
          } \
 }
 #endif

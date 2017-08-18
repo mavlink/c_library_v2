@@ -33,6 +33,7 @@ typedef struct __mavlink_estimator_status_t {
     "ESTIMATOR_STATUS", \
     10, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_estimator_status_t, time_usec) }, \
+         { "flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 40, offsetof(mavlink_estimator_status_t, flags) }, \
          { "vel_ratio", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_estimator_status_t, vel_ratio) }, \
          { "pos_horiz_ratio", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_estimator_status_t, pos_horiz_ratio) }, \
          { "pos_vert_ratio", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_estimator_status_t, pos_vert_ratio) }, \
@@ -41,7 +42,6 @@ typedef struct __mavlink_estimator_status_t {
          { "tas_ratio", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_estimator_status_t, tas_ratio) }, \
          { "pos_horiz_accuracy", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_estimator_status_t, pos_horiz_accuracy) }, \
          { "pos_vert_accuracy", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_estimator_status_t, pos_vert_accuracy) }, \
-         { "flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 40, offsetof(mavlink_estimator_status_t, flags) }, \
          } \
 }
 #else
@@ -49,6 +49,7 @@ typedef struct __mavlink_estimator_status_t {
     "ESTIMATOR_STATUS", \
     10, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_estimator_status_t, time_usec) }, \
+         { "flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 40, offsetof(mavlink_estimator_status_t, flags) }, \
          { "vel_ratio", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_estimator_status_t, vel_ratio) }, \
          { "pos_horiz_ratio", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_estimator_status_t, pos_horiz_ratio) }, \
          { "pos_vert_ratio", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_estimator_status_t, pos_vert_ratio) }, \
@@ -57,7 +58,6 @@ typedef struct __mavlink_estimator_status_t {
          { "tas_ratio", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_estimator_status_t, tas_ratio) }, \
          { "pos_horiz_accuracy", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_estimator_status_t, pos_horiz_accuracy) }, \
          { "pos_vert_accuracy", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_estimator_status_t, pos_vert_accuracy) }, \
-         { "flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 40, offsetof(mavlink_estimator_status_t, flags) }, \
          } \
 }
 #endif

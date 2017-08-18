@@ -36,16 +36,16 @@ typedef struct __mavlink_autopilot_version_t {
     "AUTOPILOT_VERSION", \
     11, \
     {  { "capabilities", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_autopilot_version_t, capabilities) }, \
-         { "uid", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_autopilot_version_t, uid) }, \
          { "flight_sw_version", NULL, MAVLINK_TYPE_UINT32_T, 0, 16, offsetof(mavlink_autopilot_version_t, flight_sw_version) }, \
          { "middleware_sw_version", NULL, MAVLINK_TYPE_UINT32_T, 0, 20, offsetof(mavlink_autopilot_version_t, middleware_sw_version) }, \
          { "os_sw_version", NULL, MAVLINK_TYPE_UINT32_T, 0, 24, offsetof(mavlink_autopilot_version_t, os_sw_version) }, \
          { "board_version", NULL, MAVLINK_TYPE_UINT32_T, 0, 28, offsetof(mavlink_autopilot_version_t, board_version) }, \
-         { "vendor_id", NULL, MAVLINK_TYPE_UINT16_T, 0, 32, offsetof(mavlink_autopilot_version_t, vendor_id) }, \
-         { "product_id", NULL, MAVLINK_TYPE_UINT16_T, 0, 34, offsetof(mavlink_autopilot_version_t, product_id) }, \
          { "flight_custom_version", NULL, MAVLINK_TYPE_UINT8_T, 8, 36, offsetof(mavlink_autopilot_version_t, flight_custom_version) }, \
          { "middleware_custom_version", NULL, MAVLINK_TYPE_UINT8_T, 8, 44, offsetof(mavlink_autopilot_version_t, middleware_custom_version) }, \
          { "os_custom_version", NULL, MAVLINK_TYPE_UINT8_T, 8, 52, offsetof(mavlink_autopilot_version_t, os_custom_version) }, \
+         { "vendor_id", NULL, MAVLINK_TYPE_UINT16_T, 0, 32, offsetof(mavlink_autopilot_version_t, vendor_id) }, \
+         { "product_id", NULL, MAVLINK_TYPE_UINT16_T, 0, 34, offsetof(mavlink_autopilot_version_t, product_id) }, \
+         { "uid", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_autopilot_version_t, uid) }, \
          } \
 }
 #else
@@ -53,16 +53,16 @@ typedef struct __mavlink_autopilot_version_t {
     "AUTOPILOT_VERSION", \
     11, \
     {  { "capabilities", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_autopilot_version_t, capabilities) }, \
-         { "uid", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_autopilot_version_t, uid) }, \
          { "flight_sw_version", NULL, MAVLINK_TYPE_UINT32_T, 0, 16, offsetof(mavlink_autopilot_version_t, flight_sw_version) }, \
          { "middleware_sw_version", NULL, MAVLINK_TYPE_UINT32_T, 0, 20, offsetof(mavlink_autopilot_version_t, middleware_sw_version) }, \
          { "os_sw_version", NULL, MAVLINK_TYPE_UINT32_T, 0, 24, offsetof(mavlink_autopilot_version_t, os_sw_version) }, \
          { "board_version", NULL, MAVLINK_TYPE_UINT32_T, 0, 28, offsetof(mavlink_autopilot_version_t, board_version) }, \
-         { "vendor_id", NULL, MAVLINK_TYPE_UINT16_T, 0, 32, offsetof(mavlink_autopilot_version_t, vendor_id) }, \
-         { "product_id", NULL, MAVLINK_TYPE_UINT16_T, 0, 34, offsetof(mavlink_autopilot_version_t, product_id) }, \
          { "flight_custom_version", NULL, MAVLINK_TYPE_UINT8_T, 8, 36, offsetof(mavlink_autopilot_version_t, flight_custom_version) }, \
          { "middleware_custom_version", NULL, MAVLINK_TYPE_UINT8_T, 8, 44, offsetof(mavlink_autopilot_version_t, middleware_custom_version) }, \
          { "os_custom_version", NULL, MAVLINK_TYPE_UINT8_T, 8, 52, offsetof(mavlink_autopilot_version_t, os_custom_version) }, \
+         { "vendor_id", NULL, MAVLINK_TYPE_UINT16_T, 0, 32, offsetof(mavlink_autopilot_version_t, vendor_id) }, \
+         { "product_id", NULL, MAVLINK_TYPE_UINT16_T, 0, 34, offsetof(mavlink_autopilot_version_t, product_id) }, \
+         { "uid", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_autopilot_version_t, uid) }, \
          } \
 }
 #endif

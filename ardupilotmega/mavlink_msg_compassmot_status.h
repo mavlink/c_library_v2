@@ -28,24 +28,24 @@ typedef struct __mavlink_compassmot_status_t {
     177, \
     "COMPASSMOT_STATUS", \
     6, \
-    {  { "current", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_compassmot_status_t, current) }, \
+    {  { "throttle", NULL, MAVLINK_TYPE_UINT16_T, 0, 16, offsetof(mavlink_compassmot_status_t, throttle) }, \
+         { "current", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_compassmot_status_t, current) }, \
+         { "interference", NULL, MAVLINK_TYPE_UINT16_T, 0, 18, offsetof(mavlink_compassmot_status_t, interference) }, \
          { "CompensationX", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_compassmot_status_t, CompensationX) }, \
          { "CompensationY", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_compassmot_status_t, CompensationY) }, \
          { "CompensationZ", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_compassmot_status_t, CompensationZ) }, \
-         { "throttle", NULL, MAVLINK_TYPE_UINT16_T, 0, 16, offsetof(mavlink_compassmot_status_t, throttle) }, \
-         { "interference", NULL, MAVLINK_TYPE_UINT16_T, 0, 18, offsetof(mavlink_compassmot_status_t, interference) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_COMPASSMOT_STATUS { \
     "COMPASSMOT_STATUS", \
     6, \
-    {  { "current", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_compassmot_status_t, current) }, \
+    {  { "throttle", NULL, MAVLINK_TYPE_UINT16_T, 0, 16, offsetof(mavlink_compassmot_status_t, throttle) }, \
+         { "current", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_compassmot_status_t, current) }, \
+         { "interference", NULL, MAVLINK_TYPE_UINT16_T, 0, 18, offsetof(mavlink_compassmot_status_t, interference) }, \
          { "CompensationX", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_compassmot_status_t, CompensationX) }, \
          { "CompensationY", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_compassmot_status_t, CompensationY) }, \
          { "CompensationZ", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_compassmot_status_t, CompensationZ) }, \
-         { "throttle", NULL, MAVLINK_TYPE_UINT16_T, 0, 16, offsetof(mavlink_compassmot_status_t, throttle) }, \
-         { "interference", NULL, MAVLINK_TYPE_UINT16_T, 0, 18, offsetof(mavlink_compassmot_status_t, interference) }, \
          } \
 }
 #endif
