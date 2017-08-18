@@ -1550,6 +1550,11 @@
         <param index="6">Longitude</param>
         <param index="7">Altitude</param>
       </entry>
+      <entry value="3001" name="MAV_CMD_ARM_AUTHORIZATION_REQUEST">
+        <description>Request authorization to arm the vehicle to a external entity, the arm authorizer is resposible to request all data that is needs from the vehicle before authorize or deny the request. If approved the progress of command_ack message should be set with period of time that this authorization is valid in seconds or in case it was denied it should be set with one of the reasons in ARM_AUTH_DENIED_REASON.
+        </description>
+        <param index="1">Vehicle system id, this way ground station can request arm authorization on behalf of any vehicle</param>
+      </entry>
       <entry value="5000" name="MAV_CMD_NAV_FENCE_RETURN_POINT">
         <description>Fence return point. There can only be one fence return point.
         </description>
@@ -2632,6 +2637,26 @@
         <description>Camera is in image survey capture mode. It allows for camera controller to do specific settings for surveys.</description>
       </entry>
     </enum>
+    <enum name="MAV_ARM_AUTH_DENIED_REASON">
+      <entry value="0" name="MAV_ARM_AUTH_DENIED_REASON_GENERIC">
+        <description>Not a specific reason</description>
+      </entry>
+      <entry value="1" name="MAV_ARM_AUTH_DENIED_REASON_NONE">
+        <description>Authorizer will send the error as string to GCS</description>
+      </entry>
+      <entry value="2" name="MAV_ARM_AUTH_DENIED_REASON_INVALID_WAYPOINT">
+        <description>At least one waypoint have a invalid value</description>
+      </entry>
+      <entry value="3" name="MAV_ARM_AUTH_DENIED_REASON_TIMEOUT">
+        <description>Timeout in the authorizer process(in case it depends on network)</description>
+      </entry>
+      <entry value="4" name="MAV_ARM_AUTH_DENIED_REASON_AIRSPACE_IN_USE">
+        <description>Airspace of the mission in use by another vehicle, second result parameter can have the waypoint id that caused it to be denied.</description>
+      </entry>
+      <entry value="5" name="MAV_ARM_AUTH_DENIED_REASON_BAD_WEATHER">
+        <description>Weather is not good to fly</description>
+      </entry>
+    </enum>
   </enums>
   <messages>
     <message id="0" name="HEARTBEAT">
@@ -3209,7 +3234,10 @@
       <field type="uint16_t" name="command" enum="MAV_CMD">Command ID, as defined by MAV_CMD enum.</field>
       <field type="uint8_t" name="result" enum="MAV_RESULT">See MAV_RESULT enum</field>
       <extensions/>
-      <field type="uint8_t" name="progress">WIP: Needs to be set when MAV_RESULT is MAV_RESULT_IN_PROGRESS, values from 0 to 100 for progress percentage, 255 for unknown progress.</field>
+      <field type="uint8_t" name="progress">WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why the command was denied or the progress percentage or 255 if unknown the progress when result is MAV_RESULT_IN_PROGRESS.</field>
+      <field type="int32_t" name="result_param2">WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied.</field>
+      <field type="uint8_t" name="target_system">WIP: System which requested the command to be executed</field>
+      <field type="uint8_t" name="target_component">WIP: Component which requested the command to be executed</field>
     </message>
     <message id="81" name="MANUAL_SETPOINT">
       <description>Setpoint in roll, pitch, yaw and thrust from the operator</description>
