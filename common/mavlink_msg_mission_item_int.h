@@ -13,10 +13,10 @@ typedef struct __mavlink_mission_item_int_t {
  int32_t y; /*< PARAM6 / y position: local: x position in meters * 1e4, global: longitude in degrees *10^7*/
  float z; /*< PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.*/
  uint16_t seq; /*< Waypoint ID (sequence number). Starts at zero. Increases monotonically for each waypoint, no gaps in the sequence (0,1,2,3,4).*/
- uint16_t command; /*< The scheduled action for the MISSION. see MAV_CMD in common.xml MAVLink specs*/
+ uint16_t command; /*< The scheduled action for the waypoint. see MAV_CMD in common.xml MAVLink specs*/
  uint8_t target_system; /*< System ID*/
  uint8_t target_component; /*< Component ID*/
- uint8_t frame; /*< The coordinate system of the MISSION. see MAV_FRAME in mavlink_types.h*/
+ uint8_t frame; /*< The coordinate system of the waypoint. see MAV_FRAME in mavlink_types.h*/
  uint8_t current; /*< false:0, true:1*/
  uint8_t autocontinue; /*< autocontinue to next wp*/
  uint8_t mission_type; /*< Mission type, see MAV_MISSION_TYPE*/
@@ -86,8 +86,8 @@ typedef struct __mavlink_mission_item_int_t {
  * @param target_system System ID
  * @param target_component Component ID
  * @param seq Waypoint ID (sequence number). Starts at zero. Increases monotonically for each waypoint, no gaps in the sequence (0,1,2,3,4).
- * @param frame The coordinate system of the MISSION. see MAV_FRAME in mavlink_types.h
- * @param command The scheduled action for the MISSION. see MAV_CMD in common.xml MAVLink specs
+ * @param frame The coordinate system of the waypoint. see MAV_FRAME in mavlink_types.h
+ * @param command The scheduled action for the waypoint. see MAV_CMD in common.xml MAVLink specs
  * @param current false:0, true:1
  * @param autocontinue autocontinue to next wp
  * @param param1 PARAM1, see MAV_CMD enum
@@ -156,8 +156,8 @@ static inline uint16_t mavlink_msg_mission_item_int_pack(uint8_t system_id, uint
  * @param target_system System ID
  * @param target_component Component ID
  * @param seq Waypoint ID (sequence number). Starts at zero. Increases monotonically for each waypoint, no gaps in the sequence (0,1,2,3,4).
- * @param frame The coordinate system of the MISSION. see MAV_FRAME in mavlink_types.h
- * @param command The scheduled action for the MISSION. see MAV_CMD in common.xml MAVLink specs
+ * @param frame The coordinate system of the waypoint. see MAV_FRAME in mavlink_types.h
+ * @param command The scheduled action for the waypoint. see MAV_CMD in common.xml MAVLink specs
  * @param current false:0, true:1
  * @param autocontinue autocontinue to next wp
  * @param param1 PARAM1, see MAV_CMD enum
@@ -252,8 +252,8 @@ static inline uint16_t mavlink_msg_mission_item_int_encode_chan(uint8_t system_i
  * @param target_system System ID
  * @param target_component Component ID
  * @param seq Waypoint ID (sequence number). Starts at zero. Increases monotonically for each waypoint, no gaps in the sequence (0,1,2,3,4).
- * @param frame The coordinate system of the MISSION. see MAV_FRAME in mavlink_types.h
- * @param command The scheduled action for the MISSION. see MAV_CMD in common.xml MAVLink specs
+ * @param frame The coordinate system of the waypoint. see MAV_FRAME in mavlink_types.h
+ * @param command The scheduled action for the waypoint. see MAV_CMD in common.xml MAVLink specs
  * @param current false:0, true:1
  * @param autocontinue autocontinue to next wp
  * @param param1 PARAM1, see MAV_CMD enum
@@ -414,7 +414,7 @@ static inline uint16_t mavlink_msg_mission_item_int_get_seq(const mavlink_messag
 /**
  * @brief Get field frame from mission_item_int message
  *
- * @return The coordinate system of the MISSION. see MAV_FRAME in mavlink_types.h
+ * @return The coordinate system of the waypoint. see MAV_FRAME in mavlink_types.h
  */
 static inline uint8_t mavlink_msg_mission_item_int_get_frame(const mavlink_message_t* msg)
 {
@@ -424,7 +424,7 @@ static inline uint8_t mavlink_msg_mission_item_int_get_frame(const mavlink_messa
 /**
  * @brief Get field command from mission_item_int message
  *
- * @return The scheduled action for the MISSION. see MAV_CMD in common.xml MAVLink specs
+ * @return The scheduled action for the waypoint. see MAV_CMD in common.xml MAVLink specs
  */
 static inline uint16_t mavlink_msg_mission_item_int_get_command(const mavlink_message_t* msg)
 {
