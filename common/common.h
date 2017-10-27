@@ -95,7 +95,8 @@ typedef enum MAV_TYPE
    MAV_TYPE_VTOL_RESERVED5=25, /* VTOL reserved 5 | */
    MAV_TYPE_GIMBAL=26, /* Onboard gimbal | */
    MAV_TYPE_ADSB=27, /* Onboard ADSB peripheral | */
-   MAV_TYPE_ENUM_END=28, /*  | */
+   MAV_TYPE_PARAFOIL=28, /* Steerable, nonrigid airfoil | */
+   MAV_TYPE_ENUM_END=29, /*  | */
 } MAV_TYPE;
 #endif
 
@@ -602,6 +603,26 @@ typedef enum MAV_PARAM_TYPE
    MAV_PARAM_TYPE_REAL64=10, /* 64-bit floating-point | */
    MAV_PARAM_TYPE_ENUM_END=11, /*  | */
 } MAV_PARAM_TYPE;
+#endif
+
+/** @brief Specifies the datatype of a MAVLink extended parameter. */
+#ifndef HAVE_ENUM_MAV_PARAM_EXT_TYPE
+#define HAVE_ENUM_MAV_PARAM_EXT_TYPE
+typedef enum MAV_PARAM_EXT_TYPE
+{
+   MAV_PARAM_EXT_TYPE_UINT8=1, /* 8-bit unsigned integer | */
+   MAV_PARAM_EXT_TYPE_INT8=2, /* 8-bit signed integer | */
+   MAV_PARAM_EXT_TYPE_UINT16=3, /* 16-bit unsigned integer | */
+   MAV_PARAM_EXT_TYPE_INT16=4, /* 16-bit signed integer | */
+   MAV_PARAM_EXT_TYPE_UINT32=5, /* 32-bit unsigned integer | */
+   MAV_PARAM_EXT_TYPE_INT32=6, /* 32-bit signed integer | */
+   MAV_PARAM_EXT_TYPE_UINT64=7, /* 64-bit unsigned integer | */
+   MAV_PARAM_EXT_TYPE_INT64=8, /* 64-bit signed integer | */
+   MAV_PARAM_EXT_TYPE_REAL32=9, /* 32-bit floating-point | */
+   MAV_PARAM_EXT_TYPE_REAL64=10, /* 64-bit floating-point | */
+   MAV_PARAM_EXT_TYPE_CUSTOM=11, /* Custom Type | */
+   MAV_PARAM_EXT_TYPE_ENUM_END=12, /*  | */
+} MAV_PARAM_EXT_TYPE;
 #endif
 
 /** @brief result from a mavlink command */
