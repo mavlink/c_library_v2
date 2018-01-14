@@ -12,8 +12,8 @@ typedef struct __mavlink_hil_state_t {
  float rollspeed; /*< Body frame roll / phi angular speed (rad/s)*/
  float pitchspeed; /*< Body frame pitch / theta angular speed (rad/s)*/
  float yawspeed; /*< Body frame yaw / psi angular speed (rad/s)*/
- int32_t lat; /*< Latitude, expressed as * 1E7*/
- int32_t lon; /*< Longitude, expressed as * 1E7*/
+ int32_t lat; /*< Latitude, expressed as degrees * 1E7*/
+ int32_t lon; /*< Longitude, expressed as degrees * 1E7*/
  int32_t alt; /*< Altitude in meters, expressed as * 1000 (millimeters)*/
  int16_t vx; /*< Ground X Speed (Latitude), expressed as m/s * 100*/
  int16_t vy; /*< Ground Y Speed (Longitude), expressed as m/s * 100*/
@@ -93,8 +93,8 @@ typedef struct __mavlink_hil_state_t {
  * @param rollspeed Body frame roll / phi angular speed (rad/s)
  * @param pitchspeed Body frame pitch / theta angular speed (rad/s)
  * @param yawspeed Body frame yaw / psi angular speed (rad/s)
- * @param lat Latitude, expressed as * 1E7
- * @param lon Longitude, expressed as * 1E7
+ * @param lat Latitude, expressed as degrees * 1E7
+ * @param lon Longitude, expressed as degrees * 1E7
  * @param alt Altitude in meters, expressed as * 1000 (millimeters)
  * @param vx Ground X Speed (Latitude), expressed as m/s * 100
  * @param vy Ground Y Speed (Longitude), expressed as m/s * 100
@@ -166,8 +166,8 @@ static inline uint16_t mavlink_msg_hil_state_pack(uint8_t system_id, uint8_t com
  * @param rollspeed Body frame roll / phi angular speed (rad/s)
  * @param pitchspeed Body frame pitch / theta angular speed (rad/s)
  * @param yawspeed Body frame yaw / psi angular speed (rad/s)
- * @param lat Latitude, expressed as * 1E7
- * @param lon Longitude, expressed as * 1E7
+ * @param lat Latitude, expressed as degrees * 1E7
+ * @param lon Longitude, expressed as degrees * 1E7
  * @param alt Altitude in meters, expressed as * 1000 (millimeters)
  * @param vx Ground X Speed (Latitude), expressed as m/s * 100
  * @param vy Ground Y Speed (Longitude), expressed as m/s * 100
@@ -265,8 +265,8 @@ static inline uint16_t mavlink_msg_hil_state_encode_chan(uint8_t system_id, uint
  * @param rollspeed Body frame roll / phi angular speed (rad/s)
  * @param pitchspeed Body frame pitch / theta angular speed (rad/s)
  * @param yawspeed Body frame yaw / psi angular speed (rad/s)
- * @param lat Latitude, expressed as * 1E7
- * @param lon Longitude, expressed as * 1E7
+ * @param lat Latitude, expressed as degrees * 1E7
+ * @param lon Longitude, expressed as degrees * 1E7
  * @param alt Altitude in meters, expressed as * 1000 (millimeters)
  * @param vx Ground X Speed (Latitude), expressed as m/s * 100
  * @param vy Ground Y Speed (Longitude), expressed as m/s * 100
@@ -468,7 +468,7 @@ static inline float mavlink_msg_hil_state_get_yawspeed(const mavlink_message_t* 
 /**
  * @brief Get field lat from hil_state message
  *
- * @return Latitude, expressed as * 1E7
+ * @return Latitude, expressed as degrees * 1E7
  */
 static inline int32_t mavlink_msg_hil_state_get_lat(const mavlink_message_t* msg)
 {
@@ -478,7 +478,7 @@ static inline int32_t mavlink_msg_hil_state_get_lat(const mavlink_message_t* msg
 /**
  * @brief Get field lon from hil_state message
  *
- * @return Longitude, expressed as * 1E7
+ * @return Longitude, expressed as degrees * 1E7
  */
 static inline int32_t mavlink_msg_hil_state_get_lon(const mavlink_message_t* msg)
 {

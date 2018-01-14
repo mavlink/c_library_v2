@@ -17,7 +17,7 @@ typedef struct __mavlink_gps2_rtk_t {
  uint8_t rtk_health; /*< GPS-specific health report for RTK data.*/
  uint8_t rtk_rate; /*< Rate of baseline messages being received by GPS, in HZ*/
  uint8_t nsats; /*< Current number of sats used for RTK calculation.*/
- uint8_t baseline_coords_type; /*< Coordinate system of baseline. 0 == ECEF, 1 == NED*/
+ uint8_t baseline_coords_type; /*< Coordinate system of baseline*/
 }) mavlink_gps2_rtk_t;
 
 #define MAVLINK_MSG_ID_GPS2_RTK_LEN 35
@@ -84,7 +84,7 @@ typedef struct __mavlink_gps2_rtk_t {
  * @param rtk_health GPS-specific health report for RTK data.
  * @param rtk_rate Rate of baseline messages being received by GPS, in HZ
  * @param nsats Current number of sats used for RTK calculation.
- * @param baseline_coords_type Coordinate system of baseline. 0 == ECEF, 1 == NED
+ * @param baseline_coords_type Coordinate system of baseline
  * @param baseline_a_mm Current baseline in ECEF x or NED north component in mm.
  * @param baseline_b_mm Current baseline in ECEF y or NED east component in mm.
  * @param baseline_c_mm Current baseline in ECEF z or NED down component in mm.
@@ -148,7 +148,7 @@ static inline uint16_t mavlink_msg_gps2_rtk_pack(uint8_t system_id, uint8_t comp
  * @param rtk_health GPS-specific health report for RTK data.
  * @param rtk_rate Rate of baseline messages being received by GPS, in HZ
  * @param nsats Current number of sats used for RTK calculation.
- * @param baseline_coords_type Coordinate system of baseline. 0 == ECEF, 1 == NED
+ * @param baseline_coords_type Coordinate system of baseline
  * @param baseline_a_mm Current baseline in ECEF x or NED north component in mm.
  * @param baseline_b_mm Current baseline in ECEF y or NED east component in mm.
  * @param baseline_c_mm Current baseline in ECEF z or NED down component in mm.
@@ -238,7 +238,7 @@ static inline uint16_t mavlink_msg_gps2_rtk_encode_chan(uint8_t system_id, uint8
  * @param rtk_health GPS-specific health report for RTK data.
  * @param rtk_rate Rate of baseline messages being received by GPS, in HZ
  * @param nsats Current number of sats used for RTK calculation.
- * @param baseline_coords_type Coordinate system of baseline. 0 == ECEF, 1 == NED
+ * @param baseline_coords_type Coordinate system of baseline
  * @param baseline_a_mm Current baseline in ECEF x or NED north component in mm.
  * @param baseline_b_mm Current baseline in ECEF y or NED east component in mm.
  * @param baseline_c_mm Current baseline in ECEF z or NED down component in mm.
@@ -426,7 +426,7 @@ static inline uint8_t mavlink_msg_gps2_rtk_get_nsats(const mavlink_message_t* ms
 /**
  * @brief Get field baseline_coords_type from gps2_rtk message
  *
- * @return Coordinate system of baseline. 0 == ECEF, 1 == NED
+ * @return Coordinate system of baseline
  */
 static inline uint8_t mavlink_msg_gps2_rtk_get_baseline_coords_type(const mavlink_message_t* msg)
 {
