@@ -6,14 +6,15 @@
 MAVPACKED(
 typedef struct __mavlink_mount_orientation_t {
  uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
- float roll; /*< Roll in degrees*/
- float pitch; /*< Pitch in degrees*/
- float yaw; /*< Yaw in degrees*/
+ float roll; /*< Roll in global frame in degrees (set to NaN for invalid).*/
+ float pitch; /*< Pitch in global frame in degrees (set to NaN for invalid).*/
+ float yaw; /*< Yaw relative to vehicle in degrees (set to NaN for invalid).*/
+ float yaw_absolute; /*< Yaw in absolute frame in degrees, North is 0 (set to NaN for invalid).*/
 }) mavlink_mount_orientation_t;
 
-#define MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN 16
+#define MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN 20
 #define MAVLINK_MSG_ID_MOUNT_ORIENTATION_MIN_LEN 16
-#define MAVLINK_MSG_ID_265_LEN 16
+#define MAVLINK_MSG_ID_265_LEN 20
 #define MAVLINK_MSG_ID_265_MIN_LEN 16
 
 #define MAVLINK_MSG_ID_MOUNT_ORIENTATION_CRC 26
@@ -25,21 +26,23 @@ typedef struct __mavlink_mount_orientation_t {
 #define MAVLINK_MESSAGE_INFO_MOUNT_ORIENTATION { \
     265, \
     "MOUNT_ORIENTATION", \
-    4, \
+    5, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_mount_orientation_t, time_boot_ms) }, \
          { "roll", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_mount_orientation_t, roll) }, \
          { "pitch", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_mount_orientation_t, pitch) }, \
          { "yaw", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_mount_orientation_t, yaw) }, \
+         { "yaw_absolute", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_mount_orientation_t, yaw_absolute) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_MOUNT_ORIENTATION { \
     "MOUNT_ORIENTATION", \
-    4, \
+    5, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_mount_orientation_t, time_boot_ms) }, \
          { "roll", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_mount_orientation_t, roll) }, \
          { "pitch", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_mount_orientation_t, pitch) }, \
          { "yaw", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_mount_orientation_t, yaw) }, \
+         { "yaw_absolute", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_mount_orientation_t, yaw_absolute) }, \
          } \
 }
 #endif
@@ -51,13 +54,14 @@ typedef struct __mavlink_mount_orientation_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param roll Roll in degrees
- * @param pitch Pitch in degrees
- * @param yaw Yaw in degrees
+ * @param roll Roll in global frame in degrees (set to NaN for invalid).
+ * @param pitch Pitch in global frame in degrees (set to NaN for invalid).
+ * @param yaw Yaw relative to vehicle in degrees (set to NaN for invalid).
+ * @param yaw_absolute Yaw in absolute frame in degrees, North is 0 (set to NaN for invalid).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_mount_orientation_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint32_t time_boot_ms, float roll, float pitch, float yaw)
+                               uint32_t time_boot_ms, float roll, float pitch, float yaw, float yaw_absolute)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN];
@@ -65,6 +69,7 @@ static inline uint16_t mavlink_msg_mount_orientation_pack(uint8_t system_id, uin
     _mav_put_float(buf, 4, roll);
     _mav_put_float(buf, 8, pitch);
     _mav_put_float(buf, 12, yaw);
+    _mav_put_float(buf, 16, yaw_absolute);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN);
 #else
@@ -73,6 +78,7 @@ static inline uint16_t mavlink_msg_mount_orientation_pack(uint8_t system_id, uin
     packet.roll = roll;
     packet.pitch = pitch;
     packet.yaw = yaw;
+    packet.yaw_absolute = yaw_absolute;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN);
 #endif
@@ -88,14 +94,15 @@ static inline uint16_t mavlink_msg_mount_orientation_pack(uint8_t system_id, uin
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param roll Roll in degrees
- * @param pitch Pitch in degrees
- * @param yaw Yaw in degrees
+ * @param roll Roll in global frame in degrees (set to NaN for invalid).
+ * @param pitch Pitch in global frame in degrees (set to NaN for invalid).
+ * @param yaw Yaw relative to vehicle in degrees (set to NaN for invalid).
+ * @param yaw_absolute Yaw in absolute frame in degrees, North is 0 (set to NaN for invalid).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_mount_orientation_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint32_t time_boot_ms,float roll,float pitch,float yaw)
+                                   uint32_t time_boot_ms,float roll,float pitch,float yaw,float yaw_absolute)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN];
@@ -103,6 +110,7 @@ static inline uint16_t mavlink_msg_mount_orientation_pack_chan(uint8_t system_id
     _mav_put_float(buf, 4, roll);
     _mav_put_float(buf, 8, pitch);
     _mav_put_float(buf, 12, yaw);
+    _mav_put_float(buf, 16, yaw_absolute);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN);
 #else
@@ -111,6 +119,7 @@ static inline uint16_t mavlink_msg_mount_orientation_pack_chan(uint8_t system_id
     packet.roll = roll;
     packet.pitch = pitch;
     packet.yaw = yaw;
+    packet.yaw_absolute = yaw_absolute;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN);
 #endif
@@ -129,7 +138,7 @@ static inline uint16_t mavlink_msg_mount_orientation_pack_chan(uint8_t system_id
  */
 static inline uint16_t mavlink_msg_mount_orientation_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_mount_orientation_t* mount_orientation)
 {
-    return mavlink_msg_mount_orientation_pack(system_id, component_id, msg, mount_orientation->time_boot_ms, mount_orientation->roll, mount_orientation->pitch, mount_orientation->yaw);
+    return mavlink_msg_mount_orientation_pack(system_id, component_id, msg, mount_orientation->time_boot_ms, mount_orientation->roll, mount_orientation->pitch, mount_orientation->yaw, mount_orientation->yaw_absolute);
 }
 
 /**
@@ -143,7 +152,7 @@ static inline uint16_t mavlink_msg_mount_orientation_encode(uint8_t system_id, u
  */
 static inline uint16_t mavlink_msg_mount_orientation_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mount_orientation_t* mount_orientation)
 {
-    return mavlink_msg_mount_orientation_pack_chan(system_id, component_id, chan, msg, mount_orientation->time_boot_ms, mount_orientation->roll, mount_orientation->pitch, mount_orientation->yaw);
+    return mavlink_msg_mount_orientation_pack_chan(system_id, component_id, chan, msg, mount_orientation->time_boot_ms, mount_orientation->roll, mount_orientation->pitch, mount_orientation->yaw, mount_orientation->yaw_absolute);
 }
 
 /**
@@ -151,13 +160,14 @@ static inline uint16_t mavlink_msg_mount_orientation_encode_chan(uint8_t system_
  * @param chan MAVLink channel to send the message
  *
  * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param roll Roll in degrees
- * @param pitch Pitch in degrees
- * @param yaw Yaw in degrees
+ * @param roll Roll in global frame in degrees (set to NaN for invalid).
+ * @param pitch Pitch in global frame in degrees (set to NaN for invalid).
+ * @param yaw Yaw relative to vehicle in degrees (set to NaN for invalid).
+ * @param yaw_absolute Yaw in absolute frame in degrees, North is 0 (set to NaN for invalid).
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_mount_orientation_send(mavlink_channel_t chan, uint32_t time_boot_ms, float roll, float pitch, float yaw)
+static inline void mavlink_msg_mount_orientation_send(mavlink_channel_t chan, uint32_t time_boot_ms, float roll, float pitch, float yaw, float yaw_absolute)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN];
@@ -165,6 +175,7 @@ static inline void mavlink_msg_mount_orientation_send(mavlink_channel_t chan, ui
     _mav_put_float(buf, 4, roll);
     _mav_put_float(buf, 8, pitch);
     _mav_put_float(buf, 12, yaw);
+    _mav_put_float(buf, 16, yaw_absolute);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MOUNT_ORIENTATION, buf, MAVLINK_MSG_ID_MOUNT_ORIENTATION_MIN_LEN, MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN, MAVLINK_MSG_ID_MOUNT_ORIENTATION_CRC);
 #else
@@ -173,6 +184,7 @@ static inline void mavlink_msg_mount_orientation_send(mavlink_channel_t chan, ui
     packet.roll = roll;
     packet.pitch = pitch;
     packet.yaw = yaw;
+    packet.yaw_absolute = yaw_absolute;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MOUNT_ORIENTATION, (const char *)&packet, MAVLINK_MSG_ID_MOUNT_ORIENTATION_MIN_LEN, MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN, MAVLINK_MSG_ID_MOUNT_ORIENTATION_CRC);
 #endif
@@ -186,7 +198,7 @@ static inline void mavlink_msg_mount_orientation_send(mavlink_channel_t chan, ui
 static inline void mavlink_msg_mount_orientation_send_struct(mavlink_channel_t chan, const mavlink_mount_orientation_t* mount_orientation)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_mount_orientation_send(chan, mount_orientation->time_boot_ms, mount_orientation->roll, mount_orientation->pitch, mount_orientation->yaw);
+    mavlink_msg_mount_orientation_send(chan, mount_orientation->time_boot_ms, mount_orientation->roll, mount_orientation->pitch, mount_orientation->yaw, mount_orientation->yaw_absolute);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MOUNT_ORIENTATION, (const char *)mount_orientation, MAVLINK_MSG_ID_MOUNT_ORIENTATION_MIN_LEN, MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN, MAVLINK_MSG_ID_MOUNT_ORIENTATION_CRC);
 #endif
@@ -200,7 +212,7 @@ static inline void mavlink_msg_mount_orientation_send_struct(mavlink_channel_t c
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_mount_orientation_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, float roll, float pitch, float yaw)
+static inline void mavlink_msg_mount_orientation_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, float roll, float pitch, float yaw, float yaw_absolute)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -208,6 +220,7 @@ static inline void mavlink_msg_mount_orientation_send_buf(mavlink_message_t *msg
     _mav_put_float(buf, 4, roll);
     _mav_put_float(buf, 8, pitch);
     _mav_put_float(buf, 12, yaw);
+    _mav_put_float(buf, 16, yaw_absolute);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MOUNT_ORIENTATION, buf, MAVLINK_MSG_ID_MOUNT_ORIENTATION_MIN_LEN, MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN, MAVLINK_MSG_ID_MOUNT_ORIENTATION_CRC);
 #else
@@ -216,6 +229,7 @@ static inline void mavlink_msg_mount_orientation_send_buf(mavlink_message_t *msg
     packet->roll = roll;
     packet->pitch = pitch;
     packet->yaw = yaw;
+    packet->yaw_absolute = yaw_absolute;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MOUNT_ORIENTATION, (const char *)packet, MAVLINK_MSG_ID_MOUNT_ORIENTATION_MIN_LEN, MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN, MAVLINK_MSG_ID_MOUNT_ORIENTATION_CRC);
 #endif
@@ -240,7 +254,7 @@ static inline uint32_t mavlink_msg_mount_orientation_get_time_boot_ms(const mavl
 /**
  * @brief Get field roll from mount_orientation message
  *
- * @return Roll in degrees
+ * @return Roll in global frame in degrees (set to NaN for invalid).
  */
 static inline float mavlink_msg_mount_orientation_get_roll(const mavlink_message_t* msg)
 {
@@ -250,7 +264,7 @@ static inline float mavlink_msg_mount_orientation_get_roll(const mavlink_message
 /**
  * @brief Get field pitch from mount_orientation message
  *
- * @return Pitch in degrees
+ * @return Pitch in global frame in degrees (set to NaN for invalid).
  */
 static inline float mavlink_msg_mount_orientation_get_pitch(const mavlink_message_t* msg)
 {
@@ -260,11 +274,21 @@ static inline float mavlink_msg_mount_orientation_get_pitch(const mavlink_messag
 /**
  * @brief Get field yaw from mount_orientation message
  *
- * @return Yaw in degrees
+ * @return Yaw relative to vehicle in degrees (set to NaN for invalid).
  */
 static inline float mavlink_msg_mount_orientation_get_yaw(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  12);
+}
+
+/**
+ * @brief Get field yaw_absolute from mount_orientation message
+ *
+ * @return Yaw in absolute frame in degrees, North is 0 (set to NaN for invalid).
+ */
+static inline float mavlink_msg_mount_orientation_get_yaw_absolute(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_float(msg,  16);
 }
 
 /**
@@ -280,6 +304,7 @@ static inline void mavlink_msg_mount_orientation_decode(const mavlink_message_t*
     mount_orientation->roll = mavlink_msg_mount_orientation_get_roll(msg);
     mount_orientation->pitch = mavlink_msg_mount_orientation_get_pitch(msg);
     mount_orientation->yaw = mavlink_msg_mount_orientation_get_yaw(msg);
+    mount_orientation->yaw_absolute = mavlink_msg_mount_orientation_get_yaw_absolute(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN? msg->len : MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN;
         memset(mount_orientation, 0, MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN);
