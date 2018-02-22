@@ -1007,7 +1007,8 @@ typedef enum ESTIMATOR_STATUS_FLAGS
    ESTIMATOR_PRED_POS_HORIZ_REL=256, /* True if the EKF has sufficient data to enter a mode that will provide a (relative) position estimate | */
    ESTIMATOR_PRED_POS_HORIZ_ABS=512, /* True if the EKF has sufficient data to enter a mode that will provide a (absolute) position estimate | */
    ESTIMATOR_GPS_GLITCH=1024, /* True if the EKF has detected a GPS glitch | */
-   ESTIMATOR_STATUS_FLAGS_ENUM_END=1025, /*  | */
+   ESTIMATOR_ACCEL_ERROR=2048, /* True if the EKF has detected bad accelerometer data | */
+   ESTIMATOR_STATUS_FLAGS_ENUM_END=2049, /*  | */
 } ESTIMATOR_STATUS_FLAGS;
 #endif
 
