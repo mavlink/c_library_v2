@@ -747,12 +747,12 @@ static void mavlink_test_sens_power_board(uint8_t system_id, uint8_t component_i
         packet1.timestamp = packet_in.timestamp;
         packet1.pwr_brd_system_volt = packet_in.pwr_brd_system_volt;
         packet1.pwr_brd_servo_volt = packet_in.pwr_brd_servo_volt;
+        packet1.pwr_brd_digital_volt = packet_in.pwr_brd_digital_volt;
         packet1.pwr_brd_mot_l_amp = packet_in.pwr_brd_mot_l_amp;
         packet1.pwr_brd_mot_r_amp = packet_in.pwr_brd_mot_r_amp;
-        packet1.pwr_brd_servo_1_amp = packet_in.pwr_brd_servo_1_amp;
-        packet1.pwr_brd_servo_2_amp = packet_in.pwr_brd_servo_2_amp;
-        packet1.pwr_brd_servo_3_amp = packet_in.pwr_brd_servo_3_amp;
-        packet1.pwr_brd_servo_4_amp = packet_in.pwr_brd_servo_4_amp;
+        packet1.pwr_brd_analog_amp = packet_in.pwr_brd_analog_amp;
+        packet1.pwr_brd_digital_amp = packet_in.pwr_brd_digital_amp;
+        packet1.pwr_brd_ext_amp = packet_in.pwr_brd_ext_amp;
         packet1.pwr_brd_aux_amp = packet_in.pwr_brd_aux_amp;
         packet1.pwr_brd_status = packet_in.pwr_brd_status;
         packet1.pwr_brd_led_status = packet_in.pwr_brd_led_status;
@@ -770,12 +770,12 @@ static void mavlink_test_sens_power_board(uint8_t system_id, uint8_t component_i
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_sens_power_board_pack(system_id, component_id, &msg , packet1.timestamp , packet1.pwr_brd_status , packet1.pwr_brd_led_status , packet1.pwr_brd_system_volt , packet1.pwr_brd_servo_volt , packet1.pwr_brd_mot_l_amp , packet1.pwr_brd_mot_r_amp , packet1.pwr_brd_servo_1_amp , packet1.pwr_brd_servo_2_amp , packet1.pwr_brd_servo_3_amp , packet1.pwr_brd_servo_4_amp , packet1.pwr_brd_aux_amp );
+    mavlink_msg_sens_power_board_pack(system_id, component_id, &msg , packet1.timestamp , packet1.pwr_brd_status , packet1.pwr_brd_led_status , packet1.pwr_brd_system_volt , packet1.pwr_brd_servo_volt , packet1.pwr_brd_digital_volt , packet1.pwr_brd_mot_l_amp , packet1.pwr_brd_mot_r_amp , packet1.pwr_brd_analog_amp , packet1.pwr_brd_digital_amp , packet1.pwr_brd_ext_amp , packet1.pwr_brd_aux_amp );
     mavlink_msg_sens_power_board_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_sens_power_board_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.timestamp , packet1.pwr_brd_status , packet1.pwr_brd_led_status , packet1.pwr_brd_system_volt , packet1.pwr_brd_servo_volt , packet1.pwr_brd_mot_l_amp , packet1.pwr_brd_mot_r_amp , packet1.pwr_brd_servo_1_amp , packet1.pwr_brd_servo_2_amp , packet1.pwr_brd_servo_3_amp , packet1.pwr_brd_servo_4_amp , packet1.pwr_brd_aux_amp );
+    mavlink_msg_sens_power_board_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.timestamp , packet1.pwr_brd_status , packet1.pwr_brd_led_status , packet1.pwr_brd_system_volt , packet1.pwr_brd_servo_volt , packet1.pwr_brd_digital_volt , packet1.pwr_brd_mot_l_amp , packet1.pwr_brd_mot_r_amp , packet1.pwr_brd_analog_amp , packet1.pwr_brd_digital_amp , packet1.pwr_brd_ext_amp , packet1.pwr_brd_aux_amp );
     mavlink_msg_sens_power_board_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -788,7 +788,7 @@ static void mavlink_test_sens_power_board(uint8_t system_id, uint8_t component_i
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_sens_power_board_send(MAVLINK_COMM_1 , packet1.timestamp , packet1.pwr_brd_status , packet1.pwr_brd_led_status , packet1.pwr_brd_system_volt , packet1.pwr_brd_servo_volt , packet1.pwr_brd_mot_l_amp , packet1.pwr_brd_mot_r_amp , packet1.pwr_brd_servo_1_amp , packet1.pwr_brd_servo_2_amp , packet1.pwr_brd_servo_3_amp , packet1.pwr_brd_servo_4_amp , packet1.pwr_brd_aux_amp );
+    mavlink_msg_sens_power_board_send(MAVLINK_COMM_1 , packet1.timestamp , packet1.pwr_brd_status , packet1.pwr_brd_led_status , packet1.pwr_brd_system_volt , packet1.pwr_brd_servo_volt , packet1.pwr_brd_digital_volt , packet1.pwr_brd_mot_l_amp , packet1.pwr_brd_mot_r_amp , packet1.pwr_brd_analog_amp , packet1.pwr_brd_digital_amp , packet1.pwr_brd_ext_amp , packet1.pwr_brd_aux_amp );
     mavlink_msg_sens_power_board_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
