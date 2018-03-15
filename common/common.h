@@ -99,7 +99,8 @@ typedef enum MAV_TYPE
    MAV_TYPE_PARAFOIL=28, /* Steerable, nonrigid airfoil | */
    MAV_TYPE_DODECAROTOR=29, /* Dodecarotor | */
    MAV_TYPE_CAMERA=30, /* Camera | */
-   MAV_TYPE_ENUM_END=31, /*  | */
+   MAV_TYPE_CHARGING_STATION=31, /* Charging station | */
+   MAV_TYPE_ENUM_END=32, /*  | */
 } MAV_TYPE;
 #endif
 
