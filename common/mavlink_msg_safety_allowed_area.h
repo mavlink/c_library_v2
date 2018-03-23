@@ -11,7 +11,7 @@ typedef struct __mavlink_safety_allowed_area_t {
  float p2x; /*< x position 2 / Latitude 2*/
  float p2y; /*< y position 2 / Longitude 2*/
  float p2z; /*< z position 2 / Altitude 2*/
- uint8_t frame; /*< Coordinate frame, as defined by MAV_FRAME enum in mavlink_types.h. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down.*/
+ uint8_t frame; /*< Coordinate frame, as defined by MAV_FRAME enum. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down.*/
 }) mavlink_safety_allowed_area_t;
 
 #define MAVLINK_MSG_ID_SAFETY_ALLOWED_AREA_LEN 25
@@ -59,7 +59,7 @@ typedef struct __mavlink_safety_allowed_area_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param frame Coordinate frame, as defined by MAV_FRAME enum in mavlink_types.h. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down.
+ * @param frame Coordinate frame, as defined by MAV_FRAME enum. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down.
  * @param p1x x position 1 / Latitude 1
  * @param p1y y position 1 / Longitude 1
  * @param p1z z position 1 / Altitude 1
@@ -105,7 +105,7 @@ static inline uint16_t mavlink_msg_safety_allowed_area_pack(uint8_t system_id, u
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param frame Coordinate frame, as defined by MAV_FRAME enum in mavlink_types.h. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down.
+ * @param frame Coordinate frame, as defined by MAV_FRAME enum. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down.
  * @param p1x x position 1 / Latitude 1
  * @param p1y y position 1 / Longitude 1
  * @param p1z z position 1 / Altitude 1
@@ -177,7 +177,7 @@ static inline uint16_t mavlink_msg_safety_allowed_area_encode_chan(uint8_t syste
  * @brief Send a safety_allowed_area message
  * @param chan MAVLink channel to send the message
  *
- * @param frame Coordinate frame, as defined by MAV_FRAME enum in mavlink_types.h. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down.
+ * @param frame Coordinate frame, as defined by MAV_FRAME enum. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down.
  * @param p1x x position 1 / Latitude 1
  * @param p1y y position 1 / Longitude 1
  * @param p1z z position 1 / Altitude 1
@@ -272,7 +272,7 @@ static inline void mavlink_msg_safety_allowed_area_send_buf(mavlink_message_t *m
 /**
  * @brief Get field frame from safety_allowed_area message
  *
- * @return Coordinate frame, as defined by MAV_FRAME enum in mavlink_types.h. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down.
+ * @return Coordinate frame, as defined by MAV_FRAME enum. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down.
  */
 static inline uint8_t mavlink_msg_safety_allowed_area_get_frame(const mavlink_message_t* msg)
 {

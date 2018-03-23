@@ -12,10 +12,10 @@ typedef struct __mavlink_command_int_t {
  int32_t x; /*< PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7*/
  int32_t y; /*< PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7*/
  float z; /*< PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.*/
- uint16_t command; /*< The scheduled action for the mission item. see MAV_CMD in common.xml MAVLink specs*/
+ uint16_t command; /*< The scheduled action for the mission item, as defined by MAV_CMD enum*/
  uint8_t target_system; /*< System ID*/
  uint8_t target_component; /*< Component ID*/
- uint8_t frame; /*< The coordinate system of the COMMAND. see MAV_FRAME in mavlink_types.h*/
+ uint8_t frame; /*< The coordinate system of the COMMAND, as defined by MAV_FRAME enum*/
  uint8_t current; /*< false:0, true:1*/
  uint8_t autocontinue; /*< autocontinue to next wp*/
 }) mavlink_command_int_t;
@@ -79,8 +79,8 @@ typedef struct __mavlink_command_int_t {
  *
  * @param target_system System ID
  * @param target_component Component ID
- * @param frame The coordinate system of the COMMAND. see MAV_FRAME in mavlink_types.h
- * @param command The scheduled action for the mission item. see MAV_CMD in common.xml MAVLink specs
+ * @param frame The coordinate system of the COMMAND, as defined by MAV_FRAME enum
+ * @param command The scheduled action for the mission item, as defined by MAV_CMD enum
  * @param current false:0, true:1
  * @param autocontinue autocontinue to next wp
  * @param param1 PARAM1, see MAV_CMD enum
@@ -143,8 +143,8 @@ static inline uint16_t mavlink_msg_command_int_pack(uint8_t system_id, uint8_t c
  * @param msg The MAVLink message to compress the data into
  * @param target_system System ID
  * @param target_component Component ID
- * @param frame The coordinate system of the COMMAND. see MAV_FRAME in mavlink_types.h
- * @param command The scheduled action for the mission item. see MAV_CMD in common.xml MAVLink specs
+ * @param frame The coordinate system of the COMMAND, as defined by MAV_FRAME enum
+ * @param command The scheduled action for the mission item, as defined by MAV_CMD enum
  * @param current false:0, true:1
  * @param autocontinue autocontinue to next wp
  * @param param1 PARAM1, see MAV_CMD enum
@@ -233,8 +233,8 @@ static inline uint16_t mavlink_msg_command_int_encode_chan(uint8_t system_id, ui
  *
  * @param target_system System ID
  * @param target_component Component ID
- * @param frame The coordinate system of the COMMAND. see MAV_FRAME in mavlink_types.h
- * @param command The scheduled action for the mission item. see MAV_CMD in common.xml MAVLink specs
+ * @param frame The coordinate system of the COMMAND, as defined by MAV_FRAME enum
+ * @param command The scheduled action for the mission item, as defined by MAV_CMD enum
  * @param current false:0, true:1
  * @param autocontinue autocontinue to next wp
  * @param param1 PARAM1, see MAV_CMD enum
@@ -376,7 +376,7 @@ static inline uint8_t mavlink_msg_command_int_get_target_component(const mavlink
 /**
  * @brief Get field frame from command_int message
  *
- * @return The coordinate system of the COMMAND. see MAV_FRAME in mavlink_types.h
+ * @return The coordinate system of the COMMAND, as defined by MAV_FRAME enum
  */
 static inline uint8_t mavlink_msg_command_int_get_frame(const mavlink_message_t* msg)
 {
@@ -386,7 +386,7 @@ static inline uint8_t mavlink_msg_command_int_get_frame(const mavlink_message_t*
 /**
  * @brief Get field command from command_int message
  *
- * @return The scheduled action for the mission item. see MAV_CMD in common.xml MAVLink specs
+ * @return The scheduled action for the mission item, as defined by MAV_CMD enum
  */
 static inline uint16_t mavlink_msg_command_int_get_command(const mavlink_message_t* msg)
 {

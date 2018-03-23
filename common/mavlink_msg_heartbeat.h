@@ -5,11 +5,11 @@
 
 MAVPACKED(
 typedef struct __mavlink_heartbeat_t {
- uint32_t custom_mode; /*< A bitfield for use for autopilot-specific flags.*/
+ uint32_t custom_mode; /*< A bitfield for use for autopilot-specific flags*/
  uint8_t type; /*< Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in MAV_TYPE ENUM)*/
  uint8_t autopilot; /*< Autopilot type / class. defined in MAV_AUTOPILOT ENUM*/
- uint8_t base_mode; /*< System mode bitfield, see MAV_MODE_FLAG ENUM in mavlink/include/mavlink_types.h*/
- uint8_t system_status; /*< System status flag, see MAV_STATE ENUM*/
+ uint8_t base_mode; /*< System mode bitfield, as defined by MAV_MODE_FLAG enum*/
+ uint8_t system_status; /*< System status flag, as defined by MAV_STATE enum*/
  uint8_t mavlink_version; /*< MAVLink version, not writable by user, gets added by protocol because of magic data type: uint8_t_mavlink_version*/
 }) mavlink_heartbeat_t;
 
@@ -58,9 +58,9 @@ typedef struct __mavlink_heartbeat_t {
  *
  * @param type Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in MAV_TYPE ENUM)
  * @param autopilot Autopilot type / class. defined in MAV_AUTOPILOT ENUM
- * @param base_mode System mode bitfield, see MAV_MODE_FLAG ENUM in mavlink/include/mavlink_types.h
- * @param custom_mode A bitfield for use for autopilot-specific flags.
- * @param system_status System status flag, see MAV_STATE ENUM
+ * @param base_mode System mode bitfield, as defined by MAV_MODE_FLAG enum
+ * @param custom_mode A bitfield for use for autopilot-specific flags
+ * @param system_status System status flag, as defined by MAV_STATE enum
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_heartbeat_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -100,9 +100,9 @@ static inline uint16_t mavlink_msg_heartbeat_pack(uint8_t system_id, uint8_t com
  * @param msg The MAVLink message to compress the data into
  * @param type Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in MAV_TYPE ENUM)
  * @param autopilot Autopilot type / class. defined in MAV_AUTOPILOT ENUM
- * @param base_mode System mode bitfield, see MAV_MODE_FLAG ENUM in mavlink/include/mavlink_types.h
- * @param custom_mode A bitfield for use for autopilot-specific flags.
- * @param system_status System status flag, see MAV_STATE ENUM
+ * @param base_mode System mode bitfield, as defined by MAV_MODE_FLAG enum
+ * @param custom_mode A bitfield for use for autopilot-specific flags
+ * @param system_status System status flag, as defined by MAV_STATE enum
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_heartbeat_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -168,9 +168,9 @@ static inline uint16_t mavlink_msg_heartbeat_encode_chan(uint8_t system_id, uint
  *
  * @param type Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in MAV_TYPE ENUM)
  * @param autopilot Autopilot type / class. defined in MAV_AUTOPILOT ENUM
- * @param base_mode System mode bitfield, see MAV_MODE_FLAG ENUM in mavlink/include/mavlink_types.h
- * @param custom_mode A bitfield for use for autopilot-specific flags.
- * @param system_status System status flag, see MAV_STATE ENUM
+ * @param base_mode System mode bitfield, as defined by MAV_MODE_FLAG enum
+ * @param custom_mode A bitfield for use for autopilot-specific flags
+ * @param system_status System status flag, as defined by MAV_STATE enum
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -275,7 +275,7 @@ static inline uint8_t mavlink_msg_heartbeat_get_autopilot(const mavlink_message_
 /**
  * @brief Get field base_mode from heartbeat message
  *
- * @return System mode bitfield, see MAV_MODE_FLAG ENUM in mavlink/include/mavlink_types.h
+ * @return System mode bitfield, as defined by MAV_MODE_FLAG enum
  */
 static inline uint8_t mavlink_msg_heartbeat_get_base_mode(const mavlink_message_t* msg)
 {
@@ -285,7 +285,7 @@ static inline uint8_t mavlink_msg_heartbeat_get_base_mode(const mavlink_message_
 /**
  * @brief Get field custom_mode from heartbeat message
  *
- * @return A bitfield for use for autopilot-specific flags.
+ * @return A bitfield for use for autopilot-specific flags
  */
 static inline uint32_t mavlink_msg_heartbeat_get_custom_mode(const mavlink_message_t* msg)
 {
@@ -295,7 +295,7 @@ static inline uint32_t mavlink_msg_heartbeat_get_custom_mode(const mavlink_messa
 /**
  * @brief Get field system_status from heartbeat message
  *
- * @return System status flag, see MAV_STATE ENUM
+ * @return System status flag, as defined by MAV_STATE enum
  */
 static inline uint8_t mavlink_msg_heartbeat_get_system_status(const mavlink_message_t* msg)
 {
