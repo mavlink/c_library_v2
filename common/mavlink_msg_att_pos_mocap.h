@@ -10,39 +10,43 @@ typedef struct __mavlink_att_pos_mocap_t {
  float x; /*< X position in meters (NED)*/
  float y; /*< Y position in meters (NED)*/
  float z; /*< Z position in meters (NED)*/
+ float covariance[21]; /*< Pose covariance matrix upper right triangular (first six entries are the first ROW, next five entries are the second ROW, etc.)*/
 }) mavlink_att_pos_mocap_t;
 
-#define MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN 36
+#define MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN 120
 #define MAVLINK_MSG_ID_ATT_POS_MOCAP_MIN_LEN 36
-#define MAVLINK_MSG_ID_138_LEN 36
+#define MAVLINK_MSG_ID_138_LEN 120
 #define MAVLINK_MSG_ID_138_MIN_LEN 36
 
 #define MAVLINK_MSG_ID_ATT_POS_MOCAP_CRC 109
 #define MAVLINK_MSG_ID_138_CRC 109
 
 #define MAVLINK_MSG_ATT_POS_MOCAP_FIELD_Q_LEN 4
+#define MAVLINK_MSG_ATT_POS_MOCAP_FIELD_COVARIANCE_LEN 21
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_ATT_POS_MOCAP { \
     138, \
     "ATT_POS_MOCAP", \
-    5, \
+    6, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_att_pos_mocap_t, time_usec) }, \
          { "q", NULL, MAVLINK_TYPE_FLOAT, 4, 8, offsetof(mavlink_att_pos_mocap_t, q) }, \
          { "x", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_att_pos_mocap_t, x) }, \
          { "y", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_att_pos_mocap_t, y) }, \
          { "z", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_att_pos_mocap_t, z) }, \
+         { "covariance", NULL, MAVLINK_TYPE_FLOAT, 21, 36, offsetof(mavlink_att_pos_mocap_t, covariance) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_ATT_POS_MOCAP { \
     "ATT_POS_MOCAP", \
-    5, \
+    6, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_att_pos_mocap_t, time_usec) }, \
          { "q", NULL, MAVLINK_TYPE_FLOAT, 4, 8, offsetof(mavlink_att_pos_mocap_t, q) }, \
          { "x", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_att_pos_mocap_t, x) }, \
          { "y", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_att_pos_mocap_t, y) }, \
          { "z", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_att_pos_mocap_t, z) }, \
+         { "covariance", NULL, MAVLINK_TYPE_FLOAT, 21, 36, offsetof(mavlink_att_pos_mocap_t, covariance) }, \
          } \
 }
 #endif
@@ -58,10 +62,11 @@ typedef struct __mavlink_att_pos_mocap_t {
  * @param x X position in meters (NED)
  * @param y Y position in meters (NED)
  * @param z Z position in meters (NED)
+ * @param covariance Pose covariance matrix upper right triangular (first six entries are the first ROW, next five entries are the second ROW, etc.)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_att_pos_mocap_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint64_t time_usec, const float *q, float x, float y, float z)
+                               uint64_t time_usec, const float *q, float x, float y, float z, const float *covariance)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN];
@@ -70,6 +75,7 @@ static inline uint16_t mavlink_msg_att_pos_mocap_pack(uint8_t system_id, uint8_t
     _mav_put_float(buf, 28, y);
     _mav_put_float(buf, 32, z);
     _mav_put_float_array(buf, 8, q, 4);
+    _mav_put_float_array(buf, 36, covariance, 21);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN);
 #else
     mavlink_att_pos_mocap_t packet;
@@ -78,6 +84,7 @@ static inline uint16_t mavlink_msg_att_pos_mocap_pack(uint8_t system_id, uint8_t
     packet.y = y;
     packet.z = z;
     mav_array_memcpy(packet.q, q, sizeof(float)*4);
+    mav_array_memcpy(packet.covariance, covariance, sizeof(float)*21);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN);
 #endif
 
@@ -96,11 +103,12 @@ static inline uint16_t mavlink_msg_att_pos_mocap_pack(uint8_t system_id, uint8_t
  * @param x X position in meters (NED)
  * @param y Y position in meters (NED)
  * @param z Z position in meters (NED)
+ * @param covariance Pose covariance matrix upper right triangular (first six entries are the first ROW, next five entries are the second ROW, etc.)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_att_pos_mocap_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint64_t time_usec,const float *q,float x,float y,float z)
+                                   uint64_t time_usec,const float *q,float x,float y,float z,const float *covariance)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN];
@@ -109,6 +117,7 @@ static inline uint16_t mavlink_msg_att_pos_mocap_pack_chan(uint8_t system_id, ui
     _mav_put_float(buf, 28, y);
     _mav_put_float(buf, 32, z);
     _mav_put_float_array(buf, 8, q, 4);
+    _mav_put_float_array(buf, 36, covariance, 21);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN);
 #else
     mavlink_att_pos_mocap_t packet;
@@ -117,6 +126,7 @@ static inline uint16_t mavlink_msg_att_pos_mocap_pack_chan(uint8_t system_id, ui
     packet.y = y;
     packet.z = z;
     mav_array_memcpy(packet.q, q, sizeof(float)*4);
+    mav_array_memcpy(packet.covariance, covariance, sizeof(float)*21);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN);
 #endif
 
@@ -134,7 +144,7 @@ static inline uint16_t mavlink_msg_att_pos_mocap_pack_chan(uint8_t system_id, ui
  */
 static inline uint16_t mavlink_msg_att_pos_mocap_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_att_pos_mocap_t* att_pos_mocap)
 {
-    return mavlink_msg_att_pos_mocap_pack(system_id, component_id, msg, att_pos_mocap->time_usec, att_pos_mocap->q, att_pos_mocap->x, att_pos_mocap->y, att_pos_mocap->z);
+    return mavlink_msg_att_pos_mocap_pack(system_id, component_id, msg, att_pos_mocap->time_usec, att_pos_mocap->q, att_pos_mocap->x, att_pos_mocap->y, att_pos_mocap->z, att_pos_mocap->covariance);
 }
 
 /**
@@ -148,7 +158,7 @@ static inline uint16_t mavlink_msg_att_pos_mocap_encode(uint8_t system_id, uint8
  */
 static inline uint16_t mavlink_msg_att_pos_mocap_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_att_pos_mocap_t* att_pos_mocap)
 {
-    return mavlink_msg_att_pos_mocap_pack_chan(system_id, component_id, chan, msg, att_pos_mocap->time_usec, att_pos_mocap->q, att_pos_mocap->x, att_pos_mocap->y, att_pos_mocap->z);
+    return mavlink_msg_att_pos_mocap_pack_chan(system_id, component_id, chan, msg, att_pos_mocap->time_usec, att_pos_mocap->q, att_pos_mocap->x, att_pos_mocap->y, att_pos_mocap->z, att_pos_mocap->covariance);
 }
 
 /**
@@ -160,10 +170,11 @@ static inline uint16_t mavlink_msg_att_pos_mocap_encode_chan(uint8_t system_id, 
  * @param x X position in meters (NED)
  * @param y Y position in meters (NED)
  * @param z Z position in meters (NED)
+ * @param covariance Pose covariance matrix upper right triangular (first six entries are the first ROW, next five entries are the second ROW, etc.)
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_att_pos_mocap_send(mavlink_channel_t chan, uint64_t time_usec, const float *q, float x, float y, float z)
+static inline void mavlink_msg_att_pos_mocap_send(mavlink_channel_t chan, uint64_t time_usec, const float *q, float x, float y, float z, const float *covariance)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN];
@@ -172,6 +183,7 @@ static inline void mavlink_msg_att_pos_mocap_send(mavlink_channel_t chan, uint64
     _mav_put_float(buf, 28, y);
     _mav_put_float(buf, 32, z);
     _mav_put_float_array(buf, 8, q, 4);
+    _mav_put_float_array(buf, 36, covariance, 21);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ATT_POS_MOCAP, buf, MAVLINK_MSG_ID_ATT_POS_MOCAP_MIN_LEN, MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN, MAVLINK_MSG_ID_ATT_POS_MOCAP_CRC);
 #else
     mavlink_att_pos_mocap_t packet;
@@ -180,6 +192,7 @@ static inline void mavlink_msg_att_pos_mocap_send(mavlink_channel_t chan, uint64
     packet.y = y;
     packet.z = z;
     mav_array_memcpy(packet.q, q, sizeof(float)*4);
+    mav_array_memcpy(packet.covariance, covariance, sizeof(float)*21);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ATT_POS_MOCAP, (const char *)&packet, MAVLINK_MSG_ID_ATT_POS_MOCAP_MIN_LEN, MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN, MAVLINK_MSG_ID_ATT_POS_MOCAP_CRC);
 #endif
 }
@@ -192,7 +205,7 @@ static inline void mavlink_msg_att_pos_mocap_send(mavlink_channel_t chan, uint64
 static inline void mavlink_msg_att_pos_mocap_send_struct(mavlink_channel_t chan, const mavlink_att_pos_mocap_t* att_pos_mocap)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_att_pos_mocap_send(chan, att_pos_mocap->time_usec, att_pos_mocap->q, att_pos_mocap->x, att_pos_mocap->y, att_pos_mocap->z);
+    mavlink_msg_att_pos_mocap_send(chan, att_pos_mocap->time_usec, att_pos_mocap->q, att_pos_mocap->x, att_pos_mocap->y, att_pos_mocap->z, att_pos_mocap->covariance);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ATT_POS_MOCAP, (const char *)att_pos_mocap, MAVLINK_MSG_ID_ATT_POS_MOCAP_MIN_LEN, MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN, MAVLINK_MSG_ID_ATT_POS_MOCAP_CRC);
 #endif
@@ -206,7 +219,7 @@ static inline void mavlink_msg_att_pos_mocap_send_struct(mavlink_channel_t chan,
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_att_pos_mocap_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, const float *q, float x, float y, float z)
+static inline void mavlink_msg_att_pos_mocap_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, const float *q, float x, float y, float z, const float *covariance)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -215,6 +228,7 @@ static inline void mavlink_msg_att_pos_mocap_send_buf(mavlink_message_t *msgbuf,
     _mav_put_float(buf, 28, y);
     _mav_put_float(buf, 32, z);
     _mav_put_float_array(buf, 8, q, 4);
+    _mav_put_float_array(buf, 36, covariance, 21);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ATT_POS_MOCAP, buf, MAVLINK_MSG_ID_ATT_POS_MOCAP_MIN_LEN, MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN, MAVLINK_MSG_ID_ATT_POS_MOCAP_CRC);
 #else
     mavlink_att_pos_mocap_t *packet = (mavlink_att_pos_mocap_t *)msgbuf;
@@ -223,6 +237,7 @@ static inline void mavlink_msg_att_pos_mocap_send_buf(mavlink_message_t *msgbuf,
     packet->y = y;
     packet->z = z;
     mav_array_memcpy(packet->q, q, sizeof(float)*4);
+    mav_array_memcpy(packet->covariance, covariance, sizeof(float)*21);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ATT_POS_MOCAP, (const char *)packet, MAVLINK_MSG_ID_ATT_POS_MOCAP_MIN_LEN, MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN, MAVLINK_MSG_ID_ATT_POS_MOCAP_CRC);
 #endif
 }
@@ -284,6 +299,16 @@ static inline float mavlink_msg_att_pos_mocap_get_z(const mavlink_message_t* msg
 }
 
 /**
+ * @brief Get field covariance from att_pos_mocap message
+ *
+ * @return Pose covariance matrix upper right triangular (first six entries are the first ROW, next five entries are the second ROW, etc.)
+ */
+static inline uint16_t mavlink_msg_att_pos_mocap_get_covariance(const mavlink_message_t* msg, float *covariance)
+{
+    return _MAV_RETURN_float_array(msg, covariance, 21,  36);
+}
+
+/**
  * @brief Decode a att_pos_mocap message into a struct
  *
  * @param msg The message to decode
@@ -297,6 +322,7 @@ static inline void mavlink_msg_att_pos_mocap_decode(const mavlink_message_t* msg
     att_pos_mocap->x = mavlink_msg_att_pos_mocap_get_x(msg);
     att_pos_mocap->y = mavlink_msg_att_pos_mocap_get_y(msg);
     att_pos_mocap->z = mavlink_msg_att_pos_mocap_get_z(msg);
+    mavlink_msg_att_pos_mocap_get_covariance(msg, att_pos_mocap->covariance);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN? msg->len : MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN;
         memset(att_pos_mocap, 0, MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN);
