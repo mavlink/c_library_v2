@@ -12,7 +12,7 @@ typedef struct __mavlink_global_position_int_t {
  int32_t relative_alt; /*< Altitude above ground in meters, expressed as * 1000 (millimeters)*/
  int16_t vx; /*< Ground X Speed (Latitude, positive north), expressed as m/s * 100*/
  int16_t vy; /*< Ground Y Speed (Longitude, positive east), expressed as m/s * 100*/
- int16_t vz; /*< Ground Z Speed (Altitude, positive up), expressed as m/s * 100*/
+ int16_t vz; /*< Ground Z Speed (Altitude, positive down), expressed as m/s * 100*/
  uint16_t hdg; /*< Vehicle heading (yaw angle) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX*/
 }) mavlink_global_position_int_t;
 
@@ -72,7 +72,7 @@ typedef struct __mavlink_global_position_int_t {
  * @param relative_alt Altitude above ground in meters, expressed as * 1000 (millimeters)
  * @param vx Ground X Speed (Latitude, positive north), expressed as m/s * 100
  * @param vy Ground Y Speed (Longitude, positive east), expressed as m/s * 100
- * @param vz Ground Z Speed (Altitude, positive up), expressed as m/s * 100
+ * @param vz Ground Z Speed (Altitude, positive down), expressed as m/s * 100
  * @param hdg Vehicle heading (yaw angle) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -124,7 +124,7 @@ static inline uint16_t mavlink_msg_global_position_int_pack(uint8_t system_id, u
  * @param relative_alt Altitude above ground in meters, expressed as * 1000 (millimeters)
  * @param vx Ground X Speed (Latitude, positive north), expressed as m/s * 100
  * @param vy Ground Y Speed (Longitude, positive east), expressed as m/s * 100
- * @param vz Ground Z Speed (Altitude, positive up), expressed as m/s * 100
+ * @param vz Ground Z Speed (Altitude, positive down), expressed as m/s * 100
  * @param hdg Vehicle heading (yaw angle) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -202,7 +202,7 @@ static inline uint16_t mavlink_msg_global_position_int_encode_chan(uint8_t syste
  * @param relative_alt Altitude above ground in meters, expressed as * 1000 (millimeters)
  * @param vx Ground X Speed (Latitude, positive north), expressed as m/s * 100
  * @param vy Ground Y Speed (Longitude, positive east), expressed as m/s * 100
- * @param vz Ground Z Speed (Altitude, positive up), expressed as m/s * 100
+ * @param vz Ground Z Speed (Altitude, positive down), expressed as m/s * 100
  * @param hdg Vehicle heading (yaw angle) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -370,7 +370,7 @@ static inline int16_t mavlink_msg_global_position_int_get_vy(const mavlink_messa
 /**
  * @brief Get field vz from global_position_int message
  *
- * @return Ground Z Speed (Altitude, positive up), expressed as m/s * 100
+ * @return Ground Z Speed (Altitude, positive down), expressed as m/s * 100
  */
 static inline int16_t mavlink_msg_global_position_int_get_vz(const mavlink_message_t* msg)
 {
