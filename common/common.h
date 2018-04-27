@@ -100,7 +100,8 @@ typedef enum MAV_TYPE
    MAV_TYPE_DODECAROTOR=29, /* Dodecarotor | */
    MAV_TYPE_CAMERA=30, /* Camera | */
    MAV_TYPE_CHARGING_STATION=31, /* Charging station | */
-   MAV_TYPE_ENUM_END=32, /*  | */
+   MAV_TYPE_FLARM=32, /* Onboard FLARM collision avoidance system | */
+   MAV_TYPE_ENUM_END=33, /*  | */
 } MAV_TYPE;
 #endif
 
@@ -260,6 +261,7 @@ typedef enum MAV_COMPONENT
    MAV_COMP_ID_OSD=157, /* On Screen Display (OSD) devices for video links | */
    MAV_COMP_ID_PERIPHERAL=158, /* Generic autopilot peripheral component ID. Meant for devices that do not implement the parameter sub-protocol | */
    MAV_COMP_ID_QX1_GIMBAL=159, /*  | */
+   MAV_COMP_ID_FLARM=160, /*  | */
    MAV_COMP_ID_MAPPER=180, /*  | */
    MAV_COMP_ID_MISSIONPLANNER=190, /*  | */
    MAV_COMP_ID_PATHPLANNER=195, /*  | */
