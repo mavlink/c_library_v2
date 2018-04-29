@@ -1243,13 +1243,13 @@ typedef enum RC_TYPE
 } RC_TYPE;
 #endif
 
-/** @brief Enumeration of possible waypoint/trajectory representation */
+/** @brief WORK IN PROGRESS! DO NOT DEPLOY! Enumeration of possible waypoint/trajectory representation */
 #ifndef HAVE_ENUM_MAV_TRAJECTORY_REPRESENTATION
 #define HAVE_ENUM_MAV_TRAJECTORY_REPRESENTATION
 typedef enum MAV_TRAJECTORY_REPRESENTATION
 {
    MAV_TRAJECTORY_REPRESENTATION_WAYPOINTS=0, /* Array of waypoints with the following order |X-coordinate of waypoint [m], set to NaN if not being used| Y-coordinate of waypoint [m], set to NaN if not being used| Z-coordinate of waypoint [m], set to NaN if not being used| X-velocity of waypoint [m/s], set to NaN if not being used| Y-velocity of waypoint [m/s], set to NaN if not being used| Z-velocity of waypoint [m/s], set to NaN if not being used| X-acceleration of waypoint [m/s/s], set to NaN if not being used| Y-acceleration of waypoint [m/s/s], set to NaN if not being used| Z-acceleration of waypoint [m/s/s], set to NaN if not being used| Yaw [rad], set to NaN for unchanged| Yaw-rate [rad/s], set to NaN for unchanged|  */
-   MAV_TRAJECTORY_REPRESENTATION_BEZIER=1, /* Array of bezier points with the following order |X-coordinate of starting bezier point [m], set to NaN if not being used| Y-coordinate of starting bezier point [m], set to NaN if not being used| Z-coordinate of starting bezier point [m], set to NaN if not being used| Bezier time horizon [s], set to NaN if velocity/acceleration should not be incorporated| Yaw [rad], set to NaN for unchanged|  */
+   MAV_TRAJECTORY_REPRESENTATION_BEZIER=1, /* WORK IN PROGRESS! DO NOT DEPLOY! Array of bezier points with the following order |X-coordinate of starting bezier point [m], set to NaN if not being used| Y-coordinate of starting bezier point [m], set to NaN if not being used| Z-coordinate of starting bezier point [m], set to NaN if not being used| Bezier time horizon [s], set to NaN if velocity/acceleration should not be incorporated| Yaw [rad], set to NaN for unchanged|  */
    MAV_TRAJECTORY_REPRESENTATION_ENUM_END=2, /*  | */
 } MAV_TRAJECTORY_REPRESENTATION;
 #endif
