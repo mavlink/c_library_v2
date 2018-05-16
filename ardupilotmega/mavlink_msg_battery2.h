@@ -6,7 +6,7 @@
 MAVPACKED(
 typedef struct __mavlink_battery2_t {
  uint16_t voltage; /*< voltage in millivolts*/
- int16_t current_battery; /*< Battery current, in 10*milliamperes (1 = 10 milliampere), -1: autopilot does not measure the current*/
+ int16_t current_battery; /*< Battery current, in centiamperes (1 = 10 milliampere), -1: autopilot does not measure the current*/
 }) mavlink_battery2_t;
 
 #define MAVLINK_MSG_ID_BATTERY2_LEN 4
@@ -45,7 +45,7 @@ typedef struct __mavlink_battery2_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param voltage voltage in millivolts
- * @param current_battery Battery current, in 10*milliamperes (1 = 10 milliampere), -1: autopilot does not measure the current
+ * @param current_battery Battery current, in centiamperes (1 = 10 milliampere), -1: autopilot does not measure the current
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_battery2_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -76,7 +76,7 @@ static inline uint16_t mavlink_msg_battery2_pack(uint8_t system_id, uint8_t comp
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param voltage voltage in millivolts
- * @param current_battery Battery current, in 10*milliamperes (1 = 10 milliampere), -1: autopilot does not measure the current
+ * @param current_battery Battery current, in centiamperes (1 = 10 milliampere), -1: autopilot does not measure the current
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_battery2_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -133,7 +133,7 @@ static inline uint16_t mavlink_msg_battery2_encode_chan(uint8_t system_id, uint8
  * @param chan MAVLink channel to send the message
  *
  * @param voltage voltage in millivolts
- * @param current_battery Battery current, in 10*milliamperes (1 = 10 milliampere), -1: autopilot does not measure the current
+ * @param current_battery Battery current, in centiamperes (1 = 10 milliampere), -1: autopilot does not measure the current
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -212,7 +212,7 @@ static inline uint16_t mavlink_msg_battery2_get_voltage(const mavlink_message_t*
 /**
  * @brief Get field current_battery from battery2 message
  *
- * @return Battery current, in 10*milliamperes (1 = 10 milliampere), -1: autopilot does not measure the current
+ * @return Battery current, in centiamperes (1 = 10 milliampere), -1: autopilot does not measure the current
  */
 static inline int16_t mavlink_msg_battery2_get_current_battery(const mavlink_message_t* msg)
 {
