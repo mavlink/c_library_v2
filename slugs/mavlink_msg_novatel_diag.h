@@ -6,7 +6,7 @@
 MAVPACKED(
 typedef struct __mavlink_novatel_diag_t {
  uint32_t receiverStatus; /*< Status Bitfield. See table 69 page 350 Novatel OEMstar Manual*/
- float posSolAge; /*< Age of the position solution in seconds*/
+ float posSolAge; /*< Age of the position solution*/
  uint16_t csFails; /*< Times the CRC has failed since boot*/
  uint8_t timeStatus; /*< The Time Status. See Table 8 page 27 Novatel OEMStar Manual*/
  uint8_t solStatus; /*< solution Status. See table 44 page 197*/
@@ -64,7 +64,7 @@ typedef struct __mavlink_novatel_diag_t {
  * @param solStatus solution Status. See table 44 page 197
  * @param posType position type. See table 43 page 196
  * @param velType velocity type. See table 43 page 196
- * @param posSolAge Age of the position solution in seconds
+ * @param posSolAge Age of the position solution
  * @param csFails Times the CRC has failed since boot
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -110,7 +110,7 @@ static inline uint16_t mavlink_msg_novatel_diag_pack(uint8_t system_id, uint8_t 
  * @param solStatus solution Status. See table 44 page 197
  * @param posType position type. See table 43 page 196
  * @param velType velocity type. See table 43 page 196
- * @param posSolAge Age of the position solution in seconds
+ * @param posSolAge Age of the position solution
  * @param csFails Times the CRC has failed since boot
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -182,7 +182,7 @@ static inline uint16_t mavlink_msg_novatel_diag_encode_chan(uint8_t system_id, u
  * @param solStatus solution Status. See table 44 page 197
  * @param posType position type. See table 43 page 196
  * @param velType velocity type. See table 43 page 196
- * @param posSolAge Age of the position solution in seconds
+ * @param posSolAge Age of the position solution
  * @param csFails Times the CRC has failed since boot
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -322,7 +322,7 @@ static inline uint8_t mavlink_msg_novatel_diag_get_velType(const mavlink_message
 /**
  * @brief Get field posSolAge from novatel_diag message
  *
- * @return Age of the position solution in seconds
+ * @return Age of the position solution
  */
 static inline float mavlink_msg_novatel_diag_get_posSolAge(const mavlink_message_t* msg)
 {
