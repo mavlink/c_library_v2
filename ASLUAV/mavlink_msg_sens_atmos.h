@@ -5,8 +5,8 @@
 
 MAVPACKED(
 typedef struct __mavlink_sens_atmos_t {
- float TempAmbient; /*<  Ambient temperature [degrees Celsius]*/
- float Humidity; /*<  Relative humidity [%]*/
+ float TempAmbient; /*<  Ambient temperature*/
+ float Humidity; /*<  Relative humidity*/
 }) mavlink_sens_atmos_t;
 
 #define MAVLINK_MSG_ID_SENS_ATMOS_LEN 8
@@ -44,8 +44,8 @@ typedef struct __mavlink_sens_atmos_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param TempAmbient  Ambient temperature [degrees Celsius]
- * @param Humidity  Relative humidity [%]
+ * @param TempAmbient  Ambient temperature
+ * @param Humidity  Relative humidity
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_sens_atmos_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -75,8 +75,8 @@ static inline uint16_t mavlink_msg_sens_atmos_pack(uint8_t system_id, uint8_t co
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param TempAmbient  Ambient temperature [degrees Celsius]
- * @param Humidity  Relative humidity [%]
+ * @param TempAmbient  Ambient temperature
+ * @param Humidity  Relative humidity
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_sens_atmos_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -132,8 +132,8 @@ static inline uint16_t mavlink_msg_sens_atmos_encode_chan(uint8_t system_id, uin
  * @brief Send a sens_atmos message
  * @param chan MAVLink channel to send the message
  *
- * @param TempAmbient  Ambient temperature [degrees Celsius]
- * @param Humidity  Relative humidity [%]
+ * @param TempAmbient  Ambient temperature
+ * @param Humidity  Relative humidity
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -202,7 +202,7 @@ static inline void mavlink_msg_sens_atmos_send_buf(mavlink_message_t *msgbuf, ma
 /**
  * @brief Get field TempAmbient from sens_atmos message
  *
- * @return  Ambient temperature [degrees Celsius]
+ * @return  Ambient temperature
  */
 static inline float mavlink_msg_sens_atmos_get_TempAmbient(const mavlink_message_t* msg)
 {
@@ -212,7 +212,7 @@ static inline float mavlink_msg_sens_atmos_get_TempAmbient(const mavlink_message
 /**
  * @brief Get field Humidity from sens_atmos message
  *
- * @return  Relative humidity [%]
+ * @return  Relative humidity
  */
 static inline float mavlink_msg_sens_atmos_get_Humidity(const mavlink_message_t* msg)
 {

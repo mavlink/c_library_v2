@@ -5,7 +5,7 @@
 
 MAVPACKED(
 typedef struct __mavlink_asl_obctrl_t {
- uint64_t timestamp; /*<  Time since system start [us]*/
+ uint64_t timestamp; /*<  Time since system start*/
  float uElev; /*<  Elevator command [~]*/
  float uThrot; /*<  Throttle command [~]*/
  float uThrot2; /*<  Throttle 2 command [~]*/
@@ -62,7 +62,7 @@ typedef struct __mavlink_asl_obctrl_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param timestamp  Time since system start [us]
+ * @param timestamp  Time since system start
  * @param uElev  Elevator command [~]
  * @param uThrot  Throttle command [~]
  * @param uThrot2  Throttle 2 command [~]
@@ -111,7 +111,7 @@ static inline uint16_t mavlink_msg_asl_obctrl_pack(uint8_t system_id, uint8_t co
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param timestamp  Time since system start [us]
+ * @param timestamp  Time since system start
  * @param uElev  Elevator command [~]
  * @param uThrot  Throttle command [~]
  * @param uThrot2  Throttle 2 command [~]
@@ -186,7 +186,7 @@ static inline uint16_t mavlink_msg_asl_obctrl_encode_chan(uint8_t system_id, uin
  * @brief Send a asl_obctrl message
  * @param chan MAVLink channel to send the message
  *
- * @param timestamp  Time since system start [us]
+ * @param timestamp  Time since system start
  * @param uElev  Elevator command [~]
  * @param uThrot  Throttle command [~]
  * @param uThrot2  Throttle 2 command [~]
@@ -286,7 +286,7 @@ static inline void mavlink_msg_asl_obctrl_send_buf(mavlink_message_t *msgbuf, ma
 /**
  * @brief Get field timestamp from asl_obctrl message
  *
- * @return  Time since system start [us]
+ * @return  Time since system start
  */
 static inline uint64_t mavlink_msg_asl_obctrl_get_timestamp(const mavlink_message_t* msg)
 {

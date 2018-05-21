@@ -5,14 +5,14 @@
 
 MAVPACKED(
 typedef struct __mavlink_sensorpod_status_t {
- uint64_t timestamp; /*< Timestamp in linuxtime [ms] (since 1.1.1970)*/
+ uint64_t timestamp; /*< Timestamp in linuxtime (since 1.1.1970)*/
  uint16_t free_space; /*< Free space available in recordings directory in [Gb] * 1e2*/
  uint8_t visensor_rate_1; /*< Rate of ROS topic 1*/
  uint8_t visensor_rate_2; /*< Rate of ROS topic 2*/
  uint8_t visensor_rate_3; /*< Rate of ROS topic 3*/
  uint8_t visensor_rate_4; /*< Rate of ROS topic 4*/
  uint8_t recording_nodes_count; /*< Number of recording nodes*/
- uint8_t cpu_temp; /*< Temperature of sensorpod CPU in [deg C]*/
+ uint8_t cpu_temp; /*< Temperature of sensorpod CPU in*/
 }) mavlink_sensorpod_status_t;
 
 #define MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN 16
@@ -62,13 +62,13 @@ typedef struct __mavlink_sensorpod_status_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param timestamp Timestamp in linuxtime [ms] (since 1.1.1970)
+ * @param timestamp Timestamp in linuxtime (since 1.1.1970)
  * @param visensor_rate_1 Rate of ROS topic 1
  * @param visensor_rate_2 Rate of ROS topic 2
  * @param visensor_rate_3 Rate of ROS topic 3
  * @param visensor_rate_4 Rate of ROS topic 4
  * @param recording_nodes_count Number of recording nodes
- * @param cpu_temp Temperature of sensorpod CPU in [deg C]
+ * @param cpu_temp Temperature of sensorpod CPU in
  * @param free_space Free space available in recordings directory in [Gb] * 1e2
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -111,13 +111,13 @@ static inline uint16_t mavlink_msg_sensorpod_status_pack(uint8_t system_id, uint
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param timestamp Timestamp in linuxtime [ms] (since 1.1.1970)
+ * @param timestamp Timestamp in linuxtime (since 1.1.1970)
  * @param visensor_rate_1 Rate of ROS topic 1
  * @param visensor_rate_2 Rate of ROS topic 2
  * @param visensor_rate_3 Rate of ROS topic 3
  * @param visensor_rate_4 Rate of ROS topic 4
  * @param recording_nodes_count Number of recording nodes
- * @param cpu_temp Temperature of sensorpod CPU in [deg C]
+ * @param cpu_temp Temperature of sensorpod CPU in
  * @param free_space Free space available in recordings directory in [Gb] * 1e2
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -186,13 +186,13 @@ static inline uint16_t mavlink_msg_sensorpod_status_encode_chan(uint8_t system_i
  * @brief Send a sensorpod_status message
  * @param chan MAVLink channel to send the message
  *
- * @param timestamp Timestamp in linuxtime [ms] (since 1.1.1970)
+ * @param timestamp Timestamp in linuxtime (since 1.1.1970)
  * @param visensor_rate_1 Rate of ROS topic 1
  * @param visensor_rate_2 Rate of ROS topic 2
  * @param visensor_rate_3 Rate of ROS topic 3
  * @param visensor_rate_4 Rate of ROS topic 4
  * @param recording_nodes_count Number of recording nodes
- * @param cpu_temp Temperature of sensorpod CPU in [deg C]
+ * @param cpu_temp Temperature of sensorpod CPU in
  * @param free_space Free space available in recordings directory in [Gb] * 1e2
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -286,7 +286,7 @@ static inline void mavlink_msg_sensorpod_status_send_buf(mavlink_message_t *msgb
 /**
  * @brief Get field timestamp from sensorpod_status message
  *
- * @return Timestamp in linuxtime [ms] (since 1.1.1970)
+ * @return Timestamp in linuxtime (since 1.1.1970)
  */
 static inline uint64_t mavlink_msg_sensorpod_status_get_timestamp(const mavlink_message_t* msg)
 {
@@ -346,7 +346,7 @@ static inline uint8_t mavlink_msg_sensorpod_status_get_recording_nodes_count(con
 /**
  * @brief Get field cpu_temp from sensorpod_status message
  *
- * @return Temperature of sensorpod CPU in [deg C]
+ * @return Temperature of sensorpod CPU in
  */
 static inline uint8_t mavlink_msg_sensorpod_status_get_cpu_temp(const mavlink_message_t* msg)
 {

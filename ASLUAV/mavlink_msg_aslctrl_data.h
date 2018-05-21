@@ -9,19 +9,19 @@ typedef struct __mavlink_aslctrl_data_t {
  float h; /*<  See sourcecode for a description of these values... */
  float hRef; /*<  */
  float hRef_t; /*<  */
- float PitchAngle; /*< Pitch angle [deg]*/
- float PitchAngleRef; /*< Pitch angle reference[deg] */
+ float PitchAngle; /*< Pitch angle*/
+ float PitchAngleRef; /*< Pitch angle reference*/
  float q; /*<  */
  float qRef; /*<  */
  float uElev; /*<  */
  float uThrot; /*<  */
  float uThrot2; /*<  */
  float nZ; /*<  */
- float AirspeedRef; /*< Airspeed reference [m/s]*/
- float YawAngle; /*< Yaw angle [deg]*/
- float YawAngleRef; /*< Yaw angle reference[deg]*/
- float RollAngle; /*< Roll angle [deg]*/
- float RollAngleRef; /*< Roll angle reference[deg]*/
+ float AirspeedRef; /*< Airspeed reference*/
+ float YawAngle; /*< Yaw angle*/
+ float YawAngleRef; /*< Yaw angle reference*/
+ float RollAngle; /*< Roll angle*/
+ float RollAngleRef; /*< Roll angle reference*/
  float p; /*<  */
  float pRef; /*<  */
  float r; /*<  */
@@ -118,20 +118,20 @@ typedef struct __mavlink_aslctrl_data_t {
  * @param h  See sourcecode for a description of these values... 
  * @param hRef  
  * @param hRef_t  
- * @param PitchAngle Pitch angle [deg]
- * @param PitchAngleRef Pitch angle reference[deg] 
+ * @param PitchAngle Pitch angle
+ * @param PitchAngleRef Pitch angle reference
  * @param q  
  * @param qRef  
  * @param uElev  
  * @param uThrot  
  * @param uThrot2  
  * @param nZ  
- * @param AirspeedRef Airspeed reference [m/s]
+ * @param AirspeedRef Airspeed reference
  * @param SpoilersEngaged  
- * @param YawAngle Yaw angle [deg]
- * @param YawAngleRef Yaw angle reference[deg]
- * @param RollAngle Roll angle [deg]
- * @param RollAngleRef Roll angle reference[deg]
+ * @param YawAngle Yaw angle
+ * @param YawAngleRef Yaw angle reference
+ * @param RollAngle Roll angle
+ * @param RollAngleRef Roll angle reference
  * @param p  
  * @param pRef  
  * @param r  
@@ -218,20 +218,20 @@ static inline uint16_t mavlink_msg_aslctrl_data_pack(uint8_t system_id, uint8_t 
  * @param h  See sourcecode for a description of these values... 
  * @param hRef  
  * @param hRef_t  
- * @param PitchAngle Pitch angle [deg]
- * @param PitchAngleRef Pitch angle reference[deg] 
+ * @param PitchAngle Pitch angle
+ * @param PitchAngleRef Pitch angle reference
  * @param q  
  * @param qRef  
  * @param uElev  
  * @param uThrot  
  * @param uThrot2  
  * @param nZ  
- * @param AirspeedRef Airspeed reference [m/s]
+ * @param AirspeedRef Airspeed reference
  * @param SpoilersEngaged  
- * @param YawAngle Yaw angle [deg]
- * @param YawAngleRef Yaw angle reference[deg]
- * @param RollAngle Roll angle [deg]
- * @param RollAngleRef Roll angle reference[deg]
+ * @param YawAngle Yaw angle
+ * @param YawAngleRef Yaw angle reference
+ * @param RollAngle Roll angle
+ * @param RollAngleRef Roll angle reference
  * @param p  
  * @param pRef  
  * @param r  
@@ -344,20 +344,20 @@ static inline uint16_t mavlink_msg_aslctrl_data_encode_chan(uint8_t system_id, u
  * @param h  See sourcecode for a description of these values... 
  * @param hRef  
  * @param hRef_t  
- * @param PitchAngle Pitch angle [deg]
- * @param PitchAngleRef Pitch angle reference[deg] 
+ * @param PitchAngle Pitch angle
+ * @param PitchAngleRef Pitch angle reference
  * @param q  
  * @param qRef  
  * @param uElev  
  * @param uThrot  
  * @param uThrot2  
  * @param nZ  
- * @param AirspeedRef Airspeed reference [m/s]
+ * @param AirspeedRef Airspeed reference
  * @param SpoilersEngaged  
- * @param YawAngle Yaw angle [deg]
- * @param YawAngleRef Yaw angle reference[deg]
- * @param RollAngle Roll angle [deg]
- * @param RollAngleRef Roll angle reference[deg]
+ * @param YawAngle Yaw angle
+ * @param YawAngleRef Yaw angle reference
+ * @param RollAngle Roll angle
+ * @param RollAngleRef Roll angle reference
  * @param p  
  * @param pRef  
  * @param r  
@@ -574,7 +574,7 @@ static inline float mavlink_msg_aslctrl_data_get_hRef_t(const mavlink_message_t*
 /**
  * @brief Get field PitchAngle from aslctrl_data message
  *
- * @return Pitch angle [deg]
+ * @return Pitch angle
  */
 static inline float mavlink_msg_aslctrl_data_get_PitchAngle(const mavlink_message_t* msg)
 {
@@ -584,7 +584,7 @@ static inline float mavlink_msg_aslctrl_data_get_PitchAngle(const mavlink_messag
 /**
  * @brief Get field PitchAngleRef from aslctrl_data message
  *
- * @return Pitch angle reference[deg] 
+ * @return Pitch angle reference
  */
 static inline float mavlink_msg_aslctrl_data_get_PitchAngleRef(const mavlink_message_t* msg)
 {
@@ -654,7 +654,7 @@ static inline float mavlink_msg_aslctrl_data_get_nZ(const mavlink_message_t* msg
 /**
  * @brief Get field AirspeedRef from aslctrl_data message
  *
- * @return Airspeed reference [m/s]
+ * @return Airspeed reference
  */
 static inline float mavlink_msg_aslctrl_data_get_AirspeedRef(const mavlink_message_t* msg)
 {
@@ -674,7 +674,7 @@ static inline uint8_t mavlink_msg_aslctrl_data_get_SpoilersEngaged(const mavlink
 /**
  * @brief Get field YawAngle from aslctrl_data message
  *
- * @return Yaw angle [deg]
+ * @return Yaw angle
  */
 static inline float mavlink_msg_aslctrl_data_get_YawAngle(const mavlink_message_t* msg)
 {
@@ -684,7 +684,7 @@ static inline float mavlink_msg_aslctrl_data_get_YawAngle(const mavlink_message_
 /**
  * @brief Get field YawAngleRef from aslctrl_data message
  *
- * @return Yaw angle reference[deg]
+ * @return Yaw angle reference
  */
 static inline float mavlink_msg_aslctrl_data_get_YawAngleRef(const mavlink_message_t* msg)
 {
@@ -694,7 +694,7 @@ static inline float mavlink_msg_aslctrl_data_get_YawAngleRef(const mavlink_messa
 /**
  * @brief Get field RollAngle from aslctrl_data message
  *
- * @return Roll angle [deg]
+ * @return Roll angle
  */
 static inline float mavlink_msg_aslctrl_data_get_RollAngle(const mavlink_message_t* msg)
 {
@@ -704,7 +704,7 @@ static inline float mavlink_msg_aslctrl_data_get_RollAngle(const mavlink_message
 /**
  * @brief Get field RollAngleRef from aslctrl_data message
  *
- * @return Roll angle reference[deg]
+ * @return Roll angle reference
  */
 static inline float mavlink_msg_aslctrl_data_get_RollAngleRef(const mavlink_message_t* msg)
 {

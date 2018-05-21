@@ -10,7 +10,7 @@ typedef struct __mavlink_sens_mppt_t {
  float mppt1_amp; /*<  MPPT1 current */
  float mppt2_volt; /*<  MPPT2 voltage */
  float mppt2_amp; /*<  MPPT2 current */
- float mppt3_volt; /*<  MPPT3 voltage */
+ float mppt3_volt; /*< MPPT3 voltage */
  float mppt3_amp; /*<  MPPT3 current */
  uint16_t mppt1_pwm; /*<  MPPT1 pwm */
  uint16_t mppt2_pwm; /*<  MPPT2 pwm */
@@ -86,7 +86,7 @@ typedef struct __mavlink_sens_mppt_t {
  * @param mppt2_amp  MPPT2 current 
  * @param mppt2_pwm  MPPT2 pwm 
  * @param mppt2_status  MPPT2 status 
- * @param mppt3_volt  MPPT3 voltage 
+ * @param mppt3_volt MPPT3 voltage 
  * @param mppt3_amp  MPPT3 current 
  * @param mppt3_pwm  MPPT3 pwm 
  * @param mppt3_status  MPPT3 status 
@@ -150,7 +150,7 @@ static inline uint16_t mavlink_msg_sens_mppt_pack(uint8_t system_id, uint8_t com
  * @param mppt2_amp  MPPT2 current 
  * @param mppt2_pwm  MPPT2 pwm 
  * @param mppt2_status  MPPT2 status 
- * @param mppt3_volt  MPPT3 voltage 
+ * @param mppt3_volt MPPT3 voltage 
  * @param mppt3_amp  MPPT3 current 
  * @param mppt3_pwm  MPPT3 pwm 
  * @param mppt3_status  MPPT3 status 
@@ -240,7 +240,7 @@ static inline uint16_t mavlink_msg_sens_mppt_encode_chan(uint8_t system_id, uint
  * @param mppt2_amp  MPPT2 current 
  * @param mppt2_pwm  MPPT2 pwm 
  * @param mppt2_status  MPPT2 status 
- * @param mppt3_volt  MPPT3 voltage 
+ * @param mppt3_volt MPPT3 voltage 
  * @param mppt3_amp  MPPT3 current 
  * @param mppt3_pwm  MPPT3 pwm 
  * @param mppt3_status  MPPT3 status 
@@ -446,7 +446,7 @@ static inline uint8_t mavlink_msg_sens_mppt_get_mppt2_status(const mavlink_messa
 /**
  * @brief Get field mppt3_volt from sens_mppt message
  *
- * @return  MPPT3 voltage 
+ * @return MPPT3 voltage 
  */
 static inline float mavlink_msg_sens_mppt_get_mppt3_volt(const mavlink_message_t* msg)
 {
