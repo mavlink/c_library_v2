@@ -5,7 +5,7 @@
   modifications to suit mavlink headers
  */
 /*
- * Copyright (c) 1995 - 2001 Kungliga Tekniska Högskolan
+ * Copyright (c) 1995 - 2001 Kungliga Tekniska Hï¿½gskolan
  * (Royal Institute of Technology, Stockholm, Sweden).
  * All rights reserved.
  * 
@@ -78,7 +78,9 @@ typedef struct {
 #define G m->counter[6]
 #define H m->counter[7]
 
-static const uint32_t mavlink_sha256_constant_256[64] = {
+extern const uint32_t mavlink_sha256_constant_256[64];
+#if defined(MAVLINK_LIB_IMPLEMENT)
+const uint32_t mavlink_sha256_constant_256[64] = {
     0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5,
     0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
     0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3,
@@ -96,8 +98,11 @@ static const uint32_t mavlink_sha256_constant_256[64] = {
     0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208,
     0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
 };
+#endif
 
-MAVLINK_HELPER void mavlink_sha256_init(mavlink_sha256_ctx *m)
+extern void mavlink_sha256_init(mavlink_sha256_ctx *m);
+#if defined(MAVLINK_LIB_IMPLEMENT)
+void mavlink_sha256_init(mavlink_sha256_ctx *m)
 {
     m->sz[0] = 0;
     m->sz[1] = 0;
@@ -110,8 +115,11 @@ MAVLINK_HELPER void mavlink_sha256_init(mavlink_sha256_ctx *m)
     G = 0x1f83d9ab;
     H = 0x5be0cd19;
 }
+#endif
 
-static inline void mavlink_sha256_calc(mavlink_sha256_ctx *m, uint32_t *in)
+extern void mavlink_sha256_calc(mavlink_sha256_ctx *m, uint32_t *in);
+#if defined(MAVLINK_LIB_IMPLEMENT)
+void mavlink_sha256_calc(mavlink_sha256_ctx *m, uint32_t *in)
 {
     uint32_t AA, BB, CC, DD, EE, FF, GG, HH;
     uint32_t data[64];
@@ -157,8 +165,11 @@ static inline void mavlink_sha256_calc(mavlink_sha256_ctx *m, uint32_t *in)
     G += GG;
     H += HH;
 }
+#endif
 
-MAVLINK_HELPER void mavlink_sha256_update(mavlink_sha256_ctx *m, const void *v, uint32_t len)
+extern void mavlink_sha256_update(mavlink_sha256_ctx *m, const void *v, uint32_t len);
+#if defined(MAVLINK_LIB_IMPLEMENT)
+void mavlink_sha256_update(mavlink_sha256_ctx *m, const void *v, uint32_t len)
 {
     const unsigned char *p = (const unsigned char *)v;
     uint32_t old_sz = m->sz[0];
@@ -194,11 +205,14 @@ MAVLINK_HELPER void mavlink_sha256_update(mavlink_sha256_ctx *m, const void *v, 
 	}
     }
 }
+#endif
 
 /*
   get first 48 bits of final sha256 hash
  */
-MAVLINK_HELPER void mavlink_sha256_final_48(mavlink_sha256_ctx *m, uint8_t result[6])
+extern void mavlink_sha256_final_48(mavlink_sha256_ctx *m, uint8_t result[6]);
+#if defined(MAVLINK_LIB_IMPLEMENT)
+void mavlink_sha256_final_48(mavlink_sha256_ctx *m, uint8_t result[6])
 {
     unsigned char zeros[72];
     unsigned offset = (m->sz[0] / 8) % 64;
@@ -228,6 +242,7 @@ MAVLINK_HELPER void mavlink_sha256_final_48(mavlink_sha256_ctx *m, uint8_t resul
     result[4] = p[7];
     result[5] = p[6];
 }
+#endif
 
 // prevent conflicts with users of the header
 #undef A
