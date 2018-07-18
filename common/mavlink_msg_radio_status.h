@@ -9,7 +9,7 @@ typedef struct __mavlink_radio_status_t {
  uint16_t fixed; /*< Count of error corrected packets*/
  uint8_t rssi; /*< Local signal strength*/
  uint8_t remrssi; /*< Remote signal strength*/
- uint8_t txbuf; /*< Remaining free buffer space in percent.*/
+ uint8_t txbuf; /*< Remaining free buffer space.*/
  uint8_t noise; /*< Background noise level*/
  uint8_t remnoise; /*< Remote background noise level*/
 }) mavlink_radio_status_t;
@@ -61,7 +61,7 @@ typedef struct __mavlink_radio_status_t {
  *
  * @param rssi Local signal strength
  * @param remrssi Remote signal strength
- * @param txbuf Remaining free buffer space in percent.
+ * @param txbuf Remaining free buffer space.
  * @param noise Background noise level
  * @param remnoise Remote background noise level
  * @param rxerrors Receive errors
@@ -107,7 +107,7 @@ static inline uint16_t mavlink_msg_radio_status_pack(uint8_t system_id, uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param rssi Local signal strength
  * @param remrssi Remote signal strength
- * @param txbuf Remaining free buffer space in percent.
+ * @param txbuf Remaining free buffer space.
  * @param noise Background noise level
  * @param remnoise Remote background noise level
  * @param rxerrors Receive errors
@@ -179,7 +179,7 @@ static inline uint16_t mavlink_msg_radio_status_encode_chan(uint8_t system_id, u
  *
  * @param rssi Local signal strength
  * @param remrssi Remote signal strength
- * @param txbuf Remaining free buffer space in percent.
+ * @param txbuf Remaining free buffer space.
  * @param noise Background noise level
  * @param remnoise Remote background noise level
  * @param rxerrors Receive errors
@@ -292,7 +292,7 @@ static inline uint8_t mavlink_msg_radio_status_get_remrssi(const mavlink_message
 /**
  * @brief Get field txbuf from radio_status message
  *
- * @return Remaining free buffer space in percent.
+ * @return Remaining free buffer space.
  */
 static inline uint8_t mavlink_msg_radio_status_get_txbuf(const mavlink_message_t* msg)
 {

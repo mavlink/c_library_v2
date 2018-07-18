@@ -13,13 +13,13 @@ typedef struct __mavlink_mission_item_int_t {
  int32_t y; /*< PARAM6 / y position: local: x position in meters * 1e4, global: longitude in degrees *10^7*/
  float z; /*< PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.*/
  uint16_t seq; /*< Waypoint ID (sequence number). Starts at zero. Increases monotonically for each waypoint, no gaps in the sequence (0,1,2,3,4).*/
- uint16_t command; /*< The scheduled action for the waypoint, as defined by MAV_CMD enum*/
+ uint16_t command; /*< The scheduled action for the waypoint.*/
  uint8_t target_system; /*< System ID*/
  uint8_t target_component; /*< Component ID*/
- uint8_t frame; /*< The coordinate system of the waypoint, as defined by MAV_FRAME enum*/
+ uint8_t frame; /*< The coordinate system of the waypoint.*/
  uint8_t current; /*< false:0, true:1*/
- uint8_t autocontinue; /*< autocontinue to next wp*/
- uint8_t mission_type; /*< Mission type, see MAV_MISSION_TYPE*/
+ uint8_t autocontinue; /*< Autocontinue to next waypoint*/
+ uint8_t mission_type; /*< Mission type.*/
 }) mavlink_mission_item_int_t;
 
 #define MAVLINK_MSG_ID_MISSION_ITEM_INT_LEN 38
@@ -86,10 +86,10 @@ typedef struct __mavlink_mission_item_int_t {
  * @param target_system System ID
  * @param target_component Component ID
  * @param seq Waypoint ID (sequence number). Starts at zero. Increases monotonically for each waypoint, no gaps in the sequence (0,1,2,3,4).
- * @param frame The coordinate system of the waypoint, as defined by MAV_FRAME enum
- * @param command The scheduled action for the waypoint, as defined by MAV_CMD enum
+ * @param frame The coordinate system of the waypoint.
+ * @param command The scheduled action for the waypoint.
  * @param current false:0, true:1
- * @param autocontinue autocontinue to next wp
+ * @param autocontinue Autocontinue to next waypoint
  * @param param1 PARAM1, see MAV_CMD enum
  * @param param2 PARAM2, see MAV_CMD enum
  * @param param3 PARAM3, see MAV_CMD enum
@@ -97,7 +97,7 @@ typedef struct __mavlink_mission_item_int_t {
  * @param x PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7
  * @param y PARAM6 / y position: local: x position in meters * 1e4, global: longitude in degrees *10^7
  * @param z PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.
- * @param mission_type Mission type, see MAV_MISSION_TYPE
+ * @param mission_type Mission type.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_mission_item_int_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -156,10 +156,10 @@ static inline uint16_t mavlink_msg_mission_item_int_pack(uint8_t system_id, uint
  * @param target_system System ID
  * @param target_component Component ID
  * @param seq Waypoint ID (sequence number). Starts at zero. Increases monotonically for each waypoint, no gaps in the sequence (0,1,2,3,4).
- * @param frame The coordinate system of the waypoint, as defined by MAV_FRAME enum
- * @param command The scheduled action for the waypoint, as defined by MAV_CMD enum
+ * @param frame The coordinate system of the waypoint.
+ * @param command The scheduled action for the waypoint.
  * @param current false:0, true:1
- * @param autocontinue autocontinue to next wp
+ * @param autocontinue Autocontinue to next waypoint
  * @param param1 PARAM1, see MAV_CMD enum
  * @param param2 PARAM2, see MAV_CMD enum
  * @param param3 PARAM3, see MAV_CMD enum
@@ -167,7 +167,7 @@ static inline uint16_t mavlink_msg_mission_item_int_pack(uint8_t system_id, uint
  * @param x PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7
  * @param y PARAM6 / y position: local: x position in meters * 1e4, global: longitude in degrees *10^7
  * @param z PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.
- * @param mission_type Mission type, see MAV_MISSION_TYPE
+ * @param mission_type Mission type.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_mission_item_int_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -252,10 +252,10 @@ static inline uint16_t mavlink_msg_mission_item_int_encode_chan(uint8_t system_i
  * @param target_system System ID
  * @param target_component Component ID
  * @param seq Waypoint ID (sequence number). Starts at zero. Increases monotonically for each waypoint, no gaps in the sequence (0,1,2,3,4).
- * @param frame The coordinate system of the waypoint, as defined by MAV_FRAME enum
- * @param command The scheduled action for the waypoint, as defined by MAV_CMD enum
+ * @param frame The coordinate system of the waypoint.
+ * @param command The scheduled action for the waypoint.
  * @param current false:0, true:1
- * @param autocontinue autocontinue to next wp
+ * @param autocontinue Autocontinue to next waypoint
  * @param param1 PARAM1, see MAV_CMD enum
  * @param param2 PARAM2, see MAV_CMD enum
  * @param param3 PARAM3, see MAV_CMD enum
@@ -263,7 +263,7 @@ static inline uint16_t mavlink_msg_mission_item_int_encode_chan(uint8_t system_i
  * @param x PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7
  * @param y PARAM6 / y position: local: x position in meters * 1e4, global: longitude in degrees *10^7
  * @param z PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.
- * @param mission_type Mission type, see MAV_MISSION_TYPE
+ * @param mission_type Mission type.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -414,7 +414,7 @@ static inline uint16_t mavlink_msg_mission_item_int_get_seq(const mavlink_messag
 /**
  * @brief Get field frame from mission_item_int message
  *
- * @return The coordinate system of the waypoint, as defined by MAV_FRAME enum
+ * @return The coordinate system of the waypoint.
  */
 static inline uint8_t mavlink_msg_mission_item_int_get_frame(const mavlink_message_t* msg)
 {
@@ -424,7 +424,7 @@ static inline uint8_t mavlink_msg_mission_item_int_get_frame(const mavlink_messa
 /**
  * @brief Get field command from mission_item_int message
  *
- * @return The scheduled action for the waypoint, as defined by MAV_CMD enum
+ * @return The scheduled action for the waypoint.
  */
 static inline uint16_t mavlink_msg_mission_item_int_get_command(const mavlink_message_t* msg)
 {
@@ -444,7 +444,7 @@ static inline uint8_t mavlink_msg_mission_item_int_get_current(const mavlink_mes
 /**
  * @brief Get field autocontinue from mission_item_int message
  *
- * @return autocontinue to next wp
+ * @return Autocontinue to next waypoint
  */
 static inline uint8_t mavlink_msg_mission_item_int_get_autocontinue(const mavlink_message_t* msg)
 {
@@ -524,7 +524,7 @@ static inline float mavlink_msg_mission_item_int_get_z(const mavlink_message_t* 
 /**
  * @brief Get field mission_type from mission_item_int message
  *
- * @return Mission type, see MAV_MISSION_TYPE
+ * @return Mission type.
  */
 static inline uint8_t mavlink_msg_mission_item_int_get_mission_type(const mavlink_message_t* msg)
 {

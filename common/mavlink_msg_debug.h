@@ -5,7 +5,7 @@
 
 MAVPACKED(
 typedef struct __mavlink_debug_t {
- uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
+ uint32_t time_boot_ms; /*< Timestamp (time since system boot).*/
  float value; /*< DEBUG value*/
  uint8_t ind; /*< index of debug variable*/
 }) mavlink_debug_t;
@@ -47,7 +47,7 @@ typedef struct __mavlink_debug_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_boot_ms Timestamp (milliseconds since system boot)
+ * @param time_boot_ms Timestamp (time since system boot).
  * @param ind index of debug variable
  * @param value DEBUG value
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -81,7 +81,7 @@ static inline uint16_t mavlink_msg_debug_pack(uint8_t system_id, uint8_t compone
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_boot_ms Timestamp (milliseconds since system boot)
+ * @param time_boot_ms Timestamp (time since system boot).
  * @param ind index of debug variable
  * @param value DEBUG value
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -141,7 +141,7 @@ static inline uint16_t mavlink_msg_debug_encode_chan(uint8_t system_id, uint8_t 
  * @brief Send a debug message
  * @param chan MAVLink channel to send the message
  *
- * @param time_boot_ms Timestamp (milliseconds since system boot)
+ * @param time_boot_ms Timestamp (time since system boot).
  * @param ind index of debug variable
  * @param value DEBUG value
  */
@@ -216,7 +216,7 @@ static inline void mavlink_msg_debug_send_buf(mavlink_message_t *msgbuf, mavlink
 /**
  * @brief Get field time_boot_ms from debug message
  *
- * @return Timestamp (milliseconds since system boot)
+ * @return Timestamp (time since system boot).
  */
 static inline uint32_t mavlink_msg_debug_get_time_boot_ms(const mavlink_message_t* msg)
 {

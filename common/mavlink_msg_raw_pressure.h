@@ -5,10 +5,10 @@
 
 MAVPACKED(
 typedef struct __mavlink_raw_pressure_t {
- uint64_t time_usec; /*< Timestamp (microseconds since UNIX epoch or microseconds since system boot)*/
+ uint64_t time_usec; /*< Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
  int16_t press_abs; /*< Absolute pressure (raw)*/
- int16_t press_diff1; /*< Differential pressure 1 (raw, 0 if nonexistant)*/
- int16_t press_diff2; /*< Differential pressure 2 (raw, 0 if nonexistant)*/
+ int16_t press_diff1; /*< Differential pressure 1 (raw, 0 if nonexistent)*/
+ int16_t press_diff2; /*< Differential pressure 2 (raw, 0 if nonexistent)*/
  int16_t temperature; /*< Raw Temperature measurement (raw)*/
 }) mavlink_raw_pressure_t;
 
@@ -53,10 +53,10 @@ typedef struct __mavlink_raw_pressure_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_usec Timestamp (microseconds since UNIX epoch or microseconds since system boot)
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  * @param press_abs Absolute pressure (raw)
- * @param press_diff1 Differential pressure 1 (raw, 0 if nonexistant)
- * @param press_diff2 Differential pressure 2 (raw, 0 if nonexistant)
+ * @param press_diff1 Differential pressure 1 (raw, 0 if nonexistent)
+ * @param press_diff2 Differential pressure 2 (raw, 0 if nonexistent)
  * @param temperature Raw Temperature measurement (raw)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -93,10 +93,10 @@ static inline uint16_t mavlink_msg_raw_pressure_pack(uint8_t system_id, uint8_t 
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_usec Timestamp (microseconds since UNIX epoch or microseconds since system boot)
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  * @param press_abs Absolute pressure (raw)
- * @param press_diff1 Differential pressure 1 (raw, 0 if nonexistant)
- * @param press_diff2 Differential pressure 2 (raw, 0 if nonexistant)
+ * @param press_diff1 Differential pressure 1 (raw, 0 if nonexistent)
+ * @param press_diff2 Differential pressure 2 (raw, 0 if nonexistent)
  * @param temperature Raw Temperature measurement (raw)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -159,10 +159,10 @@ static inline uint16_t mavlink_msg_raw_pressure_encode_chan(uint8_t system_id, u
  * @brief Send a raw_pressure message
  * @param chan MAVLink channel to send the message
  *
- * @param time_usec Timestamp (microseconds since UNIX epoch or microseconds since system boot)
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  * @param press_abs Absolute pressure (raw)
- * @param press_diff1 Differential pressure 1 (raw, 0 if nonexistant)
- * @param press_diff2 Differential pressure 2 (raw, 0 if nonexistant)
+ * @param press_diff1 Differential pressure 1 (raw, 0 if nonexistent)
+ * @param press_diff2 Differential pressure 2 (raw, 0 if nonexistent)
  * @param temperature Raw Temperature measurement (raw)
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -244,7 +244,7 @@ static inline void mavlink_msg_raw_pressure_send_buf(mavlink_message_t *msgbuf, 
 /**
  * @brief Get field time_usec from raw_pressure message
  *
- * @return Timestamp (microseconds since UNIX epoch or microseconds since system boot)
+ * @return Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  */
 static inline uint64_t mavlink_msg_raw_pressure_get_time_usec(const mavlink_message_t* msg)
 {
@@ -264,7 +264,7 @@ static inline int16_t mavlink_msg_raw_pressure_get_press_abs(const mavlink_messa
 /**
  * @brief Get field press_diff1 from raw_pressure message
  *
- * @return Differential pressure 1 (raw, 0 if nonexistant)
+ * @return Differential pressure 1 (raw, 0 if nonexistent)
  */
 static inline int16_t mavlink_msg_raw_pressure_get_press_diff1(const mavlink_message_t* msg)
 {
@@ -274,7 +274,7 @@ static inline int16_t mavlink_msg_raw_pressure_get_press_diff1(const mavlink_mes
 /**
  * @brief Get field press_diff2 from raw_pressure message
  *
- * @return Differential pressure 2 (raw, 0 if nonexistant)
+ * @return Differential pressure 2 (raw, 0 if nonexistent)
  */
 static inline int16_t mavlink_msg_raw_pressure_get_press_diff2(const mavlink_message_t* msg)
 {

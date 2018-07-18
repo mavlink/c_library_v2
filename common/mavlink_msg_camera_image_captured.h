@@ -5,12 +5,12 @@
 
 MAVPACKED(
 typedef struct __mavlink_camera_image_captured_t {
- uint64_t time_utc; /*< Timestamp (microseconds since UNIX epoch) in UTC. 0 for unknown.*/
- uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
- int32_t lat; /*< Latitude, expressed as degrees * 1E7 where image was taken*/
- int32_t lon; /*< Longitude, expressed as degrees * 1E7 where capture was taken*/
- int32_t alt; /*< Altitude in meters, expressed as * 1E3 (AMSL, not WGS84) where image was taken*/
- int32_t relative_alt; /*< Altitude above ground in meters, expressed as * 1E3 where image was taken*/
+ uint64_t time_utc; /*< Timestamp (time since UNIX epoch) in UTC. 0 for unknown.*/
+ uint32_t time_boot_ms; /*< Timestamp (time since system boot).*/
+ int32_t lat; /*< Latitude where image was taken*/
+ int32_t lon; /*< Longitude where capture was taken*/
+ int32_t alt; /*< Altitude (AMSL) where image was taken*/
+ int32_t relative_alt; /*< Altitude above ground*/
  float q[4]; /*< Quaternion of camera orientation (w, x, y, z order, zero-rotation is 0, 0, 0, 0)*/
  int32_t image_index; /*< Zero based index of this image (image count since armed -1)*/
  uint8_t camera_id; /*< Camera ID (1 for first, 2 for second, etc.)*/
@@ -72,13 +72,13 @@ typedef struct __mavlink_camera_image_captured_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param time_utc Timestamp (microseconds since UNIX epoch) in UTC. 0 for unknown.
+ * @param time_boot_ms Timestamp (time since system boot).
+ * @param time_utc Timestamp (time since UNIX epoch) in UTC. 0 for unknown.
  * @param camera_id Camera ID (1 for first, 2 for second, etc.)
- * @param lat Latitude, expressed as degrees * 1E7 where image was taken
- * @param lon Longitude, expressed as degrees * 1E7 where capture was taken
- * @param alt Altitude in meters, expressed as * 1E3 (AMSL, not WGS84) where image was taken
- * @param relative_alt Altitude above ground in meters, expressed as * 1E3 where image was taken
+ * @param lat Latitude where image was taken
+ * @param lon Longitude where capture was taken
+ * @param alt Altitude (AMSL) where image was taken
+ * @param relative_alt Altitude above ground
  * @param q Quaternion of camera orientation (w, x, y, z order, zero-rotation is 0, 0, 0, 0)
  * @param image_index Zero based index of this image (image count since armed -1)
  * @param capture_result Boolean indicating success (1) or failure (0) while capturing this image.
@@ -128,13 +128,13 @@ static inline uint16_t mavlink_msg_camera_image_captured_pack(uint8_t system_id,
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param time_utc Timestamp (microseconds since UNIX epoch) in UTC. 0 for unknown.
+ * @param time_boot_ms Timestamp (time since system boot).
+ * @param time_utc Timestamp (time since UNIX epoch) in UTC. 0 for unknown.
  * @param camera_id Camera ID (1 for first, 2 for second, etc.)
- * @param lat Latitude, expressed as degrees * 1E7 where image was taken
- * @param lon Longitude, expressed as degrees * 1E7 where capture was taken
- * @param alt Altitude in meters, expressed as * 1E3 (AMSL, not WGS84) where image was taken
- * @param relative_alt Altitude above ground in meters, expressed as * 1E3 where image was taken
+ * @param lat Latitude where image was taken
+ * @param lon Longitude where capture was taken
+ * @param alt Altitude (AMSL) where image was taken
+ * @param relative_alt Altitude above ground
  * @param q Quaternion of camera orientation (w, x, y, z order, zero-rotation is 0, 0, 0, 0)
  * @param image_index Zero based index of this image (image count since armed -1)
  * @param capture_result Boolean indicating success (1) or failure (0) while capturing this image.
@@ -210,13 +210,13 @@ static inline uint16_t mavlink_msg_camera_image_captured_encode_chan(uint8_t sys
  * @brief Send a camera_image_captured message
  * @param chan MAVLink channel to send the message
  *
- * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param time_utc Timestamp (microseconds since UNIX epoch) in UTC. 0 for unknown.
+ * @param time_boot_ms Timestamp (time since system boot).
+ * @param time_utc Timestamp (time since UNIX epoch) in UTC. 0 for unknown.
  * @param camera_id Camera ID (1 for first, 2 for second, etc.)
- * @param lat Latitude, expressed as degrees * 1E7 where image was taken
- * @param lon Longitude, expressed as degrees * 1E7 where capture was taken
- * @param alt Altitude in meters, expressed as * 1E3 (AMSL, not WGS84) where image was taken
- * @param relative_alt Altitude above ground in meters, expressed as * 1E3 where image was taken
+ * @param lat Latitude where image was taken
+ * @param lon Longitude where capture was taken
+ * @param alt Altitude (AMSL) where image was taken
+ * @param relative_alt Altitude above ground
  * @param q Quaternion of camera orientation (w, x, y, z order, zero-rotation is 0, 0, 0, 0)
  * @param image_index Zero based index of this image (image count since armed -1)
  * @param capture_result Boolean indicating success (1) or failure (0) while capturing this image.
@@ -321,7 +321,7 @@ static inline void mavlink_msg_camera_image_captured_send_buf(mavlink_message_t 
 /**
  * @brief Get field time_boot_ms from camera_image_captured message
  *
- * @return Timestamp (milliseconds since system boot)
+ * @return Timestamp (time since system boot).
  */
 static inline uint32_t mavlink_msg_camera_image_captured_get_time_boot_ms(const mavlink_message_t* msg)
 {
@@ -331,7 +331,7 @@ static inline uint32_t mavlink_msg_camera_image_captured_get_time_boot_ms(const 
 /**
  * @brief Get field time_utc from camera_image_captured message
  *
- * @return Timestamp (microseconds since UNIX epoch) in UTC. 0 for unknown.
+ * @return Timestamp (time since UNIX epoch) in UTC. 0 for unknown.
  */
 static inline uint64_t mavlink_msg_camera_image_captured_get_time_utc(const mavlink_message_t* msg)
 {
@@ -351,7 +351,7 @@ static inline uint8_t mavlink_msg_camera_image_captured_get_camera_id(const mavl
 /**
  * @brief Get field lat from camera_image_captured message
  *
- * @return Latitude, expressed as degrees * 1E7 where image was taken
+ * @return Latitude where image was taken
  */
 static inline int32_t mavlink_msg_camera_image_captured_get_lat(const mavlink_message_t* msg)
 {
@@ -361,7 +361,7 @@ static inline int32_t mavlink_msg_camera_image_captured_get_lat(const mavlink_me
 /**
  * @brief Get field lon from camera_image_captured message
  *
- * @return Longitude, expressed as degrees * 1E7 where capture was taken
+ * @return Longitude where capture was taken
  */
 static inline int32_t mavlink_msg_camera_image_captured_get_lon(const mavlink_message_t* msg)
 {
@@ -371,7 +371,7 @@ static inline int32_t mavlink_msg_camera_image_captured_get_lon(const mavlink_me
 /**
  * @brief Get field alt from camera_image_captured message
  *
- * @return Altitude in meters, expressed as * 1E3 (AMSL, not WGS84) where image was taken
+ * @return Altitude (AMSL) where image was taken
  */
 static inline int32_t mavlink_msg_camera_image_captured_get_alt(const mavlink_message_t* msg)
 {
@@ -381,7 +381,7 @@ static inline int32_t mavlink_msg_camera_image_captured_get_alt(const mavlink_me
 /**
  * @brief Get field relative_alt from camera_image_captured message
  *
- * @return Altitude above ground in meters, expressed as * 1E3 where image was taken
+ * @return Altitude above ground
  */
 static inline int32_t mavlink_msg_camera_image_captured_get_relative_alt(const mavlink_message_t* msg)
 {

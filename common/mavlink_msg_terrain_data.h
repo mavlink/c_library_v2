@@ -5,10 +5,10 @@
 
 MAVPACKED(
 typedef struct __mavlink_terrain_data_t {
- int32_t lat; /*< Latitude of SW corner of first grid (degrees *10^7)*/
- int32_t lon; /*< Longitude of SW corner of first grid (in degrees *10^7)*/
- uint16_t grid_spacing; /*< Grid spacing in meters*/
- int16_t data[16]; /*< Terrain data in meters AMSL*/
+ int32_t lat; /*< Latitude of SW corner of first grid*/
+ int32_t lon; /*< Longitude of SW corner of first grid*/
+ uint16_t grid_spacing; /*< Grid spacing*/
+ int16_t data[16]; /*< Terrain data AMSL*/
  uint8_t gridbit; /*< bit within the terrain request mask*/
 }) mavlink_terrain_data_t;
 
@@ -53,11 +53,11 @@ typedef struct __mavlink_terrain_data_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param lat Latitude of SW corner of first grid (degrees *10^7)
- * @param lon Longitude of SW corner of first grid (in degrees *10^7)
- * @param grid_spacing Grid spacing in meters
+ * @param lat Latitude of SW corner of first grid
+ * @param lon Longitude of SW corner of first grid
+ * @param grid_spacing Grid spacing
  * @param gridbit bit within the terrain request mask
- * @param data Terrain data in meters AMSL
+ * @param data Terrain data AMSL
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_terrain_data_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -91,11 +91,11 @@ static inline uint16_t mavlink_msg_terrain_data_pack(uint8_t system_id, uint8_t 
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param lat Latitude of SW corner of first grid (degrees *10^7)
- * @param lon Longitude of SW corner of first grid (in degrees *10^7)
- * @param grid_spacing Grid spacing in meters
+ * @param lat Latitude of SW corner of first grid
+ * @param lon Longitude of SW corner of first grid
+ * @param grid_spacing Grid spacing
  * @param gridbit bit within the terrain request mask
- * @param data Terrain data in meters AMSL
+ * @param data Terrain data AMSL
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_terrain_data_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -155,11 +155,11 @@ static inline uint16_t mavlink_msg_terrain_data_encode_chan(uint8_t system_id, u
  * @brief Send a terrain_data message
  * @param chan MAVLink channel to send the message
  *
- * @param lat Latitude of SW corner of first grid (degrees *10^7)
- * @param lon Longitude of SW corner of first grid (in degrees *10^7)
- * @param grid_spacing Grid spacing in meters
+ * @param lat Latitude of SW corner of first grid
+ * @param lon Longitude of SW corner of first grid
+ * @param grid_spacing Grid spacing
  * @param gridbit bit within the terrain request mask
- * @param data Terrain data in meters AMSL
+ * @param data Terrain data AMSL
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -236,7 +236,7 @@ static inline void mavlink_msg_terrain_data_send_buf(mavlink_message_t *msgbuf, 
 /**
  * @brief Get field lat from terrain_data message
  *
- * @return Latitude of SW corner of first grid (degrees *10^7)
+ * @return Latitude of SW corner of first grid
  */
 static inline int32_t mavlink_msg_terrain_data_get_lat(const mavlink_message_t* msg)
 {
@@ -246,7 +246,7 @@ static inline int32_t mavlink_msg_terrain_data_get_lat(const mavlink_message_t* 
 /**
  * @brief Get field lon from terrain_data message
  *
- * @return Longitude of SW corner of first grid (in degrees *10^7)
+ * @return Longitude of SW corner of first grid
  */
 static inline int32_t mavlink_msg_terrain_data_get_lon(const mavlink_message_t* msg)
 {
@@ -256,7 +256,7 @@ static inline int32_t mavlink_msg_terrain_data_get_lon(const mavlink_message_t* 
 /**
  * @brief Get field grid_spacing from terrain_data message
  *
- * @return Grid spacing in meters
+ * @return Grid spacing
  */
 static inline uint16_t mavlink_msg_terrain_data_get_grid_spacing(const mavlink_message_t* msg)
 {
@@ -276,7 +276,7 @@ static inline uint8_t mavlink_msg_terrain_data_get_gridbit(const mavlink_message
 /**
  * @brief Get field data from terrain_data message
  *
- * @return Terrain data in meters AMSL
+ * @return Terrain data AMSL
  */
 static inline uint16_t mavlink_msg_terrain_data_get_data(const mavlink_message_t* msg, int16_t *data)
 {

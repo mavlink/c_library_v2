@@ -5,14 +5,14 @@
 
 MAVPACKED(
 typedef struct __mavlink_command_long_t {
- float param1; /*< Parameter 1, as defined by MAV_CMD enum.*/
- float param2; /*< Parameter 2, as defined by MAV_CMD enum.*/
- float param3; /*< Parameter 3, as defined by MAV_CMD enum.*/
- float param4; /*< Parameter 4, as defined by MAV_CMD enum.*/
- float param5; /*< Parameter 5, as defined by MAV_CMD enum.*/
- float param6; /*< Parameter 6, as defined by MAV_CMD enum.*/
- float param7; /*< Parameter 7, as defined by MAV_CMD enum.*/
- uint16_t command; /*< Command ID, as defined by MAV_CMD enum.*/
+ float param1; /*< Parameter 1 (for the specific command).*/
+ float param2; /*< Parameter 2 (for the specific command).*/
+ float param3; /*< Parameter 3 (for the specific command).*/
+ float param4; /*< Parameter 4 (for the specific command).*/
+ float param5; /*< Parameter 5 (for the specific command).*/
+ float param6; /*< Parameter 6 (for the specific command).*/
+ float param7; /*< Parameter 7 (for the specific command).*/
+ uint16_t command; /*< Command ID (of command to send).*/
  uint8_t target_system; /*< System which should execute the command*/
  uint8_t target_component; /*< Component which should execute the command, 0 for all components*/
  uint8_t confirmation; /*< 0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)*/
@@ -73,15 +73,15 @@ typedef struct __mavlink_command_long_t {
  *
  * @param target_system System which should execute the command
  * @param target_component Component which should execute the command, 0 for all components
- * @param command Command ID, as defined by MAV_CMD enum.
+ * @param command Command ID (of command to send).
  * @param confirmation 0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)
- * @param param1 Parameter 1, as defined by MAV_CMD enum.
- * @param param2 Parameter 2, as defined by MAV_CMD enum.
- * @param param3 Parameter 3, as defined by MAV_CMD enum.
- * @param param4 Parameter 4, as defined by MAV_CMD enum.
- * @param param5 Parameter 5, as defined by MAV_CMD enum.
- * @param param6 Parameter 6, as defined by MAV_CMD enum.
- * @param param7 Parameter 7, as defined by MAV_CMD enum.
+ * @param param1 Parameter 1 (for the specific command).
+ * @param param2 Parameter 2 (for the specific command).
+ * @param param3 Parameter 3 (for the specific command).
+ * @param param4 Parameter 4 (for the specific command).
+ * @param param5 Parameter 5 (for the specific command).
+ * @param param6 Parameter 6 (for the specific command).
+ * @param param7 Parameter 7 (for the specific command).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_command_long_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -131,15 +131,15 @@ static inline uint16_t mavlink_msg_command_long_pack(uint8_t system_id, uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param target_system System which should execute the command
  * @param target_component Component which should execute the command, 0 for all components
- * @param command Command ID, as defined by MAV_CMD enum.
+ * @param command Command ID (of command to send).
  * @param confirmation 0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)
- * @param param1 Parameter 1, as defined by MAV_CMD enum.
- * @param param2 Parameter 2, as defined by MAV_CMD enum.
- * @param param3 Parameter 3, as defined by MAV_CMD enum.
- * @param param4 Parameter 4, as defined by MAV_CMD enum.
- * @param param5 Parameter 5, as defined by MAV_CMD enum.
- * @param param6 Parameter 6, as defined by MAV_CMD enum.
- * @param param7 Parameter 7, as defined by MAV_CMD enum.
+ * @param param1 Parameter 1 (for the specific command).
+ * @param param2 Parameter 2 (for the specific command).
+ * @param param3 Parameter 3 (for the specific command).
+ * @param param4 Parameter 4 (for the specific command).
+ * @param param5 Parameter 5 (for the specific command).
+ * @param param6 Parameter 6 (for the specific command).
+ * @param param7 Parameter 7 (for the specific command).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_command_long_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -215,15 +215,15 @@ static inline uint16_t mavlink_msg_command_long_encode_chan(uint8_t system_id, u
  *
  * @param target_system System which should execute the command
  * @param target_component Component which should execute the command, 0 for all components
- * @param command Command ID, as defined by MAV_CMD enum.
+ * @param command Command ID (of command to send).
  * @param confirmation 0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)
- * @param param1 Parameter 1, as defined by MAV_CMD enum.
- * @param param2 Parameter 2, as defined by MAV_CMD enum.
- * @param param3 Parameter 3, as defined by MAV_CMD enum.
- * @param param4 Parameter 4, as defined by MAV_CMD enum.
- * @param param5 Parameter 5, as defined by MAV_CMD enum.
- * @param param6 Parameter 6, as defined by MAV_CMD enum.
- * @param param7 Parameter 7, as defined by MAV_CMD enum.
+ * @param param1 Parameter 1 (for the specific command).
+ * @param param2 Parameter 2 (for the specific command).
+ * @param param3 Parameter 3 (for the specific command).
+ * @param param4 Parameter 4 (for the specific command).
+ * @param param5 Parameter 5 (for the specific command).
+ * @param param6 Parameter 6 (for the specific command).
+ * @param param7 Parameter 7 (for the specific command).
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -348,7 +348,7 @@ static inline uint8_t mavlink_msg_command_long_get_target_component(const mavlin
 /**
  * @brief Get field command from command_long message
  *
- * @return Command ID, as defined by MAV_CMD enum.
+ * @return Command ID (of command to send).
  */
 static inline uint16_t mavlink_msg_command_long_get_command(const mavlink_message_t* msg)
 {
@@ -368,7 +368,7 @@ static inline uint8_t mavlink_msg_command_long_get_confirmation(const mavlink_me
 /**
  * @brief Get field param1 from command_long message
  *
- * @return Parameter 1, as defined by MAV_CMD enum.
+ * @return Parameter 1 (for the specific command).
  */
 static inline float mavlink_msg_command_long_get_param1(const mavlink_message_t* msg)
 {
@@ -378,7 +378,7 @@ static inline float mavlink_msg_command_long_get_param1(const mavlink_message_t*
 /**
  * @brief Get field param2 from command_long message
  *
- * @return Parameter 2, as defined by MAV_CMD enum.
+ * @return Parameter 2 (for the specific command).
  */
 static inline float mavlink_msg_command_long_get_param2(const mavlink_message_t* msg)
 {
@@ -388,7 +388,7 @@ static inline float mavlink_msg_command_long_get_param2(const mavlink_message_t*
 /**
  * @brief Get field param3 from command_long message
  *
- * @return Parameter 3, as defined by MAV_CMD enum.
+ * @return Parameter 3 (for the specific command).
  */
 static inline float mavlink_msg_command_long_get_param3(const mavlink_message_t* msg)
 {
@@ -398,7 +398,7 @@ static inline float mavlink_msg_command_long_get_param3(const mavlink_message_t*
 /**
  * @brief Get field param4 from command_long message
  *
- * @return Parameter 4, as defined by MAV_CMD enum.
+ * @return Parameter 4 (for the specific command).
  */
 static inline float mavlink_msg_command_long_get_param4(const mavlink_message_t* msg)
 {
@@ -408,7 +408,7 @@ static inline float mavlink_msg_command_long_get_param4(const mavlink_message_t*
 /**
  * @brief Get field param5 from command_long message
  *
- * @return Parameter 5, as defined by MAV_CMD enum.
+ * @return Parameter 5 (for the specific command).
  */
 static inline float mavlink_msg_command_long_get_param5(const mavlink_message_t* msg)
 {
@@ -418,7 +418,7 @@ static inline float mavlink_msg_command_long_get_param5(const mavlink_message_t*
 /**
  * @brief Get field param6 from command_long message
  *
- * @return Parameter 6, as defined by MAV_CMD enum.
+ * @return Parameter 6 (for the specific command).
  */
 static inline float mavlink_msg_command_long_get_param6(const mavlink_message_t* msg)
 {
@@ -428,7 +428,7 @@ static inline float mavlink_msg_command_long_get_param6(const mavlink_message_t*
 /**
  * @brief Get field param7 from command_long message
  *
- * @return Parameter 7, as defined by MAV_CMD enum.
+ * @return Parameter 7 (for the specific command).
  */
 static inline float mavlink_msg_command_long_get_param7(const mavlink_message_t* msg)
 {

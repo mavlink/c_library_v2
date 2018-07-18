@@ -5,10 +5,10 @@
 
 MAVPACKED(
 typedef struct __mavlink_camera_capture_status_t {
- uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
- float image_interval; /*< Image capture interval in seconds*/
- uint32_t recording_time_ms; /*< Time in milliseconds since recording started*/
- float available_capacity; /*< Available storage capacity in MiB*/
+ uint32_t time_boot_ms; /*< Timestamp (time since system boot).*/
+ float image_interval; /*< Image capture interval*/
+ uint32_t recording_time_ms; /*< Time since recording started*/
+ float available_capacity; /*< Available storage capacity*/
  uint8_t image_status; /*< Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)*/
  uint8_t video_status; /*< Current status of video capturing (0: idle, 1: capture in progress)*/
 }) mavlink_camera_capture_status_t;
@@ -56,12 +56,12 @@ typedef struct __mavlink_camera_capture_status_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_boot_ms Timestamp (milliseconds since system boot)
+ * @param time_boot_ms Timestamp (time since system boot).
  * @param image_status Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)
  * @param video_status Current status of video capturing (0: idle, 1: capture in progress)
- * @param image_interval Image capture interval in seconds
- * @param recording_time_ms Time in milliseconds since recording started
- * @param available_capacity Available storage capacity in MiB
+ * @param image_interval Image capture interval
+ * @param recording_time_ms Time since recording started
+ * @param available_capacity Available storage capacity
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_camera_capture_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -99,12 +99,12 @@ static inline uint16_t mavlink_msg_camera_capture_status_pack(uint8_t system_id,
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_boot_ms Timestamp (milliseconds since system boot)
+ * @param time_boot_ms Timestamp (time since system boot).
  * @param image_status Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)
  * @param video_status Current status of video capturing (0: idle, 1: capture in progress)
- * @param image_interval Image capture interval in seconds
- * @param recording_time_ms Time in milliseconds since recording started
- * @param available_capacity Available storage capacity in MiB
+ * @param image_interval Image capture interval
+ * @param recording_time_ms Time since recording started
+ * @param available_capacity Available storage capacity
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_camera_capture_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -168,12 +168,12 @@ static inline uint16_t mavlink_msg_camera_capture_status_encode_chan(uint8_t sys
  * @brief Send a camera_capture_status message
  * @param chan MAVLink channel to send the message
  *
- * @param time_boot_ms Timestamp (milliseconds since system boot)
+ * @param time_boot_ms Timestamp (time since system boot).
  * @param image_status Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)
  * @param video_status Current status of video capturing (0: idle, 1: capture in progress)
- * @param image_interval Image capture interval in seconds
- * @param recording_time_ms Time in milliseconds since recording started
- * @param available_capacity Available storage capacity in MiB
+ * @param image_interval Image capture interval
+ * @param recording_time_ms Time since recording started
+ * @param available_capacity Available storage capacity
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -258,7 +258,7 @@ static inline void mavlink_msg_camera_capture_status_send_buf(mavlink_message_t 
 /**
  * @brief Get field time_boot_ms from camera_capture_status message
  *
- * @return Timestamp (milliseconds since system boot)
+ * @return Timestamp (time since system boot).
  */
 static inline uint32_t mavlink_msg_camera_capture_status_get_time_boot_ms(const mavlink_message_t* msg)
 {
@@ -288,7 +288,7 @@ static inline uint8_t mavlink_msg_camera_capture_status_get_video_status(const m
 /**
  * @brief Get field image_interval from camera_capture_status message
  *
- * @return Image capture interval in seconds
+ * @return Image capture interval
  */
 static inline float mavlink_msg_camera_capture_status_get_image_interval(const mavlink_message_t* msg)
 {
@@ -298,7 +298,7 @@ static inline float mavlink_msg_camera_capture_status_get_image_interval(const m
 /**
  * @brief Get field recording_time_ms from camera_capture_status message
  *
- * @return Time in milliseconds since recording started
+ * @return Time since recording started
  */
 static inline uint32_t mavlink_msg_camera_capture_status_get_recording_time_ms(const mavlink_message_t* msg)
 {
@@ -308,7 +308,7 @@ static inline uint32_t mavlink_msg_camera_capture_status_get_recording_time_ms(c
 /**
  * @brief Get field available_capacity from camera_capture_status message
  *
- * @return Available storage capacity in MiB
+ * @return Available storage capacity
  */
 static inline float mavlink_msg_camera_capture_status_get_available_capacity(const mavlink_message_t* msg)
 {

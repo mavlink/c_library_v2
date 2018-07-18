@@ -6,17 +6,17 @@
 MAVPACKED(
 typedef struct __mavlink_adsb_vehicle_t {
  uint32_t ICAO_address; /*< ICAO address*/
- int32_t lat; /*< Latitude, expressed as degrees * 1E7*/
- int32_t lon; /*< Longitude, expressed as degrees * 1E7*/
- int32_t altitude; /*< Altitude(ASL) in millimeters*/
- uint16_t heading; /*< Course over ground in centidegrees*/
- uint16_t hor_velocity; /*< The horizontal velocity in centimeters/second*/
- int16_t ver_velocity; /*< The vertical velocity in centimeters/second, positive is up*/
- uint16_t flags; /*< Flags to indicate various statuses including valid data fields*/
+ int32_t lat; /*< Latitude*/
+ int32_t lon; /*< Longitude*/
+ int32_t altitude; /*< Altitude(ASL)*/
+ uint16_t heading; /*< Course over ground*/
+ uint16_t hor_velocity; /*< The horizontal velocity*/
+ int16_t ver_velocity; /*< The vertical velocity. Positive is up*/
+ uint16_t flags; /*< Bitmap to indicate various statuses including valid data fields*/
  uint16_t squawk; /*< Squawk code*/
- uint8_t altitude_type; /*< Type from ADSB_ALTITUDE_TYPE enum*/
+ uint8_t altitude_type; /*< ADSB altitude type.*/
  char callsign[9]; /*< The callsign, 8+null*/
- uint8_t emitter_type; /*< Type from ADSB_EMITTER_TYPE enum*/
+ uint8_t emitter_type; /*< ADSB emitter type.*/
  uint8_t tslc; /*< Time since last communication in seconds*/
 }) mavlink_adsb_vehicle_t;
 
@@ -78,17 +78,17 @@ typedef struct __mavlink_adsb_vehicle_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param ICAO_address ICAO address
- * @param lat Latitude, expressed as degrees * 1E7
- * @param lon Longitude, expressed as degrees * 1E7
- * @param altitude_type Type from ADSB_ALTITUDE_TYPE enum
- * @param altitude Altitude(ASL) in millimeters
- * @param heading Course over ground in centidegrees
- * @param hor_velocity The horizontal velocity in centimeters/second
- * @param ver_velocity The vertical velocity in centimeters/second, positive is up
+ * @param lat Latitude
+ * @param lon Longitude
+ * @param altitude_type ADSB altitude type.
+ * @param altitude Altitude(ASL)
+ * @param heading Course over ground
+ * @param hor_velocity The horizontal velocity
+ * @param ver_velocity The vertical velocity. Positive is up
  * @param callsign The callsign, 8+null
- * @param emitter_type Type from ADSB_EMITTER_TYPE enum
+ * @param emitter_type ADSB emitter type.
  * @param tslc Time since last communication in seconds
- * @param flags Flags to indicate various statuses including valid data fields
+ * @param flags Bitmap to indicate various statuses including valid data fields
  * @param squawk Squawk code
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -140,17 +140,17 @@ static inline uint16_t mavlink_msg_adsb_vehicle_pack(uint8_t system_id, uint8_t 
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param ICAO_address ICAO address
- * @param lat Latitude, expressed as degrees * 1E7
- * @param lon Longitude, expressed as degrees * 1E7
- * @param altitude_type Type from ADSB_ALTITUDE_TYPE enum
- * @param altitude Altitude(ASL) in millimeters
- * @param heading Course over ground in centidegrees
- * @param hor_velocity The horizontal velocity in centimeters/second
- * @param ver_velocity The vertical velocity in centimeters/second, positive is up
+ * @param lat Latitude
+ * @param lon Longitude
+ * @param altitude_type ADSB altitude type.
+ * @param altitude Altitude(ASL)
+ * @param heading Course over ground
+ * @param hor_velocity The horizontal velocity
+ * @param ver_velocity The vertical velocity. Positive is up
  * @param callsign The callsign, 8+null
- * @param emitter_type Type from ADSB_EMITTER_TYPE enum
+ * @param emitter_type ADSB emitter type.
  * @param tslc Time since last communication in seconds
- * @param flags Flags to indicate various statuses including valid data fields
+ * @param flags Bitmap to indicate various statuses including valid data fields
  * @param squawk Squawk code
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -228,17 +228,17 @@ static inline uint16_t mavlink_msg_adsb_vehicle_encode_chan(uint8_t system_id, u
  * @param chan MAVLink channel to send the message
  *
  * @param ICAO_address ICAO address
- * @param lat Latitude, expressed as degrees * 1E7
- * @param lon Longitude, expressed as degrees * 1E7
- * @param altitude_type Type from ADSB_ALTITUDE_TYPE enum
- * @param altitude Altitude(ASL) in millimeters
- * @param heading Course over ground in centidegrees
- * @param hor_velocity The horizontal velocity in centimeters/second
- * @param ver_velocity The vertical velocity in centimeters/second, positive is up
+ * @param lat Latitude
+ * @param lon Longitude
+ * @param altitude_type ADSB altitude type.
+ * @param altitude Altitude(ASL)
+ * @param heading Course over ground
+ * @param hor_velocity The horizontal velocity
+ * @param ver_velocity The vertical velocity. Positive is up
  * @param callsign The callsign, 8+null
- * @param emitter_type Type from ADSB_EMITTER_TYPE enum
+ * @param emitter_type ADSB emitter type.
  * @param tslc Time since last communication in seconds
- * @param flags Flags to indicate various statuses including valid data fields
+ * @param flags Bitmap to indicate various statuses including valid data fields
  * @param squawk Squawk code
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -358,7 +358,7 @@ static inline uint32_t mavlink_msg_adsb_vehicle_get_ICAO_address(const mavlink_m
 /**
  * @brief Get field lat from adsb_vehicle message
  *
- * @return Latitude, expressed as degrees * 1E7
+ * @return Latitude
  */
 static inline int32_t mavlink_msg_adsb_vehicle_get_lat(const mavlink_message_t* msg)
 {
@@ -368,7 +368,7 @@ static inline int32_t mavlink_msg_adsb_vehicle_get_lat(const mavlink_message_t* 
 /**
  * @brief Get field lon from adsb_vehicle message
  *
- * @return Longitude, expressed as degrees * 1E7
+ * @return Longitude
  */
 static inline int32_t mavlink_msg_adsb_vehicle_get_lon(const mavlink_message_t* msg)
 {
@@ -378,7 +378,7 @@ static inline int32_t mavlink_msg_adsb_vehicle_get_lon(const mavlink_message_t* 
 /**
  * @brief Get field altitude_type from adsb_vehicle message
  *
- * @return Type from ADSB_ALTITUDE_TYPE enum
+ * @return ADSB altitude type.
  */
 static inline uint8_t mavlink_msg_adsb_vehicle_get_altitude_type(const mavlink_message_t* msg)
 {
@@ -388,7 +388,7 @@ static inline uint8_t mavlink_msg_adsb_vehicle_get_altitude_type(const mavlink_m
 /**
  * @brief Get field altitude from adsb_vehicle message
  *
- * @return Altitude(ASL) in millimeters
+ * @return Altitude(ASL)
  */
 static inline int32_t mavlink_msg_adsb_vehicle_get_altitude(const mavlink_message_t* msg)
 {
@@ -398,7 +398,7 @@ static inline int32_t mavlink_msg_adsb_vehicle_get_altitude(const mavlink_messag
 /**
  * @brief Get field heading from adsb_vehicle message
  *
- * @return Course over ground in centidegrees
+ * @return Course over ground
  */
 static inline uint16_t mavlink_msg_adsb_vehicle_get_heading(const mavlink_message_t* msg)
 {
@@ -408,7 +408,7 @@ static inline uint16_t mavlink_msg_adsb_vehicle_get_heading(const mavlink_messag
 /**
  * @brief Get field hor_velocity from adsb_vehicle message
  *
- * @return The horizontal velocity in centimeters/second
+ * @return The horizontal velocity
  */
 static inline uint16_t mavlink_msg_adsb_vehicle_get_hor_velocity(const mavlink_message_t* msg)
 {
@@ -418,7 +418,7 @@ static inline uint16_t mavlink_msg_adsb_vehicle_get_hor_velocity(const mavlink_m
 /**
  * @brief Get field ver_velocity from adsb_vehicle message
  *
- * @return The vertical velocity in centimeters/second, positive is up
+ * @return The vertical velocity. Positive is up
  */
 static inline int16_t mavlink_msg_adsb_vehicle_get_ver_velocity(const mavlink_message_t* msg)
 {
@@ -438,7 +438,7 @@ static inline uint16_t mavlink_msg_adsb_vehicle_get_callsign(const mavlink_messa
 /**
  * @brief Get field emitter_type from adsb_vehicle message
  *
- * @return Type from ADSB_EMITTER_TYPE enum
+ * @return ADSB emitter type.
  */
 static inline uint8_t mavlink_msg_adsb_vehicle_get_emitter_type(const mavlink_message_t* msg)
 {
@@ -458,7 +458,7 @@ static inline uint8_t mavlink_msg_adsb_vehicle_get_tslc(const mavlink_message_t*
 /**
  * @brief Get field flags from adsb_vehicle message
  *
- * @return Flags to indicate various statuses including valid data fields
+ * @return Bitmap to indicate various statuses including valid data fields
  */
 static inline uint16_t mavlink_msg_adsb_vehicle_get_flags(const mavlink_message_t* msg)
 {

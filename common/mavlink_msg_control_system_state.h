@@ -5,7 +5,7 @@
 
 MAVPACKED(
 typedef struct __mavlink_control_system_state_t {
- uint64_t time_usec; /*< Timestamp (micros since boot or Unix epoch)*/
+ uint64_t time_usec; /*< Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
  float x_acc; /*< X acceleration in body frame*/
  float y_acc; /*< Y acceleration in body frame*/
  float z_acc; /*< Z acceleration in body frame*/
@@ -91,7 +91,7 @@ typedef struct __mavlink_control_system_state_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_usec Timestamp (micros since boot or Unix epoch)
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  * @param x_acc X acceleration in body frame
  * @param y_acc Y acceleration in body frame
  * @param z_acc Z acceleration in body frame
@@ -165,7 +165,7 @@ static inline uint16_t mavlink_msg_control_system_state_pack(uint8_t system_id, 
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_usec Timestamp (micros since boot or Unix epoch)
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  * @param x_acc X acceleration in body frame
  * @param y_acc Y acceleration in body frame
  * @param z_acc Z acceleration in body frame
@@ -265,7 +265,7 @@ static inline uint16_t mavlink_msg_control_system_state_encode_chan(uint8_t syst
  * @brief Send a control_system_state message
  * @param chan MAVLink channel to send the message
  *
- * @param time_usec Timestamp (micros since boot or Unix epoch)
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  * @param x_acc X acceleration in body frame
  * @param y_acc Y acceleration in body frame
  * @param z_acc Z acceleration in body frame
@@ -406,7 +406,7 @@ static inline void mavlink_msg_control_system_state_send_buf(mavlink_message_t *
 /**
  * @brief Get field time_usec from control_system_state message
  *
- * @return Timestamp (micros since boot or Unix epoch)
+ * @return Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  */
 static inline uint64_t mavlink_msg_control_system_state_get_time_usec(const mavlink_message_t* msg)
 {

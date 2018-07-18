@@ -5,7 +5,7 @@
 
 MAVPACKED(
 typedef struct __mavlink_named_value_int_t {
- uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
+ uint32_t time_boot_ms; /*< Timestamp (time since system boot).*/
  int32_t value; /*< Signed integer value*/
  char name[10]; /*< Name of the debug variable*/
 }) mavlink_named_value_int_t;
@@ -47,7 +47,7 @@ typedef struct __mavlink_named_value_int_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_boot_ms Timestamp (milliseconds since system boot)
+ * @param time_boot_ms Timestamp (time since system boot).
  * @param name Name of the debug variable
  * @param value Signed integer value
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -79,7 +79,7 @@ static inline uint16_t mavlink_msg_named_value_int_pack(uint8_t system_id, uint8
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_boot_ms Timestamp (milliseconds since system boot)
+ * @param time_boot_ms Timestamp (time since system boot).
  * @param name Name of the debug variable
  * @param value Signed integer value
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -137,7 +137,7 @@ static inline uint16_t mavlink_msg_named_value_int_encode_chan(uint8_t system_id
  * @brief Send a named_value_int message
  * @param chan MAVLink channel to send the message
  *
- * @param time_boot_ms Timestamp (milliseconds since system boot)
+ * @param time_boot_ms Timestamp (time since system boot).
  * @param name Name of the debug variable
  * @param value Signed integer value
  */
@@ -208,7 +208,7 @@ static inline void mavlink_msg_named_value_int_send_buf(mavlink_message_t *msgbu
 /**
  * @brief Get field time_boot_ms from named_value_int message
  *
- * @return Timestamp (milliseconds since system boot)
+ * @return Timestamp (time since system boot).
  */
 static inline uint32_t mavlink_msg_named_value_int_get_time_boot_ms(const mavlink_message_t* msg)
 {

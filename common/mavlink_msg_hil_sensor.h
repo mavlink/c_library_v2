@@ -5,21 +5,21 @@
 
 MAVPACKED(
 typedef struct __mavlink_hil_sensor_t {
- uint64_t time_usec; /*< Timestamp (microseconds, synced to UNIX time or since system boot)*/
- float xacc; /*< X acceleration (m/s^2)*/
- float yacc; /*< Y acceleration (m/s^2)*/
- float zacc; /*< Z acceleration (m/s^2)*/
- float xgyro; /*< Angular speed around X axis in body frame (rad / sec)*/
- float ygyro; /*< Angular speed around Y axis in body frame (rad / sec)*/
- float zgyro; /*< Angular speed around Z axis in body frame (rad / sec)*/
- float xmag; /*< X Magnetic field (Gauss)*/
- float ymag; /*< Y Magnetic field (Gauss)*/
- float zmag; /*< Z Magnetic field (Gauss)*/
- float abs_pressure; /*< Absolute pressure in millibar*/
- float diff_pressure; /*< Differential pressure (airspeed) in millibar*/
+ uint64_t time_usec; /*< Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
+ float xacc; /*< X acceleration*/
+ float yacc; /*< Y acceleration*/
+ float zacc; /*< Z acceleration*/
+ float xgyro; /*< Angular speed around X axis in body frame*/
+ float ygyro; /*< Angular speed around Y axis in body frame*/
+ float zgyro; /*< Angular speed around Z axis in body frame*/
+ float xmag; /*< X Magnetic field*/
+ float ymag; /*< Y Magnetic field*/
+ float zmag; /*< Z Magnetic field*/
+ float abs_pressure; /*< Absolute pressure*/
+ float diff_pressure; /*< Differential pressure (airspeed)*/
  float pressure_alt; /*< Altitude calculated from pressure*/
- float temperature; /*< Temperature in degrees celsius*/
- uint32_t fields_updated; /*< Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.*/
+ float temperature; /*< Temperature*/
+ uint32_t fields_updated; /*< Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.*/
 }) mavlink_hil_sensor_t;
 
 #define MAVLINK_MSG_ID_HIL_SENSOR_LEN 64
@@ -83,21 +83,21 @@ typedef struct __mavlink_hil_sensor_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_usec Timestamp (microseconds, synced to UNIX time or since system boot)
- * @param xacc X acceleration (m/s^2)
- * @param yacc Y acceleration (m/s^2)
- * @param zacc Z acceleration (m/s^2)
- * @param xgyro Angular speed around X axis in body frame (rad / sec)
- * @param ygyro Angular speed around Y axis in body frame (rad / sec)
- * @param zgyro Angular speed around Z axis in body frame (rad / sec)
- * @param xmag X Magnetic field (Gauss)
- * @param ymag Y Magnetic field (Gauss)
- * @param zmag Z Magnetic field (Gauss)
- * @param abs_pressure Absolute pressure in millibar
- * @param diff_pressure Differential pressure (airspeed) in millibar
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param xacc X acceleration
+ * @param yacc Y acceleration
+ * @param zacc Z acceleration
+ * @param xgyro Angular speed around X axis in body frame
+ * @param ygyro Angular speed around Y axis in body frame
+ * @param zgyro Angular speed around Z axis in body frame
+ * @param xmag X Magnetic field
+ * @param ymag Y Magnetic field
+ * @param zmag Z Magnetic field
+ * @param abs_pressure Absolute pressure
+ * @param diff_pressure Differential pressure (airspeed)
  * @param pressure_alt Altitude calculated from pressure
- * @param temperature Temperature in degrees celsius
- * @param fields_updated Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.
+ * @param temperature Temperature
+ * @param fields_updated Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_hil_sensor_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -153,21 +153,21 @@ static inline uint16_t mavlink_msg_hil_sensor_pack(uint8_t system_id, uint8_t co
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_usec Timestamp (microseconds, synced to UNIX time or since system boot)
- * @param xacc X acceleration (m/s^2)
- * @param yacc Y acceleration (m/s^2)
- * @param zacc Z acceleration (m/s^2)
- * @param xgyro Angular speed around X axis in body frame (rad / sec)
- * @param ygyro Angular speed around Y axis in body frame (rad / sec)
- * @param zgyro Angular speed around Z axis in body frame (rad / sec)
- * @param xmag X Magnetic field (Gauss)
- * @param ymag Y Magnetic field (Gauss)
- * @param zmag Z Magnetic field (Gauss)
- * @param abs_pressure Absolute pressure in millibar
- * @param diff_pressure Differential pressure (airspeed) in millibar
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param xacc X acceleration
+ * @param yacc Y acceleration
+ * @param zacc Z acceleration
+ * @param xgyro Angular speed around X axis in body frame
+ * @param ygyro Angular speed around Y axis in body frame
+ * @param zgyro Angular speed around Z axis in body frame
+ * @param xmag X Magnetic field
+ * @param ymag Y Magnetic field
+ * @param zmag Z Magnetic field
+ * @param abs_pressure Absolute pressure
+ * @param diff_pressure Differential pressure (airspeed)
  * @param pressure_alt Altitude calculated from pressure
- * @param temperature Temperature in degrees celsius
- * @param fields_updated Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.
+ * @param temperature Temperature
+ * @param fields_updated Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_hil_sensor_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -249,21 +249,21 @@ static inline uint16_t mavlink_msg_hil_sensor_encode_chan(uint8_t system_id, uin
  * @brief Send a hil_sensor message
  * @param chan MAVLink channel to send the message
  *
- * @param time_usec Timestamp (microseconds, synced to UNIX time or since system boot)
- * @param xacc X acceleration (m/s^2)
- * @param yacc Y acceleration (m/s^2)
- * @param zacc Z acceleration (m/s^2)
- * @param xgyro Angular speed around X axis in body frame (rad / sec)
- * @param ygyro Angular speed around Y axis in body frame (rad / sec)
- * @param zgyro Angular speed around Z axis in body frame (rad / sec)
- * @param xmag X Magnetic field (Gauss)
- * @param ymag Y Magnetic field (Gauss)
- * @param zmag Z Magnetic field (Gauss)
- * @param abs_pressure Absolute pressure in millibar
- * @param diff_pressure Differential pressure (airspeed) in millibar
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param xacc X acceleration
+ * @param yacc Y acceleration
+ * @param zacc Z acceleration
+ * @param xgyro Angular speed around X axis in body frame
+ * @param ygyro Angular speed around Y axis in body frame
+ * @param zgyro Angular speed around Z axis in body frame
+ * @param xmag X Magnetic field
+ * @param ymag Y Magnetic field
+ * @param zmag Z Magnetic field
+ * @param abs_pressure Absolute pressure
+ * @param diff_pressure Differential pressure (airspeed)
  * @param pressure_alt Altitude calculated from pressure
- * @param temperature Temperature in degrees celsius
- * @param fields_updated Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.
+ * @param temperature Temperature
+ * @param fields_updated Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -384,7 +384,7 @@ static inline void mavlink_msg_hil_sensor_send_buf(mavlink_message_t *msgbuf, ma
 /**
  * @brief Get field time_usec from hil_sensor message
  *
- * @return Timestamp (microseconds, synced to UNIX time or since system boot)
+ * @return Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  */
 static inline uint64_t mavlink_msg_hil_sensor_get_time_usec(const mavlink_message_t* msg)
 {
@@ -394,7 +394,7 @@ static inline uint64_t mavlink_msg_hil_sensor_get_time_usec(const mavlink_messag
 /**
  * @brief Get field xacc from hil_sensor message
  *
- * @return X acceleration (m/s^2)
+ * @return X acceleration
  */
 static inline float mavlink_msg_hil_sensor_get_xacc(const mavlink_message_t* msg)
 {
@@ -404,7 +404,7 @@ static inline float mavlink_msg_hil_sensor_get_xacc(const mavlink_message_t* msg
 /**
  * @brief Get field yacc from hil_sensor message
  *
- * @return Y acceleration (m/s^2)
+ * @return Y acceleration
  */
 static inline float mavlink_msg_hil_sensor_get_yacc(const mavlink_message_t* msg)
 {
@@ -414,7 +414,7 @@ static inline float mavlink_msg_hil_sensor_get_yacc(const mavlink_message_t* msg
 /**
  * @brief Get field zacc from hil_sensor message
  *
- * @return Z acceleration (m/s^2)
+ * @return Z acceleration
  */
 static inline float mavlink_msg_hil_sensor_get_zacc(const mavlink_message_t* msg)
 {
@@ -424,7 +424,7 @@ static inline float mavlink_msg_hil_sensor_get_zacc(const mavlink_message_t* msg
 /**
  * @brief Get field xgyro from hil_sensor message
  *
- * @return Angular speed around X axis in body frame (rad / sec)
+ * @return Angular speed around X axis in body frame
  */
 static inline float mavlink_msg_hil_sensor_get_xgyro(const mavlink_message_t* msg)
 {
@@ -434,7 +434,7 @@ static inline float mavlink_msg_hil_sensor_get_xgyro(const mavlink_message_t* ms
 /**
  * @brief Get field ygyro from hil_sensor message
  *
- * @return Angular speed around Y axis in body frame (rad / sec)
+ * @return Angular speed around Y axis in body frame
  */
 static inline float mavlink_msg_hil_sensor_get_ygyro(const mavlink_message_t* msg)
 {
@@ -444,7 +444,7 @@ static inline float mavlink_msg_hil_sensor_get_ygyro(const mavlink_message_t* ms
 /**
  * @brief Get field zgyro from hil_sensor message
  *
- * @return Angular speed around Z axis in body frame (rad / sec)
+ * @return Angular speed around Z axis in body frame
  */
 static inline float mavlink_msg_hil_sensor_get_zgyro(const mavlink_message_t* msg)
 {
@@ -454,7 +454,7 @@ static inline float mavlink_msg_hil_sensor_get_zgyro(const mavlink_message_t* ms
 /**
  * @brief Get field xmag from hil_sensor message
  *
- * @return X Magnetic field (Gauss)
+ * @return X Magnetic field
  */
 static inline float mavlink_msg_hil_sensor_get_xmag(const mavlink_message_t* msg)
 {
@@ -464,7 +464,7 @@ static inline float mavlink_msg_hil_sensor_get_xmag(const mavlink_message_t* msg
 /**
  * @brief Get field ymag from hil_sensor message
  *
- * @return Y Magnetic field (Gauss)
+ * @return Y Magnetic field
  */
 static inline float mavlink_msg_hil_sensor_get_ymag(const mavlink_message_t* msg)
 {
@@ -474,7 +474,7 @@ static inline float mavlink_msg_hil_sensor_get_ymag(const mavlink_message_t* msg
 /**
  * @brief Get field zmag from hil_sensor message
  *
- * @return Z Magnetic field (Gauss)
+ * @return Z Magnetic field
  */
 static inline float mavlink_msg_hil_sensor_get_zmag(const mavlink_message_t* msg)
 {
@@ -484,7 +484,7 @@ static inline float mavlink_msg_hil_sensor_get_zmag(const mavlink_message_t* msg
 /**
  * @brief Get field abs_pressure from hil_sensor message
  *
- * @return Absolute pressure in millibar
+ * @return Absolute pressure
  */
 static inline float mavlink_msg_hil_sensor_get_abs_pressure(const mavlink_message_t* msg)
 {
@@ -494,7 +494,7 @@ static inline float mavlink_msg_hil_sensor_get_abs_pressure(const mavlink_messag
 /**
  * @brief Get field diff_pressure from hil_sensor message
  *
- * @return Differential pressure (airspeed) in millibar
+ * @return Differential pressure (airspeed)
  */
 static inline float mavlink_msg_hil_sensor_get_diff_pressure(const mavlink_message_t* msg)
 {
@@ -514,7 +514,7 @@ static inline float mavlink_msg_hil_sensor_get_pressure_alt(const mavlink_messag
 /**
  * @brief Get field temperature from hil_sensor message
  *
- * @return Temperature in degrees celsius
+ * @return Temperature
  */
 static inline float mavlink_msg_hil_sensor_get_temperature(const mavlink_message_t* msg)
 {
@@ -524,7 +524,7 @@ static inline float mavlink_msg_hil_sensor_get_temperature(const mavlink_message
 /**
  * @brief Get field fields_updated from hil_sensor message
  *
- * @return Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.
+ * @return Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.
  */
 static inline uint32_t mavlink_msg_hil_sensor_get_fields_updated(const mavlink_message_t* msg)
 {

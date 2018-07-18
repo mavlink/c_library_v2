@@ -8,7 +8,7 @@ typedef struct __mavlink_mission_request_int_t {
  uint16_t seq; /*< Sequence*/
  uint8_t target_system; /*< System ID*/
  uint8_t target_component; /*< Component ID*/
- uint8_t mission_type; /*< Mission type, see MAV_MISSION_TYPE*/
+ uint8_t mission_type; /*< Mission type.*/
 }) mavlink_mission_request_int_t;
 
 #define MAVLINK_MSG_ID_MISSION_REQUEST_INT_LEN 5
@@ -53,7 +53,7 @@ typedef struct __mavlink_mission_request_int_t {
  * @param target_system System ID
  * @param target_component Component ID
  * @param seq Sequence
- * @param mission_type Mission type, see MAV_MISSION_TYPE
+ * @param mission_type Mission type.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_mission_request_int_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -90,7 +90,7 @@ static inline uint16_t mavlink_msg_mission_request_int_pack(uint8_t system_id, u
  * @param target_system System ID
  * @param target_component Component ID
  * @param seq Sequence
- * @param mission_type Mission type, see MAV_MISSION_TYPE
+ * @param mission_type Mission type.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_mission_request_int_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -153,7 +153,7 @@ static inline uint16_t mavlink_msg_mission_request_int_encode_chan(uint8_t syste
  * @param target_system System ID
  * @param target_component Component ID
  * @param seq Sequence
- * @param mission_type Mission type, see MAV_MISSION_TYPE
+ * @param mission_type Mission type.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -260,7 +260,7 @@ static inline uint16_t mavlink_msg_mission_request_int_get_seq(const mavlink_mes
 /**
  * @brief Get field mission_type from mission_request_int message
  *
- * @return Mission type, see MAV_MISSION_TYPE
+ * @return Mission type.
  */
 static inline uint8_t mavlink_msg_mission_request_int_get_mission_type(const mavlink_message_t* msg)
 {

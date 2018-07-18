@@ -5,16 +5,16 @@
 
 MAVPACKED(
 typedef struct __mavlink_local_position_ned_cov_t {
- uint64_t time_usec; /*< Timestamp (microseconds since system boot or since UNIX epoch)*/
+ uint64_t time_usec; /*< Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
  float x; /*< X Position*/
  float y; /*< Y Position*/
  float z; /*< Z Position*/
- float vx; /*< X Speed (m/s)*/
- float vy; /*< Y Speed (m/s)*/
- float vz; /*< Z Speed (m/s)*/
- float ax; /*< X Acceleration (m/s^2)*/
- float ay; /*< Y Acceleration (m/s^2)*/
- float az; /*< Z Acceleration (m/s^2)*/
+ float vx; /*< X Speed*/
+ float vy; /*< Y Speed*/
+ float vz; /*< Z Speed*/
+ float ax; /*< X Acceleration*/
+ float ay; /*< Y Acceleration*/
+ float az; /*< Z Acceleration*/
  float covariance[45]; /*< Covariance matrix upper right triangular (first nine entries are the first ROW, next eight entries are the second row, etc.)*/
  uint8_t estimator_type; /*< Class id of the estimator this estimate originated from.*/
 }) mavlink_local_position_ned_cov_t;
@@ -74,17 +74,17 @@ typedef struct __mavlink_local_position_ned_cov_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_usec Timestamp (microseconds since system boot or since UNIX epoch)
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  * @param estimator_type Class id of the estimator this estimate originated from.
  * @param x X Position
  * @param y Y Position
  * @param z Z Position
- * @param vx X Speed (m/s)
- * @param vy Y Speed (m/s)
- * @param vz Z Speed (m/s)
- * @param ax X Acceleration (m/s^2)
- * @param ay Y Acceleration (m/s^2)
- * @param az Z Acceleration (m/s^2)
+ * @param vx X Speed
+ * @param vy Y Speed
+ * @param vz Z Speed
+ * @param ax X Acceleration
+ * @param ay Y Acceleration
+ * @param az Z Acceleration
  * @param covariance Covariance matrix upper right triangular (first nine entries are the first ROW, next eight entries are the second row, etc.)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -133,17 +133,17 @@ static inline uint16_t mavlink_msg_local_position_ned_cov_pack(uint8_t system_id
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_usec Timestamp (microseconds since system boot or since UNIX epoch)
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  * @param estimator_type Class id of the estimator this estimate originated from.
  * @param x X Position
  * @param y Y Position
  * @param z Z Position
- * @param vx X Speed (m/s)
- * @param vy Y Speed (m/s)
- * @param vz Z Speed (m/s)
- * @param ax X Acceleration (m/s^2)
- * @param ay Y Acceleration (m/s^2)
- * @param az Z Acceleration (m/s^2)
+ * @param vx X Speed
+ * @param vy Y Speed
+ * @param vz Z Speed
+ * @param ax X Acceleration
+ * @param ay Y Acceleration
+ * @param az Z Acceleration
  * @param covariance Covariance matrix upper right triangular (first nine entries are the first ROW, next eight entries are the second row, etc.)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -218,17 +218,17 @@ static inline uint16_t mavlink_msg_local_position_ned_cov_encode_chan(uint8_t sy
  * @brief Send a local_position_ned_cov message
  * @param chan MAVLink channel to send the message
  *
- * @param time_usec Timestamp (microseconds since system boot or since UNIX epoch)
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  * @param estimator_type Class id of the estimator this estimate originated from.
  * @param x X Position
  * @param y Y Position
  * @param z Z Position
- * @param vx X Speed (m/s)
- * @param vy Y Speed (m/s)
- * @param vz Z Speed (m/s)
- * @param ax X Acceleration (m/s^2)
- * @param ay Y Acceleration (m/s^2)
- * @param az Z Acceleration (m/s^2)
+ * @param vx X Speed
+ * @param vy Y Speed
+ * @param vz Z Speed
+ * @param ax X Acceleration
+ * @param ay Y Acceleration
+ * @param az Z Acceleration
  * @param covariance Covariance matrix upper right triangular (first nine entries are the first ROW, next eight entries are the second row, etc.)
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -334,7 +334,7 @@ static inline void mavlink_msg_local_position_ned_cov_send_buf(mavlink_message_t
 /**
  * @brief Get field time_usec from local_position_ned_cov message
  *
- * @return Timestamp (microseconds since system boot or since UNIX epoch)
+ * @return Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  */
 static inline uint64_t mavlink_msg_local_position_ned_cov_get_time_usec(const mavlink_message_t* msg)
 {
@@ -384,7 +384,7 @@ static inline float mavlink_msg_local_position_ned_cov_get_z(const mavlink_messa
 /**
  * @brief Get field vx from local_position_ned_cov message
  *
- * @return X Speed (m/s)
+ * @return X Speed
  */
 static inline float mavlink_msg_local_position_ned_cov_get_vx(const mavlink_message_t* msg)
 {
@@ -394,7 +394,7 @@ static inline float mavlink_msg_local_position_ned_cov_get_vx(const mavlink_mess
 /**
  * @brief Get field vy from local_position_ned_cov message
  *
- * @return Y Speed (m/s)
+ * @return Y Speed
  */
 static inline float mavlink_msg_local_position_ned_cov_get_vy(const mavlink_message_t* msg)
 {
@@ -404,7 +404,7 @@ static inline float mavlink_msg_local_position_ned_cov_get_vy(const mavlink_mess
 /**
  * @brief Get field vz from local_position_ned_cov message
  *
- * @return Z Speed (m/s)
+ * @return Z Speed
  */
 static inline float mavlink_msg_local_position_ned_cov_get_vz(const mavlink_message_t* msg)
 {
@@ -414,7 +414,7 @@ static inline float mavlink_msg_local_position_ned_cov_get_vz(const mavlink_mess
 /**
  * @brief Get field ax from local_position_ned_cov message
  *
- * @return X Acceleration (m/s^2)
+ * @return X Acceleration
  */
 static inline float mavlink_msg_local_position_ned_cov_get_ax(const mavlink_message_t* msg)
 {
@@ -424,7 +424,7 @@ static inline float mavlink_msg_local_position_ned_cov_get_ax(const mavlink_mess
 /**
  * @brief Get field ay from local_position_ned_cov message
  *
- * @return Y Acceleration (m/s^2)
+ * @return Y Acceleration
  */
 static inline float mavlink_msg_local_position_ned_cov_get_ay(const mavlink_message_t* msg)
 {
@@ -434,7 +434,7 @@ static inline float mavlink_msg_local_position_ned_cov_get_ay(const mavlink_mess
 /**
  * @brief Get field az from local_position_ned_cov message
  *
- * @return Z Acceleration (m/s^2)
+ * @return Z Acceleration
  */
 static inline float mavlink_msg_local_position_ned_cov_get_az(const mavlink_message_t* msg)
 {

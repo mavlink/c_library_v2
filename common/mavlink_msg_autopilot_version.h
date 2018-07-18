@@ -5,7 +5,7 @@
 
 MAVPACKED(
 typedef struct __mavlink_autopilot_version_t {
- uint64_t capabilities; /*< bitmask of capabilities (see MAV_PROTOCOL_CAPABILITY enum)*/
+ uint64_t capabilities; /*< Bitmap of capabilities*/
  uint64_t uid; /*< UID if provided by hardware (see uid2)*/
  uint32_t flight_sw_version; /*< Firmware version number*/
  uint32_t middleware_sw_version; /*< Middleware version number*/
@@ -77,7 +77,7 @@ typedef struct __mavlink_autopilot_version_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param capabilities bitmask of capabilities (see MAV_PROTOCOL_CAPABILITY enum)
+ * @param capabilities Bitmap of capabilities
  * @param flight_sw_version Firmware version number
  * @param middleware_sw_version Middleware version number
  * @param os_sw_version Operating system version number
@@ -136,7 +136,7 @@ static inline uint16_t mavlink_msg_autopilot_version_pack(uint8_t system_id, uin
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param capabilities bitmask of capabilities (see MAV_PROTOCOL_CAPABILITY enum)
+ * @param capabilities Bitmap of capabilities
  * @param flight_sw_version Firmware version number
  * @param middleware_sw_version Middleware version number
  * @param os_sw_version Operating system version number
@@ -221,7 +221,7 @@ static inline uint16_t mavlink_msg_autopilot_version_encode_chan(uint8_t system_
  * @brief Send a autopilot_version message
  * @param chan MAVLink channel to send the message
  *
- * @param capabilities bitmask of capabilities (see MAV_PROTOCOL_CAPABILITY enum)
+ * @param capabilities Bitmap of capabilities
  * @param flight_sw_version Firmware version number
  * @param middleware_sw_version Middleware version number
  * @param os_sw_version Operating system version number
@@ -337,7 +337,7 @@ static inline void mavlink_msg_autopilot_version_send_buf(mavlink_message_t *msg
 /**
  * @brief Get field capabilities from autopilot_version message
  *
- * @return bitmask of capabilities (see MAV_PROTOCOL_CAPABILITY enum)
+ * @return Bitmap of capabilities
  */
 static inline uint64_t mavlink_msg_autopilot_version_get_capabilities(const mavlink_message_t* msg)
 {

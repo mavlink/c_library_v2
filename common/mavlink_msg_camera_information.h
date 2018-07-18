@@ -5,14 +5,14 @@
 
 MAVPACKED(
 typedef struct __mavlink_camera_information_t {
- uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
+ uint32_t time_boot_ms; /*< Timestamp (time since system boot).*/
  uint32_t firmware_version; /*< Version of the camera firmware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 0xff = Major)*/
- float focal_length; /*< Focal length in mm*/
- float sensor_size_h; /*< Image sensor size horizontal in mm*/
- float sensor_size_v; /*< Image sensor size vertical in mm*/
- uint32_t flags; /*< CAMERA_CAP_FLAGS enum flags (bitmap) describing camera capabilities.*/
- uint16_t resolution_h; /*< Image resolution in pixels horizontal*/
- uint16_t resolution_v; /*< Image resolution in pixels vertical*/
+ float focal_length; /*< Focal length*/
+ float sensor_size_h; /*< Image sensor size horizontal*/
+ float sensor_size_v; /*< Image sensor size vertical*/
+ uint32_t flags; /*< Bitmap of camera capability flags.*/
+ uint16_t resolution_h; /*< Horizontal image resolution*/
+ uint16_t resolution_v; /*< Vertical image resolution*/
  uint16_t cam_definition_version; /*< Camera definition version (iteration)*/
  uint8_t vendor_name[32]; /*< Name of the camera vendor*/
  uint8_t model_name[32]; /*< Name of the camera model*/
@@ -79,17 +79,17 @@ typedef struct __mavlink_camera_information_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_boot_ms Timestamp (milliseconds since system boot)
+ * @param time_boot_ms Timestamp (time since system boot).
  * @param vendor_name Name of the camera vendor
  * @param model_name Name of the camera model
  * @param firmware_version Version of the camera firmware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 0xff = Major)
- * @param focal_length Focal length in mm
- * @param sensor_size_h Image sensor size horizontal in mm
- * @param sensor_size_v Image sensor size vertical in mm
- * @param resolution_h Image resolution in pixels horizontal
- * @param resolution_v Image resolution in pixels vertical
+ * @param focal_length Focal length
+ * @param sensor_size_h Image sensor size horizontal
+ * @param sensor_size_v Image sensor size vertical
+ * @param resolution_h Horizontal image resolution
+ * @param resolution_v Vertical image resolution
  * @param lens_id Reserved for a lens ID
- * @param flags CAMERA_CAP_FLAGS enum flags (bitmap) describing camera capabilities.
+ * @param flags Bitmap of camera capability flags.
  * @param cam_definition_version Camera definition version (iteration)
  * @param cam_definition_uri Camera definition URI (if any, otherwise only basic functions will be available).
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -141,17 +141,17 @@ static inline uint16_t mavlink_msg_camera_information_pack(uint8_t system_id, ui
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_boot_ms Timestamp (milliseconds since system boot)
+ * @param time_boot_ms Timestamp (time since system boot).
  * @param vendor_name Name of the camera vendor
  * @param model_name Name of the camera model
  * @param firmware_version Version of the camera firmware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 0xff = Major)
- * @param focal_length Focal length in mm
- * @param sensor_size_h Image sensor size horizontal in mm
- * @param sensor_size_v Image sensor size vertical in mm
- * @param resolution_h Image resolution in pixels horizontal
- * @param resolution_v Image resolution in pixels vertical
+ * @param focal_length Focal length
+ * @param sensor_size_h Image sensor size horizontal
+ * @param sensor_size_v Image sensor size vertical
+ * @param resolution_h Horizontal image resolution
+ * @param resolution_v Vertical image resolution
  * @param lens_id Reserved for a lens ID
- * @param flags CAMERA_CAP_FLAGS enum flags (bitmap) describing camera capabilities.
+ * @param flags Bitmap of camera capability flags.
  * @param cam_definition_version Camera definition version (iteration)
  * @param cam_definition_uri Camera definition URI (if any, otherwise only basic functions will be available).
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -229,17 +229,17 @@ static inline uint16_t mavlink_msg_camera_information_encode_chan(uint8_t system
  * @brief Send a camera_information message
  * @param chan MAVLink channel to send the message
  *
- * @param time_boot_ms Timestamp (milliseconds since system boot)
+ * @param time_boot_ms Timestamp (time since system boot).
  * @param vendor_name Name of the camera vendor
  * @param model_name Name of the camera model
  * @param firmware_version Version of the camera firmware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 0xff = Major)
- * @param focal_length Focal length in mm
- * @param sensor_size_h Image sensor size horizontal in mm
- * @param sensor_size_v Image sensor size vertical in mm
- * @param resolution_h Image resolution in pixels horizontal
- * @param resolution_v Image resolution in pixels vertical
+ * @param focal_length Focal length
+ * @param sensor_size_h Image sensor size horizontal
+ * @param sensor_size_v Image sensor size vertical
+ * @param resolution_h Horizontal image resolution
+ * @param resolution_v Vertical image resolution
  * @param lens_id Reserved for a lens ID
- * @param flags CAMERA_CAP_FLAGS enum flags (bitmap) describing camera capabilities.
+ * @param flags Bitmap of camera capability flags.
  * @param cam_definition_version Camera definition version (iteration)
  * @param cam_definition_uri Camera definition URI (if any, otherwise only basic functions will be available).
  */
@@ -350,7 +350,7 @@ static inline void mavlink_msg_camera_information_send_buf(mavlink_message_t *ms
 /**
  * @brief Get field time_boot_ms from camera_information message
  *
- * @return Timestamp (milliseconds since system boot)
+ * @return Timestamp (time since system boot).
  */
 static inline uint32_t mavlink_msg_camera_information_get_time_boot_ms(const mavlink_message_t* msg)
 {
@@ -390,7 +390,7 @@ static inline uint32_t mavlink_msg_camera_information_get_firmware_version(const
 /**
  * @brief Get field focal_length from camera_information message
  *
- * @return Focal length in mm
+ * @return Focal length
  */
 static inline float mavlink_msg_camera_information_get_focal_length(const mavlink_message_t* msg)
 {
@@ -400,7 +400,7 @@ static inline float mavlink_msg_camera_information_get_focal_length(const mavlin
 /**
  * @brief Get field sensor_size_h from camera_information message
  *
- * @return Image sensor size horizontal in mm
+ * @return Image sensor size horizontal
  */
 static inline float mavlink_msg_camera_information_get_sensor_size_h(const mavlink_message_t* msg)
 {
@@ -410,7 +410,7 @@ static inline float mavlink_msg_camera_information_get_sensor_size_h(const mavli
 /**
  * @brief Get field sensor_size_v from camera_information message
  *
- * @return Image sensor size vertical in mm
+ * @return Image sensor size vertical
  */
 static inline float mavlink_msg_camera_information_get_sensor_size_v(const mavlink_message_t* msg)
 {
@@ -420,7 +420,7 @@ static inline float mavlink_msg_camera_information_get_sensor_size_v(const mavli
 /**
  * @brief Get field resolution_h from camera_information message
  *
- * @return Image resolution in pixels horizontal
+ * @return Horizontal image resolution
  */
 static inline uint16_t mavlink_msg_camera_information_get_resolution_h(const mavlink_message_t* msg)
 {
@@ -430,7 +430,7 @@ static inline uint16_t mavlink_msg_camera_information_get_resolution_h(const mav
 /**
  * @brief Get field resolution_v from camera_information message
  *
- * @return Image resolution in pixels vertical
+ * @return Vertical image resolution
  */
 static inline uint16_t mavlink_msg_camera_information_get_resolution_v(const mavlink_message_t* msg)
 {
@@ -450,7 +450,7 @@ static inline uint8_t mavlink_msg_camera_information_get_lens_id(const mavlink_m
 /**
  * @brief Get field flags from camera_information message
  *
- * @return CAMERA_CAP_FLAGS enum flags (bitmap) describing camera capabilities.
+ * @return Bitmap of camera capability flags.
  */
 static inline uint32_t mavlink_msg_camera_information_get_flags(const mavlink_message_t* msg)
 {

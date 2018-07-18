@@ -5,12 +5,12 @@
 
 MAVPACKED(
 typedef struct __mavlink_storage_information_t {
- uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
- float total_capacity; /*< Total capacity in MiB*/
- float used_capacity; /*< Used capacity in MiB*/
- float available_capacity; /*< Available capacity in MiB*/
- float read_speed; /*< Read speed in MiB/s*/
- float write_speed; /*< Write speed in MiB/s*/
+ uint32_t time_boot_ms; /*< Timestamp (time since system boot).*/
+ float total_capacity; /*< Total capacity*/
+ float used_capacity; /*< Used capacity*/
+ float available_capacity; /*< Available capacity*/
+ float read_speed; /*< Read speed*/
+ float write_speed; /*< Write speed*/
  uint8_t storage_id; /*< Storage ID (1 for first, 2 for second, etc.)*/
  uint8_t storage_count; /*< Number of storage devices*/
  uint8_t status; /*< Status of storage (0 not available, 1 unformatted, 2 formatted)*/
@@ -65,15 +65,15 @@ typedef struct __mavlink_storage_information_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_boot_ms Timestamp (milliseconds since system boot)
+ * @param time_boot_ms Timestamp (time since system boot).
  * @param storage_id Storage ID (1 for first, 2 for second, etc.)
  * @param storage_count Number of storage devices
  * @param status Status of storage (0 not available, 1 unformatted, 2 formatted)
- * @param total_capacity Total capacity in MiB
- * @param used_capacity Used capacity in MiB
- * @param available_capacity Available capacity in MiB
- * @param read_speed Read speed in MiB/s
- * @param write_speed Write speed in MiB/s
+ * @param total_capacity Total capacity
+ * @param used_capacity Used capacity
+ * @param available_capacity Available capacity
+ * @param read_speed Read speed
+ * @param write_speed Write speed
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_storage_information_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -117,15 +117,15 @@ static inline uint16_t mavlink_msg_storage_information_pack(uint8_t system_id, u
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_boot_ms Timestamp (milliseconds since system boot)
+ * @param time_boot_ms Timestamp (time since system boot).
  * @param storage_id Storage ID (1 for first, 2 for second, etc.)
  * @param storage_count Number of storage devices
  * @param status Status of storage (0 not available, 1 unformatted, 2 formatted)
- * @param total_capacity Total capacity in MiB
- * @param used_capacity Used capacity in MiB
- * @param available_capacity Available capacity in MiB
- * @param read_speed Read speed in MiB/s
- * @param write_speed Write speed in MiB/s
+ * @param total_capacity Total capacity
+ * @param used_capacity Used capacity
+ * @param available_capacity Available capacity
+ * @param read_speed Read speed
+ * @param write_speed Write speed
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_storage_information_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -195,15 +195,15 @@ static inline uint16_t mavlink_msg_storage_information_encode_chan(uint8_t syste
  * @brief Send a storage_information message
  * @param chan MAVLink channel to send the message
  *
- * @param time_boot_ms Timestamp (milliseconds since system boot)
+ * @param time_boot_ms Timestamp (time since system boot).
  * @param storage_id Storage ID (1 for first, 2 for second, etc.)
  * @param storage_count Number of storage devices
  * @param status Status of storage (0 not available, 1 unformatted, 2 formatted)
- * @param total_capacity Total capacity in MiB
- * @param used_capacity Used capacity in MiB
- * @param available_capacity Available capacity in MiB
- * @param read_speed Read speed in MiB/s
- * @param write_speed Write speed in MiB/s
+ * @param total_capacity Total capacity
+ * @param used_capacity Used capacity
+ * @param available_capacity Available capacity
+ * @param read_speed Read speed
+ * @param write_speed Write speed
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -300,7 +300,7 @@ static inline void mavlink_msg_storage_information_send_buf(mavlink_message_t *m
 /**
  * @brief Get field time_boot_ms from storage_information message
  *
- * @return Timestamp (milliseconds since system boot)
+ * @return Timestamp (time since system boot).
  */
 static inline uint32_t mavlink_msg_storage_information_get_time_boot_ms(const mavlink_message_t* msg)
 {
@@ -340,7 +340,7 @@ static inline uint8_t mavlink_msg_storage_information_get_status(const mavlink_m
 /**
  * @brief Get field total_capacity from storage_information message
  *
- * @return Total capacity in MiB
+ * @return Total capacity
  */
 static inline float mavlink_msg_storage_information_get_total_capacity(const mavlink_message_t* msg)
 {
@@ -350,7 +350,7 @@ static inline float mavlink_msg_storage_information_get_total_capacity(const mav
 /**
  * @brief Get field used_capacity from storage_information message
  *
- * @return Used capacity in MiB
+ * @return Used capacity
  */
 static inline float mavlink_msg_storage_information_get_used_capacity(const mavlink_message_t* msg)
 {
@@ -360,7 +360,7 @@ static inline float mavlink_msg_storage_information_get_used_capacity(const mavl
 /**
  * @brief Get field available_capacity from storage_information message
  *
- * @return Available capacity in MiB
+ * @return Available capacity
  */
 static inline float mavlink_msg_storage_information_get_available_capacity(const mavlink_message_t* msg)
 {
@@ -370,7 +370,7 @@ static inline float mavlink_msg_storage_information_get_available_capacity(const
 /**
  * @brief Get field read_speed from storage_information message
  *
- * @return Read speed in MiB/s
+ * @return Read speed
  */
 static inline float mavlink_msg_storage_information_get_read_speed(const mavlink_message_t* msg)
 {
@@ -380,7 +380,7 @@ static inline float mavlink_msg_storage_information_get_read_speed(const mavlink
 /**
  * @brief Get field write_speed from storage_information message
  *
- * @return Write speed in MiB/s
+ * @return Write speed
  */
 static inline float mavlink_msg_storage_information_get_write_speed(const mavlink_message_t* msg)
 {

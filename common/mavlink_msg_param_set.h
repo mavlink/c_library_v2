@@ -9,7 +9,7 @@ typedef struct __mavlink_param_set_t {
  uint8_t target_system; /*< System ID*/
  uint8_t target_component; /*< Component ID*/
  char param_id[16]; /*< Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string*/
- uint8_t param_type; /*< Onboard parameter type: see the MAV_PARAM_TYPE enum for supported data types.*/
+ uint8_t param_type; /*< Onboard parameter type.*/
 }) mavlink_param_set_t;
 
 #define MAVLINK_MSG_ID_PARAM_SET_LEN 23
@@ -57,7 +57,7 @@ typedef struct __mavlink_param_set_t {
  * @param target_component Component ID
  * @param param_id Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
  * @param param_value Onboard parameter value
- * @param param_type Onboard parameter type: see the MAV_PARAM_TYPE enum for supported data types.
+ * @param param_type Onboard parameter type.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_param_set_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -95,7 +95,7 @@ static inline uint16_t mavlink_msg_param_set_pack(uint8_t system_id, uint8_t com
  * @param target_component Component ID
  * @param param_id Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
  * @param param_value Onboard parameter value
- * @param param_type Onboard parameter type: see the MAV_PARAM_TYPE enum for supported data types.
+ * @param param_type Onboard parameter type.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_param_set_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -159,7 +159,7 @@ static inline uint16_t mavlink_msg_param_set_encode_chan(uint8_t system_id, uint
  * @param target_component Component ID
  * @param param_id Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
  * @param param_value Onboard parameter value
- * @param param_type Onboard parameter type: see the MAV_PARAM_TYPE enum for supported data types.
+ * @param param_type Onboard parameter type.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -276,7 +276,7 @@ static inline float mavlink_msg_param_set_get_param_value(const mavlink_message_
 /**
  * @brief Get field param_type from param_set message
  *
- * @return Onboard parameter type: see the MAV_PARAM_TYPE enum for supported data types.
+ * @return Onboard parameter type.
  */
 static inline uint8_t mavlink_msg_param_set_get_param_type(const mavlink_message_t* msg)
 {

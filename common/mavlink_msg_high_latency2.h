@@ -6,28 +6,28 @@
 MAVPACKED(
 typedef struct __mavlink_high_latency2_t {
  uint32_t timestamp; /*< Timestamp (milliseconds since boot or Unix epoch)*/
- int32_t latitude; /*< Latitude, expressed as degrees * 1E7*/
- int32_t longitude; /*< Longitude, expressed as degrees * 1E7*/
+ int32_t latitude; /*< Latitude*/
+ int32_t longitude; /*< Longitude*/
  uint16_t custom_mode; /*< A bitfield for use for autopilot-specific flags (2 byte version).*/
  int16_t altitude; /*< Altitude above mean sea level*/
  int16_t target_altitude; /*< Altitude setpoint*/
- uint16_t target_distance; /*< Distance to target waypoint or position (meters / 10)*/
+ uint16_t target_distance; /*< Distance to target waypoint or position*/
  uint16_t wp_num; /*< Current waypoint number*/
- uint16_t failure_flags; /*< Indicates failures as defined in HL_FAILURE_FLAG ENUM. */
- uint8_t type; /*< Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in MAV_TYPE ENUM)*/
- uint8_t autopilot; /*< Autopilot type / class. defined in MAV_AUTOPILOT ENUM*/
- uint8_t heading; /*< Heading (degrees / 2)*/
- uint8_t target_heading; /*< Heading setpoint (degrees / 2)*/
- uint8_t throttle; /*< Throttle (percentage)*/
- uint8_t airspeed; /*< Airspeed (m/s * 5)*/
- uint8_t airspeed_sp; /*< Airspeed setpoint (m/s * 5)*/
- uint8_t groundspeed; /*< Groundspeed (m/s * 5)*/
- uint8_t windspeed; /*< Windspeed (m/s * 5)*/
- uint8_t wind_heading; /*< Wind heading (deg / 2)*/
- uint8_t eph; /*< Maximum error horizontal position since last message (m * 10)*/
- uint8_t epv; /*< Maximum error vertical position since last message (m * 10)*/
- int8_t temperature_air; /*< Air temperature (degrees C) from airspeed sensor*/
- int8_t climb_rate; /*< Maximum climb rate magnitude since last message (m/s * 10)*/
+ uint16_t failure_flags; /*< Bitmap of failure flags.*/
+ uint8_t type; /*< Type of the MAV (quadrotor, helicopter, etc.)*/
+ uint8_t autopilot; /*< Autopilot type / class.*/
+ uint8_t heading; /*< Heading*/
+ uint8_t target_heading; /*< Heading setpoint*/
+ uint8_t throttle; /*< Throttle*/
+ uint8_t airspeed; /*< Airspeed*/
+ uint8_t airspeed_sp; /*< Airspeed setpoint*/
+ uint8_t groundspeed; /*< Groundspeed*/
+ uint8_t windspeed; /*< Windspeed*/
+ uint8_t wind_heading; /*< Wind heading*/
+ uint8_t eph; /*< Maximum error horizontal position since last message*/
+ uint8_t epv; /*< Maximum error vertical position since last message*/
+ int8_t temperature_air; /*< Air temperature from airspeed sensor*/
+ int8_t climb_rate; /*< Maximum climb rate magnitude since last message*/
  int8_t battery; /*< Battery (percentage, -1 for DNU)*/
  int8_t custom0; /*< Field for custom payload.*/
  int8_t custom1; /*< Field for custom payload.*/
@@ -120,29 +120,29 @@ typedef struct __mavlink_high_latency2_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param timestamp Timestamp (milliseconds since boot or Unix epoch)
- * @param type Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in MAV_TYPE ENUM)
- * @param autopilot Autopilot type / class. defined in MAV_AUTOPILOT ENUM
+ * @param type Type of the MAV (quadrotor, helicopter, etc.)
+ * @param autopilot Autopilot type / class.
  * @param custom_mode A bitfield for use for autopilot-specific flags (2 byte version).
- * @param latitude Latitude, expressed as degrees * 1E7
- * @param longitude Longitude, expressed as degrees * 1E7
+ * @param latitude Latitude
+ * @param longitude Longitude
  * @param altitude Altitude above mean sea level
  * @param target_altitude Altitude setpoint
- * @param heading Heading (degrees / 2)
- * @param target_heading Heading setpoint (degrees / 2)
- * @param target_distance Distance to target waypoint or position (meters / 10)
- * @param throttle Throttle (percentage)
- * @param airspeed Airspeed (m/s * 5)
- * @param airspeed_sp Airspeed setpoint (m/s * 5)
- * @param groundspeed Groundspeed (m/s * 5)
- * @param windspeed Windspeed (m/s * 5)
- * @param wind_heading Wind heading (deg / 2)
- * @param eph Maximum error horizontal position since last message (m * 10)
- * @param epv Maximum error vertical position since last message (m * 10)
- * @param temperature_air Air temperature (degrees C) from airspeed sensor
- * @param climb_rate Maximum climb rate magnitude since last message (m/s * 10)
+ * @param heading Heading
+ * @param target_heading Heading setpoint
+ * @param target_distance Distance to target waypoint or position
+ * @param throttle Throttle
+ * @param airspeed Airspeed
+ * @param airspeed_sp Airspeed setpoint
+ * @param groundspeed Groundspeed
+ * @param windspeed Windspeed
+ * @param wind_heading Wind heading
+ * @param eph Maximum error horizontal position since last message
+ * @param epv Maximum error vertical position since last message
+ * @param temperature_air Air temperature from airspeed sensor
+ * @param climb_rate Maximum climb rate magnitude since last message
  * @param battery Battery (percentage, -1 for DNU)
  * @param wp_num Current waypoint number
- * @param failure_flags Indicates failures as defined in HL_FAILURE_FLAG ENUM. 
+ * @param failure_flags Bitmap of failure flags.
  * @param custom0 Field for custom payload.
  * @param custom1 Field for custom payload.
  * @param custom2 Field for custom payload.
@@ -226,29 +226,29 @@ static inline uint16_t mavlink_msg_high_latency2_pack(uint8_t system_id, uint8_t
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param timestamp Timestamp (milliseconds since boot or Unix epoch)
- * @param type Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in MAV_TYPE ENUM)
- * @param autopilot Autopilot type / class. defined in MAV_AUTOPILOT ENUM
+ * @param type Type of the MAV (quadrotor, helicopter, etc.)
+ * @param autopilot Autopilot type / class.
  * @param custom_mode A bitfield for use for autopilot-specific flags (2 byte version).
- * @param latitude Latitude, expressed as degrees * 1E7
- * @param longitude Longitude, expressed as degrees * 1E7
+ * @param latitude Latitude
+ * @param longitude Longitude
  * @param altitude Altitude above mean sea level
  * @param target_altitude Altitude setpoint
- * @param heading Heading (degrees / 2)
- * @param target_heading Heading setpoint (degrees / 2)
- * @param target_distance Distance to target waypoint or position (meters / 10)
- * @param throttle Throttle (percentage)
- * @param airspeed Airspeed (m/s * 5)
- * @param airspeed_sp Airspeed setpoint (m/s * 5)
- * @param groundspeed Groundspeed (m/s * 5)
- * @param windspeed Windspeed (m/s * 5)
- * @param wind_heading Wind heading (deg / 2)
- * @param eph Maximum error horizontal position since last message (m * 10)
- * @param epv Maximum error vertical position since last message (m * 10)
- * @param temperature_air Air temperature (degrees C) from airspeed sensor
- * @param climb_rate Maximum climb rate magnitude since last message (m/s * 10)
+ * @param heading Heading
+ * @param target_heading Heading setpoint
+ * @param target_distance Distance to target waypoint or position
+ * @param throttle Throttle
+ * @param airspeed Airspeed
+ * @param airspeed_sp Airspeed setpoint
+ * @param groundspeed Groundspeed
+ * @param windspeed Windspeed
+ * @param wind_heading Wind heading
+ * @param eph Maximum error horizontal position since last message
+ * @param epv Maximum error vertical position since last message
+ * @param temperature_air Air temperature from airspeed sensor
+ * @param climb_rate Maximum climb rate magnitude since last message
  * @param battery Battery (percentage, -1 for DNU)
  * @param wp_num Current waypoint number
- * @param failure_flags Indicates failures as defined in HL_FAILURE_FLAG ENUM. 
+ * @param failure_flags Bitmap of failure flags.
  * @param custom0 Field for custom payload.
  * @param custom1 Field for custom payload.
  * @param custom2 Field for custom payload.
@@ -358,29 +358,29 @@ static inline uint16_t mavlink_msg_high_latency2_encode_chan(uint8_t system_id, 
  * @param chan MAVLink channel to send the message
  *
  * @param timestamp Timestamp (milliseconds since boot or Unix epoch)
- * @param type Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in MAV_TYPE ENUM)
- * @param autopilot Autopilot type / class. defined in MAV_AUTOPILOT ENUM
+ * @param type Type of the MAV (quadrotor, helicopter, etc.)
+ * @param autopilot Autopilot type / class.
  * @param custom_mode A bitfield for use for autopilot-specific flags (2 byte version).
- * @param latitude Latitude, expressed as degrees * 1E7
- * @param longitude Longitude, expressed as degrees * 1E7
+ * @param latitude Latitude
+ * @param longitude Longitude
  * @param altitude Altitude above mean sea level
  * @param target_altitude Altitude setpoint
- * @param heading Heading (degrees / 2)
- * @param target_heading Heading setpoint (degrees / 2)
- * @param target_distance Distance to target waypoint or position (meters / 10)
- * @param throttle Throttle (percentage)
- * @param airspeed Airspeed (m/s * 5)
- * @param airspeed_sp Airspeed setpoint (m/s * 5)
- * @param groundspeed Groundspeed (m/s * 5)
- * @param windspeed Windspeed (m/s * 5)
- * @param wind_heading Wind heading (deg / 2)
- * @param eph Maximum error horizontal position since last message (m * 10)
- * @param epv Maximum error vertical position since last message (m * 10)
- * @param temperature_air Air temperature (degrees C) from airspeed sensor
- * @param climb_rate Maximum climb rate magnitude since last message (m/s * 10)
+ * @param heading Heading
+ * @param target_heading Heading setpoint
+ * @param target_distance Distance to target waypoint or position
+ * @param throttle Throttle
+ * @param airspeed Airspeed
+ * @param airspeed_sp Airspeed setpoint
+ * @param groundspeed Groundspeed
+ * @param windspeed Windspeed
+ * @param wind_heading Wind heading
+ * @param eph Maximum error horizontal position since last message
+ * @param epv Maximum error vertical position since last message
+ * @param temperature_air Air temperature from airspeed sensor
+ * @param climb_rate Maximum climb rate magnitude since last message
  * @param battery Battery (percentage, -1 for DNU)
  * @param wp_num Current waypoint number
- * @param failure_flags Indicates failures as defined in HL_FAILURE_FLAG ENUM. 
+ * @param failure_flags Bitmap of failure flags.
  * @param custom0 Field for custom payload.
  * @param custom1 Field for custom payload.
  * @param custom2 Field for custom payload.
@@ -562,7 +562,7 @@ static inline uint32_t mavlink_msg_high_latency2_get_timestamp(const mavlink_mes
 /**
  * @brief Get field type from high_latency2 message
  *
- * @return Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in MAV_TYPE ENUM)
+ * @return Type of the MAV (quadrotor, helicopter, etc.)
  */
 static inline uint8_t mavlink_msg_high_latency2_get_type(const mavlink_message_t* msg)
 {
@@ -572,7 +572,7 @@ static inline uint8_t mavlink_msg_high_latency2_get_type(const mavlink_message_t
 /**
  * @brief Get field autopilot from high_latency2 message
  *
- * @return Autopilot type / class. defined in MAV_AUTOPILOT ENUM
+ * @return Autopilot type / class.
  */
 static inline uint8_t mavlink_msg_high_latency2_get_autopilot(const mavlink_message_t* msg)
 {
@@ -592,7 +592,7 @@ static inline uint16_t mavlink_msg_high_latency2_get_custom_mode(const mavlink_m
 /**
  * @brief Get field latitude from high_latency2 message
  *
- * @return Latitude, expressed as degrees * 1E7
+ * @return Latitude
  */
 static inline int32_t mavlink_msg_high_latency2_get_latitude(const mavlink_message_t* msg)
 {
@@ -602,7 +602,7 @@ static inline int32_t mavlink_msg_high_latency2_get_latitude(const mavlink_messa
 /**
  * @brief Get field longitude from high_latency2 message
  *
- * @return Longitude, expressed as degrees * 1E7
+ * @return Longitude
  */
 static inline int32_t mavlink_msg_high_latency2_get_longitude(const mavlink_message_t* msg)
 {
@@ -632,7 +632,7 @@ static inline int16_t mavlink_msg_high_latency2_get_target_altitude(const mavlin
 /**
  * @brief Get field heading from high_latency2 message
  *
- * @return Heading (degrees / 2)
+ * @return Heading
  */
 static inline uint8_t mavlink_msg_high_latency2_get_heading(const mavlink_message_t* msg)
 {
@@ -642,7 +642,7 @@ static inline uint8_t mavlink_msg_high_latency2_get_heading(const mavlink_messag
 /**
  * @brief Get field target_heading from high_latency2 message
  *
- * @return Heading setpoint (degrees / 2)
+ * @return Heading setpoint
  */
 static inline uint8_t mavlink_msg_high_latency2_get_target_heading(const mavlink_message_t* msg)
 {
@@ -652,7 +652,7 @@ static inline uint8_t mavlink_msg_high_latency2_get_target_heading(const mavlink
 /**
  * @brief Get field target_distance from high_latency2 message
  *
- * @return Distance to target waypoint or position (meters / 10)
+ * @return Distance to target waypoint or position
  */
 static inline uint16_t mavlink_msg_high_latency2_get_target_distance(const mavlink_message_t* msg)
 {
@@ -662,7 +662,7 @@ static inline uint16_t mavlink_msg_high_latency2_get_target_distance(const mavli
 /**
  * @brief Get field throttle from high_latency2 message
  *
- * @return Throttle (percentage)
+ * @return Throttle
  */
 static inline uint8_t mavlink_msg_high_latency2_get_throttle(const mavlink_message_t* msg)
 {
@@ -672,7 +672,7 @@ static inline uint8_t mavlink_msg_high_latency2_get_throttle(const mavlink_messa
 /**
  * @brief Get field airspeed from high_latency2 message
  *
- * @return Airspeed (m/s * 5)
+ * @return Airspeed
  */
 static inline uint8_t mavlink_msg_high_latency2_get_airspeed(const mavlink_message_t* msg)
 {
@@ -682,7 +682,7 @@ static inline uint8_t mavlink_msg_high_latency2_get_airspeed(const mavlink_messa
 /**
  * @brief Get field airspeed_sp from high_latency2 message
  *
- * @return Airspeed setpoint (m/s * 5)
+ * @return Airspeed setpoint
  */
 static inline uint8_t mavlink_msg_high_latency2_get_airspeed_sp(const mavlink_message_t* msg)
 {
@@ -692,7 +692,7 @@ static inline uint8_t mavlink_msg_high_latency2_get_airspeed_sp(const mavlink_me
 /**
  * @brief Get field groundspeed from high_latency2 message
  *
- * @return Groundspeed (m/s * 5)
+ * @return Groundspeed
  */
 static inline uint8_t mavlink_msg_high_latency2_get_groundspeed(const mavlink_message_t* msg)
 {
@@ -702,7 +702,7 @@ static inline uint8_t mavlink_msg_high_latency2_get_groundspeed(const mavlink_me
 /**
  * @brief Get field windspeed from high_latency2 message
  *
- * @return Windspeed (m/s * 5)
+ * @return Windspeed
  */
 static inline uint8_t mavlink_msg_high_latency2_get_windspeed(const mavlink_message_t* msg)
 {
@@ -712,7 +712,7 @@ static inline uint8_t mavlink_msg_high_latency2_get_windspeed(const mavlink_mess
 /**
  * @brief Get field wind_heading from high_latency2 message
  *
- * @return Wind heading (deg / 2)
+ * @return Wind heading
  */
 static inline uint8_t mavlink_msg_high_latency2_get_wind_heading(const mavlink_message_t* msg)
 {
@@ -722,7 +722,7 @@ static inline uint8_t mavlink_msg_high_latency2_get_wind_heading(const mavlink_m
 /**
  * @brief Get field eph from high_latency2 message
  *
- * @return Maximum error horizontal position since last message (m * 10)
+ * @return Maximum error horizontal position since last message
  */
 static inline uint8_t mavlink_msg_high_latency2_get_eph(const mavlink_message_t* msg)
 {
@@ -732,7 +732,7 @@ static inline uint8_t mavlink_msg_high_latency2_get_eph(const mavlink_message_t*
 /**
  * @brief Get field epv from high_latency2 message
  *
- * @return Maximum error vertical position since last message (m * 10)
+ * @return Maximum error vertical position since last message
  */
 static inline uint8_t mavlink_msg_high_latency2_get_epv(const mavlink_message_t* msg)
 {
@@ -742,7 +742,7 @@ static inline uint8_t mavlink_msg_high_latency2_get_epv(const mavlink_message_t*
 /**
  * @brief Get field temperature_air from high_latency2 message
  *
- * @return Air temperature (degrees C) from airspeed sensor
+ * @return Air temperature from airspeed sensor
  */
 static inline int8_t mavlink_msg_high_latency2_get_temperature_air(const mavlink_message_t* msg)
 {
@@ -752,7 +752,7 @@ static inline int8_t mavlink_msg_high_latency2_get_temperature_air(const mavlink
 /**
  * @brief Get field climb_rate from high_latency2 message
  *
- * @return Maximum climb rate magnitude since last message (m/s * 10)
+ * @return Maximum climb rate magnitude since last message
  */
 static inline int8_t mavlink_msg_high_latency2_get_climb_rate(const mavlink_message_t* msg)
 {
@@ -782,7 +782,7 @@ static inline uint16_t mavlink_msg_high_latency2_get_wp_num(const mavlink_messag
 /**
  * @brief Get field failure_flags from high_latency2 message
  *
- * @return Indicates failures as defined in HL_FAILURE_FLAG ENUM. 
+ * @return Bitmap of failure flags.
  */
 static inline uint16_t mavlink_msg_high_latency2_get_failure_flags(const mavlink_message_t* msg)
 {

@@ -5,8 +5,8 @@
 
 MAVPACKED(
 typedef struct __mavlink_uavcan_node_status_t {
- uint64_t time_usec; /*< Timestamp (microseconds since UNIX epoch or microseconds since system boot)*/
- uint32_t uptime_sec; /*< The number of seconds since the start-up of the node.*/
+ uint64_t time_usec; /*< Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
+ uint32_t uptime_sec; /*< Time since the start-up of the node.*/
  uint16_t vendor_specific_status_code; /*< Vendor-specific status information.*/
  uint8_t health; /*< Generalized node health status.*/
  uint8_t mode; /*< Generalized operating mode.*/
@@ -56,8 +56,8 @@ typedef struct __mavlink_uavcan_node_status_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_usec Timestamp (microseconds since UNIX epoch or microseconds since system boot)
- * @param uptime_sec The number of seconds since the start-up of the node.
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param uptime_sec Time since the start-up of the node.
  * @param health Generalized node health status.
  * @param mode Generalized operating mode.
  * @param sub_mode Not used currently.
@@ -99,8 +99,8 @@ static inline uint16_t mavlink_msg_uavcan_node_status_pack(uint8_t system_id, ui
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_usec Timestamp (microseconds since UNIX epoch or microseconds since system boot)
- * @param uptime_sec The number of seconds since the start-up of the node.
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param uptime_sec Time since the start-up of the node.
  * @param health Generalized node health status.
  * @param mode Generalized operating mode.
  * @param sub_mode Not used currently.
@@ -168,8 +168,8 @@ static inline uint16_t mavlink_msg_uavcan_node_status_encode_chan(uint8_t system
  * @brief Send a uavcan_node_status message
  * @param chan MAVLink channel to send the message
  *
- * @param time_usec Timestamp (microseconds since UNIX epoch or microseconds since system boot)
- * @param uptime_sec The number of seconds since the start-up of the node.
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param uptime_sec Time since the start-up of the node.
  * @param health Generalized node health status.
  * @param mode Generalized operating mode.
  * @param sub_mode Not used currently.
@@ -258,7 +258,7 @@ static inline void mavlink_msg_uavcan_node_status_send_buf(mavlink_message_t *ms
 /**
  * @brief Get field time_usec from uavcan_node_status message
  *
- * @return Timestamp (microseconds since UNIX epoch or microseconds since system boot)
+ * @return Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  */
 static inline uint64_t mavlink_msg_uavcan_node_status_get_time_usec(const mavlink_message_t* msg)
 {
@@ -268,7 +268,7 @@ static inline uint64_t mavlink_msg_uavcan_node_status_get_time_usec(const mavlin
 /**
  * @brief Get field uptime_sec from uavcan_node_status message
  *
- * @return The number of seconds since the start-up of the node.
+ * @return Time since the start-up of the node.
  */
 static inline uint32_t mavlink_msg_uavcan_node_status_get_uptime_sec(const mavlink_message_t* msg)
 {

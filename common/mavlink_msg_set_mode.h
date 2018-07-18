@@ -7,7 +7,7 @@ MAVPACKED(
 typedef struct __mavlink_set_mode_t {
  uint32_t custom_mode; /*< The new autopilot-specific mode. This field can be ignored by an autopilot.*/
  uint8_t target_system; /*< The system setting the mode*/
- uint8_t base_mode; /*< The new base mode*/
+ uint8_t base_mode; /*< The new base mode.*/
 }) mavlink_set_mode_t;
 
 #define MAVLINK_MSG_ID_SET_MODE_LEN 6
@@ -48,7 +48,7 @@ typedef struct __mavlink_set_mode_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param target_system The system setting the mode
- * @param base_mode The new base mode
+ * @param base_mode The new base mode.
  * @param custom_mode The new autopilot-specific mode. This field can be ignored by an autopilot.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -82,7 +82,7 @@ static inline uint16_t mavlink_msg_set_mode_pack(uint8_t system_id, uint8_t comp
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param target_system The system setting the mode
- * @param base_mode The new base mode
+ * @param base_mode The new base mode.
  * @param custom_mode The new autopilot-specific mode. This field can be ignored by an autopilot.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -142,7 +142,7 @@ static inline uint16_t mavlink_msg_set_mode_encode_chan(uint8_t system_id, uint8
  * @param chan MAVLink channel to send the message
  *
  * @param target_system The system setting the mode
- * @param base_mode The new base mode
+ * @param base_mode The new base mode.
  * @param custom_mode The new autopilot-specific mode. This field can be ignored by an autopilot.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -226,7 +226,7 @@ static inline uint8_t mavlink_msg_set_mode_get_target_system(const mavlink_messa
 /**
  * @brief Get field base_mode from set_mode message
  *
- * @return The new base mode
+ * @return The new base mode.
  */
 static inline uint8_t mavlink_msg_set_mode_get_base_mode(const mavlink_message_t* msg)
 {

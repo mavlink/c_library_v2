@@ -5,7 +5,7 @@
 
 MAVPACKED(
 typedef struct __mavlink_odometry_t {
- uint64_t time_usec; /*< Timestamp (microseconds since system boot or since UNIX epoch).*/
+ uint64_t time_usec; /*< Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
  float x; /*< X Position*/
  float y; /*< Y Position*/
  float z; /*< Z Position*/
@@ -18,8 +18,8 @@ typedef struct __mavlink_odometry_t {
  float yawspeed; /*< Yaw angular speed*/
  float pose_covariance[21]; /*< Pose (states: x, y, z, roll, pitch, yaw) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)*/
  float twist_covariance[21]; /*< Twist (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)*/
- uint8_t frame_id; /*< Coordinate frame of reference for the pose data, as defined by MAV_FRAME enum.*/
- uint8_t child_frame_id; /*< Coordinate frame of reference for the velocity in free space (twist) data, as defined by MAV_FRAME enum.*/
+ uint8_t frame_id; /*< Coordinate frame of reference for the pose data.*/
+ uint8_t child_frame_id; /*< Coordinate frame of reference for the velocity in free space (twist) data.*/
 }) mavlink_odometry_t;
 
 #define MAVLINK_MSG_ID_ODOMETRY_LEN 230
@@ -85,9 +85,9 @@ typedef struct __mavlink_odometry_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_usec Timestamp (microseconds since system boot or since UNIX epoch).
- * @param frame_id Coordinate frame of reference for the pose data, as defined by MAV_FRAME enum.
- * @param child_frame_id Coordinate frame of reference for the velocity in free space (twist) data, as defined by MAV_FRAME enum.
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param frame_id Coordinate frame of reference for the pose data.
+ * @param child_frame_id Coordinate frame of reference for the velocity in free space (twist) data.
  * @param x X Position
  * @param y Y Position
  * @param z Z Position
@@ -153,9 +153,9 @@ static inline uint16_t mavlink_msg_odometry_pack(uint8_t system_id, uint8_t comp
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_usec Timestamp (microseconds since system boot or since UNIX epoch).
- * @param frame_id Coordinate frame of reference for the pose data, as defined by MAV_FRAME enum.
- * @param child_frame_id Coordinate frame of reference for the velocity in free space (twist) data, as defined by MAV_FRAME enum.
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param frame_id Coordinate frame of reference for the pose data.
+ * @param child_frame_id Coordinate frame of reference for the velocity in free space (twist) data.
  * @param x X Position
  * @param y Y Position
  * @param z Z Position
@@ -247,9 +247,9 @@ static inline uint16_t mavlink_msg_odometry_encode_chan(uint8_t system_id, uint8
  * @brief Send a odometry message
  * @param chan MAVLink channel to send the message
  *
- * @param time_usec Timestamp (microseconds since system boot or since UNIX epoch).
- * @param frame_id Coordinate frame of reference for the pose data, as defined by MAV_FRAME enum.
- * @param child_frame_id Coordinate frame of reference for the velocity in free space (twist) data, as defined by MAV_FRAME enum.
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param frame_id Coordinate frame of reference for the pose data.
+ * @param child_frame_id Coordinate frame of reference for the velocity in free space (twist) data.
  * @param x X Position
  * @param y Y Position
  * @param z Z Position
@@ -378,7 +378,7 @@ static inline void mavlink_msg_odometry_send_buf(mavlink_message_t *msgbuf, mavl
 /**
  * @brief Get field time_usec from odometry message
  *
- * @return Timestamp (microseconds since system boot or since UNIX epoch).
+ * @return Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  */
 static inline uint64_t mavlink_msg_odometry_get_time_usec(const mavlink_message_t* msg)
 {
@@ -388,7 +388,7 @@ static inline uint64_t mavlink_msg_odometry_get_time_usec(const mavlink_message_
 /**
  * @brief Get field frame_id from odometry message
  *
- * @return Coordinate frame of reference for the pose data, as defined by MAV_FRAME enum.
+ * @return Coordinate frame of reference for the pose data.
  */
 static inline uint8_t mavlink_msg_odometry_get_frame_id(const mavlink_message_t* msg)
 {
@@ -398,7 +398,7 @@ static inline uint8_t mavlink_msg_odometry_get_frame_id(const mavlink_message_t*
 /**
  * @brief Get field child_frame_id from odometry message
  *
- * @return Coordinate frame of reference for the velocity in free space (twist) data, as defined by MAV_FRAME enum.
+ * @return Coordinate frame of reference for the velocity in free space (twist) data.
  */
 static inline uint8_t mavlink_msg_odometry_get_child_frame_id(const mavlink_message_t* msg)
 {

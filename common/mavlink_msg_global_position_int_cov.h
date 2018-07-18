@@ -5,14 +5,14 @@
 
 MAVPACKED(
 typedef struct __mavlink_global_position_int_cov_t {
- uint64_t time_usec; /*< Timestamp (microseconds since system boot or since UNIX epoch)*/
- int32_t lat; /*< Latitude, expressed as degrees * 1E7*/
- int32_t lon; /*< Longitude, expressed as degrees * 1E7*/
- int32_t alt; /*< Altitude in meters, expressed as * 1000 (millimeters), above MSL*/
- int32_t relative_alt; /*< Altitude above ground in meters, expressed as * 1000 (millimeters)*/
- float vx; /*< Ground X Speed (Latitude), expressed as m/s*/
- float vy; /*< Ground Y Speed (Longitude), expressed as m/s*/
- float vz; /*< Ground Z Speed (Altitude), expressed as m/s*/
+ uint64_t time_usec; /*< Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
+ int32_t lat; /*< Latitude*/
+ int32_t lon; /*< Longitude*/
+ int32_t alt; /*< Altitude in meters above MSL*/
+ int32_t relative_alt; /*< Altitude above ground*/
+ float vx; /*< Ground X Speed (Latitude)*/
+ float vy; /*< Ground Y Speed (Longitude)*/
+ float vz; /*< Ground Z Speed (Altitude)*/
  float covariance[36]; /*< Covariance matrix (first six entries are the first ROW, next six entries are the second row, etc.)*/
  uint8_t estimator_type; /*< Class id of the estimator this estimate originated from.*/
 }) mavlink_global_position_int_cov_t;
@@ -68,15 +68,15 @@ typedef struct __mavlink_global_position_int_cov_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_usec Timestamp (microseconds since system boot or since UNIX epoch)
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  * @param estimator_type Class id of the estimator this estimate originated from.
- * @param lat Latitude, expressed as degrees * 1E7
- * @param lon Longitude, expressed as degrees * 1E7
- * @param alt Altitude in meters, expressed as * 1000 (millimeters), above MSL
- * @param relative_alt Altitude above ground in meters, expressed as * 1000 (millimeters)
- * @param vx Ground X Speed (Latitude), expressed as m/s
- * @param vy Ground Y Speed (Longitude), expressed as m/s
- * @param vz Ground Z Speed (Altitude), expressed as m/s
+ * @param lat Latitude
+ * @param lon Longitude
+ * @param alt Altitude in meters above MSL
+ * @param relative_alt Altitude above ground
+ * @param vx Ground X Speed (Latitude)
+ * @param vy Ground Y Speed (Longitude)
+ * @param vz Ground Z Speed (Altitude)
  * @param covariance Covariance matrix (first six entries are the first ROW, next six entries are the second row, etc.)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -121,15 +121,15 @@ static inline uint16_t mavlink_msg_global_position_int_cov_pack(uint8_t system_i
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_usec Timestamp (microseconds since system boot or since UNIX epoch)
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  * @param estimator_type Class id of the estimator this estimate originated from.
- * @param lat Latitude, expressed as degrees * 1E7
- * @param lon Longitude, expressed as degrees * 1E7
- * @param alt Altitude in meters, expressed as * 1000 (millimeters), above MSL
- * @param relative_alt Altitude above ground in meters, expressed as * 1000 (millimeters)
- * @param vx Ground X Speed (Latitude), expressed as m/s
- * @param vy Ground Y Speed (Longitude), expressed as m/s
- * @param vz Ground Z Speed (Altitude), expressed as m/s
+ * @param lat Latitude
+ * @param lon Longitude
+ * @param alt Altitude in meters above MSL
+ * @param relative_alt Altitude above ground
+ * @param vx Ground X Speed (Latitude)
+ * @param vy Ground Y Speed (Longitude)
+ * @param vz Ground Z Speed (Altitude)
  * @param covariance Covariance matrix (first six entries are the first ROW, next six entries are the second row, etc.)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -200,15 +200,15 @@ static inline uint16_t mavlink_msg_global_position_int_cov_encode_chan(uint8_t s
  * @brief Send a global_position_int_cov message
  * @param chan MAVLink channel to send the message
  *
- * @param time_usec Timestamp (microseconds since system boot or since UNIX epoch)
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  * @param estimator_type Class id of the estimator this estimate originated from.
- * @param lat Latitude, expressed as degrees * 1E7
- * @param lon Longitude, expressed as degrees * 1E7
- * @param alt Altitude in meters, expressed as * 1000 (millimeters), above MSL
- * @param relative_alt Altitude above ground in meters, expressed as * 1000 (millimeters)
- * @param vx Ground X Speed (Latitude), expressed as m/s
- * @param vy Ground Y Speed (Longitude), expressed as m/s
- * @param vz Ground Z Speed (Altitude), expressed as m/s
+ * @param lat Latitude
+ * @param lon Longitude
+ * @param alt Altitude in meters above MSL
+ * @param relative_alt Altitude above ground
+ * @param vx Ground X Speed (Latitude)
+ * @param vy Ground Y Speed (Longitude)
+ * @param vz Ground Z Speed (Altitude)
  * @param covariance Covariance matrix (first six entries are the first ROW, next six entries are the second row, etc.)
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -306,7 +306,7 @@ static inline void mavlink_msg_global_position_int_cov_send_buf(mavlink_message_
 /**
  * @brief Get field time_usec from global_position_int_cov message
  *
- * @return Timestamp (microseconds since system boot or since UNIX epoch)
+ * @return Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  */
 static inline uint64_t mavlink_msg_global_position_int_cov_get_time_usec(const mavlink_message_t* msg)
 {
@@ -326,7 +326,7 @@ static inline uint8_t mavlink_msg_global_position_int_cov_get_estimator_type(con
 /**
  * @brief Get field lat from global_position_int_cov message
  *
- * @return Latitude, expressed as degrees * 1E7
+ * @return Latitude
  */
 static inline int32_t mavlink_msg_global_position_int_cov_get_lat(const mavlink_message_t* msg)
 {
@@ -336,7 +336,7 @@ static inline int32_t mavlink_msg_global_position_int_cov_get_lat(const mavlink_
 /**
  * @brief Get field lon from global_position_int_cov message
  *
- * @return Longitude, expressed as degrees * 1E7
+ * @return Longitude
  */
 static inline int32_t mavlink_msg_global_position_int_cov_get_lon(const mavlink_message_t* msg)
 {
@@ -346,7 +346,7 @@ static inline int32_t mavlink_msg_global_position_int_cov_get_lon(const mavlink_
 /**
  * @brief Get field alt from global_position_int_cov message
  *
- * @return Altitude in meters, expressed as * 1000 (millimeters), above MSL
+ * @return Altitude in meters above MSL
  */
 static inline int32_t mavlink_msg_global_position_int_cov_get_alt(const mavlink_message_t* msg)
 {
@@ -356,7 +356,7 @@ static inline int32_t mavlink_msg_global_position_int_cov_get_alt(const mavlink_
 /**
  * @brief Get field relative_alt from global_position_int_cov message
  *
- * @return Altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @return Altitude above ground
  */
 static inline int32_t mavlink_msg_global_position_int_cov_get_relative_alt(const mavlink_message_t* msg)
 {
@@ -366,7 +366,7 @@ static inline int32_t mavlink_msg_global_position_int_cov_get_relative_alt(const
 /**
  * @brief Get field vx from global_position_int_cov message
  *
- * @return Ground X Speed (Latitude), expressed as m/s
+ * @return Ground X Speed (Latitude)
  */
 static inline float mavlink_msg_global_position_int_cov_get_vx(const mavlink_message_t* msg)
 {
@@ -376,7 +376,7 @@ static inline float mavlink_msg_global_position_int_cov_get_vx(const mavlink_mes
 /**
  * @brief Get field vy from global_position_int_cov message
  *
- * @return Ground Y Speed (Longitude), expressed as m/s
+ * @return Ground Y Speed (Longitude)
  */
 static inline float mavlink_msg_global_position_int_cov_get_vy(const mavlink_message_t* msg)
 {
@@ -386,7 +386,7 @@ static inline float mavlink_msg_global_position_int_cov_get_vy(const mavlink_mes
 /**
  * @brief Get field vz from global_position_int_cov message
  *
- * @return Ground Z Speed (Altitude), expressed as m/s
+ * @return Ground Z Speed (Altitude)
  */
 static inline float mavlink_msg_global_position_int_cov_get_vz(const mavlink_message_t* msg)
 {

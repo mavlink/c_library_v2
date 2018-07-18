@@ -5,10 +5,10 @@
 
 MAVPACKED(
 typedef struct __mavlink_terrain_report_t {
- int32_t lat; /*< Latitude (degrees *10^7)*/
- int32_t lon; /*< Longitude (degrees *10^7)*/
- float terrain_height; /*< Terrain height in meters AMSL*/
- float current_height; /*< Current vehicle height above lat/lon terrain height (meters)*/
+ int32_t lat; /*< Latitude*/
+ int32_t lon; /*< Longitude*/
+ float terrain_height; /*< Terrain height AMSL*/
+ float current_height; /*< Current vehicle height above lat/lon terrain height*/
  uint16_t spacing; /*< grid spacing (zero if terrain at this location unavailable)*/
  uint16_t pending; /*< Number of 4x4 terrain blocks waiting to be received or read from disk*/
  uint16_t loaded; /*< Number of 4x4 terrain blocks in memory*/
@@ -59,11 +59,11 @@ typedef struct __mavlink_terrain_report_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param lat Latitude (degrees *10^7)
- * @param lon Longitude (degrees *10^7)
+ * @param lat Latitude
+ * @param lon Longitude
  * @param spacing grid spacing (zero if terrain at this location unavailable)
- * @param terrain_height Terrain height in meters AMSL
- * @param current_height Current vehicle height above lat/lon terrain height (meters)
+ * @param terrain_height Terrain height AMSL
+ * @param current_height Current vehicle height above lat/lon terrain height
  * @param pending Number of 4x4 terrain blocks waiting to be received or read from disk
  * @param loaded Number of 4x4 terrain blocks in memory
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -105,11 +105,11 @@ static inline uint16_t mavlink_msg_terrain_report_pack(uint8_t system_id, uint8_
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param lat Latitude (degrees *10^7)
- * @param lon Longitude (degrees *10^7)
+ * @param lat Latitude
+ * @param lon Longitude
  * @param spacing grid spacing (zero if terrain at this location unavailable)
- * @param terrain_height Terrain height in meters AMSL
- * @param current_height Current vehicle height above lat/lon terrain height (meters)
+ * @param terrain_height Terrain height AMSL
+ * @param current_height Current vehicle height above lat/lon terrain height
  * @param pending Number of 4x4 terrain blocks waiting to be received or read from disk
  * @param loaded Number of 4x4 terrain blocks in memory
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -177,11 +177,11 @@ static inline uint16_t mavlink_msg_terrain_report_encode_chan(uint8_t system_id,
  * @brief Send a terrain_report message
  * @param chan MAVLink channel to send the message
  *
- * @param lat Latitude (degrees *10^7)
- * @param lon Longitude (degrees *10^7)
+ * @param lat Latitude
+ * @param lon Longitude
  * @param spacing grid spacing (zero if terrain at this location unavailable)
- * @param terrain_height Terrain height in meters AMSL
- * @param current_height Current vehicle height above lat/lon terrain height (meters)
+ * @param terrain_height Terrain height AMSL
+ * @param current_height Current vehicle height above lat/lon terrain height
  * @param pending Number of 4x4 terrain blocks waiting to be received or read from disk
  * @param loaded Number of 4x4 terrain blocks in memory
  */
@@ -272,7 +272,7 @@ static inline void mavlink_msg_terrain_report_send_buf(mavlink_message_t *msgbuf
 /**
  * @brief Get field lat from terrain_report message
  *
- * @return Latitude (degrees *10^7)
+ * @return Latitude
  */
 static inline int32_t mavlink_msg_terrain_report_get_lat(const mavlink_message_t* msg)
 {
@@ -282,7 +282,7 @@ static inline int32_t mavlink_msg_terrain_report_get_lat(const mavlink_message_t
 /**
  * @brief Get field lon from terrain_report message
  *
- * @return Longitude (degrees *10^7)
+ * @return Longitude
  */
 static inline int32_t mavlink_msg_terrain_report_get_lon(const mavlink_message_t* msg)
 {
@@ -302,7 +302,7 @@ static inline uint16_t mavlink_msg_terrain_report_get_spacing(const mavlink_mess
 /**
  * @brief Get field terrain_height from terrain_report message
  *
- * @return Terrain height in meters AMSL
+ * @return Terrain height AMSL
  */
 static inline float mavlink_msg_terrain_report_get_terrain_height(const mavlink_message_t* msg)
 {
@@ -312,7 +312,7 @@ static inline float mavlink_msg_terrain_report_get_terrain_height(const mavlink_
 /**
  * @brief Get field current_height from terrain_report message
  *
- * @return Current vehicle height above lat/lon terrain height (meters)
+ * @return Current vehicle height above lat/lon terrain height
  */
 static inline float mavlink_msg_terrain_report_get_current_height(const mavlink_message_t* msg)
 {

@@ -6,9 +6,9 @@
 MAVPACKED(
 typedef struct __mavlink_collision_t {
  uint32_t id; /*< Unique identifier, domain based on src field*/
- float time_to_minimum_delta; /*< Estimated time until collision occurs (seconds)*/
- float altitude_minimum_delta; /*< Closest vertical distance in meters between vehicle and object*/
- float horizontal_minimum_delta; /*< Closest horizontal distance in meteres between vehicle and object*/
+ float time_to_minimum_delta; /*< Estimated time until collision occurs*/
+ float altitude_minimum_delta; /*< Closest vertical distance between vehicle and object*/
+ float horizontal_minimum_delta; /*< Closest horizontal distance between vehicle and object*/
  uint8_t src; /*< Collision data source*/
  uint8_t action; /*< Action that is being taken to avoid this collision*/
  uint8_t threat_level; /*< How concerned the aircraft is about this collision*/
@@ -63,9 +63,9 @@ typedef struct __mavlink_collision_t {
  * @param id Unique identifier, domain based on src field
  * @param action Action that is being taken to avoid this collision
  * @param threat_level How concerned the aircraft is about this collision
- * @param time_to_minimum_delta Estimated time until collision occurs (seconds)
- * @param altitude_minimum_delta Closest vertical distance in meters between vehicle and object
- * @param horizontal_minimum_delta Closest horizontal distance in meteres between vehicle and object
+ * @param time_to_minimum_delta Estimated time until collision occurs
+ * @param altitude_minimum_delta Closest vertical distance between vehicle and object
+ * @param horizontal_minimum_delta Closest horizontal distance between vehicle and object
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_collision_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -109,9 +109,9 @@ static inline uint16_t mavlink_msg_collision_pack(uint8_t system_id, uint8_t com
  * @param id Unique identifier, domain based on src field
  * @param action Action that is being taken to avoid this collision
  * @param threat_level How concerned the aircraft is about this collision
- * @param time_to_minimum_delta Estimated time until collision occurs (seconds)
- * @param altitude_minimum_delta Closest vertical distance in meters between vehicle and object
- * @param horizontal_minimum_delta Closest horizontal distance in meteres between vehicle and object
+ * @param time_to_minimum_delta Estimated time until collision occurs
+ * @param altitude_minimum_delta Closest vertical distance between vehicle and object
+ * @param horizontal_minimum_delta Closest horizontal distance between vehicle and object
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_collision_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -181,9 +181,9 @@ static inline uint16_t mavlink_msg_collision_encode_chan(uint8_t system_id, uint
  * @param id Unique identifier, domain based on src field
  * @param action Action that is being taken to avoid this collision
  * @param threat_level How concerned the aircraft is about this collision
- * @param time_to_minimum_delta Estimated time until collision occurs (seconds)
- * @param altitude_minimum_delta Closest vertical distance in meters between vehicle and object
- * @param horizontal_minimum_delta Closest horizontal distance in meteres between vehicle and object
+ * @param time_to_minimum_delta Estimated time until collision occurs
+ * @param altitude_minimum_delta Closest vertical distance between vehicle and object
+ * @param horizontal_minimum_delta Closest horizontal distance between vehicle and object
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -312,7 +312,7 @@ static inline uint8_t mavlink_msg_collision_get_threat_level(const mavlink_messa
 /**
  * @brief Get field time_to_minimum_delta from collision message
  *
- * @return Estimated time until collision occurs (seconds)
+ * @return Estimated time until collision occurs
  */
 static inline float mavlink_msg_collision_get_time_to_minimum_delta(const mavlink_message_t* msg)
 {
@@ -322,7 +322,7 @@ static inline float mavlink_msg_collision_get_time_to_minimum_delta(const mavlin
 /**
  * @brief Get field altitude_minimum_delta from collision message
  *
- * @return Closest vertical distance in meters between vehicle and object
+ * @return Closest vertical distance between vehicle and object
  */
 static inline float mavlink_msg_collision_get_altitude_minimum_delta(const mavlink_message_t* msg)
 {
@@ -332,7 +332,7 @@ static inline float mavlink_msg_collision_get_altitude_minimum_delta(const mavli
 /**
  * @brief Get field horizontal_minimum_delta from collision message
  *
- * @return Closest horizontal distance in meteres between vehicle and object
+ * @return Closest horizontal distance between vehicle and object
  */
 static inline float mavlink_msg_collision_get_horizontal_minimum_delta(const mavlink_message_t* msg)
 {

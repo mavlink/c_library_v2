@@ -7,8 +7,8 @@ MAVPACKED(
 typedef struct __mavlink_param_ext_ack_t {
  char param_id[16]; /*< Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string*/
  char param_value[128]; /*< Parameter value (new value if PARAM_ACK_ACCEPTED, current value otherwise)*/
- uint8_t param_type; /*< Parameter type: see the MAV_PARAM_EXT_TYPE enum for supported data types.*/
- uint8_t param_result; /*< Result code: see the PARAM_ACK enum for possible codes.*/
+ uint8_t param_type; /*< Parameter type.*/
+ uint8_t param_result; /*< Result code.*/
 }) mavlink_param_ext_ack_t;
 
 #define MAVLINK_MSG_ID_PARAM_EXT_ACK_LEN 146
@@ -53,8 +53,8 @@ typedef struct __mavlink_param_ext_ack_t {
  *
  * @param param_id Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
  * @param param_value Parameter value (new value if PARAM_ACK_ACCEPTED, current value otherwise)
- * @param param_type Parameter type: see the MAV_PARAM_EXT_TYPE enum for supported data types.
- * @param param_result Result code: see the PARAM_ACK enum for possible codes.
+ * @param param_type Parameter type.
+ * @param param_result Result code.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_param_ext_ack_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -88,8 +88,8 @@ static inline uint16_t mavlink_msg_param_ext_ack_pack(uint8_t system_id, uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param param_id Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
  * @param param_value Parameter value (new value if PARAM_ACK_ACCEPTED, current value otherwise)
- * @param param_type Parameter type: see the MAV_PARAM_EXT_TYPE enum for supported data types.
- * @param param_result Result code: see the PARAM_ACK enum for possible codes.
+ * @param param_type Parameter type.
+ * @param param_result Result code.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_param_ext_ack_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -149,8 +149,8 @@ static inline uint16_t mavlink_msg_param_ext_ack_encode_chan(uint8_t system_id, 
  *
  * @param param_id Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
  * @param param_value Parameter value (new value if PARAM_ACK_ACCEPTED, current value otherwise)
- * @param param_type Parameter type: see the MAV_PARAM_EXT_TYPE enum for supported data types.
- * @param param_result Result code: see the PARAM_ACK enum for possible codes.
+ * @param param_type Parameter type.
+ * @param param_result Result code.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -243,7 +243,7 @@ static inline uint16_t mavlink_msg_param_ext_ack_get_param_value(const mavlink_m
 /**
  * @brief Get field param_type from param_ext_ack message
  *
- * @return Parameter type: see the MAV_PARAM_EXT_TYPE enum for supported data types.
+ * @return Parameter type.
  */
 static inline uint8_t mavlink_msg_param_ext_ack_get_param_type(const mavlink_message_t* msg)
 {
@@ -253,7 +253,7 @@ static inline uint8_t mavlink_msg_param_ext_ack_get_param_type(const mavlink_mes
 /**
  * @brief Get field param_result from param_ext_ack message
  *
- * @return Result code: see the PARAM_ACK enum for possible codes.
+ * @return Result code.
  */
 static inline uint8_t mavlink_msg_param_ext_ack_get_param_result(const mavlink_message_t* msg)
 {

@@ -5,22 +5,22 @@
 
 MAVPACKED(
 typedef struct __mavlink_hil_state_t {
- uint64_t time_usec; /*< Timestamp (microseconds since UNIX epoch or microseconds since system boot)*/
- float roll; /*< Roll angle (rad)*/
- float pitch; /*< Pitch angle (rad)*/
- float yaw; /*< Yaw angle (rad)*/
- float rollspeed; /*< Body frame roll / phi angular speed (rad/s)*/
- float pitchspeed; /*< Body frame pitch / theta angular speed (rad/s)*/
- float yawspeed; /*< Body frame yaw / psi angular speed (rad/s)*/
- int32_t lat; /*< Latitude, expressed as degrees * 1E7*/
- int32_t lon; /*< Longitude, expressed as degrees * 1E7*/
- int32_t alt; /*< Altitude in meters, expressed as * 1000 (millimeters)*/
- int16_t vx; /*< Ground X Speed (Latitude), expressed as m/s * 100*/
- int16_t vy; /*< Ground Y Speed (Longitude), expressed as m/s * 100*/
- int16_t vz; /*< Ground Z Speed (Altitude), expressed as m/s * 100*/
- int16_t xacc; /*< X acceleration (mg)*/
- int16_t yacc; /*< Y acceleration (mg)*/
- int16_t zacc; /*< Z acceleration (mg)*/
+ uint64_t time_usec; /*< Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
+ float roll; /*< Roll angle*/
+ float pitch; /*< Pitch angle*/
+ float yaw; /*< Yaw angle*/
+ float rollspeed; /*< Body frame roll / phi angular speed*/
+ float pitchspeed; /*< Body frame pitch / theta angular speed*/
+ float yawspeed; /*< Body frame yaw / psi angular speed*/
+ int32_t lat; /*< Latitude*/
+ int32_t lon; /*< Longitude*/
+ int32_t alt; /*< Altitude*/
+ int16_t vx; /*< Ground X Speed (Latitude)*/
+ int16_t vy; /*< Ground Y Speed (Longitude)*/
+ int16_t vz; /*< Ground Z Speed (Altitude)*/
+ int16_t xacc; /*< X acceleration*/
+ int16_t yacc; /*< Y acceleration*/
+ int16_t zacc; /*< Z acceleration*/
 }) mavlink_hil_state_t;
 
 #define MAVLINK_MSG_ID_HIL_STATE_LEN 56
@@ -86,22 +86,22 @@ typedef struct __mavlink_hil_state_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_usec Timestamp (microseconds since UNIX epoch or microseconds since system boot)
- * @param roll Roll angle (rad)
- * @param pitch Pitch angle (rad)
- * @param yaw Yaw angle (rad)
- * @param rollspeed Body frame roll / phi angular speed (rad/s)
- * @param pitchspeed Body frame pitch / theta angular speed (rad/s)
- * @param yawspeed Body frame yaw / psi angular speed (rad/s)
- * @param lat Latitude, expressed as degrees * 1E7
- * @param lon Longitude, expressed as degrees * 1E7
- * @param alt Altitude in meters, expressed as * 1000 (millimeters)
- * @param vx Ground X Speed (Latitude), expressed as m/s * 100
- * @param vy Ground Y Speed (Longitude), expressed as m/s * 100
- * @param vz Ground Z Speed (Altitude), expressed as m/s * 100
- * @param xacc X acceleration (mg)
- * @param yacc Y acceleration (mg)
- * @param zacc Z acceleration (mg)
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param roll Roll angle
+ * @param pitch Pitch angle
+ * @param yaw Yaw angle
+ * @param rollspeed Body frame roll / phi angular speed
+ * @param pitchspeed Body frame pitch / theta angular speed
+ * @param yawspeed Body frame yaw / psi angular speed
+ * @param lat Latitude
+ * @param lon Longitude
+ * @param alt Altitude
+ * @param vx Ground X Speed (Latitude)
+ * @param vy Ground Y Speed (Longitude)
+ * @param vz Ground Z Speed (Altitude)
+ * @param xacc X acceleration
+ * @param yacc Y acceleration
+ * @param zacc Z acceleration
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_hil_state_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -159,22 +159,22 @@ static inline uint16_t mavlink_msg_hil_state_pack(uint8_t system_id, uint8_t com
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_usec Timestamp (microseconds since UNIX epoch or microseconds since system boot)
- * @param roll Roll angle (rad)
- * @param pitch Pitch angle (rad)
- * @param yaw Yaw angle (rad)
- * @param rollspeed Body frame roll / phi angular speed (rad/s)
- * @param pitchspeed Body frame pitch / theta angular speed (rad/s)
- * @param yawspeed Body frame yaw / psi angular speed (rad/s)
- * @param lat Latitude, expressed as degrees * 1E7
- * @param lon Longitude, expressed as degrees * 1E7
- * @param alt Altitude in meters, expressed as * 1000 (millimeters)
- * @param vx Ground X Speed (Latitude), expressed as m/s * 100
- * @param vy Ground Y Speed (Longitude), expressed as m/s * 100
- * @param vz Ground Z Speed (Altitude), expressed as m/s * 100
- * @param xacc X acceleration (mg)
- * @param yacc Y acceleration (mg)
- * @param zacc Z acceleration (mg)
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param roll Roll angle
+ * @param pitch Pitch angle
+ * @param yaw Yaw angle
+ * @param rollspeed Body frame roll / phi angular speed
+ * @param pitchspeed Body frame pitch / theta angular speed
+ * @param yawspeed Body frame yaw / psi angular speed
+ * @param lat Latitude
+ * @param lon Longitude
+ * @param alt Altitude
+ * @param vx Ground X Speed (Latitude)
+ * @param vy Ground Y Speed (Longitude)
+ * @param vz Ground Z Speed (Altitude)
+ * @param xacc X acceleration
+ * @param yacc Y acceleration
+ * @param zacc Z acceleration
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_hil_state_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -258,22 +258,22 @@ static inline uint16_t mavlink_msg_hil_state_encode_chan(uint8_t system_id, uint
  * @brief Send a hil_state message
  * @param chan MAVLink channel to send the message
  *
- * @param time_usec Timestamp (microseconds since UNIX epoch or microseconds since system boot)
- * @param roll Roll angle (rad)
- * @param pitch Pitch angle (rad)
- * @param yaw Yaw angle (rad)
- * @param rollspeed Body frame roll / phi angular speed (rad/s)
- * @param pitchspeed Body frame pitch / theta angular speed (rad/s)
- * @param yawspeed Body frame yaw / psi angular speed (rad/s)
- * @param lat Latitude, expressed as degrees * 1E7
- * @param lon Longitude, expressed as degrees * 1E7
- * @param alt Altitude in meters, expressed as * 1000 (millimeters)
- * @param vx Ground X Speed (Latitude), expressed as m/s * 100
- * @param vy Ground Y Speed (Longitude), expressed as m/s * 100
- * @param vz Ground Z Speed (Altitude), expressed as m/s * 100
- * @param xacc X acceleration (mg)
- * @param yacc Y acceleration (mg)
- * @param zacc Z acceleration (mg)
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param roll Roll angle
+ * @param pitch Pitch angle
+ * @param yaw Yaw angle
+ * @param rollspeed Body frame roll / phi angular speed
+ * @param pitchspeed Body frame pitch / theta angular speed
+ * @param yawspeed Body frame yaw / psi angular speed
+ * @param lat Latitude
+ * @param lon Longitude
+ * @param alt Altitude
+ * @param vx Ground X Speed (Latitude)
+ * @param vy Ground Y Speed (Longitude)
+ * @param vz Ground Z Speed (Altitude)
+ * @param xacc X acceleration
+ * @param yacc Y acceleration
+ * @param zacc Z acceleration
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -398,7 +398,7 @@ static inline void mavlink_msg_hil_state_send_buf(mavlink_message_t *msgbuf, mav
 /**
  * @brief Get field time_usec from hil_state message
  *
- * @return Timestamp (microseconds since UNIX epoch or microseconds since system boot)
+ * @return Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  */
 static inline uint64_t mavlink_msg_hil_state_get_time_usec(const mavlink_message_t* msg)
 {
@@ -408,7 +408,7 @@ static inline uint64_t mavlink_msg_hil_state_get_time_usec(const mavlink_message
 /**
  * @brief Get field roll from hil_state message
  *
- * @return Roll angle (rad)
+ * @return Roll angle
  */
 static inline float mavlink_msg_hil_state_get_roll(const mavlink_message_t* msg)
 {
@@ -418,7 +418,7 @@ static inline float mavlink_msg_hil_state_get_roll(const mavlink_message_t* msg)
 /**
  * @brief Get field pitch from hil_state message
  *
- * @return Pitch angle (rad)
+ * @return Pitch angle
  */
 static inline float mavlink_msg_hil_state_get_pitch(const mavlink_message_t* msg)
 {
@@ -428,7 +428,7 @@ static inline float mavlink_msg_hil_state_get_pitch(const mavlink_message_t* msg
 /**
  * @brief Get field yaw from hil_state message
  *
- * @return Yaw angle (rad)
+ * @return Yaw angle
  */
 static inline float mavlink_msg_hil_state_get_yaw(const mavlink_message_t* msg)
 {
@@ -438,7 +438,7 @@ static inline float mavlink_msg_hil_state_get_yaw(const mavlink_message_t* msg)
 /**
  * @brief Get field rollspeed from hil_state message
  *
- * @return Body frame roll / phi angular speed (rad/s)
+ * @return Body frame roll / phi angular speed
  */
 static inline float mavlink_msg_hil_state_get_rollspeed(const mavlink_message_t* msg)
 {
@@ -448,7 +448,7 @@ static inline float mavlink_msg_hil_state_get_rollspeed(const mavlink_message_t*
 /**
  * @brief Get field pitchspeed from hil_state message
  *
- * @return Body frame pitch / theta angular speed (rad/s)
+ * @return Body frame pitch / theta angular speed
  */
 static inline float mavlink_msg_hil_state_get_pitchspeed(const mavlink_message_t* msg)
 {
@@ -458,7 +458,7 @@ static inline float mavlink_msg_hil_state_get_pitchspeed(const mavlink_message_t
 /**
  * @brief Get field yawspeed from hil_state message
  *
- * @return Body frame yaw / psi angular speed (rad/s)
+ * @return Body frame yaw / psi angular speed
  */
 static inline float mavlink_msg_hil_state_get_yawspeed(const mavlink_message_t* msg)
 {
@@ -468,7 +468,7 @@ static inline float mavlink_msg_hil_state_get_yawspeed(const mavlink_message_t* 
 /**
  * @brief Get field lat from hil_state message
  *
- * @return Latitude, expressed as degrees * 1E7
+ * @return Latitude
  */
 static inline int32_t mavlink_msg_hil_state_get_lat(const mavlink_message_t* msg)
 {
@@ -478,7 +478,7 @@ static inline int32_t mavlink_msg_hil_state_get_lat(const mavlink_message_t* msg
 /**
  * @brief Get field lon from hil_state message
  *
- * @return Longitude, expressed as degrees * 1E7
+ * @return Longitude
  */
 static inline int32_t mavlink_msg_hil_state_get_lon(const mavlink_message_t* msg)
 {
@@ -488,7 +488,7 @@ static inline int32_t mavlink_msg_hil_state_get_lon(const mavlink_message_t* msg
 /**
  * @brief Get field alt from hil_state message
  *
- * @return Altitude in meters, expressed as * 1000 (millimeters)
+ * @return Altitude
  */
 static inline int32_t mavlink_msg_hil_state_get_alt(const mavlink_message_t* msg)
 {
@@ -498,7 +498,7 @@ static inline int32_t mavlink_msg_hil_state_get_alt(const mavlink_message_t* msg
 /**
  * @brief Get field vx from hil_state message
  *
- * @return Ground X Speed (Latitude), expressed as m/s * 100
+ * @return Ground X Speed (Latitude)
  */
 static inline int16_t mavlink_msg_hil_state_get_vx(const mavlink_message_t* msg)
 {
@@ -508,7 +508,7 @@ static inline int16_t mavlink_msg_hil_state_get_vx(const mavlink_message_t* msg)
 /**
  * @brief Get field vy from hil_state message
  *
- * @return Ground Y Speed (Longitude), expressed as m/s * 100
+ * @return Ground Y Speed (Longitude)
  */
 static inline int16_t mavlink_msg_hil_state_get_vy(const mavlink_message_t* msg)
 {
@@ -518,7 +518,7 @@ static inline int16_t mavlink_msg_hil_state_get_vy(const mavlink_message_t* msg)
 /**
  * @brief Get field vz from hil_state message
  *
- * @return Ground Z Speed (Altitude), expressed as m/s * 100
+ * @return Ground Z Speed (Altitude)
  */
 static inline int16_t mavlink_msg_hil_state_get_vz(const mavlink_message_t* msg)
 {
@@ -528,7 +528,7 @@ static inline int16_t mavlink_msg_hil_state_get_vz(const mavlink_message_t* msg)
 /**
  * @brief Get field xacc from hil_state message
  *
- * @return X acceleration (mg)
+ * @return X acceleration
  */
 static inline int16_t mavlink_msg_hil_state_get_xacc(const mavlink_message_t* msg)
 {
@@ -538,7 +538,7 @@ static inline int16_t mavlink_msg_hil_state_get_xacc(const mavlink_message_t* ms
 /**
  * @brief Get field yacc from hil_state message
  *
- * @return Y acceleration (mg)
+ * @return Y acceleration
  */
 static inline int16_t mavlink_msg_hil_state_get_yacc(const mavlink_message_t* msg)
 {
@@ -548,7 +548,7 @@ static inline int16_t mavlink_msg_hil_state_get_yacc(const mavlink_message_t* ms
 /**
  * @brief Get field zacc from hil_state message
  *
- * @return Z acceleration (mg)
+ * @return Z acceleration
  */
 static inline int16_t mavlink_msg_hil_state_get_zacc(const mavlink_message_t* msg)
 {

@@ -5,8 +5,8 @@
 
 MAVPACKED(
 typedef struct __mavlink_terrain_check_t {
- int32_t lat; /*< Latitude (degrees *10^7)*/
- int32_t lon; /*< Longitude (degrees *10^7)*/
+ int32_t lat; /*< Latitude*/
+ int32_t lon; /*< Longitude*/
 }) mavlink_terrain_check_t;
 
 #define MAVLINK_MSG_ID_TERRAIN_CHECK_LEN 8
@@ -44,8 +44,8 @@ typedef struct __mavlink_terrain_check_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param lat Latitude (degrees *10^7)
- * @param lon Longitude (degrees *10^7)
+ * @param lat Latitude
+ * @param lon Longitude
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_terrain_check_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -75,8 +75,8 @@ static inline uint16_t mavlink_msg_terrain_check_pack(uint8_t system_id, uint8_t
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param lat Latitude (degrees *10^7)
- * @param lon Longitude (degrees *10^7)
+ * @param lat Latitude
+ * @param lon Longitude
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_terrain_check_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -132,8 +132,8 @@ static inline uint16_t mavlink_msg_terrain_check_encode_chan(uint8_t system_id, 
  * @brief Send a terrain_check message
  * @param chan MAVLink channel to send the message
  *
- * @param lat Latitude (degrees *10^7)
- * @param lon Longitude (degrees *10^7)
+ * @param lat Latitude
+ * @param lon Longitude
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -202,7 +202,7 @@ static inline void mavlink_msg_terrain_check_send_buf(mavlink_message_t *msgbuf,
 /**
  * @brief Get field lat from terrain_check message
  *
- * @return Latitude (degrees *10^7)
+ * @return Latitude
  */
 static inline int32_t mavlink_msg_terrain_check_get_lat(const mavlink_message_t* msg)
 {
@@ -212,7 +212,7 @@ static inline int32_t mavlink_msg_terrain_check_get_lat(const mavlink_message_t*
 /**
  * @brief Get field lon from terrain_check message
  *
- * @return Longitude (degrees *10^7)
+ * @return Longitude
  */
 static inline int32_t mavlink_msg_terrain_check_get_lon(const mavlink_message_t* msg)
 {

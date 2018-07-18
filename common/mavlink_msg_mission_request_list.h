@@ -7,7 +7,7 @@ MAVPACKED(
 typedef struct __mavlink_mission_request_list_t {
  uint8_t target_system; /*< System ID*/
  uint8_t target_component; /*< Component ID*/
- uint8_t mission_type; /*< Mission type, see MAV_MISSION_TYPE*/
+ uint8_t mission_type; /*< Mission type.*/
 }) mavlink_mission_request_list_t;
 
 #define MAVLINK_MSG_ID_MISSION_REQUEST_LIST_LEN 3
@@ -49,7 +49,7 @@ typedef struct __mavlink_mission_request_list_t {
  *
  * @param target_system System ID
  * @param target_component Component ID
- * @param mission_type Mission type, see MAV_MISSION_TYPE
+ * @param mission_type Mission type.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_mission_request_list_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -83,7 +83,7 @@ static inline uint16_t mavlink_msg_mission_request_list_pack(uint8_t system_id, 
  * @param msg The MAVLink message to compress the data into
  * @param target_system System ID
  * @param target_component Component ID
- * @param mission_type Mission type, see MAV_MISSION_TYPE
+ * @param mission_type Mission type.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_mission_request_list_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -143,7 +143,7 @@ static inline uint16_t mavlink_msg_mission_request_list_encode_chan(uint8_t syst
  *
  * @param target_system System ID
  * @param target_component Component ID
- * @param mission_type Mission type, see MAV_MISSION_TYPE
+ * @param mission_type Mission type.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -236,7 +236,7 @@ static inline uint8_t mavlink_msg_mission_request_list_get_target_component(cons
 /**
  * @brief Get field mission_type from mission_request_list message
  *
- * @return Mission type, see MAV_MISSION_TYPE
+ * @return Mission type.
  */
 static inline uint8_t mavlink_msg_mission_request_list_get_mission_type(const mavlink_message_t* msg)
 {

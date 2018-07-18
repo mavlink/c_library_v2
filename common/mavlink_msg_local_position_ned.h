@@ -5,7 +5,7 @@
 
 MAVPACKED(
 typedef struct __mavlink_local_position_ned_t {
- uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
+ uint32_t time_boot_ms; /*< Timestamp (time since system boot).*/
  float x; /*< X Position*/
  float y; /*< Y Position*/
  float z; /*< Z Position*/
@@ -59,7 +59,7 @@ typedef struct __mavlink_local_position_ned_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_boot_ms Timestamp (milliseconds since system boot)
+ * @param time_boot_ms Timestamp (time since system boot).
  * @param x X Position
  * @param y Y Position
  * @param z Z Position
@@ -105,7 +105,7 @@ static inline uint16_t mavlink_msg_local_position_ned_pack(uint8_t system_id, ui
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_boot_ms Timestamp (milliseconds since system boot)
+ * @param time_boot_ms Timestamp (time since system boot).
  * @param x X Position
  * @param y Y Position
  * @param z Z Position
@@ -177,7 +177,7 @@ static inline uint16_t mavlink_msg_local_position_ned_encode_chan(uint8_t system
  * @brief Send a local_position_ned message
  * @param chan MAVLink channel to send the message
  *
- * @param time_boot_ms Timestamp (milliseconds since system boot)
+ * @param time_boot_ms Timestamp (time since system boot).
  * @param x X Position
  * @param y Y Position
  * @param z Z Position
@@ -272,7 +272,7 @@ static inline void mavlink_msg_local_position_ned_send_buf(mavlink_message_t *ms
 /**
  * @brief Get field time_boot_ms from local_position_ned message
  *
- * @return Timestamp (milliseconds since system boot)
+ * @return Timestamp (time since system boot).
  */
 static inline uint32_t mavlink_msg_local_position_ned_get_time_boot_ms(const mavlink_message_t* msg)
 {

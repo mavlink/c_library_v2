@@ -5,10 +5,10 @@
 
 MAVPACKED(
 typedef struct __mavlink_set_video_stream_settings_t {
- float framerate; /*< Frames per second (set to -1 for highest framerate possible)*/
- uint32_t bitrate; /*< Bit rate in bits per second (set to -1 for auto)*/
- uint16_t resolution_h; /*< Resolution horizontal in pixels (set to -1 for highest resolution possible)*/
- uint16_t resolution_v; /*< Resolution vertical in pixels (set to -1 for highest resolution possible)*/
+ float framerate; /*< Frame rate (set to -1 for highest framerate possible)*/
+ uint32_t bitrate; /*< Bit rate (set to -1 for auto)*/
+ uint16_t resolution_h; /*< Horizontal resolution (set to -1 for highest resolution possible)*/
+ uint16_t resolution_v; /*< Vertical resolution (set to -1 for highest resolution possible)*/
  uint16_t rotation; /*< Video image rotation clockwise (0-359 degrees)*/
  uint8_t target_system; /*< system ID of the target*/
  uint8_t target_component; /*< component ID of the target*/
@@ -68,10 +68,10 @@ typedef struct __mavlink_set_video_stream_settings_t {
  * @param target_system system ID of the target
  * @param target_component component ID of the target
  * @param camera_id Camera ID (1 for first, 2 for second, etc.)
- * @param framerate Frames per second (set to -1 for highest framerate possible)
- * @param resolution_h Resolution horizontal in pixels (set to -1 for highest resolution possible)
- * @param resolution_v Resolution vertical in pixels (set to -1 for highest resolution possible)
- * @param bitrate Bit rate in bits per second (set to -1 for auto)
+ * @param framerate Frame rate (set to -1 for highest framerate possible)
+ * @param resolution_h Horizontal resolution (set to -1 for highest resolution possible)
+ * @param resolution_v Vertical resolution (set to -1 for highest resolution possible)
+ * @param bitrate Bit rate (set to -1 for auto)
  * @param rotation Video image rotation clockwise (0-359 degrees)
  * @param uri Video stream URI
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -118,10 +118,10 @@ static inline uint16_t mavlink_msg_set_video_stream_settings_pack(uint8_t system
  * @param target_system system ID of the target
  * @param target_component component ID of the target
  * @param camera_id Camera ID (1 for first, 2 for second, etc.)
- * @param framerate Frames per second (set to -1 for highest framerate possible)
- * @param resolution_h Resolution horizontal in pixels (set to -1 for highest resolution possible)
- * @param resolution_v Resolution vertical in pixels (set to -1 for highest resolution possible)
- * @param bitrate Bit rate in bits per second (set to -1 for auto)
+ * @param framerate Frame rate (set to -1 for highest framerate possible)
+ * @param resolution_h Horizontal resolution (set to -1 for highest resolution possible)
+ * @param resolution_v Vertical resolution (set to -1 for highest resolution possible)
+ * @param bitrate Bit rate (set to -1 for auto)
  * @param rotation Video image rotation clockwise (0-359 degrees)
  * @param uri Video stream URI
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -194,10 +194,10 @@ static inline uint16_t mavlink_msg_set_video_stream_settings_encode_chan(uint8_t
  * @param target_system system ID of the target
  * @param target_component component ID of the target
  * @param camera_id Camera ID (1 for first, 2 for second, etc.)
- * @param framerate Frames per second (set to -1 for highest framerate possible)
- * @param resolution_h Resolution horizontal in pixels (set to -1 for highest resolution possible)
- * @param resolution_v Resolution vertical in pixels (set to -1 for highest resolution possible)
- * @param bitrate Bit rate in bits per second (set to -1 for auto)
+ * @param framerate Frame rate (set to -1 for highest framerate possible)
+ * @param resolution_h Horizontal resolution (set to -1 for highest resolution possible)
+ * @param resolution_v Vertical resolution (set to -1 for highest resolution possible)
+ * @param bitrate Bit rate (set to -1 for auto)
  * @param rotation Video image rotation clockwise (0-359 degrees)
  * @param uri Video stream URI
  */
@@ -322,7 +322,7 @@ static inline uint8_t mavlink_msg_set_video_stream_settings_get_camera_id(const 
 /**
  * @brief Get field framerate from set_video_stream_settings message
  *
- * @return Frames per second (set to -1 for highest framerate possible)
+ * @return Frame rate (set to -1 for highest framerate possible)
  */
 static inline float mavlink_msg_set_video_stream_settings_get_framerate(const mavlink_message_t* msg)
 {
@@ -332,7 +332,7 @@ static inline float mavlink_msg_set_video_stream_settings_get_framerate(const ma
 /**
  * @brief Get field resolution_h from set_video_stream_settings message
  *
- * @return Resolution horizontal in pixels (set to -1 for highest resolution possible)
+ * @return Horizontal resolution (set to -1 for highest resolution possible)
  */
 static inline uint16_t mavlink_msg_set_video_stream_settings_get_resolution_h(const mavlink_message_t* msg)
 {
@@ -342,7 +342,7 @@ static inline uint16_t mavlink_msg_set_video_stream_settings_get_resolution_h(co
 /**
  * @brief Get field resolution_v from set_video_stream_settings message
  *
- * @return Resolution vertical in pixels (set to -1 for highest resolution possible)
+ * @return Vertical resolution (set to -1 for highest resolution possible)
  */
 static inline uint16_t mavlink_msg_set_video_stream_settings_get_resolution_v(const mavlink_message_t* msg)
 {
@@ -352,7 +352,7 @@ static inline uint16_t mavlink_msg_set_video_stream_settings_get_resolution_v(co
 /**
  * @brief Get field bitrate from set_video_stream_settings message
  *
- * @return Bit rate in bits per second (set to -1 for auto)
+ * @return Bit rate (set to -1 for auto)
  */
 static inline uint32_t mavlink_msg_set_video_stream_settings_get_bitrate(const mavlink_message_t* msg)
 {

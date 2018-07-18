@@ -5,7 +5,7 @@
 
 MAVPACKED(
 typedef struct __mavlink_statustext_t {
- uint8_t severity; /*< Severity of status. Relies on the definitions within RFC-5424. See enum MAV_SEVERITY.*/
+ uint8_t severity; /*< Severity of status. Relies on the definitions within RFC-5424.*/
  char text[50]; /*< Status text message, without null termination character*/
 }) mavlink_statustext_t;
 
@@ -44,7 +44,7 @@ typedef struct __mavlink_statustext_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param severity Severity of status. Relies on the definitions within RFC-5424. See enum MAV_SEVERITY.
+ * @param severity Severity of status. Relies on the definitions within RFC-5424.
  * @param text Status text message, without null termination character
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -73,7 +73,7 @@ static inline uint16_t mavlink_msg_statustext_pack(uint8_t system_id, uint8_t co
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param severity Severity of status. Relies on the definitions within RFC-5424. See enum MAV_SEVERITY.
+ * @param severity Severity of status. Relies on the definitions within RFC-5424.
  * @param text Status text message, without null termination character
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -128,7 +128,7 @@ static inline uint16_t mavlink_msg_statustext_encode_chan(uint8_t system_id, uin
  * @brief Send a statustext message
  * @param chan MAVLink channel to send the message
  *
- * @param severity Severity of status. Relies on the definitions within RFC-5424. See enum MAV_SEVERITY.
+ * @param severity Severity of status. Relies on the definitions within RFC-5424.
  * @param text Status text message, without null termination character
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -194,7 +194,7 @@ static inline void mavlink_msg_statustext_send_buf(mavlink_message_t *msgbuf, ma
 /**
  * @brief Get field severity from statustext message
  *
- * @return Severity of status. Relies on the definitions within RFC-5424. See enum MAV_SEVERITY.
+ * @return Severity of status. Relies on the definitions within RFC-5424.
  */
 static inline uint8_t mavlink_msg_statustext_get_severity(const mavlink_message_t* msg)
 {

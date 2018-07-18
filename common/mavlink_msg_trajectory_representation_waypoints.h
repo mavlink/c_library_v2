@@ -5,7 +5,7 @@
 
 MAVPACKED(
 typedef struct __mavlink_trajectory_representation_waypoints_t {
- uint64_t time_usec; /*< Timestamp (since system boot or since UNIX epoch).*/
+ uint64_t time_usec; /*< Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
  float pos_x[5]; /*< X-coordinate of waypoint, set to NaN if not being used*/
  float pos_y[5]; /*< Y-coordinate of waypoint, set to NaN if not being used*/
  float pos_z[5]; /*< Z-coordinate of waypoint, set to NaN if not being used*/
@@ -87,7 +87,7 @@ typedef struct __mavlink_trajectory_representation_waypoints_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_usec Timestamp (since system boot or since UNIX epoch).
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  * @param valid_points Number of valid points (up-to 5 waypoints are possible)
  * @param pos_x X-coordinate of waypoint, set to NaN if not being used
  * @param pos_y Y-coordinate of waypoint, set to NaN if not being used
@@ -149,7 +149,7 @@ static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack(uint
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_usec Timestamp (since system boot or since UNIX epoch).
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  * @param valid_points Number of valid points (up-to 5 waypoints are possible)
  * @param pos_x X-coordinate of waypoint, set to NaN if not being used
  * @param pos_y Y-coordinate of waypoint, set to NaN if not being used
@@ -237,7 +237,7 @@ static inline uint16_t mavlink_msg_trajectory_representation_waypoints_encode_ch
  * @brief Send a trajectory_representation_waypoints message
  * @param chan MAVLink channel to send the message
  *
- * @param time_usec Timestamp (since system boot or since UNIX epoch).
+ * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  * @param valid_points Number of valid points (up-to 5 waypoints are possible)
  * @param pos_x X-coordinate of waypoint, set to NaN if not being used
  * @param pos_y Y-coordinate of waypoint, set to NaN if not being used
@@ -358,7 +358,7 @@ static inline void mavlink_msg_trajectory_representation_waypoints_send_buf(mavl
 /**
  * @brief Get field time_usec from trajectory_representation_waypoints message
  *
- * @return Timestamp (since system boot or since UNIX epoch).
+ * @return Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  */
 static inline uint64_t mavlink_msg_trajectory_representation_waypoints_get_time_usec(const mavlink_message_t* msg)
 {
