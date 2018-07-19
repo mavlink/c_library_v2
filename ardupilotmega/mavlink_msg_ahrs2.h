@@ -5,12 +5,12 @@
 
 MAVPACKED(
 typedef struct __mavlink_ahrs2_t {
- float roll; /*< Roll angle (rad)*/
- float pitch; /*< Pitch angle (rad)*/
- float yaw; /*< Yaw angle (rad)*/
- float altitude; /*< Altitude (MSL)*/
- int32_t lat; /*< Latitude in degrees * 1E7*/
- int32_t lng; /*< Longitude in degrees * 1E7*/
+ float roll; /*< Roll angle.*/
+ float pitch; /*< Pitch angle.*/
+ float yaw; /*< Yaw angle.*/
+ float altitude; /*< Altitude (MSL).*/
+ int32_t lat; /*< Latitude.*/
+ int32_t lng; /*< Longitude.*/
 }) mavlink_ahrs2_t;
 
 #define MAVLINK_MSG_ID_AHRS2_LEN 24
@@ -56,12 +56,12 @@ typedef struct __mavlink_ahrs2_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param roll Roll angle (rad)
- * @param pitch Pitch angle (rad)
- * @param yaw Yaw angle (rad)
- * @param altitude Altitude (MSL)
- * @param lat Latitude in degrees * 1E7
- * @param lng Longitude in degrees * 1E7
+ * @param roll Roll angle.
+ * @param pitch Pitch angle.
+ * @param yaw Yaw angle.
+ * @param altitude Altitude (MSL).
+ * @param lat Latitude.
+ * @param lng Longitude.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ahrs2_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -99,12 +99,12 @@ static inline uint16_t mavlink_msg_ahrs2_pack(uint8_t system_id, uint8_t compone
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param roll Roll angle (rad)
- * @param pitch Pitch angle (rad)
- * @param yaw Yaw angle (rad)
- * @param altitude Altitude (MSL)
- * @param lat Latitude in degrees * 1E7
- * @param lng Longitude in degrees * 1E7
+ * @param roll Roll angle.
+ * @param pitch Pitch angle.
+ * @param yaw Yaw angle.
+ * @param altitude Altitude (MSL).
+ * @param lat Latitude.
+ * @param lng Longitude.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ahrs2_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -168,12 +168,12 @@ static inline uint16_t mavlink_msg_ahrs2_encode_chan(uint8_t system_id, uint8_t 
  * @brief Send a ahrs2 message
  * @param chan MAVLink channel to send the message
  *
- * @param roll Roll angle (rad)
- * @param pitch Pitch angle (rad)
- * @param yaw Yaw angle (rad)
- * @param altitude Altitude (MSL)
- * @param lat Latitude in degrees * 1E7
- * @param lng Longitude in degrees * 1E7
+ * @param roll Roll angle.
+ * @param pitch Pitch angle.
+ * @param yaw Yaw angle.
+ * @param altitude Altitude (MSL).
+ * @param lat Latitude.
+ * @param lng Longitude.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -258,7 +258,7 @@ static inline void mavlink_msg_ahrs2_send_buf(mavlink_message_t *msgbuf, mavlink
 /**
  * @brief Get field roll from ahrs2 message
  *
- * @return Roll angle (rad)
+ * @return Roll angle.
  */
 static inline float mavlink_msg_ahrs2_get_roll(const mavlink_message_t* msg)
 {
@@ -268,7 +268,7 @@ static inline float mavlink_msg_ahrs2_get_roll(const mavlink_message_t* msg)
 /**
  * @brief Get field pitch from ahrs2 message
  *
- * @return Pitch angle (rad)
+ * @return Pitch angle.
  */
 static inline float mavlink_msg_ahrs2_get_pitch(const mavlink_message_t* msg)
 {
@@ -278,7 +278,7 @@ static inline float mavlink_msg_ahrs2_get_pitch(const mavlink_message_t* msg)
 /**
  * @brief Get field yaw from ahrs2 message
  *
- * @return Yaw angle (rad)
+ * @return Yaw angle.
  */
 static inline float mavlink_msg_ahrs2_get_yaw(const mavlink_message_t* msg)
 {
@@ -288,7 +288,7 @@ static inline float mavlink_msg_ahrs2_get_yaw(const mavlink_message_t* msg)
 /**
  * @brief Get field altitude from ahrs2 message
  *
- * @return Altitude (MSL)
+ * @return Altitude (MSL).
  */
 static inline float mavlink_msg_ahrs2_get_altitude(const mavlink_message_t* msg)
 {
@@ -298,7 +298,7 @@ static inline float mavlink_msg_ahrs2_get_altitude(const mavlink_message_t* msg)
 /**
  * @brief Get field lat from ahrs2 message
  *
- * @return Latitude in degrees * 1E7
+ * @return Latitude.
  */
 static inline int32_t mavlink_msg_ahrs2_get_lat(const mavlink_message_t* msg)
 {
@@ -308,7 +308,7 @@ static inline int32_t mavlink_msg_ahrs2_get_lat(const mavlink_message_t* msg)
 /**
  * @brief Get field lng from ahrs2 message
  *
- * @return Longitude in degrees * 1E7
+ * @return Longitude.
  */
 static inline int32_t mavlink_msg_ahrs2_get_lng(const mavlink_message_t* msg)
 {

@@ -74,7 +74,7 @@ typedef enum MAV_CMD
    MAV_CMD_NAV_ROI=80, /* THIS INTERFACE IS DEPRECATED AS OF JANUARY 2018. Please use MAV_CMD_DO_SET_ROI_* messages instead. Sets the region of interest (ROI) for a sensor set or the vehicle itself. This can then be used by the vehicles control system to control the vehicle attitude and the attitude of various sensors such as cameras. |Region of interest mode. (see MAV_ROI enum)| Waypoint index/ target ID. (see MAV_ROI enum)| ROI index (allows a vehicle to manage multiple ROI's)| Empty| x the location of the fixed ROI (see MAV_FRAME)| y| z|  */
    MAV_CMD_NAV_PATHPLANNING=81, /* Control autonomous path planning on the MAV. |0: Disable local obstacle avoidance / local path planning (without resetting map), 1: Enable local path planning, 2: Enable and reset local path planning| 0: Disable full path planning (without resetting map), 1: Enable, 2: Enable and reset map/occupancy grid, 3: Enable and reset planned route, but not occupancy grid| Empty| Yaw angle at goal, in compass degrees, [0..360]| Latitude/X of goal| Longitude/Y of goal| Altitude/Z of goal|  */
    MAV_CMD_NAV_SPLINE_WAYPOINT=82, /* Navigate to waypoint using a spline path. |Hold time in decimal seconds. (ignored by fixed wing, time to stay at waypoint for rotary wing)| Empty| Empty| Empty| Latitude/X of goal| Longitude/Y of goal| Altitude/Z of goal|  */
-   MAV_CMD_NAV_ALTITUDE_WAIT=83, /* Mission command to wait for an altitude or downwards vertical speed. This is meant for high altitude balloon launches, allowing the aircraft to be idle until either an altitude is reached or a negative vertical speed is reached (indicating early balloon burst). The wiggle time is how often to wiggle the control surfaces to prevent them seizing up. |altitude (m)| descent speed (m/s)| Wiggle Time (s)| Empty| Empty| Empty| Empty|  */
+   MAV_CMD_NAV_ALTITUDE_WAIT=83, /* Mission command to wait for an altitude or downwards vertical speed. This is meant for high altitude balloon launches, allowing the aircraft to be idle until either an altitude is reached or a negative vertical speed is reached (indicating early balloon burst). The wiggle time is how often to wiggle the control surfaces to prevent them seizing up. |Altitude (m).| Descent speed (m/s).| Wiggle Time (s).| Empty.| Empty.| Empty.| Empty.|  */
    MAV_CMD_NAV_VTOL_TAKEOFF=84, /* Takeoff from ground using VTOL mode |Empty| Front transition heading, see VTOL_TRANSITION_HEADING enum.| Empty| Yaw angle in degrees. NaN for unchanged.| Latitude| Longitude| Altitude|  */
    MAV_CMD_NAV_VTOL_LAND=85, /* Land using VTOL mode |Empty| Empty| Approach altitude (with the same reference as the Altitude field). NaN if unspecified.| Yaw angle in degrees. NaN for unchanged.| Latitude| Longitude| Altitude (ground level)|  */
    MAV_CMD_NAV_GUIDED_ENABLE=92, /* hand control over to an external controller |On / Off (> 0.5f on)| Empty| Empty| Empty| Empty| Empty| Empty|  */
@@ -117,8 +117,8 @@ typedef enum MAV_CMD
    MAV_CMD_DO_PARACHUTE=208, /* Mission command to trigger a parachute |action (0=disable, 1=enable, 2=release, for some systems see PARACHUTE_ACTION enum, not in general message set.)| Empty| Empty| Empty| Empty| Empty| Empty|  */
    MAV_CMD_DO_MOTOR_TEST=209, /* Mission command to perform motor test |motor number (a number from 1 to max number of motors on the vehicle)| throttle type (0=throttle percentage, 1=PWM, 2=pilot throttle channel pass-through. See MOTOR_TEST_THROTTLE_TYPE enum)| throttle| timeout (in seconds)| motor count (number of motors to test to test in sequence, waiting for the timeout above between them; 0=1 motor, 1=1 motor, 2=2 motors...)| motor test order (See MOTOR_TEST_ORDER enum)| Empty|  */
    MAV_CMD_DO_INVERTED_FLIGHT=210, /* Change to/from inverted flight |inverted (0=normal, 1=inverted)| Empty| Empty| Empty| Empty| Empty| Empty|  */
-   MAV_CMD_DO_GRIPPER=211, /* Mission command to operate EPM gripper |gripper number (a number from 1 to max number of grippers on the vehicle)| gripper action (0=release, 1=grab. See GRIPPER_ACTIONS enum)| Empty| Empty| Empty| Empty| Empty|  */
-   MAV_CMD_DO_AUTOTUNE_ENABLE=212, /* Enable/disable autotune |enable (1: enable, 0:disable)| Empty| Empty| Empty| Empty| Empty| Empty|  */
+   MAV_CMD_DO_GRIPPER=211, /* Mission command to operate EPM gripper. |Gripper number (a number from 1 to max number of grippers on the vehicle).| Gripper action (0=release, 1=grab. See GRIPPER_ACTIONS enum).| Empty.| Empty.| Empty.| Empty.| Empty.|  */
+   MAV_CMD_DO_AUTOTUNE_ENABLE=212, /* Enable/disable autotune. |Enable (1: enable, 0:disable).| Empty.| Empty.| Empty.| Empty.| Empty.| Empty.|  */
    MAV_CMD_NAV_SET_YAW_SPEED=213, /* Sets a desired vehicle turn angle and speed change |yaw angle to adjust steering by in centidegress| speed - normalized to 0 .. 1| Empty| Empty| Empty| Empty| Empty|  */
    MAV_CMD_DO_SET_CAM_TRIGG_INTERVAL=214, /* Mission command to set camera trigger interval for this flight. If triggering is enabled, the camera is triggered each time this interval expires. This command can also be used to set the shutter integration time for the camera. |Camera trigger cycle time (milliseconds). -1 or 0 to ignore.| Camera shutter integration time (milliseconds). Should be less than trigger cycle time. -1 or 0 to ignore.| Empty| Empty| Empty| Empty| Empty|  */
    MAV_CMD_DO_MOUNT_CONTROL_QUAT=220, /* Mission command to control a camera or antenna mount, using a quaternion as reference. |q1 - quaternion param #1, w (1 in null-rotation)| q2 - quaternion param #2, x (0 in null-rotation)| q3 - quaternion param #3, y (0 in null-rotation)| q4 - quaternion param #4, z (0 in null-rotation)| Empty| Empty| Empty|  */
@@ -201,24 +201,24 @@ typedef enum MAV_CMD
    MAV_CMD_USER_3=31012, /* User defined command. Ground Station will not show the Vehicle as flying through this item. Example: MAV_CMD_DO_SET_PARAMETER item. |User defined| User defined| User defined| User defined| User defined| User defined| User defined|  */
    MAV_CMD_USER_4=31013, /* User defined command. Ground Station will not show the Vehicle as flying through this item. Example: MAV_CMD_DO_SET_PARAMETER item. |User defined| User defined| User defined| User defined| User defined| User defined| User defined|  */
    MAV_CMD_USER_5=31014, /* User defined command. Ground Station will not show the Vehicle as flying through this item. Example: MAV_CMD_DO_SET_PARAMETER item. |User defined| User defined| User defined| User defined| User defined| User defined| User defined|  */
-   MAV_CMD_POWER_OFF_INITIATED=42000, /* A system wide power-off event has been initiated. |Empty| Empty| Empty| Empty| Empty| Empty| Empty|  */
-   MAV_CMD_SOLO_BTN_FLY_CLICK=42001, /* FLY button has been clicked. |Empty| Empty| Empty| Empty| Empty| Empty| Empty|  */
-   MAV_CMD_SOLO_BTN_FLY_HOLD=42002, /* FLY button has been held for 1.5 seconds. |Takeoff altitude| Empty| Empty| Empty| Empty| Empty| Empty|  */
-   MAV_CMD_SOLO_BTN_PAUSE_CLICK=42003, /* PAUSE button has been clicked. |1 if Solo is in a shot mode, 0 otherwise| Empty| Empty| Empty| Empty| Empty| Empty|  */
+   MAV_CMD_POWER_OFF_INITIATED=42000, /* A system wide power-off event has been initiated. |Empty.| Empty.| Empty.| Empty.| Empty.| Empty.| Empty.|  */
+   MAV_CMD_SOLO_BTN_FLY_CLICK=42001, /* FLY button has been clicked. |Empty.| Empty.| Empty.| Empty.| Empty.| Empty.| Empty.|  */
+   MAV_CMD_SOLO_BTN_FLY_HOLD=42002, /* FLY button has been held for 1.5 seconds. |Takeoff altitude.| Empty.| Empty.| Empty.| Empty.| Empty.| Empty.|  */
+   MAV_CMD_SOLO_BTN_PAUSE_CLICK=42003, /* PAUSE button has been clicked. |1 if Solo is in a shot mode, 0 otherwise.| Empty.| Empty.| Empty.| Empty.| Empty.| Empty.|  */
    MAV_CMD_FIXED_MAG_CAL=42004, /* Magnetometer calibration based on fixed position
-        in earth field given by inclination, declination and intensity |MagDeclinationDegrees| MagInclinationDegrees| MagIntensityMilliGauss| YawDegrees| Empty| Empty| Empty|  */
-   MAV_CMD_FIXED_MAG_CAL_FIELD=42005, /* Magnetometer calibration based on fixed expected field values in milliGauss |FieldX| FieldY| FieldZ| Empty| Empty| Empty| Empty|  */
-   MAV_CMD_DO_START_MAG_CAL=42424, /* Initiate a magnetometer calibration |uint8_t bitmask of magnetometers (0 means all)| Automatically retry on failure (0=no retry, 1=retry).| Save without user input (0=require input, 1=autosave).| Delay (seconds)| Autoreboot (0=user reboot, 1=autoreboot)| Empty| Empty|  */
-   MAV_CMD_DO_ACCEPT_MAG_CAL=42425, /* Initiate a magnetometer calibration |uint8_t bitmask of magnetometers (0 means all)| Empty| Empty| Empty| Empty| Empty| Empty|  */
-   MAV_CMD_DO_CANCEL_MAG_CAL=42426, /* Cancel a running magnetometer calibration |uint8_t bitmask of magnetometers (0 means all)| Empty| Empty| Empty| Empty| Empty| Empty|  */
-   MAV_CMD_SET_FACTORY_TEST_MODE=42427, /* Command autopilot to get into factory test/diagnostic mode |0 means get out of test mode, 1 means get into test mode| Empty| Empty| Empty| Empty| Empty| Empty|  */
-   MAV_CMD_DO_SEND_BANNER=42428, /* Reply with the version banner |Empty| Empty| Empty| Empty| Empty| Empty| Empty|  */
-   MAV_CMD_ACCELCAL_VEHICLE_POS=42429, /* Used when doing accelerometer calibration. When sent to the GCS tells it what position to put the vehicle in. When sent to the vehicle says what position the vehicle is in. |Position, one of the ACCELCAL_VEHICLE_POS enum values| Empty| Empty| Empty| Empty| Empty| Empty|  */
-   MAV_CMD_GIMBAL_RESET=42501, /* Causes the gimbal to reset and boot as if it was just powered on |Empty| Empty| Empty| Empty| Empty| Empty| Empty|  */
-   MAV_CMD_GIMBAL_AXIS_CALIBRATION_STATUS=42502, /* Reports progress and success or failure of gimbal axis calibration procedure |Gimbal axis we're reporting calibration progress for| Current calibration progress for this axis, 0x64=100%| Status of the calibration| Empty| Empty| Empty| Empty|  */
-   MAV_CMD_GIMBAL_REQUEST_AXIS_CALIBRATION=42503, /* Starts commutation calibration on the gimbal |Empty| Empty| Empty| Empty| Empty| Empty| Empty|  */
-   MAV_CMD_GIMBAL_FULL_RESET=42505, /* Erases gimbal application and parameters |Magic number| Magic number| Magic number| Magic number| Magic number| Magic number| Magic number|  */
-   MAV_CMD_DO_WINCH=42600, /* Command to operate winch |winch number (0 for the default winch, otherwise a number from 1 to max number of winches on the vehicle)| action (0=relax, 1=relative length control, 2=rate control.  See WINCH_ACTIONS enum)| release length (cable distance to unwind in meters, negative numbers to wind in cable)| release rate (meters/second)| Empty| Empty| Empty|  */
+        in earth field given by inclination, declination and intensity. |MagDeclinationDegrees.| MagInclinationDegrees.| MagIntensityMilliGauss.| YawDegrees.| Empty.| Empty.| Empty.|  */
+   MAV_CMD_FIXED_MAG_CAL_FIELD=42005, /* Magnetometer calibration based on fixed expected field values in milliGauss. |FieldX.| FieldY.| FieldZ.| Empty.| Empty.| Empty.| Empty.|  */
+   MAV_CMD_DO_START_MAG_CAL=42424, /* Initiate a magnetometer calibration. |uint8_t bitmask of magnetometers (0 means all).| Automatically retry on failure (0=no retry, 1=retry).| Save without user input (0=require input, 1=autosave).| Delay (seconds).| Autoreboot (0=user reboot, 1=autoreboot).| Empty.| Empty.|  */
+   MAV_CMD_DO_ACCEPT_MAG_CAL=42425, /* Initiate a magnetometer calibration. |uint8_t bitmask of magnetometers (0 means all).| Empty.| Empty.| Empty.| Empty.| Empty.| Empty.|  */
+   MAV_CMD_DO_CANCEL_MAG_CAL=42426, /* Cancel a running magnetometer calibration. |uint8_t bitmask of magnetometers (0 means all).| Empty.| Empty.| Empty.| Empty.| Empty.| Empty.|  */
+   MAV_CMD_SET_FACTORY_TEST_MODE=42427, /* Command autopilot to get into factory test/diagnostic mode. |0 means get out of test mode, 1 means get into test mode.| Empty.| Empty.| Empty.| Empty.| Empty.| Empty.|  */
+   MAV_CMD_DO_SEND_BANNER=42428, /* Reply with the version banner. |Empty.| Empty.| Empty.| Empty.| Empty.| Empty.| Empty.|  */
+   MAV_CMD_ACCELCAL_VEHICLE_POS=42429, /* Used when doing accelerometer calibration. When sent to the GCS tells it what position to put the vehicle in. When sent to the vehicle says what position the vehicle is in. |Position, one of the ACCELCAL_VEHICLE_POS enum values.| Empty.| Empty.| Empty.| Empty.| Empty.| Empty.|  */
+   MAV_CMD_GIMBAL_RESET=42501, /* Causes the gimbal to reset and boot as if it was just powered on. |Empty.| Empty.| Empty.| Empty.| Empty.| Empty.| Empty.|  */
+   MAV_CMD_GIMBAL_AXIS_CALIBRATION_STATUS=42502, /* Reports progress and success or failure of gimbal axis calibration procedure. |Gimbal axis we're reporting calibration progress for.| Current calibration progress for this axis, 0x64=100%.| Status of the calibration.| Empty.| Empty.| Empty.| Empty.|  */
+   MAV_CMD_GIMBAL_REQUEST_AXIS_CALIBRATION=42503, /* Starts commutation calibration on the gimbal. |Empty.| Empty.| Empty.| Empty.| Empty.| Empty.| Empty.|  */
+   MAV_CMD_GIMBAL_FULL_RESET=42505, /* Erases gimbal application and parameters. |Magic number.| Magic number.| Magic number.| Magic number.| Magic number.| Magic number.| Magic number.|  */
+   MAV_CMD_DO_WINCH=42600, /* Command to operate winch. |Winch number (0 for the default winch, otherwise a number from 1 to max number of winches on the vehicle).| Action (0=relax, 1=relative length control, 2=rate control. See WINCH_ACTIONS enum.).| Release length (cable distance to unwind in meters, negative numbers to wind in cable).| Release rate (meters/second).| Empty.| Empty.| Empty.|  */
    MAV_CMD_FLASH_BOOTLOADER=42650, /* Update the bootloader |Empty| Empty| Empty| Empty| Magic number - set to 290876 to actually flash| Empty| Empty|  */
    MAV_CMD_ENUM_END=42651, /*  | */
 } MAV_CMD;
@@ -229,12 +229,12 @@ typedef enum MAV_CMD
 #define HAVE_ENUM_LIMITS_STATE
 typedef enum LIMITS_STATE
 {
-   LIMITS_INIT=0, /* pre-initialization | */
-   LIMITS_DISABLED=1, /* disabled | */
-   LIMITS_ENABLED=2, /* checking limits | */
-   LIMITS_TRIGGERED=3, /* a limit has been breached | */
-   LIMITS_RECOVERING=4, /* taking action eg. RTL | */
-   LIMITS_RECOVERED=5, /* we're no longer in breach of a limit | */
+   LIMITS_INIT=0, /* Pre-initialization. | */
+   LIMITS_DISABLED=1, /* Disabled. | */
+   LIMITS_ENABLED=2, /* Checking limits. | */
+   LIMITS_TRIGGERED=3, /* A limit has been breached. | */
+   LIMITS_RECOVERING=4, /* Taking action e.g. Return/RTL. | */
+   LIMITS_RECOVERED=5, /* We're no longer in breach of a limit. | */
    LIMITS_STATE_ENUM_END=6, /*  | */
 } LIMITS_STATE;
 #endif
@@ -244,14 +244,14 @@ typedef enum LIMITS_STATE
 #define HAVE_ENUM_LIMIT_MODULE
 typedef enum LIMIT_MODULE
 {
-   LIMIT_GPSLOCK=1, /* pre-initialization | */
-   LIMIT_GEOFENCE=2, /* disabled | */
-   LIMIT_ALTITUDE=4, /* checking limits | */
+   LIMIT_GPSLOCK=1, /* Pre-initialization. | */
+   LIMIT_GEOFENCE=2, /* Disabled. | */
+   LIMIT_ALTITUDE=4, /* Checking limits. | */
    LIMIT_MODULE_ENUM_END=5, /*  | */
 } LIMIT_MODULE;
 #endif
 
-/** @brief Flags in RALLY_POINT message */
+/** @brief Flags in RALLY_POINT message. */
 #ifndef HAVE_ENUM_RALLY_FLAGS
 #define HAVE_ENUM_RALLY_FLAGS
 typedef enum RALLY_FLAGS
@@ -267,9 +267,9 @@ typedef enum RALLY_FLAGS
 #define HAVE_ENUM_PARACHUTE_ACTION
 typedef enum PARACHUTE_ACTION
 {
-   PARACHUTE_DISABLE=0, /* Disable parachute release | */
-   PARACHUTE_ENABLE=1, /* Enable parachute release | */
-   PARACHUTE_RELEASE=2, /* Release parachute | */
+   PARACHUTE_DISABLE=0, /* Disable parachute release. | */
+   PARACHUTE_ENABLE=1, /* Enable parachute release. | */
+   PARACHUTE_RELEASE=2, /* Release parachute. | */
    PARACHUTE_ACTION_ENUM_END=3, /*  | */
 } PARACHUTE_ACTION;
 #endif
@@ -279,20 +279,20 @@ typedef enum PARACHUTE_ACTION
 #define HAVE_ENUM_GRIPPER_ACTIONS
 typedef enum GRIPPER_ACTIONS
 {
-   GRIPPER_ACTION_RELEASE=0, /* gripper release of cargo | */
-   GRIPPER_ACTION_GRAB=1, /* gripper grabs onto cargo | */
+   GRIPPER_ACTION_RELEASE=0, /* Gripper release cargo. | */
+   GRIPPER_ACTION_GRAB=1, /* Gripper grab onto cargo. | */
    GRIPPER_ACTIONS_ENUM_END=2, /*  | */
 } GRIPPER_ACTIONS;
 #endif
 
-/** @brief Winch actions */
+/** @brief Winch actions. */
 #ifndef HAVE_ENUM_WINCH_ACTIONS
 #define HAVE_ENUM_WINCH_ACTIONS
 typedef enum WINCH_ACTIONS
 {
-   WINCH_RELAXED=0, /* relax winch | */
-   WINCH_RELATIVE_LENGTH_CONTROL=1, /* winch unwinds or winds specified length of cable optionally using specified rate | */
-   WINCH_RATE_CONTROL=2, /* winch unwinds or winds cable at specified rate in meters/seconds | */
+   WINCH_RELAXED=0, /* Relax winch. | */
+   WINCH_RELATIVE_LENGTH_CONTROL=1, /* Winch unwinds or winds specified length of cable optionally using specified rate. | */
+   WINCH_RATE_CONTROL=2, /* Winch unwinds or winds cable at specified rate in meters/seconds. | */
    WINCH_ACTIONS_ENUM_END=3, /*  | */
 } WINCH_ACTIONS;
 #endif
@@ -302,13 +302,13 @@ typedef enum WINCH_ACTIONS
 #define HAVE_ENUM_CAMERA_STATUS_TYPES
 typedef enum CAMERA_STATUS_TYPES
 {
-   CAMERA_STATUS_TYPE_HEARTBEAT=0, /* Camera heartbeat, announce camera component ID at 1hz | */
-   CAMERA_STATUS_TYPE_TRIGGER=1, /* Camera image triggered | */
-   CAMERA_STATUS_TYPE_DISCONNECT=2, /* Camera connection lost | */
-   CAMERA_STATUS_TYPE_ERROR=3, /* Camera unknown error | */
-   CAMERA_STATUS_TYPE_LOWBATT=4, /* Camera battery low. Parameter p1 shows reported voltage | */
-   CAMERA_STATUS_TYPE_LOWSTORE=5, /* Camera storage low. Parameter p1 shows reported shots remaining | */
-   CAMERA_STATUS_TYPE_LOWSTOREV=6, /* Camera storage low. Parameter p1 shows reported video minutes remaining | */
+   CAMERA_STATUS_TYPE_HEARTBEAT=0, /* Camera heartbeat, announce camera component ID at 1Hz. | */
+   CAMERA_STATUS_TYPE_TRIGGER=1, /* Camera image triggered. | */
+   CAMERA_STATUS_TYPE_DISCONNECT=2, /* Camera connection lost. | */
+   CAMERA_STATUS_TYPE_ERROR=3, /* Camera unknown error. | */
+   CAMERA_STATUS_TYPE_LOWBATT=4, /* Camera battery low. Parameter p1 shows reported voltage. | */
+   CAMERA_STATUS_TYPE_LOWSTORE=5, /* Camera storage low. Parameter p1 shows reported shots remaining. | */
+   CAMERA_STATUS_TYPE_LOWSTOREV=6, /* Camera storage low. Parameter p1 shows reported video minutes remaining. | */
    CAMERA_STATUS_TYPES_ENUM_END=7, /*  | */
 } CAMERA_STATUS_TYPES;
 #endif
@@ -318,11 +318,11 @@ typedef enum CAMERA_STATUS_TYPES
 #define HAVE_ENUM_CAMERA_FEEDBACK_FLAGS
 typedef enum CAMERA_FEEDBACK_FLAGS
 {
-   CAMERA_FEEDBACK_PHOTO=0, /* Shooting photos, not video | */
-   CAMERA_FEEDBACK_VIDEO=1, /* Shooting video, not stills | */
-   CAMERA_FEEDBACK_BADEXPOSURE=2, /* Unable to achieve requested exposure (e.g. shutter speed too low) | */
-   CAMERA_FEEDBACK_CLOSEDLOOP=3, /* Closed loop feedback from camera, we know for sure it has successfully taken a picture | */
-   CAMERA_FEEDBACK_OPENLOOP=4, /* Open loop camera, an image trigger has been requested but we can't know for sure it has successfully taken a picture | */
+   CAMERA_FEEDBACK_PHOTO=0, /* Shooting photos, not video. | */
+   CAMERA_FEEDBACK_VIDEO=1, /* Shooting video, not stills. | */
+   CAMERA_FEEDBACK_BADEXPOSURE=2, /* Unable to achieve requested exposure (e.g. shutter speed too low). | */
+   CAMERA_FEEDBACK_CLOSEDLOOP=3, /* Closed loop feedback from camera, we know for sure it has successfully taken a picture. | */
+   CAMERA_FEEDBACK_OPENLOOP=4, /* Open loop camera, an image trigger has been requested but we can't know for sure it has successfully taken a picture. | */
    CAMERA_FEEDBACK_FLAGS_ENUM_END=5, /*  | */
 } CAMERA_FEEDBACK_FLAGS;
 #endif
@@ -332,13 +332,13 @@ typedef enum CAMERA_FEEDBACK_FLAGS
 #define HAVE_ENUM_MAV_MODE_GIMBAL
 typedef enum MAV_MODE_GIMBAL
 {
-   MAV_MODE_GIMBAL_UNINITIALIZED=0, /* Gimbal is powered on but has not started initializing yet | */
-   MAV_MODE_GIMBAL_CALIBRATING_PITCH=1, /* Gimbal is currently running calibration on the pitch axis | */
-   MAV_MODE_GIMBAL_CALIBRATING_ROLL=2, /* Gimbal is currently running calibration on the roll axis | */
-   MAV_MODE_GIMBAL_CALIBRATING_YAW=3, /* Gimbal is currently running calibration on the yaw axis | */
-   MAV_MODE_GIMBAL_INITIALIZED=4, /* Gimbal has finished calibrating and initializing, but is relaxed pending reception of first rate command from copter | */
-   MAV_MODE_GIMBAL_ACTIVE=5, /* Gimbal is actively stabilizing | */
-   MAV_MODE_GIMBAL_RATE_CMD_TIMEOUT=6, /* Gimbal is relaxed because it missed more than 10 expected rate command messages in a row. Gimbal will move back to active mode when it receives a new rate command | */
+   MAV_MODE_GIMBAL_UNINITIALIZED=0, /* Gimbal is powered on but has not started initializing yet. | */
+   MAV_MODE_GIMBAL_CALIBRATING_PITCH=1, /* Gimbal is currently running calibration on the pitch axis. | */
+   MAV_MODE_GIMBAL_CALIBRATING_ROLL=2, /* Gimbal is currently running calibration on the roll axis. | */
+   MAV_MODE_GIMBAL_CALIBRATING_YAW=3, /* Gimbal is currently running calibration on the yaw axis. | */
+   MAV_MODE_GIMBAL_INITIALIZED=4, /* Gimbal has finished calibrating and initializing, but is relaxed pending reception of first rate command from copter. | */
+   MAV_MODE_GIMBAL_ACTIVE=5, /* Gimbal is actively stabilizing. | */
+   MAV_MODE_GIMBAL_RATE_CMD_TIMEOUT=6, /* Gimbal is relaxed because it missed more than 10 expected rate command messages in a row. Gimbal will move back to active mode when it receives a new rate command. | */
    MAV_MODE_GIMBAL_ENUM_END=7, /*  | */
 } MAV_MODE_GIMBAL;
 #endif
@@ -348,9 +348,9 @@ typedef enum MAV_MODE_GIMBAL
 #define HAVE_ENUM_GIMBAL_AXIS
 typedef enum GIMBAL_AXIS
 {
-   GIMBAL_AXIS_YAW=0, /* Gimbal yaw axis | */
-   GIMBAL_AXIS_PITCH=1, /* Gimbal pitch axis | */
-   GIMBAL_AXIS_ROLL=2, /* Gimbal roll axis | */
+   GIMBAL_AXIS_YAW=0, /* Gimbal yaw axis. | */
+   GIMBAL_AXIS_PITCH=1, /* Gimbal pitch axis. | */
+   GIMBAL_AXIS_ROLL=2, /* Gimbal roll axis. | */
    GIMBAL_AXIS_ENUM_END=3, /*  | */
 } GIMBAL_AXIS;
 #endif
@@ -360,9 +360,9 @@ typedef enum GIMBAL_AXIS
 #define HAVE_ENUM_GIMBAL_AXIS_CALIBRATION_STATUS
 typedef enum GIMBAL_AXIS_CALIBRATION_STATUS
 {
-   GIMBAL_AXIS_CALIBRATION_STATUS_IN_PROGRESS=0, /* Axis calibration is in progress | */
-   GIMBAL_AXIS_CALIBRATION_STATUS_SUCCEEDED=1, /* Axis calibration succeeded | */
-   GIMBAL_AXIS_CALIBRATION_STATUS_FAILED=2, /* Axis calibration failed | */
+   GIMBAL_AXIS_CALIBRATION_STATUS_IN_PROGRESS=0, /* Axis calibration is in progress. | */
+   GIMBAL_AXIS_CALIBRATION_STATUS_SUCCEEDED=1, /* Axis calibration succeeded. | */
+   GIMBAL_AXIS_CALIBRATION_STATUS_FAILED=2, /* Axis calibration failed. | */
    GIMBAL_AXIS_CALIBRATION_STATUS_ENUM_END=3, /*  | */
 } GIMBAL_AXIS_CALIBRATION_STATUS;
 #endif
@@ -372,9 +372,9 @@ typedef enum GIMBAL_AXIS_CALIBRATION_STATUS
 #define HAVE_ENUM_GIMBAL_AXIS_CALIBRATION_REQUIRED
 typedef enum GIMBAL_AXIS_CALIBRATION_REQUIRED
 {
-   GIMBAL_AXIS_CALIBRATION_REQUIRED_UNKNOWN=0, /* Whether or not this axis requires calibration is unknown at this time | */
-   GIMBAL_AXIS_CALIBRATION_REQUIRED_TRUE=1, /* This axis requires calibration | */
-   GIMBAL_AXIS_CALIBRATION_REQUIRED_FALSE=2, /* This axis does not require calibration | */
+   GIMBAL_AXIS_CALIBRATION_REQUIRED_UNKNOWN=0, /* Whether or not this axis requires calibration is unknown at this time. | */
+   GIMBAL_AXIS_CALIBRATION_REQUIRED_TRUE=1, /* This axis requires calibration. | */
+   GIMBAL_AXIS_CALIBRATION_REQUIRED_FALSE=2, /* This axis does not require calibration. | */
    GIMBAL_AXIS_CALIBRATION_REQUIRED_ENUM_END=3, /*  | */
 } GIMBAL_AXIS_CALIBRATION_REQUIRED;
 #endif
@@ -384,10 +384,10 @@ typedef enum GIMBAL_AXIS_CALIBRATION_REQUIRED
 #define HAVE_ENUM_GOPRO_HEARTBEAT_STATUS
 typedef enum GOPRO_HEARTBEAT_STATUS
 {
-   GOPRO_HEARTBEAT_STATUS_DISCONNECTED=0, /* No GoPro connected | */
-   GOPRO_HEARTBEAT_STATUS_INCOMPATIBLE=1, /* The detected GoPro is not HeroBus compatible | */
-   GOPRO_HEARTBEAT_STATUS_CONNECTED=2, /* A HeroBus compatible GoPro is connected | */
-   GOPRO_HEARTBEAT_STATUS_ERROR=3, /* An unrecoverable error was encountered with the connected GoPro, it may require a power cycle | */
+   GOPRO_HEARTBEAT_STATUS_DISCONNECTED=0, /* No GoPro connected. | */
+   GOPRO_HEARTBEAT_STATUS_INCOMPATIBLE=1, /* The detected GoPro is not HeroBus compatible. | */
+   GOPRO_HEARTBEAT_STATUS_CONNECTED=2, /* A HeroBus compatible GoPro is connected. | */
+   GOPRO_HEARTBEAT_STATUS_ERROR=3, /* An unrecoverable error was encountered with the connected GoPro, it may require a power cycle. | */
    GOPRO_HEARTBEAT_STATUS_ENUM_END=4, /*  | */
 } GOPRO_HEARTBEAT_STATUS;
 #endif
@@ -397,7 +397,7 @@ typedef enum GOPRO_HEARTBEAT_STATUS
 #define HAVE_ENUM_GOPRO_HEARTBEAT_FLAGS
 typedef enum GOPRO_HEARTBEAT_FLAGS
 {
-   GOPRO_FLAG_RECORDING=1, /* GoPro is currently recording | */
+   GOPRO_FLAG_RECORDING=1, /* GoPro is currently recording. | */
    GOPRO_HEARTBEAT_FLAGS_ENUM_END=2, /*  | */
 } GOPRO_HEARTBEAT_FLAGS;
 #endif
@@ -407,8 +407,8 @@ typedef enum GOPRO_HEARTBEAT_FLAGS
 #define HAVE_ENUM_GOPRO_REQUEST_STATUS
 typedef enum GOPRO_REQUEST_STATUS
 {
-   GOPRO_REQUEST_SUCCESS=0, /* The write message with ID indicated succeeded | */
-   GOPRO_REQUEST_FAILED=1, /* The write message with ID indicated failed | */
+   GOPRO_REQUEST_SUCCESS=0, /* The write message with ID indicated succeeded. | */
+   GOPRO_REQUEST_FAILED=1, /* The write message with ID indicated failed. | */
    GOPRO_REQUEST_STATUS_ENUM_END=2, /*  | */
 } GOPRO_REQUEST_STATUS;
 #endif
@@ -418,23 +418,23 @@ typedef enum GOPRO_REQUEST_STATUS
 #define HAVE_ENUM_GOPRO_COMMAND
 typedef enum GOPRO_COMMAND
 {
-   GOPRO_COMMAND_POWER=0, /* (Get/Set) | */
-   GOPRO_COMMAND_CAPTURE_MODE=1, /* (Get/Set) | */
-   GOPRO_COMMAND_SHUTTER=2, /* (___/Set) | */
-   GOPRO_COMMAND_BATTERY=3, /* (Get/___) | */
-   GOPRO_COMMAND_MODEL=4, /* (Get/___) | */
-   GOPRO_COMMAND_VIDEO_SETTINGS=5, /* (Get/Set) | */
-   GOPRO_COMMAND_LOW_LIGHT=6, /* (Get/Set) | */
-   GOPRO_COMMAND_PHOTO_RESOLUTION=7, /* (Get/Set) | */
-   GOPRO_COMMAND_PHOTO_BURST_RATE=8, /* (Get/Set) | */
-   GOPRO_COMMAND_PROTUNE=9, /* (Get/Set) | */
-   GOPRO_COMMAND_PROTUNE_WHITE_BALANCE=10, /* (Get/Set) Hero 3+ Only | */
-   GOPRO_COMMAND_PROTUNE_COLOUR=11, /* (Get/Set) Hero 3+ Only | */
-   GOPRO_COMMAND_PROTUNE_GAIN=12, /* (Get/Set) Hero 3+ Only | */
-   GOPRO_COMMAND_PROTUNE_SHARPNESS=13, /* (Get/Set) Hero 3+ Only | */
-   GOPRO_COMMAND_PROTUNE_EXPOSURE=14, /* (Get/Set) Hero 3+ Only | */
-   GOPRO_COMMAND_TIME=15, /* (Get/Set) | */
-   GOPRO_COMMAND_CHARGING=16, /* (Get/Set) | */
+   GOPRO_COMMAND_POWER=0, /* (Get/Set). | */
+   GOPRO_COMMAND_CAPTURE_MODE=1, /* (Get/Set). | */
+   GOPRO_COMMAND_SHUTTER=2, /* (___/Set). | */
+   GOPRO_COMMAND_BATTERY=3, /* (Get/___). | */
+   GOPRO_COMMAND_MODEL=4, /* (Get/___). | */
+   GOPRO_COMMAND_VIDEO_SETTINGS=5, /* (Get/Set). | */
+   GOPRO_COMMAND_LOW_LIGHT=6, /* (Get/Set). | */
+   GOPRO_COMMAND_PHOTO_RESOLUTION=7, /* (Get/Set). | */
+   GOPRO_COMMAND_PHOTO_BURST_RATE=8, /* (Get/Set). | */
+   GOPRO_COMMAND_PROTUNE=9, /* (Get/Set). | */
+   GOPRO_COMMAND_PROTUNE_WHITE_BALANCE=10, /* (Get/Set) Hero 3+ Only. | */
+   GOPRO_COMMAND_PROTUNE_COLOUR=11, /* (Get/Set) Hero 3+ Only. | */
+   GOPRO_COMMAND_PROTUNE_GAIN=12, /* (Get/Set) Hero 3+ Only. | */
+   GOPRO_COMMAND_PROTUNE_SHARPNESS=13, /* (Get/Set) Hero 3+ Only. | */
+   GOPRO_COMMAND_PROTUNE_EXPOSURE=14, /* (Get/Set) Hero 3+ Only. | */
+   GOPRO_COMMAND_TIME=15, /* (Get/Set). | */
+   GOPRO_COMMAND_CHARGING=16, /* (Get/Set). | */
    GOPRO_COMMAND_ENUM_END=17, /*  | */
 } GOPRO_COMMAND;
 #endif
@@ -444,14 +444,14 @@ typedef enum GOPRO_COMMAND
 #define HAVE_ENUM_GOPRO_CAPTURE_MODE
 typedef enum GOPRO_CAPTURE_MODE
 {
-   GOPRO_CAPTURE_MODE_VIDEO=0, /* Video mode | */
-   GOPRO_CAPTURE_MODE_PHOTO=1, /* Photo mode | */
-   GOPRO_CAPTURE_MODE_BURST=2, /* Burst mode, hero 3+ only | */
-   GOPRO_CAPTURE_MODE_TIME_LAPSE=3, /* Time lapse mode, hero 3+ only | */
-   GOPRO_CAPTURE_MODE_MULTI_SHOT=4, /* Multi shot mode, hero 4 only | */
-   GOPRO_CAPTURE_MODE_PLAYBACK=5, /* Playback mode, hero 4 only, silver only except when LCD or HDMI is connected to black | */
-   GOPRO_CAPTURE_MODE_SETUP=6, /* Playback mode, hero 4 only | */
-   GOPRO_CAPTURE_MODE_UNKNOWN=255, /* Mode not yet known | */
+   GOPRO_CAPTURE_MODE_VIDEO=0, /* Video mode. | */
+   GOPRO_CAPTURE_MODE_PHOTO=1, /* Photo mode. | */
+   GOPRO_CAPTURE_MODE_BURST=2, /* Burst mode, Hero 3+ only. | */
+   GOPRO_CAPTURE_MODE_TIME_LAPSE=3, /* Time lapse mode, Hero 3+ only. | */
+   GOPRO_CAPTURE_MODE_MULTI_SHOT=4, /* Multi shot mode, Hero 4 only. | */
+   GOPRO_CAPTURE_MODE_PLAYBACK=5, /* Playback mode, Hero 4 only, silver only except when LCD or HDMI is connected to black. | */
+   GOPRO_CAPTURE_MODE_SETUP=6, /* Playback mode, Hero 4 only. | */
+   GOPRO_CAPTURE_MODE_UNKNOWN=255, /* Mode not yet known. | */
    GOPRO_CAPTURE_MODE_ENUM_END=256, /*  | */
 } GOPRO_CAPTURE_MODE;
 #endif
@@ -461,20 +461,20 @@ typedef enum GOPRO_CAPTURE_MODE
 #define HAVE_ENUM_GOPRO_RESOLUTION
 typedef enum GOPRO_RESOLUTION
 {
-   GOPRO_RESOLUTION_480p=0, /* 848 x 480 (480p) | */
-   GOPRO_RESOLUTION_720p=1, /* 1280 x 720 (720p) | */
-   GOPRO_RESOLUTION_960p=2, /* 1280 x 960 (960p) | */
-   GOPRO_RESOLUTION_1080p=3, /* 1920 x 1080 (1080p) | */
-   GOPRO_RESOLUTION_1440p=4, /* 1920 x 1440 (1440p) | */
-   GOPRO_RESOLUTION_2_7k_17_9=5, /* 2704 x 1440 (2.7k-17:9) | */
-   GOPRO_RESOLUTION_2_7k_16_9=6, /* 2704 x 1524 (2.7k-16:9) | */
-   GOPRO_RESOLUTION_2_7k_4_3=7, /* 2704 x 2028 (2.7k-4:3) | */
-   GOPRO_RESOLUTION_4k_16_9=8, /* 3840 x 2160 (4k-16:9) | */
-   GOPRO_RESOLUTION_4k_17_9=9, /* 4096 x 2160 (4k-17:9) | */
-   GOPRO_RESOLUTION_720p_SUPERVIEW=10, /* 1280 x 720 (720p-SuperView) | */
-   GOPRO_RESOLUTION_1080p_SUPERVIEW=11, /* 1920 x 1080 (1080p-SuperView) | */
-   GOPRO_RESOLUTION_2_7k_SUPERVIEW=12, /* 2704 x 1520 (2.7k-SuperView) | */
-   GOPRO_RESOLUTION_4k_SUPERVIEW=13, /* 3840 x 2160 (4k-SuperView) | */
+   GOPRO_RESOLUTION_480p=0, /* 848 x 480 (480p). | */
+   GOPRO_RESOLUTION_720p=1, /* 1280 x 720 (720p). | */
+   GOPRO_RESOLUTION_960p=2, /* 1280 x 960 (960p). | */
+   GOPRO_RESOLUTION_1080p=3, /* 1920 x 1080 (1080p). | */
+   GOPRO_RESOLUTION_1440p=4, /* 1920 x 1440 (1440p). | */
+   GOPRO_RESOLUTION_2_7k_17_9=5, /* 2704 x 1440 (2.7k-17:9). | */
+   GOPRO_RESOLUTION_2_7k_16_9=6, /* 2704 x 1524 (2.7k-16:9). | */
+   GOPRO_RESOLUTION_2_7k_4_3=7, /* 2704 x 2028 (2.7k-4:3). | */
+   GOPRO_RESOLUTION_4k_16_9=8, /* 3840 x 2160 (4k-16:9). | */
+   GOPRO_RESOLUTION_4k_17_9=9, /* 4096 x 2160 (4k-17:9). | */
+   GOPRO_RESOLUTION_720p_SUPERVIEW=10, /* 1280 x 720 (720p-SuperView). | */
+   GOPRO_RESOLUTION_1080p_SUPERVIEW=11, /* 1920 x 1080 (1080p-SuperView). | */
+   GOPRO_RESOLUTION_2_7k_SUPERVIEW=12, /* 2704 x 1520 (2.7k-SuperView). | */
+   GOPRO_RESOLUTION_4k_SUPERVIEW=13, /* 3840 x 2160 (4k-SuperView). | */
    GOPRO_RESOLUTION_ENUM_END=14, /*  | */
 } GOPRO_RESOLUTION;
 #endif
@@ -484,20 +484,20 @@ typedef enum GOPRO_RESOLUTION
 #define HAVE_ENUM_GOPRO_FRAME_RATE
 typedef enum GOPRO_FRAME_RATE
 {
-   GOPRO_FRAME_RATE_12=0, /* 12 FPS | */
-   GOPRO_FRAME_RATE_15=1, /* 15 FPS | */
-   GOPRO_FRAME_RATE_24=2, /* 24 FPS | */
-   GOPRO_FRAME_RATE_25=3, /* 25 FPS | */
-   GOPRO_FRAME_RATE_30=4, /* 30 FPS | */
-   GOPRO_FRAME_RATE_48=5, /* 48 FPS | */
-   GOPRO_FRAME_RATE_50=6, /* 50 FPS | */
-   GOPRO_FRAME_RATE_60=7, /* 60 FPS | */
-   GOPRO_FRAME_RATE_80=8, /* 80 FPS | */
-   GOPRO_FRAME_RATE_90=9, /* 90 FPS | */
-   GOPRO_FRAME_RATE_100=10, /* 100 FPS | */
-   GOPRO_FRAME_RATE_120=11, /* 120 FPS | */
-   GOPRO_FRAME_RATE_240=12, /* 240 FPS | */
-   GOPRO_FRAME_RATE_12_5=13, /* 12.5 FPS | */
+   GOPRO_FRAME_RATE_12=0, /* 12 FPS. | */
+   GOPRO_FRAME_RATE_15=1, /* 15 FPS. | */
+   GOPRO_FRAME_RATE_24=2, /* 24 FPS. | */
+   GOPRO_FRAME_RATE_25=3, /* 25 FPS. | */
+   GOPRO_FRAME_RATE_30=4, /* 30 FPS. | */
+   GOPRO_FRAME_RATE_48=5, /* 48 FPS. | */
+   GOPRO_FRAME_RATE_50=6, /* 50 FPS. | */
+   GOPRO_FRAME_RATE_60=7, /* 60 FPS. | */
+   GOPRO_FRAME_RATE_80=8, /* 80 FPS. | */
+   GOPRO_FRAME_RATE_90=9, /* 90 FPS. | */
+   GOPRO_FRAME_RATE_100=10, /* 100 FPS. | */
+   GOPRO_FRAME_RATE_120=11, /* 120 FPS. | */
+   GOPRO_FRAME_RATE_240=12, /* 240 FPS. | */
+   GOPRO_FRAME_RATE_12_5=13, /* 12.5 FPS. | */
    GOPRO_FRAME_RATE_ENUM_END=14, /*  | */
 } GOPRO_FRAME_RATE;
 #endif
@@ -507,9 +507,9 @@ typedef enum GOPRO_FRAME_RATE
 #define HAVE_ENUM_GOPRO_FIELD_OF_VIEW
 typedef enum GOPRO_FIELD_OF_VIEW
 {
-   GOPRO_FIELD_OF_VIEW_WIDE=0, /* 0x00: Wide | */
-   GOPRO_FIELD_OF_VIEW_MEDIUM=1, /* 0x01: Medium | */
-   GOPRO_FIELD_OF_VIEW_NARROW=2, /* 0x02: Narrow | */
+   GOPRO_FIELD_OF_VIEW_WIDE=0, /* 0x00: Wide. | */
+   GOPRO_FIELD_OF_VIEW_MEDIUM=1, /* 0x01: Medium. | */
+   GOPRO_FIELD_OF_VIEW_NARROW=2, /* 0x02: Narrow. | */
    GOPRO_FIELD_OF_VIEW_ENUM_END=3, /*  | */
 } GOPRO_FIELD_OF_VIEW;
 #endif
@@ -519,7 +519,7 @@ typedef enum GOPRO_FIELD_OF_VIEW
 #define HAVE_ENUM_GOPRO_VIDEO_SETTINGS_FLAGS
 typedef enum GOPRO_VIDEO_SETTINGS_FLAGS
 {
-   GOPRO_VIDEO_SETTINGS_TV_MODE=1, /* 0=NTSC, 1=PAL | */
+   GOPRO_VIDEO_SETTINGS_TV_MODE=1, /* 0=NTSC, 1=PAL. | */
    GOPRO_VIDEO_SETTINGS_FLAGS_ENUM_END=2, /*  | */
 } GOPRO_VIDEO_SETTINGS_FLAGS;
 #endif
@@ -529,11 +529,11 @@ typedef enum GOPRO_VIDEO_SETTINGS_FLAGS
 #define HAVE_ENUM_GOPRO_PHOTO_RESOLUTION
 typedef enum GOPRO_PHOTO_RESOLUTION
 {
-   GOPRO_PHOTO_RESOLUTION_5MP_MEDIUM=0, /* 5MP Medium | */
-   GOPRO_PHOTO_RESOLUTION_7MP_MEDIUM=1, /* 7MP Medium | */
-   GOPRO_PHOTO_RESOLUTION_7MP_WIDE=2, /* 7MP Wide | */
-   GOPRO_PHOTO_RESOLUTION_10MP_WIDE=3, /* 10MP Wide | */
-   GOPRO_PHOTO_RESOLUTION_12MP_WIDE=4, /* 12MP Wide | */
+   GOPRO_PHOTO_RESOLUTION_5MP_MEDIUM=0, /* 5MP Medium. | */
+   GOPRO_PHOTO_RESOLUTION_7MP_MEDIUM=1, /* 7MP Medium. | */
+   GOPRO_PHOTO_RESOLUTION_7MP_WIDE=2, /* 7MP Wide. | */
+   GOPRO_PHOTO_RESOLUTION_10MP_WIDE=3, /* 10MP Wide. | */
+   GOPRO_PHOTO_RESOLUTION_12MP_WIDE=4, /* 12MP Wide. | */
    GOPRO_PHOTO_RESOLUTION_ENUM_END=5, /*  | */
 } GOPRO_PHOTO_RESOLUTION;
 #endif
@@ -543,11 +543,11 @@ typedef enum GOPRO_PHOTO_RESOLUTION
 #define HAVE_ENUM_GOPRO_PROTUNE_WHITE_BALANCE
 typedef enum GOPRO_PROTUNE_WHITE_BALANCE
 {
-   GOPRO_PROTUNE_WHITE_BALANCE_AUTO=0, /* Auto | */
-   GOPRO_PROTUNE_WHITE_BALANCE_3000K=1, /* 3000K | */
-   GOPRO_PROTUNE_WHITE_BALANCE_5500K=2, /* 5500K | */
-   GOPRO_PROTUNE_WHITE_BALANCE_6500K=3, /* 6500K | */
-   GOPRO_PROTUNE_WHITE_BALANCE_RAW=4, /* Camera Raw | */
+   GOPRO_PROTUNE_WHITE_BALANCE_AUTO=0, /* Auto. | */
+   GOPRO_PROTUNE_WHITE_BALANCE_3000K=1, /* 3000K. | */
+   GOPRO_PROTUNE_WHITE_BALANCE_5500K=2, /* 5500K. | */
+   GOPRO_PROTUNE_WHITE_BALANCE_6500K=3, /* 6500K. | */
+   GOPRO_PROTUNE_WHITE_BALANCE_RAW=4, /* Camera Raw. | */
    GOPRO_PROTUNE_WHITE_BALANCE_ENUM_END=5, /*  | */
 } GOPRO_PROTUNE_WHITE_BALANCE;
 #endif
@@ -557,8 +557,8 @@ typedef enum GOPRO_PROTUNE_WHITE_BALANCE
 #define HAVE_ENUM_GOPRO_PROTUNE_COLOUR
 typedef enum GOPRO_PROTUNE_COLOUR
 {
-   GOPRO_PROTUNE_COLOUR_STANDARD=0, /* Auto | */
-   GOPRO_PROTUNE_COLOUR_NEUTRAL=1, /* Neutral | */
+   GOPRO_PROTUNE_COLOUR_STANDARD=0, /* Auto. | */
+   GOPRO_PROTUNE_COLOUR_NEUTRAL=1, /* Neutral. | */
    GOPRO_PROTUNE_COLOUR_ENUM_END=2, /*  | */
 } GOPRO_PROTUNE_COLOUR;
 #endif
@@ -568,11 +568,11 @@ typedef enum GOPRO_PROTUNE_COLOUR
 #define HAVE_ENUM_GOPRO_PROTUNE_GAIN
 typedef enum GOPRO_PROTUNE_GAIN
 {
-   GOPRO_PROTUNE_GAIN_400=0, /* ISO 400 | */
-   GOPRO_PROTUNE_GAIN_800=1, /* ISO 800 (Only Hero 4) | */
-   GOPRO_PROTUNE_GAIN_1600=2, /* ISO 1600 | */
-   GOPRO_PROTUNE_GAIN_3200=3, /* ISO 3200 (Only Hero 4) | */
-   GOPRO_PROTUNE_GAIN_6400=4, /* ISO 6400 | */
+   GOPRO_PROTUNE_GAIN_400=0, /* ISO 400. | */
+   GOPRO_PROTUNE_GAIN_800=1, /* ISO 800 (Only Hero 4). | */
+   GOPRO_PROTUNE_GAIN_1600=2, /* ISO 1600. | */
+   GOPRO_PROTUNE_GAIN_3200=3, /* ISO 3200 (Only Hero 4). | */
+   GOPRO_PROTUNE_GAIN_6400=4, /* ISO 6400. | */
    GOPRO_PROTUNE_GAIN_ENUM_END=5, /*  | */
 } GOPRO_PROTUNE_GAIN;
 #endif
@@ -582,9 +582,9 @@ typedef enum GOPRO_PROTUNE_GAIN
 #define HAVE_ENUM_GOPRO_PROTUNE_SHARPNESS
 typedef enum GOPRO_PROTUNE_SHARPNESS
 {
-   GOPRO_PROTUNE_SHARPNESS_LOW=0, /* Low Sharpness | */
-   GOPRO_PROTUNE_SHARPNESS_MEDIUM=1, /* Medium Sharpness | */
-   GOPRO_PROTUNE_SHARPNESS_HIGH=2, /* High Sharpness | */
+   GOPRO_PROTUNE_SHARPNESS_LOW=0, /* Low Sharpness. | */
+   GOPRO_PROTUNE_SHARPNESS_MEDIUM=1, /* Medium Sharpness. | */
+   GOPRO_PROTUNE_SHARPNESS_HIGH=2, /* High Sharpness. | */
    GOPRO_PROTUNE_SHARPNESS_ENUM_END=3, /*  | */
 } GOPRO_PROTUNE_SHARPNESS;
 #endif
@@ -594,27 +594,27 @@ typedef enum GOPRO_PROTUNE_SHARPNESS
 #define HAVE_ENUM_GOPRO_PROTUNE_EXPOSURE
 typedef enum GOPRO_PROTUNE_EXPOSURE
 {
-   GOPRO_PROTUNE_EXPOSURE_NEG_5_0=0, /* -5.0 EV (Hero 3+ Only) | */
-   GOPRO_PROTUNE_EXPOSURE_NEG_4_5=1, /* -4.5 EV (Hero 3+ Only) | */
-   GOPRO_PROTUNE_EXPOSURE_NEG_4_0=2, /* -4.0 EV (Hero 3+ Only) | */
-   GOPRO_PROTUNE_EXPOSURE_NEG_3_5=3, /* -3.5 EV (Hero 3+ Only) | */
-   GOPRO_PROTUNE_EXPOSURE_NEG_3_0=4, /* -3.0 EV (Hero 3+ Only) | */
-   GOPRO_PROTUNE_EXPOSURE_NEG_2_5=5, /* -2.5 EV (Hero 3+ Only) | */
-   GOPRO_PROTUNE_EXPOSURE_NEG_2_0=6, /* -2.0 EV | */
-   GOPRO_PROTUNE_EXPOSURE_NEG_1_5=7, /* -1.5 EV | */
-   GOPRO_PROTUNE_EXPOSURE_NEG_1_0=8, /* -1.0 EV | */
-   GOPRO_PROTUNE_EXPOSURE_NEG_0_5=9, /* -0.5 EV | */
-   GOPRO_PROTUNE_EXPOSURE_ZERO=10, /* 0.0 EV | */
-   GOPRO_PROTUNE_EXPOSURE_POS_0_5=11, /* +0.5 EV | */
-   GOPRO_PROTUNE_EXPOSURE_POS_1_0=12, /* +1.0 EV | */
-   GOPRO_PROTUNE_EXPOSURE_POS_1_5=13, /* +1.5 EV | */
-   GOPRO_PROTUNE_EXPOSURE_POS_2_0=14, /* +2.0 EV | */
-   GOPRO_PROTUNE_EXPOSURE_POS_2_5=15, /* +2.5 EV (Hero 3+ Only) | */
-   GOPRO_PROTUNE_EXPOSURE_POS_3_0=16, /* +3.0 EV (Hero 3+ Only) | */
-   GOPRO_PROTUNE_EXPOSURE_POS_3_5=17, /* +3.5 EV (Hero 3+ Only) | */
-   GOPRO_PROTUNE_EXPOSURE_POS_4_0=18, /* +4.0 EV (Hero 3+ Only) | */
-   GOPRO_PROTUNE_EXPOSURE_POS_4_5=19, /* +4.5 EV (Hero 3+ Only) | */
-   GOPRO_PROTUNE_EXPOSURE_POS_5_0=20, /* +5.0 EV (Hero 3+ Only) | */
+   GOPRO_PROTUNE_EXPOSURE_NEG_5_0=0, /* -5.0 EV (Hero 3+ Only). | */
+   GOPRO_PROTUNE_EXPOSURE_NEG_4_5=1, /* -4.5 EV (Hero 3+ Only). | */
+   GOPRO_PROTUNE_EXPOSURE_NEG_4_0=2, /* -4.0 EV (Hero 3+ Only). | */
+   GOPRO_PROTUNE_EXPOSURE_NEG_3_5=3, /* -3.5 EV (Hero 3+ Only). | */
+   GOPRO_PROTUNE_EXPOSURE_NEG_3_0=4, /* -3.0 EV (Hero 3+ Only). | */
+   GOPRO_PROTUNE_EXPOSURE_NEG_2_5=5, /* -2.5 EV (Hero 3+ Only). | */
+   GOPRO_PROTUNE_EXPOSURE_NEG_2_0=6, /* -2.0 EV. | */
+   GOPRO_PROTUNE_EXPOSURE_NEG_1_5=7, /* -1.5 EV. | */
+   GOPRO_PROTUNE_EXPOSURE_NEG_1_0=8, /* -1.0 EV. | */
+   GOPRO_PROTUNE_EXPOSURE_NEG_0_5=9, /* -0.5 EV. | */
+   GOPRO_PROTUNE_EXPOSURE_ZERO=10, /* 0.0 EV. | */
+   GOPRO_PROTUNE_EXPOSURE_POS_0_5=11, /* +0.5 EV. | */
+   GOPRO_PROTUNE_EXPOSURE_POS_1_0=12, /* +1.0 EV. | */
+   GOPRO_PROTUNE_EXPOSURE_POS_1_5=13, /* +1.5 EV. | */
+   GOPRO_PROTUNE_EXPOSURE_POS_2_0=14, /* +2.0 EV. | */
+   GOPRO_PROTUNE_EXPOSURE_POS_2_5=15, /* +2.5 EV (Hero 3+ Only). | */
+   GOPRO_PROTUNE_EXPOSURE_POS_3_0=16, /* +3.0 EV (Hero 3+ Only). | */
+   GOPRO_PROTUNE_EXPOSURE_POS_3_5=17, /* +3.5 EV (Hero 3+ Only). | */
+   GOPRO_PROTUNE_EXPOSURE_POS_4_0=18, /* +4.0 EV (Hero 3+ Only). | */
+   GOPRO_PROTUNE_EXPOSURE_POS_4_5=19, /* +4.5 EV (Hero 3+ Only). | */
+   GOPRO_PROTUNE_EXPOSURE_POS_5_0=20, /* +5.0 EV (Hero 3+ Only). | */
    GOPRO_PROTUNE_EXPOSURE_ENUM_END=21, /*  | */
 } GOPRO_PROTUNE_EXPOSURE;
 #endif
@@ -624,8 +624,8 @@ typedef enum GOPRO_PROTUNE_EXPOSURE
 #define HAVE_ENUM_GOPRO_CHARGING
 typedef enum GOPRO_CHARGING
 {
-   GOPRO_CHARGING_DISABLED=0, /* Charging disabled | */
-   GOPRO_CHARGING_ENABLED=1, /* Charging enabled | */
+   GOPRO_CHARGING_DISABLED=0, /* Charging disabled. | */
+   GOPRO_CHARGING_ENABLED=1, /* Charging enabled. | */
    GOPRO_CHARGING_ENUM_END=2, /*  | */
 } GOPRO_CHARGING;
 #endif
@@ -635,11 +635,11 @@ typedef enum GOPRO_CHARGING
 #define HAVE_ENUM_GOPRO_MODEL
 typedef enum GOPRO_MODEL
 {
-   GOPRO_MODEL_UNKNOWN=0, /* Unknown gopro model | */
-   GOPRO_MODEL_HERO_3_PLUS_SILVER=1, /* Hero 3+ Silver (HeroBus not supported by GoPro) | */
-   GOPRO_MODEL_HERO_3_PLUS_BLACK=2, /* Hero 3+ Black | */
-   GOPRO_MODEL_HERO_4_SILVER=3, /* Hero 4 Silver | */
-   GOPRO_MODEL_HERO_4_BLACK=4, /* Hero 4 Black | */
+   GOPRO_MODEL_UNKNOWN=0, /* Unknown gopro model. | */
+   GOPRO_MODEL_HERO_3_PLUS_SILVER=1, /* Hero 3+ Silver (HeroBus not supported by GoPro). | */
+   GOPRO_MODEL_HERO_3_PLUS_BLACK=2, /* Hero 3+ Black. | */
+   GOPRO_MODEL_HERO_4_SILVER=3, /* Hero 4 Silver. | */
+   GOPRO_MODEL_HERO_4_BLACK=4, /* Hero 4 Black. | */
    GOPRO_MODEL_ENUM_END=5, /*  | */
 } GOPRO_MODEL;
 #endif
@@ -649,15 +649,15 @@ typedef enum GOPRO_MODEL
 #define HAVE_ENUM_GOPRO_BURST_RATE
 typedef enum GOPRO_BURST_RATE
 {
-   GOPRO_BURST_RATE_3_IN_1_SECOND=0, /* 3 Shots / 1 Second | */
-   GOPRO_BURST_RATE_5_IN_1_SECOND=1, /* 5 Shots / 1 Second | */
-   GOPRO_BURST_RATE_10_IN_1_SECOND=2, /* 10 Shots / 1 Second | */
-   GOPRO_BURST_RATE_10_IN_2_SECOND=3, /* 10 Shots / 2 Second | */
-   GOPRO_BURST_RATE_10_IN_3_SECOND=4, /* 10 Shots / 3 Second (Hero 4 Only) | */
-   GOPRO_BURST_RATE_30_IN_1_SECOND=5, /* 30 Shots / 1 Second | */
-   GOPRO_BURST_RATE_30_IN_2_SECOND=6, /* 30 Shots / 2 Second | */
-   GOPRO_BURST_RATE_30_IN_3_SECOND=7, /* 30 Shots / 3 Second | */
-   GOPRO_BURST_RATE_30_IN_6_SECOND=8, /* 30 Shots / 6 Second | */
+   GOPRO_BURST_RATE_3_IN_1_SECOND=0, /* 3 Shots / 1 Second. | */
+   GOPRO_BURST_RATE_5_IN_1_SECOND=1, /* 5 Shots / 1 Second. | */
+   GOPRO_BURST_RATE_10_IN_1_SECOND=2, /* 10 Shots / 1 Second. | */
+   GOPRO_BURST_RATE_10_IN_2_SECOND=3, /* 10 Shots / 2 Second. | */
+   GOPRO_BURST_RATE_10_IN_3_SECOND=4, /* 10 Shots / 3 Second (Hero 4 Only). | */
+   GOPRO_BURST_RATE_30_IN_1_SECOND=5, /* 30 Shots / 1 Second. | */
+   GOPRO_BURST_RATE_30_IN_2_SECOND=6, /* 30 Shots / 2 Second. | */
+   GOPRO_BURST_RATE_30_IN_3_SECOND=7, /* 30 Shots / 3 Second. | */
+   GOPRO_BURST_RATE_30_IN_6_SECOND=8, /* 30 Shots / 6 Second. | */
    GOPRO_BURST_RATE_ENUM_END=9, /*  | */
 } GOPRO_BURST_RATE;
 #endif
@@ -667,28 +667,28 @@ typedef enum GOPRO_BURST_RATE
 #define HAVE_ENUM_LED_CONTROL_PATTERN
 typedef enum LED_CONTROL_PATTERN
 {
-   LED_CONTROL_PATTERN_OFF=0, /* LED patterns off (return control to regular vehicle control) | */
-   LED_CONTROL_PATTERN_FIRMWAREUPDATE=1, /* LEDs show pattern during firmware update | */
-   LED_CONTROL_PATTERN_CUSTOM=255, /* Custom Pattern using custom bytes fields | */
+   LED_CONTROL_PATTERN_OFF=0, /* LED patterns off (return control to regular vehicle control). | */
+   LED_CONTROL_PATTERN_FIRMWAREUPDATE=1, /* LEDs show pattern during firmware update. | */
+   LED_CONTROL_PATTERN_CUSTOM=255, /* Custom Pattern using custom bytes fields. | */
    LED_CONTROL_PATTERN_ENUM_END=256, /*  | */
 } LED_CONTROL_PATTERN;
 #endif
 
-/** @brief Flags in EKF_STATUS message */
+/** @brief Flags in EKF_STATUS message. */
 #ifndef HAVE_ENUM_EKF_STATUS_FLAGS
 #define HAVE_ENUM_EKF_STATUS_FLAGS
 typedef enum EKF_STATUS_FLAGS
 {
-   EKF_ATTITUDE=1, /* set if EKF's attitude estimate is good | */
-   EKF_VELOCITY_HORIZ=2, /* set if EKF's horizontal velocity estimate is good | */
-   EKF_VELOCITY_VERT=4, /* set if EKF's vertical velocity estimate is good | */
-   EKF_POS_HORIZ_REL=8, /* set if EKF's horizontal position (relative) estimate is good | */
-   EKF_POS_HORIZ_ABS=16, /* set if EKF's horizontal position (absolute) estimate is good | */
-   EKF_POS_VERT_ABS=32, /* set if EKF's vertical position (absolute) estimate is good | */
-   EKF_POS_VERT_AGL=64, /* set if EKF's vertical position (above ground) estimate is good | */
-   EKF_CONST_POS_MODE=128, /* EKF is in constant position mode and does not know it's absolute or relative position | */
-   EKF_PRED_POS_HORIZ_REL=256, /* set if EKF's predicted horizontal position (relative) estimate is good | */
-   EKF_PRED_POS_HORIZ_ABS=512, /* set if EKF's predicted horizontal position (absolute) estimate is good | */
+   EKF_ATTITUDE=1, /* Set if EKF's attitude estimate is good. | */
+   EKF_VELOCITY_HORIZ=2, /* Set if EKF's horizontal velocity estimate is good. | */
+   EKF_VELOCITY_VERT=4, /* Set if EKF's vertical velocity estimate is good. | */
+   EKF_POS_HORIZ_REL=8, /* Set if EKF's horizontal position (relative) estimate is good. | */
+   EKF_POS_HORIZ_ABS=16, /* Set if EKF's horizontal position (absolute) estimate is good. | */
+   EKF_POS_VERT_ABS=32, /* Set if EKF's vertical position (absolute) estimate is good. | */
+   EKF_POS_VERT_AGL=64, /* Set if EKF's vertical position (above ground) estimate is good. | */
+   EKF_CONST_POS_MODE=128, /* EKF is in constant position mode and does not know it's absolute or relative position. | */
+   EKF_PRED_POS_HORIZ_REL=256, /* Set if EKF's predicted horizontal position (relative) estimate is good. | */
+   EKF_PRED_POS_HORIZ_ABS=512, /* Set if EKF's predicted horizontal position (absolute) estimate is good. | */
    EKF_STATUS_FLAGS_ENUM_END=513, /*  | */
 } EKF_STATUS_FLAGS;
 #endif
@@ -724,56 +724,56 @@ typedef enum MAG_CAL_STATUS
 } MAG_CAL_STATUS;
 #endif
 
-/** @brief Special ACK block numbers control activation of dataflash log streaming */
+/** @brief Special ACK block numbers control activation of dataflash log streaming. */
 #ifndef HAVE_ENUM_MAV_REMOTE_LOG_DATA_BLOCK_COMMANDS
 #define HAVE_ENUM_MAV_REMOTE_LOG_DATA_BLOCK_COMMANDS
 typedef enum MAV_REMOTE_LOG_DATA_BLOCK_COMMANDS
 {
-   MAV_REMOTE_LOG_DATA_BLOCK_STOP=2147483645, /* UAV to stop sending DataFlash blocks | */
-   MAV_REMOTE_LOG_DATA_BLOCK_START=2147483646, /* UAV to start sending DataFlash blocks | */
+   MAV_REMOTE_LOG_DATA_BLOCK_STOP=2147483645, /* UAV to stop sending DataFlash blocks. | */
+   MAV_REMOTE_LOG_DATA_BLOCK_START=2147483646, /* UAV to start sending DataFlash blocks. | */
    MAV_REMOTE_LOG_DATA_BLOCK_COMMANDS_ENUM_END=2147483647, /*  | */
 } MAV_REMOTE_LOG_DATA_BLOCK_COMMANDS;
 #endif
 
-/** @brief Possible remote log data block statuses */
+/** @brief Possible remote log data block statuses. */
 #ifndef HAVE_ENUM_MAV_REMOTE_LOG_DATA_BLOCK_STATUSES
 #define HAVE_ENUM_MAV_REMOTE_LOG_DATA_BLOCK_STATUSES
 typedef enum MAV_REMOTE_LOG_DATA_BLOCK_STATUSES
 {
-   MAV_REMOTE_LOG_DATA_BLOCK_NACK=0, /* This block has NOT been received | */
-   MAV_REMOTE_LOG_DATA_BLOCK_ACK=1, /* This block has been received | */
+   MAV_REMOTE_LOG_DATA_BLOCK_NACK=0, /* This block has NOT been received. | */
+   MAV_REMOTE_LOG_DATA_BLOCK_ACK=1, /* This block has been received. | */
    MAV_REMOTE_LOG_DATA_BLOCK_STATUSES_ENUM_END=2, /*  | */
 } MAV_REMOTE_LOG_DATA_BLOCK_STATUSES;
 #endif
 
-/** @brief Bus types for device operations */
+/** @brief Bus types for device operations. */
 #ifndef HAVE_ENUM_DEVICE_OP_BUSTYPE
 #define HAVE_ENUM_DEVICE_OP_BUSTYPE
 typedef enum DEVICE_OP_BUSTYPE
 {
-   DEVICE_OP_BUSTYPE_I2C=0, /* I2C Device operation | */
-   DEVICE_OP_BUSTYPE_SPI=1, /* SPI Device operation | */
+   DEVICE_OP_BUSTYPE_I2C=0, /* I2C Device operation. | */
+   DEVICE_OP_BUSTYPE_SPI=1, /* SPI Device operation. | */
    DEVICE_OP_BUSTYPE_ENUM_END=2, /*  | */
 } DEVICE_OP_BUSTYPE;
 #endif
 
-/** @brief Deepstall flight stage */
+/** @brief Deepstall flight stage. */
 #ifndef HAVE_ENUM_DEEPSTALL_STAGE
 #define HAVE_ENUM_DEEPSTALL_STAGE
 typedef enum DEEPSTALL_STAGE
 {
-   DEEPSTALL_STAGE_FLY_TO_LANDING=0, /* Flying to the landing point | */
-   DEEPSTALL_STAGE_ESTIMATE_WIND=1, /* Building an estimate of the wind | */
-   DEEPSTALL_STAGE_WAIT_FOR_BREAKOUT=2, /* Waiting to breakout of the loiter to fly the approach | */
-   DEEPSTALL_STAGE_FLY_TO_ARC=3, /* Flying to the first arc point to turn around to the landing point | */
-   DEEPSTALL_STAGE_ARC=4, /* Turning around back to the deepstall landing point | */
-   DEEPSTALL_STAGE_APPROACH=5, /* Approaching the landing point | */
-   DEEPSTALL_STAGE_LAND=6, /* Stalling and steering towards the land point | */
+   DEEPSTALL_STAGE_FLY_TO_LANDING=0, /* Flying to the landing point. | */
+   DEEPSTALL_STAGE_ESTIMATE_WIND=1, /* Building an estimate of the wind. | */
+   DEEPSTALL_STAGE_WAIT_FOR_BREAKOUT=2, /* Waiting to breakout of the loiter to fly the approach. | */
+   DEEPSTALL_STAGE_FLY_TO_ARC=3, /* Flying to the first arc point to turn around to the landing point. | */
+   DEEPSTALL_STAGE_ARC=4, /* Turning around back to the deepstall landing point. | */
+   DEEPSTALL_STAGE_APPROACH=5, /* Approaching the landing point. | */
+   DEEPSTALL_STAGE_LAND=6, /* Stalling and steering towards the land point. | */
    DEEPSTALL_STAGE_ENUM_END=7, /*  | */
 } DEEPSTALL_STAGE;
 #endif
 
-/** @brief A mapping of plane flight modes for custom_mode field of heartbeat */
+/** @brief A mapping of plane flight modes for custom_mode field of heartbeat. */
 #ifndef HAVE_ENUM_PLANE_MODE
 #define HAVE_ENUM_PLANE_MODE
 typedef enum PLANE_MODE
@@ -802,7 +802,7 @@ typedef enum PLANE_MODE
 } PLANE_MODE;
 #endif
 
-/** @brief A mapping of copter flight modes for custom_mode field of heartbeat */
+/** @brief A mapping of copter flight modes for custom_mode field of heartbeat. */
 #ifndef HAVE_ENUM_COPTER_MODE
 #define HAVE_ENUM_COPTER_MODE
 typedef enum COPTER_MODE
@@ -830,7 +830,7 @@ typedef enum COPTER_MODE
 } COPTER_MODE;
 #endif
 
-/** @brief A mapping of sub flight modes for custom_mode field of heartbeat */
+/** @brief A mapping of sub flight modes for custom_mode field of heartbeat. */
 #ifndef HAVE_ENUM_SUB_MODE
 #define HAVE_ENUM_SUB_MODE
 typedef enum SUB_MODE
@@ -848,7 +848,7 @@ typedef enum SUB_MODE
 } SUB_MODE;
 #endif
 
-/** @brief A mapping of rover flight modes for custom_mode field of heartbeat */
+/** @brief A mapping of rover flight modes for custom_mode field of heartbeat. */
 #ifndef HAVE_ENUM_ROVER_MODE
 #define HAVE_ENUM_ROVER_MODE
 typedef enum ROVER_MODE
@@ -867,7 +867,7 @@ typedef enum ROVER_MODE
 } ROVER_MODE;
 #endif
 
-/** @brief A mapping of antenna tracker flight modes for custom_mode field of heartbeat */
+/** @brief A mapping of antenna tracker flight modes for custom_mode field of heartbeat. */
 #ifndef HAVE_ENUM_TRACKER_MODE
 #define HAVE_ENUM_TRACKER_MODE
 typedef enum TRACKER_MODE

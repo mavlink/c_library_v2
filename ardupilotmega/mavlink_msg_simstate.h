@@ -5,17 +5,17 @@
 
 MAVPACKED(
 typedef struct __mavlink_simstate_t {
- float roll; /*< Roll angle (rad)*/
- float pitch; /*< Pitch angle (rad)*/
- float yaw; /*< Yaw angle (rad)*/
- float xacc; /*< X acceleration m/s/s*/
- float yacc; /*< Y acceleration m/s/s*/
- float zacc; /*< Z acceleration m/s/s*/
- float xgyro; /*< Angular speed around X axis rad/s*/
- float ygyro; /*< Angular speed around Y axis rad/s*/
- float zgyro; /*< Angular speed around Z axis rad/s*/
- int32_t lat; /*< Latitude in degrees * 1E7*/
- int32_t lng; /*< Longitude in degrees * 1E7*/
+ float roll; /*< Roll angle.*/
+ float pitch; /*< Pitch angle.*/
+ float yaw; /*< Yaw angle.*/
+ float xacc; /*< X acceleration.*/
+ float yacc; /*< Y acceleration.*/
+ float zacc; /*< Z acceleration.*/
+ float xgyro; /*< Angular speed around X axis.*/
+ float ygyro; /*< Angular speed around Y axis.*/
+ float zgyro; /*< Angular speed around Z axis.*/
+ int32_t lat; /*< Latitude.*/
+ int32_t lng; /*< Longitude.*/
 }) mavlink_simstate_t;
 
 #define MAVLINK_MSG_ID_SIMSTATE_LEN 44
@@ -71,17 +71,17 @@ typedef struct __mavlink_simstate_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param roll Roll angle (rad)
- * @param pitch Pitch angle (rad)
- * @param yaw Yaw angle (rad)
- * @param xacc X acceleration m/s/s
- * @param yacc Y acceleration m/s/s
- * @param zacc Z acceleration m/s/s
- * @param xgyro Angular speed around X axis rad/s
- * @param ygyro Angular speed around Y axis rad/s
- * @param zgyro Angular speed around Z axis rad/s
- * @param lat Latitude in degrees * 1E7
- * @param lng Longitude in degrees * 1E7
+ * @param roll Roll angle.
+ * @param pitch Pitch angle.
+ * @param yaw Yaw angle.
+ * @param xacc X acceleration.
+ * @param yacc Y acceleration.
+ * @param zacc Z acceleration.
+ * @param xgyro Angular speed around X axis.
+ * @param ygyro Angular speed around Y axis.
+ * @param zgyro Angular speed around Z axis.
+ * @param lat Latitude.
+ * @param lng Longitude.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_simstate_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -129,17 +129,17 @@ static inline uint16_t mavlink_msg_simstate_pack(uint8_t system_id, uint8_t comp
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param roll Roll angle (rad)
- * @param pitch Pitch angle (rad)
- * @param yaw Yaw angle (rad)
- * @param xacc X acceleration m/s/s
- * @param yacc Y acceleration m/s/s
- * @param zacc Z acceleration m/s/s
- * @param xgyro Angular speed around X axis rad/s
- * @param ygyro Angular speed around Y axis rad/s
- * @param zgyro Angular speed around Z axis rad/s
- * @param lat Latitude in degrees * 1E7
- * @param lng Longitude in degrees * 1E7
+ * @param roll Roll angle.
+ * @param pitch Pitch angle.
+ * @param yaw Yaw angle.
+ * @param xacc X acceleration.
+ * @param yacc Y acceleration.
+ * @param zacc Z acceleration.
+ * @param xgyro Angular speed around X axis.
+ * @param ygyro Angular speed around Y axis.
+ * @param zgyro Angular speed around Z axis.
+ * @param lat Latitude.
+ * @param lng Longitude.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_simstate_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -213,17 +213,17 @@ static inline uint16_t mavlink_msg_simstate_encode_chan(uint8_t system_id, uint8
  * @brief Send a simstate message
  * @param chan MAVLink channel to send the message
  *
- * @param roll Roll angle (rad)
- * @param pitch Pitch angle (rad)
- * @param yaw Yaw angle (rad)
- * @param xacc X acceleration m/s/s
- * @param yacc Y acceleration m/s/s
- * @param zacc Z acceleration m/s/s
- * @param xgyro Angular speed around X axis rad/s
- * @param ygyro Angular speed around Y axis rad/s
- * @param zgyro Angular speed around Z axis rad/s
- * @param lat Latitude in degrees * 1E7
- * @param lng Longitude in degrees * 1E7
+ * @param roll Roll angle.
+ * @param pitch Pitch angle.
+ * @param yaw Yaw angle.
+ * @param xacc X acceleration.
+ * @param yacc Y acceleration.
+ * @param zacc Z acceleration.
+ * @param xgyro Angular speed around X axis.
+ * @param ygyro Angular speed around Y axis.
+ * @param zgyro Angular speed around Z axis.
+ * @param lat Latitude.
+ * @param lng Longitude.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -328,7 +328,7 @@ static inline void mavlink_msg_simstate_send_buf(mavlink_message_t *msgbuf, mavl
 /**
  * @brief Get field roll from simstate message
  *
- * @return Roll angle (rad)
+ * @return Roll angle.
  */
 static inline float mavlink_msg_simstate_get_roll(const mavlink_message_t* msg)
 {
@@ -338,7 +338,7 @@ static inline float mavlink_msg_simstate_get_roll(const mavlink_message_t* msg)
 /**
  * @brief Get field pitch from simstate message
  *
- * @return Pitch angle (rad)
+ * @return Pitch angle.
  */
 static inline float mavlink_msg_simstate_get_pitch(const mavlink_message_t* msg)
 {
@@ -348,7 +348,7 @@ static inline float mavlink_msg_simstate_get_pitch(const mavlink_message_t* msg)
 /**
  * @brief Get field yaw from simstate message
  *
- * @return Yaw angle (rad)
+ * @return Yaw angle.
  */
 static inline float mavlink_msg_simstate_get_yaw(const mavlink_message_t* msg)
 {
@@ -358,7 +358,7 @@ static inline float mavlink_msg_simstate_get_yaw(const mavlink_message_t* msg)
 /**
  * @brief Get field xacc from simstate message
  *
- * @return X acceleration m/s/s
+ * @return X acceleration.
  */
 static inline float mavlink_msg_simstate_get_xacc(const mavlink_message_t* msg)
 {
@@ -368,7 +368,7 @@ static inline float mavlink_msg_simstate_get_xacc(const mavlink_message_t* msg)
 /**
  * @brief Get field yacc from simstate message
  *
- * @return Y acceleration m/s/s
+ * @return Y acceleration.
  */
 static inline float mavlink_msg_simstate_get_yacc(const mavlink_message_t* msg)
 {
@@ -378,7 +378,7 @@ static inline float mavlink_msg_simstate_get_yacc(const mavlink_message_t* msg)
 /**
  * @brief Get field zacc from simstate message
  *
- * @return Z acceleration m/s/s
+ * @return Z acceleration.
  */
 static inline float mavlink_msg_simstate_get_zacc(const mavlink_message_t* msg)
 {
@@ -388,7 +388,7 @@ static inline float mavlink_msg_simstate_get_zacc(const mavlink_message_t* msg)
 /**
  * @brief Get field xgyro from simstate message
  *
- * @return Angular speed around X axis rad/s
+ * @return Angular speed around X axis.
  */
 static inline float mavlink_msg_simstate_get_xgyro(const mavlink_message_t* msg)
 {
@@ -398,7 +398,7 @@ static inline float mavlink_msg_simstate_get_xgyro(const mavlink_message_t* msg)
 /**
  * @brief Get field ygyro from simstate message
  *
- * @return Angular speed around Y axis rad/s
+ * @return Angular speed around Y axis.
  */
 static inline float mavlink_msg_simstate_get_ygyro(const mavlink_message_t* msg)
 {
@@ -408,7 +408,7 @@ static inline float mavlink_msg_simstate_get_ygyro(const mavlink_message_t* msg)
 /**
  * @brief Get field zgyro from simstate message
  *
- * @return Angular speed around Z axis rad/s
+ * @return Angular speed around Z axis.
  */
 static inline float mavlink_msg_simstate_get_zgyro(const mavlink_message_t* msg)
 {
@@ -418,7 +418,7 @@ static inline float mavlink_msg_simstate_get_zgyro(const mavlink_message_t* msg)
 /**
  * @brief Get field lat from simstate message
  *
- * @return Latitude in degrees * 1E7
+ * @return Latitude.
  */
 static inline int32_t mavlink_msg_simstate_get_lat(const mavlink_message_t* msg)
 {
@@ -428,7 +428,7 @@ static inline int32_t mavlink_msg_simstate_get_lat(const mavlink_message_t* msg)
 /**
  * @brief Get field lng from simstate message
  *
- * @return Longitude in degrees * 1E7
+ * @return Longitude.
  */
 static inline int32_t mavlink_msg_simstate_get_lng(const mavlink_message_t* msg)
 {
