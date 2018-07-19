@@ -221,6 +221,16 @@
         <param index="6">Empty</param>
         <param index="7">Empty</param>
       </entry>
+      <entry value="42650" name="MAV_CMD_FLASH_BOOTLOADER">
+        <description>Update the bootloader</description>
+        <param index="1">Empty</param>
+        <param index="2">Empty</param>
+        <param index="3">Empty</param>
+        <param index="4">Empty</param>
+        <param index="5">Magic number - set to 290876 to actually flash</param>
+        <param index="6">Empty</param>
+        <param index="7">Empty</param>
+      </entry>
     </enum>
     <!-- AP_Limits Enums -->
     <enum name="LIMITS_STATE">
@@ -863,6 +873,7 @@
       <entry value="3" name="MAG_CAL_RUNNING_STEP_TWO"/>
       <entry value="4" name="MAG_CAL_SUCCESS"/>
       <entry value="5" name="MAG_CAL_FAILED"/>
+      <entry value="6" name="MAG_CAL_BAD_ORIENTATION"/>
     </enum>
     <enum name="MAV_REMOTE_LOG_DATA_BLOCK_COMMANDS">
       <description>Special ACK block numbers control activation of dataflash log streaming</description>
@@ -1377,6 +1388,10 @@
       <field type="float" name="offdiag_x">X off-diagonal (matrix 12 and 21)</field>
       <field type="float" name="offdiag_y">Y off-diagonal (matrix 13 and 31)</field>
       <field type="float" name="offdiag_z">Z off-diagonal (matrix 32 and 23)</field>
+      <extensions/>
+      <field type="float" name="orientation_confidence">Confidence in orientation (higher is better)</field>
+      <field type="uint8_t" name="old_orientation">orientation before calibration</field>
+      <field type="uint8_t" name="new_orientation">orientation after calibration</field>
     </message>
     <!-- EKF status message from autopilot to GCS. -->
     <message id="193" name="EKF_STATUS_REPORT">
@@ -1556,6 +1571,33 @@
       <field type="uint64_t" name="time_usec" units="us">Timestamp (micros since boot or Unix epoch)</field>
       <field name="AOA" type="float" units="deg">Angle of Attack (degrees)</field>
       <field name="SSA" type="float" units="deg">Side Slip Angle (degrees)</field>
+    </message>
+    <message id="11030" name="ESC_TELEMETRY_1_TO_4">
+      <description>ESC Telemetry Data for ESCs 1 to 4, matching data sent by BLHeli ESCs</description>
+      <field type="uint8_t[4]" name="temperature" units="degC">Temperature</field>
+      <field type="uint16_t[4]" name="voltage" units="cV">Voltage</field>
+      <field type="uint16_t[4]" name="current" units="cA">Current</field>
+      <field type="uint16_t[4]" name="totalcurrent" units="mAh">Total current</field>
+      <field type="uint16_t[4]" name="rpm" units="rpm">RPM (eRPM)</field>
+      <field type="uint16_t[4]" name="count">count of telemetry packets received (wraps at 65535)</field>
+    </message>
+    <message id="11031" name="ESC_TELEMETRY_5_TO_8">
+      <description>ESC Telemetry Data for ESCs 5 to 8, matching data sent by BLHeli ESCs</description>
+      <field type="uint8_t[4]" name="temperature" units="degC">Temperature</field>
+      <field type="uint16_t[4]" name="voltage" units="cV">Voltage</field>
+      <field type="uint16_t[4]" name="current" units="cA">Current</field>
+      <field type="uint16_t[4]" name="totalcurrent" units="mAh">Total current</field>
+      <field type="uint16_t[4]" name="rpm" units="rpm">RPM (eRPM)</field>
+      <field type="uint16_t[4]" name="count">count of telemetry packets received (wraps at 65535)</field>
+    </message>
+    <message id="11032" name="ESC_TELEMETRY_9_TO_12">
+      <description>ESC Telemetry Data for ESCs 9 to 12, matching data sent by BLHeli ESCs</description>
+      <field type="uint8_t[4]" name="temperature" units="degC">Temperature</field>
+      <field type="uint16_t[4]" name="voltage" units="cV">Voltage</field>
+      <field type="uint16_t[4]" name="current" units="cA">Current</field>
+      <field type="uint16_t[4]" name="totalcurrent" units="mAh">Total current</field>
+      <field type="uint16_t[4]" name="rpm" units="rpm">RPM (eRPM)</field>
+      <field type="uint16_t[4]" name="count">count of telemetry packets received (wraps at 65535)</field>
     </message>
   </messages>
 </mavlink>

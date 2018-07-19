@@ -14,7 +14,7 @@ typedef struct __mavlink_estimator_status_t {
  float tas_ratio; /*< True airspeed innovation test ratio*/
  float pos_horiz_accuracy; /*< Horizontal position 1-STD accuracy relative to the EKF local origin*/
  float pos_vert_accuracy; /*< Vertical position 1-STD accuracy relative to the EKF local origin*/
- uint16_t flags; /*< Integer bitmap indicating which EKF outputs are valid.*/
+ uint16_t flags; /*< Bitmap indicating which EKF outputs are valid.*/
 }) mavlink_estimator_status_t;
 
 #define MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN 42
@@ -69,7 +69,7 @@ typedef struct __mavlink_estimator_status_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
- * @param flags Integer bitmap indicating which EKF outputs are valid.
+ * @param flags Bitmap indicating which EKF outputs are valid.
  * @param vel_ratio Velocity innovation test ratio
  * @param pos_horiz_ratio Horizontal position innovation test ratio
  * @param pos_vert_ratio Vertical position innovation test ratio
@@ -124,7 +124,7 @@ static inline uint16_t mavlink_msg_estimator_status_pack(uint8_t system_id, uint
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
- * @param flags Integer bitmap indicating which EKF outputs are valid.
+ * @param flags Bitmap indicating which EKF outputs are valid.
  * @param vel_ratio Velocity innovation test ratio
  * @param pos_horiz_ratio Horizontal position innovation test ratio
  * @param pos_vert_ratio Vertical position innovation test ratio
@@ -205,7 +205,7 @@ static inline uint16_t mavlink_msg_estimator_status_encode_chan(uint8_t system_i
  * @param chan MAVLink channel to send the message
  *
  * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
- * @param flags Integer bitmap indicating which EKF outputs are valid.
+ * @param flags Bitmap indicating which EKF outputs are valid.
  * @param vel_ratio Velocity innovation test ratio
  * @param pos_horiz_ratio Horizontal position innovation test ratio
  * @param pos_vert_ratio Vertical position innovation test ratio
@@ -324,7 +324,7 @@ static inline uint64_t mavlink_msg_estimator_status_get_time_usec(const mavlink_
 /**
  * @brief Get field flags from estimator_status message
  *
- * @return Integer bitmap indicating which EKF outputs are valid.
+ * @return Bitmap indicating which EKF outputs are valid.
  */
 static inline uint16_t mavlink_msg_estimator_status_get_flags(const mavlink_message_t* msg)
 {

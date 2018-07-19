@@ -15,7 +15,7 @@ typedef struct __mavlink_high_latency_t {
  int16_t altitude_amsl; /*< Altitude above mean sea level*/
  int16_t altitude_sp; /*< Altitude setpoint relative to the home position*/
  uint16_t wp_distance; /*< distance to target*/
- uint8_t base_mode; /*< System mode bitfield, as defined by MAV_MODE_FLAG enum.*/
+ uint8_t base_mode; /*< Bitmap of enabled system modes.*/
  uint8_t landed_state; /*< The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown.*/
  int8_t throttle; /*< throttle (percentage)*/
  uint8_t airspeed; /*< airspeed*/
@@ -110,7 +110,7 @@ typedef struct __mavlink_high_latency_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param base_mode System mode bitfield, as defined by MAV_MODE_FLAG enum.
+ * @param base_mode Bitmap of enabled system modes.
  * @param custom_mode A bitfield for use for autopilot-specific flags.
  * @param landed_state The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown.
  * @param roll roll
@@ -207,7 +207,7 @@ static inline uint16_t mavlink_msg_high_latency_pack(uint8_t system_id, uint8_t 
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param base_mode System mode bitfield, as defined by MAV_MODE_FLAG enum.
+ * @param base_mode Bitmap of enabled system modes.
  * @param custom_mode A bitfield for use for autopilot-specific flags.
  * @param landed_state The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown.
  * @param roll roll
@@ -330,7 +330,7 @@ static inline uint16_t mavlink_msg_high_latency_encode_chan(uint8_t system_id, u
  * @brief Send a high_latency message
  * @param chan MAVLink channel to send the message
  *
- * @param base_mode System mode bitfield, as defined by MAV_MODE_FLAG enum.
+ * @param base_mode Bitmap of enabled system modes.
  * @param custom_mode A bitfield for use for autopilot-specific flags.
  * @param landed_state The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown.
  * @param roll roll
@@ -510,7 +510,7 @@ static inline void mavlink_msg_high_latency_send_buf(mavlink_message_t *msgbuf, 
 /**
  * @brief Get field base_mode from high_latency message
  *
- * @return System mode bitfield, as defined by MAV_MODE_FLAG enum.
+ * @return Bitmap of enabled system modes.
  */
 static inline uint8_t mavlink_msg_high_latency_get_base_mode(const mavlink_message_t* msg)
 {

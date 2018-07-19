@@ -5,9 +5,9 @@
 
 MAVPACKED(
 typedef struct __mavlink_sys_status_t {
- uint32_t onboard_control_sensors_present; /*< Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present. Indices defined by ENUM MAV_SYS_STATUS_SENSOR*/
- uint32_t onboard_control_sensors_enabled; /*< Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled. Indices defined by ENUM MAV_SYS_STATUS_SENSOR*/
- uint32_t onboard_control_sensors_health; /*< Bitmap showing which onboard controllers and sensors are operational or have an error:  Value of 0: not enabled. Value of 1: enabled. Indices defined by ENUM MAV_SYS_STATUS_SENSOR*/
+ uint32_t onboard_control_sensors_present; /*< Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present.*/
+ uint32_t onboard_control_sensors_enabled; /*< Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled.*/
+ uint32_t onboard_control_sensors_health; /*< Bitmap showing which onboard controllers and sensors are operational or have an error:  Value of 0: not enabled. Value of 1: enabled.*/
  uint16_t load; /*< Maximum usage in percent of the mainloop time. Values: [0-1000] - should always be below 1000*/
  uint16_t voltage_battery; /*< Battery voltage*/
  int16_t current_battery; /*< Battery current, -1: autopilot does not measure the current*/
@@ -77,9 +77,9 @@ typedef struct __mavlink_sys_status_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param onboard_control_sensors_present Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present. Indices defined by ENUM MAV_SYS_STATUS_SENSOR
- * @param onboard_control_sensors_enabled Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled. Indices defined by ENUM MAV_SYS_STATUS_SENSOR
- * @param onboard_control_sensors_health Bitmap showing which onboard controllers and sensors are operational or have an error:  Value of 0: not enabled. Value of 1: enabled. Indices defined by ENUM MAV_SYS_STATUS_SENSOR
+ * @param onboard_control_sensors_present Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present.
+ * @param onboard_control_sensors_enabled Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled.
+ * @param onboard_control_sensors_health Bitmap showing which onboard controllers and sensors are operational or have an error:  Value of 0: not enabled. Value of 1: enabled.
  * @param load Maximum usage in percent of the mainloop time. Values: [0-1000] - should always be below 1000
  * @param voltage_battery Battery voltage
  * @param current_battery Battery current, -1: autopilot does not measure the current
@@ -141,9 +141,9 @@ static inline uint16_t mavlink_msg_sys_status_pack(uint8_t system_id, uint8_t co
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param onboard_control_sensors_present Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present. Indices defined by ENUM MAV_SYS_STATUS_SENSOR
- * @param onboard_control_sensors_enabled Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled. Indices defined by ENUM MAV_SYS_STATUS_SENSOR
- * @param onboard_control_sensors_health Bitmap showing which onboard controllers and sensors are operational or have an error:  Value of 0: not enabled. Value of 1: enabled. Indices defined by ENUM MAV_SYS_STATUS_SENSOR
+ * @param onboard_control_sensors_present Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present.
+ * @param onboard_control_sensors_enabled Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled.
+ * @param onboard_control_sensors_health Bitmap showing which onboard controllers and sensors are operational or have an error:  Value of 0: not enabled. Value of 1: enabled.
  * @param load Maximum usage in percent of the mainloop time. Values: [0-1000] - should always be below 1000
  * @param voltage_battery Battery voltage
  * @param current_battery Battery current, -1: autopilot does not measure the current
@@ -231,9 +231,9 @@ static inline uint16_t mavlink_msg_sys_status_encode_chan(uint8_t system_id, uin
  * @brief Send a sys_status message
  * @param chan MAVLink channel to send the message
  *
- * @param onboard_control_sensors_present Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present. Indices defined by ENUM MAV_SYS_STATUS_SENSOR
- * @param onboard_control_sensors_enabled Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled. Indices defined by ENUM MAV_SYS_STATUS_SENSOR
- * @param onboard_control_sensors_health Bitmap showing which onboard controllers and sensors are operational or have an error:  Value of 0: not enabled. Value of 1: enabled. Indices defined by ENUM MAV_SYS_STATUS_SENSOR
+ * @param onboard_control_sensors_present Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present.
+ * @param onboard_control_sensors_enabled Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled.
+ * @param onboard_control_sensors_health Bitmap showing which onboard controllers and sensors are operational or have an error:  Value of 0: not enabled. Value of 1: enabled.
  * @param load Maximum usage in percent of the mainloop time. Values: [0-1000] - should always be below 1000
  * @param voltage_battery Battery voltage
  * @param current_battery Battery current, -1: autopilot does not measure the current
@@ -356,7 +356,7 @@ static inline void mavlink_msg_sys_status_send_buf(mavlink_message_t *msgbuf, ma
 /**
  * @brief Get field onboard_control_sensors_present from sys_status message
  *
- * @return Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present. Indices defined by ENUM MAV_SYS_STATUS_SENSOR
+ * @return Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present.
  */
 static inline uint32_t mavlink_msg_sys_status_get_onboard_control_sensors_present(const mavlink_message_t* msg)
 {
@@ -366,7 +366,7 @@ static inline uint32_t mavlink_msg_sys_status_get_onboard_control_sensors_presen
 /**
  * @brief Get field onboard_control_sensors_enabled from sys_status message
  *
- * @return Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled. Indices defined by ENUM MAV_SYS_STATUS_SENSOR
+ * @return Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled.
  */
 static inline uint32_t mavlink_msg_sys_status_get_onboard_control_sensors_enabled(const mavlink_message_t* msg)
 {
@@ -376,7 +376,7 @@ static inline uint32_t mavlink_msg_sys_status_get_onboard_control_sensors_enable
 /**
  * @brief Get field onboard_control_sensors_health from sys_status message
  *
- * @return Bitmap showing which onboard controllers and sensors are operational or have an error:  Value of 0: not enabled. Value of 1: enabled. Indices defined by ENUM MAV_SYS_STATUS_SENSOR
+ * @return Bitmap showing which onboard controllers and sensors are operational or have an error:  Value of 0: not enabled. Value of 1: enabled.
  */
 static inline uint32_t mavlink_msg_sys_status_get_onboard_control_sensors_health(const mavlink_message_t* msg)
 {
