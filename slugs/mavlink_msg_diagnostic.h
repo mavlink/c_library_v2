@@ -5,12 +5,12 @@
 
 MAVPACKED(
 typedef struct __mavlink_diagnostic_t {
- float diagFl1; /*< Diagnostic float 1*/
- float diagFl2; /*< Diagnostic float 2*/
- float diagFl3; /*< Diagnostic float 3*/
- int16_t diagSh1; /*< Diagnostic short 1*/
- int16_t diagSh2; /*< Diagnostic short 2*/
- int16_t diagSh3; /*< Diagnostic short 3*/
+ float diagFl1; /*<  Diagnostic float 1*/
+ float diagFl2; /*<  Diagnostic float 2*/
+ float diagFl3; /*<  Diagnostic float 3*/
+ int16_t diagSh1; /*<  Diagnostic short 1*/
+ int16_t diagSh2; /*<  Diagnostic short 2*/
+ int16_t diagSh3; /*<  Diagnostic short 3*/
 }) mavlink_diagnostic_t;
 
 #define MAVLINK_MSG_ID_DIAGNOSTIC_LEN 18
@@ -56,12 +56,12 @@ typedef struct __mavlink_diagnostic_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param diagFl1 Diagnostic float 1
- * @param diagFl2 Diagnostic float 2
- * @param diagFl3 Diagnostic float 3
- * @param diagSh1 Diagnostic short 1
- * @param diagSh2 Diagnostic short 2
- * @param diagSh3 Diagnostic short 3
+ * @param diagFl1  Diagnostic float 1
+ * @param diagFl2  Diagnostic float 2
+ * @param diagFl3  Diagnostic float 3
+ * @param diagSh1  Diagnostic short 1
+ * @param diagSh2  Diagnostic short 2
+ * @param diagSh3  Diagnostic short 3
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_diagnostic_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -99,12 +99,12 @@ static inline uint16_t mavlink_msg_diagnostic_pack(uint8_t system_id, uint8_t co
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param diagFl1 Diagnostic float 1
- * @param diagFl2 Diagnostic float 2
- * @param diagFl3 Diagnostic float 3
- * @param diagSh1 Diagnostic short 1
- * @param diagSh2 Diagnostic short 2
- * @param diagSh3 Diagnostic short 3
+ * @param diagFl1  Diagnostic float 1
+ * @param diagFl2  Diagnostic float 2
+ * @param diagFl3  Diagnostic float 3
+ * @param diagSh1  Diagnostic short 1
+ * @param diagSh2  Diagnostic short 2
+ * @param diagSh3  Diagnostic short 3
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_diagnostic_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -168,12 +168,12 @@ static inline uint16_t mavlink_msg_diagnostic_encode_chan(uint8_t system_id, uin
  * @brief Send a diagnostic message
  * @param chan MAVLink channel to send the message
  *
- * @param diagFl1 Diagnostic float 1
- * @param diagFl2 Diagnostic float 2
- * @param diagFl3 Diagnostic float 3
- * @param diagSh1 Diagnostic short 1
- * @param diagSh2 Diagnostic short 2
- * @param diagSh3 Diagnostic short 3
+ * @param diagFl1  Diagnostic float 1
+ * @param diagFl2  Diagnostic float 2
+ * @param diagFl3  Diagnostic float 3
+ * @param diagSh1  Diagnostic short 1
+ * @param diagSh2  Diagnostic short 2
+ * @param diagSh3  Diagnostic short 3
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -258,7 +258,7 @@ static inline void mavlink_msg_diagnostic_send_buf(mavlink_message_t *msgbuf, ma
 /**
  * @brief Get field diagFl1 from diagnostic message
  *
- * @return Diagnostic float 1
+ * @return  Diagnostic float 1
  */
 static inline float mavlink_msg_diagnostic_get_diagFl1(const mavlink_message_t* msg)
 {
@@ -268,7 +268,7 @@ static inline float mavlink_msg_diagnostic_get_diagFl1(const mavlink_message_t* 
 /**
  * @brief Get field diagFl2 from diagnostic message
  *
- * @return Diagnostic float 2
+ * @return  Diagnostic float 2
  */
 static inline float mavlink_msg_diagnostic_get_diagFl2(const mavlink_message_t* msg)
 {
@@ -278,7 +278,7 @@ static inline float mavlink_msg_diagnostic_get_diagFl2(const mavlink_message_t* 
 /**
  * @brief Get field diagFl3 from diagnostic message
  *
- * @return Diagnostic float 3
+ * @return  Diagnostic float 3
  */
 static inline float mavlink_msg_diagnostic_get_diagFl3(const mavlink_message_t* msg)
 {
@@ -288,7 +288,7 @@ static inline float mavlink_msg_diagnostic_get_diagFl3(const mavlink_message_t* 
 /**
  * @brief Get field diagSh1 from diagnostic message
  *
- * @return Diagnostic short 1
+ * @return  Diagnostic short 1
  */
 static inline int16_t mavlink_msg_diagnostic_get_diagSh1(const mavlink_message_t* msg)
 {
@@ -298,7 +298,7 @@ static inline int16_t mavlink_msg_diagnostic_get_diagSh1(const mavlink_message_t
 /**
  * @brief Get field diagSh2 from diagnostic message
  *
- * @return Diagnostic short 2
+ * @return  Diagnostic short 2
  */
 static inline int16_t mavlink_msg_diagnostic_get_diagSh2(const mavlink_message_t* msg)
 {
@@ -308,7 +308,7 @@ static inline int16_t mavlink_msg_diagnostic_get_diagSh2(const mavlink_message_t
 /**
  * @brief Get field diagSh3 from diagnostic message
  *
- * @return Diagnostic short 3
+ * @return  Diagnostic short 3
  */
 static inline int16_t mavlink_msg_diagnostic_get_diagSh3(const mavlink_message_t* msg)
 {

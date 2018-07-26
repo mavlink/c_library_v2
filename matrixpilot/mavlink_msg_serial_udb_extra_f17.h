@@ -5,9 +5,9 @@
 
 MAVPACKED(
 typedef struct __mavlink_serial_udb_extra_f17_t {
- float sue_feed_forward; /*< SUE Feed Forward Gain*/
- float sue_turn_rate_nav; /*< SUE Max Turn Rate when Navigating*/
- float sue_turn_rate_fbw; /*< SUE Max Turn Rate in Fly By Wire Mode*/
+ float sue_feed_forward; /*<  SUE Feed Forward Gain*/
+ float sue_turn_rate_nav; /*<  SUE Max Turn Rate when Navigating*/
+ float sue_turn_rate_fbw; /*<  SUE Max Turn Rate in Fly By Wire Mode*/
 }) mavlink_serial_udb_extra_f17_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F17_LEN 12
@@ -47,9 +47,9 @@ typedef struct __mavlink_serial_udb_extra_f17_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param sue_feed_forward SUE Feed Forward Gain
- * @param sue_turn_rate_nav SUE Max Turn Rate when Navigating
- * @param sue_turn_rate_fbw SUE Max Turn Rate in Fly By Wire Mode
+ * @param sue_feed_forward  SUE Feed Forward Gain
+ * @param sue_turn_rate_nav  SUE Max Turn Rate when Navigating
+ * @param sue_turn_rate_fbw  SUE Max Turn Rate in Fly By Wire Mode
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f17_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -81,9 +81,9 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f17_pack(uint8_t system_id, 
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param sue_feed_forward SUE Feed Forward Gain
- * @param sue_turn_rate_nav SUE Max Turn Rate when Navigating
- * @param sue_turn_rate_fbw SUE Max Turn Rate in Fly By Wire Mode
+ * @param sue_feed_forward  SUE Feed Forward Gain
+ * @param sue_turn_rate_nav  SUE Max Turn Rate when Navigating
+ * @param sue_turn_rate_fbw  SUE Max Turn Rate in Fly By Wire Mode
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f17_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -141,9 +141,9 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f17_encode_chan(uint8_t syst
  * @brief Send a serial_udb_extra_f17 message
  * @param chan MAVLink channel to send the message
  *
- * @param sue_feed_forward SUE Feed Forward Gain
- * @param sue_turn_rate_nav SUE Max Turn Rate when Navigating
- * @param sue_turn_rate_fbw SUE Max Turn Rate in Fly By Wire Mode
+ * @param sue_feed_forward  SUE Feed Forward Gain
+ * @param sue_turn_rate_nav  SUE Max Turn Rate when Navigating
+ * @param sue_turn_rate_fbw  SUE Max Turn Rate in Fly By Wire Mode
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -216,7 +216,7 @@ static inline void mavlink_msg_serial_udb_extra_f17_send_buf(mavlink_message_t *
 /**
  * @brief Get field sue_feed_forward from serial_udb_extra_f17 message
  *
- * @return SUE Feed Forward Gain
+ * @return  SUE Feed Forward Gain
  */
 static inline float mavlink_msg_serial_udb_extra_f17_get_sue_feed_forward(const mavlink_message_t* msg)
 {
@@ -226,7 +226,7 @@ static inline float mavlink_msg_serial_udb_extra_f17_get_sue_feed_forward(const 
 /**
  * @brief Get field sue_turn_rate_nav from serial_udb_extra_f17 message
  *
- * @return SUE Max Turn Rate when Navigating
+ * @return  SUE Max Turn Rate when Navigating
  */
 static inline float mavlink_msg_serial_udb_extra_f17_get_sue_turn_rate_nav(const mavlink_message_t* msg)
 {
@@ -236,7 +236,7 @@ static inline float mavlink_msg_serial_udb_extra_f17_get_sue_turn_rate_nav(const
 /**
  * @brief Get field sue_turn_rate_fbw from serial_udb_extra_f17 message
  *
- * @return SUE Max Turn Rate in Fly By Wire Mode
+ * @return  SUE Max Turn Rate in Fly By Wire Mode
  */
 static inline float mavlink_msg_serial_udb_extra_f17_get_sue_turn_rate_fbw(const mavlink_message_t* msg)
 {

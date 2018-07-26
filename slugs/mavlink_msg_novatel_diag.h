@@ -5,13 +5,13 @@
 
 MAVPACKED(
 typedef struct __mavlink_novatel_diag_t {
- uint32_t receiverStatus; /*< Status Bitfield. See table 69 page 350 Novatel OEMstar Manual*/
- float posSolAge; /*< Age of the position solution*/
- uint16_t csFails; /*< Times the CRC has failed since boot*/
- uint8_t timeStatus; /*< The Time Status. See Table 8 page 27 Novatel OEMStar Manual*/
- uint8_t solStatus; /*< solution Status. See table 44 page 197*/
- uint8_t posType; /*< position type. See table 43 page 196*/
- uint8_t velType; /*< velocity type. See table 43 page 196*/
+ uint32_t receiverStatus; /*<  Status Bitfield. See table 69 page 350 Novatel OEMstar Manual*/
+ float posSolAge; /*< [s] Age of the position solution*/
+ uint16_t csFails; /*<  Times the CRC has failed since boot*/
+ uint8_t timeStatus; /*<  The Time Status. See Table 8 page 27 Novatel OEMStar Manual*/
+ uint8_t solStatus; /*<  solution Status. See table 44 page 197*/
+ uint8_t posType; /*<  position type. See table 43 page 196*/
+ uint8_t velType; /*<  velocity type. See table 43 page 196*/
 }) mavlink_novatel_diag_t;
 
 #define MAVLINK_MSG_ID_NOVATEL_DIAG_LEN 14
@@ -59,13 +59,13 @@ typedef struct __mavlink_novatel_diag_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param timeStatus The Time Status. See Table 8 page 27 Novatel OEMStar Manual
- * @param receiverStatus Status Bitfield. See table 69 page 350 Novatel OEMstar Manual
- * @param solStatus solution Status. See table 44 page 197
- * @param posType position type. See table 43 page 196
- * @param velType velocity type. See table 43 page 196
- * @param posSolAge Age of the position solution
- * @param csFails Times the CRC has failed since boot
+ * @param timeStatus  The Time Status. See Table 8 page 27 Novatel OEMStar Manual
+ * @param receiverStatus  Status Bitfield. See table 69 page 350 Novatel OEMstar Manual
+ * @param solStatus  solution Status. See table 44 page 197
+ * @param posType  position type. See table 43 page 196
+ * @param velType  velocity type. See table 43 page 196
+ * @param posSolAge [s] Age of the position solution
+ * @param csFails  Times the CRC has failed since boot
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_novatel_diag_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -105,13 +105,13 @@ static inline uint16_t mavlink_msg_novatel_diag_pack(uint8_t system_id, uint8_t 
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param timeStatus The Time Status. See Table 8 page 27 Novatel OEMStar Manual
- * @param receiverStatus Status Bitfield. See table 69 page 350 Novatel OEMstar Manual
- * @param solStatus solution Status. See table 44 page 197
- * @param posType position type. See table 43 page 196
- * @param velType velocity type. See table 43 page 196
- * @param posSolAge Age of the position solution
- * @param csFails Times the CRC has failed since boot
+ * @param timeStatus  The Time Status. See Table 8 page 27 Novatel OEMStar Manual
+ * @param receiverStatus  Status Bitfield. See table 69 page 350 Novatel OEMstar Manual
+ * @param solStatus  solution Status. See table 44 page 197
+ * @param posType  position type. See table 43 page 196
+ * @param velType  velocity type. See table 43 page 196
+ * @param posSolAge [s] Age of the position solution
+ * @param csFails  Times the CRC has failed since boot
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_novatel_diag_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -177,13 +177,13 @@ static inline uint16_t mavlink_msg_novatel_diag_encode_chan(uint8_t system_id, u
  * @brief Send a novatel_diag message
  * @param chan MAVLink channel to send the message
  *
- * @param timeStatus The Time Status. See Table 8 page 27 Novatel OEMStar Manual
- * @param receiverStatus Status Bitfield. See table 69 page 350 Novatel OEMstar Manual
- * @param solStatus solution Status. See table 44 page 197
- * @param posType position type. See table 43 page 196
- * @param velType velocity type. See table 43 page 196
- * @param posSolAge Age of the position solution
- * @param csFails Times the CRC has failed since boot
+ * @param timeStatus  The Time Status. See Table 8 page 27 Novatel OEMStar Manual
+ * @param receiverStatus  Status Bitfield. See table 69 page 350 Novatel OEMstar Manual
+ * @param solStatus  solution Status. See table 44 page 197
+ * @param posType  position type. See table 43 page 196
+ * @param velType  velocity type. See table 43 page 196
+ * @param posSolAge [s] Age of the position solution
+ * @param csFails  Times the CRC has failed since boot
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -272,7 +272,7 @@ static inline void mavlink_msg_novatel_diag_send_buf(mavlink_message_t *msgbuf, 
 /**
  * @brief Get field timeStatus from novatel_diag message
  *
- * @return The Time Status. See Table 8 page 27 Novatel OEMStar Manual
+ * @return  The Time Status. See Table 8 page 27 Novatel OEMStar Manual
  */
 static inline uint8_t mavlink_msg_novatel_diag_get_timeStatus(const mavlink_message_t* msg)
 {
@@ -282,7 +282,7 @@ static inline uint8_t mavlink_msg_novatel_diag_get_timeStatus(const mavlink_mess
 /**
  * @brief Get field receiverStatus from novatel_diag message
  *
- * @return Status Bitfield. See table 69 page 350 Novatel OEMstar Manual
+ * @return  Status Bitfield. See table 69 page 350 Novatel OEMstar Manual
  */
 static inline uint32_t mavlink_msg_novatel_diag_get_receiverStatus(const mavlink_message_t* msg)
 {
@@ -292,7 +292,7 @@ static inline uint32_t mavlink_msg_novatel_diag_get_receiverStatus(const mavlink
 /**
  * @brief Get field solStatus from novatel_diag message
  *
- * @return solution Status. See table 44 page 197
+ * @return  solution Status. See table 44 page 197
  */
 static inline uint8_t mavlink_msg_novatel_diag_get_solStatus(const mavlink_message_t* msg)
 {
@@ -302,7 +302,7 @@ static inline uint8_t mavlink_msg_novatel_diag_get_solStatus(const mavlink_messa
 /**
  * @brief Get field posType from novatel_diag message
  *
- * @return position type. See table 43 page 196
+ * @return  position type. See table 43 page 196
  */
 static inline uint8_t mavlink_msg_novatel_diag_get_posType(const mavlink_message_t* msg)
 {
@@ -312,7 +312,7 @@ static inline uint8_t mavlink_msg_novatel_diag_get_posType(const mavlink_message
 /**
  * @brief Get field velType from novatel_diag message
  *
- * @return velocity type. See table 43 page 196
+ * @return  velocity type. See table 43 page 196
  */
 static inline uint8_t mavlink_msg_novatel_diag_get_velType(const mavlink_message_t* msg)
 {
@@ -322,7 +322,7 @@ static inline uint8_t mavlink_msg_novatel_diag_get_velType(const mavlink_message
 /**
  * @brief Get field posSolAge from novatel_diag message
  *
- * @return Age of the position solution
+ * @return [s] Age of the position solution
  */
 static inline float mavlink_msg_novatel_diag_get_posSolAge(const mavlink_message_t* msg)
 {
@@ -332,7 +332,7 @@ static inline float mavlink_msg_novatel_diag_get_posSolAge(const mavlink_message
 /**
  * @brief Get field csFails from novatel_diag message
  *
- * @return Times the CRC has failed since boot
+ * @return  Times the CRC has failed since boot
  */
 static inline uint16_t mavlink_msg_novatel_diag_get_csFails(const mavlink_message_t* msg)
 {

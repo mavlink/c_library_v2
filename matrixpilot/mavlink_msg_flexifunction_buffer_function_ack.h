@@ -5,10 +5,10 @@
 
 MAVPACKED(
 typedef struct __mavlink_flexifunction_buffer_function_ack_t {
- uint16_t func_index; /*< Function index*/
- uint16_t result; /*< result of acknowledge, 0=fail, 1=good*/
- uint8_t target_system; /*< System ID*/
- uint8_t target_component; /*< Component ID*/
+ uint16_t func_index; /*<  Function index*/
+ uint16_t result; /*<  result of acknowledge, 0=fail, 1=good*/
+ uint8_t target_system; /*<  System ID*/
+ uint8_t target_component; /*<  Component ID*/
 }) mavlink_flexifunction_buffer_function_ack_t;
 
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_ACK_LEN 6
@@ -50,10 +50,10 @@ typedef struct __mavlink_flexifunction_buffer_function_ack_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param target_system System ID
- * @param target_component Component ID
- * @param func_index Function index
- * @param result result of acknowledge, 0=fail, 1=good
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param func_index  Function index
+ * @param result  result of acknowledge, 0=fail, 1=good
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_flexifunction_buffer_function_ack_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -87,10 +87,10 @@ static inline uint16_t mavlink_msg_flexifunction_buffer_function_ack_pack(uint8_
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param target_system System ID
- * @param target_component Component ID
- * @param func_index Function index
- * @param result result of acknowledge, 0=fail, 1=good
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param func_index  Function index
+ * @param result  result of acknowledge, 0=fail, 1=good
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_flexifunction_buffer_function_ack_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -150,10 +150,10 @@ static inline uint16_t mavlink_msg_flexifunction_buffer_function_ack_encode_chan
  * @brief Send a flexifunction_buffer_function_ack message
  * @param chan MAVLink channel to send the message
  *
- * @param target_system System ID
- * @param target_component Component ID
- * @param func_index Function index
- * @param result result of acknowledge, 0=fail, 1=good
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param func_index  Function index
+ * @param result  result of acknowledge, 0=fail, 1=good
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -230,7 +230,7 @@ static inline void mavlink_msg_flexifunction_buffer_function_ack_send_buf(mavlin
 /**
  * @brief Get field target_system from flexifunction_buffer_function_ack message
  *
- * @return System ID
+ * @return  System ID
  */
 static inline uint8_t mavlink_msg_flexifunction_buffer_function_ack_get_target_system(const mavlink_message_t* msg)
 {
@@ -240,7 +240,7 @@ static inline uint8_t mavlink_msg_flexifunction_buffer_function_ack_get_target_s
 /**
  * @brief Get field target_component from flexifunction_buffer_function_ack message
  *
- * @return Component ID
+ * @return  Component ID
  */
 static inline uint8_t mavlink_msg_flexifunction_buffer_function_ack_get_target_component(const mavlink_message_t* msg)
 {
@@ -250,7 +250,7 @@ static inline uint8_t mavlink_msg_flexifunction_buffer_function_ack_get_target_c
 /**
  * @brief Get field func_index from flexifunction_buffer_function_ack message
  *
- * @return Function index
+ * @return  Function index
  */
 static inline uint16_t mavlink_msg_flexifunction_buffer_function_ack_get_func_index(const mavlink_message_t* msg)
 {
@@ -260,7 +260,7 @@ static inline uint16_t mavlink_msg_flexifunction_buffer_function_ack_get_func_in
 /**
  * @brief Get field result from flexifunction_buffer_function_ack message
  *
- * @return result of acknowledge, 0=fail, 1=good
+ * @return  result of acknowledge, 0=fail, 1=good
  */
 static inline uint16_t mavlink_msg_flexifunction_buffer_function_ack_get_result(const mavlink_message_t* msg)
 {

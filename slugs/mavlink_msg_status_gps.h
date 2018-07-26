@@ -5,13 +5,13 @@
 
 MAVPACKED(
 typedef struct __mavlink_status_gps_t {
- float magVar; /*< Magnetic variation*/
- uint16_t csFails; /*< Number of times checksum has failed*/
- uint8_t gpsQuality; /*< The quality indicator, 0=fix not available or invalid, 1=GPS fix, 2=C/A differential GPS, 6=Dead reckoning mode, 7=Manual input mode (fixed position), 8=Simulator mode, 9= WAAS a*/
- uint8_t msgsType; /*<  Indicates if GN, GL or GP messages are being received*/
- uint8_t posStatus; /*<  A = data valid, V = data invalid*/
- int8_t magDir; /*<  Magnetic variation direction E/W. Easterly variation (E) subtracts from True course and Westerly variation (W) adds to True course*/
- uint8_t modeInd; /*<  Positioning system mode indicator. A - Autonomous;D-Differential; E-Estimated (dead reckoning) mode;M-Manual input; N-Data not valid*/
+ float magVar; /*< [deg] Magnetic variation*/
+ uint16_t csFails; /*<  Number of times checksum has failed*/
+ uint8_t gpsQuality; /*<  The quality indicator, 0=fix not available or invalid, 1=GPS fix, 2=C/A differential GPS, 6=Dead reckoning mode, 7=Manual input mode (fixed position), 8=Simulator mode, 9= WAAS a*/
+ uint8_t msgsType; /*<   Indicates if GN, GL or GP messages are being received*/
+ uint8_t posStatus; /*<   A = data valid, V = data invalid*/
+ int8_t magDir; /*<   Magnetic variation direction E/W. Easterly variation (E) subtracts from True course and Westerly variation (W) adds to True course*/
+ uint8_t modeInd; /*<   Positioning system mode indicator. A - Autonomous;D-Differential; E-Estimated (dead reckoning) mode;M-Manual input; N-Data not valid*/
 }) mavlink_status_gps_t;
 
 #define MAVLINK_MSG_ID_STATUS_GPS_LEN 11
@@ -59,13 +59,13 @@ typedef struct __mavlink_status_gps_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param csFails Number of times checksum has failed
- * @param gpsQuality The quality indicator, 0=fix not available or invalid, 1=GPS fix, 2=C/A differential GPS, 6=Dead reckoning mode, 7=Manual input mode (fixed position), 8=Simulator mode, 9= WAAS a
- * @param msgsType  Indicates if GN, GL or GP messages are being received
- * @param posStatus  A = data valid, V = data invalid
- * @param magVar Magnetic variation
- * @param magDir  Magnetic variation direction E/W. Easterly variation (E) subtracts from True course and Westerly variation (W) adds to True course
- * @param modeInd  Positioning system mode indicator. A - Autonomous;D-Differential; E-Estimated (dead reckoning) mode;M-Manual input; N-Data not valid
+ * @param csFails  Number of times checksum has failed
+ * @param gpsQuality  The quality indicator, 0=fix not available or invalid, 1=GPS fix, 2=C/A differential GPS, 6=Dead reckoning mode, 7=Manual input mode (fixed position), 8=Simulator mode, 9= WAAS a
+ * @param msgsType   Indicates if GN, GL or GP messages are being received
+ * @param posStatus   A = data valid, V = data invalid
+ * @param magVar [deg] Magnetic variation
+ * @param magDir   Magnetic variation direction E/W. Easterly variation (E) subtracts from True course and Westerly variation (W) adds to True course
+ * @param modeInd   Positioning system mode indicator. A - Autonomous;D-Differential; E-Estimated (dead reckoning) mode;M-Manual input; N-Data not valid
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_status_gps_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -105,13 +105,13 @@ static inline uint16_t mavlink_msg_status_gps_pack(uint8_t system_id, uint8_t co
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param csFails Number of times checksum has failed
- * @param gpsQuality The quality indicator, 0=fix not available or invalid, 1=GPS fix, 2=C/A differential GPS, 6=Dead reckoning mode, 7=Manual input mode (fixed position), 8=Simulator mode, 9= WAAS a
- * @param msgsType  Indicates if GN, GL or GP messages are being received
- * @param posStatus  A = data valid, V = data invalid
- * @param magVar Magnetic variation
- * @param magDir  Magnetic variation direction E/W. Easterly variation (E) subtracts from True course and Westerly variation (W) adds to True course
- * @param modeInd  Positioning system mode indicator. A - Autonomous;D-Differential; E-Estimated (dead reckoning) mode;M-Manual input; N-Data not valid
+ * @param csFails  Number of times checksum has failed
+ * @param gpsQuality  The quality indicator, 0=fix not available or invalid, 1=GPS fix, 2=C/A differential GPS, 6=Dead reckoning mode, 7=Manual input mode (fixed position), 8=Simulator mode, 9= WAAS a
+ * @param msgsType   Indicates if GN, GL or GP messages are being received
+ * @param posStatus   A = data valid, V = data invalid
+ * @param magVar [deg] Magnetic variation
+ * @param magDir   Magnetic variation direction E/W. Easterly variation (E) subtracts from True course and Westerly variation (W) adds to True course
+ * @param modeInd   Positioning system mode indicator. A - Autonomous;D-Differential; E-Estimated (dead reckoning) mode;M-Manual input; N-Data not valid
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_status_gps_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -177,13 +177,13 @@ static inline uint16_t mavlink_msg_status_gps_encode_chan(uint8_t system_id, uin
  * @brief Send a status_gps message
  * @param chan MAVLink channel to send the message
  *
- * @param csFails Number of times checksum has failed
- * @param gpsQuality The quality indicator, 0=fix not available or invalid, 1=GPS fix, 2=C/A differential GPS, 6=Dead reckoning mode, 7=Manual input mode (fixed position), 8=Simulator mode, 9= WAAS a
- * @param msgsType  Indicates if GN, GL or GP messages are being received
- * @param posStatus  A = data valid, V = data invalid
- * @param magVar Magnetic variation
- * @param magDir  Magnetic variation direction E/W. Easterly variation (E) subtracts from True course and Westerly variation (W) adds to True course
- * @param modeInd  Positioning system mode indicator. A - Autonomous;D-Differential; E-Estimated (dead reckoning) mode;M-Manual input; N-Data not valid
+ * @param csFails  Number of times checksum has failed
+ * @param gpsQuality  The quality indicator, 0=fix not available or invalid, 1=GPS fix, 2=C/A differential GPS, 6=Dead reckoning mode, 7=Manual input mode (fixed position), 8=Simulator mode, 9= WAAS a
+ * @param msgsType   Indicates if GN, GL or GP messages are being received
+ * @param posStatus   A = data valid, V = data invalid
+ * @param magVar [deg] Magnetic variation
+ * @param magDir   Magnetic variation direction E/W. Easterly variation (E) subtracts from True course and Westerly variation (W) adds to True course
+ * @param modeInd   Positioning system mode indicator. A - Autonomous;D-Differential; E-Estimated (dead reckoning) mode;M-Manual input; N-Data not valid
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -272,7 +272,7 @@ static inline void mavlink_msg_status_gps_send_buf(mavlink_message_t *msgbuf, ma
 /**
  * @brief Get field csFails from status_gps message
  *
- * @return Number of times checksum has failed
+ * @return  Number of times checksum has failed
  */
 static inline uint16_t mavlink_msg_status_gps_get_csFails(const mavlink_message_t* msg)
 {
@@ -282,7 +282,7 @@ static inline uint16_t mavlink_msg_status_gps_get_csFails(const mavlink_message_
 /**
  * @brief Get field gpsQuality from status_gps message
  *
- * @return The quality indicator, 0=fix not available or invalid, 1=GPS fix, 2=C/A differential GPS, 6=Dead reckoning mode, 7=Manual input mode (fixed position), 8=Simulator mode, 9= WAAS a
+ * @return  The quality indicator, 0=fix not available or invalid, 1=GPS fix, 2=C/A differential GPS, 6=Dead reckoning mode, 7=Manual input mode (fixed position), 8=Simulator mode, 9= WAAS a
  */
 static inline uint8_t mavlink_msg_status_gps_get_gpsQuality(const mavlink_message_t* msg)
 {
@@ -292,7 +292,7 @@ static inline uint8_t mavlink_msg_status_gps_get_gpsQuality(const mavlink_messag
 /**
  * @brief Get field msgsType from status_gps message
  *
- * @return  Indicates if GN, GL or GP messages are being received
+ * @return   Indicates if GN, GL or GP messages are being received
  */
 static inline uint8_t mavlink_msg_status_gps_get_msgsType(const mavlink_message_t* msg)
 {
@@ -302,7 +302,7 @@ static inline uint8_t mavlink_msg_status_gps_get_msgsType(const mavlink_message_
 /**
  * @brief Get field posStatus from status_gps message
  *
- * @return  A = data valid, V = data invalid
+ * @return   A = data valid, V = data invalid
  */
 static inline uint8_t mavlink_msg_status_gps_get_posStatus(const mavlink_message_t* msg)
 {
@@ -312,7 +312,7 @@ static inline uint8_t mavlink_msg_status_gps_get_posStatus(const mavlink_message
 /**
  * @brief Get field magVar from status_gps message
  *
- * @return Magnetic variation
+ * @return [deg] Magnetic variation
  */
 static inline float mavlink_msg_status_gps_get_magVar(const mavlink_message_t* msg)
 {
@@ -322,7 +322,7 @@ static inline float mavlink_msg_status_gps_get_magVar(const mavlink_message_t* m
 /**
  * @brief Get field magDir from status_gps message
  *
- * @return  Magnetic variation direction E/W. Easterly variation (E) subtracts from True course and Westerly variation (W) adds to True course
+ * @return   Magnetic variation direction E/W. Easterly variation (E) subtracts from True course and Westerly variation (W) adds to True course
  */
 static inline int8_t mavlink_msg_status_gps_get_magDir(const mavlink_message_t* msg)
 {
@@ -332,7 +332,7 @@ static inline int8_t mavlink_msg_status_gps_get_magDir(const mavlink_message_t* 
 /**
  * @brief Get field modeInd from status_gps message
  *
- * @return  Positioning system mode indicator. A - Autonomous;D-Differential; E-Estimated (dead reckoning) mode;M-Manual input; N-Data not valid
+ * @return   Positioning system mode indicator. A - Autonomous;D-Differential; E-Estimated (dead reckoning) mode;M-Manual input; N-Data not valid
  */
 static inline uint8_t mavlink_msg_status_gps_get_modeInd(const mavlink_message_t* msg)
 {

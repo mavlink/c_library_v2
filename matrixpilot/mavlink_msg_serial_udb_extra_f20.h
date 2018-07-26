@@ -5,19 +5,19 @@
 
 MAVPACKED(
 typedef struct __mavlink_serial_udb_extra_f20_t {
- int16_t sue_trim_value_input_1; /*< SUE UDB PWM Trim Value on Input 1*/
- int16_t sue_trim_value_input_2; /*< SUE UDB PWM Trim Value on Input 2*/
- int16_t sue_trim_value_input_3; /*< SUE UDB PWM Trim Value on Input 3*/
- int16_t sue_trim_value_input_4; /*< SUE UDB PWM Trim Value on Input 4*/
- int16_t sue_trim_value_input_5; /*< SUE UDB PWM Trim Value on Input 5*/
- int16_t sue_trim_value_input_6; /*< SUE UDB PWM Trim Value on Input 6*/
- int16_t sue_trim_value_input_7; /*< SUE UDB PWM Trim Value on Input 7*/
- int16_t sue_trim_value_input_8; /*< SUE UDB PWM Trim Value on Input 8*/
- int16_t sue_trim_value_input_9; /*< SUE UDB PWM Trim Value on Input 9*/
- int16_t sue_trim_value_input_10; /*< SUE UDB PWM Trim Value on Input 10*/
- int16_t sue_trim_value_input_11; /*< SUE UDB PWM Trim Value on Input 11*/
- int16_t sue_trim_value_input_12; /*< SUE UDB PWM Trim Value on Input 12*/
- uint8_t sue_number_of_inputs; /*< SUE Number of Input Channels*/
+ int16_t sue_trim_value_input_1; /*<  SUE UDB PWM Trim Value on Input 1*/
+ int16_t sue_trim_value_input_2; /*<  SUE UDB PWM Trim Value on Input 2*/
+ int16_t sue_trim_value_input_3; /*<  SUE UDB PWM Trim Value on Input 3*/
+ int16_t sue_trim_value_input_4; /*<  SUE UDB PWM Trim Value on Input 4*/
+ int16_t sue_trim_value_input_5; /*<  SUE UDB PWM Trim Value on Input 5*/
+ int16_t sue_trim_value_input_6; /*<  SUE UDB PWM Trim Value on Input 6*/
+ int16_t sue_trim_value_input_7; /*<  SUE UDB PWM Trim Value on Input 7*/
+ int16_t sue_trim_value_input_8; /*<  SUE UDB PWM Trim Value on Input 8*/
+ int16_t sue_trim_value_input_9; /*<  SUE UDB PWM Trim Value on Input 9*/
+ int16_t sue_trim_value_input_10; /*<  SUE UDB PWM Trim Value on Input 10*/
+ int16_t sue_trim_value_input_11; /*<  SUE UDB PWM Trim Value on Input 11*/
+ int16_t sue_trim_value_input_12; /*<  SUE UDB PWM Trim Value on Input 12*/
+ uint8_t sue_number_of_inputs; /*<  SUE Number of Input Channels*/
 }) mavlink_serial_udb_extra_f20_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F20_LEN 25
@@ -77,19 +77,19 @@ typedef struct __mavlink_serial_udb_extra_f20_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param sue_number_of_inputs SUE Number of Input Channels
- * @param sue_trim_value_input_1 SUE UDB PWM Trim Value on Input 1
- * @param sue_trim_value_input_2 SUE UDB PWM Trim Value on Input 2
- * @param sue_trim_value_input_3 SUE UDB PWM Trim Value on Input 3
- * @param sue_trim_value_input_4 SUE UDB PWM Trim Value on Input 4
- * @param sue_trim_value_input_5 SUE UDB PWM Trim Value on Input 5
- * @param sue_trim_value_input_6 SUE UDB PWM Trim Value on Input 6
- * @param sue_trim_value_input_7 SUE UDB PWM Trim Value on Input 7
- * @param sue_trim_value_input_8 SUE UDB PWM Trim Value on Input 8
- * @param sue_trim_value_input_9 SUE UDB PWM Trim Value on Input 9
- * @param sue_trim_value_input_10 SUE UDB PWM Trim Value on Input 10
- * @param sue_trim_value_input_11 SUE UDB PWM Trim Value on Input 11
- * @param sue_trim_value_input_12 SUE UDB PWM Trim Value on Input 12
+ * @param sue_number_of_inputs  SUE Number of Input Channels
+ * @param sue_trim_value_input_1  SUE UDB PWM Trim Value on Input 1
+ * @param sue_trim_value_input_2  SUE UDB PWM Trim Value on Input 2
+ * @param sue_trim_value_input_3  SUE UDB PWM Trim Value on Input 3
+ * @param sue_trim_value_input_4  SUE UDB PWM Trim Value on Input 4
+ * @param sue_trim_value_input_5  SUE UDB PWM Trim Value on Input 5
+ * @param sue_trim_value_input_6  SUE UDB PWM Trim Value on Input 6
+ * @param sue_trim_value_input_7  SUE UDB PWM Trim Value on Input 7
+ * @param sue_trim_value_input_8  SUE UDB PWM Trim Value on Input 8
+ * @param sue_trim_value_input_9  SUE UDB PWM Trim Value on Input 9
+ * @param sue_trim_value_input_10  SUE UDB PWM Trim Value on Input 10
+ * @param sue_trim_value_input_11  SUE UDB PWM Trim Value on Input 11
+ * @param sue_trim_value_input_12  SUE UDB PWM Trim Value on Input 12
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f20_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -141,19 +141,19 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f20_pack(uint8_t system_id, 
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param sue_number_of_inputs SUE Number of Input Channels
- * @param sue_trim_value_input_1 SUE UDB PWM Trim Value on Input 1
- * @param sue_trim_value_input_2 SUE UDB PWM Trim Value on Input 2
- * @param sue_trim_value_input_3 SUE UDB PWM Trim Value on Input 3
- * @param sue_trim_value_input_4 SUE UDB PWM Trim Value on Input 4
- * @param sue_trim_value_input_5 SUE UDB PWM Trim Value on Input 5
- * @param sue_trim_value_input_6 SUE UDB PWM Trim Value on Input 6
- * @param sue_trim_value_input_7 SUE UDB PWM Trim Value on Input 7
- * @param sue_trim_value_input_8 SUE UDB PWM Trim Value on Input 8
- * @param sue_trim_value_input_9 SUE UDB PWM Trim Value on Input 9
- * @param sue_trim_value_input_10 SUE UDB PWM Trim Value on Input 10
- * @param sue_trim_value_input_11 SUE UDB PWM Trim Value on Input 11
- * @param sue_trim_value_input_12 SUE UDB PWM Trim Value on Input 12
+ * @param sue_number_of_inputs  SUE Number of Input Channels
+ * @param sue_trim_value_input_1  SUE UDB PWM Trim Value on Input 1
+ * @param sue_trim_value_input_2  SUE UDB PWM Trim Value on Input 2
+ * @param sue_trim_value_input_3  SUE UDB PWM Trim Value on Input 3
+ * @param sue_trim_value_input_4  SUE UDB PWM Trim Value on Input 4
+ * @param sue_trim_value_input_5  SUE UDB PWM Trim Value on Input 5
+ * @param sue_trim_value_input_6  SUE UDB PWM Trim Value on Input 6
+ * @param sue_trim_value_input_7  SUE UDB PWM Trim Value on Input 7
+ * @param sue_trim_value_input_8  SUE UDB PWM Trim Value on Input 8
+ * @param sue_trim_value_input_9  SUE UDB PWM Trim Value on Input 9
+ * @param sue_trim_value_input_10  SUE UDB PWM Trim Value on Input 10
+ * @param sue_trim_value_input_11  SUE UDB PWM Trim Value on Input 11
+ * @param sue_trim_value_input_12  SUE UDB PWM Trim Value on Input 12
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f20_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -231,19 +231,19 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f20_encode_chan(uint8_t syst
  * @brief Send a serial_udb_extra_f20 message
  * @param chan MAVLink channel to send the message
  *
- * @param sue_number_of_inputs SUE Number of Input Channels
- * @param sue_trim_value_input_1 SUE UDB PWM Trim Value on Input 1
- * @param sue_trim_value_input_2 SUE UDB PWM Trim Value on Input 2
- * @param sue_trim_value_input_3 SUE UDB PWM Trim Value on Input 3
- * @param sue_trim_value_input_4 SUE UDB PWM Trim Value on Input 4
- * @param sue_trim_value_input_5 SUE UDB PWM Trim Value on Input 5
- * @param sue_trim_value_input_6 SUE UDB PWM Trim Value on Input 6
- * @param sue_trim_value_input_7 SUE UDB PWM Trim Value on Input 7
- * @param sue_trim_value_input_8 SUE UDB PWM Trim Value on Input 8
- * @param sue_trim_value_input_9 SUE UDB PWM Trim Value on Input 9
- * @param sue_trim_value_input_10 SUE UDB PWM Trim Value on Input 10
- * @param sue_trim_value_input_11 SUE UDB PWM Trim Value on Input 11
- * @param sue_trim_value_input_12 SUE UDB PWM Trim Value on Input 12
+ * @param sue_number_of_inputs  SUE Number of Input Channels
+ * @param sue_trim_value_input_1  SUE UDB PWM Trim Value on Input 1
+ * @param sue_trim_value_input_2  SUE UDB PWM Trim Value on Input 2
+ * @param sue_trim_value_input_3  SUE UDB PWM Trim Value on Input 3
+ * @param sue_trim_value_input_4  SUE UDB PWM Trim Value on Input 4
+ * @param sue_trim_value_input_5  SUE UDB PWM Trim Value on Input 5
+ * @param sue_trim_value_input_6  SUE UDB PWM Trim Value on Input 6
+ * @param sue_trim_value_input_7  SUE UDB PWM Trim Value on Input 7
+ * @param sue_trim_value_input_8  SUE UDB PWM Trim Value on Input 8
+ * @param sue_trim_value_input_9  SUE UDB PWM Trim Value on Input 9
+ * @param sue_trim_value_input_10  SUE UDB PWM Trim Value on Input 10
+ * @param sue_trim_value_input_11  SUE UDB PWM Trim Value on Input 11
+ * @param sue_trim_value_input_12  SUE UDB PWM Trim Value on Input 12
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -356,7 +356,7 @@ static inline void mavlink_msg_serial_udb_extra_f20_send_buf(mavlink_message_t *
 /**
  * @brief Get field sue_number_of_inputs from serial_udb_extra_f20 message
  *
- * @return SUE Number of Input Channels
+ * @return  SUE Number of Input Channels
  */
 static inline uint8_t mavlink_msg_serial_udb_extra_f20_get_sue_number_of_inputs(const mavlink_message_t* msg)
 {
@@ -366,7 +366,7 @@ static inline uint8_t mavlink_msg_serial_udb_extra_f20_get_sue_number_of_inputs(
 /**
  * @brief Get field sue_trim_value_input_1 from serial_udb_extra_f20 message
  *
- * @return SUE UDB PWM Trim Value on Input 1
+ * @return  SUE UDB PWM Trim Value on Input 1
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_1(const mavlink_message_t* msg)
 {
@@ -376,7 +376,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_
 /**
  * @brief Get field sue_trim_value_input_2 from serial_udb_extra_f20 message
  *
- * @return SUE UDB PWM Trim Value on Input 2
+ * @return  SUE UDB PWM Trim Value on Input 2
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_2(const mavlink_message_t* msg)
 {
@@ -386,7 +386,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_
 /**
  * @brief Get field sue_trim_value_input_3 from serial_udb_extra_f20 message
  *
- * @return SUE UDB PWM Trim Value on Input 3
+ * @return  SUE UDB PWM Trim Value on Input 3
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_3(const mavlink_message_t* msg)
 {
@@ -396,7 +396,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_
 /**
  * @brief Get field sue_trim_value_input_4 from serial_udb_extra_f20 message
  *
- * @return SUE UDB PWM Trim Value on Input 4
+ * @return  SUE UDB PWM Trim Value on Input 4
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_4(const mavlink_message_t* msg)
 {
@@ -406,7 +406,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_
 /**
  * @brief Get field sue_trim_value_input_5 from serial_udb_extra_f20 message
  *
- * @return SUE UDB PWM Trim Value on Input 5
+ * @return  SUE UDB PWM Trim Value on Input 5
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_5(const mavlink_message_t* msg)
 {
@@ -416,7 +416,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_
 /**
  * @brief Get field sue_trim_value_input_6 from serial_udb_extra_f20 message
  *
- * @return SUE UDB PWM Trim Value on Input 6
+ * @return  SUE UDB PWM Trim Value on Input 6
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_6(const mavlink_message_t* msg)
 {
@@ -426,7 +426,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_
 /**
  * @brief Get field sue_trim_value_input_7 from serial_udb_extra_f20 message
  *
- * @return SUE UDB PWM Trim Value on Input 7
+ * @return  SUE UDB PWM Trim Value on Input 7
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_7(const mavlink_message_t* msg)
 {
@@ -436,7 +436,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_
 /**
  * @brief Get field sue_trim_value_input_8 from serial_udb_extra_f20 message
  *
- * @return SUE UDB PWM Trim Value on Input 8
+ * @return  SUE UDB PWM Trim Value on Input 8
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_8(const mavlink_message_t* msg)
 {
@@ -446,7 +446,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_
 /**
  * @brief Get field sue_trim_value_input_9 from serial_udb_extra_f20 message
  *
- * @return SUE UDB PWM Trim Value on Input 9
+ * @return  SUE UDB PWM Trim Value on Input 9
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_9(const mavlink_message_t* msg)
 {
@@ -456,7 +456,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_
 /**
  * @brief Get field sue_trim_value_input_10 from serial_udb_extra_f20 message
  *
- * @return SUE UDB PWM Trim Value on Input 10
+ * @return  SUE UDB PWM Trim Value on Input 10
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_10(const mavlink_message_t* msg)
 {
@@ -466,7 +466,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_
 /**
  * @brief Get field sue_trim_value_input_11 from serial_udb_extra_f20 message
  *
- * @return SUE UDB PWM Trim Value on Input 11
+ * @return  SUE UDB PWM Trim Value on Input 11
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_11(const mavlink_message_t* msg)
 {
@@ -476,7 +476,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_
 /**
  * @brief Get field sue_trim_value_input_12 from serial_udb_extra_f20 message
  *
- * @return SUE UDB PWM Trim Value on Input 12
+ * @return  SUE UDB PWM Trim Value on Input 12
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f20_get_sue_trim_value_input_12(const mavlink_message_t* msg)
 {

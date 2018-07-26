@@ -5,9 +5,9 @@
 
 MAVPACKED(
 typedef struct __mavlink_slugs_configuration_camera_t {
- uint8_t target; /*< The system setting the commands*/
- uint8_t idOrder; /*< ID 0: brightness 1: aperture 2: iris 3: ICR 4: backlight*/
- uint8_t order; /*<  1: up/on 2: down/off 3: auto/reset/no action*/
+ uint8_t target; /*<  The system setting the commands*/
+ uint8_t idOrder; /*<  ID 0: brightness 1: aperture 2: iris 3: ICR 4: backlight*/
+ uint8_t order; /*<   1: up/on 2: down/off 3: auto/reset/no action*/
 }) mavlink_slugs_configuration_camera_t;
 
 #define MAVLINK_MSG_ID_SLUGS_CONFIGURATION_CAMERA_LEN 3
@@ -47,9 +47,9 @@ typedef struct __mavlink_slugs_configuration_camera_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param target The system setting the commands
- * @param idOrder ID 0: brightness 1: aperture 2: iris 3: ICR 4: backlight
- * @param order  1: up/on 2: down/off 3: auto/reset/no action
+ * @param target  The system setting the commands
+ * @param idOrder  ID 0: brightness 1: aperture 2: iris 3: ICR 4: backlight
+ * @param order   1: up/on 2: down/off 3: auto/reset/no action
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_slugs_configuration_camera_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -81,9 +81,9 @@ static inline uint16_t mavlink_msg_slugs_configuration_camera_pack(uint8_t syste
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param target The system setting the commands
- * @param idOrder ID 0: brightness 1: aperture 2: iris 3: ICR 4: backlight
- * @param order  1: up/on 2: down/off 3: auto/reset/no action
+ * @param target  The system setting the commands
+ * @param idOrder  ID 0: brightness 1: aperture 2: iris 3: ICR 4: backlight
+ * @param order   1: up/on 2: down/off 3: auto/reset/no action
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_slugs_configuration_camera_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -141,9 +141,9 @@ static inline uint16_t mavlink_msg_slugs_configuration_camera_encode_chan(uint8_
  * @brief Send a slugs_configuration_camera message
  * @param chan MAVLink channel to send the message
  *
- * @param target The system setting the commands
- * @param idOrder ID 0: brightness 1: aperture 2: iris 3: ICR 4: backlight
- * @param order  1: up/on 2: down/off 3: auto/reset/no action
+ * @param target  The system setting the commands
+ * @param idOrder  ID 0: brightness 1: aperture 2: iris 3: ICR 4: backlight
+ * @param order   1: up/on 2: down/off 3: auto/reset/no action
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -216,7 +216,7 @@ static inline void mavlink_msg_slugs_configuration_camera_send_buf(mavlink_messa
 /**
  * @brief Get field target from slugs_configuration_camera message
  *
- * @return The system setting the commands
+ * @return  The system setting the commands
  */
 static inline uint8_t mavlink_msg_slugs_configuration_camera_get_target(const mavlink_message_t* msg)
 {
@@ -226,7 +226,7 @@ static inline uint8_t mavlink_msg_slugs_configuration_camera_get_target(const ma
 /**
  * @brief Get field idOrder from slugs_configuration_camera message
  *
- * @return ID 0: brightness 1: aperture 2: iris 3: ICR 4: backlight
+ * @return  ID 0: brightness 1: aperture 2: iris 3: ICR 4: backlight
  */
 static inline uint8_t mavlink_msg_slugs_configuration_camera_get_idOrder(const mavlink_message_t* msg)
 {
@@ -236,7 +236,7 @@ static inline uint8_t mavlink_msg_slugs_configuration_camera_get_idOrder(const m
 /**
  * @brief Get field order from slugs_configuration_camera message
  *
- * @return  1: up/on 2: down/off 3: auto/reset/no action
+ * @return   1: up/on 2: down/off 3: auto/reset/no action
  */
 static inline uint8_t mavlink_msg_slugs_configuration_camera_get_order(const mavlink_message_t* msg)
 {

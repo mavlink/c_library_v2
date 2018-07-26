@@ -5,17 +5,17 @@
 
 MAVPACKED(
 typedef struct __mavlink_serial_udb_extra_f14_t {
- uint32_t sue_TRAP_SOURCE; /*< Serial UDB Extra Type Program Address of Last Trap*/
- int16_t sue_RCON; /*< Serial UDB Extra Reboot Register of DSPIC*/
- int16_t sue_TRAP_FLAGS; /*< Serial UDB Extra  Last dspic Trap Flags*/
- int16_t sue_osc_fail_count; /*< Serial UDB Extra Number of Ocillator Failures*/
- uint8_t sue_WIND_ESTIMATION; /*< Serial UDB Extra Wind Estimation Enabled*/
- uint8_t sue_GPS_TYPE; /*< Serial UDB Extra Type of GPS Unit*/
- uint8_t sue_DR; /*< Serial UDB Extra Dead Reckoning Enabled*/
- uint8_t sue_BOARD_TYPE; /*< Serial UDB Extra Type of UDB Hardware*/
- uint8_t sue_AIRFRAME; /*< Serial UDB Extra Type of Airframe*/
- uint8_t sue_CLOCK_CONFIG; /*< Serial UDB Extra UDB Internal Clock Configuration*/
- uint8_t sue_FLIGHT_PLAN_TYPE; /*< Serial UDB Extra Type of Flight Plan*/
+ uint32_t sue_TRAP_SOURCE; /*<  Serial UDB Extra Type Program Address of Last Trap*/
+ int16_t sue_RCON; /*<  Serial UDB Extra Reboot Register of DSPIC*/
+ int16_t sue_TRAP_FLAGS; /*<  Serial UDB Extra  Last dspic Trap Flags*/
+ int16_t sue_osc_fail_count; /*<  Serial UDB Extra Number of Ocillator Failures*/
+ uint8_t sue_WIND_ESTIMATION; /*<  Serial UDB Extra Wind Estimation Enabled*/
+ uint8_t sue_GPS_TYPE; /*<  Serial UDB Extra Type of GPS Unit*/
+ uint8_t sue_DR; /*<  Serial UDB Extra Dead Reckoning Enabled*/
+ uint8_t sue_BOARD_TYPE; /*<  Serial UDB Extra Type of UDB Hardware*/
+ uint8_t sue_AIRFRAME; /*<  Serial UDB Extra Type of Airframe*/
+ uint8_t sue_CLOCK_CONFIG; /*<  Serial UDB Extra UDB Internal Clock Configuration*/
+ uint8_t sue_FLIGHT_PLAN_TYPE; /*<  Serial UDB Extra Type of Flight Plan*/
 }) mavlink_serial_udb_extra_f14_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F14_LEN 17
@@ -71,17 +71,17 @@ typedef struct __mavlink_serial_udb_extra_f14_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param sue_WIND_ESTIMATION Serial UDB Extra Wind Estimation Enabled
- * @param sue_GPS_TYPE Serial UDB Extra Type of GPS Unit
- * @param sue_DR Serial UDB Extra Dead Reckoning Enabled
- * @param sue_BOARD_TYPE Serial UDB Extra Type of UDB Hardware
- * @param sue_AIRFRAME Serial UDB Extra Type of Airframe
- * @param sue_RCON Serial UDB Extra Reboot Register of DSPIC
- * @param sue_TRAP_FLAGS Serial UDB Extra  Last dspic Trap Flags
- * @param sue_TRAP_SOURCE Serial UDB Extra Type Program Address of Last Trap
- * @param sue_osc_fail_count Serial UDB Extra Number of Ocillator Failures
- * @param sue_CLOCK_CONFIG Serial UDB Extra UDB Internal Clock Configuration
- * @param sue_FLIGHT_PLAN_TYPE Serial UDB Extra Type of Flight Plan
+ * @param sue_WIND_ESTIMATION  Serial UDB Extra Wind Estimation Enabled
+ * @param sue_GPS_TYPE  Serial UDB Extra Type of GPS Unit
+ * @param sue_DR  Serial UDB Extra Dead Reckoning Enabled
+ * @param sue_BOARD_TYPE  Serial UDB Extra Type of UDB Hardware
+ * @param sue_AIRFRAME  Serial UDB Extra Type of Airframe
+ * @param sue_RCON  Serial UDB Extra Reboot Register of DSPIC
+ * @param sue_TRAP_FLAGS  Serial UDB Extra  Last dspic Trap Flags
+ * @param sue_TRAP_SOURCE  Serial UDB Extra Type Program Address of Last Trap
+ * @param sue_osc_fail_count  Serial UDB Extra Number of Ocillator Failures
+ * @param sue_CLOCK_CONFIG  Serial UDB Extra UDB Internal Clock Configuration
+ * @param sue_FLIGHT_PLAN_TYPE  Serial UDB Extra Type of Flight Plan
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f14_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -129,17 +129,17 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f14_pack(uint8_t system_id, 
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param sue_WIND_ESTIMATION Serial UDB Extra Wind Estimation Enabled
- * @param sue_GPS_TYPE Serial UDB Extra Type of GPS Unit
- * @param sue_DR Serial UDB Extra Dead Reckoning Enabled
- * @param sue_BOARD_TYPE Serial UDB Extra Type of UDB Hardware
- * @param sue_AIRFRAME Serial UDB Extra Type of Airframe
- * @param sue_RCON Serial UDB Extra Reboot Register of DSPIC
- * @param sue_TRAP_FLAGS Serial UDB Extra  Last dspic Trap Flags
- * @param sue_TRAP_SOURCE Serial UDB Extra Type Program Address of Last Trap
- * @param sue_osc_fail_count Serial UDB Extra Number of Ocillator Failures
- * @param sue_CLOCK_CONFIG Serial UDB Extra UDB Internal Clock Configuration
- * @param sue_FLIGHT_PLAN_TYPE Serial UDB Extra Type of Flight Plan
+ * @param sue_WIND_ESTIMATION  Serial UDB Extra Wind Estimation Enabled
+ * @param sue_GPS_TYPE  Serial UDB Extra Type of GPS Unit
+ * @param sue_DR  Serial UDB Extra Dead Reckoning Enabled
+ * @param sue_BOARD_TYPE  Serial UDB Extra Type of UDB Hardware
+ * @param sue_AIRFRAME  Serial UDB Extra Type of Airframe
+ * @param sue_RCON  Serial UDB Extra Reboot Register of DSPIC
+ * @param sue_TRAP_FLAGS  Serial UDB Extra  Last dspic Trap Flags
+ * @param sue_TRAP_SOURCE  Serial UDB Extra Type Program Address of Last Trap
+ * @param sue_osc_fail_count  Serial UDB Extra Number of Ocillator Failures
+ * @param sue_CLOCK_CONFIG  Serial UDB Extra UDB Internal Clock Configuration
+ * @param sue_FLIGHT_PLAN_TYPE  Serial UDB Extra Type of Flight Plan
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f14_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -213,17 +213,17 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f14_encode_chan(uint8_t syst
  * @brief Send a serial_udb_extra_f14 message
  * @param chan MAVLink channel to send the message
  *
- * @param sue_WIND_ESTIMATION Serial UDB Extra Wind Estimation Enabled
- * @param sue_GPS_TYPE Serial UDB Extra Type of GPS Unit
- * @param sue_DR Serial UDB Extra Dead Reckoning Enabled
- * @param sue_BOARD_TYPE Serial UDB Extra Type of UDB Hardware
- * @param sue_AIRFRAME Serial UDB Extra Type of Airframe
- * @param sue_RCON Serial UDB Extra Reboot Register of DSPIC
- * @param sue_TRAP_FLAGS Serial UDB Extra  Last dspic Trap Flags
- * @param sue_TRAP_SOURCE Serial UDB Extra Type Program Address of Last Trap
- * @param sue_osc_fail_count Serial UDB Extra Number of Ocillator Failures
- * @param sue_CLOCK_CONFIG Serial UDB Extra UDB Internal Clock Configuration
- * @param sue_FLIGHT_PLAN_TYPE Serial UDB Extra Type of Flight Plan
+ * @param sue_WIND_ESTIMATION  Serial UDB Extra Wind Estimation Enabled
+ * @param sue_GPS_TYPE  Serial UDB Extra Type of GPS Unit
+ * @param sue_DR  Serial UDB Extra Dead Reckoning Enabled
+ * @param sue_BOARD_TYPE  Serial UDB Extra Type of UDB Hardware
+ * @param sue_AIRFRAME  Serial UDB Extra Type of Airframe
+ * @param sue_RCON  Serial UDB Extra Reboot Register of DSPIC
+ * @param sue_TRAP_FLAGS  Serial UDB Extra  Last dspic Trap Flags
+ * @param sue_TRAP_SOURCE  Serial UDB Extra Type Program Address of Last Trap
+ * @param sue_osc_fail_count  Serial UDB Extra Number of Ocillator Failures
+ * @param sue_CLOCK_CONFIG  Serial UDB Extra UDB Internal Clock Configuration
+ * @param sue_FLIGHT_PLAN_TYPE  Serial UDB Extra Type of Flight Plan
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -328,7 +328,7 @@ static inline void mavlink_msg_serial_udb_extra_f14_send_buf(mavlink_message_t *
 /**
  * @brief Get field sue_WIND_ESTIMATION from serial_udb_extra_f14 message
  *
- * @return Serial UDB Extra Wind Estimation Enabled
+ * @return  Serial UDB Extra Wind Estimation Enabled
  */
 static inline uint8_t mavlink_msg_serial_udb_extra_f14_get_sue_WIND_ESTIMATION(const mavlink_message_t* msg)
 {
@@ -338,7 +338,7 @@ static inline uint8_t mavlink_msg_serial_udb_extra_f14_get_sue_WIND_ESTIMATION(c
 /**
  * @brief Get field sue_GPS_TYPE from serial_udb_extra_f14 message
  *
- * @return Serial UDB Extra Type of GPS Unit
+ * @return  Serial UDB Extra Type of GPS Unit
  */
 static inline uint8_t mavlink_msg_serial_udb_extra_f14_get_sue_GPS_TYPE(const mavlink_message_t* msg)
 {
@@ -348,7 +348,7 @@ static inline uint8_t mavlink_msg_serial_udb_extra_f14_get_sue_GPS_TYPE(const ma
 /**
  * @brief Get field sue_DR from serial_udb_extra_f14 message
  *
- * @return Serial UDB Extra Dead Reckoning Enabled
+ * @return  Serial UDB Extra Dead Reckoning Enabled
  */
 static inline uint8_t mavlink_msg_serial_udb_extra_f14_get_sue_DR(const mavlink_message_t* msg)
 {
@@ -358,7 +358,7 @@ static inline uint8_t mavlink_msg_serial_udb_extra_f14_get_sue_DR(const mavlink_
 /**
  * @brief Get field sue_BOARD_TYPE from serial_udb_extra_f14 message
  *
- * @return Serial UDB Extra Type of UDB Hardware
+ * @return  Serial UDB Extra Type of UDB Hardware
  */
 static inline uint8_t mavlink_msg_serial_udb_extra_f14_get_sue_BOARD_TYPE(const mavlink_message_t* msg)
 {
@@ -368,7 +368,7 @@ static inline uint8_t mavlink_msg_serial_udb_extra_f14_get_sue_BOARD_TYPE(const 
 /**
  * @brief Get field sue_AIRFRAME from serial_udb_extra_f14 message
  *
- * @return Serial UDB Extra Type of Airframe
+ * @return  Serial UDB Extra Type of Airframe
  */
 static inline uint8_t mavlink_msg_serial_udb_extra_f14_get_sue_AIRFRAME(const mavlink_message_t* msg)
 {
@@ -378,7 +378,7 @@ static inline uint8_t mavlink_msg_serial_udb_extra_f14_get_sue_AIRFRAME(const ma
 /**
  * @brief Get field sue_RCON from serial_udb_extra_f14 message
  *
- * @return Serial UDB Extra Reboot Register of DSPIC
+ * @return  Serial UDB Extra Reboot Register of DSPIC
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f14_get_sue_RCON(const mavlink_message_t* msg)
 {
@@ -388,7 +388,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f14_get_sue_RCON(const mavlin
 /**
  * @brief Get field sue_TRAP_FLAGS from serial_udb_extra_f14 message
  *
- * @return Serial UDB Extra  Last dspic Trap Flags
+ * @return  Serial UDB Extra  Last dspic Trap Flags
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f14_get_sue_TRAP_FLAGS(const mavlink_message_t* msg)
 {
@@ -398,7 +398,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f14_get_sue_TRAP_FLAGS(const 
 /**
  * @brief Get field sue_TRAP_SOURCE from serial_udb_extra_f14 message
  *
- * @return Serial UDB Extra Type Program Address of Last Trap
+ * @return  Serial UDB Extra Type Program Address of Last Trap
  */
 static inline uint32_t mavlink_msg_serial_udb_extra_f14_get_sue_TRAP_SOURCE(const mavlink_message_t* msg)
 {
@@ -408,7 +408,7 @@ static inline uint32_t mavlink_msg_serial_udb_extra_f14_get_sue_TRAP_SOURCE(cons
 /**
  * @brief Get field sue_osc_fail_count from serial_udb_extra_f14 message
  *
- * @return Serial UDB Extra Number of Ocillator Failures
+ * @return  Serial UDB Extra Number of Ocillator Failures
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f14_get_sue_osc_fail_count(const mavlink_message_t* msg)
 {
@@ -418,7 +418,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f14_get_sue_osc_fail_count(co
 /**
  * @brief Get field sue_CLOCK_CONFIG from serial_udb_extra_f14 message
  *
- * @return Serial UDB Extra UDB Internal Clock Configuration
+ * @return  Serial UDB Extra UDB Internal Clock Configuration
  */
 static inline uint8_t mavlink_msg_serial_udb_extra_f14_get_sue_CLOCK_CONFIG(const mavlink_message_t* msg)
 {
@@ -428,7 +428,7 @@ static inline uint8_t mavlink_msg_serial_udb_extra_f14_get_sue_CLOCK_CONFIG(cons
 /**
  * @brief Get field sue_FLIGHT_PLAN_TYPE from serial_udb_extra_f14 message
  *
- * @return Serial UDB Extra Type of Flight Plan
+ * @return  Serial UDB Extra Type of Flight Plan
  */
 static inline uint8_t mavlink_msg_serial_udb_extra_f14_get_sue_FLIGHT_PLAN_TYPE(const mavlink_message_t* msg)
 {

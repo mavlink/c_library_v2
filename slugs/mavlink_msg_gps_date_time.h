@@ -5,18 +5,18 @@
 
 MAVPACKED(
 typedef struct __mavlink_gps_date_time_t {
- uint8_t year; /*< Year reported by Gps */
- uint8_t month; /*< Month reported by Gps */
- uint8_t day; /*< Day reported by Gps */
- uint8_t hour; /*< Hour reported by Gps */
- uint8_t min; /*< Min reported by Gps */
- uint8_t sec; /*< Sec reported by Gps  */
- uint8_t clockStat; /*< Clock Status. See table 47 page 211 OEMStar Manual  */
- uint8_t visSat; /*< Visible satellites reported by Gps  */
- uint8_t useSat; /*< Used satellites in Solution  */
- uint8_t GppGl; /*< GPS+GLONASS satellites in Solution  */
- uint8_t sigUsedMask; /*< GPS and GLONASS usage mask (bit 0 GPS_used? bit_4 GLONASS_used?)*/
- uint8_t percentUsed; /*< Percent used GPS*/
+ uint8_t year; /*<  Year reported by Gps */
+ uint8_t month; /*<  Month reported by Gps */
+ uint8_t day; /*<  Day reported by Gps */
+ uint8_t hour; /*<  Hour reported by Gps */
+ uint8_t min; /*<  Min reported by Gps */
+ uint8_t sec; /*<  Sec reported by Gps  */
+ uint8_t clockStat; /*<  Clock Status. See table 47 page 211 OEMStar Manual  */
+ uint8_t visSat; /*<  Visible satellites reported by Gps  */
+ uint8_t useSat; /*<  Used satellites in Solution  */
+ uint8_t GppGl; /*<  GPS+GLONASS satellites in Solution  */
+ uint8_t sigUsedMask; /*<  GPS and GLONASS usage mask (bit 0 GPS_used? bit_4 GLONASS_used?)*/
+ uint8_t percentUsed; /*< [%] Percent used GPS*/
 }) mavlink_gps_date_time_t;
 
 #define MAVLINK_MSG_ID_GPS_DATE_TIME_LEN 12
@@ -74,18 +74,18 @@ typedef struct __mavlink_gps_date_time_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param year Year reported by Gps 
- * @param month Month reported by Gps 
- * @param day Day reported by Gps 
- * @param hour Hour reported by Gps 
- * @param min Min reported by Gps 
- * @param sec Sec reported by Gps  
- * @param clockStat Clock Status. See table 47 page 211 OEMStar Manual  
- * @param visSat Visible satellites reported by Gps  
- * @param useSat Used satellites in Solution  
- * @param GppGl GPS+GLONASS satellites in Solution  
- * @param sigUsedMask GPS and GLONASS usage mask (bit 0 GPS_used? bit_4 GLONASS_used?)
- * @param percentUsed Percent used GPS
+ * @param year  Year reported by Gps 
+ * @param month  Month reported by Gps 
+ * @param day  Day reported by Gps 
+ * @param hour  Hour reported by Gps 
+ * @param min  Min reported by Gps 
+ * @param sec  Sec reported by Gps  
+ * @param clockStat  Clock Status. See table 47 page 211 OEMStar Manual  
+ * @param visSat  Visible satellites reported by Gps  
+ * @param useSat  Used satellites in Solution  
+ * @param GppGl  GPS+GLONASS satellites in Solution  
+ * @param sigUsedMask  GPS and GLONASS usage mask (bit 0 GPS_used? bit_4 GLONASS_used?)
+ * @param percentUsed [%] Percent used GPS
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_gps_date_time_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -135,18 +135,18 @@ static inline uint16_t mavlink_msg_gps_date_time_pack(uint8_t system_id, uint8_t
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param year Year reported by Gps 
- * @param month Month reported by Gps 
- * @param day Day reported by Gps 
- * @param hour Hour reported by Gps 
- * @param min Min reported by Gps 
- * @param sec Sec reported by Gps  
- * @param clockStat Clock Status. See table 47 page 211 OEMStar Manual  
- * @param visSat Visible satellites reported by Gps  
- * @param useSat Used satellites in Solution  
- * @param GppGl GPS+GLONASS satellites in Solution  
- * @param sigUsedMask GPS and GLONASS usage mask (bit 0 GPS_used? bit_4 GLONASS_used?)
- * @param percentUsed Percent used GPS
+ * @param year  Year reported by Gps 
+ * @param month  Month reported by Gps 
+ * @param day  Day reported by Gps 
+ * @param hour  Hour reported by Gps 
+ * @param min  Min reported by Gps 
+ * @param sec  Sec reported by Gps  
+ * @param clockStat  Clock Status. See table 47 page 211 OEMStar Manual  
+ * @param visSat  Visible satellites reported by Gps  
+ * @param useSat  Used satellites in Solution  
+ * @param GppGl  GPS+GLONASS satellites in Solution  
+ * @param sigUsedMask  GPS and GLONASS usage mask (bit 0 GPS_used? bit_4 GLONASS_used?)
+ * @param percentUsed [%] Percent used GPS
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_gps_date_time_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -222,18 +222,18 @@ static inline uint16_t mavlink_msg_gps_date_time_encode_chan(uint8_t system_id, 
  * @brief Send a gps_date_time message
  * @param chan MAVLink channel to send the message
  *
- * @param year Year reported by Gps 
- * @param month Month reported by Gps 
- * @param day Day reported by Gps 
- * @param hour Hour reported by Gps 
- * @param min Min reported by Gps 
- * @param sec Sec reported by Gps  
- * @param clockStat Clock Status. See table 47 page 211 OEMStar Manual  
- * @param visSat Visible satellites reported by Gps  
- * @param useSat Used satellites in Solution  
- * @param GppGl GPS+GLONASS satellites in Solution  
- * @param sigUsedMask GPS and GLONASS usage mask (bit 0 GPS_used? bit_4 GLONASS_used?)
- * @param percentUsed Percent used GPS
+ * @param year  Year reported by Gps 
+ * @param month  Month reported by Gps 
+ * @param day  Day reported by Gps 
+ * @param hour  Hour reported by Gps 
+ * @param min  Min reported by Gps 
+ * @param sec  Sec reported by Gps  
+ * @param clockStat  Clock Status. See table 47 page 211 OEMStar Manual  
+ * @param visSat  Visible satellites reported by Gps  
+ * @param useSat  Used satellites in Solution  
+ * @param GppGl  GPS+GLONASS satellites in Solution  
+ * @param sigUsedMask  GPS and GLONASS usage mask (bit 0 GPS_used? bit_4 GLONASS_used?)
+ * @param percentUsed [%] Percent used GPS
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -342,7 +342,7 @@ static inline void mavlink_msg_gps_date_time_send_buf(mavlink_message_t *msgbuf,
 /**
  * @brief Get field year from gps_date_time message
  *
- * @return Year reported by Gps 
+ * @return  Year reported by Gps 
  */
 static inline uint8_t mavlink_msg_gps_date_time_get_year(const mavlink_message_t* msg)
 {
@@ -352,7 +352,7 @@ static inline uint8_t mavlink_msg_gps_date_time_get_year(const mavlink_message_t
 /**
  * @brief Get field month from gps_date_time message
  *
- * @return Month reported by Gps 
+ * @return  Month reported by Gps 
  */
 static inline uint8_t mavlink_msg_gps_date_time_get_month(const mavlink_message_t* msg)
 {
@@ -362,7 +362,7 @@ static inline uint8_t mavlink_msg_gps_date_time_get_month(const mavlink_message_
 /**
  * @brief Get field day from gps_date_time message
  *
- * @return Day reported by Gps 
+ * @return  Day reported by Gps 
  */
 static inline uint8_t mavlink_msg_gps_date_time_get_day(const mavlink_message_t* msg)
 {
@@ -372,7 +372,7 @@ static inline uint8_t mavlink_msg_gps_date_time_get_day(const mavlink_message_t*
 /**
  * @brief Get field hour from gps_date_time message
  *
- * @return Hour reported by Gps 
+ * @return  Hour reported by Gps 
  */
 static inline uint8_t mavlink_msg_gps_date_time_get_hour(const mavlink_message_t* msg)
 {
@@ -382,7 +382,7 @@ static inline uint8_t mavlink_msg_gps_date_time_get_hour(const mavlink_message_t
 /**
  * @brief Get field min from gps_date_time message
  *
- * @return Min reported by Gps 
+ * @return  Min reported by Gps 
  */
 static inline uint8_t mavlink_msg_gps_date_time_get_min(const mavlink_message_t* msg)
 {
@@ -392,7 +392,7 @@ static inline uint8_t mavlink_msg_gps_date_time_get_min(const mavlink_message_t*
 /**
  * @brief Get field sec from gps_date_time message
  *
- * @return Sec reported by Gps  
+ * @return  Sec reported by Gps  
  */
 static inline uint8_t mavlink_msg_gps_date_time_get_sec(const mavlink_message_t* msg)
 {
@@ -402,7 +402,7 @@ static inline uint8_t mavlink_msg_gps_date_time_get_sec(const mavlink_message_t*
 /**
  * @brief Get field clockStat from gps_date_time message
  *
- * @return Clock Status. See table 47 page 211 OEMStar Manual  
+ * @return  Clock Status. See table 47 page 211 OEMStar Manual  
  */
 static inline uint8_t mavlink_msg_gps_date_time_get_clockStat(const mavlink_message_t* msg)
 {
@@ -412,7 +412,7 @@ static inline uint8_t mavlink_msg_gps_date_time_get_clockStat(const mavlink_mess
 /**
  * @brief Get field visSat from gps_date_time message
  *
- * @return Visible satellites reported by Gps  
+ * @return  Visible satellites reported by Gps  
  */
 static inline uint8_t mavlink_msg_gps_date_time_get_visSat(const mavlink_message_t* msg)
 {
@@ -422,7 +422,7 @@ static inline uint8_t mavlink_msg_gps_date_time_get_visSat(const mavlink_message
 /**
  * @brief Get field useSat from gps_date_time message
  *
- * @return Used satellites in Solution  
+ * @return  Used satellites in Solution  
  */
 static inline uint8_t mavlink_msg_gps_date_time_get_useSat(const mavlink_message_t* msg)
 {
@@ -432,7 +432,7 @@ static inline uint8_t mavlink_msg_gps_date_time_get_useSat(const mavlink_message
 /**
  * @brief Get field GppGl from gps_date_time message
  *
- * @return GPS+GLONASS satellites in Solution  
+ * @return  GPS+GLONASS satellites in Solution  
  */
 static inline uint8_t mavlink_msg_gps_date_time_get_GppGl(const mavlink_message_t* msg)
 {
@@ -442,7 +442,7 @@ static inline uint8_t mavlink_msg_gps_date_time_get_GppGl(const mavlink_message_
 /**
  * @brief Get field sigUsedMask from gps_date_time message
  *
- * @return GPS and GLONASS usage mask (bit 0 GPS_used? bit_4 GLONASS_used?)
+ * @return  GPS and GLONASS usage mask (bit 0 GPS_used? bit_4 GLONASS_used?)
  */
 static inline uint8_t mavlink_msg_gps_date_time_get_sigUsedMask(const mavlink_message_t* msg)
 {
@@ -452,7 +452,7 @@ static inline uint8_t mavlink_msg_gps_date_time_get_sigUsedMask(const mavlink_me
 /**
  * @brief Get field percentUsed from gps_date_time message
  *
- * @return Percent used GPS
+ * @return [%] Percent used GPS
  */
 static inline uint8_t mavlink_msg_gps_date_time_get_percentUsed(const mavlink_message_t* msg)
 {

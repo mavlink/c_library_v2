@@ -5,13 +5,13 @@
 
 MAVPACKED(
 typedef struct __mavlink_altitudes_t {
- uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
- int32_t alt_gps; /*< GPS altitude in meters, expressed as * 1000 (millimeters), above MSL*/
- int32_t alt_imu; /*< IMU altitude above ground in meters, expressed as * 1000 (millimeters)*/
- int32_t alt_barometric; /*< barometeric altitude above ground in meters, expressed as * 1000 (millimeters)*/
- int32_t alt_optical_flow; /*< Optical flow altitude above ground in meters, expressed as * 1000 (millimeters)*/
- int32_t alt_range_finder; /*< Rangefinder Altitude above ground in meters, expressed as * 1000 (millimeters)*/
- int32_t alt_extra; /*< Extra altitude above ground in meters, expressed as * 1000 (millimeters)*/
+ uint32_t time_boot_ms; /*<  Timestamp (milliseconds since system boot)*/
+ int32_t alt_gps; /*<  GPS altitude in meters, expressed as * 1000 (millimeters), above MSL*/
+ int32_t alt_imu; /*<  IMU altitude above ground in meters, expressed as * 1000 (millimeters)*/
+ int32_t alt_barometric; /*<  barometeric altitude above ground in meters, expressed as * 1000 (millimeters)*/
+ int32_t alt_optical_flow; /*<  Optical flow altitude above ground in meters, expressed as * 1000 (millimeters)*/
+ int32_t alt_range_finder; /*<  Rangefinder Altitude above ground in meters, expressed as * 1000 (millimeters)*/
+ int32_t alt_extra; /*<  Extra altitude above ground in meters, expressed as * 1000 (millimeters)*/
 }) mavlink_altitudes_t;
 
 #define MAVLINK_MSG_ID_ALTITUDES_LEN 28
@@ -59,13 +59,13 @@ typedef struct __mavlink_altitudes_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param alt_gps GPS altitude in meters, expressed as * 1000 (millimeters), above MSL
- * @param alt_imu IMU altitude above ground in meters, expressed as * 1000 (millimeters)
- * @param alt_barometric barometeric altitude above ground in meters, expressed as * 1000 (millimeters)
- * @param alt_optical_flow Optical flow altitude above ground in meters, expressed as * 1000 (millimeters)
- * @param alt_range_finder Rangefinder Altitude above ground in meters, expressed as * 1000 (millimeters)
- * @param alt_extra Extra altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @param time_boot_ms  Timestamp (milliseconds since system boot)
+ * @param alt_gps  GPS altitude in meters, expressed as * 1000 (millimeters), above MSL
+ * @param alt_imu  IMU altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @param alt_barometric  barometeric altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @param alt_optical_flow  Optical flow altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @param alt_range_finder  Rangefinder Altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @param alt_extra  Extra altitude above ground in meters, expressed as * 1000 (millimeters)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_altitudes_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -105,13 +105,13 @@ static inline uint16_t mavlink_msg_altitudes_pack(uint8_t system_id, uint8_t com
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param alt_gps GPS altitude in meters, expressed as * 1000 (millimeters), above MSL
- * @param alt_imu IMU altitude above ground in meters, expressed as * 1000 (millimeters)
- * @param alt_barometric barometeric altitude above ground in meters, expressed as * 1000 (millimeters)
- * @param alt_optical_flow Optical flow altitude above ground in meters, expressed as * 1000 (millimeters)
- * @param alt_range_finder Rangefinder Altitude above ground in meters, expressed as * 1000 (millimeters)
- * @param alt_extra Extra altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @param time_boot_ms  Timestamp (milliseconds since system boot)
+ * @param alt_gps  GPS altitude in meters, expressed as * 1000 (millimeters), above MSL
+ * @param alt_imu  IMU altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @param alt_barometric  barometeric altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @param alt_optical_flow  Optical flow altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @param alt_range_finder  Rangefinder Altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @param alt_extra  Extra altitude above ground in meters, expressed as * 1000 (millimeters)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_altitudes_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -177,13 +177,13 @@ static inline uint16_t mavlink_msg_altitudes_encode_chan(uint8_t system_id, uint
  * @brief Send a altitudes message
  * @param chan MAVLink channel to send the message
  *
- * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param alt_gps GPS altitude in meters, expressed as * 1000 (millimeters), above MSL
- * @param alt_imu IMU altitude above ground in meters, expressed as * 1000 (millimeters)
- * @param alt_barometric barometeric altitude above ground in meters, expressed as * 1000 (millimeters)
- * @param alt_optical_flow Optical flow altitude above ground in meters, expressed as * 1000 (millimeters)
- * @param alt_range_finder Rangefinder Altitude above ground in meters, expressed as * 1000 (millimeters)
- * @param alt_extra Extra altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @param time_boot_ms  Timestamp (milliseconds since system boot)
+ * @param alt_gps  GPS altitude in meters, expressed as * 1000 (millimeters), above MSL
+ * @param alt_imu  IMU altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @param alt_barometric  barometeric altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @param alt_optical_flow  Optical flow altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @param alt_range_finder  Rangefinder Altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @param alt_extra  Extra altitude above ground in meters, expressed as * 1000 (millimeters)
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -272,7 +272,7 @@ static inline void mavlink_msg_altitudes_send_buf(mavlink_message_t *msgbuf, mav
 /**
  * @brief Get field time_boot_ms from altitudes message
  *
- * @return Timestamp (milliseconds since system boot)
+ * @return  Timestamp (milliseconds since system boot)
  */
 static inline uint32_t mavlink_msg_altitudes_get_time_boot_ms(const mavlink_message_t* msg)
 {
@@ -282,7 +282,7 @@ static inline uint32_t mavlink_msg_altitudes_get_time_boot_ms(const mavlink_mess
 /**
  * @brief Get field alt_gps from altitudes message
  *
- * @return GPS altitude in meters, expressed as * 1000 (millimeters), above MSL
+ * @return  GPS altitude in meters, expressed as * 1000 (millimeters), above MSL
  */
 static inline int32_t mavlink_msg_altitudes_get_alt_gps(const mavlink_message_t* msg)
 {
@@ -292,7 +292,7 @@ static inline int32_t mavlink_msg_altitudes_get_alt_gps(const mavlink_message_t*
 /**
  * @brief Get field alt_imu from altitudes message
  *
- * @return IMU altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @return  IMU altitude above ground in meters, expressed as * 1000 (millimeters)
  */
 static inline int32_t mavlink_msg_altitudes_get_alt_imu(const mavlink_message_t* msg)
 {
@@ -302,7 +302,7 @@ static inline int32_t mavlink_msg_altitudes_get_alt_imu(const mavlink_message_t*
 /**
  * @brief Get field alt_barometric from altitudes message
  *
- * @return barometeric altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @return  barometeric altitude above ground in meters, expressed as * 1000 (millimeters)
  */
 static inline int32_t mavlink_msg_altitudes_get_alt_barometric(const mavlink_message_t* msg)
 {
@@ -312,7 +312,7 @@ static inline int32_t mavlink_msg_altitudes_get_alt_barometric(const mavlink_mes
 /**
  * @brief Get field alt_optical_flow from altitudes message
  *
- * @return Optical flow altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @return  Optical flow altitude above ground in meters, expressed as * 1000 (millimeters)
  */
 static inline int32_t mavlink_msg_altitudes_get_alt_optical_flow(const mavlink_message_t* msg)
 {
@@ -322,7 +322,7 @@ static inline int32_t mavlink_msg_altitudes_get_alt_optical_flow(const mavlink_m
 /**
  * @brief Get field alt_range_finder from altitudes message
  *
- * @return Rangefinder Altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @return  Rangefinder Altitude above ground in meters, expressed as * 1000 (millimeters)
  */
 static inline int32_t mavlink_msg_altitudes_get_alt_range_finder(const mavlink_message_t* msg)
 {
@@ -332,7 +332,7 @@ static inline int32_t mavlink_msg_altitudes_get_alt_range_finder(const mavlink_m
 /**
  * @brief Get field alt_extra from altitudes message
  *
- * @return Extra altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @return  Extra altitude above ground in meters, expressed as * 1000 (millimeters)
  */
 static inline int32_t mavlink_msg_altitudes_get_alt_extra(const mavlink_message_t* msg)
 {

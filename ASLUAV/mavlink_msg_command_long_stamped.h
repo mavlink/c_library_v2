@@ -5,19 +5,19 @@
 
 MAVPACKED(
 typedef struct __mavlink_command_long_stamped_t {
- uint64_t vehicle_timestamp; /*< Microseconds elapsed since vehicle boot*/
- uint32_t utc_time; /*< UTC time, seconds elapsed since 01.01.1970*/
- float param1; /*< Parameter 1, as defined by MAV_CMD enum.*/
- float param2; /*< Parameter 2, as defined by MAV_CMD enum.*/
- float param3; /*< Parameter 3, as defined by MAV_CMD enum.*/
- float param4; /*< Parameter 4, as defined by MAV_CMD enum.*/
- float param5; /*< Parameter 5, as defined by MAV_CMD enum.*/
- float param6; /*< Parameter 6, as defined by MAV_CMD enum.*/
- float param7; /*< Parameter 7, as defined by MAV_CMD enum.*/
- uint16_t command; /*< Command ID, as defined by MAV_CMD enum.*/
- uint8_t target_system; /*< System which should execute the command*/
- uint8_t target_component; /*< Component which should execute the command, 0 for all components*/
- uint8_t confirmation; /*< 0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)*/
+ uint64_t vehicle_timestamp; /*<  Microseconds elapsed since vehicle boot*/
+ uint32_t utc_time; /*<  UTC time, seconds elapsed since 01.01.1970*/
+ float param1; /*<  Parameter 1, as defined by MAV_CMD enum.*/
+ float param2; /*<  Parameter 2, as defined by MAV_CMD enum.*/
+ float param3; /*<  Parameter 3, as defined by MAV_CMD enum.*/
+ float param4; /*<  Parameter 4, as defined by MAV_CMD enum.*/
+ float param5; /*<  Parameter 5, as defined by MAV_CMD enum.*/
+ float param6; /*<  Parameter 6, as defined by MAV_CMD enum.*/
+ float param7; /*<  Parameter 7, as defined by MAV_CMD enum.*/
+ uint16_t command; /*<  Command ID, as defined by MAV_CMD enum.*/
+ uint8_t target_system; /*<  System which should execute the command*/
+ uint8_t target_component; /*<  Component which should execute the command, 0 for all components*/
+ uint8_t confirmation; /*<  0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)*/
 }) mavlink_command_long_stamped_t;
 
 #define MAVLINK_MSG_ID_COMMAND_LONG_STAMPED_LEN 45
@@ -77,19 +77,19 @@ typedef struct __mavlink_command_long_stamped_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param utc_time UTC time, seconds elapsed since 01.01.1970
- * @param vehicle_timestamp Microseconds elapsed since vehicle boot
- * @param target_system System which should execute the command
- * @param target_component Component which should execute the command, 0 for all components
- * @param command Command ID, as defined by MAV_CMD enum.
- * @param confirmation 0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)
- * @param param1 Parameter 1, as defined by MAV_CMD enum.
- * @param param2 Parameter 2, as defined by MAV_CMD enum.
- * @param param3 Parameter 3, as defined by MAV_CMD enum.
- * @param param4 Parameter 4, as defined by MAV_CMD enum.
- * @param param5 Parameter 5, as defined by MAV_CMD enum.
- * @param param6 Parameter 6, as defined by MAV_CMD enum.
- * @param param7 Parameter 7, as defined by MAV_CMD enum.
+ * @param utc_time  UTC time, seconds elapsed since 01.01.1970
+ * @param vehicle_timestamp  Microseconds elapsed since vehicle boot
+ * @param target_system  System which should execute the command
+ * @param target_component  Component which should execute the command, 0 for all components
+ * @param command  Command ID, as defined by MAV_CMD enum.
+ * @param confirmation  0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)
+ * @param param1  Parameter 1, as defined by MAV_CMD enum.
+ * @param param2  Parameter 2, as defined by MAV_CMD enum.
+ * @param param3  Parameter 3, as defined by MAV_CMD enum.
+ * @param param4  Parameter 4, as defined by MAV_CMD enum.
+ * @param param5  Parameter 5, as defined by MAV_CMD enum.
+ * @param param6  Parameter 6, as defined by MAV_CMD enum.
+ * @param param7  Parameter 7, as defined by MAV_CMD enum.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_command_long_stamped_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -141,19 +141,19 @@ static inline uint16_t mavlink_msg_command_long_stamped_pack(uint8_t system_id, 
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param utc_time UTC time, seconds elapsed since 01.01.1970
- * @param vehicle_timestamp Microseconds elapsed since vehicle boot
- * @param target_system System which should execute the command
- * @param target_component Component which should execute the command, 0 for all components
- * @param command Command ID, as defined by MAV_CMD enum.
- * @param confirmation 0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)
- * @param param1 Parameter 1, as defined by MAV_CMD enum.
- * @param param2 Parameter 2, as defined by MAV_CMD enum.
- * @param param3 Parameter 3, as defined by MAV_CMD enum.
- * @param param4 Parameter 4, as defined by MAV_CMD enum.
- * @param param5 Parameter 5, as defined by MAV_CMD enum.
- * @param param6 Parameter 6, as defined by MAV_CMD enum.
- * @param param7 Parameter 7, as defined by MAV_CMD enum.
+ * @param utc_time  UTC time, seconds elapsed since 01.01.1970
+ * @param vehicle_timestamp  Microseconds elapsed since vehicle boot
+ * @param target_system  System which should execute the command
+ * @param target_component  Component which should execute the command, 0 for all components
+ * @param command  Command ID, as defined by MAV_CMD enum.
+ * @param confirmation  0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)
+ * @param param1  Parameter 1, as defined by MAV_CMD enum.
+ * @param param2  Parameter 2, as defined by MAV_CMD enum.
+ * @param param3  Parameter 3, as defined by MAV_CMD enum.
+ * @param param4  Parameter 4, as defined by MAV_CMD enum.
+ * @param param5  Parameter 5, as defined by MAV_CMD enum.
+ * @param param6  Parameter 6, as defined by MAV_CMD enum.
+ * @param param7  Parameter 7, as defined by MAV_CMD enum.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_command_long_stamped_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -231,19 +231,19 @@ static inline uint16_t mavlink_msg_command_long_stamped_encode_chan(uint8_t syst
  * @brief Send a command_long_stamped message
  * @param chan MAVLink channel to send the message
  *
- * @param utc_time UTC time, seconds elapsed since 01.01.1970
- * @param vehicle_timestamp Microseconds elapsed since vehicle boot
- * @param target_system System which should execute the command
- * @param target_component Component which should execute the command, 0 for all components
- * @param command Command ID, as defined by MAV_CMD enum.
- * @param confirmation 0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)
- * @param param1 Parameter 1, as defined by MAV_CMD enum.
- * @param param2 Parameter 2, as defined by MAV_CMD enum.
- * @param param3 Parameter 3, as defined by MAV_CMD enum.
- * @param param4 Parameter 4, as defined by MAV_CMD enum.
- * @param param5 Parameter 5, as defined by MAV_CMD enum.
- * @param param6 Parameter 6, as defined by MAV_CMD enum.
- * @param param7 Parameter 7, as defined by MAV_CMD enum.
+ * @param utc_time  UTC time, seconds elapsed since 01.01.1970
+ * @param vehicle_timestamp  Microseconds elapsed since vehicle boot
+ * @param target_system  System which should execute the command
+ * @param target_component  Component which should execute the command, 0 for all components
+ * @param command  Command ID, as defined by MAV_CMD enum.
+ * @param confirmation  0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)
+ * @param param1  Parameter 1, as defined by MAV_CMD enum.
+ * @param param2  Parameter 2, as defined by MAV_CMD enum.
+ * @param param3  Parameter 3, as defined by MAV_CMD enum.
+ * @param param4  Parameter 4, as defined by MAV_CMD enum.
+ * @param param5  Parameter 5, as defined by MAV_CMD enum.
+ * @param param6  Parameter 6, as defined by MAV_CMD enum.
+ * @param param7  Parameter 7, as defined by MAV_CMD enum.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -356,7 +356,7 @@ static inline void mavlink_msg_command_long_stamped_send_buf(mavlink_message_t *
 /**
  * @brief Get field utc_time from command_long_stamped message
  *
- * @return UTC time, seconds elapsed since 01.01.1970
+ * @return  UTC time, seconds elapsed since 01.01.1970
  */
 static inline uint32_t mavlink_msg_command_long_stamped_get_utc_time(const mavlink_message_t* msg)
 {
@@ -366,7 +366,7 @@ static inline uint32_t mavlink_msg_command_long_stamped_get_utc_time(const mavli
 /**
  * @brief Get field vehicle_timestamp from command_long_stamped message
  *
- * @return Microseconds elapsed since vehicle boot
+ * @return  Microseconds elapsed since vehicle boot
  */
 static inline uint64_t mavlink_msg_command_long_stamped_get_vehicle_timestamp(const mavlink_message_t* msg)
 {
@@ -376,7 +376,7 @@ static inline uint64_t mavlink_msg_command_long_stamped_get_vehicle_timestamp(co
 /**
  * @brief Get field target_system from command_long_stamped message
  *
- * @return System which should execute the command
+ * @return  System which should execute the command
  */
 static inline uint8_t mavlink_msg_command_long_stamped_get_target_system(const mavlink_message_t* msg)
 {
@@ -386,7 +386,7 @@ static inline uint8_t mavlink_msg_command_long_stamped_get_target_system(const m
 /**
  * @brief Get field target_component from command_long_stamped message
  *
- * @return Component which should execute the command, 0 for all components
+ * @return  Component which should execute the command, 0 for all components
  */
 static inline uint8_t mavlink_msg_command_long_stamped_get_target_component(const mavlink_message_t* msg)
 {
@@ -396,7 +396,7 @@ static inline uint8_t mavlink_msg_command_long_stamped_get_target_component(cons
 /**
  * @brief Get field command from command_long_stamped message
  *
- * @return Command ID, as defined by MAV_CMD enum.
+ * @return  Command ID, as defined by MAV_CMD enum.
  */
 static inline uint16_t mavlink_msg_command_long_stamped_get_command(const mavlink_message_t* msg)
 {
@@ -406,7 +406,7 @@ static inline uint16_t mavlink_msg_command_long_stamped_get_command(const mavlin
 /**
  * @brief Get field confirmation from command_long_stamped message
  *
- * @return 0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)
+ * @return  0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)
  */
 static inline uint8_t mavlink_msg_command_long_stamped_get_confirmation(const mavlink_message_t* msg)
 {
@@ -416,7 +416,7 @@ static inline uint8_t mavlink_msg_command_long_stamped_get_confirmation(const ma
 /**
  * @brief Get field param1 from command_long_stamped message
  *
- * @return Parameter 1, as defined by MAV_CMD enum.
+ * @return  Parameter 1, as defined by MAV_CMD enum.
  */
 static inline float mavlink_msg_command_long_stamped_get_param1(const mavlink_message_t* msg)
 {
@@ -426,7 +426,7 @@ static inline float mavlink_msg_command_long_stamped_get_param1(const mavlink_me
 /**
  * @brief Get field param2 from command_long_stamped message
  *
- * @return Parameter 2, as defined by MAV_CMD enum.
+ * @return  Parameter 2, as defined by MAV_CMD enum.
  */
 static inline float mavlink_msg_command_long_stamped_get_param2(const mavlink_message_t* msg)
 {
@@ -436,7 +436,7 @@ static inline float mavlink_msg_command_long_stamped_get_param2(const mavlink_me
 /**
  * @brief Get field param3 from command_long_stamped message
  *
- * @return Parameter 3, as defined by MAV_CMD enum.
+ * @return  Parameter 3, as defined by MAV_CMD enum.
  */
 static inline float mavlink_msg_command_long_stamped_get_param3(const mavlink_message_t* msg)
 {
@@ -446,7 +446,7 @@ static inline float mavlink_msg_command_long_stamped_get_param3(const mavlink_me
 /**
  * @brief Get field param4 from command_long_stamped message
  *
- * @return Parameter 4, as defined by MAV_CMD enum.
+ * @return  Parameter 4, as defined by MAV_CMD enum.
  */
 static inline float mavlink_msg_command_long_stamped_get_param4(const mavlink_message_t* msg)
 {
@@ -456,7 +456,7 @@ static inline float mavlink_msg_command_long_stamped_get_param4(const mavlink_me
 /**
  * @brief Get field param5 from command_long_stamped message
  *
- * @return Parameter 5, as defined by MAV_CMD enum.
+ * @return  Parameter 5, as defined by MAV_CMD enum.
  */
 static inline float mavlink_msg_command_long_stamped_get_param5(const mavlink_message_t* msg)
 {
@@ -466,7 +466,7 @@ static inline float mavlink_msg_command_long_stamped_get_param5(const mavlink_me
 /**
  * @brief Get field param6 from command_long_stamped message
  *
- * @return Parameter 6, as defined by MAV_CMD enum.
+ * @return  Parameter 6, as defined by MAV_CMD enum.
  */
 static inline float mavlink_msg_command_long_stamped_get_param6(const mavlink_message_t* msg)
 {
@@ -476,7 +476,7 @@ static inline float mavlink_msg_command_long_stamped_get_param6(const mavlink_me
 /**
  * @brief Get field param7 from command_long_stamped message
  *
- * @return Parameter 7, as defined by MAV_CMD enum.
+ * @return  Parameter 7, as defined by MAV_CMD enum.
  */
 static inline float mavlink_msg_command_long_stamped_get_param7(const mavlink_message_t* msg)
 {

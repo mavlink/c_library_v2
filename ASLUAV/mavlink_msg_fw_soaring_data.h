@@ -5,31 +5,31 @@
 
 MAVPACKED(
 typedef struct __mavlink_fw_soaring_data_t {
- uint64_t timestamp; /*< Timestamp*/
- uint64_t timestampModeChanged; /*< Timestamp since last mode change*/
- float xW; /*< Thermal core updraft strength*/
- float xR; /*< Thermal radius*/
- float xLat; /*< Thermal center latitude*/
- float xLon; /*< Thermal center longitude*/
- float VarW; /*< Variance W*/
- float VarR; /*< Variance R*/
- float VarLat; /*< Variance Lat*/
- float VarLon; /*< Variance Lon */
- float LoiterRadius; /*< Suggested loiter radius*/
- float LoiterDirection; /*< Suggested loiter direction*/
- float DistToSoarPoint; /*< Distance to soar point*/
- float vSinkExp; /*< Expected sink rate at current airspeed, roll and throttle*/
- float z1_LocalUpdraftSpeed; /*< Measurement / updraft speed at current/local airplane position*/
- float z2_DeltaRoll; /*< Measurement / roll angle tracking error*/
- float z1_exp; /*< Expected measurement 1*/
- float z2_exp; /*< Expected measurement 2*/
- float ThermalGSNorth; /*< Thermal drift (from estimator prediction step only)*/
- float ThermalGSEast; /*< Thermal drift (from estimator prediction step only)*/
- float TSE_dot; /*<  Total specific energy change (filtered)*/
- float DebugVar1; /*<  Debug variable 1*/
- float DebugVar2; /*<  Debug variable 2*/
- uint8_t ControlMode; /*< Control Mode [-]*/
- uint8_t valid; /*< Data valid [-]*/
+ uint64_t timestamp; /*< [ms] Timestamp*/
+ uint64_t timestampModeChanged; /*< [ms] Timestamp since last mode change*/
+ float xW; /*< [m/s] Thermal core updraft strength*/
+ float xR; /*< [m] Thermal radius*/
+ float xLat; /*< [deg] Thermal center latitude*/
+ float xLon; /*< [deg] Thermal center longitude*/
+ float VarW; /*<  Variance W*/
+ float VarR; /*<  Variance R*/
+ float VarLat; /*<  Variance Lat*/
+ float VarLon; /*<  Variance Lon */
+ float LoiterRadius; /*< [m] Suggested loiter radius*/
+ float LoiterDirection; /*<  Suggested loiter direction*/
+ float DistToSoarPoint; /*< [m] Distance to soar point*/
+ float vSinkExp; /*< [m/s] Expected sink rate at current airspeed, roll and throttle*/
+ float z1_LocalUpdraftSpeed; /*< [m/s] Measurement / updraft speed at current/local airplane position*/
+ float z2_DeltaRoll; /*< [deg] Measurement / roll angle tracking error*/
+ float z1_exp; /*<  Expected measurement 1*/
+ float z2_exp; /*<  Expected measurement 2*/
+ float ThermalGSNorth; /*< [m/s] Thermal drift (from estimator prediction step only)*/
+ float ThermalGSEast; /*< [m/s] Thermal drift (from estimator prediction step only)*/
+ float TSE_dot; /*< [m/s]  Total specific energy change (filtered)*/
+ float DebugVar1; /*<   Debug variable 1*/
+ float DebugVar2; /*<   Debug variable 2*/
+ uint8_t ControlMode; /*<  Control Mode [-]*/
+ uint8_t valid; /*<  Data valid [-]*/
 }) mavlink_fw_soaring_data_t;
 
 #define MAVLINK_MSG_ID_FW_SOARING_DATA_LEN 102
@@ -113,31 +113,31 @@ typedef struct __mavlink_fw_soaring_data_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param timestamp Timestamp
- * @param timestampModeChanged Timestamp since last mode change
- * @param xW Thermal core updraft strength
- * @param xR Thermal radius
- * @param xLat Thermal center latitude
- * @param xLon Thermal center longitude
- * @param VarW Variance W
- * @param VarR Variance R
- * @param VarLat Variance Lat
- * @param VarLon Variance Lon 
- * @param LoiterRadius Suggested loiter radius
- * @param LoiterDirection Suggested loiter direction
- * @param DistToSoarPoint Distance to soar point
- * @param vSinkExp Expected sink rate at current airspeed, roll and throttle
- * @param z1_LocalUpdraftSpeed Measurement / updraft speed at current/local airplane position
- * @param z2_DeltaRoll Measurement / roll angle tracking error
- * @param z1_exp Expected measurement 1
- * @param z2_exp Expected measurement 2
- * @param ThermalGSNorth Thermal drift (from estimator prediction step only)
- * @param ThermalGSEast Thermal drift (from estimator prediction step only)
- * @param TSE_dot  Total specific energy change (filtered)
- * @param DebugVar1  Debug variable 1
- * @param DebugVar2  Debug variable 2
- * @param ControlMode Control Mode [-]
- * @param valid Data valid [-]
+ * @param timestamp [ms] Timestamp
+ * @param timestampModeChanged [ms] Timestamp since last mode change
+ * @param xW [m/s] Thermal core updraft strength
+ * @param xR [m] Thermal radius
+ * @param xLat [deg] Thermal center latitude
+ * @param xLon [deg] Thermal center longitude
+ * @param VarW  Variance W
+ * @param VarR  Variance R
+ * @param VarLat  Variance Lat
+ * @param VarLon  Variance Lon 
+ * @param LoiterRadius [m] Suggested loiter radius
+ * @param LoiterDirection  Suggested loiter direction
+ * @param DistToSoarPoint [m] Distance to soar point
+ * @param vSinkExp [m/s] Expected sink rate at current airspeed, roll and throttle
+ * @param z1_LocalUpdraftSpeed [m/s] Measurement / updraft speed at current/local airplane position
+ * @param z2_DeltaRoll [deg] Measurement / roll angle tracking error
+ * @param z1_exp  Expected measurement 1
+ * @param z2_exp  Expected measurement 2
+ * @param ThermalGSNorth [m/s] Thermal drift (from estimator prediction step only)
+ * @param ThermalGSEast [m/s] Thermal drift (from estimator prediction step only)
+ * @param TSE_dot [m/s]  Total specific energy change (filtered)
+ * @param DebugVar1   Debug variable 1
+ * @param DebugVar2   Debug variable 2
+ * @param ControlMode  Control Mode [-]
+ * @param valid  Data valid [-]
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_fw_soaring_data_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -213,31 +213,31 @@ static inline uint16_t mavlink_msg_fw_soaring_data_pack(uint8_t system_id, uint8
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param timestamp Timestamp
- * @param timestampModeChanged Timestamp since last mode change
- * @param xW Thermal core updraft strength
- * @param xR Thermal radius
- * @param xLat Thermal center latitude
- * @param xLon Thermal center longitude
- * @param VarW Variance W
- * @param VarR Variance R
- * @param VarLat Variance Lat
- * @param VarLon Variance Lon 
- * @param LoiterRadius Suggested loiter radius
- * @param LoiterDirection Suggested loiter direction
- * @param DistToSoarPoint Distance to soar point
- * @param vSinkExp Expected sink rate at current airspeed, roll and throttle
- * @param z1_LocalUpdraftSpeed Measurement / updraft speed at current/local airplane position
- * @param z2_DeltaRoll Measurement / roll angle tracking error
- * @param z1_exp Expected measurement 1
- * @param z2_exp Expected measurement 2
- * @param ThermalGSNorth Thermal drift (from estimator prediction step only)
- * @param ThermalGSEast Thermal drift (from estimator prediction step only)
- * @param TSE_dot  Total specific energy change (filtered)
- * @param DebugVar1  Debug variable 1
- * @param DebugVar2  Debug variable 2
- * @param ControlMode Control Mode [-]
- * @param valid Data valid [-]
+ * @param timestamp [ms] Timestamp
+ * @param timestampModeChanged [ms] Timestamp since last mode change
+ * @param xW [m/s] Thermal core updraft strength
+ * @param xR [m] Thermal radius
+ * @param xLat [deg] Thermal center latitude
+ * @param xLon [deg] Thermal center longitude
+ * @param VarW  Variance W
+ * @param VarR  Variance R
+ * @param VarLat  Variance Lat
+ * @param VarLon  Variance Lon 
+ * @param LoiterRadius [m] Suggested loiter radius
+ * @param LoiterDirection  Suggested loiter direction
+ * @param DistToSoarPoint [m] Distance to soar point
+ * @param vSinkExp [m/s] Expected sink rate at current airspeed, roll and throttle
+ * @param z1_LocalUpdraftSpeed [m/s] Measurement / updraft speed at current/local airplane position
+ * @param z2_DeltaRoll [deg] Measurement / roll angle tracking error
+ * @param z1_exp  Expected measurement 1
+ * @param z2_exp  Expected measurement 2
+ * @param ThermalGSNorth [m/s] Thermal drift (from estimator prediction step only)
+ * @param ThermalGSEast [m/s] Thermal drift (from estimator prediction step only)
+ * @param TSE_dot [m/s]  Total specific energy change (filtered)
+ * @param DebugVar1   Debug variable 1
+ * @param DebugVar2   Debug variable 2
+ * @param ControlMode  Control Mode [-]
+ * @param valid  Data valid [-]
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_fw_soaring_data_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -339,31 +339,31 @@ static inline uint16_t mavlink_msg_fw_soaring_data_encode_chan(uint8_t system_id
  * @brief Send a fw_soaring_data message
  * @param chan MAVLink channel to send the message
  *
- * @param timestamp Timestamp
- * @param timestampModeChanged Timestamp since last mode change
- * @param xW Thermal core updraft strength
- * @param xR Thermal radius
- * @param xLat Thermal center latitude
- * @param xLon Thermal center longitude
- * @param VarW Variance W
- * @param VarR Variance R
- * @param VarLat Variance Lat
- * @param VarLon Variance Lon 
- * @param LoiterRadius Suggested loiter radius
- * @param LoiterDirection Suggested loiter direction
- * @param DistToSoarPoint Distance to soar point
- * @param vSinkExp Expected sink rate at current airspeed, roll and throttle
- * @param z1_LocalUpdraftSpeed Measurement / updraft speed at current/local airplane position
- * @param z2_DeltaRoll Measurement / roll angle tracking error
- * @param z1_exp Expected measurement 1
- * @param z2_exp Expected measurement 2
- * @param ThermalGSNorth Thermal drift (from estimator prediction step only)
- * @param ThermalGSEast Thermal drift (from estimator prediction step only)
- * @param TSE_dot  Total specific energy change (filtered)
- * @param DebugVar1  Debug variable 1
- * @param DebugVar2  Debug variable 2
- * @param ControlMode Control Mode [-]
- * @param valid Data valid [-]
+ * @param timestamp [ms] Timestamp
+ * @param timestampModeChanged [ms] Timestamp since last mode change
+ * @param xW [m/s] Thermal core updraft strength
+ * @param xR [m] Thermal radius
+ * @param xLat [deg] Thermal center latitude
+ * @param xLon [deg] Thermal center longitude
+ * @param VarW  Variance W
+ * @param VarR  Variance R
+ * @param VarLat  Variance Lat
+ * @param VarLon  Variance Lon 
+ * @param LoiterRadius [m] Suggested loiter radius
+ * @param LoiterDirection  Suggested loiter direction
+ * @param DistToSoarPoint [m] Distance to soar point
+ * @param vSinkExp [m/s] Expected sink rate at current airspeed, roll and throttle
+ * @param z1_LocalUpdraftSpeed [m/s] Measurement / updraft speed at current/local airplane position
+ * @param z2_DeltaRoll [deg] Measurement / roll angle tracking error
+ * @param z1_exp  Expected measurement 1
+ * @param z2_exp  Expected measurement 2
+ * @param ThermalGSNorth [m/s] Thermal drift (from estimator prediction step only)
+ * @param ThermalGSEast [m/s] Thermal drift (from estimator prediction step only)
+ * @param TSE_dot [m/s]  Total specific energy change (filtered)
+ * @param DebugVar1   Debug variable 1
+ * @param DebugVar2   Debug variable 2
+ * @param ControlMode  Control Mode [-]
+ * @param valid  Data valid [-]
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -524,7 +524,7 @@ static inline void mavlink_msg_fw_soaring_data_send_buf(mavlink_message_t *msgbu
 /**
  * @brief Get field timestamp from fw_soaring_data message
  *
- * @return Timestamp
+ * @return [ms] Timestamp
  */
 static inline uint64_t mavlink_msg_fw_soaring_data_get_timestamp(const mavlink_message_t* msg)
 {
@@ -534,7 +534,7 @@ static inline uint64_t mavlink_msg_fw_soaring_data_get_timestamp(const mavlink_m
 /**
  * @brief Get field timestampModeChanged from fw_soaring_data message
  *
- * @return Timestamp since last mode change
+ * @return [ms] Timestamp since last mode change
  */
 static inline uint64_t mavlink_msg_fw_soaring_data_get_timestampModeChanged(const mavlink_message_t* msg)
 {
@@ -544,7 +544,7 @@ static inline uint64_t mavlink_msg_fw_soaring_data_get_timestampModeChanged(cons
 /**
  * @brief Get field xW from fw_soaring_data message
  *
- * @return Thermal core updraft strength
+ * @return [m/s] Thermal core updraft strength
  */
 static inline float mavlink_msg_fw_soaring_data_get_xW(const mavlink_message_t* msg)
 {
@@ -554,7 +554,7 @@ static inline float mavlink_msg_fw_soaring_data_get_xW(const mavlink_message_t* 
 /**
  * @brief Get field xR from fw_soaring_data message
  *
- * @return Thermal radius
+ * @return [m] Thermal radius
  */
 static inline float mavlink_msg_fw_soaring_data_get_xR(const mavlink_message_t* msg)
 {
@@ -564,7 +564,7 @@ static inline float mavlink_msg_fw_soaring_data_get_xR(const mavlink_message_t* 
 /**
  * @brief Get field xLat from fw_soaring_data message
  *
- * @return Thermal center latitude
+ * @return [deg] Thermal center latitude
  */
 static inline float mavlink_msg_fw_soaring_data_get_xLat(const mavlink_message_t* msg)
 {
@@ -574,7 +574,7 @@ static inline float mavlink_msg_fw_soaring_data_get_xLat(const mavlink_message_t
 /**
  * @brief Get field xLon from fw_soaring_data message
  *
- * @return Thermal center longitude
+ * @return [deg] Thermal center longitude
  */
 static inline float mavlink_msg_fw_soaring_data_get_xLon(const mavlink_message_t* msg)
 {
@@ -584,7 +584,7 @@ static inline float mavlink_msg_fw_soaring_data_get_xLon(const mavlink_message_t
 /**
  * @brief Get field VarW from fw_soaring_data message
  *
- * @return Variance W
+ * @return  Variance W
  */
 static inline float mavlink_msg_fw_soaring_data_get_VarW(const mavlink_message_t* msg)
 {
@@ -594,7 +594,7 @@ static inline float mavlink_msg_fw_soaring_data_get_VarW(const mavlink_message_t
 /**
  * @brief Get field VarR from fw_soaring_data message
  *
- * @return Variance R
+ * @return  Variance R
  */
 static inline float mavlink_msg_fw_soaring_data_get_VarR(const mavlink_message_t* msg)
 {
@@ -604,7 +604,7 @@ static inline float mavlink_msg_fw_soaring_data_get_VarR(const mavlink_message_t
 /**
  * @brief Get field VarLat from fw_soaring_data message
  *
- * @return Variance Lat
+ * @return  Variance Lat
  */
 static inline float mavlink_msg_fw_soaring_data_get_VarLat(const mavlink_message_t* msg)
 {
@@ -614,7 +614,7 @@ static inline float mavlink_msg_fw_soaring_data_get_VarLat(const mavlink_message
 /**
  * @brief Get field VarLon from fw_soaring_data message
  *
- * @return Variance Lon 
+ * @return  Variance Lon 
  */
 static inline float mavlink_msg_fw_soaring_data_get_VarLon(const mavlink_message_t* msg)
 {
@@ -624,7 +624,7 @@ static inline float mavlink_msg_fw_soaring_data_get_VarLon(const mavlink_message
 /**
  * @brief Get field LoiterRadius from fw_soaring_data message
  *
- * @return Suggested loiter radius
+ * @return [m] Suggested loiter radius
  */
 static inline float mavlink_msg_fw_soaring_data_get_LoiterRadius(const mavlink_message_t* msg)
 {
@@ -634,7 +634,7 @@ static inline float mavlink_msg_fw_soaring_data_get_LoiterRadius(const mavlink_m
 /**
  * @brief Get field LoiterDirection from fw_soaring_data message
  *
- * @return Suggested loiter direction
+ * @return  Suggested loiter direction
  */
 static inline float mavlink_msg_fw_soaring_data_get_LoiterDirection(const mavlink_message_t* msg)
 {
@@ -644,7 +644,7 @@ static inline float mavlink_msg_fw_soaring_data_get_LoiterDirection(const mavlin
 /**
  * @brief Get field DistToSoarPoint from fw_soaring_data message
  *
- * @return Distance to soar point
+ * @return [m] Distance to soar point
  */
 static inline float mavlink_msg_fw_soaring_data_get_DistToSoarPoint(const mavlink_message_t* msg)
 {
@@ -654,7 +654,7 @@ static inline float mavlink_msg_fw_soaring_data_get_DistToSoarPoint(const mavlin
 /**
  * @brief Get field vSinkExp from fw_soaring_data message
  *
- * @return Expected sink rate at current airspeed, roll and throttle
+ * @return [m/s] Expected sink rate at current airspeed, roll and throttle
  */
 static inline float mavlink_msg_fw_soaring_data_get_vSinkExp(const mavlink_message_t* msg)
 {
@@ -664,7 +664,7 @@ static inline float mavlink_msg_fw_soaring_data_get_vSinkExp(const mavlink_messa
 /**
  * @brief Get field z1_LocalUpdraftSpeed from fw_soaring_data message
  *
- * @return Measurement / updraft speed at current/local airplane position
+ * @return [m/s] Measurement / updraft speed at current/local airplane position
  */
 static inline float mavlink_msg_fw_soaring_data_get_z1_LocalUpdraftSpeed(const mavlink_message_t* msg)
 {
@@ -674,7 +674,7 @@ static inline float mavlink_msg_fw_soaring_data_get_z1_LocalUpdraftSpeed(const m
 /**
  * @brief Get field z2_DeltaRoll from fw_soaring_data message
  *
- * @return Measurement / roll angle tracking error
+ * @return [deg] Measurement / roll angle tracking error
  */
 static inline float mavlink_msg_fw_soaring_data_get_z2_DeltaRoll(const mavlink_message_t* msg)
 {
@@ -684,7 +684,7 @@ static inline float mavlink_msg_fw_soaring_data_get_z2_DeltaRoll(const mavlink_m
 /**
  * @brief Get field z1_exp from fw_soaring_data message
  *
- * @return Expected measurement 1
+ * @return  Expected measurement 1
  */
 static inline float mavlink_msg_fw_soaring_data_get_z1_exp(const mavlink_message_t* msg)
 {
@@ -694,7 +694,7 @@ static inline float mavlink_msg_fw_soaring_data_get_z1_exp(const mavlink_message
 /**
  * @brief Get field z2_exp from fw_soaring_data message
  *
- * @return Expected measurement 2
+ * @return  Expected measurement 2
  */
 static inline float mavlink_msg_fw_soaring_data_get_z2_exp(const mavlink_message_t* msg)
 {
@@ -704,7 +704,7 @@ static inline float mavlink_msg_fw_soaring_data_get_z2_exp(const mavlink_message
 /**
  * @brief Get field ThermalGSNorth from fw_soaring_data message
  *
- * @return Thermal drift (from estimator prediction step only)
+ * @return [m/s] Thermal drift (from estimator prediction step only)
  */
 static inline float mavlink_msg_fw_soaring_data_get_ThermalGSNorth(const mavlink_message_t* msg)
 {
@@ -714,7 +714,7 @@ static inline float mavlink_msg_fw_soaring_data_get_ThermalGSNorth(const mavlink
 /**
  * @brief Get field ThermalGSEast from fw_soaring_data message
  *
- * @return Thermal drift (from estimator prediction step only)
+ * @return [m/s] Thermal drift (from estimator prediction step only)
  */
 static inline float mavlink_msg_fw_soaring_data_get_ThermalGSEast(const mavlink_message_t* msg)
 {
@@ -724,7 +724,7 @@ static inline float mavlink_msg_fw_soaring_data_get_ThermalGSEast(const mavlink_
 /**
  * @brief Get field TSE_dot from fw_soaring_data message
  *
- * @return  Total specific energy change (filtered)
+ * @return [m/s]  Total specific energy change (filtered)
  */
 static inline float mavlink_msg_fw_soaring_data_get_TSE_dot(const mavlink_message_t* msg)
 {
@@ -734,7 +734,7 @@ static inline float mavlink_msg_fw_soaring_data_get_TSE_dot(const mavlink_messag
 /**
  * @brief Get field DebugVar1 from fw_soaring_data message
  *
- * @return  Debug variable 1
+ * @return   Debug variable 1
  */
 static inline float mavlink_msg_fw_soaring_data_get_DebugVar1(const mavlink_message_t* msg)
 {
@@ -744,7 +744,7 @@ static inline float mavlink_msg_fw_soaring_data_get_DebugVar1(const mavlink_mess
 /**
  * @brief Get field DebugVar2 from fw_soaring_data message
  *
- * @return  Debug variable 2
+ * @return   Debug variable 2
  */
 static inline float mavlink_msg_fw_soaring_data_get_DebugVar2(const mavlink_message_t* msg)
 {
@@ -754,7 +754,7 @@ static inline float mavlink_msg_fw_soaring_data_get_DebugVar2(const mavlink_mess
 /**
  * @brief Get field ControlMode from fw_soaring_data message
  *
- * @return Control Mode [-]
+ * @return  Control Mode [-]
  */
 static inline uint8_t mavlink_msg_fw_soaring_data_get_ControlMode(const mavlink_message_t* msg)
 {
@@ -764,7 +764,7 @@ static inline uint8_t mavlink_msg_fw_soaring_data_get_ControlMode(const mavlink_
 /**
  * @brief Get field valid from fw_soaring_data message
  *
- * @return Data valid [-]
+ * @return  Data valid [-]
  */
 static inline uint8_t mavlink_msg_fw_soaring_data_get_valid(const mavlink_message_t* msg)
 {

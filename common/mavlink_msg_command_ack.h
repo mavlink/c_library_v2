@@ -5,12 +5,12 @@
 
 MAVPACKED(
 typedef struct __mavlink_command_ack_t {
- uint16_t command; /*< Command ID (of acknowledged command).*/
- uint8_t result; /*< Result of command.*/
- uint8_t progress; /*< WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why the command was denied or the progress percentage or 255 if unknown the progress when result is MAV_RESULT_IN_PROGRESS.*/
- int32_t result_param2; /*< WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied.*/
- uint8_t target_system; /*< WIP: System which requested the command to be executed*/
- uint8_t target_component; /*< WIP: Component which requested the command to be executed*/
+ uint16_t command; /*<  Command ID (of acknowledged command).*/
+ uint8_t result; /*<  Result of command.*/
+ uint8_t progress; /*<  WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why the command was denied or the progress percentage or 255 if unknown the progress when result is MAV_RESULT_IN_PROGRESS.*/
+ int32_t result_param2; /*<  WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied.*/
+ uint8_t target_system; /*<  WIP: System which requested the command to be executed*/
+ uint8_t target_component; /*<  WIP: Component which requested the command to be executed*/
 }) mavlink_command_ack_t;
 
 #define MAVLINK_MSG_ID_COMMAND_ACK_LEN 10
@@ -56,12 +56,12 @@ typedef struct __mavlink_command_ack_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param command Command ID (of acknowledged command).
- * @param result Result of command.
- * @param progress WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why the command was denied or the progress percentage or 255 if unknown the progress when result is MAV_RESULT_IN_PROGRESS.
- * @param result_param2 WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied.
- * @param target_system WIP: System which requested the command to be executed
- * @param target_component WIP: Component which requested the command to be executed
+ * @param command  Command ID (of acknowledged command).
+ * @param result  Result of command.
+ * @param progress  WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why the command was denied or the progress percentage or 255 if unknown the progress when result is MAV_RESULT_IN_PROGRESS.
+ * @param result_param2  WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied.
+ * @param target_system  WIP: System which requested the command to be executed
+ * @param target_component  WIP: Component which requested the command to be executed
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_command_ack_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -99,12 +99,12 @@ static inline uint16_t mavlink_msg_command_ack_pack(uint8_t system_id, uint8_t c
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param command Command ID (of acknowledged command).
- * @param result Result of command.
- * @param progress WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why the command was denied or the progress percentage or 255 if unknown the progress when result is MAV_RESULT_IN_PROGRESS.
- * @param result_param2 WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied.
- * @param target_system WIP: System which requested the command to be executed
- * @param target_component WIP: Component which requested the command to be executed
+ * @param command  Command ID (of acknowledged command).
+ * @param result  Result of command.
+ * @param progress  WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why the command was denied or the progress percentage or 255 if unknown the progress when result is MAV_RESULT_IN_PROGRESS.
+ * @param result_param2  WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied.
+ * @param target_system  WIP: System which requested the command to be executed
+ * @param target_component  WIP: Component which requested the command to be executed
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_command_ack_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -168,12 +168,12 @@ static inline uint16_t mavlink_msg_command_ack_encode_chan(uint8_t system_id, ui
  * @brief Send a command_ack message
  * @param chan MAVLink channel to send the message
  *
- * @param command Command ID (of acknowledged command).
- * @param result Result of command.
- * @param progress WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why the command was denied or the progress percentage or 255 if unknown the progress when result is MAV_RESULT_IN_PROGRESS.
- * @param result_param2 WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied.
- * @param target_system WIP: System which requested the command to be executed
- * @param target_component WIP: Component which requested the command to be executed
+ * @param command  Command ID (of acknowledged command).
+ * @param result  Result of command.
+ * @param progress  WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why the command was denied or the progress percentage or 255 if unknown the progress when result is MAV_RESULT_IN_PROGRESS.
+ * @param result_param2  WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied.
+ * @param target_system  WIP: System which requested the command to be executed
+ * @param target_component  WIP: Component which requested the command to be executed
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -258,7 +258,7 @@ static inline void mavlink_msg_command_ack_send_buf(mavlink_message_t *msgbuf, m
 /**
  * @brief Get field command from command_ack message
  *
- * @return Command ID (of acknowledged command).
+ * @return  Command ID (of acknowledged command).
  */
 static inline uint16_t mavlink_msg_command_ack_get_command(const mavlink_message_t* msg)
 {
@@ -268,7 +268,7 @@ static inline uint16_t mavlink_msg_command_ack_get_command(const mavlink_message
 /**
  * @brief Get field result from command_ack message
  *
- * @return Result of command.
+ * @return  Result of command.
  */
 static inline uint8_t mavlink_msg_command_ack_get_result(const mavlink_message_t* msg)
 {
@@ -278,7 +278,7 @@ static inline uint8_t mavlink_msg_command_ack_get_result(const mavlink_message_t
 /**
  * @brief Get field progress from command_ack message
  *
- * @return WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why the command was denied or the progress percentage or 255 if unknown the progress when result is MAV_RESULT_IN_PROGRESS.
+ * @return  WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why the command was denied or the progress percentage or 255 if unknown the progress when result is MAV_RESULT_IN_PROGRESS.
  */
 static inline uint8_t mavlink_msg_command_ack_get_progress(const mavlink_message_t* msg)
 {
@@ -288,7 +288,7 @@ static inline uint8_t mavlink_msg_command_ack_get_progress(const mavlink_message
 /**
  * @brief Get field result_param2 from command_ack message
  *
- * @return WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied.
+ * @return  WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied.
  */
 static inline int32_t mavlink_msg_command_ack_get_result_param2(const mavlink_message_t* msg)
 {
@@ -298,7 +298,7 @@ static inline int32_t mavlink_msg_command_ack_get_result_param2(const mavlink_me
 /**
  * @brief Get field target_system from command_ack message
  *
- * @return WIP: System which requested the command to be executed
+ * @return  WIP: System which requested the command to be executed
  */
 static inline uint8_t mavlink_msg_command_ack_get_target_system(const mavlink_message_t* msg)
 {
@@ -308,7 +308,7 @@ static inline uint8_t mavlink_msg_command_ack_get_target_system(const mavlink_me
 /**
  * @brief Get field target_component from command_ack message
  *
- * @return WIP: Component which requested the command to be executed
+ * @return  WIP: Component which requested the command to be executed
  */
 static inline uint8_t mavlink_msg_command_ack_get_target_component(const mavlink_message_t* msg)
 {

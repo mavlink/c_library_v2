@@ -5,10 +5,10 @@
 
 MAVPACKED(
 typedef struct __mavlink_asluav_status_t {
- float Motor_rpm; /*<  Motor RPM */
- uint8_t LED_status; /*<  Status of the position-indicator LEDs*/
- uint8_t SATCOM_status; /*<  Status of the IRIDIUM satellite communication system*/
- uint8_t Servo_status[8]; /*<  Status vector for up to 8 servos*/
+ float Motor_rpm; /*<   Motor RPM */
+ uint8_t LED_status; /*<   Status of the position-indicator LEDs*/
+ uint8_t SATCOM_status; /*<   Status of the IRIDIUM satellite communication system*/
+ uint8_t Servo_status[8]; /*<   Status vector for up to 8 servos*/
 }) mavlink_asluav_status_t;
 
 #define MAVLINK_MSG_ID_ASLUAV_STATUS_LEN 14
@@ -50,10 +50,10 @@ typedef struct __mavlink_asluav_status_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param LED_status  Status of the position-indicator LEDs
- * @param SATCOM_status  Status of the IRIDIUM satellite communication system
- * @param Servo_status  Status vector for up to 8 servos
- * @param Motor_rpm  Motor RPM 
+ * @param LED_status   Status of the position-indicator LEDs
+ * @param SATCOM_status   Status of the IRIDIUM satellite communication system
+ * @param Servo_status   Status vector for up to 8 servos
+ * @param Motor_rpm   Motor RPM 
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_asluav_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -85,10 +85,10 @@ static inline uint16_t mavlink_msg_asluav_status_pack(uint8_t system_id, uint8_t
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param LED_status  Status of the position-indicator LEDs
- * @param SATCOM_status  Status of the IRIDIUM satellite communication system
- * @param Servo_status  Status vector for up to 8 servos
- * @param Motor_rpm  Motor RPM 
+ * @param LED_status   Status of the position-indicator LEDs
+ * @param SATCOM_status   Status of the IRIDIUM satellite communication system
+ * @param Servo_status   Status vector for up to 8 servos
+ * @param Motor_rpm   Motor RPM 
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_asluav_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -146,10 +146,10 @@ static inline uint16_t mavlink_msg_asluav_status_encode_chan(uint8_t system_id, 
  * @brief Send a asluav_status message
  * @param chan MAVLink channel to send the message
  *
- * @param LED_status  Status of the position-indicator LEDs
- * @param SATCOM_status  Status of the IRIDIUM satellite communication system
- * @param Servo_status  Status vector for up to 8 servos
- * @param Motor_rpm  Motor RPM 
+ * @param LED_status   Status of the position-indicator LEDs
+ * @param SATCOM_status   Status of the IRIDIUM satellite communication system
+ * @param Servo_status   Status vector for up to 8 servos
+ * @param Motor_rpm   Motor RPM 
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -222,7 +222,7 @@ static inline void mavlink_msg_asluav_status_send_buf(mavlink_message_t *msgbuf,
 /**
  * @brief Get field LED_status from asluav_status message
  *
- * @return  Status of the position-indicator LEDs
+ * @return   Status of the position-indicator LEDs
  */
 static inline uint8_t mavlink_msg_asluav_status_get_LED_status(const mavlink_message_t* msg)
 {
@@ -232,7 +232,7 @@ static inline uint8_t mavlink_msg_asluav_status_get_LED_status(const mavlink_mes
 /**
  * @brief Get field SATCOM_status from asluav_status message
  *
- * @return  Status of the IRIDIUM satellite communication system
+ * @return   Status of the IRIDIUM satellite communication system
  */
 static inline uint8_t mavlink_msg_asluav_status_get_SATCOM_status(const mavlink_message_t* msg)
 {
@@ -242,7 +242,7 @@ static inline uint8_t mavlink_msg_asluav_status_get_SATCOM_status(const mavlink_
 /**
  * @brief Get field Servo_status from asluav_status message
  *
- * @return  Status vector for up to 8 servos
+ * @return   Status vector for up to 8 servos
  */
 static inline uint16_t mavlink_msg_asluav_status_get_Servo_status(const mavlink_message_t* msg, uint8_t *Servo_status)
 {
@@ -252,7 +252,7 @@ static inline uint16_t mavlink_msg_asluav_status_get_Servo_status(const mavlink_
 /**
  * @brief Get field Motor_rpm from asluav_status message
  *
- * @return  Motor RPM 
+ * @return   Motor RPM 
  */
 static inline float mavlink_msg_asluav_status_get_Motor_rpm(const mavlink_message_t* msg)
 {

@@ -5,12 +5,12 @@
 
 MAVPACKED(
 typedef struct __mavlink_flexifunction_directory_ack_t {
- uint16_t result; /*< result of acknowledge, 0=fail, 1=good*/
- uint8_t target_system; /*< System ID*/
- uint8_t target_component; /*< Component ID*/
- uint8_t directory_type; /*< 0=inputs, 1=outputs*/
- uint8_t start_index; /*< index of first directory entry to write*/
- uint8_t count; /*< count of directory entries to write*/
+ uint16_t result; /*<  result of acknowledge, 0=fail, 1=good*/
+ uint8_t target_system; /*<  System ID*/
+ uint8_t target_component; /*<  Component ID*/
+ uint8_t directory_type; /*<  0=inputs, 1=outputs*/
+ uint8_t start_index; /*<  index of first directory entry to write*/
+ uint8_t count; /*<  count of directory entries to write*/
 }) mavlink_flexifunction_directory_ack_t;
 
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_ACK_LEN 7
@@ -56,12 +56,12 @@ typedef struct __mavlink_flexifunction_directory_ack_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param target_system System ID
- * @param target_component Component ID
- * @param directory_type 0=inputs, 1=outputs
- * @param start_index index of first directory entry to write
- * @param count count of directory entries to write
- * @param result result of acknowledge, 0=fail, 1=good
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param directory_type  0=inputs, 1=outputs
+ * @param start_index  index of first directory entry to write
+ * @param count  count of directory entries to write
+ * @param result  result of acknowledge, 0=fail, 1=good
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_flexifunction_directory_ack_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -99,12 +99,12 @@ static inline uint16_t mavlink_msg_flexifunction_directory_ack_pack(uint8_t syst
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param target_system System ID
- * @param target_component Component ID
- * @param directory_type 0=inputs, 1=outputs
- * @param start_index index of first directory entry to write
- * @param count count of directory entries to write
- * @param result result of acknowledge, 0=fail, 1=good
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param directory_type  0=inputs, 1=outputs
+ * @param start_index  index of first directory entry to write
+ * @param count  count of directory entries to write
+ * @param result  result of acknowledge, 0=fail, 1=good
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_flexifunction_directory_ack_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -168,12 +168,12 @@ static inline uint16_t mavlink_msg_flexifunction_directory_ack_encode_chan(uint8
  * @brief Send a flexifunction_directory_ack message
  * @param chan MAVLink channel to send the message
  *
- * @param target_system System ID
- * @param target_component Component ID
- * @param directory_type 0=inputs, 1=outputs
- * @param start_index index of first directory entry to write
- * @param count count of directory entries to write
- * @param result result of acknowledge, 0=fail, 1=good
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param directory_type  0=inputs, 1=outputs
+ * @param start_index  index of first directory entry to write
+ * @param count  count of directory entries to write
+ * @param result  result of acknowledge, 0=fail, 1=good
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -258,7 +258,7 @@ static inline void mavlink_msg_flexifunction_directory_ack_send_buf(mavlink_mess
 /**
  * @brief Get field target_system from flexifunction_directory_ack message
  *
- * @return System ID
+ * @return  System ID
  */
 static inline uint8_t mavlink_msg_flexifunction_directory_ack_get_target_system(const mavlink_message_t* msg)
 {
@@ -268,7 +268,7 @@ static inline uint8_t mavlink_msg_flexifunction_directory_ack_get_target_system(
 /**
  * @brief Get field target_component from flexifunction_directory_ack message
  *
- * @return Component ID
+ * @return  Component ID
  */
 static inline uint8_t mavlink_msg_flexifunction_directory_ack_get_target_component(const mavlink_message_t* msg)
 {
@@ -278,7 +278,7 @@ static inline uint8_t mavlink_msg_flexifunction_directory_ack_get_target_compone
 /**
  * @brief Get field directory_type from flexifunction_directory_ack message
  *
- * @return 0=inputs, 1=outputs
+ * @return  0=inputs, 1=outputs
  */
 static inline uint8_t mavlink_msg_flexifunction_directory_ack_get_directory_type(const mavlink_message_t* msg)
 {
@@ -288,7 +288,7 @@ static inline uint8_t mavlink_msg_flexifunction_directory_ack_get_directory_type
 /**
  * @brief Get field start_index from flexifunction_directory_ack message
  *
- * @return index of first directory entry to write
+ * @return  index of first directory entry to write
  */
 static inline uint8_t mavlink_msg_flexifunction_directory_ack_get_start_index(const mavlink_message_t* msg)
 {
@@ -298,7 +298,7 @@ static inline uint8_t mavlink_msg_flexifunction_directory_ack_get_start_index(co
 /**
  * @brief Get field count from flexifunction_directory_ack message
  *
- * @return count of directory entries to write
+ * @return  count of directory entries to write
  */
 static inline uint8_t mavlink_msg_flexifunction_directory_ack_get_count(const mavlink_message_t* msg)
 {
@@ -308,7 +308,7 @@ static inline uint8_t mavlink_msg_flexifunction_directory_ack_get_count(const ma
 /**
  * @brief Get field result from flexifunction_directory_ack message
  *
- * @return result of acknowledge, 0=fail, 1=good
+ * @return  result of acknowledge, 0=fail, 1=good
  */
 static inline uint16_t mavlink_msg_flexifunction_directory_ack_get_result(const mavlink_message_t* msg)
 {

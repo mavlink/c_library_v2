@@ -5,13 +5,13 @@
 
 MAVPACKED(
 typedef struct __mavlink_radio_t {
- uint16_t rxerrors; /*< Receive errors.*/
- uint16_t fixed; /*< Count of error corrected packets.*/
- uint8_t rssi; /*< Local signal strength.*/
- uint8_t remrssi; /*< Remote signal strength.*/
- uint8_t txbuf; /*< How full the tx buffer is.*/
- uint8_t noise; /*< Background noise level.*/
- uint8_t remnoise; /*< Remote background noise level.*/
+ uint16_t rxerrors; /*<  Receive errors.*/
+ uint16_t fixed; /*<  Count of error corrected packets.*/
+ uint8_t rssi; /*<  Local signal strength.*/
+ uint8_t remrssi; /*<  Remote signal strength.*/
+ uint8_t txbuf; /*< [%] How full the tx buffer is.*/
+ uint8_t noise; /*<  Background noise level.*/
+ uint8_t remnoise; /*<  Remote background noise level.*/
 }) mavlink_radio_t;
 
 #define MAVLINK_MSG_ID_RADIO_LEN 9
@@ -59,13 +59,13 @@ typedef struct __mavlink_radio_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param rssi Local signal strength.
- * @param remrssi Remote signal strength.
- * @param txbuf How full the tx buffer is.
- * @param noise Background noise level.
- * @param remnoise Remote background noise level.
- * @param rxerrors Receive errors.
- * @param fixed Count of error corrected packets.
+ * @param rssi  Local signal strength.
+ * @param remrssi  Remote signal strength.
+ * @param txbuf [%] How full the tx buffer is.
+ * @param noise  Background noise level.
+ * @param remnoise  Remote background noise level.
+ * @param rxerrors  Receive errors.
+ * @param fixed  Count of error corrected packets.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_radio_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -105,13 +105,13 @@ static inline uint16_t mavlink_msg_radio_pack(uint8_t system_id, uint8_t compone
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param rssi Local signal strength.
- * @param remrssi Remote signal strength.
- * @param txbuf How full the tx buffer is.
- * @param noise Background noise level.
- * @param remnoise Remote background noise level.
- * @param rxerrors Receive errors.
- * @param fixed Count of error corrected packets.
+ * @param rssi  Local signal strength.
+ * @param remrssi  Remote signal strength.
+ * @param txbuf [%] How full the tx buffer is.
+ * @param noise  Background noise level.
+ * @param remnoise  Remote background noise level.
+ * @param rxerrors  Receive errors.
+ * @param fixed  Count of error corrected packets.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_radio_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -177,13 +177,13 @@ static inline uint16_t mavlink_msg_radio_encode_chan(uint8_t system_id, uint8_t 
  * @brief Send a radio message
  * @param chan MAVLink channel to send the message
  *
- * @param rssi Local signal strength.
- * @param remrssi Remote signal strength.
- * @param txbuf How full the tx buffer is.
- * @param noise Background noise level.
- * @param remnoise Remote background noise level.
- * @param rxerrors Receive errors.
- * @param fixed Count of error corrected packets.
+ * @param rssi  Local signal strength.
+ * @param remrssi  Remote signal strength.
+ * @param txbuf [%] How full the tx buffer is.
+ * @param noise  Background noise level.
+ * @param remnoise  Remote background noise level.
+ * @param rxerrors  Receive errors.
+ * @param fixed  Count of error corrected packets.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -272,7 +272,7 @@ static inline void mavlink_msg_radio_send_buf(mavlink_message_t *msgbuf, mavlink
 /**
  * @brief Get field rssi from radio message
  *
- * @return Local signal strength.
+ * @return  Local signal strength.
  */
 static inline uint8_t mavlink_msg_radio_get_rssi(const mavlink_message_t* msg)
 {
@@ -282,7 +282,7 @@ static inline uint8_t mavlink_msg_radio_get_rssi(const mavlink_message_t* msg)
 /**
  * @brief Get field remrssi from radio message
  *
- * @return Remote signal strength.
+ * @return  Remote signal strength.
  */
 static inline uint8_t mavlink_msg_radio_get_remrssi(const mavlink_message_t* msg)
 {
@@ -292,7 +292,7 @@ static inline uint8_t mavlink_msg_radio_get_remrssi(const mavlink_message_t* msg
 /**
  * @brief Get field txbuf from radio message
  *
- * @return How full the tx buffer is.
+ * @return [%] How full the tx buffer is.
  */
 static inline uint8_t mavlink_msg_radio_get_txbuf(const mavlink_message_t* msg)
 {
@@ -302,7 +302,7 @@ static inline uint8_t mavlink_msg_radio_get_txbuf(const mavlink_message_t* msg)
 /**
  * @brief Get field noise from radio message
  *
- * @return Background noise level.
+ * @return  Background noise level.
  */
 static inline uint8_t mavlink_msg_radio_get_noise(const mavlink_message_t* msg)
 {
@@ -312,7 +312,7 @@ static inline uint8_t mavlink_msg_radio_get_noise(const mavlink_message_t* msg)
 /**
  * @brief Get field remnoise from radio message
  *
- * @return Remote background noise level.
+ * @return  Remote background noise level.
  */
 static inline uint8_t mavlink_msg_radio_get_remnoise(const mavlink_message_t* msg)
 {
@@ -322,7 +322,7 @@ static inline uint8_t mavlink_msg_radio_get_remnoise(const mavlink_message_t* ms
 /**
  * @brief Get field rxerrors from radio message
  *
- * @return Receive errors.
+ * @return  Receive errors.
  */
 static inline uint16_t mavlink_msg_radio_get_rxerrors(const mavlink_message_t* msg)
 {
@@ -332,7 +332,7 @@ static inline uint16_t mavlink_msg_radio_get_rxerrors(const mavlink_message_t* m
 /**
  * @brief Get field fixed from radio message
  *
- * @return Count of error corrected packets.
+ * @return  Count of error corrected packets.
  */
 static inline uint16_t mavlink_msg_radio_get_fixed(const mavlink_message_t* msg)
 {

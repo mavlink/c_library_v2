@@ -5,21 +5,21 @@
 
 MAVPACKED(
 typedef struct __mavlink_odometry_t {
- uint64_t time_usec; /*< Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
- float x; /*< X Position*/
- float y; /*< Y Position*/
- float z; /*< Z Position*/
- float q[4]; /*< Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)*/
- float vx; /*< X linear speed*/
- float vy; /*< Y linear speed*/
- float vz; /*< Z linear speed*/
- float rollspeed; /*< Roll angular speed*/
- float pitchspeed; /*< Pitch angular speed*/
- float yawspeed; /*< Yaw angular speed*/
- float pose_covariance[21]; /*< Pose (states: x, y, z, roll, pitch, yaw) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)*/
- float twist_covariance[21]; /*< Twist (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)*/
- uint8_t frame_id; /*< Coordinate frame of reference for the pose data.*/
- uint8_t child_frame_id; /*< Coordinate frame of reference for the velocity in free space (twist) data.*/
+ uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
+ float x; /*< [m] X Position*/
+ float y; /*< [m] Y Position*/
+ float z; /*< [m] Z Position*/
+ float q[4]; /*<  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)*/
+ float vx; /*< [m/s] X linear speed*/
+ float vy; /*< [m/s] Y linear speed*/
+ float vz; /*< [m/s] Z linear speed*/
+ float rollspeed; /*< [rad/s] Roll angular speed*/
+ float pitchspeed; /*< [rad/s] Pitch angular speed*/
+ float yawspeed; /*< [rad/s] Yaw angular speed*/
+ float pose_covariance[21]; /*<  Pose (states: x, y, z, roll, pitch, yaw) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)*/
+ float twist_covariance[21]; /*<  Twist (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)*/
+ uint8_t frame_id; /*<  Coordinate frame of reference for the pose data.*/
+ uint8_t child_frame_id; /*<  Coordinate frame of reference for the velocity in free space (twist) data.*/
 }) mavlink_odometry_t;
 
 #define MAVLINK_MSG_ID_ODOMETRY_LEN 230
@@ -85,21 +85,21 @@ typedef struct __mavlink_odometry_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
- * @param frame_id Coordinate frame of reference for the pose data.
- * @param child_frame_id Coordinate frame of reference for the velocity in free space (twist) data.
- * @param x X Position
- * @param y Y Position
- * @param z Z Position
- * @param q Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
- * @param vx X linear speed
- * @param vy Y linear speed
- * @param vz Z linear speed
- * @param rollspeed Roll angular speed
- * @param pitchspeed Pitch angular speed
- * @param yawspeed Yaw angular speed
- * @param pose_covariance Pose (states: x, y, z, roll, pitch, yaw) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
- * @param twist_covariance Twist (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param frame_id  Coordinate frame of reference for the pose data.
+ * @param child_frame_id  Coordinate frame of reference for the velocity in free space (twist) data.
+ * @param x [m] X Position
+ * @param y [m] Y Position
+ * @param z [m] Z Position
+ * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
+ * @param vx [m/s] X linear speed
+ * @param vy [m/s] Y linear speed
+ * @param vz [m/s] Z linear speed
+ * @param rollspeed [rad/s] Roll angular speed
+ * @param pitchspeed [rad/s] Pitch angular speed
+ * @param yawspeed [rad/s] Yaw angular speed
+ * @param pose_covariance  Pose (states: x, y, z, roll, pitch, yaw) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
+ * @param twist_covariance  Twist (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_odometry_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -153,21 +153,21 @@ static inline uint16_t mavlink_msg_odometry_pack(uint8_t system_id, uint8_t comp
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
- * @param frame_id Coordinate frame of reference for the pose data.
- * @param child_frame_id Coordinate frame of reference for the velocity in free space (twist) data.
- * @param x X Position
- * @param y Y Position
- * @param z Z Position
- * @param q Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
- * @param vx X linear speed
- * @param vy Y linear speed
- * @param vz Z linear speed
- * @param rollspeed Roll angular speed
- * @param pitchspeed Pitch angular speed
- * @param yawspeed Yaw angular speed
- * @param pose_covariance Pose (states: x, y, z, roll, pitch, yaw) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
- * @param twist_covariance Twist (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param frame_id  Coordinate frame of reference for the pose data.
+ * @param child_frame_id  Coordinate frame of reference for the velocity in free space (twist) data.
+ * @param x [m] X Position
+ * @param y [m] Y Position
+ * @param z [m] Z Position
+ * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
+ * @param vx [m/s] X linear speed
+ * @param vy [m/s] Y linear speed
+ * @param vz [m/s] Z linear speed
+ * @param rollspeed [rad/s] Roll angular speed
+ * @param pitchspeed [rad/s] Pitch angular speed
+ * @param yawspeed [rad/s] Yaw angular speed
+ * @param pose_covariance  Pose (states: x, y, z, roll, pitch, yaw) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
+ * @param twist_covariance  Twist (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_odometry_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -247,21 +247,21 @@ static inline uint16_t mavlink_msg_odometry_encode_chan(uint8_t system_id, uint8
  * @brief Send a odometry message
  * @param chan MAVLink channel to send the message
  *
- * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
- * @param frame_id Coordinate frame of reference for the pose data.
- * @param child_frame_id Coordinate frame of reference for the velocity in free space (twist) data.
- * @param x X Position
- * @param y Y Position
- * @param z Z Position
- * @param q Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
- * @param vx X linear speed
- * @param vy Y linear speed
- * @param vz Z linear speed
- * @param rollspeed Roll angular speed
- * @param pitchspeed Pitch angular speed
- * @param yawspeed Yaw angular speed
- * @param pose_covariance Pose (states: x, y, z, roll, pitch, yaw) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
- * @param twist_covariance Twist (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param frame_id  Coordinate frame of reference for the pose data.
+ * @param child_frame_id  Coordinate frame of reference for the velocity in free space (twist) data.
+ * @param x [m] X Position
+ * @param y [m] Y Position
+ * @param z [m] Z Position
+ * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
+ * @param vx [m/s] X linear speed
+ * @param vy [m/s] Y linear speed
+ * @param vz [m/s] Z linear speed
+ * @param rollspeed [rad/s] Roll angular speed
+ * @param pitchspeed [rad/s] Pitch angular speed
+ * @param yawspeed [rad/s] Yaw angular speed
+ * @param pose_covariance  Pose (states: x, y, z, roll, pitch, yaw) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
+ * @param twist_covariance  Twist (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -378,7 +378,7 @@ static inline void mavlink_msg_odometry_send_buf(mavlink_message_t *msgbuf, mavl
 /**
  * @brief Get field time_usec from odometry message
  *
- * @return Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @return [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  */
 static inline uint64_t mavlink_msg_odometry_get_time_usec(const mavlink_message_t* msg)
 {
@@ -388,7 +388,7 @@ static inline uint64_t mavlink_msg_odometry_get_time_usec(const mavlink_message_
 /**
  * @brief Get field frame_id from odometry message
  *
- * @return Coordinate frame of reference for the pose data.
+ * @return  Coordinate frame of reference for the pose data.
  */
 static inline uint8_t mavlink_msg_odometry_get_frame_id(const mavlink_message_t* msg)
 {
@@ -398,7 +398,7 @@ static inline uint8_t mavlink_msg_odometry_get_frame_id(const mavlink_message_t*
 /**
  * @brief Get field child_frame_id from odometry message
  *
- * @return Coordinate frame of reference for the velocity in free space (twist) data.
+ * @return  Coordinate frame of reference for the velocity in free space (twist) data.
  */
 static inline uint8_t mavlink_msg_odometry_get_child_frame_id(const mavlink_message_t* msg)
 {
@@ -408,7 +408,7 @@ static inline uint8_t mavlink_msg_odometry_get_child_frame_id(const mavlink_mess
 /**
  * @brief Get field x from odometry message
  *
- * @return X Position
+ * @return [m] X Position
  */
 static inline float mavlink_msg_odometry_get_x(const mavlink_message_t* msg)
 {
@@ -418,7 +418,7 @@ static inline float mavlink_msg_odometry_get_x(const mavlink_message_t* msg)
 /**
  * @brief Get field y from odometry message
  *
- * @return Y Position
+ * @return [m] Y Position
  */
 static inline float mavlink_msg_odometry_get_y(const mavlink_message_t* msg)
 {
@@ -428,7 +428,7 @@ static inline float mavlink_msg_odometry_get_y(const mavlink_message_t* msg)
 /**
  * @brief Get field z from odometry message
  *
- * @return Z Position
+ * @return [m] Z Position
  */
 static inline float mavlink_msg_odometry_get_z(const mavlink_message_t* msg)
 {
@@ -438,7 +438,7 @@ static inline float mavlink_msg_odometry_get_z(const mavlink_message_t* msg)
 /**
  * @brief Get field q from odometry message
  *
- * @return Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
+ * @return  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
  */
 static inline uint16_t mavlink_msg_odometry_get_q(const mavlink_message_t* msg, float *q)
 {
@@ -448,7 +448,7 @@ static inline uint16_t mavlink_msg_odometry_get_q(const mavlink_message_t* msg, 
 /**
  * @brief Get field vx from odometry message
  *
- * @return X linear speed
+ * @return [m/s] X linear speed
  */
 static inline float mavlink_msg_odometry_get_vx(const mavlink_message_t* msg)
 {
@@ -458,7 +458,7 @@ static inline float mavlink_msg_odometry_get_vx(const mavlink_message_t* msg)
 /**
  * @brief Get field vy from odometry message
  *
- * @return Y linear speed
+ * @return [m/s] Y linear speed
  */
 static inline float mavlink_msg_odometry_get_vy(const mavlink_message_t* msg)
 {
@@ -468,7 +468,7 @@ static inline float mavlink_msg_odometry_get_vy(const mavlink_message_t* msg)
 /**
  * @brief Get field vz from odometry message
  *
- * @return Z linear speed
+ * @return [m/s] Z linear speed
  */
 static inline float mavlink_msg_odometry_get_vz(const mavlink_message_t* msg)
 {
@@ -478,7 +478,7 @@ static inline float mavlink_msg_odometry_get_vz(const mavlink_message_t* msg)
 /**
  * @brief Get field rollspeed from odometry message
  *
- * @return Roll angular speed
+ * @return [rad/s] Roll angular speed
  */
 static inline float mavlink_msg_odometry_get_rollspeed(const mavlink_message_t* msg)
 {
@@ -488,7 +488,7 @@ static inline float mavlink_msg_odometry_get_rollspeed(const mavlink_message_t* 
 /**
  * @brief Get field pitchspeed from odometry message
  *
- * @return Pitch angular speed
+ * @return [rad/s] Pitch angular speed
  */
 static inline float mavlink_msg_odometry_get_pitchspeed(const mavlink_message_t* msg)
 {
@@ -498,7 +498,7 @@ static inline float mavlink_msg_odometry_get_pitchspeed(const mavlink_message_t*
 /**
  * @brief Get field yawspeed from odometry message
  *
- * @return Yaw angular speed
+ * @return [rad/s] Yaw angular speed
  */
 static inline float mavlink_msg_odometry_get_yawspeed(const mavlink_message_t* msg)
 {
@@ -508,7 +508,7 @@ static inline float mavlink_msg_odometry_get_yawspeed(const mavlink_message_t* m
 /**
  * @brief Get field pose_covariance from odometry message
  *
- * @return Pose (states: x, y, z, roll, pitch, yaw) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
+ * @return  Pose (states: x, y, z, roll, pitch, yaw) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
  */
 static inline uint16_t mavlink_msg_odometry_get_pose_covariance(const mavlink_message_t* msg, float *pose_covariance)
 {
@@ -518,7 +518,7 @@ static inline uint16_t mavlink_msg_odometry_get_pose_covariance(const mavlink_me
 /**
  * @brief Get field twist_covariance from odometry message
  *
- * @return Twist (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
+ * @return  Twist (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
  */
 static inline uint16_t mavlink_msg_odometry_get_twist_covariance(const mavlink_message_t* msg, float *twist_covariance)
 {

@@ -5,18 +5,18 @@
 
 MAVPACKED(
 typedef struct __mavlink_sens_power_board_t {
- uint64_t timestamp; /*< Timestamp*/
- float pwr_brd_system_volt; /*< Power board system voltage*/
- float pwr_brd_servo_volt; /*< Power board servo voltage*/
- float pwr_brd_digital_volt; /*< Power board digital voltage*/
- float pwr_brd_mot_l_amp; /*< Power board left motor current sensor*/
- float pwr_brd_mot_r_amp; /*< Power board right motor current sensor*/
- float pwr_brd_analog_amp; /*< Power board analog current sensor*/
- float pwr_brd_digital_amp; /*< Power board digital current sensor*/
- float pwr_brd_ext_amp; /*< Power board extension current sensor*/
- float pwr_brd_aux_amp; /*< Power board aux current sensor*/
- uint8_t pwr_brd_status; /*< Power board status register*/
- uint8_t pwr_brd_led_status; /*< Power board leds status*/
+ uint64_t timestamp; /*< [us] Timestamp*/
+ float pwr_brd_system_volt; /*< [V] Power board system voltage*/
+ float pwr_brd_servo_volt; /*< [V] Power board servo voltage*/
+ float pwr_brd_digital_volt; /*< [V] Power board digital voltage*/
+ float pwr_brd_mot_l_amp; /*< [A] Power board left motor current sensor*/
+ float pwr_brd_mot_r_amp; /*< [A] Power board right motor current sensor*/
+ float pwr_brd_analog_amp; /*< [A] Power board analog current sensor*/
+ float pwr_brd_digital_amp; /*< [A] Power board digital current sensor*/
+ float pwr_brd_ext_amp; /*< [A] Power board extension current sensor*/
+ float pwr_brd_aux_amp; /*< [A] Power board aux current sensor*/
+ uint8_t pwr_brd_status; /*<  Power board status register*/
+ uint8_t pwr_brd_led_status; /*<  Power board leds status*/
 }) mavlink_sens_power_board_t;
 
 #define MAVLINK_MSG_ID_SENS_POWER_BOARD_LEN 46
@@ -74,18 +74,18 @@ typedef struct __mavlink_sens_power_board_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param timestamp Timestamp
- * @param pwr_brd_status Power board status register
- * @param pwr_brd_led_status Power board leds status
- * @param pwr_brd_system_volt Power board system voltage
- * @param pwr_brd_servo_volt Power board servo voltage
- * @param pwr_brd_digital_volt Power board digital voltage
- * @param pwr_brd_mot_l_amp Power board left motor current sensor
- * @param pwr_brd_mot_r_amp Power board right motor current sensor
- * @param pwr_brd_analog_amp Power board analog current sensor
- * @param pwr_brd_digital_amp Power board digital current sensor
- * @param pwr_brd_ext_amp Power board extension current sensor
- * @param pwr_brd_aux_amp Power board aux current sensor
+ * @param timestamp [us] Timestamp
+ * @param pwr_brd_status  Power board status register
+ * @param pwr_brd_led_status  Power board leds status
+ * @param pwr_brd_system_volt [V] Power board system voltage
+ * @param pwr_brd_servo_volt [V] Power board servo voltage
+ * @param pwr_brd_digital_volt [V] Power board digital voltage
+ * @param pwr_brd_mot_l_amp [A] Power board left motor current sensor
+ * @param pwr_brd_mot_r_amp [A] Power board right motor current sensor
+ * @param pwr_brd_analog_amp [A] Power board analog current sensor
+ * @param pwr_brd_digital_amp [A] Power board digital current sensor
+ * @param pwr_brd_ext_amp [A] Power board extension current sensor
+ * @param pwr_brd_aux_amp [A] Power board aux current sensor
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_sens_power_board_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -135,18 +135,18 @@ static inline uint16_t mavlink_msg_sens_power_board_pack(uint8_t system_id, uint
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param timestamp Timestamp
- * @param pwr_brd_status Power board status register
- * @param pwr_brd_led_status Power board leds status
- * @param pwr_brd_system_volt Power board system voltage
- * @param pwr_brd_servo_volt Power board servo voltage
- * @param pwr_brd_digital_volt Power board digital voltage
- * @param pwr_brd_mot_l_amp Power board left motor current sensor
- * @param pwr_brd_mot_r_amp Power board right motor current sensor
- * @param pwr_brd_analog_amp Power board analog current sensor
- * @param pwr_brd_digital_amp Power board digital current sensor
- * @param pwr_brd_ext_amp Power board extension current sensor
- * @param pwr_brd_aux_amp Power board aux current sensor
+ * @param timestamp [us] Timestamp
+ * @param pwr_brd_status  Power board status register
+ * @param pwr_brd_led_status  Power board leds status
+ * @param pwr_brd_system_volt [V] Power board system voltage
+ * @param pwr_brd_servo_volt [V] Power board servo voltage
+ * @param pwr_brd_digital_volt [V] Power board digital voltage
+ * @param pwr_brd_mot_l_amp [A] Power board left motor current sensor
+ * @param pwr_brd_mot_r_amp [A] Power board right motor current sensor
+ * @param pwr_brd_analog_amp [A] Power board analog current sensor
+ * @param pwr_brd_digital_amp [A] Power board digital current sensor
+ * @param pwr_brd_ext_amp [A] Power board extension current sensor
+ * @param pwr_brd_aux_amp [A] Power board aux current sensor
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_sens_power_board_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -222,18 +222,18 @@ static inline uint16_t mavlink_msg_sens_power_board_encode_chan(uint8_t system_i
  * @brief Send a sens_power_board message
  * @param chan MAVLink channel to send the message
  *
- * @param timestamp Timestamp
- * @param pwr_brd_status Power board status register
- * @param pwr_brd_led_status Power board leds status
- * @param pwr_brd_system_volt Power board system voltage
- * @param pwr_brd_servo_volt Power board servo voltage
- * @param pwr_brd_digital_volt Power board digital voltage
- * @param pwr_brd_mot_l_amp Power board left motor current sensor
- * @param pwr_brd_mot_r_amp Power board right motor current sensor
- * @param pwr_brd_analog_amp Power board analog current sensor
- * @param pwr_brd_digital_amp Power board digital current sensor
- * @param pwr_brd_ext_amp Power board extension current sensor
- * @param pwr_brd_aux_amp Power board aux current sensor
+ * @param timestamp [us] Timestamp
+ * @param pwr_brd_status  Power board status register
+ * @param pwr_brd_led_status  Power board leds status
+ * @param pwr_brd_system_volt [V] Power board system voltage
+ * @param pwr_brd_servo_volt [V] Power board servo voltage
+ * @param pwr_brd_digital_volt [V] Power board digital voltage
+ * @param pwr_brd_mot_l_amp [A] Power board left motor current sensor
+ * @param pwr_brd_mot_r_amp [A] Power board right motor current sensor
+ * @param pwr_brd_analog_amp [A] Power board analog current sensor
+ * @param pwr_brd_digital_amp [A] Power board digital current sensor
+ * @param pwr_brd_ext_amp [A] Power board extension current sensor
+ * @param pwr_brd_aux_amp [A] Power board aux current sensor
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -342,7 +342,7 @@ static inline void mavlink_msg_sens_power_board_send_buf(mavlink_message_t *msgb
 /**
  * @brief Get field timestamp from sens_power_board message
  *
- * @return Timestamp
+ * @return [us] Timestamp
  */
 static inline uint64_t mavlink_msg_sens_power_board_get_timestamp(const mavlink_message_t* msg)
 {
@@ -352,7 +352,7 @@ static inline uint64_t mavlink_msg_sens_power_board_get_timestamp(const mavlink_
 /**
  * @brief Get field pwr_brd_status from sens_power_board message
  *
- * @return Power board status register
+ * @return  Power board status register
  */
 static inline uint8_t mavlink_msg_sens_power_board_get_pwr_brd_status(const mavlink_message_t* msg)
 {
@@ -362,7 +362,7 @@ static inline uint8_t mavlink_msg_sens_power_board_get_pwr_brd_status(const mavl
 /**
  * @brief Get field pwr_brd_led_status from sens_power_board message
  *
- * @return Power board leds status
+ * @return  Power board leds status
  */
 static inline uint8_t mavlink_msg_sens_power_board_get_pwr_brd_led_status(const mavlink_message_t* msg)
 {
@@ -372,7 +372,7 @@ static inline uint8_t mavlink_msg_sens_power_board_get_pwr_brd_led_status(const 
 /**
  * @brief Get field pwr_brd_system_volt from sens_power_board message
  *
- * @return Power board system voltage
+ * @return [V] Power board system voltage
  */
 static inline float mavlink_msg_sens_power_board_get_pwr_brd_system_volt(const mavlink_message_t* msg)
 {
@@ -382,7 +382,7 @@ static inline float mavlink_msg_sens_power_board_get_pwr_brd_system_volt(const m
 /**
  * @brief Get field pwr_brd_servo_volt from sens_power_board message
  *
- * @return Power board servo voltage
+ * @return [V] Power board servo voltage
  */
 static inline float mavlink_msg_sens_power_board_get_pwr_brd_servo_volt(const mavlink_message_t* msg)
 {
@@ -392,7 +392,7 @@ static inline float mavlink_msg_sens_power_board_get_pwr_brd_servo_volt(const ma
 /**
  * @brief Get field pwr_brd_digital_volt from sens_power_board message
  *
- * @return Power board digital voltage
+ * @return [V] Power board digital voltage
  */
 static inline float mavlink_msg_sens_power_board_get_pwr_brd_digital_volt(const mavlink_message_t* msg)
 {
@@ -402,7 +402,7 @@ static inline float mavlink_msg_sens_power_board_get_pwr_brd_digital_volt(const 
 /**
  * @brief Get field pwr_brd_mot_l_amp from sens_power_board message
  *
- * @return Power board left motor current sensor
+ * @return [A] Power board left motor current sensor
  */
 static inline float mavlink_msg_sens_power_board_get_pwr_brd_mot_l_amp(const mavlink_message_t* msg)
 {
@@ -412,7 +412,7 @@ static inline float mavlink_msg_sens_power_board_get_pwr_brd_mot_l_amp(const mav
 /**
  * @brief Get field pwr_brd_mot_r_amp from sens_power_board message
  *
- * @return Power board right motor current sensor
+ * @return [A] Power board right motor current sensor
  */
 static inline float mavlink_msg_sens_power_board_get_pwr_brd_mot_r_amp(const mavlink_message_t* msg)
 {
@@ -422,7 +422,7 @@ static inline float mavlink_msg_sens_power_board_get_pwr_brd_mot_r_amp(const mav
 /**
  * @brief Get field pwr_brd_analog_amp from sens_power_board message
  *
- * @return Power board analog current sensor
+ * @return [A] Power board analog current sensor
  */
 static inline float mavlink_msg_sens_power_board_get_pwr_brd_analog_amp(const mavlink_message_t* msg)
 {
@@ -432,7 +432,7 @@ static inline float mavlink_msg_sens_power_board_get_pwr_brd_analog_amp(const ma
 /**
  * @brief Get field pwr_brd_digital_amp from sens_power_board message
  *
- * @return Power board digital current sensor
+ * @return [A] Power board digital current sensor
  */
 static inline float mavlink_msg_sens_power_board_get_pwr_brd_digital_amp(const mavlink_message_t* msg)
 {
@@ -442,7 +442,7 @@ static inline float mavlink_msg_sens_power_board_get_pwr_brd_digital_amp(const m
 /**
  * @brief Get field pwr_brd_ext_amp from sens_power_board message
  *
- * @return Power board extension current sensor
+ * @return [A] Power board extension current sensor
  */
 static inline float mavlink_msg_sens_power_board_get_pwr_brd_ext_amp(const mavlink_message_t* msg)
 {
@@ -452,7 +452,7 @@ static inline float mavlink_msg_sens_power_board_get_pwr_brd_ext_amp(const mavli
 /**
  * @brief Get field pwr_brd_aux_amp from sens_power_board message
  *
- * @return Power board aux current sensor
+ * @return [A] Power board aux current sensor
  */
 static inline float mavlink_msg_sens_power_board_get_pwr_brd_aux_amp(const mavlink_message_t* msg)
 {

@@ -5,33 +5,33 @@
 
 MAVPACKED(
 typedef struct __mavlink_serial_udb_extra_f2_a_t {
- uint32_t sue_time; /*< Serial UDB Extra Time*/
- int32_t sue_latitude; /*< Serial UDB Extra Latitude*/
- int32_t sue_longitude; /*< Serial UDB Extra Longitude*/
- int32_t sue_altitude; /*< Serial UDB Extra Altitude*/
- uint16_t sue_waypoint_index; /*< Serial UDB Extra Waypoint Index*/
- int16_t sue_rmat0; /*< Serial UDB Extra Rmat 0*/
- int16_t sue_rmat1; /*< Serial UDB Extra Rmat 1*/
- int16_t sue_rmat2; /*< Serial UDB Extra Rmat 2*/
- int16_t sue_rmat3; /*< Serial UDB Extra Rmat 3*/
- int16_t sue_rmat4; /*< Serial UDB Extra Rmat 4*/
- int16_t sue_rmat5; /*< Serial UDB Extra Rmat 5*/
- int16_t sue_rmat6; /*< Serial UDB Extra Rmat 6*/
- int16_t sue_rmat7; /*< Serial UDB Extra Rmat 7*/
- int16_t sue_rmat8; /*< Serial UDB Extra Rmat 8*/
- uint16_t sue_cog; /*< Serial UDB Extra GPS Course Over Ground*/
- int16_t sue_sog; /*< Serial UDB Extra Speed Over Ground*/
- uint16_t sue_cpu_load; /*< Serial UDB Extra CPU Load*/
- uint16_t sue_air_speed_3DIMU; /*< Serial UDB Extra 3D IMU Air Speed*/
- int16_t sue_estimated_wind_0; /*< Serial UDB Extra Estimated Wind 0*/
- int16_t sue_estimated_wind_1; /*< Serial UDB Extra Estimated Wind 1*/
- int16_t sue_estimated_wind_2; /*< Serial UDB Extra Estimated Wind 2*/
- int16_t sue_magFieldEarth0; /*< Serial UDB Extra Magnetic Field Earth 0 */
- int16_t sue_magFieldEarth1; /*< Serial UDB Extra Magnetic Field Earth 1 */
- int16_t sue_magFieldEarth2; /*< Serial UDB Extra Magnetic Field Earth 2 */
- int16_t sue_svs; /*< Serial UDB Extra Number of Sattelites in View*/
- int16_t sue_hdop; /*< Serial UDB Extra GPS Horizontal Dilution of Precision*/
- uint8_t sue_status; /*< Serial UDB Extra Status*/
+ uint32_t sue_time; /*<  Serial UDB Extra Time*/
+ int32_t sue_latitude; /*<  Serial UDB Extra Latitude*/
+ int32_t sue_longitude; /*<  Serial UDB Extra Longitude*/
+ int32_t sue_altitude; /*<  Serial UDB Extra Altitude*/
+ uint16_t sue_waypoint_index; /*<  Serial UDB Extra Waypoint Index*/
+ int16_t sue_rmat0; /*<  Serial UDB Extra Rmat 0*/
+ int16_t sue_rmat1; /*<  Serial UDB Extra Rmat 1*/
+ int16_t sue_rmat2; /*<  Serial UDB Extra Rmat 2*/
+ int16_t sue_rmat3; /*<  Serial UDB Extra Rmat 3*/
+ int16_t sue_rmat4; /*<  Serial UDB Extra Rmat 4*/
+ int16_t sue_rmat5; /*<  Serial UDB Extra Rmat 5*/
+ int16_t sue_rmat6; /*<  Serial UDB Extra Rmat 6*/
+ int16_t sue_rmat7; /*<  Serial UDB Extra Rmat 7*/
+ int16_t sue_rmat8; /*<  Serial UDB Extra Rmat 8*/
+ uint16_t sue_cog; /*<  Serial UDB Extra GPS Course Over Ground*/
+ int16_t sue_sog; /*<  Serial UDB Extra Speed Over Ground*/
+ uint16_t sue_cpu_load; /*<  Serial UDB Extra CPU Load*/
+ uint16_t sue_air_speed_3DIMU; /*<  Serial UDB Extra 3D IMU Air Speed*/
+ int16_t sue_estimated_wind_0; /*<  Serial UDB Extra Estimated Wind 0*/
+ int16_t sue_estimated_wind_1; /*<  Serial UDB Extra Estimated Wind 1*/
+ int16_t sue_estimated_wind_2; /*<  Serial UDB Extra Estimated Wind 2*/
+ int16_t sue_magFieldEarth0; /*<  Serial UDB Extra Magnetic Field Earth 0 */
+ int16_t sue_magFieldEarth1; /*<  Serial UDB Extra Magnetic Field Earth 1 */
+ int16_t sue_magFieldEarth2; /*<  Serial UDB Extra Magnetic Field Earth 2 */
+ int16_t sue_svs; /*<  Serial UDB Extra Number of Sattelites in View*/
+ int16_t sue_hdop; /*<  Serial UDB Extra GPS Horizontal Dilution of Precision*/
+ uint8_t sue_status; /*<  Serial UDB Extra Status*/
 }) mavlink_serial_udb_extra_f2_a_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_LEN 61
@@ -119,33 +119,33 @@ typedef struct __mavlink_serial_udb_extra_f2_a_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param sue_time Serial UDB Extra Time
- * @param sue_status Serial UDB Extra Status
- * @param sue_latitude Serial UDB Extra Latitude
- * @param sue_longitude Serial UDB Extra Longitude
- * @param sue_altitude Serial UDB Extra Altitude
- * @param sue_waypoint_index Serial UDB Extra Waypoint Index
- * @param sue_rmat0 Serial UDB Extra Rmat 0
- * @param sue_rmat1 Serial UDB Extra Rmat 1
- * @param sue_rmat2 Serial UDB Extra Rmat 2
- * @param sue_rmat3 Serial UDB Extra Rmat 3
- * @param sue_rmat4 Serial UDB Extra Rmat 4
- * @param sue_rmat5 Serial UDB Extra Rmat 5
- * @param sue_rmat6 Serial UDB Extra Rmat 6
- * @param sue_rmat7 Serial UDB Extra Rmat 7
- * @param sue_rmat8 Serial UDB Extra Rmat 8
- * @param sue_cog Serial UDB Extra GPS Course Over Ground
- * @param sue_sog Serial UDB Extra Speed Over Ground
- * @param sue_cpu_load Serial UDB Extra CPU Load
- * @param sue_air_speed_3DIMU Serial UDB Extra 3D IMU Air Speed
- * @param sue_estimated_wind_0 Serial UDB Extra Estimated Wind 0
- * @param sue_estimated_wind_1 Serial UDB Extra Estimated Wind 1
- * @param sue_estimated_wind_2 Serial UDB Extra Estimated Wind 2
- * @param sue_magFieldEarth0 Serial UDB Extra Magnetic Field Earth 0 
- * @param sue_magFieldEarth1 Serial UDB Extra Magnetic Field Earth 1 
- * @param sue_magFieldEarth2 Serial UDB Extra Magnetic Field Earth 2 
- * @param sue_svs Serial UDB Extra Number of Sattelites in View
- * @param sue_hdop Serial UDB Extra GPS Horizontal Dilution of Precision
+ * @param sue_time  Serial UDB Extra Time
+ * @param sue_status  Serial UDB Extra Status
+ * @param sue_latitude  Serial UDB Extra Latitude
+ * @param sue_longitude  Serial UDB Extra Longitude
+ * @param sue_altitude  Serial UDB Extra Altitude
+ * @param sue_waypoint_index  Serial UDB Extra Waypoint Index
+ * @param sue_rmat0  Serial UDB Extra Rmat 0
+ * @param sue_rmat1  Serial UDB Extra Rmat 1
+ * @param sue_rmat2  Serial UDB Extra Rmat 2
+ * @param sue_rmat3  Serial UDB Extra Rmat 3
+ * @param sue_rmat4  Serial UDB Extra Rmat 4
+ * @param sue_rmat5  Serial UDB Extra Rmat 5
+ * @param sue_rmat6  Serial UDB Extra Rmat 6
+ * @param sue_rmat7  Serial UDB Extra Rmat 7
+ * @param sue_rmat8  Serial UDB Extra Rmat 8
+ * @param sue_cog  Serial UDB Extra GPS Course Over Ground
+ * @param sue_sog  Serial UDB Extra Speed Over Ground
+ * @param sue_cpu_load  Serial UDB Extra CPU Load
+ * @param sue_air_speed_3DIMU  Serial UDB Extra 3D IMU Air Speed
+ * @param sue_estimated_wind_0  Serial UDB Extra Estimated Wind 0
+ * @param sue_estimated_wind_1  Serial UDB Extra Estimated Wind 1
+ * @param sue_estimated_wind_2  Serial UDB Extra Estimated Wind 2
+ * @param sue_magFieldEarth0  Serial UDB Extra Magnetic Field Earth 0 
+ * @param sue_magFieldEarth1  Serial UDB Extra Magnetic Field Earth 1 
+ * @param sue_magFieldEarth2  Serial UDB Extra Magnetic Field Earth 2 
+ * @param sue_svs  Serial UDB Extra Number of Sattelites in View
+ * @param sue_hdop  Serial UDB Extra GPS Horizontal Dilution of Precision
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -225,33 +225,33 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_pack(uint8_t system_id,
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param sue_time Serial UDB Extra Time
- * @param sue_status Serial UDB Extra Status
- * @param sue_latitude Serial UDB Extra Latitude
- * @param sue_longitude Serial UDB Extra Longitude
- * @param sue_altitude Serial UDB Extra Altitude
- * @param sue_waypoint_index Serial UDB Extra Waypoint Index
- * @param sue_rmat0 Serial UDB Extra Rmat 0
- * @param sue_rmat1 Serial UDB Extra Rmat 1
- * @param sue_rmat2 Serial UDB Extra Rmat 2
- * @param sue_rmat3 Serial UDB Extra Rmat 3
- * @param sue_rmat4 Serial UDB Extra Rmat 4
- * @param sue_rmat5 Serial UDB Extra Rmat 5
- * @param sue_rmat6 Serial UDB Extra Rmat 6
- * @param sue_rmat7 Serial UDB Extra Rmat 7
- * @param sue_rmat8 Serial UDB Extra Rmat 8
- * @param sue_cog Serial UDB Extra GPS Course Over Ground
- * @param sue_sog Serial UDB Extra Speed Over Ground
- * @param sue_cpu_load Serial UDB Extra CPU Load
- * @param sue_air_speed_3DIMU Serial UDB Extra 3D IMU Air Speed
- * @param sue_estimated_wind_0 Serial UDB Extra Estimated Wind 0
- * @param sue_estimated_wind_1 Serial UDB Extra Estimated Wind 1
- * @param sue_estimated_wind_2 Serial UDB Extra Estimated Wind 2
- * @param sue_magFieldEarth0 Serial UDB Extra Magnetic Field Earth 0 
- * @param sue_magFieldEarth1 Serial UDB Extra Magnetic Field Earth 1 
- * @param sue_magFieldEarth2 Serial UDB Extra Magnetic Field Earth 2 
- * @param sue_svs Serial UDB Extra Number of Sattelites in View
- * @param sue_hdop Serial UDB Extra GPS Horizontal Dilution of Precision
+ * @param sue_time  Serial UDB Extra Time
+ * @param sue_status  Serial UDB Extra Status
+ * @param sue_latitude  Serial UDB Extra Latitude
+ * @param sue_longitude  Serial UDB Extra Longitude
+ * @param sue_altitude  Serial UDB Extra Altitude
+ * @param sue_waypoint_index  Serial UDB Extra Waypoint Index
+ * @param sue_rmat0  Serial UDB Extra Rmat 0
+ * @param sue_rmat1  Serial UDB Extra Rmat 1
+ * @param sue_rmat2  Serial UDB Extra Rmat 2
+ * @param sue_rmat3  Serial UDB Extra Rmat 3
+ * @param sue_rmat4  Serial UDB Extra Rmat 4
+ * @param sue_rmat5  Serial UDB Extra Rmat 5
+ * @param sue_rmat6  Serial UDB Extra Rmat 6
+ * @param sue_rmat7  Serial UDB Extra Rmat 7
+ * @param sue_rmat8  Serial UDB Extra Rmat 8
+ * @param sue_cog  Serial UDB Extra GPS Course Over Ground
+ * @param sue_sog  Serial UDB Extra Speed Over Ground
+ * @param sue_cpu_load  Serial UDB Extra CPU Load
+ * @param sue_air_speed_3DIMU  Serial UDB Extra 3D IMU Air Speed
+ * @param sue_estimated_wind_0  Serial UDB Extra Estimated Wind 0
+ * @param sue_estimated_wind_1  Serial UDB Extra Estimated Wind 1
+ * @param sue_estimated_wind_2  Serial UDB Extra Estimated Wind 2
+ * @param sue_magFieldEarth0  Serial UDB Extra Magnetic Field Earth 0 
+ * @param sue_magFieldEarth1  Serial UDB Extra Magnetic Field Earth 1 
+ * @param sue_magFieldEarth2  Serial UDB Extra Magnetic Field Earth 2 
+ * @param sue_svs  Serial UDB Extra Number of Sattelites in View
+ * @param sue_hdop  Serial UDB Extra GPS Horizontal Dilution of Precision
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -357,33 +357,33 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_encode_chan(uint8_t sys
  * @brief Send a serial_udb_extra_f2_a message
  * @param chan MAVLink channel to send the message
  *
- * @param sue_time Serial UDB Extra Time
- * @param sue_status Serial UDB Extra Status
- * @param sue_latitude Serial UDB Extra Latitude
- * @param sue_longitude Serial UDB Extra Longitude
- * @param sue_altitude Serial UDB Extra Altitude
- * @param sue_waypoint_index Serial UDB Extra Waypoint Index
- * @param sue_rmat0 Serial UDB Extra Rmat 0
- * @param sue_rmat1 Serial UDB Extra Rmat 1
- * @param sue_rmat2 Serial UDB Extra Rmat 2
- * @param sue_rmat3 Serial UDB Extra Rmat 3
- * @param sue_rmat4 Serial UDB Extra Rmat 4
- * @param sue_rmat5 Serial UDB Extra Rmat 5
- * @param sue_rmat6 Serial UDB Extra Rmat 6
- * @param sue_rmat7 Serial UDB Extra Rmat 7
- * @param sue_rmat8 Serial UDB Extra Rmat 8
- * @param sue_cog Serial UDB Extra GPS Course Over Ground
- * @param sue_sog Serial UDB Extra Speed Over Ground
- * @param sue_cpu_load Serial UDB Extra CPU Load
- * @param sue_air_speed_3DIMU Serial UDB Extra 3D IMU Air Speed
- * @param sue_estimated_wind_0 Serial UDB Extra Estimated Wind 0
- * @param sue_estimated_wind_1 Serial UDB Extra Estimated Wind 1
- * @param sue_estimated_wind_2 Serial UDB Extra Estimated Wind 2
- * @param sue_magFieldEarth0 Serial UDB Extra Magnetic Field Earth 0 
- * @param sue_magFieldEarth1 Serial UDB Extra Magnetic Field Earth 1 
- * @param sue_magFieldEarth2 Serial UDB Extra Magnetic Field Earth 2 
- * @param sue_svs Serial UDB Extra Number of Sattelites in View
- * @param sue_hdop Serial UDB Extra GPS Horizontal Dilution of Precision
+ * @param sue_time  Serial UDB Extra Time
+ * @param sue_status  Serial UDB Extra Status
+ * @param sue_latitude  Serial UDB Extra Latitude
+ * @param sue_longitude  Serial UDB Extra Longitude
+ * @param sue_altitude  Serial UDB Extra Altitude
+ * @param sue_waypoint_index  Serial UDB Extra Waypoint Index
+ * @param sue_rmat0  Serial UDB Extra Rmat 0
+ * @param sue_rmat1  Serial UDB Extra Rmat 1
+ * @param sue_rmat2  Serial UDB Extra Rmat 2
+ * @param sue_rmat3  Serial UDB Extra Rmat 3
+ * @param sue_rmat4  Serial UDB Extra Rmat 4
+ * @param sue_rmat5  Serial UDB Extra Rmat 5
+ * @param sue_rmat6  Serial UDB Extra Rmat 6
+ * @param sue_rmat7  Serial UDB Extra Rmat 7
+ * @param sue_rmat8  Serial UDB Extra Rmat 8
+ * @param sue_cog  Serial UDB Extra GPS Course Over Ground
+ * @param sue_sog  Serial UDB Extra Speed Over Ground
+ * @param sue_cpu_load  Serial UDB Extra CPU Load
+ * @param sue_air_speed_3DIMU  Serial UDB Extra 3D IMU Air Speed
+ * @param sue_estimated_wind_0  Serial UDB Extra Estimated Wind 0
+ * @param sue_estimated_wind_1  Serial UDB Extra Estimated Wind 1
+ * @param sue_estimated_wind_2  Serial UDB Extra Estimated Wind 2
+ * @param sue_magFieldEarth0  Serial UDB Extra Magnetic Field Earth 0 
+ * @param sue_magFieldEarth1  Serial UDB Extra Magnetic Field Earth 1 
+ * @param sue_magFieldEarth2  Serial UDB Extra Magnetic Field Earth 2 
+ * @param sue_svs  Serial UDB Extra Number of Sattelites in View
+ * @param sue_hdop  Serial UDB Extra GPS Horizontal Dilution of Precision
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -552,7 +552,7 @@ static inline void mavlink_msg_serial_udb_extra_f2_a_send_buf(mavlink_message_t 
 /**
  * @brief Get field sue_time from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Time
+ * @return  Serial UDB Extra Time
  */
 static inline uint32_t mavlink_msg_serial_udb_extra_f2_a_get_sue_time(const mavlink_message_t* msg)
 {
@@ -562,7 +562,7 @@ static inline uint32_t mavlink_msg_serial_udb_extra_f2_a_get_sue_time(const mavl
 /**
  * @brief Get field sue_status from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Status
+ * @return  Serial UDB Extra Status
  */
 static inline uint8_t mavlink_msg_serial_udb_extra_f2_a_get_sue_status(const mavlink_message_t* msg)
 {
@@ -572,7 +572,7 @@ static inline uint8_t mavlink_msg_serial_udb_extra_f2_a_get_sue_status(const mav
 /**
  * @brief Get field sue_latitude from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Latitude
+ * @return  Serial UDB Extra Latitude
  */
 static inline int32_t mavlink_msg_serial_udb_extra_f2_a_get_sue_latitude(const mavlink_message_t* msg)
 {
@@ -582,7 +582,7 @@ static inline int32_t mavlink_msg_serial_udb_extra_f2_a_get_sue_latitude(const m
 /**
  * @brief Get field sue_longitude from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Longitude
+ * @return  Serial UDB Extra Longitude
  */
 static inline int32_t mavlink_msg_serial_udb_extra_f2_a_get_sue_longitude(const mavlink_message_t* msg)
 {
@@ -592,7 +592,7 @@ static inline int32_t mavlink_msg_serial_udb_extra_f2_a_get_sue_longitude(const 
 /**
  * @brief Get field sue_altitude from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Altitude
+ * @return  Serial UDB Extra Altitude
  */
 static inline int32_t mavlink_msg_serial_udb_extra_f2_a_get_sue_altitude(const mavlink_message_t* msg)
 {
@@ -602,7 +602,7 @@ static inline int32_t mavlink_msg_serial_udb_extra_f2_a_get_sue_altitude(const m
 /**
  * @brief Get field sue_waypoint_index from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Waypoint Index
+ * @return  Serial UDB Extra Waypoint Index
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_waypoint_index(const mavlink_message_t* msg)
 {
@@ -612,7 +612,7 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_waypoint_index(
 /**
  * @brief Get field sue_rmat0 from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Rmat 0
+ * @return  Serial UDB Extra Rmat 0
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_rmat0(const mavlink_message_t* msg)
 {
@@ -622,7 +622,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_rmat0(const mavl
 /**
  * @brief Get field sue_rmat1 from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Rmat 1
+ * @return  Serial UDB Extra Rmat 1
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_rmat1(const mavlink_message_t* msg)
 {
@@ -632,7 +632,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_rmat1(const mavl
 /**
  * @brief Get field sue_rmat2 from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Rmat 2
+ * @return  Serial UDB Extra Rmat 2
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_rmat2(const mavlink_message_t* msg)
 {
@@ -642,7 +642,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_rmat2(const mavl
 /**
  * @brief Get field sue_rmat3 from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Rmat 3
+ * @return  Serial UDB Extra Rmat 3
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_rmat3(const mavlink_message_t* msg)
 {
@@ -652,7 +652,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_rmat3(const mavl
 /**
  * @brief Get field sue_rmat4 from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Rmat 4
+ * @return  Serial UDB Extra Rmat 4
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_rmat4(const mavlink_message_t* msg)
 {
@@ -662,7 +662,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_rmat4(const mavl
 /**
  * @brief Get field sue_rmat5 from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Rmat 5
+ * @return  Serial UDB Extra Rmat 5
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_rmat5(const mavlink_message_t* msg)
 {
@@ -672,7 +672,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_rmat5(const mavl
 /**
  * @brief Get field sue_rmat6 from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Rmat 6
+ * @return  Serial UDB Extra Rmat 6
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_rmat6(const mavlink_message_t* msg)
 {
@@ -682,7 +682,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_rmat6(const mavl
 /**
  * @brief Get field sue_rmat7 from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Rmat 7
+ * @return  Serial UDB Extra Rmat 7
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_rmat7(const mavlink_message_t* msg)
 {
@@ -692,7 +692,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_rmat7(const mavl
 /**
  * @brief Get field sue_rmat8 from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Rmat 8
+ * @return  Serial UDB Extra Rmat 8
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_rmat8(const mavlink_message_t* msg)
 {
@@ -702,7 +702,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_rmat8(const mavl
 /**
  * @brief Get field sue_cog from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra GPS Course Over Ground
+ * @return  Serial UDB Extra GPS Course Over Ground
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_cog(const mavlink_message_t* msg)
 {
@@ -712,7 +712,7 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_cog(const mavli
 /**
  * @brief Get field sue_sog from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Speed Over Ground
+ * @return  Serial UDB Extra Speed Over Ground
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_sog(const mavlink_message_t* msg)
 {
@@ -722,7 +722,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_sog(const mavlin
 /**
  * @brief Get field sue_cpu_load from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra CPU Load
+ * @return  Serial UDB Extra CPU Load
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_cpu_load(const mavlink_message_t* msg)
 {
@@ -732,7 +732,7 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_cpu_load(const 
 /**
  * @brief Get field sue_air_speed_3DIMU from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra 3D IMU Air Speed
+ * @return  Serial UDB Extra 3D IMU Air Speed
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_air_speed_3DIMU(const mavlink_message_t* msg)
 {
@@ -742,7 +742,7 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_air_speed_3DIMU
 /**
  * @brief Get field sue_estimated_wind_0 from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Estimated Wind 0
+ * @return  Serial UDB Extra Estimated Wind 0
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_estimated_wind_0(const mavlink_message_t* msg)
 {
@@ -752,7 +752,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_estimated_wind_0
 /**
  * @brief Get field sue_estimated_wind_1 from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Estimated Wind 1
+ * @return  Serial UDB Extra Estimated Wind 1
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_estimated_wind_1(const mavlink_message_t* msg)
 {
@@ -762,7 +762,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_estimated_wind_1
 /**
  * @brief Get field sue_estimated_wind_2 from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Estimated Wind 2
+ * @return  Serial UDB Extra Estimated Wind 2
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_estimated_wind_2(const mavlink_message_t* msg)
 {
@@ -772,7 +772,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_estimated_wind_2
 /**
  * @brief Get field sue_magFieldEarth0 from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Magnetic Field Earth 0 
+ * @return  Serial UDB Extra Magnetic Field Earth 0 
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_magFieldEarth0(const mavlink_message_t* msg)
 {
@@ -782,7 +782,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_magFieldEarth0(c
 /**
  * @brief Get field sue_magFieldEarth1 from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Magnetic Field Earth 1 
+ * @return  Serial UDB Extra Magnetic Field Earth 1 
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_magFieldEarth1(const mavlink_message_t* msg)
 {
@@ -792,7 +792,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_magFieldEarth1(c
 /**
  * @brief Get field sue_magFieldEarth2 from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Magnetic Field Earth 2 
+ * @return  Serial UDB Extra Magnetic Field Earth 2 
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_magFieldEarth2(const mavlink_message_t* msg)
 {
@@ -802,7 +802,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_magFieldEarth2(c
 /**
  * @brief Get field sue_svs from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra Number of Sattelites in View
+ * @return  Serial UDB Extra Number of Sattelites in View
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_svs(const mavlink_message_t* msg)
 {
@@ -812,7 +812,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_svs(const mavlin
 /**
  * @brief Get field sue_hdop from serial_udb_extra_f2_a message
  *
- * @return Serial UDB Extra GPS Horizontal Dilution of Precision
+ * @return  Serial UDB Extra GPS Horizontal Dilution of Precision
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_hdop(const mavlink_message_t* msg)
 {

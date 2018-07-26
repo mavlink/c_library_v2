@@ -5,13 +5,13 @@
 
 MAVPACKED(
 typedef struct __mavlink_trajectory_representation_bezier_t {
- uint64_t time_usec; /*< Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
- float pos_x[5]; /*< X-coordinate of starting bezier point, set to NaN if not being used*/
- float pos_y[5]; /*< Y-coordinate of starting bezier point, set to NaN if not being used*/
- float pos_z[5]; /*< Z-coordinate of starting bezier point, set to NaN if not being used*/
- float delta[5]; /*< Bezier time horizon, set to NaN if velocity/acceleration should not be incorporated*/
- float pos_yaw[5]; /*< Yaw, set to NaN for unchanged*/
- uint8_t valid_points; /*< Number of valid points (up-to 5 waypoints are possible)*/
+ uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
+ float pos_x[5]; /*< [m] X-coordinate of starting bezier point, set to NaN if not being used*/
+ float pos_y[5]; /*< [m] Y-coordinate of starting bezier point, set to NaN if not being used*/
+ float pos_z[5]; /*< [m] Z-coordinate of starting bezier point, set to NaN if not being used*/
+ float delta[5]; /*< [s] Bezier time horizon, set to NaN if velocity/acceleration should not be incorporated*/
+ float pos_yaw[5]; /*< [rad] Yaw, set to NaN for unchanged*/
+ uint8_t valid_points; /*<  Number of valid points (up-to 5 waypoints are possible)*/
 }) mavlink_trajectory_representation_bezier_t;
 
 #define MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_BEZIER_LEN 109
@@ -63,13 +63,13 @@ typedef struct __mavlink_trajectory_representation_bezier_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
- * @param valid_points Number of valid points (up-to 5 waypoints are possible)
- * @param pos_x X-coordinate of starting bezier point, set to NaN if not being used
- * @param pos_y Y-coordinate of starting bezier point, set to NaN if not being used
- * @param pos_z Z-coordinate of starting bezier point, set to NaN if not being used
- * @param delta Bezier time horizon, set to NaN if velocity/acceleration should not be incorporated
- * @param pos_yaw Yaw, set to NaN for unchanged
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param valid_points  Number of valid points (up-to 5 waypoints are possible)
+ * @param pos_x [m] X-coordinate of starting bezier point, set to NaN if not being used
+ * @param pos_y [m] Y-coordinate of starting bezier point, set to NaN if not being used
+ * @param pos_z [m] Z-coordinate of starting bezier point, set to NaN if not being used
+ * @param delta [s] Bezier time horizon, set to NaN if velocity/acceleration should not be incorporated
+ * @param pos_yaw [rad] Yaw, set to NaN for unchanged
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_trajectory_representation_bezier_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -107,13 +107,13 @@ static inline uint16_t mavlink_msg_trajectory_representation_bezier_pack(uint8_t
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
- * @param valid_points Number of valid points (up-to 5 waypoints are possible)
- * @param pos_x X-coordinate of starting bezier point, set to NaN if not being used
- * @param pos_y Y-coordinate of starting bezier point, set to NaN if not being used
- * @param pos_z Z-coordinate of starting bezier point, set to NaN if not being used
- * @param delta Bezier time horizon, set to NaN if velocity/acceleration should not be incorporated
- * @param pos_yaw Yaw, set to NaN for unchanged
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param valid_points  Number of valid points (up-to 5 waypoints are possible)
+ * @param pos_x [m] X-coordinate of starting bezier point, set to NaN if not being used
+ * @param pos_y [m] Y-coordinate of starting bezier point, set to NaN if not being used
+ * @param pos_z [m] Z-coordinate of starting bezier point, set to NaN if not being used
+ * @param delta [s] Bezier time horizon, set to NaN if velocity/acceleration should not be incorporated
+ * @param pos_yaw [rad] Yaw, set to NaN for unchanged
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_trajectory_representation_bezier_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -177,13 +177,13 @@ static inline uint16_t mavlink_msg_trajectory_representation_bezier_encode_chan(
  * @brief Send a trajectory_representation_bezier message
  * @param chan MAVLink channel to send the message
  *
- * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
- * @param valid_points Number of valid points (up-to 5 waypoints are possible)
- * @param pos_x X-coordinate of starting bezier point, set to NaN if not being used
- * @param pos_y Y-coordinate of starting bezier point, set to NaN if not being used
- * @param pos_z Z-coordinate of starting bezier point, set to NaN if not being used
- * @param delta Bezier time horizon, set to NaN if velocity/acceleration should not be incorporated
- * @param pos_yaw Yaw, set to NaN for unchanged
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param valid_points  Number of valid points (up-to 5 waypoints are possible)
+ * @param pos_x [m] X-coordinate of starting bezier point, set to NaN if not being used
+ * @param pos_y [m] Y-coordinate of starting bezier point, set to NaN if not being used
+ * @param pos_z [m] Z-coordinate of starting bezier point, set to NaN if not being used
+ * @param delta [s] Bezier time horizon, set to NaN if velocity/acceleration should not be incorporated
+ * @param pos_yaw [rad] Yaw, set to NaN for unchanged
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -268,7 +268,7 @@ static inline void mavlink_msg_trajectory_representation_bezier_send_buf(mavlink
 /**
  * @brief Get field time_usec from trajectory_representation_bezier message
  *
- * @return Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @return [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  */
 static inline uint64_t mavlink_msg_trajectory_representation_bezier_get_time_usec(const mavlink_message_t* msg)
 {
@@ -278,7 +278,7 @@ static inline uint64_t mavlink_msg_trajectory_representation_bezier_get_time_use
 /**
  * @brief Get field valid_points from trajectory_representation_bezier message
  *
- * @return Number of valid points (up-to 5 waypoints are possible)
+ * @return  Number of valid points (up-to 5 waypoints are possible)
  */
 static inline uint8_t mavlink_msg_trajectory_representation_bezier_get_valid_points(const mavlink_message_t* msg)
 {
@@ -288,7 +288,7 @@ static inline uint8_t mavlink_msg_trajectory_representation_bezier_get_valid_poi
 /**
  * @brief Get field pos_x from trajectory_representation_bezier message
  *
- * @return X-coordinate of starting bezier point, set to NaN if not being used
+ * @return [m] X-coordinate of starting bezier point, set to NaN if not being used
  */
 static inline uint16_t mavlink_msg_trajectory_representation_bezier_get_pos_x(const mavlink_message_t* msg, float *pos_x)
 {
@@ -298,7 +298,7 @@ static inline uint16_t mavlink_msg_trajectory_representation_bezier_get_pos_x(co
 /**
  * @brief Get field pos_y from trajectory_representation_bezier message
  *
- * @return Y-coordinate of starting bezier point, set to NaN if not being used
+ * @return [m] Y-coordinate of starting bezier point, set to NaN if not being used
  */
 static inline uint16_t mavlink_msg_trajectory_representation_bezier_get_pos_y(const mavlink_message_t* msg, float *pos_y)
 {
@@ -308,7 +308,7 @@ static inline uint16_t mavlink_msg_trajectory_representation_bezier_get_pos_y(co
 /**
  * @brief Get field pos_z from trajectory_representation_bezier message
  *
- * @return Z-coordinate of starting bezier point, set to NaN if not being used
+ * @return [m] Z-coordinate of starting bezier point, set to NaN if not being used
  */
 static inline uint16_t mavlink_msg_trajectory_representation_bezier_get_pos_z(const mavlink_message_t* msg, float *pos_z)
 {
@@ -318,7 +318,7 @@ static inline uint16_t mavlink_msg_trajectory_representation_bezier_get_pos_z(co
 /**
  * @brief Get field delta from trajectory_representation_bezier message
  *
- * @return Bezier time horizon, set to NaN if velocity/acceleration should not be incorporated
+ * @return [s] Bezier time horizon, set to NaN if velocity/acceleration should not be incorporated
  */
 static inline uint16_t mavlink_msg_trajectory_representation_bezier_get_delta(const mavlink_message_t* msg, float *delta)
 {
@@ -328,7 +328,7 @@ static inline uint16_t mavlink_msg_trajectory_representation_bezier_get_delta(co
 /**
  * @brief Get field pos_yaw from trajectory_representation_bezier message
  *
- * @return Yaw, set to NaN for unchanged
+ * @return [rad] Yaw, set to NaN for unchanged
  */
 static inline uint16_t mavlink_msg_trajectory_representation_bezier_get_pos_yaw(const mavlink_message_t* msg, float *pos_yaw)
 {

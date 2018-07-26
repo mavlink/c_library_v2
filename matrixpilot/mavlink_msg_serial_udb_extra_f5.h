@@ -5,10 +5,10 @@
 
 MAVPACKED(
 typedef struct __mavlink_serial_udb_extra_f5_t {
- float sue_YAWKP_AILERON; /*< Serial UDB YAWKP_AILERON Gain for Proporional control of navigation*/
- float sue_YAWKD_AILERON; /*< Serial UDB YAWKD_AILERON Gain for Rate control of navigation*/
- float sue_ROLLKP; /*< Serial UDB Extra ROLLKP Gain for Proportional control of roll stabilization*/
- float sue_ROLLKD; /*< Serial UDB Extra ROLLKD Gain for Rate control of roll stabilization*/
+ float sue_YAWKP_AILERON; /*<  Serial UDB YAWKP_AILERON Gain for Proporional control of navigation*/
+ float sue_YAWKD_AILERON; /*<  Serial UDB YAWKD_AILERON Gain for Rate control of navigation*/
+ float sue_ROLLKP; /*<  Serial UDB Extra ROLLKP Gain for Proportional control of roll stabilization*/
+ float sue_ROLLKD; /*<  Serial UDB Extra ROLLKD Gain for Rate control of roll stabilization*/
 }) mavlink_serial_udb_extra_f5_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F5_LEN 16
@@ -50,10 +50,10 @@ typedef struct __mavlink_serial_udb_extra_f5_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param sue_YAWKP_AILERON Serial UDB YAWKP_AILERON Gain for Proporional control of navigation
- * @param sue_YAWKD_AILERON Serial UDB YAWKD_AILERON Gain for Rate control of navigation
- * @param sue_ROLLKP Serial UDB Extra ROLLKP Gain for Proportional control of roll stabilization
- * @param sue_ROLLKD Serial UDB Extra ROLLKD Gain for Rate control of roll stabilization
+ * @param sue_YAWKP_AILERON  Serial UDB YAWKP_AILERON Gain for Proporional control of navigation
+ * @param sue_YAWKD_AILERON  Serial UDB YAWKD_AILERON Gain for Rate control of navigation
+ * @param sue_ROLLKP  Serial UDB Extra ROLLKP Gain for Proportional control of roll stabilization
+ * @param sue_ROLLKD  Serial UDB Extra ROLLKD Gain for Rate control of roll stabilization
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f5_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -87,10 +87,10 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f5_pack(uint8_t system_id, u
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param sue_YAWKP_AILERON Serial UDB YAWKP_AILERON Gain for Proporional control of navigation
- * @param sue_YAWKD_AILERON Serial UDB YAWKD_AILERON Gain for Rate control of navigation
- * @param sue_ROLLKP Serial UDB Extra ROLLKP Gain for Proportional control of roll stabilization
- * @param sue_ROLLKD Serial UDB Extra ROLLKD Gain for Rate control of roll stabilization
+ * @param sue_YAWKP_AILERON  Serial UDB YAWKP_AILERON Gain for Proporional control of navigation
+ * @param sue_YAWKD_AILERON  Serial UDB YAWKD_AILERON Gain for Rate control of navigation
+ * @param sue_ROLLKP  Serial UDB Extra ROLLKP Gain for Proportional control of roll stabilization
+ * @param sue_ROLLKD  Serial UDB Extra ROLLKD Gain for Rate control of roll stabilization
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f5_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -150,10 +150,10 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f5_encode_chan(uint8_t syste
  * @brief Send a serial_udb_extra_f5 message
  * @param chan MAVLink channel to send the message
  *
- * @param sue_YAWKP_AILERON Serial UDB YAWKP_AILERON Gain for Proporional control of navigation
- * @param sue_YAWKD_AILERON Serial UDB YAWKD_AILERON Gain for Rate control of navigation
- * @param sue_ROLLKP Serial UDB Extra ROLLKP Gain for Proportional control of roll stabilization
- * @param sue_ROLLKD Serial UDB Extra ROLLKD Gain for Rate control of roll stabilization
+ * @param sue_YAWKP_AILERON  Serial UDB YAWKP_AILERON Gain for Proporional control of navigation
+ * @param sue_YAWKD_AILERON  Serial UDB YAWKD_AILERON Gain for Rate control of navigation
+ * @param sue_ROLLKP  Serial UDB Extra ROLLKP Gain for Proportional control of roll stabilization
+ * @param sue_ROLLKD  Serial UDB Extra ROLLKD Gain for Rate control of roll stabilization
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -230,7 +230,7 @@ static inline void mavlink_msg_serial_udb_extra_f5_send_buf(mavlink_message_t *m
 /**
  * @brief Get field sue_YAWKP_AILERON from serial_udb_extra_f5 message
  *
- * @return Serial UDB YAWKP_AILERON Gain for Proporional control of navigation
+ * @return  Serial UDB YAWKP_AILERON Gain for Proporional control of navigation
  */
 static inline float mavlink_msg_serial_udb_extra_f5_get_sue_YAWKP_AILERON(const mavlink_message_t* msg)
 {
@@ -240,7 +240,7 @@ static inline float mavlink_msg_serial_udb_extra_f5_get_sue_YAWKP_AILERON(const 
 /**
  * @brief Get field sue_YAWKD_AILERON from serial_udb_extra_f5 message
  *
- * @return Serial UDB YAWKD_AILERON Gain for Rate control of navigation
+ * @return  Serial UDB YAWKD_AILERON Gain for Rate control of navigation
  */
 static inline float mavlink_msg_serial_udb_extra_f5_get_sue_YAWKD_AILERON(const mavlink_message_t* msg)
 {
@@ -250,7 +250,7 @@ static inline float mavlink_msg_serial_udb_extra_f5_get_sue_YAWKD_AILERON(const 
 /**
  * @brief Get field sue_ROLLKP from serial_udb_extra_f5 message
  *
- * @return Serial UDB Extra ROLLKP Gain for Proportional control of roll stabilization
+ * @return  Serial UDB Extra ROLLKP Gain for Proportional control of roll stabilization
  */
 static inline float mavlink_msg_serial_udb_extra_f5_get_sue_ROLLKP(const mavlink_message_t* msg)
 {
@@ -260,7 +260,7 @@ static inline float mavlink_msg_serial_udb_extra_f5_get_sue_ROLLKP(const mavlink
 /**
  * @brief Get field sue_ROLLKD from serial_udb_extra_f5 message
  *
- * @return Serial UDB Extra ROLLKD Gain for Rate control of roll stabilization
+ * @return  Serial UDB Extra ROLLKD Gain for Rate control of roll stabilization
  */
 static inline float mavlink_msg_serial_udb_extra_f5_get_sue_ROLLKD(const mavlink_message_t* msg)
 {

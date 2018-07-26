@@ -5,12 +5,12 @@
 
 MAVPACKED(
 typedef struct __mavlink_uav_status_t {
- float latitude; /*< Latitude UAV*/
- float longitude; /*< Longitude UAV*/
- float altitude; /*< Altitude UAV*/
- float speed; /*< Speed UAV*/
- float course; /*< Course UAV*/
- uint8_t target; /*< The ID system reporting the action*/
+ float latitude; /*< [deg] Latitude UAV*/
+ float longitude; /*< [deg] Longitude UAV*/
+ float altitude; /*< [m] Altitude UAV*/
+ float speed; /*< [m/s] Speed UAV*/
+ float course; /*<  Course UAV*/
+ uint8_t target; /*<  The ID system reporting the action*/
 }) mavlink_uav_status_t;
 
 #define MAVLINK_MSG_ID_UAV_STATUS_LEN 21
@@ -56,12 +56,12 @@ typedef struct __mavlink_uav_status_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param target The ID system reporting the action
- * @param latitude Latitude UAV
- * @param longitude Longitude UAV
- * @param altitude Altitude UAV
- * @param speed Speed UAV
- * @param course Course UAV
+ * @param target  The ID system reporting the action
+ * @param latitude [deg] Latitude UAV
+ * @param longitude [deg] Longitude UAV
+ * @param altitude [m] Altitude UAV
+ * @param speed [m/s] Speed UAV
+ * @param course  Course UAV
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_uav_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -99,12 +99,12 @@ static inline uint16_t mavlink_msg_uav_status_pack(uint8_t system_id, uint8_t co
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param target The ID system reporting the action
- * @param latitude Latitude UAV
- * @param longitude Longitude UAV
- * @param altitude Altitude UAV
- * @param speed Speed UAV
- * @param course Course UAV
+ * @param target  The ID system reporting the action
+ * @param latitude [deg] Latitude UAV
+ * @param longitude [deg] Longitude UAV
+ * @param altitude [m] Altitude UAV
+ * @param speed [m/s] Speed UAV
+ * @param course  Course UAV
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_uav_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -168,12 +168,12 @@ static inline uint16_t mavlink_msg_uav_status_encode_chan(uint8_t system_id, uin
  * @brief Send a uav_status message
  * @param chan MAVLink channel to send the message
  *
- * @param target The ID system reporting the action
- * @param latitude Latitude UAV
- * @param longitude Longitude UAV
- * @param altitude Altitude UAV
- * @param speed Speed UAV
- * @param course Course UAV
+ * @param target  The ID system reporting the action
+ * @param latitude [deg] Latitude UAV
+ * @param longitude [deg] Longitude UAV
+ * @param altitude [m] Altitude UAV
+ * @param speed [m/s] Speed UAV
+ * @param course  Course UAV
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -258,7 +258,7 @@ static inline void mavlink_msg_uav_status_send_buf(mavlink_message_t *msgbuf, ma
 /**
  * @brief Get field target from uav_status message
  *
- * @return The ID system reporting the action
+ * @return  The ID system reporting the action
  */
 static inline uint8_t mavlink_msg_uav_status_get_target(const mavlink_message_t* msg)
 {
@@ -268,7 +268,7 @@ static inline uint8_t mavlink_msg_uav_status_get_target(const mavlink_message_t*
 /**
  * @brief Get field latitude from uav_status message
  *
- * @return Latitude UAV
+ * @return [deg] Latitude UAV
  */
 static inline float mavlink_msg_uav_status_get_latitude(const mavlink_message_t* msg)
 {
@@ -278,7 +278,7 @@ static inline float mavlink_msg_uav_status_get_latitude(const mavlink_message_t*
 /**
  * @brief Get field longitude from uav_status message
  *
- * @return Longitude UAV
+ * @return [deg] Longitude UAV
  */
 static inline float mavlink_msg_uav_status_get_longitude(const mavlink_message_t* msg)
 {
@@ -288,7 +288,7 @@ static inline float mavlink_msg_uav_status_get_longitude(const mavlink_message_t
 /**
  * @brief Get field altitude from uav_status message
  *
- * @return Altitude UAV
+ * @return [m] Altitude UAV
  */
 static inline float mavlink_msg_uav_status_get_altitude(const mavlink_message_t* msg)
 {
@@ -298,7 +298,7 @@ static inline float mavlink_msg_uav_status_get_altitude(const mavlink_message_t*
 /**
  * @brief Get field speed from uav_status message
  *
- * @return Speed UAV
+ * @return [m/s] Speed UAV
  */
 static inline float mavlink_msg_uav_status_get_speed(const mavlink_message_t* msg)
 {
@@ -308,7 +308,7 @@ static inline float mavlink_msg_uav_status_get_speed(const mavlink_message_t* ms
 /**
  * @brief Get field course from uav_status message
  *
- * @return Course UAV
+ * @return  Course UAV
  */
 static inline float mavlink_msg_uav_status_get_course(const mavlink_message_t* msg)
 {

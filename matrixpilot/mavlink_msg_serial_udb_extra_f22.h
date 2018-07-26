@@ -5,12 +5,12 @@
 
 MAVPACKED(
 typedef struct __mavlink_serial_udb_extra_f22_t {
- int16_t sue_accel_x_at_calibration; /*< SUE X accelerometer at calibration time*/
- int16_t sue_accel_y_at_calibration; /*< SUE Y accelerometer at calibration time*/
- int16_t sue_accel_z_at_calibration; /*< SUE Z accelerometer at calibration time*/
- int16_t sue_gyro_x_at_calibration; /*< SUE X gyro at calibration time*/
- int16_t sue_gyro_y_at_calibration; /*< SUE Y gyro at calibration time*/
- int16_t sue_gyro_z_at_calibration; /*< SUE Z gyro at calibration time*/
+ int16_t sue_accel_x_at_calibration; /*<  SUE X accelerometer at calibration time*/
+ int16_t sue_accel_y_at_calibration; /*<  SUE Y accelerometer at calibration time*/
+ int16_t sue_accel_z_at_calibration; /*<  SUE Z accelerometer at calibration time*/
+ int16_t sue_gyro_x_at_calibration; /*<  SUE X gyro at calibration time*/
+ int16_t sue_gyro_y_at_calibration; /*<  SUE Y gyro at calibration time*/
+ int16_t sue_gyro_z_at_calibration; /*<  SUE Z gyro at calibration time*/
 }) mavlink_serial_udb_extra_f22_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F22_LEN 12
@@ -56,12 +56,12 @@ typedef struct __mavlink_serial_udb_extra_f22_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param sue_accel_x_at_calibration SUE X accelerometer at calibration time
- * @param sue_accel_y_at_calibration SUE Y accelerometer at calibration time
- * @param sue_accel_z_at_calibration SUE Z accelerometer at calibration time
- * @param sue_gyro_x_at_calibration SUE X gyro at calibration time
- * @param sue_gyro_y_at_calibration SUE Y gyro at calibration time
- * @param sue_gyro_z_at_calibration SUE Z gyro at calibration time
+ * @param sue_accel_x_at_calibration  SUE X accelerometer at calibration time
+ * @param sue_accel_y_at_calibration  SUE Y accelerometer at calibration time
+ * @param sue_accel_z_at_calibration  SUE Z accelerometer at calibration time
+ * @param sue_gyro_x_at_calibration  SUE X gyro at calibration time
+ * @param sue_gyro_y_at_calibration  SUE Y gyro at calibration time
+ * @param sue_gyro_z_at_calibration  SUE Z gyro at calibration time
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f22_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -99,12 +99,12 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f22_pack(uint8_t system_id, 
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param sue_accel_x_at_calibration SUE X accelerometer at calibration time
- * @param sue_accel_y_at_calibration SUE Y accelerometer at calibration time
- * @param sue_accel_z_at_calibration SUE Z accelerometer at calibration time
- * @param sue_gyro_x_at_calibration SUE X gyro at calibration time
- * @param sue_gyro_y_at_calibration SUE Y gyro at calibration time
- * @param sue_gyro_z_at_calibration SUE Z gyro at calibration time
+ * @param sue_accel_x_at_calibration  SUE X accelerometer at calibration time
+ * @param sue_accel_y_at_calibration  SUE Y accelerometer at calibration time
+ * @param sue_accel_z_at_calibration  SUE Z accelerometer at calibration time
+ * @param sue_gyro_x_at_calibration  SUE X gyro at calibration time
+ * @param sue_gyro_y_at_calibration  SUE Y gyro at calibration time
+ * @param sue_gyro_z_at_calibration  SUE Z gyro at calibration time
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f22_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -168,12 +168,12 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f22_encode_chan(uint8_t syst
  * @brief Send a serial_udb_extra_f22 message
  * @param chan MAVLink channel to send the message
  *
- * @param sue_accel_x_at_calibration SUE X accelerometer at calibration time
- * @param sue_accel_y_at_calibration SUE Y accelerometer at calibration time
- * @param sue_accel_z_at_calibration SUE Z accelerometer at calibration time
- * @param sue_gyro_x_at_calibration SUE X gyro at calibration time
- * @param sue_gyro_y_at_calibration SUE Y gyro at calibration time
- * @param sue_gyro_z_at_calibration SUE Z gyro at calibration time
+ * @param sue_accel_x_at_calibration  SUE X accelerometer at calibration time
+ * @param sue_accel_y_at_calibration  SUE Y accelerometer at calibration time
+ * @param sue_accel_z_at_calibration  SUE Z accelerometer at calibration time
+ * @param sue_gyro_x_at_calibration  SUE X gyro at calibration time
+ * @param sue_gyro_y_at_calibration  SUE Y gyro at calibration time
+ * @param sue_gyro_z_at_calibration  SUE Z gyro at calibration time
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -258,7 +258,7 @@ static inline void mavlink_msg_serial_udb_extra_f22_send_buf(mavlink_message_t *
 /**
  * @brief Get field sue_accel_x_at_calibration from serial_udb_extra_f22 message
  *
- * @return SUE X accelerometer at calibration time
+ * @return  SUE X accelerometer at calibration time
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f22_get_sue_accel_x_at_calibration(const mavlink_message_t* msg)
 {
@@ -268,7 +268,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f22_get_sue_accel_x_at_calibr
 /**
  * @brief Get field sue_accel_y_at_calibration from serial_udb_extra_f22 message
  *
- * @return SUE Y accelerometer at calibration time
+ * @return  SUE Y accelerometer at calibration time
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f22_get_sue_accel_y_at_calibration(const mavlink_message_t* msg)
 {
@@ -278,7 +278,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f22_get_sue_accel_y_at_calibr
 /**
  * @brief Get field sue_accel_z_at_calibration from serial_udb_extra_f22 message
  *
- * @return SUE Z accelerometer at calibration time
+ * @return  SUE Z accelerometer at calibration time
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f22_get_sue_accel_z_at_calibration(const mavlink_message_t* msg)
 {
@@ -288,7 +288,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f22_get_sue_accel_z_at_calibr
 /**
  * @brief Get field sue_gyro_x_at_calibration from serial_udb_extra_f22 message
  *
- * @return SUE X gyro at calibration time
+ * @return  SUE X gyro at calibration time
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f22_get_sue_gyro_x_at_calibration(const mavlink_message_t* msg)
 {
@@ -298,7 +298,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f22_get_sue_gyro_x_at_calibra
 /**
  * @brief Get field sue_gyro_y_at_calibration from serial_udb_extra_f22 message
  *
- * @return SUE Y gyro at calibration time
+ * @return  SUE Y gyro at calibration time
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f22_get_sue_gyro_y_at_calibration(const mavlink_message_t* msg)
 {
@@ -308,7 +308,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f22_get_sue_gyro_y_at_calibra
 /**
  * @brief Get field sue_gyro_z_at_calibration from serial_udb_extra_f22 message
  *
- * @return SUE Z gyro at calibration time
+ * @return  SUE Z gyro at calibration time
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f22_get_sue_gyro_z_at_calibration(const mavlink_message_t* msg)
 {

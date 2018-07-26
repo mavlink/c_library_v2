@@ -5,13 +5,13 @@
 
 MAVPACKED(
 typedef struct __mavlink_ekf_ext_t {
- uint64_t timestamp; /*<  Time since system start*/
- float Windspeed; /*<  Magnitude of wind velocity (in lateral inertial plane)*/
- float WindDir; /*<  Wind heading angle from North*/
- float WindZ; /*<  Z (Down) component of inertial wind velocity*/
- float Airspeed; /*<  Magnitude of air velocity*/
- float beta; /*<  Sideslip angle*/
- float alpha; /*<  Angle of attack*/
+ uint64_t timestamp; /*< [us]  Time since system start*/
+ float Windspeed; /*< [m/s]  Magnitude of wind velocity (in lateral inertial plane)*/
+ float WindDir; /*< [rad]  Wind heading angle from North*/
+ float WindZ; /*< [m/s]  Z (Down) component of inertial wind velocity*/
+ float Airspeed; /*< [m/s]  Magnitude of air velocity*/
+ float beta; /*< [rad]  Sideslip angle*/
+ float alpha; /*< [rad]  Angle of attack*/
 }) mavlink_ekf_ext_t;
 
 #define MAVLINK_MSG_ID_EKF_EXT_LEN 32
@@ -59,13 +59,13 @@ typedef struct __mavlink_ekf_ext_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param timestamp  Time since system start
- * @param Windspeed  Magnitude of wind velocity (in lateral inertial plane)
- * @param WindDir  Wind heading angle from North
- * @param WindZ  Z (Down) component of inertial wind velocity
- * @param Airspeed  Magnitude of air velocity
- * @param beta  Sideslip angle
- * @param alpha  Angle of attack
+ * @param timestamp [us]  Time since system start
+ * @param Windspeed [m/s]  Magnitude of wind velocity (in lateral inertial plane)
+ * @param WindDir [rad]  Wind heading angle from North
+ * @param WindZ [m/s]  Z (Down) component of inertial wind velocity
+ * @param Airspeed [m/s]  Magnitude of air velocity
+ * @param beta [rad]  Sideslip angle
+ * @param alpha [rad]  Angle of attack
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ekf_ext_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -105,13 +105,13 @@ static inline uint16_t mavlink_msg_ekf_ext_pack(uint8_t system_id, uint8_t compo
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param timestamp  Time since system start
- * @param Windspeed  Magnitude of wind velocity (in lateral inertial plane)
- * @param WindDir  Wind heading angle from North
- * @param WindZ  Z (Down) component of inertial wind velocity
- * @param Airspeed  Magnitude of air velocity
- * @param beta  Sideslip angle
- * @param alpha  Angle of attack
+ * @param timestamp [us]  Time since system start
+ * @param Windspeed [m/s]  Magnitude of wind velocity (in lateral inertial plane)
+ * @param WindDir [rad]  Wind heading angle from North
+ * @param WindZ [m/s]  Z (Down) component of inertial wind velocity
+ * @param Airspeed [m/s]  Magnitude of air velocity
+ * @param beta [rad]  Sideslip angle
+ * @param alpha [rad]  Angle of attack
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ekf_ext_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -177,13 +177,13 @@ static inline uint16_t mavlink_msg_ekf_ext_encode_chan(uint8_t system_id, uint8_
  * @brief Send a ekf_ext message
  * @param chan MAVLink channel to send the message
  *
- * @param timestamp  Time since system start
- * @param Windspeed  Magnitude of wind velocity (in lateral inertial plane)
- * @param WindDir  Wind heading angle from North
- * @param WindZ  Z (Down) component of inertial wind velocity
- * @param Airspeed  Magnitude of air velocity
- * @param beta  Sideslip angle
- * @param alpha  Angle of attack
+ * @param timestamp [us]  Time since system start
+ * @param Windspeed [m/s]  Magnitude of wind velocity (in lateral inertial plane)
+ * @param WindDir [rad]  Wind heading angle from North
+ * @param WindZ [m/s]  Z (Down) component of inertial wind velocity
+ * @param Airspeed [m/s]  Magnitude of air velocity
+ * @param beta [rad]  Sideslip angle
+ * @param alpha [rad]  Angle of attack
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -272,7 +272,7 @@ static inline void mavlink_msg_ekf_ext_send_buf(mavlink_message_t *msgbuf, mavli
 /**
  * @brief Get field timestamp from ekf_ext message
  *
- * @return  Time since system start
+ * @return [us]  Time since system start
  */
 static inline uint64_t mavlink_msg_ekf_ext_get_timestamp(const mavlink_message_t* msg)
 {
@@ -282,7 +282,7 @@ static inline uint64_t mavlink_msg_ekf_ext_get_timestamp(const mavlink_message_t
 /**
  * @brief Get field Windspeed from ekf_ext message
  *
- * @return  Magnitude of wind velocity (in lateral inertial plane)
+ * @return [m/s]  Magnitude of wind velocity (in lateral inertial plane)
  */
 static inline float mavlink_msg_ekf_ext_get_Windspeed(const mavlink_message_t* msg)
 {
@@ -292,7 +292,7 @@ static inline float mavlink_msg_ekf_ext_get_Windspeed(const mavlink_message_t* m
 /**
  * @brief Get field WindDir from ekf_ext message
  *
- * @return  Wind heading angle from North
+ * @return [rad]  Wind heading angle from North
  */
 static inline float mavlink_msg_ekf_ext_get_WindDir(const mavlink_message_t* msg)
 {
@@ -302,7 +302,7 @@ static inline float mavlink_msg_ekf_ext_get_WindDir(const mavlink_message_t* msg
 /**
  * @brief Get field WindZ from ekf_ext message
  *
- * @return  Z (Down) component of inertial wind velocity
+ * @return [m/s]  Z (Down) component of inertial wind velocity
  */
 static inline float mavlink_msg_ekf_ext_get_WindZ(const mavlink_message_t* msg)
 {
@@ -312,7 +312,7 @@ static inline float mavlink_msg_ekf_ext_get_WindZ(const mavlink_message_t* msg)
 /**
  * @brief Get field Airspeed from ekf_ext message
  *
- * @return  Magnitude of air velocity
+ * @return [m/s]  Magnitude of air velocity
  */
 static inline float mavlink_msg_ekf_ext_get_Airspeed(const mavlink_message_t* msg)
 {
@@ -322,7 +322,7 @@ static inline float mavlink_msg_ekf_ext_get_Airspeed(const mavlink_message_t* ms
 /**
  * @brief Get field beta from ekf_ext message
  *
- * @return  Sideslip angle
+ * @return [rad]  Sideslip angle
  */
 static inline float mavlink_msg_ekf_ext_get_beta(const mavlink_message_t* msg)
 {
@@ -332,7 +332,7 @@ static inline float mavlink_msg_ekf_ext_get_beta(const mavlink_message_t* msg)
 /**
  * @brief Get field alpha from ekf_ext message
  *
- * @return  Angle of attack
+ * @return [rad]  Angle of attack
  */
 static inline float mavlink_msg_ekf_ext_get_alpha(const mavlink_message_t* msg)
 {

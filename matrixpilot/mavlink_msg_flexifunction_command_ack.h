@@ -5,8 +5,8 @@
 
 MAVPACKED(
 typedef struct __mavlink_flexifunction_command_ack_t {
- uint16_t command_type; /*< Command acknowledged*/
- uint16_t result; /*< result of acknowledge*/
+ uint16_t command_type; /*<  Command acknowledged*/
+ uint16_t result; /*<  result of acknowledge*/
 }) mavlink_flexifunction_command_ack_t;
 
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_COMMAND_ACK_LEN 4
@@ -44,8 +44,8 @@ typedef struct __mavlink_flexifunction_command_ack_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param command_type Command acknowledged
- * @param result result of acknowledge
+ * @param command_type  Command acknowledged
+ * @param result  result of acknowledge
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_flexifunction_command_ack_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -75,8 +75,8 @@ static inline uint16_t mavlink_msg_flexifunction_command_ack_pack(uint8_t system
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param command_type Command acknowledged
- * @param result result of acknowledge
+ * @param command_type  Command acknowledged
+ * @param result  result of acknowledge
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_flexifunction_command_ack_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -132,8 +132,8 @@ static inline uint16_t mavlink_msg_flexifunction_command_ack_encode_chan(uint8_t
  * @brief Send a flexifunction_command_ack message
  * @param chan MAVLink channel to send the message
  *
- * @param command_type Command acknowledged
- * @param result result of acknowledge
+ * @param command_type  Command acknowledged
+ * @param result  result of acknowledge
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -202,7 +202,7 @@ static inline void mavlink_msg_flexifunction_command_ack_send_buf(mavlink_messag
 /**
  * @brief Get field command_type from flexifunction_command_ack message
  *
- * @return Command acknowledged
+ * @return  Command acknowledged
  */
 static inline uint16_t mavlink_msg_flexifunction_command_ack_get_command_type(const mavlink_message_t* msg)
 {
@@ -212,7 +212,7 @@ static inline uint16_t mavlink_msg_flexifunction_command_ack_get_command_type(co
 /**
  * @brief Get field result from flexifunction_command_ack message
  *
- * @return result of acknowledge
+ * @return  result of acknowledge
  */
 static inline uint16_t mavlink_msg_flexifunction_command_ack_get_result(const mavlink_message_t* msg)
 {

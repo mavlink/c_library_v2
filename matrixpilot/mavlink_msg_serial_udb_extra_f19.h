@@ -5,14 +5,14 @@
 
 MAVPACKED(
 typedef struct __mavlink_serial_udb_extra_f19_t {
- uint8_t sue_aileron_output_channel; /*< SUE aileron output channel*/
- uint8_t sue_aileron_reversed; /*< SUE aileron reversed*/
- uint8_t sue_elevator_output_channel; /*< SUE elevator output channel*/
- uint8_t sue_elevator_reversed; /*< SUE elevator reversed*/
- uint8_t sue_throttle_output_channel; /*< SUE throttle output channel*/
- uint8_t sue_throttle_reversed; /*< SUE throttle reversed*/
- uint8_t sue_rudder_output_channel; /*< SUE rudder output channel*/
- uint8_t sue_rudder_reversed; /*< SUE rudder reversed*/
+ uint8_t sue_aileron_output_channel; /*<  SUE aileron output channel*/
+ uint8_t sue_aileron_reversed; /*<  SUE aileron reversed*/
+ uint8_t sue_elevator_output_channel; /*<  SUE elevator output channel*/
+ uint8_t sue_elevator_reversed; /*<  SUE elevator reversed*/
+ uint8_t sue_throttle_output_channel; /*<  SUE throttle output channel*/
+ uint8_t sue_throttle_reversed; /*<  SUE throttle reversed*/
+ uint8_t sue_rudder_output_channel; /*<  SUE rudder output channel*/
+ uint8_t sue_rudder_reversed; /*<  SUE rudder reversed*/
 }) mavlink_serial_udb_extra_f19_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F19_LEN 8
@@ -62,14 +62,14 @@ typedef struct __mavlink_serial_udb_extra_f19_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param sue_aileron_output_channel SUE aileron output channel
- * @param sue_aileron_reversed SUE aileron reversed
- * @param sue_elevator_output_channel SUE elevator output channel
- * @param sue_elevator_reversed SUE elevator reversed
- * @param sue_throttle_output_channel SUE throttle output channel
- * @param sue_throttle_reversed SUE throttle reversed
- * @param sue_rudder_output_channel SUE rudder output channel
- * @param sue_rudder_reversed SUE rudder reversed
+ * @param sue_aileron_output_channel  SUE aileron output channel
+ * @param sue_aileron_reversed  SUE aileron reversed
+ * @param sue_elevator_output_channel  SUE elevator output channel
+ * @param sue_elevator_reversed  SUE elevator reversed
+ * @param sue_throttle_output_channel  SUE throttle output channel
+ * @param sue_throttle_reversed  SUE throttle reversed
+ * @param sue_rudder_output_channel  SUE rudder output channel
+ * @param sue_rudder_reversed  SUE rudder reversed
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f19_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -111,14 +111,14 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f19_pack(uint8_t system_id, 
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param sue_aileron_output_channel SUE aileron output channel
- * @param sue_aileron_reversed SUE aileron reversed
- * @param sue_elevator_output_channel SUE elevator output channel
- * @param sue_elevator_reversed SUE elevator reversed
- * @param sue_throttle_output_channel SUE throttle output channel
- * @param sue_throttle_reversed SUE throttle reversed
- * @param sue_rudder_output_channel SUE rudder output channel
- * @param sue_rudder_reversed SUE rudder reversed
+ * @param sue_aileron_output_channel  SUE aileron output channel
+ * @param sue_aileron_reversed  SUE aileron reversed
+ * @param sue_elevator_output_channel  SUE elevator output channel
+ * @param sue_elevator_reversed  SUE elevator reversed
+ * @param sue_throttle_output_channel  SUE throttle output channel
+ * @param sue_throttle_reversed  SUE throttle reversed
+ * @param sue_rudder_output_channel  SUE rudder output channel
+ * @param sue_rudder_reversed  SUE rudder reversed
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f19_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -186,14 +186,14 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f19_encode_chan(uint8_t syst
  * @brief Send a serial_udb_extra_f19 message
  * @param chan MAVLink channel to send the message
  *
- * @param sue_aileron_output_channel SUE aileron output channel
- * @param sue_aileron_reversed SUE aileron reversed
- * @param sue_elevator_output_channel SUE elevator output channel
- * @param sue_elevator_reversed SUE elevator reversed
- * @param sue_throttle_output_channel SUE throttle output channel
- * @param sue_throttle_reversed SUE throttle reversed
- * @param sue_rudder_output_channel SUE rudder output channel
- * @param sue_rudder_reversed SUE rudder reversed
+ * @param sue_aileron_output_channel  SUE aileron output channel
+ * @param sue_aileron_reversed  SUE aileron reversed
+ * @param sue_elevator_output_channel  SUE elevator output channel
+ * @param sue_elevator_reversed  SUE elevator reversed
+ * @param sue_throttle_output_channel  SUE throttle output channel
+ * @param sue_throttle_reversed  SUE throttle reversed
+ * @param sue_rudder_output_channel  SUE rudder output channel
+ * @param sue_rudder_reversed  SUE rudder reversed
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -286,7 +286,7 @@ static inline void mavlink_msg_serial_udb_extra_f19_send_buf(mavlink_message_t *
 /**
  * @brief Get field sue_aileron_output_channel from serial_udb_extra_f19 message
  *
- * @return SUE aileron output channel
+ * @return  SUE aileron output channel
  */
 static inline uint8_t mavlink_msg_serial_udb_extra_f19_get_sue_aileron_output_channel(const mavlink_message_t* msg)
 {
@@ -296,7 +296,7 @@ static inline uint8_t mavlink_msg_serial_udb_extra_f19_get_sue_aileron_output_ch
 /**
  * @brief Get field sue_aileron_reversed from serial_udb_extra_f19 message
  *
- * @return SUE aileron reversed
+ * @return  SUE aileron reversed
  */
 static inline uint8_t mavlink_msg_serial_udb_extra_f19_get_sue_aileron_reversed(const mavlink_message_t* msg)
 {
@@ -306,7 +306,7 @@ static inline uint8_t mavlink_msg_serial_udb_extra_f19_get_sue_aileron_reversed(
 /**
  * @brief Get field sue_elevator_output_channel from serial_udb_extra_f19 message
  *
- * @return SUE elevator output channel
+ * @return  SUE elevator output channel
  */
 static inline uint8_t mavlink_msg_serial_udb_extra_f19_get_sue_elevator_output_channel(const mavlink_message_t* msg)
 {
@@ -316,7 +316,7 @@ static inline uint8_t mavlink_msg_serial_udb_extra_f19_get_sue_elevator_output_c
 /**
  * @brief Get field sue_elevator_reversed from serial_udb_extra_f19 message
  *
- * @return SUE elevator reversed
+ * @return  SUE elevator reversed
  */
 static inline uint8_t mavlink_msg_serial_udb_extra_f19_get_sue_elevator_reversed(const mavlink_message_t* msg)
 {
@@ -326,7 +326,7 @@ static inline uint8_t mavlink_msg_serial_udb_extra_f19_get_sue_elevator_reversed
 /**
  * @brief Get field sue_throttle_output_channel from serial_udb_extra_f19 message
  *
- * @return SUE throttle output channel
+ * @return  SUE throttle output channel
  */
 static inline uint8_t mavlink_msg_serial_udb_extra_f19_get_sue_throttle_output_channel(const mavlink_message_t* msg)
 {
@@ -336,7 +336,7 @@ static inline uint8_t mavlink_msg_serial_udb_extra_f19_get_sue_throttle_output_c
 /**
  * @brief Get field sue_throttle_reversed from serial_udb_extra_f19 message
  *
- * @return SUE throttle reversed
+ * @return  SUE throttle reversed
  */
 static inline uint8_t mavlink_msg_serial_udb_extra_f19_get_sue_throttle_reversed(const mavlink_message_t* msg)
 {
@@ -346,7 +346,7 @@ static inline uint8_t mavlink_msg_serial_udb_extra_f19_get_sue_throttle_reversed
 /**
  * @brief Get field sue_rudder_output_channel from serial_udb_extra_f19 message
  *
- * @return SUE rudder output channel
+ * @return  SUE rudder output channel
  */
 static inline uint8_t mavlink_msg_serial_udb_extra_f19_get_sue_rudder_output_channel(const mavlink_message_t* msg)
 {
@@ -356,7 +356,7 @@ static inline uint8_t mavlink_msg_serial_udb_extra_f19_get_sue_rudder_output_cha
 /**
  * @brief Get field sue_rudder_reversed from serial_udb_extra_f19 message
  *
- * @return SUE rudder reversed
+ * @return  SUE rudder reversed
  */
 static inline uint8_t mavlink_msg_serial_udb_extra_f19_get_sue_rudder_reversed(const mavlink_message_t* msg)
 {

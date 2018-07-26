@@ -5,11 +5,11 @@
 
 MAVPACKED(
 typedef struct __mavlink_protocol_version_t {
- uint16_t version; /*< Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc.*/
- uint16_t min_version; /*< Minimum MAVLink version supported*/
- uint16_t max_version; /*< Maximum MAVLink version supported (set to the same value as version by default)*/
- uint8_t spec_version_hash[8]; /*< The first 8 bytes (not characters printed in hex!) of the git hash.*/
- uint8_t library_version_hash[8]; /*< The first 8 bytes (not characters printed in hex!) of the git hash.*/
+ uint16_t version; /*<  Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc.*/
+ uint16_t min_version; /*<  Minimum MAVLink version supported*/
+ uint16_t max_version; /*<  Maximum MAVLink version supported (set to the same value as version by default)*/
+ uint8_t spec_version_hash[8]; /*<  The first 8 bytes (not characters printed in hex!) of the git hash.*/
+ uint8_t library_version_hash[8]; /*<  The first 8 bytes (not characters printed in hex!) of the git hash.*/
 }) mavlink_protocol_version_t;
 
 #define MAVLINK_MSG_ID_PROTOCOL_VERSION_LEN 22
@@ -54,11 +54,11 @@ typedef struct __mavlink_protocol_version_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param version Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc.
- * @param min_version Minimum MAVLink version supported
- * @param max_version Maximum MAVLink version supported (set to the same value as version by default)
- * @param spec_version_hash The first 8 bytes (not characters printed in hex!) of the git hash.
- * @param library_version_hash The first 8 bytes (not characters printed in hex!) of the git hash.
+ * @param version  Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc.
+ * @param min_version  Minimum MAVLink version supported
+ * @param max_version  Maximum MAVLink version supported (set to the same value as version by default)
+ * @param spec_version_hash  The first 8 bytes (not characters printed in hex!) of the git hash.
+ * @param library_version_hash  The first 8 bytes (not characters printed in hex!) of the git hash.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_protocol_version_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -92,11 +92,11 @@ static inline uint16_t mavlink_msg_protocol_version_pack(uint8_t system_id, uint
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param version Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc.
- * @param min_version Minimum MAVLink version supported
- * @param max_version Maximum MAVLink version supported (set to the same value as version by default)
- * @param spec_version_hash The first 8 bytes (not characters printed in hex!) of the git hash.
- * @param library_version_hash The first 8 bytes (not characters printed in hex!) of the git hash.
+ * @param version  Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc.
+ * @param min_version  Minimum MAVLink version supported
+ * @param max_version  Maximum MAVLink version supported (set to the same value as version by default)
+ * @param spec_version_hash  The first 8 bytes (not characters printed in hex!) of the git hash.
+ * @param library_version_hash  The first 8 bytes (not characters printed in hex!) of the git hash.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_protocol_version_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -156,11 +156,11 @@ static inline uint16_t mavlink_msg_protocol_version_encode_chan(uint8_t system_i
  * @brief Send a protocol_version message
  * @param chan MAVLink channel to send the message
  *
- * @param version Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc.
- * @param min_version Minimum MAVLink version supported
- * @param max_version Maximum MAVLink version supported (set to the same value as version by default)
- * @param spec_version_hash The first 8 bytes (not characters printed in hex!) of the git hash.
- * @param library_version_hash The first 8 bytes (not characters printed in hex!) of the git hash.
+ * @param version  Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc.
+ * @param min_version  Minimum MAVLink version supported
+ * @param max_version  Maximum MAVLink version supported (set to the same value as version by default)
+ * @param spec_version_hash  The first 8 bytes (not characters printed in hex!) of the git hash.
+ * @param library_version_hash  The first 8 bytes (not characters printed in hex!) of the git hash.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -237,7 +237,7 @@ static inline void mavlink_msg_protocol_version_send_buf(mavlink_message_t *msgb
 /**
  * @brief Get field version from protocol_version message
  *
- * @return Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc.
+ * @return  Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc.
  */
 static inline uint16_t mavlink_msg_protocol_version_get_version(const mavlink_message_t* msg)
 {
@@ -247,7 +247,7 @@ static inline uint16_t mavlink_msg_protocol_version_get_version(const mavlink_me
 /**
  * @brief Get field min_version from protocol_version message
  *
- * @return Minimum MAVLink version supported
+ * @return  Minimum MAVLink version supported
  */
 static inline uint16_t mavlink_msg_protocol_version_get_min_version(const mavlink_message_t* msg)
 {
@@ -257,7 +257,7 @@ static inline uint16_t mavlink_msg_protocol_version_get_min_version(const mavlin
 /**
  * @brief Get field max_version from protocol_version message
  *
- * @return Maximum MAVLink version supported (set to the same value as version by default)
+ * @return  Maximum MAVLink version supported (set to the same value as version by default)
  */
 static inline uint16_t mavlink_msg_protocol_version_get_max_version(const mavlink_message_t* msg)
 {
@@ -267,7 +267,7 @@ static inline uint16_t mavlink_msg_protocol_version_get_max_version(const mavlin
 /**
  * @brief Get field spec_version_hash from protocol_version message
  *
- * @return The first 8 bytes (not characters printed in hex!) of the git hash.
+ * @return  The first 8 bytes (not characters printed in hex!) of the git hash.
  */
 static inline uint16_t mavlink_msg_protocol_version_get_spec_version_hash(const mavlink_message_t* msg, uint8_t *spec_version_hash)
 {
@@ -277,7 +277,7 @@ static inline uint16_t mavlink_msg_protocol_version_get_spec_version_hash(const 
 /**
  * @brief Get field library_version_hash from protocol_version message
  *
- * @return The first 8 bytes (not characters printed in hex!) of the git hash.
+ * @return  The first 8 bytes (not characters printed in hex!) of the git hash.
  */
 static inline uint16_t mavlink_msg_protocol_version_get_library_version_hash(const mavlink_message_t* msg, uint8_t *library_version_hash)
 {

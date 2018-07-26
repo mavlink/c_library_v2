@@ -5,11 +5,11 @@
 
 MAVPACKED(
 typedef struct __mavlink_serial_udb_extra_f18_t {
- float angle_of_attack_normal; /*< SUE Angle of Attack Normal*/
- float angle_of_attack_inverted; /*< SUE Angle of Attack Inverted*/
- float elevator_trim_normal; /*< SUE Elevator Trim Normal*/
- float elevator_trim_inverted; /*< SUE Elevator Trim Inverted*/
- float reference_speed; /*< SUE reference_speed*/
+ float angle_of_attack_normal; /*<  SUE Angle of Attack Normal*/
+ float angle_of_attack_inverted; /*<  SUE Angle of Attack Inverted*/
+ float elevator_trim_normal; /*<  SUE Elevator Trim Normal*/
+ float elevator_trim_inverted; /*<  SUE Elevator Trim Inverted*/
+ float reference_speed; /*<  SUE reference_speed*/
 }) mavlink_serial_udb_extra_f18_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F18_LEN 20
@@ -53,11 +53,11 @@ typedef struct __mavlink_serial_udb_extra_f18_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param angle_of_attack_normal SUE Angle of Attack Normal
- * @param angle_of_attack_inverted SUE Angle of Attack Inverted
- * @param elevator_trim_normal SUE Elevator Trim Normal
- * @param elevator_trim_inverted SUE Elevator Trim Inverted
- * @param reference_speed SUE reference_speed
+ * @param angle_of_attack_normal  SUE Angle of Attack Normal
+ * @param angle_of_attack_inverted  SUE Angle of Attack Inverted
+ * @param elevator_trim_normal  SUE Elevator Trim Normal
+ * @param elevator_trim_inverted  SUE Elevator Trim Inverted
+ * @param reference_speed  SUE reference_speed
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f18_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -93,11 +93,11 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f18_pack(uint8_t system_id, 
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param angle_of_attack_normal SUE Angle of Attack Normal
- * @param angle_of_attack_inverted SUE Angle of Attack Inverted
- * @param elevator_trim_normal SUE Elevator Trim Normal
- * @param elevator_trim_inverted SUE Elevator Trim Inverted
- * @param reference_speed SUE reference_speed
+ * @param angle_of_attack_normal  SUE Angle of Attack Normal
+ * @param angle_of_attack_inverted  SUE Angle of Attack Inverted
+ * @param elevator_trim_normal  SUE Elevator Trim Normal
+ * @param elevator_trim_inverted  SUE Elevator Trim Inverted
+ * @param reference_speed  SUE reference_speed
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f18_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -159,11 +159,11 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f18_encode_chan(uint8_t syst
  * @brief Send a serial_udb_extra_f18 message
  * @param chan MAVLink channel to send the message
  *
- * @param angle_of_attack_normal SUE Angle of Attack Normal
- * @param angle_of_attack_inverted SUE Angle of Attack Inverted
- * @param elevator_trim_normal SUE Elevator Trim Normal
- * @param elevator_trim_inverted SUE Elevator Trim Inverted
- * @param reference_speed SUE reference_speed
+ * @param angle_of_attack_normal  SUE Angle of Attack Normal
+ * @param angle_of_attack_inverted  SUE Angle of Attack Inverted
+ * @param elevator_trim_normal  SUE Elevator Trim Normal
+ * @param elevator_trim_inverted  SUE Elevator Trim Inverted
+ * @param reference_speed  SUE reference_speed
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -244,7 +244,7 @@ static inline void mavlink_msg_serial_udb_extra_f18_send_buf(mavlink_message_t *
 /**
  * @brief Get field angle_of_attack_normal from serial_udb_extra_f18 message
  *
- * @return SUE Angle of Attack Normal
+ * @return  SUE Angle of Attack Normal
  */
 static inline float mavlink_msg_serial_udb_extra_f18_get_angle_of_attack_normal(const mavlink_message_t* msg)
 {
@@ -254,7 +254,7 @@ static inline float mavlink_msg_serial_udb_extra_f18_get_angle_of_attack_normal(
 /**
  * @brief Get field angle_of_attack_inverted from serial_udb_extra_f18 message
  *
- * @return SUE Angle of Attack Inverted
+ * @return  SUE Angle of Attack Inverted
  */
 static inline float mavlink_msg_serial_udb_extra_f18_get_angle_of_attack_inverted(const mavlink_message_t* msg)
 {
@@ -264,7 +264,7 @@ static inline float mavlink_msg_serial_udb_extra_f18_get_angle_of_attack_inverte
 /**
  * @brief Get field elevator_trim_normal from serial_udb_extra_f18 message
  *
- * @return SUE Elevator Trim Normal
+ * @return  SUE Elevator Trim Normal
  */
 static inline float mavlink_msg_serial_udb_extra_f18_get_elevator_trim_normal(const mavlink_message_t* msg)
 {
@@ -274,7 +274,7 @@ static inline float mavlink_msg_serial_udb_extra_f18_get_elevator_trim_normal(co
 /**
  * @brief Get field elevator_trim_inverted from serial_udb_extra_f18 message
  *
- * @return SUE Elevator Trim Inverted
+ * @return  SUE Elevator Trim Inverted
  */
 static inline float mavlink_msg_serial_udb_extra_f18_get_elevator_trim_inverted(const mavlink_message_t* msg)
 {
@@ -284,7 +284,7 @@ static inline float mavlink_msg_serial_udb_extra_f18_get_elevator_trim_inverted(
 /**
  * @brief Get field reference_speed from serial_udb_extra_f18 message
  *
- * @return SUE reference_speed
+ * @return  SUE reference_speed
  */
 static inline float mavlink_msg_serial_udb_extra_f18_get_reference_speed(const mavlink_message_t* msg)
 {

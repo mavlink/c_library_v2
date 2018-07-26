@@ -5,11 +5,11 @@
 
 MAVPACKED(
 typedef struct __mavlink_slugs_camera_order_t {
- uint8_t target; /*< The system reporting the action*/
- int8_t pan; /*< Order the mount to pan: -1 left, 0 No pan motion, +1 right*/
- int8_t tilt; /*< Order the mount to tilt: -1 down, 0 No tilt motion, +1 up*/
- int8_t zoom; /*< Order the zoom values 0 to 10*/
- int8_t moveHome; /*< Orders the camera mount to move home. The other fields are ignored when this field is set. 1: move home, 0 ignored*/
+ uint8_t target; /*<  The system reporting the action*/
+ int8_t pan; /*<  Order the mount to pan: -1 left, 0 No pan motion, +1 right*/
+ int8_t tilt; /*<  Order the mount to tilt: -1 down, 0 No tilt motion, +1 up*/
+ int8_t zoom; /*<  Order the zoom values 0 to 10*/
+ int8_t moveHome; /*<  Orders the camera mount to move home. The other fields are ignored when this field is set. 1: move home, 0 ignored*/
 }) mavlink_slugs_camera_order_t;
 
 #define MAVLINK_MSG_ID_SLUGS_CAMERA_ORDER_LEN 5
@@ -53,11 +53,11 @@ typedef struct __mavlink_slugs_camera_order_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param target The system reporting the action
- * @param pan Order the mount to pan: -1 left, 0 No pan motion, +1 right
- * @param tilt Order the mount to tilt: -1 down, 0 No tilt motion, +1 up
- * @param zoom Order the zoom values 0 to 10
- * @param moveHome Orders the camera mount to move home. The other fields are ignored when this field is set. 1: move home, 0 ignored
+ * @param target  The system reporting the action
+ * @param pan  Order the mount to pan: -1 left, 0 No pan motion, +1 right
+ * @param tilt  Order the mount to tilt: -1 down, 0 No tilt motion, +1 up
+ * @param zoom  Order the zoom values 0 to 10
+ * @param moveHome  Orders the camera mount to move home. The other fields are ignored when this field is set. 1: move home, 0 ignored
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_slugs_camera_order_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -93,11 +93,11 @@ static inline uint16_t mavlink_msg_slugs_camera_order_pack(uint8_t system_id, ui
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param target The system reporting the action
- * @param pan Order the mount to pan: -1 left, 0 No pan motion, +1 right
- * @param tilt Order the mount to tilt: -1 down, 0 No tilt motion, +1 up
- * @param zoom Order the zoom values 0 to 10
- * @param moveHome Orders the camera mount to move home. The other fields are ignored when this field is set. 1: move home, 0 ignored
+ * @param target  The system reporting the action
+ * @param pan  Order the mount to pan: -1 left, 0 No pan motion, +1 right
+ * @param tilt  Order the mount to tilt: -1 down, 0 No tilt motion, +1 up
+ * @param zoom  Order the zoom values 0 to 10
+ * @param moveHome  Orders the camera mount to move home. The other fields are ignored when this field is set. 1: move home, 0 ignored
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_slugs_camera_order_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -159,11 +159,11 @@ static inline uint16_t mavlink_msg_slugs_camera_order_encode_chan(uint8_t system
  * @brief Send a slugs_camera_order message
  * @param chan MAVLink channel to send the message
  *
- * @param target The system reporting the action
- * @param pan Order the mount to pan: -1 left, 0 No pan motion, +1 right
- * @param tilt Order the mount to tilt: -1 down, 0 No tilt motion, +1 up
- * @param zoom Order the zoom values 0 to 10
- * @param moveHome Orders the camera mount to move home. The other fields are ignored when this field is set. 1: move home, 0 ignored
+ * @param target  The system reporting the action
+ * @param pan  Order the mount to pan: -1 left, 0 No pan motion, +1 right
+ * @param tilt  Order the mount to tilt: -1 down, 0 No tilt motion, +1 up
+ * @param zoom  Order the zoom values 0 to 10
+ * @param moveHome  Orders the camera mount to move home. The other fields are ignored when this field is set. 1: move home, 0 ignored
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -244,7 +244,7 @@ static inline void mavlink_msg_slugs_camera_order_send_buf(mavlink_message_t *ms
 /**
  * @brief Get field target from slugs_camera_order message
  *
- * @return The system reporting the action
+ * @return  The system reporting the action
  */
 static inline uint8_t mavlink_msg_slugs_camera_order_get_target(const mavlink_message_t* msg)
 {
@@ -254,7 +254,7 @@ static inline uint8_t mavlink_msg_slugs_camera_order_get_target(const mavlink_me
 /**
  * @brief Get field pan from slugs_camera_order message
  *
- * @return Order the mount to pan: -1 left, 0 No pan motion, +1 right
+ * @return  Order the mount to pan: -1 left, 0 No pan motion, +1 right
  */
 static inline int8_t mavlink_msg_slugs_camera_order_get_pan(const mavlink_message_t* msg)
 {
@@ -264,7 +264,7 @@ static inline int8_t mavlink_msg_slugs_camera_order_get_pan(const mavlink_messag
 /**
  * @brief Get field tilt from slugs_camera_order message
  *
- * @return Order the mount to tilt: -1 down, 0 No tilt motion, +1 up
+ * @return  Order the mount to tilt: -1 down, 0 No tilt motion, +1 up
  */
 static inline int8_t mavlink_msg_slugs_camera_order_get_tilt(const mavlink_message_t* msg)
 {
@@ -274,7 +274,7 @@ static inline int8_t mavlink_msg_slugs_camera_order_get_tilt(const mavlink_messa
 /**
  * @brief Get field zoom from slugs_camera_order message
  *
- * @return Order the zoom values 0 to 10
+ * @return  Order the zoom values 0 to 10
  */
 static inline int8_t mavlink_msg_slugs_camera_order_get_zoom(const mavlink_message_t* msg)
 {
@@ -284,7 +284,7 @@ static inline int8_t mavlink_msg_slugs_camera_order_get_zoom(const mavlink_messa
 /**
  * @brief Get field moveHome from slugs_camera_order message
  *
- * @return Orders the camera mount to move home. The other fields are ignored when this field is set. 1: move home, 0 ignored
+ * @return  Orders the camera mount to move home. The other fields are ignored when this field is set. 1: move home, 0 ignored
  */
 static inline int8_t mavlink_msg_slugs_camera_order_get_moveHome(const mavlink_message_t* msg)
 {

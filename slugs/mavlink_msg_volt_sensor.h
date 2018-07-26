@@ -5,9 +5,9 @@
 
 MAVPACKED(
 typedef struct __mavlink_volt_sensor_t {
- uint16_t voltage; /*< Voltage in uS of PWM. 0 uS = 0V, 20 uS = 21.5V */
- uint16_t reading2; /*< Depends on the value of r2Type (0) Current consumption in uS of PWM, 20 uS = 90Amp (1) Distance in cm (2) Distance in cm (3) Absolute value*/
- uint8_t r2Type; /*< It is the value of reading 2: 0 - Current, 1 - Foreward Sonar, 2 - Back Sonar, 3 - RPM*/
+ uint16_t voltage; /*<  Voltage in uS of PWM. 0 uS = 0V, 20 uS = 21.5V */
+ uint16_t reading2; /*<  Depends on the value of r2Type (0) Current consumption in uS of PWM, 20 uS = 90Amp (1) Distance in cm (2) Distance in cm (3) Absolute value*/
+ uint8_t r2Type; /*<  It is the value of reading 2: 0 - Current, 1 - Foreward Sonar, 2 - Back Sonar, 3 - RPM*/
 }) mavlink_volt_sensor_t;
 
 #define MAVLINK_MSG_ID_VOLT_SENSOR_LEN 5
@@ -47,9 +47,9 @@ typedef struct __mavlink_volt_sensor_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param r2Type It is the value of reading 2: 0 - Current, 1 - Foreward Sonar, 2 - Back Sonar, 3 - RPM
- * @param voltage Voltage in uS of PWM. 0 uS = 0V, 20 uS = 21.5V 
- * @param reading2 Depends on the value of r2Type (0) Current consumption in uS of PWM, 20 uS = 90Amp (1) Distance in cm (2) Distance in cm (3) Absolute value
+ * @param r2Type  It is the value of reading 2: 0 - Current, 1 - Foreward Sonar, 2 - Back Sonar, 3 - RPM
+ * @param voltage  Voltage in uS of PWM. 0 uS = 0V, 20 uS = 21.5V 
+ * @param reading2  Depends on the value of r2Type (0) Current consumption in uS of PWM, 20 uS = 90Amp (1) Distance in cm (2) Distance in cm (3) Absolute value
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_volt_sensor_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -81,9 +81,9 @@ static inline uint16_t mavlink_msg_volt_sensor_pack(uint8_t system_id, uint8_t c
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param r2Type It is the value of reading 2: 0 - Current, 1 - Foreward Sonar, 2 - Back Sonar, 3 - RPM
- * @param voltage Voltage in uS of PWM. 0 uS = 0V, 20 uS = 21.5V 
- * @param reading2 Depends on the value of r2Type (0) Current consumption in uS of PWM, 20 uS = 90Amp (1) Distance in cm (2) Distance in cm (3) Absolute value
+ * @param r2Type  It is the value of reading 2: 0 - Current, 1 - Foreward Sonar, 2 - Back Sonar, 3 - RPM
+ * @param voltage  Voltage in uS of PWM. 0 uS = 0V, 20 uS = 21.5V 
+ * @param reading2  Depends on the value of r2Type (0) Current consumption in uS of PWM, 20 uS = 90Amp (1) Distance in cm (2) Distance in cm (3) Absolute value
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_volt_sensor_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -141,9 +141,9 @@ static inline uint16_t mavlink_msg_volt_sensor_encode_chan(uint8_t system_id, ui
  * @brief Send a volt_sensor message
  * @param chan MAVLink channel to send the message
  *
- * @param r2Type It is the value of reading 2: 0 - Current, 1 - Foreward Sonar, 2 - Back Sonar, 3 - RPM
- * @param voltage Voltage in uS of PWM. 0 uS = 0V, 20 uS = 21.5V 
- * @param reading2 Depends on the value of r2Type (0) Current consumption in uS of PWM, 20 uS = 90Amp (1) Distance in cm (2) Distance in cm (3) Absolute value
+ * @param r2Type  It is the value of reading 2: 0 - Current, 1 - Foreward Sonar, 2 - Back Sonar, 3 - RPM
+ * @param voltage  Voltage in uS of PWM. 0 uS = 0V, 20 uS = 21.5V 
+ * @param reading2  Depends on the value of r2Type (0) Current consumption in uS of PWM, 20 uS = 90Amp (1) Distance in cm (2) Distance in cm (3) Absolute value
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -216,7 +216,7 @@ static inline void mavlink_msg_volt_sensor_send_buf(mavlink_message_t *msgbuf, m
 /**
  * @brief Get field r2Type from volt_sensor message
  *
- * @return It is the value of reading 2: 0 - Current, 1 - Foreward Sonar, 2 - Back Sonar, 3 - RPM
+ * @return  It is the value of reading 2: 0 - Current, 1 - Foreward Sonar, 2 - Back Sonar, 3 - RPM
  */
 static inline uint8_t mavlink_msg_volt_sensor_get_r2Type(const mavlink_message_t* msg)
 {
@@ -226,7 +226,7 @@ static inline uint8_t mavlink_msg_volt_sensor_get_r2Type(const mavlink_message_t
 /**
  * @brief Get field voltage from volt_sensor message
  *
- * @return Voltage in uS of PWM. 0 uS = 0V, 20 uS = 21.5V 
+ * @return  Voltage in uS of PWM. 0 uS = 0V, 20 uS = 21.5V 
  */
 static inline uint16_t mavlink_msg_volt_sensor_get_voltage(const mavlink_message_t* msg)
 {
@@ -236,7 +236,7 @@ static inline uint16_t mavlink_msg_volt_sensor_get_voltage(const mavlink_message
 /**
  * @brief Get field reading2 from volt_sensor message
  *
- * @return Depends on the value of r2Type (0) Current consumption in uS of PWM, 20 uS = 90Amp (1) Distance in cm (2) Distance in cm (3) Absolute value
+ * @return  Depends on the value of r2Type (0) Current consumption in uS of PWM, 20 uS = 90Amp (1) Distance in cm (2) Distance in cm (3) Absolute value
  */
 static inline uint16_t mavlink_msg_volt_sensor_get_reading2(const mavlink_message_t* msg)
 {

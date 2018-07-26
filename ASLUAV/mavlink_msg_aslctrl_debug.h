@@ -5,17 +5,17 @@
 
 MAVPACKED(
 typedef struct __mavlink_aslctrl_debug_t {
- uint32_t i32_1; /*<  Debug data*/
- float f_1; /*<  Debug data */
- float f_2; /*<  Debug data*/
- float f_3; /*<  Debug data*/
- float f_4; /*<  Debug data*/
- float f_5; /*<  Debug data*/
- float f_6; /*<  Debug data*/
- float f_7; /*<  Debug data*/
- float f_8; /*<  Debug data*/
- uint8_t i8_1; /*<  Debug data*/
- uint8_t i8_2; /*<  Debug data*/
+ uint32_t i32_1; /*<   Debug data*/
+ float f_1; /*<   Debug data */
+ float f_2; /*<   Debug data*/
+ float f_3; /*<   Debug data*/
+ float f_4; /*<   Debug data*/
+ float f_5; /*<   Debug data*/
+ float f_6; /*<   Debug data*/
+ float f_7; /*<   Debug data*/
+ float f_8; /*<   Debug data*/
+ uint8_t i8_1; /*<   Debug data*/
+ uint8_t i8_2; /*<   Debug data*/
 }) mavlink_aslctrl_debug_t;
 
 #define MAVLINK_MSG_ID_ASLCTRL_DEBUG_LEN 38
@@ -71,17 +71,17 @@ typedef struct __mavlink_aslctrl_debug_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param i32_1  Debug data
- * @param i8_1  Debug data
- * @param i8_2  Debug data
- * @param f_1  Debug data 
- * @param f_2  Debug data
- * @param f_3  Debug data
- * @param f_4  Debug data
- * @param f_5  Debug data
- * @param f_6  Debug data
- * @param f_7  Debug data
- * @param f_8  Debug data
+ * @param i32_1   Debug data
+ * @param i8_1   Debug data
+ * @param i8_2   Debug data
+ * @param f_1   Debug data 
+ * @param f_2   Debug data
+ * @param f_3   Debug data
+ * @param f_4   Debug data
+ * @param f_5   Debug data
+ * @param f_6   Debug data
+ * @param f_7   Debug data
+ * @param f_8   Debug data
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_aslctrl_debug_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -129,17 +129,17 @@ static inline uint16_t mavlink_msg_aslctrl_debug_pack(uint8_t system_id, uint8_t
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param i32_1  Debug data
- * @param i8_1  Debug data
- * @param i8_2  Debug data
- * @param f_1  Debug data 
- * @param f_2  Debug data
- * @param f_3  Debug data
- * @param f_4  Debug data
- * @param f_5  Debug data
- * @param f_6  Debug data
- * @param f_7  Debug data
- * @param f_8  Debug data
+ * @param i32_1   Debug data
+ * @param i8_1   Debug data
+ * @param i8_2   Debug data
+ * @param f_1   Debug data 
+ * @param f_2   Debug data
+ * @param f_3   Debug data
+ * @param f_4   Debug data
+ * @param f_5   Debug data
+ * @param f_6   Debug data
+ * @param f_7   Debug data
+ * @param f_8   Debug data
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_aslctrl_debug_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -213,17 +213,17 @@ static inline uint16_t mavlink_msg_aslctrl_debug_encode_chan(uint8_t system_id, 
  * @brief Send a aslctrl_debug message
  * @param chan MAVLink channel to send the message
  *
- * @param i32_1  Debug data
- * @param i8_1  Debug data
- * @param i8_2  Debug data
- * @param f_1  Debug data 
- * @param f_2  Debug data
- * @param f_3  Debug data
- * @param f_4  Debug data
- * @param f_5  Debug data
- * @param f_6  Debug data
- * @param f_7  Debug data
- * @param f_8  Debug data
+ * @param i32_1   Debug data
+ * @param i8_1   Debug data
+ * @param i8_2   Debug data
+ * @param f_1   Debug data 
+ * @param f_2   Debug data
+ * @param f_3   Debug data
+ * @param f_4   Debug data
+ * @param f_5   Debug data
+ * @param f_6   Debug data
+ * @param f_7   Debug data
+ * @param f_8   Debug data
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -328,7 +328,7 @@ static inline void mavlink_msg_aslctrl_debug_send_buf(mavlink_message_t *msgbuf,
 /**
  * @brief Get field i32_1 from aslctrl_debug message
  *
- * @return  Debug data
+ * @return   Debug data
  */
 static inline uint32_t mavlink_msg_aslctrl_debug_get_i32_1(const mavlink_message_t* msg)
 {
@@ -338,7 +338,7 @@ static inline uint32_t mavlink_msg_aslctrl_debug_get_i32_1(const mavlink_message
 /**
  * @brief Get field i8_1 from aslctrl_debug message
  *
- * @return  Debug data
+ * @return   Debug data
  */
 static inline uint8_t mavlink_msg_aslctrl_debug_get_i8_1(const mavlink_message_t* msg)
 {
@@ -348,7 +348,7 @@ static inline uint8_t mavlink_msg_aslctrl_debug_get_i8_1(const mavlink_message_t
 /**
  * @brief Get field i8_2 from aslctrl_debug message
  *
- * @return  Debug data
+ * @return   Debug data
  */
 static inline uint8_t mavlink_msg_aslctrl_debug_get_i8_2(const mavlink_message_t* msg)
 {
@@ -358,7 +358,7 @@ static inline uint8_t mavlink_msg_aslctrl_debug_get_i8_2(const mavlink_message_t
 /**
  * @brief Get field f_1 from aslctrl_debug message
  *
- * @return  Debug data 
+ * @return   Debug data 
  */
 static inline float mavlink_msg_aslctrl_debug_get_f_1(const mavlink_message_t* msg)
 {
@@ -368,7 +368,7 @@ static inline float mavlink_msg_aslctrl_debug_get_f_1(const mavlink_message_t* m
 /**
  * @brief Get field f_2 from aslctrl_debug message
  *
- * @return  Debug data
+ * @return   Debug data
  */
 static inline float mavlink_msg_aslctrl_debug_get_f_2(const mavlink_message_t* msg)
 {
@@ -378,7 +378,7 @@ static inline float mavlink_msg_aslctrl_debug_get_f_2(const mavlink_message_t* m
 /**
  * @brief Get field f_3 from aslctrl_debug message
  *
- * @return  Debug data
+ * @return   Debug data
  */
 static inline float mavlink_msg_aslctrl_debug_get_f_3(const mavlink_message_t* msg)
 {
@@ -388,7 +388,7 @@ static inline float mavlink_msg_aslctrl_debug_get_f_3(const mavlink_message_t* m
 /**
  * @brief Get field f_4 from aslctrl_debug message
  *
- * @return  Debug data
+ * @return   Debug data
  */
 static inline float mavlink_msg_aslctrl_debug_get_f_4(const mavlink_message_t* msg)
 {
@@ -398,7 +398,7 @@ static inline float mavlink_msg_aslctrl_debug_get_f_4(const mavlink_message_t* m
 /**
  * @brief Get field f_5 from aslctrl_debug message
  *
- * @return  Debug data
+ * @return   Debug data
  */
 static inline float mavlink_msg_aslctrl_debug_get_f_5(const mavlink_message_t* msg)
 {
@@ -408,7 +408,7 @@ static inline float mavlink_msg_aslctrl_debug_get_f_5(const mavlink_message_t* m
 /**
  * @brief Get field f_6 from aslctrl_debug message
  *
- * @return  Debug data
+ * @return   Debug data
  */
 static inline float mavlink_msg_aslctrl_debug_get_f_6(const mavlink_message_t* msg)
 {
@@ -418,7 +418,7 @@ static inline float mavlink_msg_aslctrl_debug_get_f_6(const mavlink_message_t* m
 /**
  * @brief Get field f_7 from aslctrl_debug message
  *
- * @return  Debug data
+ * @return   Debug data
  */
 static inline float mavlink_msg_aslctrl_debug_get_f_7(const mavlink_message_t* msg)
 {
@@ -428,7 +428,7 @@ static inline float mavlink_msg_aslctrl_debug_get_f_7(const mavlink_message_t* m
 /**
  * @brief Get field f_8 from aslctrl_debug message
  *
- * @return  Debug data
+ * @return   Debug data
  */
 static inline float mavlink_msg_aslctrl_debug_get_f_8(const mavlink_message_t* msg)
 {

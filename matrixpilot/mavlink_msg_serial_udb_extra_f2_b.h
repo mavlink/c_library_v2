@@ -5,56 +5,56 @@
 
 MAVPACKED(
 typedef struct __mavlink_serial_udb_extra_f2_b_t {
- uint32_t sue_time; /*< Serial UDB Extra Time*/
- uint32_t sue_flags; /*< Serial UDB Extra Status Flags*/
- int32_t sue_barom_press; /*< SUE barometer pressure*/
- int32_t sue_barom_alt; /*< SUE barometer altitude*/
- int16_t sue_pwm_input_1; /*< Serial UDB Extra PWM Input Channel 1*/
- int16_t sue_pwm_input_2; /*< Serial UDB Extra PWM Input Channel 2*/
- int16_t sue_pwm_input_3; /*< Serial UDB Extra PWM Input Channel 3*/
- int16_t sue_pwm_input_4; /*< Serial UDB Extra PWM Input Channel 4*/
- int16_t sue_pwm_input_5; /*< Serial UDB Extra PWM Input Channel 5*/
- int16_t sue_pwm_input_6; /*< Serial UDB Extra PWM Input Channel 6*/
- int16_t sue_pwm_input_7; /*< Serial UDB Extra PWM Input Channel 7*/
- int16_t sue_pwm_input_8; /*< Serial UDB Extra PWM Input Channel 8*/
- int16_t sue_pwm_input_9; /*< Serial UDB Extra PWM Input Channel 9*/
- int16_t sue_pwm_input_10; /*< Serial UDB Extra PWM Input Channel 10*/
- int16_t sue_pwm_input_11; /*< Serial UDB Extra PWM Input Channel 11*/
- int16_t sue_pwm_input_12; /*< Serial UDB Extra PWM Input Channel 12*/
- int16_t sue_pwm_output_1; /*< Serial UDB Extra PWM Output Channel 1*/
- int16_t sue_pwm_output_2; /*< Serial UDB Extra PWM Output Channel 2*/
- int16_t sue_pwm_output_3; /*< Serial UDB Extra PWM Output Channel 3*/
- int16_t sue_pwm_output_4; /*< Serial UDB Extra PWM Output Channel 4*/
- int16_t sue_pwm_output_5; /*< Serial UDB Extra PWM Output Channel 5*/
- int16_t sue_pwm_output_6; /*< Serial UDB Extra PWM Output Channel 6*/
- int16_t sue_pwm_output_7; /*< Serial UDB Extra PWM Output Channel 7*/
- int16_t sue_pwm_output_8; /*< Serial UDB Extra PWM Output Channel 8*/
- int16_t sue_pwm_output_9; /*< Serial UDB Extra PWM Output Channel 9*/
- int16_t sue_pwm_output_10; /*< Serial UDB Extra PWM Output Channel 10*/
- int16_t sue_pwm_output_11; /*< Serial UDB Extra PWM Output Channel 11*/
- int16_t sue_pwm_output_12; /*< Serial UDB Extra PWM Output Channel 12*/
- int16_t sue_imu_location_x; /*< Serial UDB Extra IMU Location X*/
- int16_t sue_imu_location_y; /*< Serial UDB Extra IMU Location Y*/
- int16_t sue_imu_location_z; /*< Serial UDB Extra IMU Location Z*/
- int16_t sue_location_error_earth_x; /*< Serial UDB Location Error Earth X*/
- int16_t sue_location_error_earth_y; /*< Serial UDB Location Error Earth Y*/
- int16_t sue_location_error_earth_z; /*< Serial UDB Location Error Earth Z*/
- int16_t sue_osc_fails; /*< Serial UDB Extra Oscillator Failure Count*/
- int16_t sue_imu_velocity_x; /*< Serial UDB Extra IMU Velocity X*/
- int16_t sue_imu_velocity_y; /*< Serial UDB Extra IMU Velocity Y*/
- int16_t sue_imu_velocity_z; /*< Serial UDB Extra IMU Velocity Z*/
- int16_t sue_waypoint_goal_x; /*< Serial UDB Extra Current Waypoint Goal X*/
- int16_t sue_waypoint_goal_y; /*< Serial UDB Extra Current Waypoint Goal Y*/
- int16_t sue_waypoint_goal_z; /*< Serial UDB Extra Current Waypoint Goal Z*/
- int16_t sue_aero_x; /*< Aeroforce in UDB X Axis*/
- int16_t sue_aero_y; /*< Aeroforce in UDB Y Axis*/
- int16_t sue_aero_z; /*< Aeroforce in UDB Z axis*/
- int16_t sue_barom_temp; /*< SUE barometer temperature*/
- int16_t sue_bat_volt; /*< SUE battery voltage*/
- int16_t sue_bat_amp; /*< SUE battery current*/
- int16_t sue_bat_amp_hours; /*< SUE battery milli amp hours used*/
- int16_t sue_desired_height; /*< Sue autopilot desired height*/
- int16_t sue_memory_stack_free; /*< Serial UDB Extra Stack Memory Free*/
+ uint32_t sue_time; /*<  Serial UDB Extra Time*/
+ uint32_t sue_flags; /*<  Serial UDB Extra Status Flags*/
+ int32_t sue_barom_press; /*<  SUE barometer pressure*/
+ int32_t sue_barom_alt; /*<  SUE barometer altitude*/
+ int16_t sue_pwm_input_1; /*<  Serial UDB Extra PWM Input Channel 1*/
+ int16_t sue_pwm_input_2; /*<  Serial UDB Extra PWM Input Channel 2*/
+ int16_t sue_pwm_input_3; /*<  Serial UDB Extra PWM Input Channel 3*/
+ int16_t sue_pwm_input_4; /*<  Serial UDB Extra PWM Input Channel 4*/
+ int16_t sue_pwm_input_5; /*<  Serial UDB Extra PWM Input Channel 5*/
+ int16_t sue_pwm_input_6; /*<  Serial UDB Extra PWM Input Channel 6*/
+ int16_t sue_pwm_input_7; /*<  Serial UDB Extra PWM Input Channel 7*/
+ int16_t sue_pwm_input_8; /*<  Serial UDB Extra PWM Input Channel 8*/
+ int16_t sue_pwm_input_9; /*<  Serial UDB Extra PWM Input Channel 9*/
+ int16_t sue_pwm_input_10; /*<  Serial UDB Extra PWM Input Channel 10*/
+ int16_t sue_pwm_input_11; /*<  Serial UDB Extra PWM Input Channel 11*/
+ int16_t sue_pwm_input_12; /*<  Serial UDB Extra PWM Input Channel 12*/
+ int16_t sue_pwm_output_1; /*<  Serial UDB Extra PWM Output Channel 1*/
+ int16_t sue_pwm_output_2; /*<  Serial UDB Extra PWM Output Channel 2*/
+ int16_t sue_pwm_output_3; /*<  Serial UDB Extra PWM Output Channel 3*/
+ int16_t sue_pwm_output_4; /*<  Serial UDB Extra PWM Output Channel 4*/
+ int16_t sue_pwm_output_5; /*<  Serial UDB Extra PWM Output Channel 5*/
+ int16_t sue_pwm_output_6; /*<  Serial UDB Extra PWM Output Channel 6*/
+ int16_t sue_pwm_output_7; /*<  Serial UDB Extra PWM Output Channel 7*/
+ int16_t sue_pwm_output_8; /*<  Serial UDB Extra PWM Output Channel 8*/
+ int16_t sue_pwm_output_9; /*<  Serial UDB Extra PWM Output Channel 9*/
+ int16_t sue_pwm_output_10; /*<  Serial UDB Extra PWM Output Channel 10*/
+ int16_t sue_pwm_output_11; /*<  Serial UDB Extra PWM Output Channel 11*/
+ int16_t sue_pwm_output_12; /*<  Serial UDB Extra PWM Output Channel 12*/
+ int16_t sue_imu_location_x; /*<  Serial UDB Extra IMU Location X*/
+ int16_t sue_imu_location_y; /*<  Serial UDB Extra IMU Location Y*/
+ int16_t sue_imu_location_z; /*<  Serial UDB Extra IMU Location Z*/
+ int16_t sue_location_error_earth_x; /*<  Serial UDB Location Error Earth X*/
+ int16_t sue_location_error_earth_y; /*<  Serial UDB Location Error Earth Y*/
+ int16_t sue_location_error_earth_z; /*<  Serial UDB Location Error Earth Z*/
+ int16_t sue_osc_fails; /*<  Serial UDB Extra Oscillator Failure Count*/
+ int16_t sue_imu_velocity_x; /*<  Serial UDB Extra IMU Velocity X*/
+ int16_t sue_imu_velocity_y; /*<  Serial UDB Extra IMU Velocity Y*/
+ int16_t sue_imu_velocity_z; /*<  Serial UDB Extra IMU Velocity Z*/
+ int16_t sue_waypoint_goal_x; /*<  Serial UDB Extra Current Waypoint Goal X*/
+ int16_t sue_waypoint_goal_y; /*<  Serial UDB Extra Current Waypoint Goal Y*/
+ int16_t sue_waypoint_goal_z; /*<  Serial UDB Extra Current Waypoint Goal Z*/
+ int16_t sue_aero_x; /*<  Aeroforce in UDB X Axis*/
+ int16_t sue_aero_y; /*<  Aeroforce in UDB Y Axis*/
+ int16_t sue_aero_z; /*<  Aeroforce in UDB Z axis*/
+ int16_t sue_barom_temp; /*<  SUE barometer temperature*/
+ int16_t sue_bat_volt; /*<  SUE battery voltage*/
+ int16_t sue_bat_amp; /*<  SUE battery current*/
+ int16_t sue_bat_amp_hours; /*<  SUE battery milli amp hours used*/
+ int16_t sue_desired_height; /*<  Sue autopilot desired height*/
+ int16_t sue_memory_stack_free; /*<  Serial UDB Extra Stack Memory Free*/
 }) mavlink_serial_udb_extra_f2_b_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_B_LEN 108
@@ -188,56 +188,56 @@ typedef struct __mavlink_serial_udb_extra_f2_b_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param sue_time Serial UDB Extra Time
- * @param sue_pwm_input_1 Serial UDB Extra PWM Input Channel 1
- * @param sue_pwm_input_2 Serial UDB Extra PWM Input Channel 2
- * @param sue_pwm_input_3 Serial UDB Extra PWM Input Channel 3
- * @param sue_pwm_input_4 Serial UDB Extra PWM Input Channel 4
- * @param sue_pwm_input_5 Serial UDB Extra PWM Input Channel 5
- * @param sue_pwm_input_6 Serial UDB Extra PWM Input Channel 6
- * @param sue_pwm_input_7 Serial UDB Extra PWM Input Channel 7
- * @param sue_pwm_input_8 Serial UDB Extra PWM Input Channel 8
- * @param sue_pwm_input_9 Serial UDB Extra PWM Input Channel 9
- * @param sue_pwm_input_10 Serial UDB Extra PWM Input Channel 10
- * @param sue_pwm_input_11 Serial UDB Extra PWM Input Channel 11
- * @param sue_pwm_input_12 Serial UDB Extra PWM Input Channel 12
- * @param sue_pwm_output_1 Serial UDB Extra PWM Output Channel 1
- * @param sue_pwm_output_2 Serial UDB Extra PWM Output Channel 2
- * @param sue_pwm_output_3 Serial UDB Extra PWM Output Channel 3
- * @param sue_pwm_output_4 Serial UDB Extra PWM Output Channel 4
- * @param sue_pwm_output_5 Serial UDB Extra PWM Output Channel 5
- * @param sue_pwm_output_6 Serial UDB Extra PWM Output Channel 6
- * @param sue_pwm_output_7 Serial UDB Extra PWM Output Channel 7
- * @param sue_pwm_output_8 Serial UDB Extra PWM Output Channel 8
- * @param sue_pwm_output_9 Serial UDB Extra PWM Output Channel 9
- * @param sue_pwm_output_10 Serial UDB Extra PWM Output Channel 10
- * @param sue_pwm_output_11 Serial UDB Extra PWM Output Channel 11
- * @param sue_pwm_output_12 Serial UDB Extra PWM Output Channel 12
- * @param sue_imu_location_x Serial UDB Extra IMU Location X
- * @param sue_imu_location_y Serial UDB Extra IMU Location Y
- * @param sue_imu_location_z Serial UDB Extra IMU Location Z
- * @param sue_location_error_earth_x Serial UDB Location Error Earth X
- * @param sue_location_error_earth_y Serial UDB Location Error Earth Y
- * @param sue_location_error_earth_z Serial UDB Location Error Earth Z
- * @param sue_flags Serial UDB Extra Status Flags
- * @param sue_osc_fails Serial UDB Extra Oscillator Failure Count
- * @param sue_imu_velocity_x Serial UDB Extra IMU Velocity X
- * @param sue_imu_velocity_y Serial UDB Extra IMU Velocity Y
- * @param sue_imu_velocity_z Serial UDB Extra IMU Velocity Z
- * @param sue_waypoint_goal_x Serial UDB Extra Current Waypoint Goal X
- * @param sue_waypoint_goal_y Serial UDB Extra Current Waypoint Goal Y
- * @param sue_waypoint_goal_z Serial UDB Extra Current Waypoint Goal Z
- * @param sue_aero_x Aeroforce in UDB X Axis
- * @param sue_aero_y Aeroforce in UDB Y Axis
- * @param sue_aero_z Aeroforce in UDB Z axis
- * @param sue_barom_temp SUE barometer temperature
- * @param sue_barom_press SUE barometer pressure
- * @param sue_barom_alt SUE barometer altitude
- * @param sue_bat_volt SUE battery voltage
- * @param sue_bat_amp SUE battery current
- * @param sue_bat_amp_hours SUE battery milli amp hours used
- * @param sue_desired_height Sue autopilot desired height
- * @param sue_memory_stack_free Serial UDB Extra Stack Memory Free
+ * @param sue_time  Serial UDB Extra Time
+ * @param sue_pwm_input_1  Serial UDB Extra PWM Input Channel 1
+ * @param sue_pwm_input_2  Serial UDB Extra PWM Input Channel 2
+ * @param sue_pwm_input_3  Serial UDB Extra PWM Input Channel 3
+ * @param sue_pwm_input_4  Serial UDB Extra PWM Input Channel 4
+ * @param sue_pwm_input_5  Serial UDB Extra PWM Input Channel 5
+ * @param sue_pwm_input_6  Serial UDB Extra PWM Input Channel 6
+ * @param sue_pwm_input_7  Serial UDB Extra PWM Input Channel 7
+ * @param sue_pwm_input_8  Serial UDB Extra PWM Input Channel 8
+ * @param sue_pwm_input_9  Serial UDB Extra PWM Input Channel 9
+ * @param sue_pwm_input_10  Serial UDB Extra PWM Input Channel 10
+ * @param sue_pwm_input_11  Serial UDB Extra PWM Input Channel 11
+ * @param sue_pwm_input_12  Serial UDB Extra PWM Input Channel 12
+ * @param sue_pwm_output_1  Serial UDB Extra PWM Output Channel 1
+ * @param sue_pwm_output_2  Serial UDB Extra PWM Output Channel 2
+ * @param sue_pwm_output_3  Serial UDB Extra PWM Output Channel 3
+ * @param sue_pwm_output_4  Serial UDB Extra PWM Output Channel 4
+ * @param sue_pwm_output_5  Serial UDB Extra PWM Output Channel 5
+ * @param sue_pwm_output_6  Serial UDB Extra PWM Output Channel 6
+ * @param sue_pwm_output_7  Serial UDB Extra PWM Output Channel 7
+ * @param sue_pwm_output_8  Serial UDB Extra PWM Output Channel 8
+ * @param sue_pwm_output_9  Serial UDB Extra PWM Output Channel 9
+ * @param sue_pwm_output_10  Serial UDB Extra PWM Output Channel 10
+ * @param sue_pwm_output_11  Serial UDB Extra PWM Output Channel 11
+ * @param sue_pwm_output_12  Serial UDB Extra PWM Output Channel 12
+ * @param sue_imu_location_x  Serial UDB Extra IMU Location X
+ * @param sue_imu_location_y  Serial UDB Extra IMU Location Y
+ * @param sue_imu_location_z  Serial UDB Extra IMU Location Z
+ * @param sue_location_error_earth_x  Serial UDB Location Error Earth X
+ * @param sue_location_error_earth_y  Serial UDB Location Error Earth Y
+ * @param sue_location_error_earth_z  Serial UDB Location Error Earth Z
+ * @param sue_flags  Serial UDB Extra Status Flags
+ * @param sue_osc_fails  Serial UDB Extra Oscillator Failure Count
+ * @param sue_imu_velocity_x  Serial UDB Extra IMU Velocity X
+ * @param sue_imu_velocity_y  Serial UDB Extra IMU Velocity Y
+ * @param sue_imu_velocity_z  Serial UDB Extra IMU Velocity Z
+ * @param sue_waypoint_goal_x  Serial UDB Extra Current Waypoint Goal X
+ * @param sue_waypoint_goal_y  Serial UDB Extra Current Waypoint Goal Y
+ * @param sue_waypoint_goal_z  Serial UDB Extra Current Waypoint Goal Z
+ * @param sue_aero_x  Aeroforce in UDB X Axis
+ * @param sue_aero_y  Aeroforce in UDB Y Axis
+ * @param sue_aero_z  Aeroforce in UDB Z axis
+ * @param sue_barom_temp  SUE barometer temperature
+ * @param sue_barom_press  SUE barometer pressure
+ * @param sue_barom_alt  SUE barometer altitude
+ * @param sue_bat_volt  SUE battery voltage
+ * @param sue_bat_amp  SUE battery current
+ * @param sue_bat_amp_hours  SUE battery milli amp hours used
+ * @param sue_desired_height  Sue autopilot desired height
+ * @param sue_memory_stack_free  Serial UDB Extra Stack Memory Free
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f2_b_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -363,56 +363,56 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_b_pack(uint8_t system_id,
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param sue_time Serial UDB Extra Time
- * @param sue_pwm_input_1 Serial UDB Extra PWM Input Channel 1
- * @param sue_pwm_input_2 Serial UDB Extra PWM Input Channel 2
- * @param sue_pwm_input_3 Serial UDB Extra PWM Input Channel 3
- * @param sue_pwm_input_4 Serial UDB Extra PWM Input Channel 4
- * @param sue_pwm_input_5 Serial UDB Extra PWM Input Channel 5
- * @param sue_pwm_input_6 Serial UDB Extra PWM Input Channel 6
- * @param sue_pwm_input_7 Serial UDB Extra PWM Input Channel 7
- * @param sue_pwm_input_8 Serial UDB Extra PWM Input Channel 8
- * @param sue_pwm_input_9 Serial UDB Extra PWM Input Channel 9
- * @param sue_pwm_input_10 Serial UDB Extra PWM Input Channel 10
- * @param sue_pwm_input_11 Serial UDB Extra PWM Input Channel 11
- * @param sue_pwm_input_12 Serial UDB Extra PWM Input Channel 12
- * @param sue_pwm_output_1 Serial UDB Extra PWM Output Channel 1
- * @param sue_pwm_output_2 Serial UDB Extra PWM Output Channel 2
- * @param sue_pwm_output_3 Serial UDB Extra PWM Output Channel 3
- * @param sue_pwm_output_4 Serial UDB Extra PWM Output Channel 4
- * @param sue_pwm_output_5 Serial UDB Extra PWM Output Channel 5
- * @param sue_pwm_output_6 Serial UDB Extra PWM Output Channel 6
- * @param sue_pwm_output_7 Serial UDB Extra PWM Output Channel 7
- * @param sue_pwm_output_8 Serial UDB Extra PWM Output Channel 8
- * @param sue_pwm_output_9 Serial UDB Extra PWM Output Channel 9
- * @param sue_pwm_output_10 Serial UDB Extra PWM Output Channel 10
- * @param sue_pwm_output_11 Serial UDB Extra PWM Output Channel 11
- * @param sue_pwm_output_12 Serial UDB Extra PWM Output Channel 12
- * @param sue_imu_location_x Serial UDB Extra IMU Location X
- * @param sue_imu_location_y Serial UDB Extra IMU Location Y
- * @param sue_imu_location_z Serial UDB Extra IMU Location Z
- * @param sue_location_error_earth_x Serial UDB Location Error Earth X
- * @param sue_location_error_earth_y Serial UDB Location Error Earth Y
- * @param sue_location_error_earth_z Serial UDB Location Error Earth Z
- * @param sue_flags Serial UDB Extra Status Flags
- * @param sue_osc_fails Serial UDB Extra Oscillator Failure Count
- * @param sue_imu_velocity_x Serial UDB Extra IMU Velocity X
- * @param sue_imu_velocity_y Serial UDB Extra IMU Velocity Y
- * @param sue_imu_velocity_z Serial UDB Extra IMU Velocity Z
- * @param sue_waypoint_goal_x Serial UDB Extra Current Waypoint Goal X
- * @param sue_waypoint_goal_y Serial UDB Extra Current Waypoint Goal Y
- * @param sue_waypoint_goal_z Serial UDB Extra Current Waypoint Goal Z
- * @param sue_aero_x Aeroforce in UDB X Axis
- * @param sue_aero_y Aeroforce in UDB Y Axis
- * @param sue_aero_z Aeroforce in UDB Z axis
- * @param sue_barom_temp SUE barometer temperature
- * @param sue_barom_press SUE barometer pressure
- * @param sue_barom_alt SUE barometer altitude
- * @param sue_bat_volt SUE battery voltage
- * @param sue_bat_amp SUE battery current
- * @param sue_bat_amp_hours SUE battery milli amp hours used
- * @param sue_desired_height Sue autopilot desired height
- * @param sue_memory_stack_free Serial UDB Extra Stack Memory Free
+ * @param sue_time  Serial UDB Extra Time
+ * @param sue_pwm_input_1  Serial UDB Extra PWM Input Channel 1
+ * @param sue_pwm_input_2  Serial UDB Extra PWM Input Channel 2
+ * @param sue_pwm_input_3  Serial UDB Extra PWM Input Channel 3
+ * @param sue_pwm_input_4  Serial UDB Extra PWM Input Channel 4
+ * @param sue_pwm_input_5  Serial UDB Extra PWM Input Channel 5
+ * @param sue_pwm_input_6  Serial UDB Extra PWM Input Channel 6
+ * @param sue_pwm_input_7  Serial UDB Extra PWM Input Channel 7
+ * @param sue_pwm_input_8  Serial UDB Extra PWM Input Channel 8
+ * @param sue_pwm_input_9  Serial UDB Extra PWM Input Channel 9
+ * @param sue_pwm_input_10  Serial UDB Extra PWM Input Channel 10
+ * @param sue_pwm_input_11  Serial UDB Extra PWM Input Channel 11
+ * @param sue_pwm_input_12  Serial UDB Extra PWM Input Channel 12
+ * @param sue_pwm_output_1  Serial UDB Extra PWM Output Channel 1
+ * @param sue_pwm_output_2  Serial UDB Extra PWM Output Channel 2
+ * @param sue_pwm_output_3  Serial UDB Extra PWM Output Channel 3
+ * @param sue_pwm_output_4  Serial UDB Extra PWM Output Channel 4
+ * @param sue_pwm_output_5  Serial UDB Extra PWM Output Channel 5
+ * @param sue_pwm_output_6  Serial UDB Extra PWM Output Channel 6
+ * @param sue_pwm_output_7  Serial UDB Extra PWM Output Channel 7
+ * @param sue_pwm_output_8  Serial UDB Extra PWM Output Channel 8
+ * @param sue_pwm_output_9  Serial UDB Extra PWM Output Channel 9
+ * @param sue_pwm_output_10  Serial UDB Extra PWM Output Channel 10
+ * @param sue_pwm_output_11  Serial UDB Extra PWM Output Channel 11
+ * @param sue_pwm_output_12  Serial UDB Extra PWM Output Channel 12
+ * @param sue_imu_location_x  Serial UDB Extra IMU Location X
+ * @param sue_imu_location_y  Serial UDB Extra IMU Location Y
+ * @param sue_imu_location_z  Serial UDB Extra IMU Location Z
+ * @param sue_location_error_earth_x  Serial UDB Location Error Earth X
+ * @param sue_location_error_earth_y  Serial UDB Location Error Earth Y
+ * @param sue_location_error_earth_z  Serial UDB Location Error Earth Z
+ * @param sue_flags  Serial UDB Extra Status Flags
+ * @param sue_osc_fails  Serial UDB Extra Oscillator Failure Count
+ * @param sue_imu_velocity_x  Serial UDB Extra IMU Velocity X
+ * @param sue_imu_velocity_y  Serial UDB Extra IMU Velocity Y
+ * @param sue_imu_velocity_z  Serial UDB Extra IMU Velocity Z
+ * @param sue_waypoint_goal_x  Serial UDB Extra Current Waypoint Goal X
+ * @param sue_waypoint_goal_y  Serial UDB Extra Current Waypoint Goal Y
+ * @param sue_waypoint_goal_z  Serial UDB Extra Current Waypoint Goal Z
+ * @param sue_aero_x  Aeroforce in UDB X Axis
+ * @param sue_aero_y  Aeroforce in UDB Y Axis
+ * @param sue_aero_z  Aeroforce in UDB Z axis
+ * @param sue_barom_temp  SUE barometer temperature
+ * @param sue_barom_press  SUE barometer pressure
+ * @param sue_barom_alt  SUE barometer altitude
+ * @param sue_bat_volt  SUE battery voltage
+ * @param sue_bat_amp  SUE battery current
+ * @param sue_bat_amp_hours  SUE battery milli amp hours used
+ * @param sue_desired_height  Sue autopilot desired height
+ * @param sue_memory_stack_free  Serial UDB Extra Stack Memory Free
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f2_b_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -564,56 +564,56 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_b_encode_chan(uint8_t sys
  * @brief Send a serial_udb_extra_f2_b message
  * @param chan MAVLink channel to send the message
  *
- * @param sue_time Serial UDB Extra Time
- * @param sue_pwm_input_1 Serial UDB Extra PWM Input Channel 1
- * @param sue_pwm_input_2 Serial UDB Extra PWM Input Channel 2
- * @param sue_pwm_input_3 Serial UDB Extra PWM Input Channel 3
- * @param sue_pwm_input_4 Serial UDB Extra PWM Input Channel 4
- * @param sue_pwm_input_5 Serial UDB Extra PWM Input Channel 5
- * @param sue_pwm_input_6 Serial UDB Extra PWM Input Channel 6
- * @param sue_pwm_input_7 Serial UDB Extra PWM Input Channel 7
- * @param sue_pwm_input_8 Serial UDB Extra PWM Input Channel 8
- * @param sue_pwm_input_9 Serial UDB Extra PWM Input Channel 9
- * @param sue_pwm_input_10 Serial UDB Extra PWM Input Channel 10
- * @param sue_pwm_input_11 Serial UDB Extra PWM Input Channel 11
- * @param sue_pwm_input_12 Serial UDB Extra PWM Input Channel 12
- * @param sue_pwm_output_1 Serial UDB Extra PWM Output Channel 1
- * @param sue_pwm_output_2 Serial UDB Extra PWM Output Channel 2
- * @param sue_pwm_output_3 Serial UDB Extra PWM Output Channel 3
- * @param sue_pwm_output_4 Serial UDB Extra PWM Output Channel 4
- * @param sue_pwm_output_5 Serial UDB Extra PWM Output Channel 5
- * @param sue_pwm_output_6 Serial UDB Extra PWM Output Channel 6
- * @param sue_pwm_output_7 Serial UDB Extra PWM Output Channel 7
- * @param sue_pwm_output_8 Serial UDB Extra PWM Output Channel 8
- * @param sue_pwm_output_9 Serial UDB Extra PWM Output Channel 9
- * @param sue_pwm_output_10 Serial UDB Extra PWM Output Channel 10
- * @param sue_pwm_output_11 Serial UDB Extra PWM Output Channel 11
- * @param sue_pwm_output_12 Serial UDB Extra PWM Output Channel 12
- * @param sue_imu_location_x Serial UDB Extra IMU Location X
- * @param sue_imu_location_y Serial UDB Extra IMU Location Y
- * @param sue_imu_location_z Serial UDB Extra IMU Location Z
- * @param sue_location_error_earth_x Serial UDB Location Error Earth X
- * @param sue_location_error_earth_y Serial UDB Location Error Earth Y
- * @param sue_location_error_earth_z Serial UDB Location Error Earth Z
- * @param sue_flags Serial UDB Extra Status Flags
- * @param sue_osc_fails Serial UDB Extra Oscillator Failure Count
- * @param sue_imu_velocity_x Serial UDB Extra IMU Velocity X
- * @param sue_imu_velocity_y Serial UDB Extra IMU Velocity Y
- * @param sue_imu_velocity_z Serial UDB Extra IMU Velocity Z
- * @param sue_waypoint_goal_x Serial UDB Extra Current Waypoint Goal X
- * @param sue_waypoint_goal_y Serial UDB Extra Current Waypoint Goal Y
- * @param sue_waypoint_goal_z Serial UDB Extra Current Waypoint Goal Z
- * @param sue_aero_x Aeroforce in UDB X Axis
- * @param sue_aero_y Aeroforce in UDB Y Axis
- * @param sue_aero_z Aeroforce in UDB Z axis
- * @param sue_barom_temp SUE barometer temperature
- * @param sue_barom_press SUE barometer pressure
- * @param sue_barom_alt SUE barometer altitude
- * @param sue_bat_volt SUE battery voltage
- * @param sue_bat_amp SUE battery current
- * @param sue_bat_amp_hours SUE battery milli amp hours used
- * @param sue_desired_height Sue autopilot desired height
- * @param sue_memory_stack_free Serial UDB Extra Stack Memory Free
+ * @param sue_time  Serial UDB Extra Time
+ * @param sue_pwm_input_1  Serial UDB Extra PWM Input Channel 1
+ * @param sue_pwm_input_2  Serial UDB Extra PWM Input Channel 2
+ * @param sue_pwm_input_3  Serial UDB Extra PWM Input Channel 3
+ * @param sue_pwm_input_4  Serial UDB Extra PWM Input Channel 4
+ * @param sue_pwm_input_5  Serial UDB Extra PWM Input Channel 5
+ * @param sue_pwm_input_6  Serial UDB Extra PWM Input Channel 6
+ * @param sue_pwm_input_7  Serial UDB Extra PWM Input Channel 7
+ * @param sue_pwm_input_8  Serial UDB Extra PWM Input Channel 8
+ * @param sue_pwm_input_9  Serial UDB Extra PWM Input Channel 9
+ * @param sue_pwm_input_10  Serial UDB Extra PWM Input Channel 10
+ * @param sue_pwm_input_11  Serial UDB Extra PWM Input Channel 11
+ * @param sue_pwm_input_12  Serial UDB Extra PWM Input Channel 12
+ * @param sue_pwm_output_1  Serial UDB Extra PWM Output Channel 1
+ * @param sue_pwm_output_2  Serial UDB Extra PWM Output Channel 2
+ * @param sue_pwm_output_3  Serial UDB Extra PWM Output Channel 3
+ * @param sue_pwm_output_4  Serial UDB Extra PWM Output Channel 4
+ * @param sue_pwm_output_5  Serial UDB Extra PWM Output Channel 5
+ * @param sue_pwm_output_6  Serial UDB Extra PWM Output Channel 6
+ * @param sue_pwm_output_7  Serial UDB Extra PWM Output Channel 7
+ * @param sue_pwm_output_8  Serial UDB Extra PWM Output Channel 8
+ * @param sue_pwm_output_9  Serial UDB Extra PWM Output Channel 9
+ * @param sue_pwm_output_10  Serial UDB Extra PWM Output Channel 10
+ * @param sue_pwm_output_11  Serial UDB Extra PWM Output Channel 11
+ * @param sue_pwm_output_12  Serial UDB Extra PWM Output Channel 12
+ * @param sue_imu_location_x  Serial UDB Extra IMU Location X
+ * @param sue_imu_location_y  Serial UDB Extra IMU Location Y
+ * @param sue_imu_location_z  Serial UDB Extra IMU Location Z
+ * @param sue_location_error_earth_x  Serial UDB Location Error Earth X
+ * @param sue_location_error_earth_y  Serial UDB Location Error Earth Y
+ * @param sue_location_error_earth_z  Serial UDB Location Error Earth Z
+ * @param sue_flags  Serial UDB Extra Status Flags
+ * @param sue_osc_fails  Serial UDB Extra Oscillator Failure Count
+ * @param sue_imu_velocity_x  Serial UDB Extra IMU Velocity X
+ * @param sue_imu_velocity_y  Serial UDB Extra IMU Velocity Y
+ * @param sue_imu_velocity_z  Serial UDB Extra IMU Velocity Z
+ * @param sue_waypoint_goal_x  Serial UDB Extra Current Waypoint Goal X
+ * @param sue_waypoint_goal_y  Serial UDB Extra Current Waypoint Goal Y
+ * @param sue_waypoint_goal_z  Serial UDB Extra Current Waypoint Goal Z
+ * @param sue_aero_x  Aeroforce in UDB X Axis
+ * @param sue_aero_y  Aeroforce in UDB Y Axis
+ * @param sue_aero_z  Aeroforce in UDB Z axis
+ * @param sue_barom_temp  SUE barometer temperature
+ * @param sue_barom_press  SUE barometer pressure
+ * @param sue_barom_alt  SUE barometer altitude
+ * @param sue_bat_volt  SUE battery voltage
+ * @param sue_bat_amp  SUE battery current
+ * @param sue_bat_amp_hours  SUE battery milli amp hours used
+ * @param sue_desired_height  Sue autopilot desired height
+ * @param sue_memory_stack_free  Serial UDB Extra Stack Memory Free
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -874,7 +874,7 @@ static inline void mavlink_msg_serial_udb_extra_f2_b_send_buf(mavlink_message_t 
 /**
  * @brief Get field sue_time from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra Time
+ * @return  Serial UDB Extra Time
  */
 static inline uint32_t mavlink_msg_serial_udb_extra_f2_b_get_sue_time(const mavlink_message_t* msg)
 {
@@ -884,7 +884,7 @@ static inline uint32_t mavlink_msg_serial_udb_extra_f2_b_get_sue_time(const mavl
 /**
  * @brief Get field sue_pwm_input_1 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Input Channel 1
+ * @return  Serial UDB Extra PWM Input Channel 1
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_1(const mavlink_message_t* msg)
 {
@@ -894,7 +894,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_1(cons
 /**
  * @brief Get field sue_pwm_input_2 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Input Channel 2
+ * @return  Serial UDB Extra PWM Input Channel 2
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_2(const mavlink_message_t* msg)
 {
@@ -904,7 +904,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_2(cons
 /**
  * @brief Get field sue_pwm_input_3 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Input Channel 3
+ * @return  Serial UDB Extra PWM Input Channel 3
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_3(const mavlink_message_t* msg)
 {
@@ -914,7 +914,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_3(cons
 /**
  * @brief Get field sue_pwm_input_4 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Input Channel 4
+ * @return  Serial UDB Extra PWM Input Channel 4
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_4(const mavlink_message_t* msg)
 {
@@ -924,7 +924,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_4(cons
 /**
  * @brief Get field sue_pwm_input_5 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Input Channel 5
+ * @return  Serial UDB Extra PWM Input Channel 5
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_5(const mavlink_message_t* msg)
 {
@@ -934,7 +934,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_5(cons
 /**
  * @brief Get field sue_pwm_input_6 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Input Channel 6
+ * @return  Serial UDB Extra PWM Input Channel 6
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_6(const mavlink_message_t* msg)
 {
@@ -944,7 +944,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_6(cons
 /**
  * @brief Get field sue_pwm_input_7 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Input Channel 7
+ * @return  Serial UDB Extra PWM Input Channel 7
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_7(const mavlink_message_t* msg)
 {
@@ -954,7 +954,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_7(cons
 /**
  * @brief Get field sue_pwm_input_8 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Input Channel 8
+ * @return  Serial UDB Extra PWM Input Channel 8
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_8(const mavlink_message_t* msg)
 {
@@ -964,7 +964,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_8(cons
 /**
  * @brief Get field sue_pwm_input_9 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Input Channel 9
+ * @return  Serial UDB Extra PWM Input Channel 9
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_9(const mavlink_message_t* msg)
 {
@@ -974,7 +974,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_9(cons
 /**
  * @brief Get field sue_pwm_input_10 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Input Channel 10
+ * @return  Serial UDB Extra PWM Input Channel 10
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_10(const mavlink_message_t* msg)
 {
@@ -984,7 +984,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_10(con
 /**
  * @brief Get field sue_pwm_input_11 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Input Channel 11
+ * @return  Serial UDB Extra PWM Input Channel 11
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_11(const mavlink_message_t* msg)
 {
@@ -994,7 +994,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_11(con
 /**
  * @brief Get field sue_pwm_input_12 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Input Channel 12
+ * @return  Serial UDB Extra PWM Input Channel 12
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_12(const mavlink_message_t* msg)
 {
@@ -1004,7 +1004,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_input_12(con
 /**
  * @brief Get field sue_pwm_output_1 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Output Channel 1
+ * @return  Serial UDB Extra PWM Output Channel 1
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_1(const mavlink_message_t* msg)
 {
@@ -1014,7 +1014,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_1(con
 /**
  * @brief Get field sue_pwm_output_2 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Output Channel 2
+ * @return  Serial UDB Extra PWM Output Channel 2
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_2(const mavlink_message_t* msg)
 {
@@ -1024,7 +1024,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_2(con
 /**
  * @brief Get field sue_pwm_output_3 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Output Channel 3
+ * @return  Serial UDB Extra PWM Output Channel 3
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_3(const mavlink_message_t* msg)
 {
@@ -1034,7 +1034,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_3(con
 /**
  * @brief Get field sue_pwm_output_4 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Output Channel 4
+ * @return  Serial UDB Extra PWM Output Channel 4
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_4(const mavlink_message_t* msg)
 {
@@ -1044,7 +1044,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_4(con
 /**
  * @brief Get field sue_pwm_output_5 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Output Channel 5
+ * @return  Serial UDB Extra PWM Output Channel 5
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_5(const mavlink_message_t* msg)
 {
@@ -1054,7 +1054,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_5(con
 /**
  * @brief Get field sue_pwm_output_6 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Output Channel 6
+ * @return  Serial UDB Extra PWM Output Channel 6
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_6(const mavlink_message_t* msg)
 {
@@ -1064,7 +1064,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_6(con
 /**
  * @brief Get field sue_pwm_output_7 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Output Channel 7
+ * @return  Serial UDB Extra PWM Output Channel 7
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_7(const mavlink_message_t* msg)
 {
@@ -1074,7 +1074,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_7(con
 /**
  * @brief Get field sue_pwm_output_8 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Output Channel 8
+ * @return  Serial UDB Extra PWM Output Channel 8
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_8(const mavlink_message_t* msg)
 {
@@ -1084,7 +1084,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_8(con
 /**
  * @brief Get field sue_pwm_output_9 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Output Channel 9
+ * @return  Serial UDB Extra PWM Output Channel 9
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_9(const mavlink_message_t* msg)
 {
@@ -1094,7 +1094,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_9(con
 /**
  * @brief Get field sue_pwm_output_10 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Output Channel 10
+ * @return  Serial UDB Extra PWM Output Channel 10
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_10(const mavlink_message_t* msg)
 {
@@ -1104,7 +1104,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_10(co
 /**
  * @brief Get field sue_pwm_output_11 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Output Channel 11
+ * @return  Serial UDB Extra PWM Output Channel 11
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_11(const mavlink_message_t* msg)
 {
@@ -1114,7 +1114,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_11(co
 /**
  * @brief Get field sue_pwm_output_12 from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra PWM Output Channel 12
+ * @return  Serial UDB Extra PWM Output Channel 12
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_12(const mavlink_message_t* msg)
 {
@@ -1124,7 +1124,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_pwm_output_12(co
 /**
  * @brief Get field sue_imu_location_x from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra IMU Location X
+ * @return  Serial UDB Extra IMU Location X
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_imu_location_x(const mavlink_message_t* msg)
 {
@@ -1134,7 +1134,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_imu_location_x(c
 /**
  * @brief Get field sue_imu_location_y from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra IMU Location Y
+ * @return  Serial UDB Extra IMU Location Y
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_imu_location_y(const mavlink_message_t* msg)
 {
@@ -1144,7 +1144,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_imu_location_y(c
 /**
  * @brief Get field sue_imu_location_z from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra IMU Location Z
+ * @return  Serial UDB Extra IMU Location Z
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_imu_location_z(const mavlink_message_t* msg)
 {
@@ -1154,7 +1154,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_imu_location_z(c
 /**
  * @brief Get field sue_location_error_earth_x from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Location Error Earth X
+ * @return  Serial UDB Location Error Earth X
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_location_error_earth_x(const mavlink_message_t* msg)
 {
@@ -1164,7 +1164,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_location_error_e
 /**
  * @brief Get field sue_location_error_earth_y from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Location Error Earth Y
+ * @return  Serial UDB Location Error Earth Y
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_location_error_earth_y(const mavlink_message_t* msg)
 {
@@ -1174,7 +1174,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_location_error_e
 /**
  * @brief Get field sue_location_error_earth_z from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Location Error Earth Z
+ * @return  Serial UDB Location Error Earth Z
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_location_error_earth_z(const mavlink_message_t* msg)
 {
@@ -1184,7 +1184,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_location_error_e
 /**
  * @brief Get field sue_flags from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra Status Flags
+ * @return  Serial UDB Extra Status Flags
  */
 static inline uint32_t mavlink_msg_serial_udb_extra_f2_b_get_sue_flags(const mavlink_message_t* msg)
 {
@@ -1194,7 +1194,7 @@ static inline uint32_t mavlink_msg_serial_udb_extra_f2_b_get_sue_flags(const mav
 /**
  * @brief Get field sue_osc_fails from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra Oscillator Failure Count
+ * @return  Serial UDB Extra Oscillator Failure Count
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_osc_fails(const mavlink_message_t* msg)
 {
@@ -1204,7 +1204,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_osc_fails(const 
 /**
  * @brief Get field sue_imu_velocity_x from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra IMU Velocity X
+ * @return  Serial UDB Extra IMU Velocity X
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_imu_velocity_x(const mavlink_message_t* msg)
 {
@@ -1214,7 +1214,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_imu_velocity_x(c
 /**
  * @brief Get field sue_imu_velocity_y from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra IMU Velocity Y
+ * @return  Serial UDB Extra IMU Velocity Y
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_imu_velocity_y(const mavlink_message_t* msg)
 {
@@ -1224,7 +1224,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_imu_velocity_y(c
 /**
  * @brief Get field sue_imu_velocity_z from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra IMU Velocity Z
+ * @return  Serial UDB Extra IMU Velocity Z
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_imu_velocity_z(const mavlink_message_t* msg)
 {
@@ -1234,7 +1234,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_imu_velocity_z(c
 /**
  * @brief Get field sue_waypoint_goal_x from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra Current Waypoint Goal X
+ * @return  Serial UDB Extra Current Waypoint Goal X
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_waypoint_goal_x(const mavlink_message_t* msg)
 {
@@ -1244,7 +1244,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_waypoint_goal_x(
 /**
  * @brief Get field sue_waypoint_goal_y from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra Current Waypoint Goal Y
+ * @return  Serial UDB Extra Current Waypoint Goal Y
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_waypoint_goal_y(const mavlink_message_t* msg)
 {
@@ -1254,7 +1254,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_waypoint_goal_y(
 /**
  * @brief Get field sue_waypoint_goal_z from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra Current Waypoint Goal Z
+ * @return  Serial UDB Extra Current Waypoint Goal Z
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_waypoint_goal_z(const mavlink_message_t* msg)
 {
@@ -1264,7 +1264,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_waypoint_goal_z(
 /**
  * @brief Get field sue_aero_x from serial_udb_extra_f2_b message
  *
- * @return Aeroforce in UDB X Axis
+ * @return  Aeroforce in UDB X Axis
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_aero_x(const mavlink_message_t* msg)
 {
@@ -1274,7 +1274,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_aero_x(const mav
 /**
  * @brief Get field sue_aero_y from serial_udb_extra_f2_b message
  *
- * @return Aeroforce in UDB Y Axis
+ * @return  Aeroforce in UDB Y Axis
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_aero_y(const mavlink_message_t* msg)
 {
@@ -1284,7 +1284,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_aero_y(const mav
 /**
  * @brief Get field sue_aero_z from serial_udb_extra_f2_b message
  *
- * @return Aeroforce in UDB Z axis
+ * @return  Aeroforce in UDB Z axis
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_aero_z(const mavlink_message_t* msg)
 {
@@ -1294,7 +1294,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_aero_z(const mav
 /**
  * @brief Get field sue_barom_temp from serial_udb_extra_f2_b message
  *
- * @return SUE barometer temperature
+ * @return  SUE barometer temperature
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_barom_temp(const mavlink_message_t* msg)
 {
@@ -1304,7 +1304,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_barom_temp(const
 /**
  * @brief Get field sue_barom_press from serial_udb_extra_f2_b message
  *
- * @return SUE barometer pressure
+ * @return  SUE barometer pressure
  */
 static inline int32_t mavlink_msg_serial_udb_extra_f2_b_get_sue_barom_press(const mavlink_message_t* msg)
 {
@@ -1314,7 +1314,7 @@ static inline int32_t mavlink_msg_serial_udb_extra_f2_b_get_sue_barom_press(cons
 /**
  * @brief Get field sue_barom_alt from serial_udb_extra_f2_b message
  *
- * @return SUE barometer altitude
+ * @return  SUE barometer altitude
  */
 static inline int32_t mavlink_msg_serial_udb_extra_f2_b_get_sue_barom_alt(const mavlink_message_t* msg)
 {
@@ -1324,7 +1324,7 @@ static inline int32_t mavlink_msg_serial_udb_extra_f2_b_get_sue_barom_alt(const 
 /**
  * @brief Get field sue_bat_volt from serial_udb_extra_f2_b message
  *
- * @return SUE battery voltage
+ * @return  SUE battery voltage
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_bat_volt(const mavlink_message_t* msg)
 {
@@ -1334,7 +1334,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_bat_volt(const m
 /**
  * @brief Get field sue_bat_amp from serial_udb_extra_f2_b message
  *
- * @return SUE battery current
+ * @return  SUE battery current
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_bat_amp(const mavlink_message_t* msg)
 {
@@ -1344,7 +1344,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_bat_amp(const ma
 /**
  * @brief Get field sue_bat_amp_hours from serial_udb_extra_f2_b message
  *
- * @return SUE battery milli amp hours used
+ * @return  SUE battery milli amp hours used
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_bat_amp_hours(const mavlink_message_t* msg)
 {
@@ -1354,7 +1354,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_bat_amp_hours(co
 /**
  * @brief Get field sue_desired_height from serial_udb_extra_f2_b message
  *
- * @return Sue autopilot desired height
+ * @return  Sue autopilot desired height
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_desired_height(const mavlink_message_t* msg)
 {
@@ -1364,7 +1364,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_desired_height(c
 /**
  * @brief Get field sue_memory_stack_free from serial_udb_extra_f2_b message
  *
- * @return Serial UDB Extra Stack Memory Free
+ * @return  Serial UDB Extra Stack Memory Free
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_b_get_sue_memory_stack_free(const mavlink_message_t* msg)
 {

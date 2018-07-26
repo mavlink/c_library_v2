@@ -5,9 +5,9 @@
 
 MAVPACKED(
 typedef struct __mavlink_slugs_mobile_location_t {
- float latitude; /*< Mobile Latitude*/
- float longitude; /*< Mobile Longitude*/
- uint8_t target; /*< The system reporting the action*/
+ float latitude; /*< [deg] Mobile Latitude*/
+ float longitude; /*< [deg] Mobile Longitude*/
+ uint8_t target; /*<  The system reporting the action*/
 }) mavlink_slugs_mobile_location_t;
 
 #define MAVLINK_MSG_ID_SLUGS_MOBILE_LOCATION_LEN 9
@@ -47,9 +47,9 @@ typedef struct __mavlink_slugs_mobile_location_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param target The system reporting the action
- * @param latitude Mobile Latitude
- * @param longitude Mobile Longitude
+ * @param target  The system reporting the action
+ * @param latitude [deg] Mobile Latitude
+ * @param longitude [deg] Mobile Longitude
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_slugs_mobile_location_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -81,9 +81,9 @@ static inline uint16_t mavlink_msg_slugs_mobile_location_pack(uint8_t system_id,
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param target The system reporting the action
- * @param latitude Mobile Latitude
- * @param longitude Mobile Longitude
+ * @param target  The system reporting the action
+ * @param latitude [deg] Mobile Latitude
+ * @param longitude [deg] Mobile Longitude
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_slugs_mobile_location_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -141,9 +141,9 @@ static inline uint16_t mavlink_msg_slugs_mobile_location_encode_chan(uint8_t sys
  * @brief Send a slugs_mobile_location message
  * @param chan MAVLink channel to send the message
  *
- * @param target The system reporting the action
- * @param latitude Mobile Latitude
- * @param longitude Mobile Longitude
+ * @param target  The system reporting the action
+ * @param latitude [deg] Mobile Latitude
+ * @param longitude [deg] Mobile Longitude
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -216,7 +216,7 @@ static inline void mavlink_msg_slugs_mobile_location_send_buf(mavlink_message_t 
 /**
  * @brief Get field target from slugs_mobile_location message
  *
- * @return The system reporting the action
+ * @return  The system reporting the action
  */
 static inline uint8_t mavlink_msg_slugs_mobile_location_get_target(const mavlink_message_t* msg)
 {
@@ -226,7 +226,7 @@ static inline uint8_t mavlink_msg_slugs_mobile_location_get_target(const mavlink
 /**
  * @brief Get field latitude from slugs_mobile_location message
  *
- * @return Mobile Latitude
+ * @return [deg] Mobile Latitude
  */
 static inline float mavlink_msg_slugs_mobile_location_get_latitude(const mavlink_message_t* msg)
 {
@@ -236,7 +236,7 @@ static inline float mavlink_msg_slugs_mobile_location_get_latitude(const mavlink
 /**
  * @brief Get field longitude from slugs_mobile_location message
  *
- * @return Mobile Longitude
+ * @return [deg] Mobile Longitude
  */
 static inline float mavlink_msg_slugs_mobile_location_get_longitude(const mavlink_message_t* msg)
 {

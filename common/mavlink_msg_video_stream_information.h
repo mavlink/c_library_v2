@@ -5,14 +5,14 @@
 
 MAVPACKED(
 typedef struct __mavlink_video_stream_information_t {
- float framerate; /*< Frame rate*/
- uint32_t bitrate; /*< Bit rate in bits per second*/
- uint16_t resolution_h; /*< Horizontal resolution*/
- uint16_t resolution_v; /*< Vertical resolution*/
- uint16_t rotation; /*< Video image rotation clockwise*/
- uint8_t camera_id; /*< Camera ID (1 for first, 2 for second, etc.)*/
- uint8_t status; /*< Current status of video streaming (0: not running, 1: in progress)*/
- char uri[230]; /*< Video stream URI*/
+ float framerate; /*< [Hz] Frame rate*/
+ uint32_t bitrate; /*< [bits/s] Bit rate in bits per second*/
+ uint16_t resolution_h; /*< [pix] Horizontal resolution*/
+ uint16_t resolution_v; /*< [pix] Vertical resolution*/
+ uint16_t rotation; /*< [deg] Video image rotation clockwise*/
+ uint8_t camera_id; /*<  Camera ID (1 for first, 2 for second, etc.)*/
+ uint8_t status; /*<  Current status of video streaming (0: not running, 1: in progress)*/
+ char uri[230]; /*<  Video stream URI*/
 }) mavlink_video_stream_information_t;
 
 #define MAVLINK_MSG_ID_VIDEO_STREAM_INFORMATION_LEN 246
@@ -62,14 +62,14 @@ typedef struct __mavlink_video_stream_information_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param camera_id Camera ID (1 for first, 2 for second, etc.)
- * @param status Current status of video streaming (0: not running, 1: in progress)
- * @param framerate Frame rate
- * @param resolution_h Horizontal resolution
- * @param resolution_v Vertical resolution
- * @param bitrate Bit rate in bits per second
- * @param rotation Video image rotation clockwise
- * @param uri Video stream URI
+ * @param camera_id  Camera ID (1 for first, 2 for second, etc.)
+ * @param status  Current status of video streaming (0: not running, 1: in progress)
+ * @param framerate [Hz] Frame rate
+ * @param resolution_h [pix] Horizontal resolution
+ * @param resolution_v [pix] Vertical resolution
+ * @param bitrate [bits/s] Bit rate in bits per second
+ * @param rotation [deg] Video image rotation clockwise
+ * @param uri  Video stream URI
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_video_stream_information_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -109,14 +109,14 @@ static inline uint16_t mavlink_msg_video_stream_information_pack(uint8_t system_
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param camera_id Camera ID (1 for first, 2 for second, etc.)
- * @param status Current status of video streaming (0: not running, 1: in progress)
- * @param framerate Frame rate
- * @param resolution_h Horizontal resolution
- * @param resolution_v Vertical resolution
- * @param bitrate Bit rate in bits per second
- * @param rotation Video image rotation clockwise
- * @param uri Video stream URI
+ * @param camera_id  Camera ID (1 for first, 2 for second, etc.)
+ * @param status  Current status of video streaming (0: not running, 1: in progress)
+ * @param framerate [Hz] Frame rate
+ * @param resolution_h [pix] Horizontal resolution
+ * @param resolution_v [pix] Vertical resolution
+ * @param bitrate [bits/s] Bit rate in bits per second
+ * @param rotation [deg] Video image rotation clockwise
+ * @param uri  Video stream URI
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_video_stream_information_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -182,14 +182,14 @@ static inline uint16_t mavlink_msg_video_stream_information_encode_chan(uint8_t 
  * @brief Send a video_stream_information message
  * @param chan MAVLink channel to send the message
  *
- * @param camera_id Camera ID (1 for first, 2 for second, etc.)
- * @param status Current status of video streaming (0: not running, 1: in progress)
- * @param framerate Frame rate
- * @param resolution_h Horizontal resolution
- * @param resolution_v Vertical resolution
- * @param bitrate Bit rate in bits per second
- * @param rotation Video image rotation clockwise
- * @param uri Video stream URI
+ * @param camera_id  Camera ID (1 for first, 2 for second, etc.)
+ * @param status  Current status of video streaming (0: not running, 1: in progress)
+ * @param framerate [Hz] Frame rate
+ * @param resolution_h [pix] Horizontal resolution
+ * @param resolution_v [pix] Vertical resolution
+ * @param bitrate [bits/s] Bit rate in bits per second
+ * @param rotation [deg] Video image rotation clockwise
+ * @param uri  Video stream URI
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -278,7 +278,7 @@ static inline void mavlink_msg_video_stream_information_send_buf(mavlink_message
 /**
  * @brief Get field camera_id from video_stream_information message
  *
- * @return Camera ID (1 for first, 2 for second, etc.)
+ * @return  Camera ID (1 for first, 2 for second, etc.)
  */
 static inline uint8_t mavlink_msg_video_stream_information_get_camera_id(const mavlink_message_t* msg)
 {
@@ -288,7 +288,7 @@ static inline uint8_t mavlink_msg_video_stream_information_get_camera_id(const m
 /**
  * @brief Get field status from video_stream_information message
  *
- * @return Current status of video streaming (0: not running, 1: in progress)
+ * @return  Current status of video streaming (0: not running, 1: in progress)
  */
 static inline uint8_t mavlink_msg_video_stream_information_get_status(const mavlink_message_t* msg)
 {
@@ -298,7 +298,7 @@ static inline uint8_t mavlink_msg_video_stream_information_get_status(const mavl
 /**
  * @brief Get field framerate from video_stream_information message
  *
- * @return Frame rate
+ * @return [Hz] Frame rate
  */
 static inline float mavlink_msg_video_stream_information_get_framerate(const mavlink_message_t* msg)
 {
@@ -308,7 +308,7 @@ static inline float mavlink_msg_video_stream_information_get_framerate(const mav
 /**
  * @brief Get field resolution_h from video_stream_information message
  *
- * @return Horizontal resolution
+ * @return [pix] Horizontal resolution
  */
 static inline uint16_t mavlink_msg_video_stream_information_get_resolution_h(const mavlink_message_t* msg)
 {
@@ -318,7 +318,7 @@ static inline uint16_t mavlink_msg_video_stream_information_get_resolution_h(con
 /**
  * @brief Get field resolution_v from video_stream_information message
  *
- * @return Vertical resolution
+ * @return [pix] Vertical resolution
  */
 static inline uint16_t mavlink_msg_video_stream_information_get_resolution_v(const mavlink_message_t* msg)
 {
@@ -328,7 +328,7 @@ static inline uint16_t mavlink_msg_video_stream_information_get_resolution_v(con
 /**
  * @brief Get field bitrate from video_stream_information message
  *
- * @return Bit rate in bits per second
+ * @return [bits/s] Bit rate in bits per second
  */
 static inline uint32_t mavlink_msg_video_stream_information_get_bitrate(const mavlink_message_t* msg)
 {
@@ -338,7 +338,7 @@ static inline uint32_t mavlink_msg_video_stream_information_get_bitrate(const ma
 /**
  * @brief Get field rotation from video_stream_information message
  *
- * @return Video image rotation clockwise
+ * @return [deg] Video image rotation clockwise
  */
 static inline uint16_t mavlink_msg_video_stream_information_get_rotation(const mavlink_message_t* msg)
 {
@@ -348,7 +348,7 @@ static inline uint16_t mavlink_msg_video_stream_information_get_rotation(const m
 /**
  * @brief Get field uri from video_stream_information message
  *
- * @return Video stream URI
+ * @return  Video stream URI
  */
 static inline uint16_t mavlink_msg_video_stream_information_get_uri(const mavlink_message_t* msg, char *uri)
 {

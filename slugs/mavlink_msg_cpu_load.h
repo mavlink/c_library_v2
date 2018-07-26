@@ -5,9 +5,9 @@
 
 MAVPACKED(
 typedef struct __mavlink_cpu_load_t {
- uint16_t batVolt; /*< Battery Voltage*/
- uint8_t sensLoad; /*< Sensor DSC Load*/
- uint8_t ctrlLoad; /*< Control DSC Load*/
+ uint16_t batVolt; /*< [mV] Battery Voltage*/
+ uint8_t sensLoad; /*<  Sensor DSC Load*/
+ uint8_t ctrlLoad; /*<  Control DSC Load*/
 }) mavlink_cpu_load_t;
 
 #define MAVLINK_MSG_ID_CPU_LOAD_LEN 4
@@ -47,9 +47,9 @@ typedef struct __mavlink_cpu_load_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param sensLoad Sensor DSC Load
- * @param ctrlLoad Control DSC Load
- * @param batVolt Battery Voltage
+ * @param sensLoad  Sensor DSC Load
+ * @param ctrlLoad  Control DSC Load
+ * @param batVolt [mV] Battery Voltage
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_cpu_load_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -81,9 +81,9 @@ static inline uint16_t mavlink_msg_cpu_load_pack(uint8_t system_id, uint8_t comp
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param sensLoad Sensor DSC Load
- * @param ctrlLoad Control DSC Load
- * @param batVolt Battery Voltage
+ * @param sensLoad  Sensor DSC Load
+ * @param ctrlLoad  Control DSC Load
+ * @param batVolt [mV] Battery Voltage
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_cpu_load_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -141,9 +141,9 @@ static inline uint16_t mavlink_msg_cpu_load_encode_chan(uint8_t system_id, uint8
  * @brief Send a cpu_load message
  * @param chan MAVLink channel to send the message
  *
- * @param sensLoad Sensor DSC Load
- * @param ctrlLoad Control DSC Load
- * @param batVolt Battery Voltage
+ * @param sensLoad  Sensor DSC Load
+ * @param ctrlLoad  Control DSC Load
+ * @param batVolt [mV] Battery Voltage
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -216,7 +216,7 @@ static inline void mavlink_msg_cpu_load_send_buf(mavlink_message_t *msgbuf, mavl
 /**
  * @brief Get field sensLoad from cpu_load message
  *
- * @return Sensor DSC Load
+ * @return  Sensor DSC Load
  */
 static inline uint8_t mavlink_msg_cpu_load_get_sensLoad(const mavlink_message_t* msg)
 {
@@ -226,7 +226,7 @@ static inline uint8_t mavlink_msg_cpu_load_get_sensLoad(const mavlink_message_t*
 /**
  * @brief Get field ctrlLoad from cpu_load message
  *
- * @return Control DSC Load
+ * @return  Control DSC Load
  */
 static inline uint8_t mavlink_msg_cpu_load_get_ctrlLoad(const mavlink_message_t* msg)
 {
@@ -236,7 +236,7 @@ static inline uint8_t mavlink_msg_cpu_load_get_ctrlLoad(const mavlink_message_t*
 /**
  * @brief Get field batVolt from cpu_load message
  *
- * @return Battery Voltage
+ * @return [mV] Battery Voltage
  */
 static inline uint16_t mavlink_msg_cpu_load_get_batVolt(const mavlink_message_t* msg)
 {

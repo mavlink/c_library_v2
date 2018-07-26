@@ -5,8 +5,8 @@
 
 MAVPACKED(
 typedef struct __mavlink_serial_udb_extra_f16_t {
- uint8_t sue_ID_LEAD_PILOT[40]; /*< Serial UDB Extra Name of Expected Lead Pilot*/
- uint8_t sue_ID_DIY_DRONES_URL[70]; /*< Serial UDB Extra URL of Lead Pilot or Team*/
+ uint8_t sue_ID_LEAD_PILOT[40]; /*<  Serial UDB Extra Name of Expected Lead Pilot*/
+ uint8_t sue_ID_DIY_DRONES_URL[70]; /*<  Serial UDB Extra URL of Lead Pilot or Team*/
 }) mavlink_serial_udb_extra_f16_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_LEN 110
@@ -45,8 +45,8 @@ typedef struct __mavlink_serial_udb_extra_f16_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param sue_ID_LEAD_PILOT Serial UDB Extra Name of Expected Lead Pilot
- * @param sue_ID_DIY_DRONES_URL Serial UDB Extra URL of Lead Pilot or Team
+ * @param sue_ID_LEAD_PILOT  Serial UDB Extra Name of Expected Lead Pilot
+ * @param sue_ID_DIY_DRONES_URL  Serial UDB Extra URL of Lead Pilot or Team
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f16_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -76,8 +76,8 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f16_pack(uint8_t system_id, 
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param sue_ID_LEAD_PILOT Serial UDB Extra Name of Expected Lead Pilot
- * @param sue_ID_DIY_DRONES_URL Serial UDB Extra URL of Lead Pilot or Team
+ * @param sue_ID_LEAD_PILOT  Serial UDB Extra Name of Expected Lead Pilot
+ * @param sue_ID_DIY_DRONES_URL  Serial UDB Extra URL of Lead Pilot or Team
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f16_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -133,8 +133,8 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f16_encode_chan(uint8_t syst
  * @brief Send a serial_udb_extra_f16 message
  * @param chan MAVLink channel to send the message
  *
- * @param sue_ID_LEAD_PILOT Serial UDB Extra Name of Expected Lead Pilot
- * @param sue_ID_DIY_DRONES_URL Serial UDB Extra URL of Lead Pilot or Team
+ * @param sue_ID_LEAD_PILOT  Serial UDB Extra Name of Expected Lead Pilot
+ * @param sue_ID_DIY_DRONES_URL  Serial UDB Extra URL of Lead Pilot or Team
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -203,7 +203,7 @@ static inline void mavlink_msg_serial_udb_extra_f16_send_buf(mavlink_message_t *
 /**
  * @brief Get field sue_ID_LEAD_PILOT from serial_udb_extra_f16 message
  *
- * @return Serial UDB Extra Name of Expected Lead Pilot
+ * @return  Serial UDB Extra Name of Expected Lead Pilot
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f16_get_sue_ID_LEAD_PILOT(const mavlink_message_t* msg, uint8_t *sue_ID_LEAD_PILOT)
 {
@@ -213,7 +213,7 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f16_get_sue_ID_LEAD_PILOT(co
 /**
  * @brief Get field sue_ID_DIY_DRONES_URL from serial_udb_extra_f16 message
  *
- * @return Serial UDB Extra URL of Lead Pilot or Team
+ * @return  Serial UDB Extra URL of Lead Pilot or Team
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f16_get_sue_ID_DIY_DRONES_URL(const mavlink_message_t* msg, uint8_t *sue_ID_DIY_DRONES_URL)
 {

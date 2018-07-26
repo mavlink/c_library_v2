@@ -5,14 +5,14 @@
 
 MAVPACKED(
 typedef struct __mavlink_asl_obctrl_t {
- uint64_t timestamp; /*<  Time since system start*/
- float uElev; /*<  Elevator command [~]*/
- float uThrot; /*<  Throttle command [~]*/
- float uThrot2; /*<  Throttle 2 command [~]*/
- float uAilL; /*<  Left aileron command [~]*/
- float uAilR; /*<  Right aileron command [~]*/
- float uRud; /*<  Rudder command [~]*/
- uint8_t obctrl_status; /*<  Off-board computer status*/
+ uint64_t timestamp; /*< [us]  Time since system start*/
+ float uElev; /*<   Elevator command [~]*/
+ float uThrot; /*<   Throttle command [~]*/
+ float uThrot2; /*<   Throttle 2 command [~]*/
+ float uAilL; /*<   Left aileron command [~]*/
+ float uAilR; /*<   Right aileron command [~]*/
+ float uRud; /*<   Rudder command [~]*/
+ uint8_t obctrl_status; /*<   Off-board computer status*/
 }) mavlink_asl_obctrl_t;
 
 #define MAVLINK_MSG_ID_ASL_OBCTRL_LEN 33
@@ -62,14 +62,14 @@ typedef struct __mavlink_asl_obctrl_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param timestamp  Time since system start
- * @param uElev  Elevator command [~]
- * @param uThrot  Throttle command [~]
- * @param uThrot2  Throttle 2 command [~]
- * @param uAilL  Left aileron command [~]
- * @param uAilR  Right aileron command [~]
- * @param uRud  Rudder command [~]
- * @param obctrl_status  Off-board computer status
+ * @param timestamp [us]  Time since system start
+ * @param uElev   Elevator command [~]
+ * @param uThrot   Throttle command [~]
+ * @param uThrot2   Throttle 2 command [~]
+ * @param uAilL   Left aileron command [~]
+ * @param uAilR   Right aileron command [~]
+ * @param uRud   Rudder command [~]
+ * @param obctrl_status   Off-board computer status
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_asl_obctrl_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -111,14 +111,14 @@ static inline uint16_t mavlink_msg_asl_obctrl_pack(uint8_t system_id, uint8_t co
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param timestamp  Time since system start
- * @param uElev  Elevator command [~]
- * @param uThrot  Throttle command [~]
- * @param uThrot2  Throttle 2 command [~]
- * @param uAilL  Left aileron command [~]
- * @param uAilR  Right aileron command [~]
- * @param uRud  Rudder command [~]
- * @param obctrl_status  Off-board computer status
+ * @param timestamp [us]  Time since system start
+ * @param uElev   Elevator command [~]
+ * @param uThrot   Throttle command [~]
+ * @param uThrot2   Throttle 2 command [~]
+ * @param uAilL   Left aileron command [~]
+ * @param uAilR   Right aileron command [~]
+ * @param uRud   Rudder command [~]
+ * @param obctrl_status   Off-board computer status
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_asl_obctrl_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -186,14 +186,14 @@ static inline uint16_t mavlink_msg_asl_obctrl_encode_chan(uint8_t system_id, uin
  * @brief Send a asl_obctrl message
  * @param chan MAVLink channel to send the message
  *
- * @param timestamp  Time since system start
- * @param uElev  Elevator command [~]
- * @param uThrot  Throttle command [~]
- * @param uThrot2  Throttle 2 command [~]
- * @param uAilL  Left aileron command [~]
- * @param uAilR  Right aileron command [~]
- * @param uRud  Rudder command [~]
- * @param obctrl_status  Off-board computer status
+ * @param timestamp [us]  Time since system start
+ * @param uElev   Elevator command [~]
+ * @param uThrot   Throttle command [~]
+ * @param uThrot2   Throttle 2 command [~]
+ * @param uAilL   Left aileron command [~]
+ * @param uAilR   Right aileron command [~]
+ * @param uRud   Rudder command [~]
+ * @param obctrl_status   Off-board computer status
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -286,7 +286,7 @@ static inline void mavlink_msg_asl_obctrl_send_buf(mavlink_message_t *msgbuf, ma
 /**
  * @brief Get field timestamp from asl_obctrl message
  *
- * @return  Time since system start
+ * @return [us]  Time since system start
  */
 static inline uint64_t mavlink_msg_asl_obctrl_get_timestamp(const mavlink_message_t* msg)
 {
@@ -296,7 +296,7 @@ static inline uint64_t mavlink_msg_asl_obctrl_get_timestamp(const mavlink_messag
 /**
  * @brief Get field uElev from asl_obctrl message
  *
- * @return  Elevator command [~]
+ * @return   Elevator command [~]
  */
 static inline float mavlink_msg_asl_obctrl_get_uElev(const mavlink_message_t* msg)
 {
@@ -306,7 +306,7 @@ static inline float mavlink_msg_asl_obctrl_get_uElev(const mavlink_message_t* ms
 /**
  * @brief Get field uThrot from asl_obctrl message
  *
- * @return  Throttle command [~]
+ * @return   Throttle command [~]
  */
 static inline float mavlink_msg_asl_obctrl_get_uThrot(const mavlink_message_t* msg)
 {
@@ -316,7 +316,7 @@ static inline float mavlink_msg_asl_obctrl_get_uThrot(const mavlink_message_t* m
 /**
  * @brief Get field uThrot2 from asl_obctrl message
  *
- * @return  Throttle 2 command [~]
+ * @return   Throttle 2 command [~]
  */
 static inline float mavlink_msg_asl_obctrl_get_uThrot2(const mavlink_message_t* msg)
 {
@@ -326,7 +326,7 @@ static inline float mavlink_msg_asl_obctrl_get_uThrot2(const mavlink_message_t* 
 /**
  * @brief Get field uAilL from asl_obctrl message
  *
- * @return  Left aileron command [~]
+ * @return   Left aileron command [~]
  */
 static inline float mavlink_msg_asl_obctrl_get_uAilL(const mavlink_message_t* msg)
 {
@@ -336,7 +336,7 @@ static inline float mavlink_msg_asl_obctrl_get_uAilL(const mavlink_message_t* ms
 /**
  * @brief Get field uAilR from asl_obctrl message
  *
- * @return  Right aileron command [~]
+ * @return   Right aileron command [~]
  */
 static inline float mavlink_msg_asl_obctrl_get_uAilR(const mavlink_message_t* msg)
 {
@@ -346,7 +346,7 @@ static inline float mavlink_msg_asl_obctrl_get_uAilR(const mavlink_message_t* ms
 /**
  * @brief Get field uRud from asl_obctrl message
  *
- * @return  Rudder command [~]
+ * @return   Rudder command [~]
  */
 static inline float mavlink_msg_asl_obctrl_get_uRud(const mavlink_message_t* msg)
 {
@@ -356,7 +356,7 @@ static inline float mavlink_msg_asl_obctrl_get_uRud(const mavlink_message_t* msg
 /**
  * @brief Get field obctrl_status from asl_obctrl message
  *
- * @return  Off-board computer status
+ * @return   Off-board computer status
  */
 static inline uint8_t mavlink_msg_asl_obctrl_get_obctrl_status(const mavlink_message_t* msg)
 {

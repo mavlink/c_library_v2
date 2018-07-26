@@ -5,12 +5,12 @@
 
 MAVPACKED(
 typedef struct __mavlink_attitude_quaternion_cov_t {
- uint64_t time_usec; /*< Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
- float q[4]; /*< Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)*/
- float rollspeed; /*< Roll angular speed*/
- float pitchspeed; /*< Pitch angular speed*/
- float yawspeed; /*< Yaw angular speed*/
- float covariance[9]; /*< Attitude covariance*/
+ uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
+ float q[4]; /*<  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)*/
+ float rollspeed; /*< [rad/s] Roll angular speed*/
+ float pitchspeed; /*< [rad/s] Pitch angular speed*/
+ float yawspeed; /*< [rad/s] Yaw angular speed*/
+ float covariance[9]; /*<  Attitude covariance*/
 }) mavlink_attitude_quaternion_cov_t;
 
 #define MAVLINK_MSG_ID_ATTITUDE_QUATERNION_COV_LEN 72
@@ -57,12 +57,12 @@ typedef struct __mavlink_attitude_quaternion_cov_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
- * @param q Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
- * @param rollspeed Roll angular speed
- * @param pitchspeed Pitch angular speed
- * @param yawspeed Yaw angular speed
- * @param covariance Attitude covariance
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
+ * @param rollspeed [rad/s] Roll angular speed
+ * @param pitchspeed [rad/s] Pitch angular speed
+ * @param yawspeed [rad/s] Yaw angular speed
+ * @param covariance  Attitude covariance
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_attitude_quaternion_cov_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -98,12 +98,12 @@ static inline uint16_t mavlink_msg_attitude_quaternion_cov_pack(uint8_t system_i
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
- * @param q Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
- * @param rollspeed Roll angular speed
- * @param pitchspeed Pitch angular speed
- * @param yawspeed Yaw angular speed
- * @param covariance Attitude covariance
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
+ * @param rollspeed [rad/s] Roll angular speed
+ * @param pitchspeed [rad/s] Pitch angular speed
+ * @param yawspeed [rad/s] Yaw angular speed
+ * @param covariance  Attitude covariance
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_attitude_quaternion_cov_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -165,12 +165,12 @@ static inline uint16_t mavlink_msg_attitude_quaternion_cov_encode_chan(uint8_t s
  * @brief Send a attitude_quaternion_cov message
  * @param chan MAVLink channel to send the message
  *
- * @param time_usec Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
- * @param q Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
- * @param rollspeed Roll angular speed
- * @param pitchspeed Pitch angular speed
- * @param yawspeed Yaw angular speed
- * @param covariance Attitude covariance
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
+ * @param rollspeed [rad/s] Roll angular speed
+ * @param pitchspeed [rad/s] Pitch angular speed
+ * @param yawspeed [rad/s] Yaw angular speed
+ * @param covariance  Attitude covariance
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -251,7 +251,7 @@ static inline void mavlink_msg_attitude_quaternion_cov_send_buf(mavlink_message_
 /**
  * @brief Get field time_usec from attitude_quaternion_cov message
  *
- * @return Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @return [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  */
 static inline uint64_t mavlink_msg_attitude_quaternion_cov_get_time_usec(const mavlink_message_t* msg)
 {
@@ -261,7 +261,7 @@ static inline uint64_t mavlink_msg_attitude_quaternion_cov_get_time_usec(const m
 /**
  * @brief Get field q from attitude_quaternion_cov message
  *
- * @return Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
+ * @return  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
  */
 static inline uint16_t mavlink_msg_attitude_quaternion_cov_get_q(const mavlink_message_t* msg, float *q)
 {
@@ -271,7 +271,7 @@ static inline uint16_t mavlink_msg_attitude_quaternion_cov_get_q(const mavlink_m
 /**
  * @brief Get field rollspeed from attitude_quaternion_cov message
  *
- * @return Roll angular speed
+ * @return [rad/s] Roll angular speed
  */
 static inline float mavlink_msg_attitude_quaternion_cov_get_rollspeed(const mavlink_message_t* msg)
 {
@@ -281,7 +281,7 @@ static inline float mavlink_msg_attitude_quaternion_cov_get_rollspeed(const mavl
 /**
  * @brief Get field pitchspeed from attitude_quaternion_cov message
  *
- * @return Pitch angular speed
+ * @return [rad/s] Pitch angular speed
  */
 static inline float mavlink_msg_attitude_quaternion_cov_get_pitchspeed(const mavlink_message_t* msg)
 {
@@ -291,7 +291,7 @@ static inline float mavlink_msg_attitude_quaternion_cov_get_pitchspeed(const mav
 /**
  * @brief Get field yawspeed from attitude_quaternion_cov message
  *
- * @return Yaw angular speed
+ * @return [rad/s] Yaw angular speed
  */
 static inline float mavlink_msg_attitude_quaternion_cov_get_yawspeed(const mavlink_message_t* msg)
 {
@@ -301,7 +301,7 @@ static inline float mavlink_msg_attitude_quaternion_cov_get_yawspeed(const mavli
 /**
  * @brief Get field covariance from attitude_quaternion_cov message
  *
- * @return Attitude covariance
+ * @return  Attitude covariance
  */
 static inline uint16_t mavlink_msg_attitude_quaternion_cov_get_covariance(const mavlink_message_t* msg, float *covariance)
 {

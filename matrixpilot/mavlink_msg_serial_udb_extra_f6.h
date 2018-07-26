@@ -5,11 +5,11 @@
 
 MAVPACKED(
 typedef struct __mavlink_serial_udb_extra_f6_t {
- float sue_PITCHGAIN; /*< Serial UDB Extra PITCHGAIN Proportional Control*/
- float sue_PITCHKD; /*< Serial UDB Extra Pitch Rate Control*/
- float sue_RUDDER_ELEV_MIX; /*< Serial UDB Extra Rudder to Elevator Mix*/
- float sue_ROLL_ELEV_MIX; /*< Serial UDB Extra Roll to Elevator Mix*/
- float sue_ELEVATOR_BOOST; /*< Gain For Boosting Manual Elevator control When Plane Stabilized*/
+ float sue_PITCHGAIN; /*<  Serial UDB Extra PITCHGAIN Proportional Control*/
+ float sue_PITCHKD; /*<  Serial UDB Extra Pitch Rate Control*/
+ float sue_RUDDER_ELEV_MIX; /*<  Serial UDB Extra Rudder to Elevator Mix*/
+ float sue_ROLL_ELEV_MIX; /*<  Serial UDB Extra Roll to Elevator Mix*/
+ float sue_ELEVATOR_BOOST; /*<  Gain For Boosting Manual Elevator control When Plane Stabilized*/
 }) mavlink_serial_udb_extra_f6_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F6_LEN 20
@@ -53,11 +53,11 @@ typedef struct __mavlink_serial_udb_extra_f6_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param sue_PITCHGAIN Serial UDB Extra PITCHGAIN Proportional Control
- * @param sue_PITCHKD Serial UDB Extra Pitch Rate Control
- * @param sue_RUDDER_ELEV_MIX Serial UDB Extra Rudder to Elevator Mix
- * @param sue_ROLL_ELEV_MIX Serial UDB Extra Roll to Elevator Mix
- * @param sue_ELEVATOR_BOOST Gain For Boosting Manual Elevator control When Plane Stabilized
+ * @param sue_PITCHGAIN  Serial UDB Extra PITCHGAIN Proportional Control
+ * @param sue_PITCHKD  Serial UDB Extra Pitch Rate Control
+ * @param sue_RUDDER_ELEV_MIX  Serial UDB Extra Rudder to Elevator Mix
+ * @param sue_ROLL_ELEV_MIX  Serial UDB Extra Roll to Elevator Mix
+ * @param sue_ELEVATOR_BOOST  Gain For Boosting Manual Elevator control When Plane Stabilized
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f6_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -93,11 +93,11 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f6_pack(uint8_t system_id, u
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param sue_PITCHGAIN Serial UDB Extra PITCHGAIN Proportional Control
- * @param sue_PITCHKD Serial UDB Extra Pitch Rate Control
- * @param sue_RUDDER_ELEV_MIX Serial UDB Extra Rudder to Elevator Mix
- * @param sue_ROLL_ELEV_MIX Serial UDB Extra Roll to Elevator Mix
- * @param sue_ELEVATOR_BOOST Gain For Boosting Manual Elevator control When Plane Stabilized
+ * @param sue_PITCHGAIN  Serial UDB Extra PITCHGAIN Proportional Control
+ * @param sue_PITCHKD  Serial UDB Extra Pitch Rate Control
+ * @param sue_RUDDER_ELEV_MIX  Serial UDB Extra Rudder to Elevator Mix
+ * @param sue_ROLL_ELEV_MIX  Serial UDB Extra Roll to Elevator Mix
+ * @param sue_ELEVATOR_BOOST  Gain For Boosting Manual Elevator control When Plane Stabilized
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f6_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -159,11 +159,11 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f6_encode_chan(uint8_t syste
  * @brief Send a serial_udb_extra_f6 message
  * @param chan MAVLink channel to send the message
  *
- * @param sue_PITCHGAIN Serial UDB Extra PITCHGAIN Proportional Control
- * @param sue_PITCHKD Serial UDB Extra Pitch Rate Control
- * @param sue_RUDDER_ELEV_MIX Serial UDB Extra Rudder to Elevator Mix
- * @param sue_ROLL_ELEV_MIX Serial UDB Extra Roll to Elevator Mix
- * @param sue_ELEVATOR_BOOST Gain For Boosting Manual Elevator control When Plane Stabilized
+ * @param sue_PITCHGAIN  Serial UDB Extra PITCHGAIN Proportional Control
+ * @param sue_PITCHKD  Serial UDB Extra Pitch Rate Control
+ * @param sue_RUDDER_ELEV_MIX  Serial UDB Extra Rudder to Elevator Mix
+ * @param sue_ROLL_ELEV_MIX  Serial UDB Extra Roll to Elevator Mix
+ * @param sue_ELEVATOR_BOOST  Gain For Boosting Manual Elevator control When Plane Stabilized
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -244,7 +244,7 @@ static inline void mavlink_msg_serial_udb_extra_f6_send_buf(mavlink_message_t *m
 /**
  * @brief Get field sue_PITCHGAIN from serial_udb_extra_f6 message
  *
- * @return Serial UDB Extra PITCHGAIN Proportional Control
+ * @return  Serial UDB Extra PITCHGAIN Proportional Control
  */
 static inline float mavlink_msg_serial_udb_extra_f6_get_sue_PITCHGAIN(const mavlink_message_t* msg)
 {
@@ -254,7 +254,7 @@ static inline float mavlink_msg_serial_udb_extra_f6_get_sue_PITCHGAIN(const mavl
 /**
  * @brief Get field sue_PITCHKD from serial_udb_extra_f6 message
  *
- * @return Serial UDB Extra Pitch Rate Control
+ * @return  Serial UDB Extra Pitch Rate Control
  */
 static inline float mavlink_msg_serial_udb_extra_f6_get_sue_PITCHKD(const mavlink_message_t* msg)
 {
@@ -264,7 +264,7 @@ static inline float mavlink_msg_serial_udb_extra_f6_get_sue_PITCHKD(const mavlin
 /**
  * @brief Get field sue_RUDDER_ELEV_MIX from serial_udb_extra_f6 message
  *
- * @return Serial UDB Extra Rudder to Elevator Mix
+ * @return  Serial UDB Extra Rudder to Elevator Mix
  */
 static inline float mavlink_msg_serial_udb_extra_f6_get_sue_RUDDER_ELEV_MIX(const mavlink_message_t* msg)
 {
@@ -274,7 +274,7 @@ static inline float mavlink_msg_serial_udb_extra_f6_get_sue_RUDDER_ELEV_MIX(cons
 /**
  * @brief Get field sue_ROLL_ELEV_MIX from serial_udb_extra_f6 message
  *
- * @return Serial UDB Extra Roll to Elevator Mix
+ * @return  Serial UDB Extra Roll to Elevator Mix
  */
 static inline float mavlink_msg_serial_udb_extra_f6_get_sue_ROLL_ELEV_MIX(const mavlink_message_t* msg)
 {
@@ -284,7 +284,7 @@ static inline float mavlink_msg_serial_udb_extra_f6_get_sue_ROLL_ELEV_MIX(const 
 /**
  * @brief Get field sue_ELEVATOR_BOOST from serial_udb_extra_f6 message
  *
- * @return Gain For Boosting Manual Elevator control When Plane Stabilized
+ * @return  Gain For Boosting Manual Elevator control When Plane Stabilized
  */
 static inline float mavlink_msg_serial_udb_extra_f6_get_sue_ELEVATOR_BOOST(const mavlink_message_t* msg)
 {

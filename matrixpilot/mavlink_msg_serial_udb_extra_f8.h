@@ -5,13 +5,13 @@
 
 MAVPACKED(
 typedef struct __mavlink_serial_udb_extra_f8_t {
- float sue_HEIGHT_TARGET_MAX; /*< Serial UDB Extra HEIGHT_TARGET_MAX*/
- float sue_HEIGHT_TARGET_MIN; /*< Serial UDB Extra HEIGHT_TARGET_MIN*/
- float sue_ALT_HOLD_THROTTLE_MIN; /*< Serial UDB Extra ALT_HOLD_THROTTLE_MIN*/
- float sue_ALT_HOLD_THROTTLE_MAX; /*< Serial UDB Extra ALT_HOLD_THROTTLE_MAX*/
- float sue_ALT_HOLD_PITCH_MIN; /*< Serial UDB Extra ALT_HOLD_PITCH_MIN*/
- float sue_ALT_HOLD_PITCH_MAX; /*< Serial UDB Extra ALT_HOLD_PITCH_MAX*/
- float sue_ALT_HOLD_PITCH_HIGH; /*< Serial UDB Extra ALT_HOLD_PITCH_HIGH*/
+ float sue_HEIGHT_TARGET_MAX; /*<  Serial UDB Extra HEIGHT_TARGET_MAX*/
+ float sue_HEIGHT_TARGET_MIN; /*<  Serial UDB Extra HEIGHT_TARGET_MIN*/
+ float sue_ALT_HOLD_THROTTLE_MIN; /*<  Serial UDB Extra ALT_HOLD_THROTTLE_MIN*/
+ float sue_ALT_HOLD_THROTTLE_MAX; /*<  Serial UDB Extra ALT_HOLD_THROTTLE_MAX*/
+ float sue_ALT_HOLD_PITCH_MIN; /*<  Serial UDB Extra ALT_HOLD_PITCH_MIN*/
+ float sue_ALT_HOLD_PITCH_MAX; /*<  Serial UDB Extra ALT_HOLD_PITCH_MAX*/
+ float sue_ALT_HOLD_PITCH_HIGH; /*<  Serial UDB Extra ALT_HOLD_PITCH_HIGH*/
 }) mavlink_serial_udb_extra_f8_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F8_LEN 28
@@ -59,13 +59,13 @@ typedef struct __mavlink_serial_udb_extra_f8_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param sue_HEIGHT_TARGET_MAX Serial UDB Extra HEIGHT_TARGET_MAX
- * @param sue_HEIGHT_TARGET_MIN Serial UDB Extra HEIGHT_TARGET_MIN
- * @param sue_ALT_HOLD_THROTTLE_MIN Serial UDB Extra ALT_HOLD_THROTTLE_MIN
- * @param sue_ALT_HOLD_THROTTLE_MAX Serial UDB Extra ALT_HOLD_THROTTLE_MAX
- * @param sue_ALT_HOLD_PITCH_MIN Serial UDB Extra ALT_HOLD_PITCH_MIN
- * @param sue_ALT_HOLD_PITCH_MAX Serial UDB Extra ALT_HOLD_PITCH_MAX
- * @param sue_ALT_HOLD_PITCH_HIGH Serial UDB Extra ALT_HOLD_PITCH_HIGH
+ * @param sue_HEIGHT_TARGET_MAX  Serial UDB Extra HEIGHT_TARGET_MAX
+ * @param sue_HEIGHT_TARGET_MIN  Serial UDB Extra HEIGHT_TARGET_MIN
+ * @param sue_ALT_HOLD_THROTTLE_MIN  Serial UDB Extra ALT_HOLD_THROTTLE_MIN
+ * @param sue_ALT_HOLD_THROTTLE_MAX  Serial UDB Extra ALT_HOLD_THROTTLE_MAX
+ * @param sue_ALT_HOLD_PITCH_MIN  Serial UDB Extra ALT_HOLD_PITCH_MIN
+ * @param sue_ALT_HOLD_PITCH_MAX  Serial UDB Extra ALT_HOLD_PITCH_MAX
+ * @param sue_ALT_HOLD_PITCH_HIGH  Serial UDB Extra ALT_HOLD_PITCH_HIGH
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f8_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -105,13 +105,13 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f8_pack(uint8_t system_id, u
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param sue_HEIGHT_TARGET_MAX Serial UDB Extra HEIGHT_TARGET_MAX
- * @param sue_HEIGHT_TARGET_MIN Serial UDB Extra HEIGHT_TARGET_MIN
- * @param sue_ALT_HOLD_THROTTLE_MIN Serial UDB Extra ALT_HOLD_THROTTLE_MIN
- * @param sue_ALT_HOLD_THROTTLE_MAX Serial UDB Extra ALT_HOLD_THROTTLE_MAX
- * @param sue_ALT_HOLD_PITCH_MIN Serial UDB Extra ALT_HOLD_PITCH_MIN
- * @param sue_ALT_HOLD_PITCH_MAX Serial UDB Extra ALT_HOLD_PITCH_MAX
- * @param sue_ALT_HOLD_PITCH_HIGH Serial UDB Extra ALT_HOLD_PITCH_HIGH
+ * @param sue_HEIGHT_TARGET_MAX  Serial UDB Extra HEIGHT_TARGET_MAX
+ * @param sue_HEIGHT_TARGET_MIN  Serial UDB Extra HEIGHT_TARGET_MIN
+ * @param sue_ALT_HOLD_THROTTLE_MIN  Serial UDB Extra ALT_HOLD_THROTTLE_MIN
+ * @param sue_ALT_HOLD_THROTTLE_MAX  Serial UDB Extra ALT_HOLD_THROTTLE_MAX
+ * @param sue_ALT_HOLD_PITCH_MIN  Serial UDB Extra ALT_HOLD_PITCH_MIN
+ * @param sue_ALT_HOLD_PITCH_MAX  Serial UDB Extra ALT_HOLD_PITCH_MAX
+ * @param sue_ALT_HOLD_PITCH_HIGH  Serial UDB Extra ALT_HOLD_PITCH_HIGH
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f8_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -177,13 +177,13 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f8_encode_chan(uint8_t syste
  * @brief Send a serial_udb_extra_f8 message
  * @param chan MAVLink channel to send the message
  *
- * @param sue_HEIGHT_TARGET_MAX Serial UDB Extra HEIGHT_TARGET_MAX
- * @param sue_HEIGHT_TARGET_MIN Serial UDB Extra HEIGHT_TARGET_MIN
- * @param sue_ALT_HOLD_THROTTLE_MIN Serial UDB Extra ALT_HOLD_THROTTLE_MIN
- * @param sue_ALT_HOLD_THROTTLE_MAX Serial UDB Extra ALT_HOLD_THROTTLE_MAX
- * @param sue_ALT_HOLD_PITCH_MIN Serial UDB Extra ALT_HOLD_PITCH_MIN
- * @param sue_ALT_HOLD_PITCH_MAX Serial UDB Extra ALT_HOLD_PITCH_MAX
- * @param sue_ALT_HOLD_PITCH_HIGH Serial UDB Extra ALT_HOLD_PITCH_HIGH
+ * @param sue_HEIGHT_TARGET_MAX  Serial UDB Extra HEIGHT_TARGET_MAX
+ * @param sue_HEIGHT_TARGET_MIN  Serial UDB Extra HEIGHT_TARGET_MIN
+ * @param sue_ALT_HOLD_THROTTLE_MIN  Serial UDB Extra ALT_HOLD_THROTTLE_MIN
+ * @param sue_ALT_HOLD_THROTTLE_MAX  Serial UDB Extra ALT_HOLD_THROTTLE_MAX
+ * @param sue_ALT_HOLD_PITCH_MIN  Serial UDB Extra ALT_HOLD_PITCH_MIN
+ * @param sue_ALT_HOLD_PITCH_MAX  Serial UDB Extra ALT_HOLD_PITCH_MAX
+ * @param sue_ALT_HOLD_PITCH_HIGH  Serial UDB Extra ALT_HOLD_PITCH_HIGH
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -272,7 +272,7 @@ static inline void mavlink_msg_serial_udb_extra_f8_send_buf(mavlink_message_t *m
 /**
  * @brief Get field sue_HEIGHT_TARGET_MAX from serial_udb_extra_f8 message
  *
- * @return Serial UDB Extra HEIGHT_TARGET_MAX
+ * @return  Serial UDB Extra HEIGHT_TARGET_MAX
  */
 static inline float mavlink_msg_serial_udb_extra_f8_get_sue_HEIGHT_TARGET_MAX(const mavlink_message_t* msg)
 {
@@ -282,7 +282,7 @@ static inline float mavlink_msg_serial_udb_extra_f8_get_sue_HEIGHT_TARGET_MAX(co
 /**
  * @brief Get field sue_HEIGHT_TARGET_MIN from serial_udb_extra_f8 message
  *
- * @return Serial UDB Extra HEIGHT_TARGET_MIN
+ * @return  Serial UDB Extra HEIGHT_TARGET_MIN
  */
 static inline float mavlink_msg_serial_udb_extra_f8_get_sue_HEIGHT_TARGET_MIN(const mavlink_message_t* msg)
 {
@@ -292,7 +292,7 @@ static inline float mavlink_msg_serial_udb_extra_f8_get_sue_HEIGHT_TARGET_MIN(co
 /**
  * @brief Get field sue_ALT_HOLD_THROTTLE_MIN from serial_udb_extra_f8 message
  *
- * @return Serial UDB Extra ALT_HOLD_THROTTLE_MIN
+ * @return  Serial UDB Extra ALT_HOLD_THROTTLE_MIN
  */
 static inline float mavlink_msg_serial_udb_extra_f8_get_sue_ALT_HOLD_THROTTLE_MIN(const mavlink_message_t* msg)
 {
@@ -302,7 +302,7 @@ static inline float mavlink_msg_serial_udb_extra_f8_get_sue_ALT_HOLD_THROTTLE_MI
 /**
  * @brief Get field sue_ALT_HOLD_THROTTLE_MAX from serial_udb_extra_f8 message
  *
- * @return Serial UDB Extra ALT_HOLD_THROTTLE_MAX
+ * @return  Serial UDB Extra ALT_HOLD_THROTTLE_MAX
  */
 static inline float mavlink_msg_serial_udb_extra_f8_get_sue_ALT_HOLD_THROTTLE_MAX(const mavlink_message_t* msg)
 {
@@ -312,7 +312,7 @@ static inline float mavlink_msg_serial_udb_extra_f8_get_sue_ALT_HOLD_THROTTLE_MA
 /**
  * @brief Get field sue_ALT_HOLD_PITCH_MIN from serial_udb_extra_f8 message
  *
- * @return Serial UDB Extra ALT_HOLD_PITCH_MIN
+ * @return  Serial UDB Extra ALT_HOLD_PITCH_MIN
  */
 static inline float mavlink_msg_serial_udb_extra_f8_get_sue_ALT_HOLD_PITCH_MIN(const mavlink_message_t* msg)
 {
@@ -322,7 +322,7 @@ static inline float mavlink_msg_serial_udb_extra_f8_get_sue_ALT_HOLD_PITCH_MIN(c
 /**
  * @brief Get field sue_ALT_HOLD_PITCH_MAX from serial_udb_extra_f8 message
  *
- * @return Serial UDB Extra ALT_HOLD_PITCH_MAX
+ * @return  Serial UDB Extra ALT_HOLD_PITCH_MAX
  */
 static inline float mavlink_msg_serial_udb_extra_f8_get_sue_ALT_HOLD_PITCH_MAX(const mavlink_message_t* msg)
 {
@@ -332,7 +332,7 @@ static inline float mavlink_msg_serial_udb_extra_f8_get_sue_ALT_HOLD_PITCH_MAX(c
 /**
  * @brief Get field sue_ALT_HOLD_PITCH_HIGH from serial_udb_extra_f8 message
  *
- * @return Serial UDB Extra ALT_HOLD_PITCH_HIGH
+ * @return  Serial UDB Extra ALT_HOLD_PITCH_HIGH
  */
 static inline float mavlink_msg_serial_udb_extra_f8_get_sue_ALT_HOLD_PITCH_HIGH(const mavlink_message_t* msg)
 {

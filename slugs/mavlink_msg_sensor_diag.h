@@ -5,10 +5,10 @@
 
 MAVPACKED(
 typedef struct __mavlink_sensor_diag_t {
- float float1; /*< Float field 1*/
- float float2; /*< Float field 2*/
- int16_t int1; /*< Int 16 field 1*/
- int8_t char1; /*< Int 8 field 1*/
+ float float1; /*<  Float field 1*/
+ float float2; /*<  Float field 2*/
+ int16_t int1; /*<  Int 16 field 1*/
+ int8_t char1; /*<  Int 8 field 1*/
 }) mavlink_sensor_diag_t;
 
 #define MAVLINK_MSG_ID_SENSOR_DIAG_LEN 11
@@ -50,10 +50,10 @@ typedef struct __mavlink_sensor_diag_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param float1 Float field 1
- * @param float2 Float field 2
- * @param int1 Int 16 field 1
- * @param char1 Int 8 field 1
+ * @param float1  Float field 1
+ * @param float2  Float field 2
+ * @param int1  Int 16 field 1
+ * @param char1  Int 8 field 1
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_sensor_diag_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -87,10 +87,10 @@ static inline uint16_t mavlink_msg_sensor_diag_pack(uint8_t system_id, uint8_t c
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param float1 Float field 1
- * @param float2 Float field 2
- * @param int1 Int 16 field 1
- * @param char1 Int 8 field 1
+ * @param float1  Float field 1
+ * @param float2  Float field 2
+ * @param int1  Int 16 field 1
+ * @param char1  Int 8 field 1
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_sensor_diag_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -150,10 +150,10 @@ static inline uint16_t mavlink_msg_sensor_diag_encode_chan(uint8_t system_id, ui
  * @brief Send a sensor_diag message
  * @param chan MAVLink channel to send the message
  *
- * @param float1 Float field 1
- * @param float2 Float field 2
- * @param int1 Int 16 field 1
- * @param char1 Int 8 field 1
+ * @param float1  Float field 1
+ * @param float2  Float field 2
+ * @param int1  Int 16 field 1
+ * @param char1  Int 8 field 1
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -230,7 +230,7 @@ static inline void mavlink_msg_sensor_diag_send_buf(mavlink_message_t *msgbuf, m
 /**
  * @brief Get field float1 from sensor_diag message
  *
- * @return Float field 1
+ * @return  Float field 1
  */
 static inline float mavlink_msg_sensor_diag_get_float1(const mavlink_message_t* msg)
 {
@@ -240,7 +240,7 @@ static inline float mavlink_msg_sensor_diag_get_float1(const mavlink_message_t* 
 /**
  * @brief Get field float2 from sensor_diag message
  *
- * @return Float field 2
+ * @return  Float field 2
  */
 static inline float mavlink_msg_sensor_diag_get_float2(const mavlink_message_t* msg)
 {
@@ -250,7 +250,7 @@ static inline float mavlink_msg_sensor_diag_get_float2(const mavlink_message_t* 
 /**
  * @brief Get field int1 from sensor_diag message
  *
- * @return Int 16 field 1
+ * @return  Int 16 field 1
  */
 static inline int16_t mavlink_msg_sensor_diag_get_int1(const mavlink_message_t* msg)
 {
@@ -260,7 +260,7 @@ static inline int16_t mavlink_msg_sensor_diag_get_int1(const mavlink_message_t* 
 /**
  * @brief Get field char1 from sensor_diag message
  *
- * @return Int 8 field 1
+ * @return  Int 8 field 1
  */
 static inline int8_t mavlink_msg_sensor_diag_get_char1(const mavlink_message_t* msg)
 {

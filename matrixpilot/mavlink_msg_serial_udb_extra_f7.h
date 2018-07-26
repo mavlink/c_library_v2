@@ -5,12 +5,12 @@
 
 MAVPACKED(
 typedef struct __mavlink_serial_udb_extra_f7_t {
- float sue_YAWKP_RUDDER; /*< Serial UDB YAWKP_RUDDER Gain for Proporional control of navigation*/
- float sue_YAWKD_RUDDER; /*< Serial UDB YAWKD_RUDDER Gain for Rate control of navigation*/
- float sue_ROLLKP_RUDDER; /*< Serial UDB Extra ROLLKP_RUDDER Gain for Proportional control of roll stabilization*/
- float sue_ROLLKD_RUDDER; /*< Serial UDB Extra ROLLKD_RUDDER Gain for Rate control of roll stabilization*/
- float sue_RUDDER_BOOST; /*< SERIAL UDB EXTRA Rudder Boost Gain to Manual Control when stabilized*/
- float sue_RTL_PITCH_DOWN; /*< Serial UDB Extra Return To Landing - Angle to Pitch Plane Down*/
+ float sue_YAWKP_RUDDER; /*<  Serial UDB YAWKP_RUDDER Gain for Proporional control of navigation*/
+ float sue_YAWKD_RUDDER; /*<  Serial UDB YAWKD_RUDDER Gain for Rate control of navigation*/
+ float sue_ROLLKP_RUDDER; /*<  Serial UDB Extra ROLLKP_RUDDER Gain for Proportional control of roll stabilization*/
+ float sue_ROLLKD_RUDDER; /*<  Serial UDB Extra ROLLKD_RUDDER Gain for Rate control of roll stabilization*/
+ float sue_RUDDER_BOOST; /*<  SERIAL UDB EXTRA Rudder Boost Gain to Manual Control when stabilized*/
+ float sue_RTL_PITCH_DOWN; /*<  Serial UDB Extra Return To Landing - Angle to Pitch Plane Down*/
 }) mavlink_serial_udb_extra_f7_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F7_LEN 24
@@ -56,12 +56,12 @@ typedef struct __mavlink_serial_udb_extra_f7_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param sue_YAWKP_RUDDER Serial UDB YAWKP_RUDDER Gain for Proporional control of navigation
- * @param sue_YAWKD_RUDDER Serial UDB YAWKD_RUDDER Gain for Rate control of navigation
- * @param sue_ROLLKP_RUDDER Serial UDB Extra ROLLKP_RUDDER Gain for Proportional control of roll stabilization
- * @param sue_ROLLKD_RUDDER Serial UDB Extra ROLLKD_RUDDER Gain for Rate control of roll stabilization
- * @param sue_RUDDER_BOOST SERIAL UDB EXTRA Rudder Boost Gain to Manual Control when stabilized
- * @param sue_RTL_PITCH_DOWN Serial UDB Extra Return To Landing - Angle to Pitch Plane Down
+ * @param sue_YAWKP_RUDDER  Serial UDB YAWKP_RUDDER Gain for Proporional control of navigation
+ * @param sue_YAWKD_RUDDER  Serial UDB YAWKD_RUDDER Gain for Rate control of navigation
+ * @param sue_ROLLKP_RUDDER  Serial UDB Extra ROLLKP_RUDDER Gain for Proportional control of roll stabilization
+ * @param sue_ROLLKD_RUDDER  Serial UDB Extra ROLLKD_RUDDER Gain for Rate control of roll stabilization
+ * @param sue_RUDDER_BOOST  SERIAL UDB EXTRA Rudder Boost Gain to Manual Control when stabilized
+ * @param sue_RTL_PITCH_DOWN  Serial UDB Extra Return To Landing - Angle to Pitch Plane Down
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f7_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -99,12 +99,12 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f7_pack(uint8_t system_id, u
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param sue_YAWKP_RUDDER Serial UDB YAWKP_RUDDER Gain for Proporional control of navigation
- * @param sue_YAWKD_RUDDER Serial UDB YAWKD_RUDDER Gain for Rate control of navigation
- * @param sue_ROLLKP_RUDDER Serial UDB Extra ROLLKP_RUDDER Gain for Proportional control of roll stabilization
- * @param sue_ROLLKD_RUDDER Serial UDB Extra ROLLKD_RUDDER Gain for Rate control of roll stabilization
- * @param sue_RUDDER_BOOST SERIAL UDB EXTRA Rudder Boost Gain to Manual Control when stabilized
- * @param sue_RTL_PITCH_DOWN Serial UDB Extra Return To Landing - Angle to Pitch Plane Down
+ * @param sue_YAWKP_RUDDER  Serial UDB YAWKP_RUDDER Gain for Proporional control of navigation
+ * @param sue_YAWKD_RUDDER  Serial UDB YAWKD_RUDDER Gain for Rate control of navigation
+ * @param sue_ROLLKP_RUDDER  Serial UDB Extra ROLLKP_RUDDER Gain for Proportional control of roll stabilization
+ * @param sue_ROLLKD_RUDDER  Serial UDB Extra ROLLKD_RUDDER Gain for Rate control of roll stabilization
+ * @param sue_RUDDER_BOOST  SERIAL UDB EXTRA Rudder Boost Gain to Manual Control when stabilized
+ * @param sue_RTL_PITCH_DOWN  Serial UDB Extra Return To Landing - Angle to Pitch Plane Down
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f7_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -168,12 +168,12 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f7_encode_chan(uint8_t syste
  * @brief Send a serial_udb_extra_f7 message
  * @param chan MAVLink channel to send the message
  *
- * @param sue_YAWKP_RUDDER Serial UDB YAWKP_RUDDER Gain for Proporional control of navigation
- * @param sue_YAWKD_RUDDER Serial UDB YAWKD_RUDDER Gain for Rate control of navigation
- * @param sue_ROLLKP_RUDDER Serial UDB Extra ROLLKP_RUDDER Gain for Proportional control of roll stabilization
- * @param sue_ROLLKD_RUDDER Serial UDB Extra ROLLKD_RUDDER Gain for Rate control of roll stabilization
- * @param sue_RUDDER_BOOST SERIAL UDB EXTRA Rudder Boost Gain to Manual Control when stabilized
- * @param sue_RTL_PITCH_DOWN Serial UDB Extra Return To Landing - Angle to Pitch Plane Down
+ * @param sue_YAWKP_RUDDER  Serial UDB YAWKP_RUDDER Gain for Proporional control of navigation
+ * @param sue_YAWKD_RUDDER  Serial UDB YAWKD_RUDDER Gain for Rate control of navigation
+ * @param sue_ROLLKP_RUDDER  Serial UDB Extra ROLLKP_RUDDER Gain for Proportional control of roll stabilization
+ * @param sue_ROLLKD_RUDDER  Serial UDB Extra ROLLKD_RUDDER Gain for Rate control of roll stabilization
+ * @param sue_RUDDER_BOOST  SERIAL UDB EXTRA Rudder Boost Gain to Manual Control when stabilized
+ * @param sue_RTL_PITCH_DOWN  Serial UDB Extra Return To Landing - Angle to Pitch Plane Down
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -258,7 +258,7 @@ static inline void mavlink_msg_serial_udb_extra_f7_send_buf(mavlink_message_t *m
 /**
  * @brief Get field sue_YAWKP_RUDDER from serial_udb_extra_f7 message
  *
- * @return Serial UDB YAWKP_RUDDER Gain for Proporional control of navigation
+ * @return  Serial UDB YAWKP_RUDDER Gain for Proporional control of navigation
  */
 static inline float mavlink_msg_serial_udb_extra_f7_get_sue_YAWKP_RUDDER(const mavlink_message_t* msg)
 {
@@ -268,7 +268,7 @@ static inline float mavlink_msg_serial_udb_extra_f7_get_sue_YAWKP_RUDDER(const m
 /**
  * @brief Get field sue_YAWKD_RUDDER from serial_udb_extra_f7 message
  *
- * @return Serial UDB YAWKD_RUDDER Gain for Rate control of navigation
+ * @return  Serial UDB YAWKD_RUDDER Gain for Rate control of navigation
  */
 static inline float mavlink_msg_serial_udb_extra_f7_get_sue_YAWKD_RUDDER(const mavlink_message_t* msg)
 {
@@ -278,7 +278,7 @@ static inline float mavlink_msg_serial_udb_extra_f7_get_sue_YAWKD_RUDDER(const m
 /**
  * @brief Get field sue_ROLLKP_RUDDER from serial_udb_extra_f7 message
  *
- * @return Serial UDB Extra ROLLKP_RUDDER Gain for Proportional control of roll stabilization
+ * @return  Serial UDB Extra ROLLKP_RUDDER Gain for Proportional control of roll stabilization
  */
 static inline float mavlink_msg_serial_udb_extra_f7_get_sue_ROLLKP_RUDDER(const mavlink_message_t* msg)
 {
@@ -288,7 +288,7 @@ static inline float mavlink_msg_serial_udb_extra_f7_get_sue_ROLLKP_RUDDER(const 
 /**
  * @brief Get field sue_ROLLKD_RUDDER from serial_udb_extra_f7 message
  *
- * @return Serial UDB Extra ROLLKD_RUDDER Gain for Rate control of roll stabilization
+ * @return  Serial UDB Extra ROLLKD_RUDDER Gain for Rate control of roll stabilization
  */
 static inline float mavlink_msg_serial_udb_extra_f7_get_sue_ROLLKD_RUDDER(const mavlink_message_t* msg)
 {
@@ -298,7 +298,7 @@ static inline float mavlink_msg_serial_udb_extra_f7_get_sue_ROLLKD_RUDDER(const 
 /**
  * @brief Get field sue_RUDDER_BOOST from serial_udb_extra_f7 message
  *
- * @return SERIAL UDB EXTRA Rudder Boost Gain to Manual Control when stabilized
+ * @return  SERIAL UDB EXTRA Rudder Boost Gain to Manual Control when stabilized
  */
 static inline float mavlink_msg_serial_udb_extra_f7_get_sue_RUDDER_BOOST(const mavlink_message_t* msg)
 {
@@ -308,7 +308,7 @@ static inline float mavlink_msg_serial_udb_extra_f7_get_sue_RUDDER_BOOST(const m
 /**
  * @brief Get field sue_RTL_PITCH_DOWN from serial_udb_extra_f7 message
  *
- * @return Serial UDB Extra Return To Landing - Angle to Pitch Plane Down
+ * @return  Serial UDB Extra Return To Landing - Angle to Pitch Plane Down
  */
 static inline float mavlink_msg_serial_udb_extra_f7_get_sue_RTL_PITCH_DOWN(const mavlink_message_t* msg)
 {

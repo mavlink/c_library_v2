@@ -5,8 +5,8 @@
 
 MAVPACKED(
 typedef struct __mavlink_ctrl_srfc_pt_t {
- uint16_t bitfieldPt; /*< Bitfield containing the passthrough configuration, see CONTROL_SURFACE_FLAG ENUM.*/
- uint8_t target; /*< The system setting the commands*/
+ uint16_t bitfieldPt; /*<  Bitfield containing the passthrough configuration, see CONTROL_SURFACE_FLAG ENUM.*/
+ uint8_t target; /*<  The system setting the commands*/
 }) mavlink_ctrl_srfc_pt_t;
 
 #define MAVLINK_MSG_ID_CTRL_SRFC_PT_LEN 3
@@ -44,8 +44,8 @@ typedef struct __mavlink_ctrl_srfc_pt_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param target The system setting the commands
- * @param bitfieldPt Bitfield containing the passthrough configuration, see CONTROL_SURFACE_FLAG ENUM.
+ * @param target  The system setting the commands
+ * @param bitfieldPt  Bitfield containing the passthrough configuration, see CONTROL_SURFACE_FLAG ENUM.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ctrl_srfc_pt_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -75,8 +75,8 @@ static inline uint16_t mavlink_msg_ctrl_srfc_pt_pack(uint8_t system_id, uint8_t 
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param target The system setting the commands
- * @param bitfieldPt Bitfield containing the passthrough configuration, see CONTROL_SURFACE_FLAG ENUM.
+ * @param target  The system setting the commands
+ * @param bitfieldPt  Bitfield containing the passthrough configuration, see CONTROL_SURFACE_FLAG ENUM.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ctrl_srfc_pt_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -132,8 +132,8 @@ static inline uint16_t mavlink_msg_ctrl_srfc_pt_encode_chan(uint8_t system_id, u
  * @brief Send a ctrl_srfc_pt message
  * @param chan MAVLink channel to send the message
  *
- * @param target The system setting the commands
- * @param bitfieldPt Bitfield containing the passthrough configuration, see CONTROL_SURFACE_FLAG ENUM.
+ * @param target  The system setting the commands
+ * @param bitfieldPt  Bitfield containing the passthrough configuration, see CONTROL_SURFACE_FLAG ENUM.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -202,7 +202,7 @@ static inline void mavlink_msg_ctrl_srfc_pt_send_buf(mavlink_message_t *msgbuf, 
 /**
  * @brief Get field target from ctrl_srfc_pt message
  *
- * @return The system setting the commands
+ * @return  The system setting the commands
  */
 static inline uint8_t mavlink_msg_ctrl_srfc_pt_get_target(const mavlink_message_t* msg)
 {
@@ -212,7 +212,7 @@ static inline uint8_t mavlink_msg_ctrl_srfc_pt_get_target(const mavlink_message_
 /**
  * @brief Get field bitfieldPt from ctrl_srfc_pt message
  *
- * @return Bitfield containing the passthrough configuration, see CONTROL_SURFACE_FLAG ENUM.
+ * @return  Bitfield containing the passthrough configuration, see CONTROL_SURFACE_FLAG ENUM.
  */
 static inline uint16_t mavlink_msg_ctrl_srfc_pt_get_bitfieldPt(const mavlink_message_t* msg)
 {

@@ -5,9 +5,9 @@
 
 MAVPACKED(
 typedef struct __mavlink_ptz_status_t {
- int16_t pan; /*< The Pan value in 10ths of degree*/
- int16_t tilt; /*< The Tilt value in 10ths of degree*/
- uint8_t zoom; /*< The actual Zoom Value*/
+ int16_t pan; /*<  The Pan value in 10ths of degree*/
+ int16_t tilt; /*<  The Tilt value in 10ths of degree*/
+ uint8_t zoom; /*<  The actual Zoom Value*/
 }) mavlink_ptz_status_t;
 
 #define MAVLINK_MSG_ID_PTZ_STATUS_LEN 5
@@ -47,9 +47,9 @@ typedef struct __mavlink_ptz_status_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param zoom The actual Zoom Value
- * @param pan The Pan value in 10ths of degree
- * @param tilt The Tilt value in 10ths of degree
+ * @param zoom  The actual Zoom Value
+ * @param pan  The Pan value in 10ths of degree
+ * @param tilt  The Tilt value in 10ths of degree
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ptz_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -81,9 +81,9 @@ static inline uint16_t mavlink_msg_ptz_status_pack(uint8_t system_id, uint8_t co
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param zoom The actual Zoom Value
- * @param pan The Pan value in 10ths of degree
- * @param tilt The Tilt value in 10ths of degree
+ * @param zoom  The actual Zoom Value
+ * @param pan  The Pan value in 10ths of degree
+ * @param tilt  The Tilt value in 10ths of degree
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ptz_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -141,9 +141,9 @@ static inline uint16_t mavlink_msg_ptz_status_encode_chan(uint8_t system_id, uin
  * @brief Send a ptz_status message
  * @param chan MAVLink channel to send the message
  *
- * @param zoom The actual Zoom Value
- * @param pan The Pan value in 10ths of degree
- * @param tilt The Tilt value in 10ths of degree
+ * @param zoom  The actual Zoom Value
+ * @param pan  The Pan value in 10ths of degree
+ * @param tilt  The Tilt value in 10ths of degree
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -216,7 +216,7 @@ static inline void mavlink_msg_ptz_status_send_buf(mavlink_message_t *msgbuf, ma
 /**
  * @brief Get field zoom from ptz_status message
  *
- * @return The actual Zoom Value
+ * @return  The actual Zoom Value
  */
 static inline uint8_t mavlink_msg_ptz_status_get_zoom(const mavlink_message_t* msg)
 {
@@ -226,7 +226,7 @@ static inline uint8_t mavlink_msg_ptz_status_get_zoom(const mavlink_message_t* m
 /**
  * @brief Get field pan from ptz_status message
  *
- * @return The Pan value in 10ths of degree
+ * @return  The Pan value in 10ths of degree
  */
 static inline int16_t mavlink_msg_ptz_status_get_pan(const mavlink_message_t* msg)
 {
@@ -236,7 +236,7 @@ static inline int16_t mavlink_msg_ptz_status_get_pan(const mavlink_message_t* ms
 /**
  * @brief Get field tilt from ptz_status message
  *
- * @return The Tilt value in 10ths of degree
+ * @return  The Tilt value in 10ths of degree
  */
 static inline int16_t mavlink_msg_ptz_status_get_tilt(const mavlink_message_t* msg)
 {

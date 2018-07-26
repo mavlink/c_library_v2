@@ -5,21 +5,21 @@
 
 MAVPACKED(
 typedef struct __mavlink_command_int_stamped_t {
- uint64_t vehicle_timestamp; /*< Microseconds elapsed since vehicle boot*/
- uint32_t utc_time; /*< UTC time, seconds elapsed since 01.01.1970*/
- float param1; /*< PARAM1, see MAV_CMD enum*/
- float param2; /*< PARAM2, see MAV_CMD enum*/
- float param3; /*< PARAM3, see MAV_CMD enum*/
- float param4; /*< PARAM4, see MAV_CMD enum*/
- int32_t x; /*< PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7*/
- int32_t y; /*< PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7*/
- float z; /*< PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.*/
- uint16_t command; /*< The scheduled action for the mission item, as defined by MAV_CMD enum*/
- uint8_t target_system; /*< System ID*/
- uint8_t target_component; /*< Component ID*/
- uint8_t frame; /*< The coordinate system of the COMMAND, as defined by MAV_FRAME enum*/
- uint8_t current; /*< false:0, true:1*/
- uint8_t autocontinue; /*< autocontinue to next wp*/
+ uint64_t vehicle_timestamp; /*<  Microseconds elapsed since vehicle boot*/
+ uint32_t utc_time; /*<  UTC time, seconds elapsed since 01.01.1970*/
+ float param1; /*<  PARAM1, see MAV_CMD enum*/
+ float param2; /*<  PARAM2, see MAV_CMD enum*/
+ float param3; /*<  PARAM3, see MAV_CMD enum*/
+ float param4; /*<  PARAM4, see MAV_CMD enum*/
+ int32_t x; /*<  PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7*/
+ int32_t y; /*<  PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7*/
+ float z; /*<  PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.*/
+ uint16_t command; /*<  The scheduled action for the mission item, as defined by MAV_CMD enum*/
+ uint8_t target_system; /*<  System ID*/
+ uint8_t target_component; /*<  Component ID*/
+ uint8_t frame; /*<  The coordinate system of the COMMAND, as defined by MAV_FRAME enum*/
+ uint8_t current; /*<  false:0, true:1*/
+ uint8_t autocontinue; /*<  autocontinue to next wp*/
 }) mavlink_command_int_stamped_t;
 
 #define MAVLINK_MSG_ID_COMMAND_INT_STAMPED_LEN 47
@@ -83,21 +83,21 @@ typedef struct __mavlink_command_int_stamped_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param utc_time UTC time, seconds elapsed since 01.01.1970
- * @param vehicle_timestamp Microseconds elapsed since vehicle boot
- * @param target_system System ID
- * @param target_component Component ID
- * @param frame The coordinate system of the COMMAND, as defined by MAV_FRAME enum
- * @param command The scheduled action for the mission item, as defined by MAV_CMD enum
- * @param current false:0, true:1
- * @param autocontinue autocontinue to next wp
- * @param param1 PARAM1, see MAV_CMD enum
- * @param param2 PARAM2, see MAV_CMD enum
- * @param param3 PARAM3, see MAV_CMD enum
- * @param param4 PARAM4, see MAV_CMD enum
- * @param x PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7
- * @param y PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7
- * @param z PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.
+ * @param utc_time  UTC time, seconds elapsed since 01.01.1970
+ * @param vehicle_timestamp  Microseconds elapsed since vehicle boot
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param frame  The coordinate system of the COMMAND, as defined by MAV_FRAME enum
+ * @param command  The scheduled action for the mission item, as defined by MAV_CMD enum
+ * @param current  false:0, true:1
+ * @param autocontinue  autocontinue to next wp
+ * @param param1  PARAM1, see MAV_CMD enum
+ * @param param2  PARAM2, see MAV_CMD enum
+ * @param param3  PARAM3, see MAV_CMD enum
+ * @param param4  PARAM4, see MAV_CMD enum
+ * @param x  PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7
+ * @param y  PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7
+ * @param z  PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_command_int_stamped_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -153,21 +153,21 @@ static inline uint16_t mavlink_msg_command_int_stamped_pack(uint8_t system_id, u
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param utc_time UTC time, seconds elapsed since 01.01.1970
- * @param vehicle_timestamp Microseconds elapsed since vehicle boot
- * @param target_system System ID
- * @param target_component Component ID
- * @param frame The coordinate system of the COMMAND, as defined by MAV_FRAME enum
- * @param command The scheduled action for the mission item, as defined by MAV_CMD enum
- * @param current false:0, true:1
- * @param autocontinue autocontinue to next wp
- * @param param1 PARAM1, see MAV_CMD enum
- * @param param2 PARAM2, see MAV_CMD enum
- * @param param3 PARAM3, see MAV_CMD enum
- * @param param4 PARAM4, see MAV_CMD enum
- * @param x PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7
- * @param y PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7
- * @param z PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.
+ * @param utc_time  UTC time, seconds elapsed since 01.01.1970
+ * @param vehicle_timestamp  Microseconds elapsed since vehicle boot
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param frame  The coordinate system of the COMMAND, as defined by MAV_FRAME enum
+ * @param command  The scheduled action for the mission item, as defined by MAV_CMD enum
+ * @param current  false:0, true:1
+ * @param autocontinue  autocontinue to next wp
+ * @param param1  PARAM1, see MAV_CMD enum
+ * @param param2  PARAM2, see MAV_CMD enum
+ * @param param3  PARAM3, see MAV_CMD enum
+ * @param param4  PARAM4, see MAV_CMD enum
+ * @param x  PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7
+ * @param y  PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7
+ * @param z  PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_command_int_stamped_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -249,21 +249,21 @@ static inline uint16_t mavlink_msg_command_int_stamped_encode_chan(uint8_t syste
  * @brief Send a command_int_stamped message
  * @param chan MAVLink channel to send the message
  *
- * @param utc_time UTC time, seconds elapsed since 01.01.1970
- * @param vehicle_timestamp Microseconds elapsed since vehicle boot
- * @param target_system System ID
- * @param target_component Component ID
- * @param frame The coordinate system of the COMMAND, as defined by MAV_FRAME enum
- * @param command The scheduled action for the mission item, as defined by MAV_CMD enum
- * @param current false:0, true:1
- * @param autocontinue autocontinue to next wp
- * @param param1 PARAM1, see MAV_CMD enum
- * @param param2 PARAM2, see MAV_CMD enum
- * @param param3 PARAM3, see MAV_CMD enum
- * @param param4 PARAM4, see MAV_CMD enum
- * @param x PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7
- * @param y PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7
- * @param z PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.
+ * @param utc_time  UTC time, seconds elapsed since 01.01.1970
+ * @param vehicle_timestamp  Microseconds elapsed since vehicle boot
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param frame  The coordinate system of the COMMAND, as defined by MAV_FRAME enum
+ * @param command  The scheduled action for the mission item, as defined by MAV_CMD enum
+ * @param current  false:0, true:1
+ * @param autocontinue  autocontinue to next wp
+ * @param param1  PARAM1, see MAV_CMD enum
+ * @param param2  PARAM2, see MAV_CMD enum
+ * @param param3  PARAM3, see MAV_CMD enum
+ * @param param4  PARAM4, see MAV_CMD enum
+ * @param x  PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7
+ * @param y  PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7
+ * @param z  PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -384,7 +384,7 @@ static inline void mavlink_msg_command_int_stamped_send_buf(mavlink_message_t *m
 /**
  * @brief Get field utc_time from command_int_stamped message
  *
- * @return UTC time, seconds elapsed since 01.01.1970
+ * @return  UTC time, seconds elapsed since 01.01.1970
  */
 static inline uint32_t mavlink_msg_command_int_stamped_get_utc_time(const mavlink_message_t* msg)
 {
@@ -394,7 +394,7 @@ static inline uint32_t mavlink_msg_command_int_stamped_get_utc_time(const mavlin
 /**
  * @brief Get field vehicle_timestamp from command_int_stamped message
  *
- * @return Microseconds elapsed since vehicle boot
+ * @return  Microseconds elapsed since vehicle boot
  */
 static inline uint64_t mavlink_msg_command_int_stamped_get_vehicle_timestamp(const mavlink_message_t* msg)
 {
@@ -404,7 +404,7 @@ static inline uint64_t mavlink_msg_command_int_stamped_get_vehicle_timestamp(con
 /**
  * @brief Get field target_system from command_int_stamped message
  *
- * @return System ID
+ * @return  System ID
  */
 static inline uint8_t mavlink_msg_command_int_stamped_get_target_system(const mavlink_message_t* msg)
 {
@@ -414,7 +414,7 @@ static inline uint8_t mavlink_msg_command_int_stamped_get_target_system(const ma
 /**
  * @brief Get field target_component from command_int_stamped message
  *
- * @return Component ID
+ * @return  Component ID
  */
 static inline uint8_t mavlink_msg_command_int_stamped_get_target_component(const mavlink_message_t* msg)
 {
@@ -424,7 +424,7 @@ static inline uint8_t mavlink_msg_command_int_stamped_get_target_component(const
 /**
  * @brief Get field frame from command_int_stamped message
  *
- * @return The coordinate system of the COMMAND, as defined by MAV_FRAME enum
+ * @return  The coordinate system of the COMMAND, as defined by MAV_FRAME enum
  */
 static inline uint8_t mavlink_msg_command_int_stamped_get_frame(const mavlink_message_t* msg)
 {
@@ -434,7 +434,7 @@ static inline uint8_t mavlink_msg_command_int_stamped_get_frame(const mavlink_me
 /**
  * @brief Get field command from command_int_stamped message
  *
- * @return The scheduled action for the mission item, as defined by MAV_CMD enum
+ * @return  The scheduled action for the mission item, as defined by MAV_CMD enum
  */
 static inline uint16_t mavlink_msg_command_int_stamped_get_command(const mavlink_message_t* msg)
 {
@@ -444,7 +444,7 @@ static inline uint16_t mavlink_msg_command_int_stamped_get_command(const mavlink
 /**
  * @brief Get field current from command_int_stamped message
  *
- * @return false:0, true:1
+ * @return  false:0, true:1
  */
 static inline uint8_t mavlink_msg_command_int_stamped_get_current(const mavlink_message_t* msg)
 {
@@ -454,7 +454,7 @@ static inline uint8_t mavlink_msg_command_int_stamped_get_current(const mavlink_
 /**
  * @brief Get field autocontinue from command_int_stamped message
  *
- * @return autocontinue to next wp
+ * @return  autocontinue to next wp
  */
 static inline uint8_t mavlink_msg_command_int_stamped_get_autocontinue(const mavlink_message_t* msg)
 {
@@ -464,7 +464,7 @@ static inline uint8_t mavlink_msg_command_int_stamped_get_autocontinue(const mav
 /**
  * @brief Get field param1 from command_int_stamped message
  *
- * @return PARAM1, see MAV_CMD enum
+ * @return  PARAM1, see MAV_CMD enum
  */
 static inline float mavlink_msg_command_int_stamped_get_param1(const mavlink_message_t* msg)
 {
@@ -474,7 +474,7 @@ static inline float mavlink_msg_command_int_stamped_get_param1(const mavlink_mes
 /**
  * @brief Get field param2 from command_int_stamped message
  *
- * @return PARAM2, see MAV_CMD enum
+ * @return  PARAM2, see MAV_CMD enum
  */
 static inline float mavlink_msg_command_int_stamped_get_param2(const mavlink_message_t* msg)
 {
@@ -484,7 +484,7 @@ static inline float mavlink_msg_command_int_stamped_get_param2(const mavlink_mes
 /**
  * @brief Get field param3 from command_int_stamped message
  *
- * @return PARAM3, see MAV_CMD enum
+ * @return  PARAM3, see MAV_CMD enum
  */
 static inline float mavlink_msg_command_int_stamped_get_param3(const mavlink_message_t* msg)
 {
@@ -494,7 +494,7 @@ static inline float mavlink_msg_command_int_stamped_get_param3(const mavlink_mes
 /**
  * @brief Get field param4 from command_int_stamped message
  *
- * @return PARAM4, see MAV_CMD enum
+ * @return  PARAM4, see MAV_CMD enum
  */
 static inline float mavlink_msg_command_int_stamped_get_param4(const mavlink_message_t* msg)
 {
@@ -504,7 +504,7 @@ static inline float mavlink_msg_command_int_stamped_get_param4(const mavlink_mes
 /**
  * @brief Get field x from command_int_stamped message
  *
- * @return PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7
+ * @return  PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7
  */
 static inline int32_t mavlink_msg_command_int_stamped_get_x(const mavlink_message_t* msg)
 {
@@ -514,7 +514,7 @@ static inline int32_t mavlink_msg_command_int_stamped_get_x(const mavlink_messag
 /**
  * @brief Get field y from command_int_stamped message
  *
- * @return PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7
+ * @return  PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7
  */
 static inline int32_t mavlink_msg_command_int_stamped_get_y(const mavlink_message_t* msg)
 {
@@ -524,7 +524,7 @@ static inline int32_t mavlink_msg_command_int_stamped_get_y(const mavlink_messag
 /**
  * @brief Get field z from command_int_stamped message
  *
- * @return PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.
+ * @return  PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.
  */
 static inline float mavlink_msg_command_int_stamped_get_z(const mavlink_message_t* msg)
 {

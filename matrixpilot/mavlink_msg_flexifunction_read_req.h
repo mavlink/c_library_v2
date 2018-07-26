@@ -5,10 +5,10 @@
 
 MAVPACKED(
 typedef struct __mavlink_flexifunction_read_req_t {
- int16_t read_req_type; /*< Type of flexifunction data requested*/
- int16_t data_index; /*< index into data where needed*/
- uint8_t target_system; /*< System ID*/
- uint8_t target_component; /*< Component ID*/
+ int16_t read_req_type; /*<  Type of flexifunction data requested*/
+ int16_t data_index; /*<  index into data where needed*/
+ uint8_t target_system; /*<  System ID*/
+ uint8_t target_component; /*<  Component ID*/
 }) mavlink_flexifunction_read_req_t;
 
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_READ_REQ_LEN 6
@@ -50,10 +50,10 @@ typedef struct __mavlink_flexifunction_read_req_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param target_system System ID
- * @param target_component Component ID
- * @param read_req_type Type of flexifunction data requested
- * @param data_index index into data where needed
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param read_req_type  Type of flexifunction data requested
+ * @param data_index  index into data where needed
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_flexifunction_read_req_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -87,10 +87,10 @@ static inline uint16_t mavlink_msg_flexifunction_read_req_pack(uint8_t system_id
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param target_system System ID
- * @param target_component Component ID
- * @param read_req_type Type of flexifunction data requested
- * @param data_index index into data where needed
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param read_req_type  Type of flexifunction data requested
+ * @param data_index  index into data where needed
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_flexifunction_read_req_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -150,10 +150,10 @@ static inline uint16_t mavlink_msg_flexifunction_read_req_encode_chan(uint8_t sy
  * @brief Send a flexifunction_read_req message
  * @param chan MAVLink channel to send the message
  *
- * @param target_system System ID
- * @param target_component Component ID
- * @param read_req_type Type of flexifunction data requested
- * @param data_index index into data where needed
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param read_req_type  Type of flexifunction data requested
+ * @param data_index  index into data where needed
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -230,7 +230,7 @@ static inline void mavlink_msg_flexifunction_read_req_send_buf(mavlink_message_t
 /**
  * @brief Get field target_system from flexifunction_read_req message
  *
- * @return System ID
+ * @return  System ID
  */
 static inline uint8_t mavlink_msg_flexifunction_read_req_get_target_system(const mavlink_message_t* msg)
 {
@@ -240,7 +240,7 @@ static inline uint8_t mavlink_msg_flexifunction_read_req_get_target_system(const
 /**
  * @brief Get field target_component from flexifunction_read_req message
  *
- * @return Component ID
+ * @return  Component ID
  */
 static inline uint8_t mavlink_msg_flexifunction_read_req_get_target_component(const mavlink_message_t* msg)
 {
@@ -250,7 +250,7 @@ static inline uint8_t mavlink_msg_flexifunction_read_req_get_target_component(co
 /**
  * @brief Get field read_req_type from flexifunction_read_req message
  *
- * @return Type of flexifunction data requested
+ * @return  Type of flexifunction data requested
  */
 static inline int16_t mavlink_msg_flexifunction_read_req_get_read_req_type(const mavlink_message_t* msg)
 {
@@ -260,7 +260,7 @@ static inline int16_t mavlink_msg_flexifunction_read_req_get_read_req_type(const
 /**
  * @brief Get field data_index from flexifunction_read_req message
  *
- * @return index into data where needed
+ * @return  index into data where needed
  */
 static inline int16_t mavlink_msg_flexifunction_read_req_get_data_index(const mavlink_message_t* msg)
 {

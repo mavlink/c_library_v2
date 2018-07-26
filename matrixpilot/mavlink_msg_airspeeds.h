@@ -5,13 +5,13 @@
 
 MAVPACKED(
 typedef struct __mavlink_airspeeds_t {
- uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
- int16_t airspeed_imu; /*< Airspeed estimate from IMU, cm/s*/
- int16_t airspeed_pitot; /*< Pitot measured forward airpseed, cm/s*/
- int16_t airspeed_hot_wire; /*< Hot wire anenometer measured airspeed, cm/s*/
- int16_t airspeed_ultrasonic; /*< Ultrasonic measured airspeed, cm/s*/
- int16_t aoa; /*< Angle of attack sensor, degrees * 10*/
- int16_t aoy; /*< Yaw angle sensor, degrees * 10*/
+ uint32_t time_boot_ms; /*<  Timestamp (milliseconds since system boot)*/
+ int16_t airspeed_imu; /*<  Airspeed estimate from IMU, cm/s*/
+ int16_t airspeed_pitot; /*<  Pitot measured forward airpseed, cm/s*/
+ int16_t airspeed_hot_wire; /*<  Hot wire anenometer measured airspeed, cm/s*/
+ int16_t airspeed_ultrasonic; /*<  Ultrasonic measured airspeed, cm/s*/
+ int16_t aoa; /*<  Angle of attack sensor, degrees * 10*/
+ int16_t aoy; /*<  Yaw angle sensor, degrees * 10*/
 }) mavlink_airspeeds_t;
 
 #define MAVLINK_MSG_ID_AIRSPEEDS_LEN 16
@@ -59,13 +59,13 @@ typedef struct __mavlink_airspeeds_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param airspeed_imu Airspeed estimate from IMU, cm/s
- * @param airspeed_pitot Pitot measured forward airpseed, cm/s
- * @param airspeed_hot_wire Hot wire anenometer measured airspeed, cm/s
- * @param airspeed_ultrasonic Ultrasonic measured airspeed, cm/s
- * @param aoa Angle of attack sensor, degrees * 10
- * @param aoy Yaw angle sensor, degrees * 10
+ * @param time_boot_ms  Timestamp (milliseconds since system boot)
+ * @param airspeed_imu  Airspeed estimate from IMU, cm/s
+ * @param airspeed_pitot  Pitot measured forward airpseed, cm/s
+ * @param airspeed_hot_wire  Hot wire anenometer measured airspeed, cm/s
+ * @param airspeed_ultrasonic  Ultrasonic measured airspeed, cm/s
+ * @param aoa  Angle of attack sensor, degrees * 10
+ * @param aoy  Yaw angle sensor, degrees * 10
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_airspeeds_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -105,13 +105,13 @@ static inline uint16_t mavlink_msg_airspeeds_pack(uint8_t system_id, uint8_t com
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param airspeed_imu Airspeed estimate from IMU, cm/s
- * @param airspeed_pitot Pitot measured forward airpseed, cm/s
- * @param airspeed_hot_wire Hot wire anenometer measured airspeed, cm/s
- * @param airspeed_ultrasonic Ultrasonic measured airspeed, cm/s
- * @param aoa Angle of attack sensor, degrees * 10
- * @param aoy Yaw angle sensor, degrees * 10
+ * @param time_boot_ms  Timestamp (milliseconds since system boot)
+ * @param airspeed_imu  Airspeed estimate from IMU, cm/s
+ * @param airspeed_pitot  Pitot measured forward airpseed, cm/s
+ * @param airspeed_hot_wire  Hot wire anenometer measured airspeed, cm/s
+ * @param airspeed_ultrasonic  Ultrasonic measured airspeed, cm/s
+ * @param aoa  Angle of attack sensor, degrees * 10
+ * @param aoy  Yaw angle sensor, degrees * 10
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_airspeeds_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -177,13 +177,13 @@ static inline uint16_t mavlink_msg_airspeeds_encode_chan(uint8_t system_id, uint
  * @brief Send a airspeeds message
  * @param chan MAVLink channel to send the message
  *
- * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param airspeed_imu Airspeed estimate from IMU, cm/s
- * @param airspeed_pitot Pitot measured forward airpseed, cm/s
- * @param airspeed_hot_wire Hot wire anenometer measured airspeed, cm/s
- * @param airspeed_ultrasonic Ultrasonic measured airspeed, cm/s
- * @param aoa Angle of attack sensor, degrees * 10
- * @param aoy Yaw angle sensor, degrees * 10
+ * @param time_boot_ms  Timestamp (milliseconds since system boot)
+ * @param airspeed_imu  Airspeed estimate from IMU, cm/s
+ * @param airspeed_pitot  Pitot measured forward airpseed, cm/s
+ * @param airspeed_hot_wire  Hot wire anenometer measured airspeed, cm/s
+ * @param airspeed_ultrasonic  Ultrasonic measured airspeed, cm/s
+ * @param aoa  Angle of attack sensor, degrees * 10
+ * @param aoy  Yaw angle sensor, degrees * 10
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -272,7 +272,7 @@ static inline void mavlink_msg_airspeeds_send_buf(mavlink_message_t *msgbuf, mav
 /**
  * @brief Get field time_boot_ms from airspeeds message
  *
- * @return Timestamp (milliseconds since system boot)
+ * @return  Timestamp (milliseconds since system boot)
  */
 static inline uint32_t mavlink_msg_airspeeds_get_time_boot_ms(const mavlink_message_t* msg)
 {
@@ -282,7 +282,7 @@ static inline uint32_t mavlink_msg_airspeeds_get_time_boot_ms(const mavlink_mess
 /**
  * @brief Get field airspeed_imu from airspeeds message
  *
- * @return Airspeed estimate from IMU, cm/s
+ * @return  Airspeed estimate from IMU, cm/s
  */
 static inline int16_t mavlink_msg_airspeeds_get_airspeed_imu(const mavlink_message_t* msg)
 {
@@ -292,7 +292,7 @@ static inline int16_t mavlink_msg_airspeeds_get_airspeed_imu(const mavlink_messa
 /**
  * @brief Get field airspeed_pitot from airspeeds message
  *
- * @return Pitot measured forward airpseed, cm/s
+ * @return  Pitot measured forward airpseed, cm/s
  */
 static inline int16_t mavlink_msg_airspeeds_get_airspeed_pitot(const mavlink_message_t* msg)
 {
@@ -302,7 +302,7 @@ static inline int16_t mavlink_msg_airspeeds_get_airspeed_pitot(const mavlink_mes
 /**
  * @brief Get field airspeed_hot_wire from airspeeds message
  *
- * @return Hot wire anenometer measured airspeed, cm/s
+ * @return  Hot wire anenometer measured airspeed, cm/s
  */
 static inline int16_t mavlink_msg_airspeeds_get_airspeed_hot_wire(const mavlink_message_t* msg)
 {
@@ -312,7 +312,7 @@ static inline int16_t mavlink_msg_airspeeds_get_airspeed_hot_wire(const mavlink_
 /**
  * @brief Get field airspeed_ultrasonic from airspeeds message
  *
- * @return Ultrasonic measured airspeed, cm/s
+ * @return  Ultrasonic measured airspeed, cm/s
  */
 static inline int16_t mavlink_msg_airspeeds_get_airspeed_ultrasonic(const mavlink_message_t* msg)
 {
@@ -322,7 +322,7 @@ static inline int16_t mavlink_msg_airspeeds_get_airspeed_ultrasonic(const mavlin
 /**
  * @brief Get field aoa from airspeeds message
  *
- * @return Angle of attack sensor, degrees * 10
+ * @return  Angle of attack sensor, degrees * 10
  */
 static inline int16_t mavlink_msg_airspeeds_get_aoa(const mavlink_message_t* msg)
 {
@@ -332,7 +332,7 @@ static inline int16_t mavlink_msg_airspeeds_get_aoa(const mavlink_message_t* msg
 /**
  * @brief Get field aoy from airspeeds message
  *
- * @return Yaw angle sensor, degrees * 10
+ * @return  Yaw angle sensor, degrees * 10
  */
 static inline int16_t mavlink_msg_airspeeds_get_aoy(const mavlink_message_t* msg)
 {

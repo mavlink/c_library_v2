@@ -5,21 +5,21 @@
 
 MAVPACKED(
 typedef struct __mavlink_sens_batmon_t {
- uint64_t batmon_timestamp; /*< Time since system start*/
- float temperature; /*< Battery pack temperature*/
- uint32_t safetystatus; /*< Battery monitor safetystatus report bits in Hex*/
- uint32_t operationstatus; /*< Battery monitor operation status report bits in Hex*/
- uint16_t voltage; /*< Battery pack voltage*/
- int16_t current; /*< Battery pack current*/
- uint16_t batterystatus; /*< Battery monitor status report bits in Hex*/
- uint16_t serialnumber; /*< Battery monitor serial number in Hex*/
- uint16_t cellvoltage1; /*< Battery pack cell 1 voltage*/
- uint16_t cellvoltage2; /*< Battery pack cell 2 voltage*/
- uint16_t cellvoltage3; /*< Battery pack cell 3 voltage*/
- uint16_t cellvoltage4; /*< Battery pack cell 4 voltage*/
- uint16_t cellvoltage5; /*< Battery pack cell 5 voltage*/
- uint16_t cellvoltage6; /*< Battery pack cell 6 voltage*/
- uint8_t SoC; /*< Battery pack state-of-charge*/
+ uint64_t batmon_timestamp; /*< [us] Time since system start*/
+ float temperature; /*< [degC] Battery pack temperature*/
+ uint32_t safetystatus; /*<  Battery monitor safetystatus report bits in Hex*/
+ uint32_t operationstatus; /*<  Battery monitor operation status report bits in Hex*/
+ uint16_t voltage; /*< [mV] Battery pack voltage*/
+ int16_t current; /*< [mA] Battery pack current*/
+ uint16_t batterystatus; /*<  Battery monitor status report bits in Hex*/
+ uint16_t serialnumber; /*<  Battery monitor serial number in Hex*/
+ uint16_t cellvoltage1; /*< [mV] Battery pack cell 1 voltage*/
+ uint16_t cellvoltage2; /*< [mV] Battery pack cell 2 voltage*/
+ uint16_t cellvoltage3; /*< [mV] Battery pack cell 3 voltage*/
+ uint16_t cellvoltage4; /*< [mV] Battery pack cell 4 voltage*/
+ uint16_t cellvoltage5; /*< [mV] Battery pack cell 5 voltage*/
+ uint16_t cellvoltage6; /*< [mV] Battery pack cell 6 voltage*/
+ uint8_t SoC; /*<  Battery pack state-of-charge*/
 }) mavlink_sens_batmon_t;
 
 #define MAVLINK_MSG_ID_SENS_BATMON_LEN 41
@@ -83,21 +83,21 @@ typedef struct __mavlink_sens_batmon_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param batmon_timestamp Time since system start
- * @param temperature Battery pack temperature
- * @param voltage Battery pack voltage
- * @param current Battery pack current
- * @param SoC Battery pack state-of-charge
- * @param batterystatus Battery monitor status report bits in Hex
- * @param serialnumber Battery monitor serial number in Hex
- * @param safetystatus Battery monitor safetystatus report bits in Hex
- * @param operationstatus Battery monitor operation status report bits in Hex
- * @param cellvoltage1 Battery pack cell 1 voltage
- * @param cellvoltage2 Battery pack cell 2 voltage
- * @param cellvoltage3 Battery pack cell 3 voltage
- * @param cellvoltage4 Battery pack cell 4 voltage
- * @param cellvoltage5 Battery pack cell 5 voltage
- * @param cellvoltage6 Battery pack cell 6 voltage
+ * @param batmon_timestamp [us] Time since system start
+ * @param temperature [degC] Battery pack temperature
+ * @param voltage [mV] Battery pack voltage
+ * @param current [mA] Battery pack current
+ * @param SoC  Battery pack state-of-charge
+ * @param batterystatus  Battery monitor status report bits in Hex
+ * @param serialnumber  Battery monitor serial number in Hex
+ * @param safetystatus  Battery monitor safetystatus report bits in Hex
+ * @param operationstatus  Battery monitor operation status report bits in Hex
+ * @param cellvoltage1 [mV] Battery pack cell 1 voltage
+ * @param cellvoltage2 [mV] Battery pack cell 2 voltage
+ * @param cellvoltage3 [mV] Battery pack cell 3 voltage
+ * @param cellvoltage4 [mV] Battery pack cell 4 voltage
+ * @param cellvoltage5 [mV] Battery pack cell 5 voltage
+ * @param cellvoltage6 [mV] Battery pack cell 6 voltage
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_sens_batmon_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -153,21 +153,21 @@ static inline uint16_t mavlink_msg_sens_batmon_pack(uint8_t system_id, uint8_t c
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param batmon_timestamp Time since system start
- * @param temperature Battery pack temperature
- * @param voltage Battery pack voltage
- * @param current Battery pack current
- * @param SoC Battery pack state-of-charge
- * @param batterystatus Battery monitor status report bits in Hex
- * @param serialnumber Battery monitor serial number in Hex
- * @param safetystatus Battery monitor safetystatus report bits in Hex
- * @param operationstatus Battery monitor operation status report bits in Hex
- * @param cellvoltage1 Battery pack cell 1 voltage
- * @param cellvoltage2 Battery pack cell 2 voltage
- * @param cellvoltage3 Battery pack cell 3 voltage
- * @param cellvoltage4 Battery pack cell 4 voltage
- * @param cellvoltage5 Battery pack cell 5 voltage
- * @param cellvoltage6 Battery pack cell 6 voltage
+ * @param batmon_timestamp [us] Time since system start
+ * @param temperature [degC] Battery pack temperature
+ * @param voltage [mV] Battery pack voltage
+ * @param current [mA] Battery pack current
+ * @param SoC  Battery pack state-of-charge
+ * @param batterystatus  Battery monitor status report bits in Hex
+ * @param serialnumber  Battery monitor serial number in Hex
+ * @param safetystatus  Battery monitor safetystatus report bits in Hex
+ * @param operationstatus  Battery monitor operation status report bits in Hex
+ * @param cellvoltage1 [mV] Battery pack cell 1 voltage
+ * @param cellvoltage2 [mV] Battery pack cell 2 voltage
+ * @param cellvoltage3 [mV] Battery pack cell 3 voltage
+ * @param cellvoltage4 [mV] Battery pack cell 4 voltage
+ * @param cellvoltage5 [mV] Battery pack cell 5 voltage
+ * @param cellvoltage6 [mV] Battery pack cell 6 voltage
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_sens_batmon_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -249,21 +249,21 @@ static inline uint16_t mavlink_msg_sens_batmon_encode_chan(uint8_t system_id, ui
  * @brief Send a sens_batmon message
  * @param chan MAVLink channel to send the message
  *
- * @param batmon_timestamp Time since system start
- * @param temperature Battery pack temperature
- * @param voltage Battery pack voltage
- * @param current Battery pack current
- * @param SoC Battery pack state-of-charge
- * @param batterystatus Battery monitor status report bits in Hex
- * @param serialnumber Battery monitor serial number in Hex
- * @param safetystatus Battery monitor safetystatus report bits in Hex
- * @param operationstatus Battery monitor operation status report bits in Hex
- * @param cellvoltage1 Battery pack cell 1 voltage
- * @param cellvoltage2 Battery pack cell 2 voltage
- * @param cellvoltage3 Battery pack cell 3 voltage
- * @param cellvoltage4 Battery pack cell 4 voltage
- * @param cellvoltage5 Battery pack cell 5 voltage
- * @param cellvoltage6 Battery pack cell 6 voltage
+ * @param batmon_timestamp [us] Time since system start
+ * @param temperature [degC] Battery pack temperature
+ * @param voltage [mV] Battery pack voltage
+ * @param current [mA] Battery pack current
+ * @param SoC  Battery pack state-of-charge
+ * @param batterystatus  Battery monitor status report bits in Hex
+ * @param serialnumber  Battery monitor serial number in Hex
+ * @param safetystatus  Battery monitor safetystatus report bits in Hex
+ * @param operationstatus  Battery monitor operation status report bits in Hex
+ * @param cellvoltage1 [mV] Battery pack cell 1 voltage
+ * @param cellvoltage2 [mV] Battery pack cell 2 voltage
+ * @param cellvoltage3 [mV] Battery pack cell 3 voltage
+ * @param cellvoltage4 [mV] Battery pack cell 4 voltage
+ * @param cellvoltage5 [mV] Battery pack cell 5 voltage
+ * @param cellvoltage6 [mV] Battery pack cell 6 voltage
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -384,7 +384,7 @@ static inline void mavlink_msg_sens_batmon_send_buf(mavlink_message_t *msgbuf, m
 /**
  * @brief Get field batmon_timestamp from sens_batmon message
  *
- * @return Time since system start
+ * @return [us] Time since system start
  */
 static inline uint64_t mavlink_msg_sens_batmon_get_batmon_timestamp(const mavlink_message_t* msg)
 {
@@ -394,7 +394,7 @@ static inline uint64_t mavlink_msg_sens_batmon_get_batmon_timestamp(const mavlin
 /**
  * @brief Get field temperature from sens_batmon message
  *
- * @return Battery pack temperature
+ * @return [degC] Battery pack temperature
  */
 static inline float mavlink_msg_sens_batmon_get_temperature(const mavlink_message_t* msg)
 {
@@ -404,7 +404,7 @@ static inline float mavlink_msg_sens_batmon_get_temperature(const mavlink_messag
 /**
  * @brief Get field voltage from sens_batmon message
  *
- * @return Battery pack voltage
+ * @return [mV] Battery pack voltage
  */
 static inline uint16_t mavlink_msg_sens_batmon_get_voltage(const mavlink_message_t* msg)
 {
@@ -414,7 +414,7 @@ static inline uint16_t mavlink_msg_sens_batmon_get_voltage(const mavlink_message
 /**
  * @brief Get field current from sens_batmon message
  *
- * @return Battery pack current
+ * @return [mA] Battery pack current
  */
 static inline int16_t mavlink_msg_sens_batmon_get_current(const mavlink_message_t* msg)
 {
@@ -424,7 +424,7 @@ static inline int16_t mavlink_msg_sens_batmon_get_current(const mavlink_message_
 /**
  * @brief Get field SoC from sens_batmon message
  *
- * @return Battery pack state-of-charge
+ * @return  Battery pack state-of-charge
  */
 static inline uint8_t mavlink_msg_sens_batmon_get_SoC(const mavlink_message_t* msg)
 {
@@ -434,7 +434,7 @@ static inline uint8_t mavlink_msg_sens_batmon_get_SoC(const mavlink_message_t* m
 /**
  * @brief Get field batterystatus from sens_batmon message
  *
- * @return Battery monitor status report bits in Hex
+ * @return  Battery monitor status report bits in Hex
  */
 static inline uint16_t mavlink_msg_sens_batmon_get_batterystatus(const mavlink_message_t* msg)
 {
@@ -444,7 +444,7 @@ static inline uint16_t mavlink_msg_sens_batmon_get_batterystatus(const mavlink_m
 /**
  * @brief Get field serialnumber from sens_batmon message
  *
- * @return Battery monitor serial number in Hex
+ * @return  Battery monitor serial number in Hex
  */
 static inline uint16_t mavlink_msg_sens_batmon_get_serialnumber(const mavlink_message_t* msg)
 {
@@ -454,7 +454,7 @@ static inline uint16_t mavlink_msg_sens_batmon_get_serialnumber(const mavlink_me
 /**
  * @brief Get field safetystatus from sens_batmon message
  *
- * @return Battery monitor safetystatus report bits in Hex
+ * @return  Battery monitor safetystatus report bits in Hex
  */
 static inline uint32_t mavlink_msg_sens_batmon_get_safetystatus(const mavlink_message_t* msg)
 {
@@ -464,7 +464,7 @@ static inline uint32_t mavlink_msg_sens_batmon_get_safetystatus(const mavlink_me
 /**
  * @brief Get field operationstatus from sens_batmon message
  *
- * @return Battery monitor operation status report bits in Hex
+ * @return  Battery monitor operation status report bits in Hex
  */
 static inline uint32_t mavlink_msg_sens_batmon_get_operationstatus(const mavlink_message_t* msg)
 {
@@ -474,7 +474,7 @@ static inline uint32_t mavlink_msg_sens_batmon_get_operationstatus(const mavlink
 /**
  * @brief Get field cellvoltage1 from sens_batmon message
  *
- * @return Battery pack cell 1 voltage
+ * @return [mV] Battery pack cell 1 voltage
  */
 static inline uint16_t mavlink_msg_sens_batmon_get_cellvoltage1(const mavlink_message_t* msg)
 {
@@ -484,7 +484,7 @@ static inline uint16_t mavlink_msg_sens_batmon_get_cellvoltage1(const mavlink_me
 /**
  * @brief Get field cellvoltage2 from sens_batmon message
  *
- * @return Battery pack cell 2 voltage
+ * @return [mV] Battery pack cell 2 voltage
  */
 static inline uint16_t mavlink_msg_sens_batmon_get_cellvoltage2(const mavlink_message_t* msg)
 {
@@ -494,7 +494,7 @@ static inline uint16_t mavlink_msg_sens_batmon_get_cellvoltage2(const mavlink_me
 /**
  * @brief Get field cellvoltage3 from sens_batmon message
  *
- * @return Battery pack cell 3 voltage
+ * @return [mV] Battery pack cell 3 voltage
  */
 static inline uint16_t mavlink_msg_sens_batmon_get_cellvoltage3(const mavlink_message_t* msg)
 {
@@ -504,7 +504,7 @@ static inline uint16_t mavlink_msg_sens_batmon_get_cellvoltage3(const mavlink_me
 /**
  * @brief Get field cellvoltage4 from sens_batmon message
  *
- * @return Battery pack cell 4 voltage
+ * @return [mV] Battery pack cell 4 voltage
  */
 static inline uint16_t mavlink_msg_sens_batmon_get_cellvoltage4(const mavlink_message_t* msg)
 {
@@ -514,7 +514,7 @@ static inline uint16_t mavlink_msg_sens_batmon_get_cellvoltage4(const mavlink_me
 /**
  * @brief Get field cellvoltage5 from sens_batmon message
  *
- * @return Battery pack cell 5 voltage
+ * @return [mV] Battery pack cell 5 voltage
  */
 static inline uint16_t mavlink_msg_sens_batmon_get_cellvoltage5(const mavlink_message_t* msg)
 {
@@ -524,7 +524,7 @@ static inline uint16_t mavlink_msg_sens_batmon_get_cellvoltage5(const mavlink_me
 /**
  * @brief Get field cellvoltage6 from sens_batmon message
  *
- * @return Battery pack cell 6 voltage
+ * @return [mV] Battery pack cell 6 voltage
  */
 static inline uint16_t mavlink_msg_sens_batmon_get_cellvoltage6(const mavlink_message_t* msg)
 {

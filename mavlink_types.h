@@ -239,9 +239,6 @@ typedef bool (*mavlink_accept_unsigned_t)(const mavlink_status_t *status, uint32
   flags controlling signing
  */
 #define MAVLINK_SIGNING_FLAG_SIGN_OUTGOING 1    ///< Enable outgoing signing
-// This disables protection against replay attacks, but can be necessary for systems without a proper time base
-#define MAVLINK_SIGNING_FLAG_NO_TIMESTAMPS 2    ///< Ignore timestamp mismatches
-
 
 /*
   state of MAVLink signing for this channel

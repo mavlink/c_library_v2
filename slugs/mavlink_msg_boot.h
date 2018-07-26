@@ -5,7 +5,7 @@
 
 MAVPACKED(
 typedef struct __mavlink_boot_t {
- uint32_t version; /*< The onboard software version*/
+ uint32_t version; /*<  The onboard software version*/
 }) mavlink_boot_t;
 
 #define MAVLINK_MSG_ID_BOOT_LEN 4
@@ -41,7 +41,7 @@ typedef struct __mavlink_boot_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param version The onboard software version
+ * @param version  The onboard software version
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_boot_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -69,7 +69,7 @@ static inline uint16_t mavlink_msg_boot_pack(uint8_t system_id, uint8_t componen
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param version The onboard software version
+ * @param version  The onboard software version
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_boot_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -123,7 +123,7 @@ static inline uint16_t mavlink_msg_boot_encode_chan(uint8_t system_id, uint8_t c
  * @brief Send a boot message
  * @param chan MAVLink channel to send the message
  *
- * @param version The onboard software version
+ * @param version  The onboard software version
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -188,7 +188,7 @@ static inline void mavlink_msg_boot_send_buf(mavlink_message_t *msgbuf, mavlink_
 /**
  * @brief Get field version from boot message
  *
- * @return The onboard software version
+ * @return  The onboard software version
  */
 static inline uint32_t mavlink_msg_boot_get_version(const mavlink_message_t* msg)
 {

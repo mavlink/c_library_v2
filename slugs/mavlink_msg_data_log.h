@@ -5,12 +5,12 @@
 
 MAVPACKED(
 typedef struct __mavlink_data_log_t {
- float fl_1; /*< Log value 1 */
- float fl_2; /*< Log value 2 */
- float fl_3; /*< Log value 3 */
- float fl_4; /*< Log value 4 */
- float fl_5; /*< Log value 5 */
- float fl_6; /*< Log value 6 */
+ float fl_1; /*<  Log value 1 */
+ float fl_2; /*<  Log value 2 */
+ float fl_3; /*<  Log value 3 */
+ float fl_4; /*<  Log value 4 */
+ float fl_5; /*<  Log value 5 */
+ float fl_6; /*<  Log value 6 */
 }) mavlink_data_log_t;
 
 #define MAVLINK_MSG_ID_DATA_LOG_LEN 24
@@ -56,12 +56,12 @@ typedef struct __mavlink_data_log_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param fl_1 Log value 1 
- * @param fl_2 Log value 2 
- * @param fl_3 Log value 3 
- * @param fl_4 Log value 4 
- * @param fl_5 Log value 5 
- * @param fl_6 Log value 6 
+ * @param fl_1  Log value 1 
+ * @param fl_2  Log value 2 
+ * @param fl_3  Log value 3 
+ * @param fl_4  Log value 4 
+ * @param fl_5  Log value 5 
+ * @param fl_6  Log value 6 
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_data_log_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -99,12 +99,12 @@ static inline uint16_t mavlink_msg_data_log_pack(uint8_t system_id, uint8_t comp
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param fl_1 Log value 1 
- * @param fl_2 Log value 2 
- * @param fl_3 Log value 3 
- * @param fl_4 Log value 4 
- * @param fl_5 Log value 5 
- * @param fl_6 Log value 6 
+ * @param fl_1  Log value 1 
+ * @param fl_2  Log value 2 
+ * @param fl_3  Log value 3 
+ * @param fl_4  Log value 4 
+ * @param fl_5  Log value 5 
+ * @param fl_6  Log value 6 
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_data_log_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -168,12 +168,12 @@ static inline uint16_t mavlink_msg_data_log_encode_chan(uint8_t system_id, uint8
  * @brief Send a data_log message
  * @param chan MAVLink channel to send the message
  *
- * @param fl_1 Log value 1 
- * @param fl_2 Log value 2 
- * @param fl_3 Log value 3 
- * @param fl_4 Log value 4 
- * @param fl_5 Log value 5 
- * @param fl_6 Log value 6 
+ * @param fl_1  Log value 1 
+ * @param fl_2  Log value 2 
+ * @param fl_3  Log value 3 
+ * @param fl_4  Log value 4 
+ * @param fl_5  Log value 5 
+ * @param fl_6  Log value 6 
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -258,7 +258,7 @@ static inline void mavlink_msg_data_log_send_buf(mavlink_message_t *msgbuf, mavl
 /**
  * @brief Get field fl_1 from data_log message
  *
- * @return Log value 1 
+ * @return  Log value 1 
  */
 static inline float mavlink_msg_data_log_get_fl_1(const mavlink_message_t* msg)
 {
@@ -268,7 +268,7 @@ static inline float mavlink_msg_data_log_get_fl_1(const mavlink_message_t* msg)
 /**
  * @brief Get field fl_2 from data_log message
  *
- * @return Log value 2 
+ * @return  Log value 2 
  */
 static inline float mavlink_msg_data_log_get_fl_2(const mavlink_message_t* msg)
 {
@@ -278,7 +278,7 @@ static inline float mavlink_msg_data_log_get_fl_2(const mavlink_message_t* msg)
 /**
  * @brief Get field fl_3 from data_log message
  *
- * @return Log value 3 
+ * @return  Log value 3 
  */
 static inline float mavlink_msg_data_log_get_fl_3(const mavlink_message_t* msg)
 {
@@ -288,7 +288,7 @@ static inline float mavlink_msg_data_log_get_fl_3(const mavlink_message_t* msg)
 /**
  * @brief Get field fl_4 from data_log message
  *
- * @return Log value 4 
+ * @return  Log value 4 
  */
 static inline float mavlink_msg_data_log_get_fl_4(const mavlink_message_t* msg)
 {
@@ -298,7 +298,7 @@ static inline float mavlink_msg_data_log_get_fl_4(const mavlink_message_t* msg)
 /**
  * @brief Get field fl_5 from data_log message
  *
- * @return Log value 5 
+ * @return  Log value 5 
  */
 static inline float mavlink_msg_data_log_get_fl_5(const mavlink_message_t* msg)
 {
@@ -308,7 +308,7 @@ static inline float mavlink_msg_data_log_get_fl_5(const mavlink_message_t* msg)
 /**
  * @brief Get field fl_6 from data_log message
  *
- * @return Log value 6 
+ * @return  Log value 6 
  */
 static inline float mavlink_msg_data_log_get_fl_6(const mavlink_message_t* msg)
 {

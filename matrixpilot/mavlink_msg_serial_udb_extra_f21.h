@@ -5,12 +5,12 @@
 
 MAVPACKED(
 typedef struct __mavlink_serial_udb_extra_f21_t {
- int16_t sue_accel_x_offset; /*< SUE X accelerometer offset*/
- int16_t sue_accel_y_offset; /*< SUE Y accelerometer offset*/
- int16_t sue_accel_z_offset; /*< SUE Z accelerometer offset*/
- int16_t sue_gyro_x_offset; /*< SUE X gyro offset*/
- int16_t sue_gyro_y_offset; /*< SUE Y gyro offset*/
- int16_t sue_gyro_z_offset; /*< SUE Z gyro offset*/
+ int16_t sue_accel_x_offset; /*<  SUE X accelerometer offset*/
+ int16_t sue_accel_y_offset; /*<  SUE Y accelerometer offset*/
+ int16_t sue_accel_z_offset; /*<  SUE Z accelerometer offset*/
+ int16_t sue_gyro_x_offset; /*<  SUE X gyro offset*/
+ int16_t sue_gyro_y_offset; /*<  SUE Y gyro offset*/
+ int16_t sue_gyro_z_offset; /*<  SUE Z gyro offset*/
 }) mavlink_serial_udb_extra_f21_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F21_LEN 12
@@ -56,12 +56,12 @@ typedef struct __mavlink_serial_udb_extra_f21_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param sue_accel_x_offset SUE X accelerometer offset
- * @param sue_accel_y_offset SUE Y accelerometer offset
- * @param sue_accel_z_offset SUE Z accelerometer offset
- * @param sue_gyro_x_offset SUE X gyro offset
- * @param sue_gyro_y_offset SUE Y gyro offset
- * @param sue_gyro_z_offset SUE Z gyro offset
+ * @param sue_accel_x_offset  SUE X accelerometer offset
+ * @param sue_accel_y_offset  SUE Y accelerometer offset
+ * @param sue_accel_z_offset  SUE Z accelerometer offset
+ * @param sue_gyro_x_offset  SUE X gyro offset
+ * @param sue_gyro_y_offset  SUE Y gyro offset
+ * @param sue_gyro_z_offset  SUE Z gyro offset
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f21_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -99,12 +99,12 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f21_pack(uint8_t system_id, 
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param sue_accel_x_offset SUE X accelerometer offset
- * @param sue_accel_y_offset SUE Y accelerometer offset
- * @param sue_accel_z_offset SUE Z accelerometer offset
- * @param sue_gyro_x_offset SUE X gyro offset
- * @param sue_gyro_y_offset SUE Y gyro offset
- * @param sue_gyro_z_offset SUE Z gyro offset
+ * @param sue_accel_x_offset  SUE X accelerometer offset
+ * @param sue_accel_y_offset  SUE Y accelerometer offset
+ * @param sue_accel_z_offset  SUE Z accelerometer offset
+ * @param sue_gyro_x_offset  SUE X gyro offset
+ * @param sue_gyro_y_offset  SUE Y gyro offset
+ * @param sue_gyro_z_offset  SUE Z gyro offset
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_serial_udb_extra_f21_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -168,12 +168,12 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f21_encode_chan(uint8_t syst
  * @brief Send a serial_udb_extra_f21 message
  * @param chan MAVLink channel to send the message
  *
- * @param sue_accel_x_offset SUE X accelerometer offset
- * @param sue_accel_y_offset SUE Y accelerometer offset
- * @param sue_accel_z_offset SUE Z accelerometer offset
- * @param sue_gyro_x_offset SUE X gyro offset
- * @param sue_gyro_y_offset SUE Y gyro offset
- * @param sue_gyro_z_offset SUE Z gyro offset
+ * @param sue_accel_x_offset  SUE X accelerometer offset
+ * @param sue_accel_y_offset  SUE Y accelerometer offset
+ * @param sue_accel_z_offset  SUE Z accelerometer offset
+ * @param sue_gyro_x_offset  SUE X gyro offset
+ * @param sue_gyro_y_offset  SUE Y gyro offset
+ * @param sue_gyro_z_offset  SUE Z gyro offset
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -258,7 +258,7 @@ static inline void mavlink_msg_serial_udb_extra_f21_send_buf(mavlink_message_t *
 /**
  * @brief Get field sue_accel_x_offset from serial_udb_extra_f21 message
  *
- * @return SUE X accelerometer offset
+ * @return  SUE X accelerometer offset
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f21_get_sue_accel_x_offset(const mavlink_message_t* msg)
 {
@@ -268,7 +268,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f21_get_sue_accel_x_offset(co
 /**
  * @brief Get field sue_accel_y_offset from serial_udb_extra_f21 message
  *
- * @return SUE Y accelerometer offset
+ * @return  SUE Y accelerometer offset
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f21_get_sue_accel_y_offset(const mavlink_message_t* msg)
 {
@@ -278,7 +278,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f21_get_sue_accel_y_offset(co
 /**
  * @brief Get field sue_accel_z_offset from serial_udb_extra_f21 message
  *
- * @return SUE Z accelerometer offset
+ * @return  SUE Z accelerometer offset
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f21_get_sue_accel_z_offset(const mavlink_message_t* msg)
 {
@@ -288,7 +288,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f21_get_sue_accel_z_offset(co
 /**
  * @brief Get field sue_gyro_x_offset from serial_udb_extra_f21 message
  *
- * @return SUE X gyro offset
+ * @return  SUE X gyro offset
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f21_get_sue_gyro_x_offset(const mavlink_message_t* msg)
 {
@@ -298,7 +298,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f21_get_sue_gyro_x_offset(con
 /**
  * @brief Get field sue_gyro_y_offset from serial_udb_extra_f21 message
  *
- * @return SUE Y gyro offset
+ * @return  SUE Y gyro offset
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f21_get_sue_gyro_y_offset(const mavlink_message_t* msg)
 {
@@ -308,7 +308,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f21_get_sue_gyro_y_offset(con
 /**
  * @brief Get field sue_gyro_z_offset from serial_udb_extra_f21 message
  *
- * @return SUE Z gyro offset
+ * @return  SUE Z gyro offset
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f21_get_sue_gyro_z_offset(const mavlink_message_t* msg)
 {
