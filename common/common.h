@@ -1145,6 +1145,17 @@ typedef enum GPS_FIX_TYPE
 } GPS_FIX_TYPE;
 #endif
 
+/** @brief RTK GPS baseline coordinate system, used for RTK corrections */
+#ifndef HAVE_ENUM_RTK_BASELINE_COORDINATE_SYSTEM
+#define HAVE_ENUM_RTK_BASELINE_COORDINATE_SYSTEM
+typedef enum RTK_BASELINE_COORDINATE_SYSTEM
+{
+   RTK_BASELINE_COORDINATE_SYSTEM_ECEF=0, /* Earth-centered, Earth-fixed | */
+   RTK_BASELINE_COORDINATE_SYSTEM_NED=1, /* North, East, Down | */
+   RTK_BASELINE_COORDINATE_SYSTEM_ENUM_END=2, /*  | */
+} RTK_BASELINE_COORDINATE_SYSTEM;
+#endif
+
 /** @brief Type of landing target */
 #ifndef HAVE_ENUM_LANDING_TARGET_TYPE
 #define HAVE_ENUM_LANDING_TARGET_TYPE
@@ -1225,17 +1236,6 @@ typedef enum MAV_ARM_AUTH_DENIED_REASON
    MAV_ARM_AUTH_DENIED_REASON_BAD_WEATHER=5, /* Weather is not good to fly | */
    MAV_ARM_AUTH_DENIED_REASON_ENUM_END=6, /*  | */
 } MAV_ARM_AUTH_DENIED_REASON;
-#endif
-
-/** @brief RTK GPS baseline coordinate system, used for RTK corrections */
-#ifndef HAVE_ENUM_RTK_BASELINE_COORDINATE_SYSTEM
-#define HAVE_ENUM_RTK_BASELINE_COORDINATE_SYSTEM
-typedef enum RTK_BASELINE_COORDINATE_SYSTEM
-{
-   RTK_BASELINE_COORDINATE_SYSTEM_ECEF=0, /* Earth-centered, Earth-fixed | */
-   RTK_BASELINE_COORDINATE_SYSTEM_NED=1, /* North, East, Down | */
-   RTK_BASELINE_COORDINATE_SYSTEM_ENUM_END=2, /*  | */
-} RTK_BASELINE_COORDINATE_SYSTEM;
 #endif
 
 /** @brief RC type */
