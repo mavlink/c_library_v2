@@ -13,12 +13,12 @@ typedef struct __mavlink_landing_target_t {
  float size_y; /*< [rad] Size of target along y-axis*/
  uint8_t target_num; /*<  The ID of the target if multiple targets are present*/
  uint8_t frame; /*<  Coordinate frame used for following fields.*/
- float x; /*< [m] X Position of the landing target on MAV_FRAME*/
- float y; /*< [m] Y Position of the landing target on MAV_FRAME*/
- float z; /*< [m] Z Position of the landing target on MAV_FRAME*/
+ float x; /*< [m] X Position of the landing target in MAV_FRAME*/
+ float y; /*< [m] Y Position of the landing target in MAV_FRAME*/
+ float z; /*< [m] Z Position of the landing target in MAV_FRAME*/
  float q[4]; /*<  Quaternion of landing target orientation (w, x, y, z order, zero-rotation is 1, 0, 0, 0)*/
  uint8_t type; /*<  Type of landing target*/
- uint8_t position_valid; /*<  Boolean indicating known position (1) or default unknown position (0), for validation of positioning of the landing target*/
+ uint8_t position_valid; /*<  Boolean indicating whether the position fields (x, y, z, q, type) contain valid target position information (valid: 1, invalid: 0). Default is 0 (invalid).*/
 }) mavlink_landing_target_t;
 
 #define MAVLINK_MSG_ID_LANDING_TARGET_LEN 60
@@ -88,12 +88,12 @@ typedef struct __mavlink_landing_target_t {
  * @param distance [m] Distance to the target from the vehicle
  * @param size_x [rad] Size of target along x-axis
  * @param size_y [rad] Size of target along y-axis
- * @param x [m] X Position of the landing target on MAV_FRAME
- * @param y [m] Y Position of the landing target on MAV_FRAME
- * @param z [m] Z Position of the landing target on MAV_FRAME
+ * @param x [m] X Position of the landing target in MAV_FRAME
+ * @param y [m] Y Position of the landing target in MAV_FRAME
+ * @param z [m] Z Position of the landing target in MAV_FRAME
  * @param q  Quaternion of landing target orientation (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
  * @param type  Type of landing target
- * @param position_valid  Boolean indicating known position (1) or default unknown position (0), for validation of positioning of the landing target
+ * @param position_valid  Boolean indicating whether the position fields (x, y, z, q, type) contain valid target position information (valid: 1, invalid: 0). Default is 0 (invalid).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_landing_target_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -153,12 +153,12 @@ static inline uint16_t mavlink_msg_landing_target_pack(uint8_t system_id, uint8_
  * @param distance [m] Distance to the target from the vehicle
  * @param size_x [rad] Size of target along x-axis
  * @param size_y [rad] Size of target along y-axis
- * @param x [m] X Position of the landing target on MAV_FRAME
- * @param y [m] Y Position of the landing target on MAV_FRAME
- * @param z [m] Z Position of the landing target on MAV_FRAME
+ * @param x [m] X Position of the landing target in MAV_FRAME
+ * @param y [m] Y Position of the landing target in MAV_FRAME
+ * @param z [m] Z Position of the landing target in MAV_FRAME
  * @param q  Quaternion of landing target orientation (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
  * @param type  Type of landing target
- * @param position_valid  Boolean indicating known position (1) or default unknown position (0), for validation of positioning of the landing target
+ * @param position_valid  Boolean indicating whether the position fields (x, y, z, q, type) contain valid target position information (valid: 1, invalid: 0). Default is 0 (invalid).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_landing_target_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -244,12 +244,12 @@ static inline uint16_t mavlink_msg_landing_target_encode_chan(uint8_t system_id,
  * @param distance [m] Distance to the target from the vehicle
  * @param size_x [rad] Size of target along x-axis
  * @param size_y [rad] Size of target along y-axis
- * @param x [m] X Position of the landing target on MAV_FRAME
- * @param y [m] Y Position of the landing target on MAV_FRAME
- * @param z [m] Z Position of the landing target on MAV_FRAME
+ * @param x [m] X Position of the landing target in MAV_FRAME
+ * @param y [m] Y Position of the landing target in MAV_FRAME
+ * @param z [m] Z Position of the landing target in MAV_FRAME
  * @param q  Quaternion of landing target orientation (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
  * @param type  Type of landing target
- * @param position_valid  Boolean indicating known position (1) or default unknown position (0), for validation of positioning of the landing target
+ * @param position_valid  Boolean indicating whether the position fields (x, y, z, q, type) contain valid target position information (valid: 1, invalid: 0). Default is 0 (invalid).
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -442,7 +442,7 @@ static inline float mavlink_msg_landing_target_get_size_y(const mavlink_message_
 /**
  * @brief Get field x from landing_target message
  *
- * @return [m] X Position of the landing target on MAV_FRAME
+ * @return [m] X Position of the landing target in MAV_FRAME
  */
 static inline float mavlink_msg_landing_target_get_x(const mavlink_message_t* msg)
 {
@@ -452,7 +452,7 @@ static inline float mavlink_msg_landing_target_get_x(const mavlink_message_t* ms
 /**
  * @brief Get field y from landing_target message
  *
- * @return [m] Y Position of the landing target on MAV_FRAME
+ * @return [m] Y Position of the landing target in MAV_FRAME
  */
 static inline float mavlink_msg_landing_target_get_y(const mavlink_message_t* msg)
 {
@@ -462,7 +462,7 @@ static inline float mavlink_msg_landing_target_get_y(const mavlink_message_t* ms
 /**
  * @brief Get field z from landing_target message
  *
- * @return [m] Z Position of the landing target on MAV_FRAME
+ * @return [m] Z Position of the landing target in MAV_FRAME
  */
 static inline float mavlink_msg_landing_target_get_z(const mavlink_message_t* msg)
 {
@@ -492,7 +492,7 @@ static inline uint8_t mavlink_msg_landing_target_get_type(const mavlink_message_
 /**
  * @brief Get field position_valid from landing_target message
  *
- * @return  Boolean indicating known position (1) or default unknown position (0), for validation of positioning of the landing target
+ * @return  Boolean indicating whether the position fields (x, y, z, q, type) contain valid target position information (valid: 1, invalid: 0). Default is 0 (invalid).
  */
 static inline uint8_t mavlink_msg_landing_target_get_position_valid(const mavlink_message_t* msg)
 {
