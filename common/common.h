@@ -42,7 +42,7 @@ typedef enum MAV_AUTOPILOT
    MAV_AUTOPILOT_GENERIC=0, /* Generic autopilot, full support for everything | */
    MAV_AUTOPILOT_RESERVED=1, /* Reserved for future use. | */
    MAV_AUTOPILOT_SLUGS=2, /* SLUGS autopilot, http://slugsuav.soe.ucsc.edu | */
-   MAV_AUTOPILOT_ARDUPILOTMEGA=3, /* ArduPilotMega / ArduCopter, http://diydrones.com | */
+   MAV_AUTOPILOT_ARDUPILOTMEGA=3, /* ArduPilot - Plane/Copter/Rover/Sub/Tracker, http://ardupilot.org | */
    MAV_AUTOPILOT_OPENPILOT=4, /* OpenPilot, http://openpilot.org | */
    MAV_AUTOPILOT_GENERIC_WAYPOINTS_ONLY=5, /* Generic autopilot only supporting simple waypoints | */
    MAV_AUTOPILOT_GENERIC_WAYPOINTS_AND_SIMPLE_NAVIGATION_ONLY=6, /* Generic autopilot supporting waypoints and other simple navigation commands | */
@@ -1249,23 +1249,23 @@ typedef enum RC_TYPE
 } RC_TYPE;
 #endif
 
-/** @brief Bitmap to indicate which dimensions should be ignored by the vehicle: a value of 0b0000000000000000 or 0b0000001000000000 indicates that none of the setpoint dimensions should be ignored. If bit 10 is set the floats afx afy afz should be interpreted as force instead of acceleration. */
+/** @brief Bitmap to indicate which dimensions should be ignored by the vehicle: a value of 0b0000000000000000 or 0b0000001000000000 indicates that none of the setpoint dimensions should be ignored. If bit 9 is set the floats afx afy afz should be interpreted as force instead of acceleration. */
 #ifndef HAVE_ENUM_POSITION_TARGET_TYPEMASK
 #define HAVE_ENUM_POSITION_TARGET_TYPEMASK
 typedef enum POSITION_TARGET_TYPEMASK
 {
-   POSITION_TARGET_TYPEMASK_X_IGNORE=1, /* 0b0000000000000001 Ignore position x | */
-   POSITION_TARGET_TYPEMASK_Y_IGNORE=2, /* 0b0000000000000010 Ignore position y | */
-   POSITION_TARGET_TYPEMASK_Z_IGNORE=4, /* 0b0000000000000100 Ignore position z | */
-   POSITION_TARGET_TYPEMASK_VX_IGNORE=8, /* 0b0000000000001000 Ignore velocity x | */
-   POSITION_TARGET_TYPEMASK_VY_IGNORE=16, /* 0b0000000000010000 Ignore velocity y | */
-   POSITION_TARGET_TYPEMASK_VZ_IGNORE=32, /* 0b0000000000100000 Ignore velocity z | */
-   POSITION_TARGET_TYPEMASK_AX_IGNORE=64, /* 0b0000000001000000 Ignore acceleration x | */
-   POSITION_TARGET_TYPEMASK_AY_IGNORE=128, /* 0b0000000010000000 Ignore acceleration y | */
-   POSITION_TARGET_TYPEMASK_AZ_IGNORE=256, /* 0b0000000100000000 Ignore acceleration z | */
-   POSITION_TARGET_TYPEMASK_FORCE_SET=512, /* 0b0000001000000000 Use force instead of acceleration | */
-   POSITION_TARGET_TYPEMASK_YAW_IGNORE=1024, /* 0b0000010000000000 Ignore yaw | */
-   POSITION_TARGET_TYPEMASK_YAW_RATE_IGNORE=2048, /* 0b0000100000000000 Ignore yaw rate | */
+   POSITION_TARGET_TYPEMASK_X_IGNORE=1, /* Ignore position x | */
+   POSITION_TARGET_TYPEMASK_Y_IGNORE=2, /* Ignore position y | */
+   POSITION_TARGET_TYPEMASK_Z_IGNORE=4, /* Ignore position z | */
+   POSITION_TARGET_TYPEMASK_VX_IGNORE=8, /* Ignore velocity x | */
+   POSITION_TARGET_TYPEMASK_VY_IGNORE=16, /* Ignore velocity y | */
+   POSITION_TARGET_TYPEMASK_VZ_IGNORE=32, /* Ignore velocity z | */
+   POSITION_TARGET_TYPEMASK_AX_IGNORE=64, /* Ignore acceleration x | */
+   POSITION_TARGET_TYPEMASK_AY_IGNORE=128, /* Ignore acceleration y | */
+   POSITION_TARGET_TYPEMASK_AZ_IGNORE=256, /* Ignore acceleration z | */
+   POSITION_TARGET_TYPEMASK_FORCE_SET=512, /* Use force instead of acceleration | */
+   POSITION_TARGET_TYPEMASK_YAW_IGNORE=1024, /* Ignore yaw | */
+   POSITION_TARGET_TYPEMASK_YAW_RATE_IGNORE=2048, /* Ignore yaw rate | */
    POSITION_TARGET_TYPEMASK_ENUM_END=2049, /*  | */
 } POSITION_TARGET_TYPEMASK;
 #endif
