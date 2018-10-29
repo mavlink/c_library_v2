@@ -8,7 +8,7 @@ typedef struct __mavlink_global_position_int_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
  int32_t lat; /*< [degE7] Latitude, expressed*/
  int32_t lon; /*< [degE7] Longitude, expressed*/
- int32_t alt; /*< [mm] Altitude (AMSL). Note that virtually all GPS modules provide both WGS84 and AMSL.*/
+ int32_t alt; /*< [mm] Altitude (MSL). Note that virtually all GPS modules provide both WGS84 and MSL.*/
  int32_t relative_alt; /*< [mm] Altitude above ground*/
  int16_t vx; /*< [cm/s] Ground X Speed (Latitude, positive north)*/
  int16_t vy; /*< [cm/s] Ground Y Speed (Longitude, positive east)*/
@@ -68,7 +68,7 @@ typedef struct __mavlink_global_position_int_t {
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param lat [degE7] Latitude, expressed
  * @param lon [degE7] Longitude, expressed
- * @param alt [mm] Altitude (AMSL). Note that virtually all GPS modules provide both WGS84 and AMSL.
+ * @param alt [mm] Altitude (MSL). Note that virtually all GPS modules provide both WGS84 and MSL.
  * @param relative_alt [mm] Altitude above ground
  * @param vx [cm/s] Ground X Speed (Latitude, positive north)
  * @param vy [cm/s] Ground Y Speed (Longitude, positive east)
@@ -120,7 +120,7 @@ static inline uint16_t mavlink_msg_global_position_int_pack(uint8_t system_id, u
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param lat [degE7] Latitude, expressed
  * @param lon [degE7] Longitude, expressed
- * @param alt [mm] Altitude (AMSL). Note that virtually all GPS modules provide both WGS84 and AMSL.
+ * @param alt [mm] Altitude (MSL). Note that virtually all GPS modules provide both WGS84 and MSL.
  * @param relative_alt [mm] Altitude above ground
  * @param vx [cm/s] Ground X Speed (Latitude, positive north)
  * @param vy [cm/s] Ground Y Speed (Longitude, positive east)
@@ -198,7 +198,7 @@ static inline uint16_t mavlink_msg_global_position_int_encode_chan(uint8_t syste
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param lat [degE7] Latitude, expressed
  * @param lon [degE7] Longitude, expressed
- * @param alt [mm] Altitude (AMSL). Note that virtually all GPS modules provide both WGS84 and AMSL.
+ * @param alt [mm] Altitude (MSL). Note that virtually all GPS modules provide both WGS84 and MSL.
  * @param relative_alt [mm] Altitude above ground
  * @param vx [cm/s] Ground X Speed (Latitude, positive north)
  * @param vy [cm/s] Ground Y Speed (Longitude, positive east)
@@ -330,7 +330,7 @@ static inline int32_t mavlink_msg_global_position_int_get_lon(const mavlink_mess
 /**
  * @brief Get field alt from global_position_int message
  *
- * @return [mm] Altitude (AMSL). Note that virtually all GPS modules provide both WGS84 and AMSL.
+ * @return [mm] Altitude (MSL). Note that virtually all GPS modules provide both WGS84 and MSL.
  */
 static inline int32_t mavlink_msg_global_position_int_get_alt(const mavlink_message_t* msg)
 {

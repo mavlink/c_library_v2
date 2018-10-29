@@ -7,7 +7,7 @@ MAVPACKED(
 typedef struct __mavlink_terrain_report_t {
  int32_t lat; /*< [degE7] Latitude*/
  int32_t lon; /*< [degE7] Longitude*/
- float terrain_height; /*< [m] Terrain height AMSL*/
+ float terrain_height; /*< [m] Terrain height MSL*/
  float current_height; /*< [m] Current vehicle height above lat/lon terrain height*/
  uint16_t spacing; /*<  grid spacing (zero if terrain at this location unavailable)*/
  uint16_t pending; /*<  Number of 4x4 terrain blocks waiting to be received or read from disk*/
@@ -62,7 +62,7 @@ typedef struct __mavlink_terrain_report_t {
  * @param lat [degE7] Latitude
  * @param lon [degE7] Longitude
  * @param spacing  grid spacing (zero if terrain at this location unavailable)
- * @param terrain_height [m] Terrain height AMSL
+ * @param terrain_height [m] Terrain height MSL
  * @param current_height [m] Current vehicle height above lat/lon terrain height
  * @param pending  Number of 4x4 terrain blocks waiting to be received or read from disk
  * @param loaded  Number of 4x4 terrain blocks in memory
@@ -108,7 +108,7 @@ static inline uint16_t mavlink_msg_terrain_report_pack(uint8_t system_id, uint8_
  * @param lat [degE7] Latitude
  * @param lon [degE7] Longitude
  * @param spacing  grid spacing (zero if terrain at this location unavailable)
- * @param terrain_height [m] Terrain height AMSL
+ * @param terrain_height [m] Terrain height MSL
  * @param current_height [m] Current vehicle height above lat/lon terrain height
  * @param pending  Number of 4x4 terrain blocks waiting to be received or read from disk
  * @param loaded  Number of 4x4 terrain blocks in memory
@@ -180,7 +180,7 @@ static inline uint16_t mavlink_msg_terrain_report_encode_chan(uint8_t system_id,
  * @param lat [degE7] Latitude
  * @param lon [degE7] Longitude
  * @param spacing  grid spacing (zero if terrain at this location unavailable)
- * @param terrain_height [m] Terrain height AMSL
+ * @param terrain_height [m] Terrain height MSL
  * @param current_height [m] Current vehicle height above lat/lon terrain height
  * @param pending  Number of 4x4 terrain blocks waiting to be received or read from disk
  * @param loaded  Number of 4x4 terrain blocks in memory
@@ -302,7 +302,7 @@ static inline uint16_t mavlink_msg_terrain_report_get_spacing(const mavlink_mess
 /**
  * @brief Get field terrain_height from terrain_report message
  *
- * @return [m] Terrain height AMSL
+ * @return [m] Terrain height MSL
  */
 static inline float mavlink_msg_terrain_report_get_terrain_height(const mavlink_message_t* msg)
 {

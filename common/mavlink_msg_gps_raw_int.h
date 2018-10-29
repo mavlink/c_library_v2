@@ -8,7 +8,7 @@ typedef struct __mavlink_gps_raw_int_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
  int32_t lat; /*< [degE7] Latitude (WGS84, EGM96 ellipsoid)*/
  int32_t lon; /*< [degE7] Longitude (WGS84, EGM96 ellipsoid)*/
- int32_t alt; /*< [mm] Altitude (AMSL). Positive for up. Note that virtually all GPS modules provide the AMSL altitude in addition to the WGS84 altitude.*/
+ int32_t alt; /*< [mm] Altitude (MSL). Positive for up. Note that virtually all GPS modules provide the MSL altitude in addition to the WGS84 altitude.*/
  uint16_t eph; /*<  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX*/
  uint16_t epv; /*<  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX*/
  uint16_t vel; /*< [cm/s] GPS ground speed. If unknown, set to: UINT16_MAX*/
@@ -87,7 +87,7 @@ typedef struct __mavlink_gps_raw_int_t {
  * @param fix_type  GPS fix type.
  * @param lat [degE7] Latitude (WGS84, EGM96 ellipsoid)
  * @param lon [degE7] Longitude (WGS84, EGM96 ellipsoid)
- * @param alt [mm] Altitude (AMSL). Positive for up. Note that virtually all GPS modules provide the AMSL altitude in addition to the WGS84 altitude.
+ * @param alt [mm] Altitude (MSL). Positive for up. Note that virtually all GPS modules provide the MSL altitude in addition to the WGS84 altitude.
  * @param eph  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
  * @param epv  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
  * @param vel [cm/s] GPS ground speed. If unknown, set to: UINT16_MAX
@@ -157,7 +157,7 @@ static inline uint16_t mavlink_msg_gps_raw_int_pack(uint8_t system_id, uint8_t c
  * @param fix_type  GPS fix type.
  * @param lat [degE7] Latitude (WGS84, EGM96 ellipsoid)
  * @param lon [degE7] Longitude (WGS84, EGM96 ellipsoid)
- * @param alt [mm] Altitude (AMSL). Positive for up. Note that virtually all GPS modules provide the AMSL altitude in addition to the WGS84 altitude.
+ * @param alt [mm] Altitude (MSL). Positive for up. Note that virtually all GPS modules provide the MSL altitude in addition to the WGS84 altitude.
  * @param eph  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
  * @param epv  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
  * @param vel [cm/s] GPS ground speed. If unknown, set to: UINT16_MAX
@@ -253,7 +253,7 @@ static inline uint16_t mavlink_msg_gps_raw_int_encode_chan(uint8_t system_id, ui
  * @param fix_type  GPS fix type.
  * @param lat [degE7] Latitude (WGS84, EGM96 ellipsoid)
  * @param lon [degE7] Longitude (WGS84, EGM96 ellipsoid)
- * @param alt [mm] Altitude (AMSL). Positive for up. Note that virtually all GPS modules provide the AMSL altitude in addition to the WGS84 altitude.
+ * @param alt [mm] Altitude (MSL). Positive for up. Note that virtually all GPS modules provide the MSL altitude in addition to the WGS84 altitude.
  * @param eph  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
  * @param epv  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
  * @param vel [cm/s] GPS ground speed. If unknown, set to: UINT16_MAX
@@ -424,7 +424,7 @@ static inline int32_t mavlink_msg_gps_raw_int_get_lon(const mavlink_message_t* m
 /**
  * @brief Get field alt from gps_raw_int message
  *
- * @return [mm] Altitude (AMSL). Positive for up. Note that virtually all GPS modules provide the AMSL altitude in addition to the WGS84 altitude.
+ * @return [mm] Altitude (MSL). Positive for up. Note that virtually all GPS modules provide the MSL altitude in addition to the WGS84 altitude.
  */
 static inline int32_t mavlink_msg_gps_raw_int_get_alt(const mavlink_message_t* msg)
 {

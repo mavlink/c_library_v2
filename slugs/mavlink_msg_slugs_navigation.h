@@ -12,7 +12,7 @@ typedef struct __mavlink_slugs_navigation_t {
  float ay_body; /*<  Y component of the body acceleration*/
  float totalDist; /*<  Total Distance to Run on this leg of Navigation*/
  float dist2Go; /*<  Remaining distance to Run on this leg of Navigation*/
- uint16_t h_c; /*< [dm] Commanded altitude*/
+ uint16_t h_c; /*< [dm] Commanded altitude (MSL)*/
  uint8_t fromWP; /*<  Origin WP*/
  uint8_t toWP; /*<  Destination WP*/
 }) mavlink_slugs_navigation_t;
@@ -77,7 +77,7 @@ typedef struct __mavlink_slugs_navigation_t {
  * @param dist2Go  Remaining distance to Run on this leg of Navigation
  * @param fromWP  Origin WP
  * @param toWP  Destination WP
- * @param h_c [dm] Commanded altitude
+ * @param h_c [dm] Commanded altitude (MSL)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_slugs_navigation_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -132,7 +132,7 @@ static inline uint16_t mavlink_msg_slugs_navigation_pack(uint8_t system_id, uint
  * @param dist2Go  Remaining distance to Run on this leg of Navigation
  * @param fromWP  Origin WP
  * @param toWP  Destination WP
- * @param h_c [dm] Commanded altitude
+ * @param h_c [dm] Commanded altitude (MSL)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_slugs_navigation_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -213,7 +213,7 @@ static inline uint16_t mavlink_msg_slugs_navigation_encode_chan(uint8_t system_i
  * @param dist2Go  Remaining distance to Run on this leg of Navigation
  * @param fromWP  Origin WP
  * @param toWP  Destination WP
- * @param h_c [dm] Commanded altitude
+ * @param h_c [dm] Commanded altitude (MSL)
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -404,7 +404,7 @@ static inline uint8_t mavlink_msg_slugs_navigation_get_toWP(const mavlink_messag
 /**
  * @brief Get field h_c from slugs_navigation message
  *
- * @return [dm] Commanded altitude
+ * @return [dm] Commanded altitude (MSL)
  */
 static inline uint16_t mavlink_msg_slugs_navigation_get_h_c(const mavlink_message_t* msg)
 {

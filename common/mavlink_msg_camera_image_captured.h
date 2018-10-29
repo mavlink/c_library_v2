@@ -9,7 +9,7 @@ typedef struct __mavlink_camera_image_captured_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
  int32_t lat; /*< [degE7] Latitude where image was taken*/
  int32_t lon; /*< [degE7] Longitude where capture was taken*/
- int32_t alt; /*< [mm] Altitude (AMSL) where image was taken*/
+ int32_t alt; /*< [mm] Altitude (MSL) where image was taken*/
  int32_t relative_alt; /*< [mm] Altitude above ground*/
  float q[4]; /*<  Quaternion of camera orientation (w, x, y, z order, zero-rotation is 0, 0, 0, 0)*/
  int32_t image_index; /*<  Zero based index of this image (image count since armed -1)*/
@@ -77,7 +77,7 @@ typedef struct __mavlink_camera_image_captured_t {
  * @param camera_id  Camera ID (1 for first, 2 for second, etc.)
  * @param lat [degE7] Latitude where image was taken
  * @param lon [degE7] Longitude where capture was taken
- * @param alt [mm] Altitude (AMSL) where image was taken
+ * @param alt [mm] Altitude (MSL) where image was taken
  * @param relative_alt [mm] Altitude above ground
  * @param q  Quaternion of camera orientation (w, x, y, z order, zero-rotation is 0, 0, 0, 0)
  * @param image_index  Zero based index of this image (image count since armed -1)
@@ -133,7 +133,7 @@ static inline uint16_t mavlink_msg_camera_image_captured_pack(uint8_t system_id,
  * @param camera_id  Camera ID (1 for first, 2 for second, etc.)
  * @param lat [degE7] Latitude where image was taken
  * @param lon [degE7] Longitude where capture was taken
- * @param alt [mm] Altitude (AMSL) where image was taken
+ * @param alt [mm] Altitude (MSL) where image was taken
  * @param relative_alt [mm] Altitude above ground
  * @param q  Quaternion of camera orientation (w, x, y, z order, zero-rotation is 0, 0, 0, 0)
  * @param image_index  Zero based index of this image (image count since armed -1)
@@ -215,7 +215,7 @@ static inline uint16_t mavlink_msg_camera_image_captured_encode_chan(uint8_t sys
  * @param camera_id  Camera ID (1 for first, 2 for second, etc.)
  * @param lat [degE7] Latitude where image was taken
  * @param lon [degE7] Longitude where capture was taken
- * @param alt [mm] Altitude (AMSL) where image was taken
+ * @param alt [mm] Altitude (MSL) where image was taken
  * @param relative_alt [mm] Altitude above ground
  * @param q  Quaternion of camera orientation (w, x, y, z order, zero-rotation is 0, 0, 0, 0)
  * @param image_index  Zero based index of this image (image count since armed -1)
@@ -371,7 +371,7 @@ static inline int32_t mavlink_msg_camera_image_captured_get_lon(const mavlink_me
 /**
  * @brief Get field alt from camera_image_captured message
  *
- * @return [mm] Altitude (AMSL) where image was taken
+ * @return [mm] Altitude (MSL) where image was taken
  */
 static inline int32_t mavlink_msg_camera_image_captured_get_alt(const mavlink_message_t* msg)
 {

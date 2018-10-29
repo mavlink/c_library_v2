@@ -8,7 +8,7 @@ typedef struct __mavlink_gps2_raw_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
  int32_t lat; /*< [degE7] Latitude (WGS84)*/
  int32_t lon; /*< [degE7] Longitude (WGS84)*/
- int32_t alt; /*< [mm] Altitude (AMSL). Positive for up.*/
+ int32_t alt; /*< [mm] Altitude (MSL). Positive for up.*/
  uint32_t dgps_age; /*< [ms] Age of DGPS info*/
  uint16_t eph; /*< [cm] GPS HDOP horizontal dilution of position. If unknown, set to: UINT16_MAX*/
  uint16_t epv; /*< [cm] GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX*/
@@ -78,7 +78,7 @@ typedef struct __mavlink_gps2_raw_t {
  * @param fix_type  GPS fix type.
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
- * @param alt [mm] Altitude (AMSL). Positive for up.
+ * @param alt [mm] Altitude (MSL). Positive for up.
  * @param eph [cm] GPS HDOP horizontal dilution of position. If unknown, set to: UINT16_MAX
  * @param epv [cm] GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX
  * @param vel [cm/s] GPS ground speed. If unknown, set to: UINT16_MAX
@@ -139,7 +139,7 @@ static inline uint16_t mavlink_msg_gps2_raw_pack(uint8_t system_id, uint8_t comp
  * @param fix_type  GPS fix type.
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
- * @param alt [mm] Altitude (AMSL). Positive for up.
+ * @param alt [mm] Altitude (MSL). Positive for up.
  * @param eph [cm] GPS HDOP horizontal dilution of position. If unknown, set to: UINT16_MAX
  * @param epv [cm] GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX
  * @param vel [cm/s] GPS ground speed. If unknown, set to: UINT16_MAX
@@ -226,7 +226,7 @@ static inline uint16_t mavlink_msg_gps2_raw_encode_chan(uint8_t system_id, uint8
  * @param fix_type  GPS fix type.
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
- * @param alt [mm] Altitude (AMSL). Positive for up.
+ * @param alt [mm] Altitude (MSL). Positive for up.
  * @param eph [cm] GPS HDOP horizontal dilution of position. If unknown, set to: UINT16_MAX
  * @param epv [cm] GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX
  * @param vel [cm/s] GPS ground speed. If unknown, set to: UINT16_MAX
@@ -382,7 +382,7 @@ static inline int32_t mavlink_msg_gps2_raw_get_lon(const mavlink_message_t* msg)
 /**
  * @brief Get field alt from gps2_raw message
  *
- * @return [mm] Altitude (AMSL). Positive for up.
+ * @return [mm] Altitude (MSL). Positive for up.
  */
 static inline int32_t mavlink_msg_gps2_raw_get_alt(const mavlink_message_t* msg)
 {

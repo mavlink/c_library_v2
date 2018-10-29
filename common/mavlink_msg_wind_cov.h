@@ -11,7 +11,7 @@ typedef struct __mavlink_wind_cov_t {
  float wind_z; /*< [m/s] Wind in Z (NED) direction*/
  float var_horiz; /*< [m/s] Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate.*/
  float var_vert; /*< [m/s] Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate.*/
- float wind_alt; /*< [m] Altitude (AMSL) that this measurement was taken at*/
+ float wind_alt; /*< [m] Altitude (MSL) that this measurement was taken at*/
  float horiz_accuracy; /*< [m] Horizontal speed 1-STD accuracy*/
  float vert_accuracy; /*< [m] Vertical speed 1-STD accuracy*/
 }) mavlink_wind_cov_t;
@@ -71,7 +71,7 @@ typedef struct __mavlink_wind_cov_t {
  * @param wind_z [m/s] Wind in Z (NED) direction
  * @param var_horiz [m/s] Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate.
  * @param var_vert [m/s] Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate.
- * @param wind_alt [m] Altitude (AMSL) that this measurement was taken at
+ * @param wind_alt [m] Altitude (MSL) that this measurement was taken at
  * @param horiz_accuracy [m] Horizontal speed 1-STD accuracy
  * @param vert_accuracy [m] Vertical speed 1-STD accuracy
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -123,7 +123,7 @@ static inline uint16_t mavlink_msg_wind_cov_pack(uint8_t system_id, uint8_t comp
  * @param wind_z [m/s] Wind in Z (NED) direction
  * @param var_horiz [m/s] Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate.
  * @param var_vert [m/s] Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate.
- * @param wind_alt [m] Altitude (AMSL) that this measurement was taken at
+ * @param wind_alt [m] Altitude (MSL) that this measurement was taken at
  * @param horiz_accuracy [m] Horizontal speed 1-STD accuracy
  * @param vert_accuracy [m] Vertical speed 1-STD accuracy
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -201,7 +201,7 @@ static inline uint16_t mavlink_msg_wind_cov_encode_chan(uint8_t system_id, uint8
  * @param wind_z [m/s] Wind in Z (NED) direction
  * @param var_horiz [m/s] Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate.
  * @param var_vert [m/s] Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate.
- * @param wind_alt [m] Altitude (AMSL) that this measurement was taken at
+ * @param wind_alt [m] Altitude (MSL) that this measurement was taken at
  * @param horiz_accuracy [m] Horizontal speed 1-STD accuracy
  * @param vert_accuracy [m] Vertical speed 1-STD accuracy
  */
@@ -360,7 +360,7 @@ static inline float mavlink_msg_wind_cov_get_var_vert(const mavlink_message_t* m
 /**
  * @brief Get field wind_alt from wind_cov message
  *
- * @return [m] Altitude (AMSL) that this measurement was taken at
+ * @return [m] Altitude (MSL) that this measurement was taken at
  */
 static inline float mavlink_msg_wind_cov_get_wind_alt(const mavlink_message_t* msg)
 {

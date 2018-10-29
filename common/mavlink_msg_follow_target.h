@@ -9,7 +9,7 @@ typedef struct __mavlink_follow_target_t {
  uint64_t custom_state; /*<  button states or switches of a tracker device*/
  int32_t lat; /*< [degE7] Latitude (WGS84)*/
  int32_t lon; /*< [degE7] Longitude (WGS84)*/
- float alt; /*< [m] Altitude (AMSL)*/
+ float alt; /*< [m] Altitude (MSL)*/
  float vel[3]; /*< [m/s] target velocity (0,0,0) for unknown*/
  float acc[3]; /*< [m/s/s] linear target acceleration (0,0,0) for unknown*/
  float attitude_q[4]; /*<  (1 0 0 0 for unknown)*/
@@ -79,7 +79,7 @@ typedef struct __mavlink_follow_target_t {
  * @param est_capabilities  bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3)
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
- * @param alt [m] Altitude (AMSL)
+ * @param alt [m] Altitude (MSL)
  * @param vel [m/s] target velocity (0,0,0) for unknown
  * @param acc [m/s/s] linear target acceleration (0,0,0) for unknown
  * @param attitude_q  (1 0 0 0 for unknown)
@@ -135,7 +135,7 @@ static inline uint16_t mavlink_msg_follow_target_pack(uint8_t system_id, uint8_t
  * @param est_capabilities  bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3)
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
- * @param alt [m] Altitude (AMSL)
+ * @param alt [m] Altitude (MSL)
  * @param vel [m/s] target velocity (0,0,0) for unknown
  * @param acc [m/s/s] linear target acceleration (0,0,0) for unknown
  * @param attitude_q  (1 0 0 0 for unknown)
@@ -217,7 +217,7 @@ static inline uint16_t mavlink_msg_follow_target_encode_chan(uint8_t system_id, 
  * @param est_capabilities  bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3)
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
- * @param alt [m] Altitude (AMSL)
+ * @param alt [m] Altitude (MSL)
  * @param vel [m/s] target velocity (0,0,0) for unknown
  * @param acc [m/s/s] linear target acceleration (0,0,0) for unknown
  * @param attitude_q  (1 0 0 0 for unknown)
@@ -364,7 +364,7 @@ static inline int32_t mavlink_msg_follow_target_get_lon(const mavlink_message_t*
 /**
  * @brief Get field alt from follow_target message
  *
- * @return [m] Altitude (AMSL)
+ * @return [m] Altitude (MSL)
  */
 static inline float mavlink_msg_follow_target_get_alt(const mavlink_message_t* msg)
 {

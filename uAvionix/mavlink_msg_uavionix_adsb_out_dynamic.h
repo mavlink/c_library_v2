@@ -8,8 +8,8 @@ typedef struct __mavlink_uavionix_adsb_out_dynamic_t {
  uint32_t utcTime; /*< [s] UTC time in seconds since GPS epoch (Jan 6, 1980). If unknown set to UINT32_MAX*/
  int32_t gpsLat; /*< [degE7] Latitude WGS84 (deg * 1E7). If unknown set to INT32_MAX*/
  int32_t gpsLon; /*< [degE7] Longitude WGS84 (deg * 1E7). If unknown set to INT32_MAX*/
- int32_t gpsAlt; /*< [mm] Altitude in mm (m * 1E-3) UP +ve. WGS84 altitude. If unknown set to INT32_MAX*/
- int32_t baroAltMSL; /*< [mbar] Barometric pressure altitude relative to a standard atmosphere of 1013.2 mBar and NOT bar corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX*/
+ int32_t gpsAlt; /*< [mm] Altitude (WGS84). UP +ve. If unknown set to INT32_MAX*/
+ int32_t baroAltMSL; /*< [mbar] Barometric pressure altitude (MSL) relative to a standard atmosphere of 1013.2 mBar and NOT bar corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX*/
  uint32_t accuracyHor; /*< [mm] Horizontal accuracy in mm (m * 1E-3). If unknown set to UINT32_MAX*/
  uint16_t accuracyVert; /*< [cm] Vertical accuracy in cm. If unknown set to UINT16_MAX*/
  uint16_t accuracyVel; /*< [mm/s] Velocity accuracy in mm/s (m * 1E-3). If unknown set to UINT16_MAX*/
@@ -89,10 +89,10 @@ typedef struct __mavlink_uavionix_adsb_out_dynamic_t {
  * @param utcTime [s] UTC time in seconds since GPS epoch (Jan 6, 1980). If unknown set to UINT32_MAX
  * @param gpsLat [degE7] Latitude WGS84 (deg * 1E7). If unknown set to INT32_MAX
  * @param gpsLon [degE7] Longitude WGS84 (deg * 1E7). If unknown set to INT32_MAX
- * @param gpsAlt [mm] Altitude in mm (m * 1E-3) UP +ve. WGS84 altitude. If unknown set to INT32_MAX
+ * @param gpsAlt [mm] Altitude (WGS84). UP +ve. If unknown set to INT32_MAX
  * @param gpsFix  0-1: no fix, 2: 2D fix, 3: 3D fix, 4: DGPS, 5: RTK
  * @param numSats  Number of satellites visible. If unknown set to UINT8_MAX
- * @param baroAltMSL [mbar] Barometric pressure altitude relative to a standard atmosphere of 1013.2 mBar and NOT bar corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX
+ * @param baroAltMSL [mbar] Barometric pressure altitude (MSL) relative to a standard atmosphere of 1013.2 mBar and NOT bar corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX
  * @param accuracyHor [mm] Horizontal accuracy in mm (m * 1E-3). If unknown set to UINT32_MAX
  * @param accuracyVert [cm] Vertical accuracy in cm. If unknown set to UINT16_MAX
  * @param accuracyVel [mm/s] Velocity accuracy in mm/s (m * 1E-3). If unknown set to UINT16_MAX
@@ -162,10 +162,10 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_dynamic_pack(uint8_t system
  * @param utcTime [s] UTC time in seconds since GPS epoch (Jan 6, 1980). If unknown set to UINT32_MAX
  * @param gpsLat [degE7] Latitude WGS84 (deg * 1E7). If unknown set to INT32_MAX
  * @param gpsLon [degE7] Longitude WGS84 (deg * 1E7). If unknown set to INT32_MAX
- * @param gpsAlt [mm] Altitude in mm (m * 1E-3) UP +ve. WGS84 altitude. If unknown set to INT32_MAX
+ * @param gpsAlt [mm] Altitude (WGS84). UP +ve. If unknown set to INT32_MAX
  * @param gpsFix  0-1: no fix, 2: 2D fix, 3: 3D fix, 4: DGPS, 5: RTK
  * @param numSats  Number of satellites visible. If unknown set to UINT8_MAX
- * @param baroAltMSL [mbar] Barometric pressure altitude relative to a standard atmosphere of 1013.2 mBar and NOT bar corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX
+ * @param baroAltMSL [mbar] Barometric pressure altitude (MSL) relative to a standard atmosphere of 1013.2 mBar and NOT bar corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX
  * @param accuracyHor [mm] Horizontal accuracy in mm (m * 1E-3). If unknown set to UINT32_MAX
  * @param accuracyVert [cm] Vertical accuracy in cm. If unknown set to UINT16_MAX
  * @param accuracyVel [mm/s] Velocity accuracy in mm/s (m * 1E-3). If unknown set to UINT16_MAX
@@ -261,10 +261,10 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_dynamic_encode_chan(uint8_t
  * @param utcTime [s] UTC time in seconds since GPS epoch (Jan 6, 1980). If unknown set to UINT32_MAX
  * @param gpsLat [degE7] Latitude WGS84 (deg * 1E7). If unknown set to INT32_MAX
  * @param gpsLon [degE7] Longitude WGS84 (deg * 1E7). If unknown set to INT32_MAX
- * @param gpsAlt [mm] Altitude in mm (m * 1E-3) UP +ve. WGS84 altitude. If unknown set to INT32_MAX
+ * @param gpsAlt [mm] Altitude (WGS84). UP +ve. If unknown set to INT32_MAX
  * @param gpsFix  0-1: no fix, 2: 2D fix, 3: 3D fix, 4: DGPS, 5: RTK
  * @param numSats  Number of satellites visible. If unknown set to UINT8_MAX
- * @param baroAltMSL [mbar] Barometric pressure altitude relative to a standard atmosphere of 1013.2 mBar and NOT bar corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX
+ * @param baroAltMSL [mbar] Barometric pressure altitude (MSL) relative to a standard atmosphere of 1013.2 mBar and NOT bar corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX
  * @param accuracyHor [mm] Horizontal accuracy in mm (m * 1E-3). If unknown set to UINT32_MAX
  * @param accuracyVert [cm] Vertical accuracy in cm. If unknown set to UINT16_MAX
  * @param accuracyVel [mm/s] Velocity accuracy in mm/s (m * 1E-3). If unknown set to UINT16_MAX
@@ -428,7 +428,7 @@ static inline int32_t mavlink_msg_uavionix_adsb_out_dynamic_get_gpsLon(const mav
 /**
  * @brief Get field gpsAlt from uavionix_adsb_out_dynamic message
  *
- * @return [mm] Altitude in mm (m * 1E-3) UP +ve. WGS84 altitude. If unknown set to INT32_MAX
+ * @return [mm] Altitude (WGS84). UP +ve. If unknown set to INT32_MAX
  */
 static inline int32_t mavlink_msg_uavionix_adsb_out_dynamic_get_gpsAlt(const mavlink_message_t* msg)
 {
@@ -458,7 +458,7 @@ static inline uint8_t mavlink_msg_uavionix_adsb_out_dynamic_get_numSats(const ma
 /**
  * @brief Get field baroAltMSL from uavionix_adsb_out_dynamic message
  *
- * @return [mbar] Barometric pressure altitude relative to a standard atmosphere of 1013.2 mBar and NOT bar corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX
+ * @return [mbar] Barometric pressure altitude (MSL) relative to a standard atmosphere of 1013.2 mBar and NOT bar corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX
  */
 static inline int32_t mavlink_msg_uavionix_adsb_out_dynamic_get_baroAltMSL(const mavlink_message_t* msg)
 {

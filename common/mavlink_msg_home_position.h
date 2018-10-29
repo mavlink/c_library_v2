@@ -7,7 +7,7 @@ MAVPACKED(
 typedef struct __mavlink_home_position_t {
  int32_t latitude; /*< [degE7] Latitude (WGS84)*/
  int32_t longitude; /*< [degE7] Longitude (WGS84)*/
- int32_t altitude; /*< [mm] Altitude (AMSL). Positive for up.*/
+ int32_t altitude; /*< [mm] Altitude (MSL). Positive for up.*/
  float x; /*< [m] Local X position of this position in the local coordinate frame*/
  float y; /*< [m] Local Y position of this position in the local coordinate frame*/
  float z; /*< [m] Local Z position of this position in the local coordinate frame*/
@@ -73,7 +73,7 @@ typedef struct __mavlink_home_position_t {
  *
  * @param latitude [degE7] Latitude (WGS84)
  * @param longitude [degE7] Longitude (WGS84)
- * @param altitude [mm] Altitude (AMSL). Positive for up.
+ * @param altitude [mm] Altitude (MSL). Positive for up.
  * @param x [m] Local X position of this position in the local coordinate frame
  * @param y [m] Local Y position of this position in the local coordinate frame
  * @param z [m] Local Z position of this position in the local coordinate frame
@@ -129,7 +129,7 @@ static inline uint16_t mavlink_msg_home_position_pack(uint8_t system_id, uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param latitude [degE7] Latitude (WGS84)
  * @param longitude [degE7] Longitude (WGS84)
- * @param altitude [mm] Altitude (AMSL). Positive for up.
+ * @param altitude [mm] Altitude (MSL). Positive for up.
  * @param x [m] Local X position of this position in the local coordinate frame
  * @param y [m] Local Y position of this position in the local coordinate frame
  * @param z [m] Local Z position of this position in the local coordinate frame
@@ -211,7 +211,7 @@ static inline uint16_t mavlink_msg_home_position_encode_chan(uint8_t system_id, 
  *
  * @param latitude [degE7] Latitude (WGS84)
  * @param longitude [degE7] Longitude (WGS84)
- * @param altitude [mm] Altitude (AMSL). Positive for up.
+ * @param altitude [mm] Altitude (MSL). Positive for up.
  * @param x [m] Local X position of this position in the local coordinate frame
  * @param y [m] Local Y position of this position in the local coordinate frame
  * @param z [m] Local Z position of this position in the local coordinate frame
@@ -340,7 +340,7 @@ static inline int32_t mavlink_msg_home_position_get_longitude(const mavlink_mess
 /**
  * @brief Get field altitude from home_position message
  *
- * @return [mm] Altitude (AMSL). Positive for up.
+ * @return [mm] Altitude (MSL). Positive for up.
  */
 static inline int32_t mavlink_msg_home_position_get_altitude(const mavlink_message_t* msg)
 {

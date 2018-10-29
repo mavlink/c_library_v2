@@ -8,7 +8,7 @@ typedef struct __mavlink_set_position_target_global_int_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot). The rationale for the timestamp in the setpoint is to allow the system to compensate for the transport delay of the setpoint. This allows the system to compensate processing latency.*/
  int32_t lat_int; /*< [degE7] X Position in WGS84 frame*/
  int32_t lon_int; /*< [degE7] Y Position in WGS84 frame*/
- float alt; /*< [m] Altitude (AMSL) if absolute or relative, above terrain if GLOBAL_TERRAIN_ALT_INT*/
+ float alt; /*< [m] Altitude (MSL, Relative to home, or AGL - depending on frame)*/
  float vx; /*< [m/s] X velocity in NED frame*/
  float vy; /*< [m/s] Y velocity in NED frame*/
  float vz; /*< [m/s] Z velocity in NED frame*/
@@ -93,7 +93,7 @@ typedef struct __mavlink_set_position_target_global_int_t {
  * @param type_mask  Bitmap to indicate which dimensions should be ignored by the vehicle.
  * @param lat_int [degE7] X Position in WGS84 frame
  * @param lon_int [degE7] Y Position in WGS84 frame
- * @param alt [m] Altitude (AMSL) if absolute or relative, above terrain if GLOBAL_TERRAIN_ALT_INT
+ * @param alt [m] Altitude (MSL, Relative to home, or AGL - depending on frame)
  * @param vx [m/s] X velocity in NED frame
  * @param vy [m/s] Y velocity in NED frame
  * @param vz [m/s] Z velocity in NED frame
@@ -166,7 +166,7 @@ static inline uint16_t mavlink_msg_set_position_target_global_int_pack(uint8_t s
  * @param type_mask  Bitmap to indicate which dimensions should be ignored by the vehicle.
  * @param lat_int [degE7] X Position in WGS84 frame
  * @param lon_int [degE7] Y Position in WGS84 frame
- * @param alt [m] Altitude (AMSL) if absolute or relative, above terrain if GLOBAL_TERRAIN_ALT_INT
+ * @param alt [m] Altitude (MSL, Relative to home, or AGL - depending on frame)
  * @param vx [m/s] X velocity in NED frame
  * @param vy [m/s] Y velocity in NED frame
  * @param vz [m/s] Z velocity in NED frame
@@ -265,7 +265,7 @@ static inline uint16_t mavlink_msg_set_position_target_global_int_encode_chan(ui
  * @param type_mask  Bitmap to indicate which dimensions should be ignored by the vehicle.
  * @param lat_int [degE7] X Position in WGS84 frame
  * @param lon_int [degE7] Y Position in WGS84 frame
- * @param alt [m] Altitude (AMSL) if absolute or relative, above terrain if GLOBAL_TERRAIN_ALT_INT
+ * @param alt [m] Altitude (MSL, Relative to home, or AGL - depending on frame)
  * @param vx [m/s] X velocity in NED frame
  * @param vy [m/s] Y velocity in NED frame
  * @param vz [m/s] Z velocity in NED frame
@@ -468,7 +468,7 @@ static inline int32_t mavlink_msg_set_position_target_global_int_get_lon_int(con
 /**
  * @brief Get field alt from set_position_target_global_int message
  *
- * @return [m] Altitude (AMSL) if absolute or relative, above terrain if GLOBAL_TERRAIN_ALT_INT
+ * @return [m] Altitude (MSL, Relative to home, or AGL - depending on frame)
  */
 static inline float mavlink_msg_set_position_target_global_int_get_alt(const mavlink_message_t* msg)
 {

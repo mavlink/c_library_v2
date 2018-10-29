@@ -9,7 +9,7 @@ typedef struct __mavlink_gps_input_t {
  uint32_t time_week_ms; /*< [ms] GPS time (from start of GPS week)*/
  int32_t lat; /*< [degE7] Latitude (WGS84)*/
  int32_t lon; /*< [degE7] Longitude (WGS84)*/
- float alt; /*< [m] Altitude (AMSL). Positive for up.*/
+ float alt; /*< [m] Altitude (MSL). Positive for up.*/
  float hdop; /*< [m] GPS HDOP horizontal dilution of position*/
  float vdop; /*< [m] GPS VDOP vertical dilution of position*/
  float vn; /*< [m/s] GPS velocity in NORTH direction in earth-fixed NED frame*/
@@ -100,7 +100,7 @@ typedef struct __mavlink_gps_input_t {
  * @param fix_type  0-1: no fix, 2: 2D fix, 3: 3D fix. 4: 3D with DGPS. 5: 3D with RTK
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
- * @param alt [m] Altitude (AMSL). Positive for up.
+ * @param alt [m] Altitude (MSL). Positive for up.
  * @param hdop [m] GPS HDOP horizontal dilution of position
  * @param vdop [m] GPS VDOP vertical dilution of position
  * @param vn [m/s] GPS velocity in NORTH direction in earth-fixed NED frame
@@ -179,7 +179,7 @@ static inline uint16_t mavlink_msg_gps_input_pack(uint8_t system_id, uint8_t com
  * @param fix_type  0-1: no fix, 2: 2D fix, 3: 3D fix. 4: 3D with DGPS. 5: 3D with RTK
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
- * @param alt [m] Altitude (AMSL). Positive for up.
+ * @param alt [m] Altitude (MSL). Positive for up.
  * @param hdop [m] GPS HDOP horizontal dilution of position
  * @param vdop [m] GPS VDOP vertical dilution of position
  * @param vn [m/s] GPS velocity in NORTH direction in earth-fixed NED frame
@@ -284,7 +284,7 @@ static inline uint16_t mavlink_msg_gps_input_encode_chan(uint8_t system_id, uint
  * @param fix_type  0-1: no fix, 2: 2D fix, 3: 3D fix. 4: 3D with DGPS. 5: 3D with RTK
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
- * @param alt [m] Altitude (AMSL). Positive for up.
+ * @param alt [m] Altitude (MSL). Positive for up.
  * @param hdop [m] GPS HDOP horizontal dilution of position
  * @param vdop [m] GPS VDOP vertical dilution of position
  * @param vn [m/s] GPS velocity in NORTH direction in earth-fixed NED frame
@@ -506,7 +506,7 @@ static inline int32_t mavlink_msg_gps_input_get_lon(const mavlink_message_t* msg
 /**
  * @brief Get field alt from gps_input message
  *
- * @return [m] Altitude (AMSL). Positive for up.
+ * @return [m] Altitude (MSL). Positive for up.
  */
 static inline float mavlink_msg_gps_input_get_alt(const mavlink_message_t* msg)
 {

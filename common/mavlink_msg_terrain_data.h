@@ -8,7 +8,7 @@ typedef struct __mavlink_terrain_data_t {
  int32_t lat; /*< [degE7] Latitude of SW corner of first grid*/
  int32_t lon; /*< [degE7] Longitude of SW corner of first grid*/
  uint16_t grid_spacing; /*< [m] Grid spacing*/
- int16_t data[16]; /*< [m] Terrain data AMSL*/
+ int16_t data[16]; /*< [m] Terrain data MSL*/
  uint8_t gridbit; /*<  bit within the terrain request mask*/
 }) mavlink_terrain_data_t;
 
@@ -57,7 +57,7 @@ typedef struct __mavlink_terrain_data_t {
  * @param lon [degE7] Longitude of SW corner of first grid
  * @param grid_spacing [m] Grid spacing
  * @param gridbit  bit within the terrain request mask
- * @param data [m] Terrain data AMSL
+ * @param data [m] Terrain data MSL
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_terrain_data_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -95,7 +95,7 @@ static inline uint16_t mavlink_msg_terrain_data_pack(uint8_t system_id, uint8_t 
  * @param lon [degE7] Longitude of SW corner of first grid
  * @param grid_spacing [m] Grid spacing
  * @param gridbit  bit within the terrain request mask
- * @param data [m] Terrain data AMSL
+ * @param data [m] Terrain data MSL
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_terrain_data_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -159,7 +159,7 @@ static inline uint16_t mavlink_msg_terrain_data_encode_chan(uint8_t system_id, u
  * @param lon [degE7] Longitude of SW corner of first grid
  * @param grid_spacing [m] Grid spacing
  * @param gridbit  bit within the terrain request mask
- * @param data [m] Terrain data AMSL
+ * @param data [m] Terrain data MSL
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -276,7 +276,7 @@ static inline uint8_t mavlink_msg_terrain_data_get_gridbit(const mavlink_message
 /**
  * @brief Get field data from terrain_data message
  *
- * @return [m] Terrain data AMSL
+ * @return [m] Terrain data MSL
  */
 static inline uint16_t mavlink_msg_terrain_data_get_data(const mavlink_message_t* msg, int16_t *data)
 {

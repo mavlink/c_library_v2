@@ -5,7 +5,7 @@
 
 MAVPACKED(
 typedef struct __mavlink_mid_lvl_cmds_t {
- float hCommand; /*< [m] Commanded Altitude*/
+ float hCommand; /*< [m] Commanded altitude (MSL)*/
  float uCommand; /*< [m/s] Commanded Airspeed*/
  float rCommand; /*< [rad/s] Commanded Turnrate*/
  uint8_t target; /*<  The system setting the commands*/
@@ -51,7 +51,7 @@ typedef struct __mavlink_mid_lvl_cmds_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param target  The system setting the commands
- * @param hCommand [m] Commanded Altitude
+ * @param hCommand [m] Commanded altitude (MSL)
  * @param uCommand [m/s] Commanded Airspeed
  * @param rCommand [rad/s] Commanded Turnrate
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -88,7 +88,7 @@ static inline uint16_t mavlink_msg_mid_lvl_cmds_pack(uint8_t system_id, uint8_t 
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param target  The system setting the commands
- * @param hCommand [m] Commanded Altitude
+ * @param hCommand [m] Commanded altitude (MSL)
  * @param uCommand [m/s] Commanded Airspeed
  * @param rCommand [rad/s] Commanded Turnrate
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -151,7 +151,7 @@ static inline uint16_t mavlink_msg_mid_lvl_cmds_encode_chan(uint8_t system_id, u
  * @param chan MAVLink channel to send the message
  *
  * @param target  The system setting the commands
- * @param hCommand [m] Commanded Altitude
+ * @param hCommand [m] Commanded altitude (MSL)
  * @param uCommand [m/s] Commanded Airspeed
  * @param rCommand [rad/s] Commanded Turnrate
  */
@@ -240,7 +240,7 @@ static inline uint8_t mavlink_msg_mid_lvl_cmds_get_target(const mavlink_message_
 /**
  * @brief Get field hCommand from mid_lvl_cmds message
  *
- * @return [m] Commanded Altitude
+ * @return [m] Commanded altitude (MSL)
  */
 static inline float mavlink_msg_mid_lvl_cmds_get_hCommand(const mavlink_message_t* msg)
 {
