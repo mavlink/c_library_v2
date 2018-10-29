@@ -7,8 +7,8 @@ MAVPACKED(
 typedef struct __mavlink_ping_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
  uint32_t seq; /*<  PING sequence*/
- uint8_t target_system; /*<  0: request ping from all receiving systems, if greater than 0: message is a ping response and number is the system id of the requesting system*/
- uint8_t target_component; /*<  0: request ping from all receiving components, if greater than 0: message is a ping response and number is the system id of the requesting system*/
+ uint8_t target_system; /*<  0: request ping from all receiving systems. If greater than 0: message is a ping response and number is the system id of the requesting system*/
+ uint8_t target_component; /*<  0: request ping from all receiving components. If greater than 0: message is a ping response and number is the component id of the requesting component.*/
 }) mavlink_ping_t;
 
 #define MAVLINK_MSG_ID_PING_LEN 14
@@ -52,8 +52,8 @@ typedef struct __mavlink_ping_t {
  *
  * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  * @param seq  PING sequence
- * @param target_system  0: request ping from all receiving systems, if greater than 0: message is a ping response and number is the system id of the requesting system
- * @param target_component  0: request ping from all receiving components, if greater than 0: message is a ping response and number is the system id of the requesting system
+ * @param target_system  0: request ping from all receiving systems. If greater than 0: message is a ping response and number is the system id of the requesting system
+ * @param target_component  0: request ping from all receiving components. If greater than 0: message is a ping response and number is the component id of the requesting component.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ping_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -89,8 +89,8 @@ static inline uint16_t mavlink_msg_ping_pack(uint8_t system_id, uint8_t componen
  * @param msg The MAVLink message to compress the data into
  * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  * @param seq  PING sequence
- * @param target_system  0: request ping from all receiving systems, if greater than 0: message is a ping response and number is the system id of the requesting system
- * @param target_component  0: request ping from all receiving components, if greater than 0: message is a ping response and number is the system id of the requesting system
+ * @param target_system  0: request ping from all receiving systems. If greater than 0: message is a ping response and number is the system id of the requesting system
+ * @param target_component  0: request ping from all receiving components. If greater than 0: message is a ping response and number is the component id of the requesting component.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ping_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -152,8 +152,8 @@ static inline uint16_t mavlink_msg_ping_encode_chan(uint8_t system_id, uint8_t c
  *
  * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  * @param seq  PING sequence
- * @param target_system  0: request ping from all receiving systems, if greater than 0: message is a ping response and number is the system id of the requesting system
- * @param target_component  0: request ping from all receiving components, if greater than 0: message is a ping response and number is the system id of the requesting system
+ * @param target_system  0: request ping from all receiving systems. If greater than 0: message is a ping response and number is the system id of the requesting system
+ * @param target_component  0: request ping from all receiving components. If greater than 0: message is a ping response and number is the component id of the requesting component.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -250,7 +250,7 @@ static inline uint32_t mavlink_msg_ping_get_seq(const mavlink_message_t* msg)
 /**
  * @brief Get field target_system from ping message
  *
- * @return  0: request ping from all receiving systems, if greater than 0: message is a ping response and number is the system id of the requesting system
+ * @return  0: request ping from all receiving systems. If greater than 0: message is a ping response and number is the system id of the requesting system
  */
 static inline uint8_t mavlink_msg_ping_get_target_system(const mavlink_message_t* msg)
 {
@@ -260,7 +260,7 @@ static inline uint8_t mavlink_msg_ping_get_target_system(const mavlink_message_t
 /**
  * @brief Get field target_component from ping message
  *
- * @return  0: request ping from all receiving components, if greater than 0: message is a ping response and number is the system id of the requesting system
+ * @return  0: request ping from all receiving components. If greater than 0: message is a ping response and number is the component id of the requesting component.
  */
 static inline uint8_t mavlink_msg_ping_get_target_component(const mavlink_message_t* msg)
 {
