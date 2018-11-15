@@ -6,7 +6,7 @@
 MAVPACKED(
 typedef struct __mavlink_heartbeat_t {
  uint32_t custom_mode; /*<  A bitfield for use for autopilot-specific flags*/
- uint8_t type; /*<  Type of the MAV (quadrotor, helicopter, etc.)*/
+ uint8_t type; /*<  Type of the system (quadrotor, helicopter, etc.). Components use the same type as their associated system.*/
  uint8_t autopilot; /*<  Autopilot type / class.*/
  uint8_t base_mode; /*<  System mode bitmap.*/
  uint8_t system_status; /*<  System status flag.*/
@@ -56,7 +56,7 @@ typedef struct __mavlink_heartbeat_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param type  Type of the MAV (quadrotor, helicopter, etc.)
+ * @param type  Type of the system (quadrotor, helicopter, etc.). Components use the same type as their associated system.
  * @param autopilot  Autopilot type / class.
  * @param base_mode  System mode bitmap.
  * @param custom_mode  A bitfield for use for autopilot-specific flags
@@ -98,7 +98,7 @@ static inline uint16_t mavlink_msg_heartbeat_pack(uint8_t system_id, uint8_t com
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param type  Type of the MAV (quadrotor, helicopter, etc.)
+ * @param type  Type of the system (quadrotor, helicopter, etc.). Components use the same type as their associated system.
  * @param autopilot  Autopilot type / class.
  * @param base_mode  System mode bitmap.
  * @param custom_mode  A bitfield for use for autopilot-specific flags
@@ -166,7 +166,7 @@ static inline uint16_t mavlink_msg_heartbeat_encode_chan(uint8_t system_id, uint
  * @brief Send a heartbeat message
  * @param chan MAVLink channel to send the message
  *
- * @param type  Type of the MAV (quadrotor, helicopter, etc.)
+ * @param type  Type of the system (quadrotor, helicopter, etc.). Components use the same type as their associated system.
  * @param autopilot  Autopilot type / class.
  * @param base_mode  System mode bitmap.
  * @param custom_mode  A bitfield for use for autopilot-specific flags
@@ -255,7 +255,7 @@ static inline void mavlink_msg_heartbeat_send_buf(mavlink_message_t *msgbuf, mav
 /**
  * @brief Get field type from heartbeat message
  *
- * @return  Type of the MAV (quadrotor, helicopter, etc.)
+ * @return  Type of the system (quadrotor, helicopter, etc.). Components use the same type as their associated system.
  */
 static inline uint8_t mavlink_msg_heartbeat_get_type(const mavlink_message_t* msg)
 {

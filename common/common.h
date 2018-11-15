@@ -63,7 +63,7 @@ typedef enum MAV_AUTOPILOT
 } MAV_AUTOPILOT;
 #endif
 
-/** @brief  */
+/** @brief MAVLINK system type. All components in a system should report this type in their HEARTBEAT. */
 #ifndef HAVE_ENUM_MAV_TYPE
 #define HAVE_ENUM_MAV_TYPE
 typedef enum MAV_TYPE
