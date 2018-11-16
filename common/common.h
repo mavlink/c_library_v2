@@ -95,12 +95,12 @@ typedef enum MAV_TYPE
    MAV_TYPE_VTOL_RESERVED4=24, /* VTOL reserved 4 | */
    MAV_TYPE_VTOL_RESERVED5=25, /* VTOL reserved 5 | */
    MAV_TYPE_GIMBAL=26, /* Onboard gimbal | */
-   MAV_TYPE_ADSB=27, /* Onboard ADSB peripheral | */
+   MAV_TYPE_ADSB=27, /* ADSB system (standalone) | */
    MAV_TYPE_PARAFOIL=28, /* Steerable, nonrigid airfoil | */
    MAV_TYPE_DODECAROTOR=29, /* Dodecarotor | */
-   MAV_TYPE_CAMERA=30, /* Camera | */
+   MAV_TYPE_CAMERA=30, /* Camera (standalone) | */
    MAV_TYPE_CHARGING_STATION=31, /* Charging station | */
-   MAV_TYPE_FLARM=32, /* Onboard FLARM collision avoidance system | */
+   MAV_TYPE_FLARM=32, /* FLARM collision avoidance system (standalone) | */
    MAV_TYPE_ENUM_END=33, /*  | */
 } MAV_TYPE;
 #endif
