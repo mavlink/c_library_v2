@@ -12,19 +12,19 @@ typedef struct __mavlink_set_video_stream_settings_t {
  uint16_t rotation; /*< [deg] Video image rotation clockwise (0-359 degrees)*/
  uint8_t target_system; /*<  system ID of the target*/
  uint8_t target_component; /*<  component ID of the target*/
- uint8_t camera_id; /*<  Camera ID (1 for first, 2 for second, etc.)*/
- char uri[230]; /*<  Video stream URI*/
+ uint8_t camera_id; /*<  Stream ID (1 for first, 2 for second, etc.)*/
+ char uri[160]; /*<  Video stream URI (mostly for UDP/RTP)*/
 }) mavlink_set_video_stream_settings_t;
 
-#define MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_LEN 247
-#define MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_MIN_LEN 247
-#define MAVLINK_MSG_ID_270_LEN 247
-#define MAVLINK_MSG_ID_270_MIN_LEN 247
+#define MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_LEN 177
+#define MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_MIN_LEN 177
+#define MAVLINK_MSG_ID_270_LEN 177
+#define MAVLINK_MSG_ID_270_MIN_LEN 177
 
-#define MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_CRC 232
-#define MAVLINK_MSG_ID_270_CRC 232
+#define MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_CRC 253
+#define MAVLINK_MSG_ID_270_CRC 253
 
-#define MAVLINK_MSG_SET_VIDEO_STREAM_SETTINGS_FIELD_URI_LEN 230
+#define MAVLINK_MSG_SET_VIDEO_STREAM_SETTINGS_FIELD_URI_LEN 160
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_SET_VIDEO_STREAM_SETTINGS { \
@@ -39,7 +39,7 @@ typedef struct __mavlink_set_video_stream_settings_t {
          { "resolution_v", NULL, MAVLINK_TYPE_UINT16_T, 0, 10, offsetof(mavlink_set_video_stream_settings_t, resolution_v) }, \
          { "bitrate", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_set_video_stream_settings_t, bitrate) }, \
          { "rotation", NULL, MAVLINK_TYPE_UINT16_T, 0, 12, offsetof(mavlink_set_video_stream_settings_t, rotation) }, \
-         { "uri", NULL, MAVLINK_TYPE_CHAR, 230, 17, offsetof(mavlink_set_video_stream_settings_t, uri) }, \
+         { "uri", NULL, MAVLINK_TYPE_CHAR, 160, 17, offsetof(mavlink_set_video_stream_settings_t, uri) }, \
          } \
 }
 #else
@@ -54,7 +54,7 @@ typedef struct __mavlink_set_video_stream_settings_t {
          { "resolution_v", NULL, MAVLINK_TYPE_UINT16_T, 0, 10, offsetof(mavlink_set_video_stream_settings_t, resolution_v) }, \
          { "bitrate", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_set_video_stream_settings_t, bitrate) }, \
          { "rotation", NULL, MAVLINK_TYPE_UINT16_T, 0, 12, offsetof(mavlink_set_video_stream_settings_t, rotation) }, \
-         { "uri", NULL, MAVLINK_TYPE_CHAR, 230, 17, offsetof(mavlink_set_video_stream_settings_t, uri) }, \
+         { "uri", NULL, MAVLINK_TYPE_CHAR, 160, 17, offsetof(mavlink_set_video_stream_settings_t, uri) }, \
          } \
 }
 #endif
@@ -67,13 +67,13 @@ typedef struct __mavlink_set_video_stream_settings_t {
  *
  * @param target_system  system ID of the target
  * @param target_component  component ID of the target
- * @param camera_id  Camera ID (1 for first, 2 for second, etc.)
+ * @param camera_id  Stream ID (1 for first, 2 for second, etc.)
  * @param framerate [Hz] Frame rate (set to -1 for highest framerate possible)
  * @param resolution_h [pix] Horizontal resolution (set to -1 for highest resolution possible)
  * @param resolution_v [pix] Vertical resolution (set to -1 for highest resolution possible)
  * @param bitrate [bits/s] Bit rate (set to -1 for auto)
  * @param rotation [deg] Video image rotation clockwise (0-359 degrees)
- * @param uri  Video stream URI
+ * @param uri  Video stream URI (mostly for UDP/RTP)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_set_video_stream_settings_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -89,7 +89,7 @@ static inline uint16_t mavlink_msg_set_video_stream_settings_pack(uint8_t system
     _mav_put_uint8_t(buf, 14, target_system);
     _mav_put_uint8_t(buf, 15, target_component);
     _mav_put_uint8_t(buf, 16, camera_id);
-    _mav_put_char_array(buf, 17, uri, 230);
+    _mav_put_char_array(buf, 17, uri, 160);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_LEN);
 #else
     mavlink_set_video_stream_settings_t packet;
@@ -101,7 +101,7 @@ static inline uint16_t mavlink_msg_set_video_stream_settings_pack(uint8_t system
     packet.target_system = target_system;
     packet.target_component = target_component;
     packet.camera_id = camera_id;
-    mav_array_memcpy(packet.uri, uri, sizeof(char)*230);
+    mav_array_memcpy(packet.uri, uri, sizeof(char)*160);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_LEN);
 #endif
 
@@ -117,13 +117,13 @@ static inline uint16_t mavlink_msg_set_video_stream_settings_pack(uint8_t system
  * @param msg The MAVLink message to compress the data into
  * @param target_system  system ID of the target
  * @param target_component  component ID of the target
- * @param camera_id  Camera ID (1 for first, 2 for second, etc.)
+ * @param camera_id  Stream ID (1 for first, 2 for second, etc.)
  * @param framerate [Hz] Frame rate (set to -1 for highest framerate possible)
  * @param resolution_h [pix] Horizontal resolution (set to -1 for highest resolution possible)
  * @param resolution_v [pix] Vertical resolution (set to -1 for highest resolution possible)
  * @param bitrate [bits/s] Bit rate (set to -1 for auto)
  * @param rotation [deg] Video image rotation clockwise (0-359 degrees)
- * @param uri  Video stream URI
+ * @param uri  Video stream URI (mostly for UDP/RTP)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_set_video_stream_settings_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -140,7 +140,7 @@ static inline uint16_t mavlink_msg_set_video_stream_settings_pack_chan(uint8_t s
     _mav_put_uint8_t(buf, 14, target_system);
     _mav_put_uint8_t(buf, 15, target_component);
     _mav_put_uint8_t(buf, 16, camera_id);
-    _mav_put_char_array(buf, 17, uri, 230);
+    _mav_put_char_array(buf, 17, uri, 160);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_LEN);
 #else
     mavlink_set_video_stream_settings_t packet;
@@ -152,7 +152,7 @@ static inline uint16_t mavlink_msg_set_video_stream_settings_pack_chan(uint8_t s
     packet.target_system = target_system;
     packet.target_component = target_component;
     packet.camera_id = camera_id;
-    mav_array_memcpy(packet.uri, uri, sizeof(char)*230);
+    mav_array_memcpy(packet.uri, uri, sizeof(char)*160);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_LEN);
 #endif
 
@@ -193,13 +193,13 @@ static inline uint16_t mavlink_msg_set_video_stream_settings_encode_chan(uint8_t
  *
  * @param target_system  system ID of the target
  * @param target_component  component ID of the target
- * @param camera_id  Camera ID (1 for first, 2 for second, etc.)
+ * @param camera_id  Stream ID (1 for first, 2 for second, etc.)
  * @param framerate [Hz] Frame rate (set to -1 for highest framerate possible)
  * @param resolution_h [pix] Horizontal resolution (set to -1 for highest resolution possible)
  * @param resolution_v [pix] Vertical resolution (set to -1 for highest resolution possible)
  * @param bitrate [bits/s] Bit rate (set to -1 for auto)
  * @param rotation [deg] Video image rotation clockwise (0-359 degrees)
- * @param uri  Video stream URI
+ * @param uri  Video stream URI (mostly for UDP/RTP)
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -215,7 +215,7 @@ static inline void mavlink_msg_set_video_stream_settings_send(mavlink_channel_t 
     _mav_put_uint8_t(buf, 14, target_system);
     _mav_put_uint8_t(buf, 15, target_component);
     _mav_put_uint8_t(buf, 16, camera_id);
-    _mav_put_char_array(buf, 17, uri, 230);
+    _mav_put_char_array(buf, 17, uri, 160);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS, buf, MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_MIN_LEN, MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_LEN, MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_CRC);
 #else
     mavlink_set_video_stream_settings_t packet;
@@ -227,7 +227,7 @@ static inline void mavlink_msg_set_video_stream_settings_send(mavlink_channel_t 
     packet.target_system = target_system;
     packet.target_component = target_component;
     packet.camera_id = camera_id;
-    mav_array_memcpy(packet.uri, uri, sizeof(char)*230);
+    mav_array_memcpy(packet.uri, uri, sizeof(char)*160);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS, (const char *)&packet, MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_MIN_LEN, MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_LEN, MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_CRC);
 #endif
 }
@@ -266,7 +266,7 @@ static inline void mavlink_msg_set_video_stream_settings_send_buf(mavlink_messag
     _mav_put_uint8_t(buf, 14, target_system);
     _mav_put_uint8_t(buf, 15, target_component);
     _mav_put_uint8_t(buf, 16, camera_id);
-    _mav_put_char_array(buf, 17, uri, 230);
+    _mav_put_char_array(buf, 17, uri, 160);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS, buf, MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_MIN_LEN, MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_LEN, MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_CRC);
 #else
     mavlink_set_video_stream_settings_t *packet = (mavlink_set_video_stream_settings_t *)msgbuf;
@@ -278,7 +278,7 @@ static inline void mavlink_msg_set_video_stream_settings_send_buf(mavlink_messag
     packet->target_system = target_system;
     packet->target_component = target_component;
     packet->camera_id = camera_id;
-    mav_array_memcpy(packet->uri, uri, sizeof(char)*230);
+    mav_array_memcpy(packet->uri, uri, sizeof(char)*160);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS, (const char *)packet, MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_MIN_LEN, MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_LEN, MAVLINK_MSG_ID_SET_VIDEO_STREAM_SETTINGS_CRC);
 #endif
 }
@@ -312,7 +312,7 @@ static inline uint8_t mavlink_msg_set_video_stream_settings_get_target_component
 /**
  * @brief Get field camera_id from set_video_stream_settings message
  *
- * @return  Camera ID (1 for first, 2 for second, etc.)
+ * @return  Stream ID (1 for first, 2 for second, etc.)
  */
 static inline uint8_t mavlink_msg_set_video_stream_settings_get_camera_id(const mavlink_message_t* msg)
 {
@@ -372,11 +372,11 @@ static inline uint16_t mavlink_msg_set_video_stream_settings_get_rotation(const 
 /**
  * @brief Get field uri from set_video_stream_settings message
  *
- * @return  Video stream URI
+ * @return  Video stream URI (mostly for UDP/RTP)
  */
 static inline uint16_t mavlink_msg_set_video_stream_settings_get_uri(const mavlink_message_t* msg, char *uri)
 {
-    return _MAV_RETURN_char_array(msg, uri, 230,  17);
+    return _MAV_RETURN_char_array(msg, uri, 160,  17);
 }
 
 /**
