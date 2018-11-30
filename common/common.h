@@ -264,7 +264,7 @@ typedef enum MAV_COMPONENT
    MAV_COMP_ID_PERIPHERAL=158, /* Generic autopilot peripheral component ID. Meant for devices that do not implement the parameter microservice. | */
    MAV_COMP_ID_QX1_GIMBAL=159, /* Gimbal ID for QX1. | */
    MAV_COMP_ID_FLARM=160, /* FLARM collision alert component. | */
-   MAV_COMP_ID_MISSIONPLANNER=190, /* Component that supports the Mission microservice. | */
+   MAV_COMP_ID_MISSIONPLANNER=190, /* Component that can generate/supply a mission flight plan (e.g. GCS or developer API). | */
    MAV_COMP_ID_PATHPLANNER=195, /* Component that finds an optimal path between points based on a certain constraint (e.g. minimum snap, shortest path, cost, etc.). | */
    MAV_COMP_ID_OBSTACLE_AVOIDANCE=196, /* Component that plans a collision free path between two points. | */
    MAV_COMP_ID_VISUAL_INERTIAL_ODOMETRY=197, /* Component that provides position estimates using VIO techniques. | */
