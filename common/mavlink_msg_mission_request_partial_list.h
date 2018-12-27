@@ -5,7 +5,7 @@
 
 MAVPACKED(
 typedef struct __mavlink_mission_request_partial_list_t {
- int16_t start_index; /*<  Start index, 0 by default*/
+ int16_t start_index; /*<  Start index*/
  int16_t end_index; /*<  End index, -1 by default (-1: send list to end). Else a valid index of the list*/
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
@@ -55,7 +55,7 @@ typedef struct __mavlink_mission_request_partial_list_t {
  *
  * @param target_system  System ID
  * @param target_component  Component ID
- * @param start_index  Start index, 0 by default
+ * @param start_index  Start index
  * @param end_index  End index, -1 by default (-1: send list to end). Else a valid index of the list
  * @param mission_type  Mission type.
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -95,7 +95,7 @@ static inline uint16_t mavlink_msg_mission_request_partial_list_pack(uint8_t sys
  * @param msg The MAVLink message to compress the data into
  * @param target_system  System ID
  * @param target_component  Component ID
- * @param start_index  Start index, 0 by default
+ * @param start_index  Start index
  * @param end_index  End index, -1 by default (-1: send list to end). Else a valid index of the list
  * @param mission_type  Mission type.
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -161,7 +161,7 @@ static inline uint16_t mavlink_msg_mission_request_partial_list_encode_chan(uint
  *
  * @param target_system  System ID
  * @param target_component  Component ID
- * @param start_index  Start index, 0 by default
+ * @param start_index  Start index
  * @param end_index  End index, -1 by default (-1: send list to end). Else a valid index of the list
  * @param mission_type  Mission type.
  */
@@ -264,7 +264,7 @@ static inline uint8_t mavlink_msg_mission_request_partial_list_get_target_compon
 /**
  * @brief Get field start_index from mission_request_partial_list message
  *
- * @return  Start index, 0 by default
+ * @return  Start index
  */
 static inline int16_t mavlink_msg_mission_request_partial_list_get_start_index(const mavlink_message_t* msg)
 {
