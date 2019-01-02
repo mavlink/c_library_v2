@@ -6133,7 +6133,7 @@ static void mavlink_test_distance_sensor(uint8_t system_id, uint8_t component_id
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_distance_sensor_t packet_in = {
-        963497464,17443,17547,17651,163,230,41,108
+        963497464,17443,17547,17651,163,230,41,108,115.0,143.0,{ 171.0, 172.0, 173.0, 174.0 }
     };
     mavlink_distance_sensor_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -6145,7 +6145,10 @@ static void mavlink_test_distance_sensor(uint8_t system_id, uint8_t component_id
         packet1.id = packet_in.id;
         packet1.orientation = packet_in.orientation;
         packet1.covariance = packet_in.covariance;
+        packet1.horizontal_fov = packet_in.horizontal_fov;
+        packet1.vertical_fov = packet_in.vertical_fov;
         
+        mav_array_memcpy(packet1.quaternion, packet_in.quaternion, sizeof(float)*4);
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
         if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
@@ -6159,12 +6162,12 @@ static void mavlink_test_distance_sensor(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_distance_sensor_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.min_distance , packet1.max_distance , packet1.current_distance , packet1.type , packet1.id , packet1.orientation , packet1.covariance );
+    mavlink_msg_distance_sensor_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.min_distance , packet1.max_distance , packet1.current_distance , packet1.type , packet1.id , packet1.orientation , packet1.covariance , packet1.horizontal_fov , packet1.vertical_fov , packet1.quaternion );
     mavlink_msg_distance_sensor_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_distance_sensor_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.min_distance , packet1.max_distance , packet1.current_distance , packet1.type , packet1.id , packet1.orientation , packet1.covariance );
+    mavlink_msg_distance_sensor_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.min_distance , packet1.max_distance , packet1.current_distance , packet1.type , packet1.id , packet1.orientation , packet1.covariance , packet1.horizontal_fov , packet1.vertical_fov , packet1.quaternion );
     mavlink_msg_distance_sensor_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -6177,7 +6180,7 @@ static void mavlink_test_distance_sensor(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_distance_sensor_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.min_distance , packet1.max_distance , packet1.current_distance , packet1.type , packet1.id , packet1.orientation , packet1.covariance );
+    mavlink_msg_distance_sensor_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.min_distance , packet1.max_distance , packet1.current_distance , packet1.type , packet1.id , packet1.orientation , packet1.covariance , packet1.horizontal_fov , packet1.vertical_fov , packet1.quaternion );
     mavlink_msg_distance_sensor_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
