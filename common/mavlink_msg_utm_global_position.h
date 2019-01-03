@@ -19,7 +19,7 @@ typedef struct __mavlink_utm_global_position_t {
  uint16_t h_acc; /*< [mm] Horizontal position uncertainty (standard deviation)*/
  uint16_t v_acc; /*< [mm] Altitude uncertainty (standard deviation)*/
  uint16_t vel_acc; /*< [cm/s] Speed uncertainty (standard deviation)*/
- uint16_t update_rate; /*<  Seconds * 1E2 until next update. Set to 0 if unknown or in data driven mode.*/
+ uint16_t update_rate; /*< [cs] Time until next update. Set to 0 if unknown or in data driven mode.*/
  uint8_t uas_id[18]; /*<  Unique UAS ID.*/
  uint8_t flight_state; /*<  Flight state*/
  uint8_t flags; /*<  Bitwise OR combination of the data available flags.*/
@@ -107,7 +107,7 @@ typedef struct __mavlink_utm_global_position_t {
  * @param next_lat [degE7] Next waypoint, latitude (WGS84)
  * @param next_lon [degE7] Next waypoint, longitude (WGS84)
  * @param next_alt [mm] Next waypoint, altitude (WGS84)
- * @param update_rate  Seconds * 1E2 until next update. Set to 0 if unknown or in data driven mode.
+ * @param update_rate [cs] Time until next update. Set to 0 if unknown or in data driven mode.
  * @param flight_state  Flight state
  * @param flags  Bitwise OR combination of the data available flags.
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -184,7 +184,7 @@ static inline uint16_t mavlink_msg_utm_global_position_pack(uint8_t system_id, u
  * @param next_lat [degE7] Next waypoint, latitude (WGS84)
  * @param next_lon [degE7] Next waypoint, longitude (WGS84)
  * @param next_alt [mm] Next waypoint, altitude (WGS84)
- * @param update_rate  Seconds * 1E2 until next update. Set to 0 if unknown or in data driven mode.
+ * @param update_rate [cs] Time until next update. Set to 0 if unknown or in data driven mode.
  * @param flight_state  Flight state
  * @param flags  Bitwise OR combination of the data available flags.
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -287,7 +287,7 @@ static inline uint16_t mavlink_msg_utm_global_position_encode_chan(uint8_t syste
  * @param next_lat [degE7] Next waypoint, latitude (WGS84)
  * @param next_lon [degE7] Next waypoint, longitude (WGS84)
  * @param next_alt [mm] Next waypoint, altitude (WGS84)
- * @param update_rate  Seconds * 1E2 until next update. Set to 0 if unknown or in data driven mode.
+ * @param update_rate [cs] Time until next update. Set to 0 if unknown or in data driven mode.
  * @param flight_state  Flight state
  * @param flags  Bitwise OR combination of the data available flags.
  */
@@ -568,7 +568,7 @@ static inline int32_t mavlink_msg_utm_global_position_get_next_alt(const mavlink
 /**
  * @brief Get field update_rate from utm_global_position message
  *
- * @return  Seconds * 1E2 until next update. Set to 0 if unknown or in data driven mode.
+ * @return [cs] Time until next update. Set to 0 if unknown or in data driven mode.
  */
 static inline uint16_t mavlink_msg_utm_global_position_get_update_rate(const mavlink_message_t* msg)
 {
