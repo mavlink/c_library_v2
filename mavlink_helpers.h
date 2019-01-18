@@ -1128,6 +1128,23 @@ MAVLINK_HELPER void _mavlink_send_uart(mavlink_channel_t chan, const char *buf, 
 }
 #endif // MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
+
+#pragma pack(push, 1)
+struct packed_param_header {
+	uint16_t id;
+	uint8_t name_length;
+	uint8_t type;
+};
+#pragma pack(pop)
+
+struct param_group {
+	uint16_t id; // number of this parameter group
+	uint16_t parent_id;  // parant group (if any), 0 if no parent
+	char name[16];
+
+	uint16_t number_params; // number of parameters that belong to this group
+};
+
 #ifdef MAVLINK_USE_CXX_NAMESPACE
 } // namespace mavlink
 #endif
