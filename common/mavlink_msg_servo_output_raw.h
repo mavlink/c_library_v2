@@ -14,7 +14,7 @@ typedef struct __mavlink_servo_output_raw_t {
  uint16_t servo6_raw; /*< [us] Servo output 6 value*/
  uint16_t servo7_raw; /*< [us] Servo output 7 value*/
  uint16_t servo8_raw; /*< [us] Servo output 8 value*/
- uint8_t port; /*<  Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows to encode more than 8 servos.*/
+ uint8_t port; /*<  Servo output port (set of 8 outputs = 1 port). Flight stacks running on Pixhawk should use: 0 = MAIN, 1 = AUX.*/
  uint16_t servo9_raw; /*< [us] Servo output 9 value*/
  uint16_t servo10_raw; /*< [us] Servo output 10 value*/
  uint16_t servo11_raw; /*< [us] Servo output 11 value*/
@@ -93,7 +93,7 @@ typedef struct __mavlink_servo_output_raw_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
- * @param port  Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows to encode more than 8 servos.
+ * @param port  Servo output port (set of 8 outputs = 1 port). Flight stacks running on Pixhawk should use: 0 = MAIN, 1 = AUX.
  * @param servo1_raw [us] Servo output 1 value
  * @param servo2_raw [us] Servo output 2 value
  * @param servo3_raw [us] Servo output 3 value
@@ -172,7 +172,7 @@ static inline uint16_t mavlink_msg_servo_output_raw_pack(uint8_t system_id, uint
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
- * @param port  Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows to encode more than 8 servos.
+ * @param port  Servo output port (set of 8 outputs = 1 port). Flight stacks running on Pixhawk should use: 0 = MAIN, 1 = AUX.
  * @param servo1_raw [us] Servo output 1 value
  * @param servo2_raw [us] Servo output 2 value
  * @param servo3_raw [us] Servo output 3 value
@@ -277,7 +277,7 @@ static inline uint16_t mavlink_msg_servo_output_raw_encode_chan(uint8_t system_i
  * @param chan MAVLink channel to send the message
  *
  * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
- * @param port  Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows to encode more than 8 servos.
+ * @param port  Servo output port (set of 8 outputs = 1 port). Flight stacks running on Pixhawk should use: 0 = MAIN, 1 = AUX.
  * @param servo1_raw [us] Servo output 1 value
  * @param servo2_raw [us] Servo output 2 value
  * @param servo3_raw [us] Servo output 3 value
@@ -436,7 +436,7 @@ static inline uint32_t mavlink_msg_servo_output_raw_get_time_usec(const mavlink_
 /**
  * @brief Get field port from servo_output_raw message
  *
- * @return  Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows to encode more than 8 servos.
+ * @return  Servo output port (set of 8 outputs = 1 port). Flight stacks running on Pixhawk should use: 0 = MAIN, 1 = AUX.
  */
 static inline uint8_t mavlink_msg_servo_output_raw_get_port(const mavlink_message_t* msg)
 {

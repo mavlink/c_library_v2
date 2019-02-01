@@ -924,7 +924,7 @@ typedef enum MAV_BATTERY_FUNCTION
 } MAV_BATTERY_FUNCTION;
 #endif
 
-/** @brief Enumeration for low battery states. */
+/** @brief Enumeration for battery charge states. */
 #ifndef HAVE_ENUM_MAV_BATTERY_CHARGE_STATE
 #define HAVE_ENUM_MAV_BATTERY_CHARGE_STATE
 typedef enum MAV_BATTERY_CHARGE_STATE
@@ -936,7 +936,8 @@ typedef enum MAV_BATTERY_CHARGE_STATE
    MAV_BATTERY_CHARGE_STATE_EMERGENCY=4, /* Battery state is too low for ordinary abort sequence. Perform fastest possible emergency stop to prevent damage. | */
    MAV_BATTERY_CHARGE_STATE_FAILED=5, /* Battery failed, damage unavoidable. | */
    MAV_BATTERY_CHARGE_STATE_UNHEALTHY=6, /* Battery is diagnosed to be defective or an error occurred, usage is discouraged / prohibited. | */
-   MAV_BATTERY_CHARGE_STATE_ENUM_END=7, /*  | */
+   MAV_BATTERY_CHARGE_STATE_CHARGING=7, /* Battery is charging. | */
+   MAV_BATTERY_CHARGE_STATE_ENUM_END=8, /*  | */
 } MAV_BATTERY_CHARGE_STATE;
 #endif
 
