@@ -10,7 +10,7 @@ typedef struct __mavlink_att_pos_mocap_t {
  float x; /*< [m] X position (NED)*/
  float y; /*< [m] Y position (NED)*/
  float z; /*< [m] Z position (NED)*/
- float covariance[21]; /*<  Pose covariance matrix upper right triangular (first six entries are the first ROW, next five entries are the second ROW, etc.)*/
+ float covariance[21]; /*<  Row-major representation of a pose 6x6 cross-covariance matrix upper right triangle (states: x, y, z, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array.*/
 }) mavlink_att_pos_mocap_t;
 
 #define MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN 120
@@ -62,7 +62,7 @@ typedef struct __mavlink_att_pos_mocap_t {
  * @param x [m] X position (NED)
  * @param y [m] Y position (NED)
  * @param z [m] Z position (NED)
- * @param covariance  Pose covariance matrix upper right triangular (first six entries are the first ROW, next five entries are the second ROW, etc.)
+ * @param covariance  Row-major representation of a pose 6x6 cross-covariance matrix upper right triangle (states: x, y, z, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_att_pos_mocap_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -103,7 +103,7 @@ static inline uint16_t mavlink_msg_att_pos_mocap_pack(uint8_t system_id, uint8_t
  * @param x [m] X position (NED)
  * @param y [m] Y position (NED)
  * @param z [m] Z position (NED)
- * @param covariance  Pose covariance matrix upper right triangular (first six entries are the first ROW, next five entries are the second ROW, etc.)
+ * @param covariance  Row-major representation of a pose 6x6 cross-covariance matrix upper right triangle (states: x, y, z, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_att_pos_mocap_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -170,7 +170,7 @@ static inline uint16_t mavlink_msg_att_pos_mocap_encode_chan(uint8_t system_id, 
  * @param x [m] X position (NED)
  * @param y [m] Y position (NED)
  * @param z [m] Z position (NED)
- * @param covariance  Pose covariance matrix upper right triangular (first six entries are the first ROW, next five entries are the second ROW, etc.)
+ * @param covariance  Row-major representation of a pose 6x6 cross-covariance matrix upper right triangle (states: x, y, z, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -301,7 +301,7 @@ static inline float mavlink_msg_att_pos_mocap_get_z(const mavlink_message_t* msg
 /**
  * @brief Get field covariance from att_pos_mocap message
  *
- * @return  Pose covariance matrix upper right triangular (first six entries are the first ROW, next five entries are the second ROW, etc.)
+ * @return  Row-major representation of a pose 6x6 cross-covariance matrix upper right triangle (states: x, y, z, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array.
  */
 static inline uint16_t mavlink_msg_att_pos_mocap_get_covariance(const mavlink_message_t* msg, float *covariance)
 {

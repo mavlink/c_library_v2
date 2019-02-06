@@ -10,7 +10,7 @@ typedef struct __mavlink_attitude_quaternion_cov_t {
  float rollspeed; /*< [rad/s] Roll angular speed*/
  float pitchspeed; /*< [rad/s] Pitch angular speed*/
  float yawspeed; /*< [rad/s] Yaw angular speed*/
- float covariance[9]; /*<  Attitude covariance*/
+ float covariance[9]; /*<  Row-major representation of a 3x3 attitude covariance matrix (states: roll, pitch, yaw; first three entries are the first ROW, next three entries are the second row, etc.). If unknown, assign NaN value to first element in the array.*/
 }) mavlink_attitude_quaternion_cov_t;
 
 #define MAVLINK_MSG_ID_ATTITUDE_QUATERNION_COV_LEN 72
@@ -62,7 +62,7 @@ typedef struct __mavlink_attitude_quaternion_cov_t {
  * @param rollspeed [rad/s] Roll angular speed
  * @param pitchspeed [rad/s] Pitch angular speed
  * @param yawspeed [rad/s] Yaw angular speed
- * @param covariance  Attitude covariance
+ * @param covariance  Row-major representation of a 3x3 attitude covariance matrix (states: roll, pitch, yaw; first three entries are the first ROW, next three entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_attitude_quaternion_cov_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -103,7 +103,7 @@ static inline uint16_t mavlink_msg_attitude_quaternion_cov_pack(uint8_t system_i
  * @param rollspeed [rad/s] Roll angular speed
  * @param pitchspeed [rad/s] Pitch angular speed
  * @param yawspeed [rad/s] Yaw angular speed
- * @param covariance  Attitude covariance
+ * @param covariance  Row-major representation of a 3x3 attitude covariance matrix (states: roll, pitch, yaw; first three entries are the first ROW, next three entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_attitude_quaternion_cov_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -170,7 +170,7 @@ static inline uint16_t mavlink_msg_attitude_quaternion_cov_encode_chan(uint8_t s
  * @param rollspeed [rad/s] Roll angular speed
  * @param pitchspeed [rad/s] Pitch angular speed
  * @param yawspeed [rad/s] Yaw angular speed
- * @param covariance  Attitude covariance
+ * @param covariance  Row-major representation of a 3x3 attitude covariance matrix (states: roll, pitch, yaw; first three entries are the first ROW, next three entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -301,7 +301,7 @@ static inline float mavlink_msg_attitude_quaternion_cov_get_yawspeed(const mavli
 /**
  * @brief Get field covariance from attitude_quaternion_cov message
  *
- * @return  Attitude covariance
+ * @return  Row-major representation of a 3x3 attitude covariance matrix (states: roll, pitch, yaw; first three entries are the first ROW, next three entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
  */
 static inline uint16_t mavlink_msg_attitude_quaternion_cov_get_covariance(const mavlink_message_t* msg, float *covariance)
 {

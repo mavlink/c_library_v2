@@ -13,7 +13,7 @@ typedef struct __mavlink_global_position_int_cov_t {
  float vx; /*< [m/s] Ground X Speed (Latitude)*/
  float vy; /*< [m/s] Ground Y Speed (Longitude)*/
  float vz; /*< [m/s] Ground Z Speed (Altitude)*/
- float covariance[36]; /*<  Covariance matrix (first six entries are the first ROW, next six entries are the second row, etc.)*/
+ float covariance[36]; /*<  Row-major representation of a 6x6 position and velocity 6x6 cross-covariance matrix (states: lat, lon, alt, vx, vy, vz; first six entries are the first ROW, next six entries are the second row, etc.). If unknown, assign NaN value to first element in the array.*/
  uint8_t estimator_type; /*<  Class id of the estimator this estimate originated from.*/
 }) mavlink_global_position_int_cov_t;
 
@@ -77,7 +77,7 @@ typedef struct __mavlink_global_position_int_cov_t {
  * @param vx [m/s] Ground X Speed (Latitude)
  * @param vy [m/s] Ground Y Speed (Longitude)
  * @param vz [m/s] Ground Z Speed (Altitude)
- * @param covariance  Covariance matrix (first six entries are the first ROW, next six entries are the second row, etc.)
+ * @param covariance  Row-major representation of a 6x6 position and velocity 6x6 cross-covariance matrix (states: lat, lon, alt, vx, vy, vz; first six entries are the first ROW, next six entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_global_position_int_cov_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -130,7 +130,7 @@ static inline uint16_t mavlink_msg_global_position_int_cov_pack(uint8_t system_i
  * @param vx [m/s] Ground X Speed (Latitude)
  * @param vy [m/s] Ground Y Speed (Longitude)
  * @param vz [m/s] Ground Z Speed (Altitude)
- * @param covariance  Covariance matrix (first six entries are the first ROW, next six entries are the second row, etc.)
+ * @param covariance  Row-major representation of a 6x6 position and velocity 6x6 cross-covariance matrix (states: lat, lon, alt, vx, vy, vz; first six entries are the first ROW, next six entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_global_position_int_cov_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -209,7 +209,7 @@ static inline uint16_t mavlink_msg_global_position_int_cov_encode_chan(uint8_t s
  * @param vx [m/s] Ground X Speed (Latitude)
  * @param vy [m/s] Ground Y Speed (Longitude)
  * @param vz [m/s] Ground Z Speed (Altitude)
- * @param covariance  Covariance matrix (first six entries are the first ROW, next six entries are the second row, etc.)
+ * @param covariance  Row-major representation of a 6x6 position and velocity 6x6 cross-covariance matrix (states: lat, lon, alt, vx, vy, vz; first six entries are the first ROW, next six entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -396,7 +396,7 @@ static inline float mavlink_msg_global_position_int_cov_get_vz(const mavlink_mes
 /**
  * @brief Get field covariance from global_position_int_cov message
  *
- * @return  Covariance matrix (first six entries are the first ROW, next six entries are the second row, etc.)
+ * @return  Row-major representation of a 6x6 position and velocity 6x6 cross-covariance matrix (states: lat, lon, alt, vx, vy, vz; first six entries are the first ROW, next six entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
  */
 static inline uint16_t mavlink_msg_global_position_int_cov_get_covariance(const mavlink_message_t* msg, float *covariance)
 {

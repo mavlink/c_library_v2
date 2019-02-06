@@ -15,7 +15,7 @@ typedef struct __mavlink_local_position_ned_cov_t {
  float ax; /*< [m/s/s] X Acceleration*/
  float ay; /*< [m/s/s] Y Acceleration*/
  float az; /*< [m/s/s] Z Acceleration*/
- float covariance[45]; /*<  Covariance matrix upper right triangular (first nine entries are the first ROW, next eight entries are the second row, etc.)*/
+ float covariance[45]; /*<  Row-major representation of position, velocity and acceleration 9x9 cross-covariance matrix upper right triangle (states: x, y, z, vx, vy, vz, ax, ay, az; first nine entries are the first ROW, next eight entries are the second row, etc.). If unknown, assign NaN value to first element in the array.*/
  uint8_t estimator_type; /*<  Class id of the estimator this estimate originated from.*/
 }) mavlink_local_position_ned_cov_t;
 
@@ -85,7 +85,7 @@ typedef struct __mavlink_local_position_ned_cov_t {
  * @param ax [m/s/s] X Acceleration
  * @param ay [m/s/s] Y Acceleration
  * @param az [m/s/s] Z Acceleration
- * @param covariance  Covariance matrix upper right triangular (first nine entries are the first ROW, next eight entries are the second row, etc.)
+ * @param covariance  Row-major representation of position, velocity and acceleration 9x9 cross-covariance matrix upper right triangle (states: x, y, z, vx, vy, vz, ax, ay, az; first nine entries are the first ROW, next eight entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_local_position_ned_cov_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -144,7 +144,7 @@ static inline uint16_t mavlink_msg_local_position_ned_cov_pack(uint8_t system_id
  * @param ax [m/s/s] X Acceleration
  * @param ay [m/s/s] Y Acceleration
  * @param az [m/s/s] Z Acceleration
- * @param covariance  Covariance matrix upper right triangular (first nine entries are the first ROW, next eight entries are the second row, etc.)
+ * @param covariance  Row-major representation of position, velocity and acceleration 9x9 cross-covariance matrix upper right triangle (states: x, y, z, vx, vy, vz, ax, ay, az; first nine entries are the first ROW, next eight entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_local_position_ned_cov_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -229,7 +229,7 @@ static inline uint16_t mavlink_msg_local_position_ned_cov_encode_chan(uint8_t sy
  * @param ax [m/s/s] X Acceleration
  * @param ay [m/s/s] Y Acceleration
  * @param az [m/s/s] Z Acceleration
- * @param covariance  Covariance matrix upper right triangular (first nine entries are the first ROW, next eight entries are the second row, etc.)
+ * @param covariance  Row-major representation of position, velocity and acceleration 9x9 cross-covariance matrix upper right triangle (states: x, y, z, vx, vy, vz, ax, ay, az; first nine entries are the first ROW, next eight entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -444,7 +444,7 @@ static inline float mavlink_msg_local_position_ned_cov_get_az(const mavlink_mess
 /**
  * @brief Get field covariance from local_position_ned_cov message
  *
- * @return  Covariance matrix upper right triangular (first nine entries are the first ROW, next eight entries are the second row, etc.)
+ * @return  Row-major representation of position, velocity and acceleration 9x9 cross-covariance matrix upper right triangle (states: x, y, z, vx, vy, vz, ax, ay, az; first nine entries are the first ROW, next eight entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
  */
 static inline uint16_t mavlink_msg_local_position_ned_cov_get_covariance(const mavlink_message_t* msg, float *covariance)
 {

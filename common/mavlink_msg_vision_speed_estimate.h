@@ -9,7 +9,7 @@ typedef struct __mavlink_vision_speed_estimate_t {
  float x; /*< [m/s] Global X speed*/
  float y; /*< [m/s] Global Y speed*/
  float z; /*< [m/s] Global Z speed*/
- float covariance[9]; /*<  Linear velocity covariance matrix (1st three entries - 1st row, etc.)*/
+ float covariance[9]; /*<  Row-major representation of 3x3 linear velocity covariance matrix (states: vx, vy, vz; 1st three entries - 1st row, etc.). If unknown, assign NaN value to first element in the array.*/
 }) mavlink_vision_speed_estimate_t;
 
 #define MAVLINK_MSG_ID_VISION_SPEED_ESTIMATE_LEN 56
@@ -57,7 +57,7 @@ typedef struct __mavlink_vision_speed_estimate_t {
  * @param x [m/s] Global X speed
  * @param y [m/s] Global Y speed
  * @param z [m/s] Global Z speed
- * @param covariance  Linear velocity covariance matrix (1st three entries - 1st row, etc.)
+ * @param covariance  Row-major representation of 3x3 linear velocity covariance matrix (states: vx, vy, vz; 1st three entries - 1st row, etc.). If unknown, assign NaN value to first element in the array.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_vision_speed_estimate_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -95,7 +95,7 @@ static inline uint16_t mavlink_msg_vision_speed_estimate_pack(uint8_t system_id,
  * @param x [m/s] Global X speed
  * @param y [m/s] Global Y speed
  * @param z [m/s] Global Z speed
- * @param covariance  Linear velocity covariance matrix (1st three entries - 1st row, etc.)
+ * @param covariance  Row-major representation of 3x3 linear velocity covariance matrix (states: vx, vy, vz; 1st three entries - 1st row, etc.). If unknown, assign NaN value to first element in the array.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_vision_speed_estimate_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -159,7 +159,7 @@ static inline uint16_t mavlink_msg_vision_speed_estimate_encode_chan(uint8_t sys
  * @param x [m/s] Global X speed
  * @param y [m/s] Global Y speed
  * @param z [m/s] Global Z speed
- * @param covariance  Linear velocity covariance matrix (1st three entries - 1st row, etc.)
+ * @param covariance  Row-major representation of 3x3 linear velocity covariance matrix (states: vx, vy, vz; 1st three entries - 1st row, etc.). If unknown, assign NaN value to first element in the array.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -276,7 +276,7 @@ static inline float mavlink_msg_vision_speed_estimate_get_z(const mavlink_messag
 /**
  * @brief Get field covariance from vision_speed_estimate message
  *
- * @return  Linear velocity covariance matrix (1st three entries - 1st row, etc.)
+ * @return  Row-major representation of 3x3 linear velocity covariance matrix (states: vx, vy, vz; 1st three entries - 1st row, etc.). If unknown, assign NaN value to first element in the array.
  */
 static inline uint16_t mavlink_msg_vision_speed_estimate_get_covariance(const mavlink_message_t* msg, float *covariance)
 {

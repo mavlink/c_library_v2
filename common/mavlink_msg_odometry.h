@@ -16,8 +16,8 @@ typedef struct __mavlink_odometry_t {
  float rollspeed; /*< [rad/s] Roll angular speed*/
  float pitchspeed; /*< [rad/s] Pitch angular speed*/
  float yawspeed; /*< [rad/s] Yaw angular speed*/
- float pose_covariance[21]; /*<  Pose (states: x, y, z, roll, pitch, yaw) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)*/
- float twist_covariance[21]; /*<  Twist (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)*/
+ float pose_covariance[21]; /*<  Row-major representation of a 6x6 pose cross-covariance matrix upper right triangle (states: x, y, z, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array.*/
+ float velocity_covariance[21]; /*<  Row-major representation of a 6x6 velocity cross-covariance matrix upper right triangle (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array.*/
  uint8_t frame_id; /*<  Coordinate frame of reference for the pose data.*/
  uint8_t child_frame_id; /*<  Coordinate frame of reference for the velocity in free space (twist) data.*/
 }) mavlink_odometry_t;
@@ -27,12 +27,12 @@ typedef struct __mavlink_odometry_t {
 #define MAVLINK_MSG_ID_331_LEN 230
 #define MAVLINK_MSG_ID_331_MIN_LEN 230
 
-#define MAVLINK_MSG_ID_ODOMETRY_CRC 58
-#define MAVLINK_MSG_ID_331_CRC 58
+#define MAVLINK_MSG_ID_ODOMETRY_CRC 91
+#define MAVLINK_MSG_ID_331_CRC 91
 
 #define MAVLINK_MSG_ODOMETRY_FIELD_Q_LEN 4
 #define MAVLINK_MSG_ODOMETRY_FIELD_POSE_COVARIANCE_LEN 21
-#define MAVLINK_MSG_ODOMETRY_FIELD_TWIST_COVARIANCE_LEN 21
+#define MAVLINK_MSG_ODOMETRY_FIELD_VELOCITY_COVARIANCE_LEN 21
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_ODOMETRY { \
@@ -53,7 +53,7 @@ typedef struct __mavlink_odometry_t {
          { "pitchspeed", NULL, MAVLINK_TYPE_FLOAT, 0, 52, offsetof(mavlink_odometry_t, pitchspeed) }, \
          { "yawspeed", NULL, MAVLINK_TYPE_FLOAT, 0, 56, offsetof(mavlink_odometry_t, yawspeed) }, \
          { "pose_covariance", NULL, MAVLINK_TYPE_FLOAT, 21, 60, offsetof(mavlink_odometry_t, pose_covariance) }, \
-         { "twist_covariance", NULL, MAVLINK_TYPE_FLOAT, 21, 144, offsetof(mavlink_odometry_t, twist_covariance) }, \
+         { "velocity_covariance", NULL, MAVLINK_TYPE_FLOAT, 21, 144, offsetof(mavlink_odometry_t, velocity_covariance) }, \
          } \
 }
 #else
@@ -74,7 +74,7 @@ typedef struct __mavlink_odometry_t {
          { "pitchspeed", NULL, MAVLINK_TYPE_FLOAT, 0, 52, offsetof(mavlink_odometry_t, pitchspeed) }, \
          { "yawspeed", NULL, MAVLINK_TYPE_FLOAT, 0, 56, offsetof(mavlink_odometry_t, yawspeed) }, \
          { "pose_covariance", NULL, MAVLINK_TYPE_FLOAT, 21, 60, offsetof(mavlink_odometry_t, pose_covariance) }, \
-         { "twist_covariance", NULL, MAVLINK_TYPE_FLOAT, 21, 144, offsetof(mavlink_odometry_t, twist_covariance) }, \
+         { "velocity_covariance", NULL, MAVLINK_TYPE_FLOAT, 21, 144, offsetof(mavlink_odometry_t, velocity_covariance) }, \
          } \
 }
 #endif
@@ -98,12 +98,12 @@ typedef struct __mavlink_odometry_t {
  * @param rollspeed [rad/s] Roll angular speed
  * @param pitchspeed [rad/s] Pitch angular speed
  * @param yawspeed [rad/s] Yaw angular speed
- * @param pose_covariance  Pose (states: x, y, z, roll, pitch, yaw) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
- * @param twist_covariance  Twist (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
+ * @param pose_covariance  Row-major representation of a 6x6 pose cross-covariance matrix upper right triangle (states: x, y, z, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array.
+ * @param velocity_covariance  Row-major representation of a 6x6 velocity cross-covariance matrix upper right triangle (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_odometry_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint64_t time_usec, uint8_t frame_id, uint8_t child_frame_id, float x, float y, float z, const float *q, float vx, float vy, float vz, float rollspeed, float pitchspeed, float yawspeed, const float *pose_covariance, const float *twist_covariance)
+                               uint64_t time_usec, uint8_t frame_id, uint8_t child_frame_id, float x, float y, float z, const float *q, float vx, float vy, float vz, float rollspeed, float pitchspeed, float yawspeed, const float *pose_covariance, const float *velocity_covariance)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_ODOMETRY_LEN];
@@ -121,7 +121,7 @@ static inline uint16_t mavlink_msg_odometry_pack(uint8_t system_id, uint8_t comp
     _mav_put_uint8_t(buf, 229, child_frame_id);
     _mav_put_float_array(buf, 20, q, 4);
     _mav_put_float_array(buf, 60, pose_covariance, 21);
-    _mav_put_float_array(buf, 144, twist_covariance, 21);
+    _mav_put_float_array(buf, 144, velocity_covariance, 21);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ODOMETRY_LEN);
 #else
     mavlink_odometry_t packet;
@@ -139,7 +139,7 @@ static inline uint16_t mavlink_msg_odometry_pack(uint8_t system_id, uint8_t comp
     packet.child_frame_id = child_frame_id;
     mav_array_memcpy(packet.q, q, sizeof(float)*4);
     mav_array_memcpy(packet.pose_covariance, pose_covariance, sizeof(float)*21);
-    mav_array_memcpy(packet.twist_covariance, twist_covariance, sizeof(float)*21);
+    mav_array_memcpy(packet.velocity_covariance, velocity_covariance, sizeof(float)*21);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ODOMETRY_LEN);
 #endif
 
@@ -166,13 +166,13 @@ static inline uint16_t mavlink_msg_odometry_pack(uint8_t system_id, uint8_t comp
  * @param rollspeed [rad/s] Roll angular speed
  * @param pitchspeed [rad/s] Pitch angular speed
  * @param yawspeed [rad/s] Yaw angular speed
- * @param pose_covariance  Pose (states: x, y, z, roll, pitch, yaw) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
- * @param twist_covariance  Twist (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
+ * @param pose_covariance  Row-major representation of a 6x6 pose cross-covariance matrix upper right triangle (states: x, y, z, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array.
+ * @param velocity_covariance  Row-major representation of a 6x6 velocity cross-covariance matrix upper right triangle (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_odometry_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint64_t time_usec,uint8_t frame_id,uint8_t child_frame_id,float x,float y,float z,const float *q,float vx,float vy,float vz,float rollspeed,float pitchspeed,float yawspeed,const float *pose_covariance,const float *twist_covariance)
+                                   uint64_t time_usec,uint8_t frame_id,uint8_t child_frame_id,float x,float y,float z,const float *q,float vx,float vy,float vz,float rollspeed,float pitchspeed,float yawspeed,const float *pose_covariance,const float *velocity_covariance)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_ODOMETRY_LEN];
@@ -190,7 +190,7 @@ static inline uint16_t mavlink_msg_odometry_pack_chan(uint8_t system_id, uint8_t
     _mav_put_uint8_t(buf, 229, child_frame_id);
     _mav_put_float_array(buf, 20, q, 4);
     _mav_put_float_array(buf, 60, pose_covariance, 21);
-    _mav_put_float_array(buf, 144, twist_covariance, 21);
+    _mav_put_float_array(buf, 144, velocity_covariance, 21);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ODOMETRY_LEN);
 #else
     mavlink_odometry_t packet;
@@ -208,7 +208,7 @@ static inline uint16_t mavlink_msg_odometry_pack_chan(uint8_t system_id, uint8_t
     packet.child_frame_id = child_frame_id;
     mav_array_memcpy(packet.q, q, sizeof(float)*4);
     mav_array_memcpy(packet.pose_covariance, pose_covariance, sizeof(float)*21);
-    mav_array_memcpy(packet.twist_covariance, twist_covariance, sizeof(float)*21);
+    mav_array_memcpy(packet.velocity_covariance, velocity_covariance, sizeof(float)*21);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ODOMETRY_LEN);
 #endif
 
@@ -226,7 +226,7 @@ static inline uint16_t mavlink_msg_odometry_pack_chan(uint8_t system_id, uint8_t
  */
 static inline uint16_t mavlink_msg_odometry_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_odometry_t* odometry)
 {
-    return mavlink_msg_odometry_pack(system_id, component_id, msg, odometry->time_usec, odometry->frame_id, odometry->child_frame_id, odometry->x, odometry->y, odometry->z, odometry->q, odometry->vx, odometry->vy, odometry->vz, odometry->rollspeed, odometry->pitchspeed, odometry->yawspeed, odometry->pose_covariance, odometry->twist_covariance);
+    return mavlink_msg_odometry_pack(system_id, component_id, msg, odometry->time_usec, odometry->frame_id, odometry->child_frame_id, odometry->x, odometry->y, odometry->z, odometry->q, odometry->vx, odometry->vy, odometry->vz, odometry->rollspeed, odometry->pitchspeed, odometry->yawspeed, odometry->pose_covariance, odometry->velocity_covariance);
 }
 
 /**
@@ -240,7 +240,7 @@ static inline uint16_t mavlink_msg_odometry_encode(uint8_t system_id, uint8_t co
  */
 static inline uint16_t mavlink_msg_odometry_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_odometry_t* odometry)
 {
-    return mavlink_msg_odometry_pack_chan(system_id, component_id, chan, msg, odometry->time_usec, odometry->frame_id, odometry->child_frame_id, odometry->x, odometry->y, odometry->z, odometry->q, odometry->vx, odometry->vy, odometry->vz, odometry->rollspeed, odometry->pitchspeed, odometry->yawspeed, odometry->pose_covariance, odometry->twist_covariance);
+    return mavlink_msg_odometry_pack_chan(system_id, component_id, chan, msg, odometry->time_usec, odometry->frame_id, odometry->child_frame_id, odometry->x, odometry->y, odometry->z, odometry->q, odometry->vx, odometry->vy, odometry->vz, odometry->rollspeed, odometry->pitchspeed, odometry->yawspeed, odometry->pose_covariance, odometry->velocity_covariance);
 }
 
 /**
@@ -260,12 +260,12 @@ static inline uint16_t mavlink_msg_odometry_encode_chan(uint8_t system_id, uint8
  * @param rollspeed [rad/s] Roll angular speed
  * @param pitchspeed [rad/s] Pitch angular speed
  * @param yawspeed [rad/s] Yaw angular speed
- * @param pose_covariance  Pose (states: x, y, z, roll, pitch, yaw) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
- * @param twist_covariance  Twist (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
+ * @param pose_covariance  Row-major representation of a 6x6 pose cross-covariance matrix upper right triangle (states: x, y, z, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array.
+ * @param velocity_covariance  Row-major representation of a 6x6 velocity cross-covariance matrix upper right triangle (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_odometry_send(mavlink_channel_t chan, uint64_t time_usec, uint8_t frame_id, uint8_t child_frame_id, float x, float y, float z, const float *q, float vx, float vy, float vz, float rollspeed, float pitchspeed, float yawspeed, const float *pose_covariance, const float *twist_covariance)
+static inline void mavlink_msg_odometry_send(mavlink_channel_t chan, uint64_t time_usec, uint8_t frame_id, uint8_t child_frame_id, float x, float y, float z, const float *q, float vx, float vy, float vz, float rollspeed, float pitchspeed, float yawspeed, const float *pose_covariance, const float *velocity_covariance)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_ODOMETRY_LEN];
@@ -283,7 +283,7 @@ static inline void mavlink_msg_odometry_send(mavlink_channel_t chan, uint64_t ti
     _mav_put_uint8_t(buf, 229, child_frame_id);
     _mav_put_float_array(buf, 20, q, 4);
     _mav_put_float_array(buf, 60, pose_covariance, 21);
-    _mav_put_float_array(buf, 144, twist_covariance, 21);
+    _mav_put_float_array(buf, 144, velocity_covariance, 21);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ODOMETRY, buf, MAVLINK_MSG_ID_ODOMETRY_MIN_LEN, MAVLINK_MSG_ID_ODOMETRY_LEN, MAVLINK_MSG_ID_ODOMETRY_CRC);
 #else
     mavlink_odometry_t packet;
@@ -301,7 +301,7 @@ static inline void mavlink_msg_odometry_send(mavlink_channel_t chan, uint64_t ti
     packet.child_frame_id = child_frame_id;
     mav_array_memcpy(packet.q, q, sizeof(float)*4);
     mav_array_memcpy(packet.pose_covariance, pose_covariance, sizeof(float)*21);
-    mav_array_memcpy(packet.twist_covariance, twist_covariance, sizeof(float)*21);
+    mav_array_memcpy(packet.velocity_covariance, velocity_covariance, sizeof(float)*21);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ODOMETRY, (const char *)&packet, MAVLINK_MSG_ID_ODOMETRY_MIN_LEN, MAVLINK_MSG_ID_ODOMETRY_LEN, MAVLINK_MSG_ID_ODOMETRY_CRC);
 #endif
 }
@@ -314,7 +314,7 @@ static inline void mavlink_msg_odometry_send(mavlink_channel_t chan, uint64_t ti
 static inline void mavlink_msg_odometry_send_struct(mavlink_channel_t chan, const mavlink_odometry_t* odometry)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_odometry_send(chan, odometry->time_usec, odometry->frame_id, odometry->child_frame_id, odometry->x, odometry->y, odometry->z, odometry->q, odometry->vx, odometry->vy, odometry->vz, odometry->rollspeed, odometry->pitchspeed, odometry->yawspeed, odometry->pose_covariance, odometry->twist_covariance);
+    mavlink_msg_odometry_send(chan, odometry->time_usec, odometry->frame_id, odometry->child_frame_id, odometry->x, odometry->y, odometry->z, odometry->q, odometry->vx, odometry->vy, odometry->vz, odometry->rollspeed, odometry->pitchspeed, odometry->yawspeed, odometry->pose_covariance, odometry->velocity_covariance);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ODOMETRY, (const char *)odometry, MAVLINK_MSG_ID_ODOMETRY_MIN_LEN, MAVLINK_MSG_ID_ODOMETRY_LEN, MAVLINK_MSG_ID_ODOMETRY_CRC);
 #endif
@@ -328,7 +328,7 @@ static inline void mavlink_msg_odometry_send_struct(mavlink_channel_t chan, cons
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_odometry_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, uint8_t frame_id, uint8_t child_frame_id, float x, float y, float z, const float *q, float vx, float vy, float vz, float rollspeed, float pitchspeed, float yawspeed, const float *pose_covariance, const float *twist_covariance)
+static inline void mavlink_msg_odometry_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, uint8_t frame_id, uint8_t child_frame_id, float x, float y, float z, const float *q, float vx, float vy, float vz, float rollspeed, float pitchspeed, float yawspeed, const float *pose_covariance, const float *velocity_covariance)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -346,7 +346,7 @@ static inline void mavlink_msg_odometry_send_buf(mavlink_message_t *msgbuf, mavl
     _mav_put_uint8_t(buf, 229, child_frame_id);
     _mav_put_float_array(buf, 20, q, 4);
     _mav_put_float_array(buf, 60, pose_covariance, 21);
-    _mav_put_float_array(buf, 144, twist_covariance, 21);
+    _mav_put_float_array(buf, 144, velocity_covariance, 21);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ODOMETRY, buf, MAVLINK_MSG_ID_ODOMETRY_MIN_LEN, MAVLINK_MSG_ID_ODOMETRY_LEN, MAVLINK_MSG_ID_ODOMETRY_CRC);
 #else
     mavlink_odometry_t *packet = (mavlink_odometry_t *)msgbuf;
@@ -364,7 +364,7 @@ static inline void mavlink_msg_odometry_send_buf(mavlink_message_t *msgbuf, mavl
     packet->child_frame_id = child_frame_id;
     mav_array_memcpy(packet->q, q, sizeof(float)*4);
     mav_array_memcpy(packet->pose_covariance, pose_covariance, sizeof(float)*21);
-    mav_array_memcpy(packet->twist_covariance, twist_covariance, sizeof(float)*21);
+    mav_array_memcpy(packet->velocity_covariance, velocity_covariance, sizeof(float)*21);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ODOMETRY, (const char *)packet, MAVLINK_MSG_ID_ODOMETRY_MIN_LEN, MAVLINK_MSG_ID_ODOMETRY_LEN, MAVLINK_MSG_ID_ODOMETRY_CRC);
 #endif
 }
@@ -508,7 +508,7 @@ static inline float mavlink_msg_odometry_get_yawspeed(const mavlink_message_t* m
 /**
  * @brief Get field pose_covariance from odometry message
  *
- * @return  Pose (states: x, y, z, roll, pitch, yaw) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
+ * @return  Row-major representation of a 6x6 pose cross-covariance matrix upper right triangle (states: x, y, z, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array.
  */
 static inline uint16_t mavlink_msg_odometry_get_pose_covariance(const mavlink_message_t* msg, float *pose_covariance)
 {
@@ -516,13 +516,13 @@ static inline uint16_t mavlink_msg_odometry_get_pose_covariance(const mavlink_me
 }
 
 /**
- * @brief Get field twist_covariance from odometry message
+ * @brief Get field velocity_covariance from odometry message
  *
- * @return  Twist (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)
+ * @return  Row-major representation of a 6x6 velocity cross-covariance matrix upper right triangle (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array.
  */
-static inline uint16_t mavlink_msg_odometry_get_twist_covariance(const mavlink_message_t* msg, float *twist_covariance)
+static inline uint16_t mavlink_msg_odometry_get_velocity_covariance(const mavlink_message_t* msg, float *velocity_covariance)
 {
-    return _MAV_RETURN_float_array(msg, twist_covariance, 21,  144);
+    return _MAV_RETURN_float_array(msg, velocity_covariance, 21,  144);
 }
 
 /**
@@ -546,7 +546,7 @@ static inline void mavlink_msg_odometry_decode(const mavlink_message_t* msg, mav
     odometry->pitchspeed = mavlink_msg_odometry_get_pitchspeed(msg);
     odometry->yawspeed = mavlink_msg_odometry_get_yawspeed(msg);
     mavlink_msg_odometry_get_pose_covariance(msg, odometry->pose_covariance);
-    mavlink_msg_odometry_get_twist_covariance(msg, odometry->twist_covariance);
+    mavlink_msg_odometry_get_velocity_covariance(msg, odometry->velocity_covariance);
     odometry->frame_id = mavlink_msg_odometry_get_frame_id(msg);
     odometry->child_frame_id = mavlink_msg_odometry_get_child_frame_id(msg);
 #else
