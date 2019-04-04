@@ -5,7 +5,7 @@
 
 MAVPACKED(
 typedef struct __mavlink_time_estimate_to_target_t {
- int32_t safe_return; /*< [s] Estimated time to complete the vehicle's configured "safe return" action from its current position. -1 indicates that the vehicle is landed, or that no time estimate available.*/
+ int32_t safe_return; /*< [s] Estimated time to complete the vehicle's configured "safe return" action from its current position (e.g. RTL, Smart RTL, etc.). -1 indicates that the vehicle is landed, or that no time estimate available.*/
  int32_t land; /*< [s] Estimated time for vehicle to complete the LAND action from its current position. -1 indicates that the vehicle is landed, or that no time estimate available.*/
  int32_t mission_next_item; /*< [s] Estimated time for reaching/completing the currently active mission item. -1 means no time estimate available.*/
  int32_t mission_end; /*< [s] Estimated time for completing the current mission. -1 means no mission active and/or no estimate available.*/
@@ -53,7 +53,7 @@ typedef struct __mavlink_time_estimate_to_target_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param safe_return [s] Estimated time to complete the vehicle's configured "safe return" action from its current position. -1 indicates that the vehicle is landed, or that no time estimate available.
+ * @param safe_return [s] Estimated time to complete the vehicle's configured "safe return" action from its current position (e.g. RTL, Smart RTL, etc.). -1 indicates that the vehicle is landed, or that no time estimate available.
  * @param land [s] Estimated time for vehicle to complete the LAND action from its current position. -1 indicates that the vehicle is landed, or that no time estimate available.
  * @param mission_next_item [s] Estimated time for reaching/completing the currently active mission item. -1 means no time estimate available.
  * @param mission_end [s] Estimated time for completing the current mission. -1 means no mission active and/or no estimate available.
@@ -93,7 +93,7 @@ static inline uint16_t mavlink_msg_time_estimate_to_target_pack(uint8_t system_i
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param safe_return [s] Estimated time to complete the vehicle's configured "safe return" action from its current position. -1 indicates that the vehicle is landed, or that no time estimate available.
+ * @param safe_return [s] Estimated time to complete the vehicle's configured "safe return" action from its current position (e.g. RTL, Smart RTL, etc.). -1 indicates that the vehicle is landed, or that no time estimate available.
  * @param land [s] Estimated time for vehicle to complete the LAND action from its current position. -1 indicates that the vehicle is landed, or that no time estimate available.
  * @param mission_next_item [s] Estimated time for reaching/completing the currently active mission item. -1 means no time estimate available.
  * @param mission_end [s] Estimated time for completing the current mission. -1 means no mission active and/or no estimate available.
@@ -159,7 +159,7 @@ static inline uint16_t mavlink_msg_time_estimate_to_target_encode_chan(uint8_t s
  * @brief Send a time_estimate_to_target message
  * @param chan MAVLink channel to send the message
  *
- * @param safe_return [s] Estimated time to complete the vehicle's configured "safe return" action from its current position. -1 indicates that the vehicle is landed, or that no time estimate available.
+ * @param safe_return [s] Estimated time to complete the vehicle's configured "safe return" action from its current position (e.g. RTL, Smart RTL, etc.). -1 indicates that the vehicle is landed, or that no time estimate available.
  * @param land [s] Estimated time for vehicle to complete the LAND action from its current position. -1 indicates that the vehicle is landed, or that no time estimate available.
  * @param mission_next_item [s] Estimated time for reaching/completing the currently active mission item. -1 means no time estimate available.
  * @param mission_end [s] Estimated time for completing the current mission. -1 means no mission active and/or no estimate available.
@@ -244,7 +244,7 @@ static inline void mavlink_msg_time_estimate_to_target_send_buf(mavlink_message_
 /**
  * @brief Get field safe_return from time_estimate_to_target message
  *
- * @return [s] Estimated time to complete the vehicle's configured "safe return" action from its current position. -1 indicates that the vehicle is landed, or that no time estimate available.
+ * @return [s] Estimated time to complete the vehicle's configured "safe return" action from its current position (e.g. RTL, Smart RTL, etc.). -1 indicates that the vehicle is landed, or that no time estimate available.
  */
 static inline int32_t mavlink_msg_time_estimate_to_target_get_safe_return(const mavlink_message_t* msg)
 {
