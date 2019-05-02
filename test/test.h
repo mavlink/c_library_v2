@@ -24,7 +24,7 @@ extern "C" {
 #endif
 
 #ifndef MAVLINK_MESSAGE_CRCS
-#define MAVLINK_MESSAGE_CRCS {{0, 103, 179, 0, 0, 0}}
+#define MAVLINK_MESSAGE_CRCS {{0, 103, 179, 179, 0, 0, 0}}
 #endif
 
 #include "../protocol.h"
