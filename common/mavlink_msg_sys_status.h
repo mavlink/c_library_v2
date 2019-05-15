@@ -7,7 +7,7 @@ MAVPACKED(
 typedef struct __mavlink_sys_status_t {
  uint32_t onboard_control_sensors_present; /*<  Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present.*/
  uint32_t onboard_control_sensors_enabled; /*<  Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled.*/
- uint32_t onboard_control_sensors_health; /*<  Bitmap showing which onboard controllers and sensors are operational or have an error:  Value of 0: not enabled. Value of 1: enabled.*/
+ uint32_t onboard_control_sensors_health; /*<  Bitmap showing which onboard controllers and sensors have an error (or are operational). Value of 0: error. Value of 1: healthy.*/
  uint16_t load; /*< [d%] Maximum usage in percent of the mainloop time. Values: [0-1000] - should always be below 1000*/
  uint16_t voltage_battery; /*< [mV] Battery voltage*/
  int16_t current_battery; /*< [cA] Battery current, -1: autopilot does not measure the current*/
@@ -79,7 +79,7 @@ typedef struct __mavlink_sys_status_t {
  *
  * @param onboard_control_sensors_present  Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present.
  * @param onboard_control_sensors_enabled  Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled.
- * @param onboard_control_sensors_health  Bitmap showing which onboard controllers and sensors are operational or have an error:  Value of 0: not enabled. Value of 1: enabled.
+ * @param onboard_control_sensors_health  Bitmap showing which onboard controllers and sensors have an error (or are operational). Value of 0: error. Value of 1: healthy.
  * @param load [d%] Maximum usage in percent of the mainloop time. Values: [0-1000] - should always be below 1000
  * @param voltage_battery [mV] Battery voltage
  * @param current_battery [cA] Battery current, -1: autopilot does not measure the current
@@ -143,7 +143,7 @@ static inline uint16_t mavlink_msg_sys_status_pack(uint8_t system_id, uint8_t co
  * @param msg The MAVLink message to compress the data into
  * @param onboard_control_sensors_present  Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present.
  * @param onboard_control_sensors_enabled  Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled.
- * @param onboard_control_sensors_health  Bitmap showing which onboard controllers and sensors are operational or have an error:  Value of 0: not enabled. Value of 1: enabled.
+ * @param onboard_control_sensors_health  Bitmap showing which onboard controllers and sensors have an error (or are operational). Value of 0: error. Value of 1: healthy.
  * @param load [d%] Maximum usage in percent of the mainloop time. Values: [0-1000] - should always be below 1000
  * @param voltage_battery [mV] Battery voltage
  * @param current_battery [cA] Battery current, -1: autopilot does not measure the current
@@ -233,7 +233,7 @@ static inline uint16_t mavlink_msg_sys_status_encode_chan(uint8_t system_id, uin
  *
  * @param onboard_control_sensors_present  Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present.
  * @param onboard_control_sensors_enabled  Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled.
- * @param onboard_control_sensors_health  Bitmap showing which onboard controllers and sensors are operational or have an error:  Value of 0: not enabled. Value of 1: enabled.
+ * @param onboard_control_sensors_health  Bitmap showing which onboard controllers and sensors have an error (or are operational). Value of 0: error. Value of 1: healthy.
  * @param load [d%] Maximum usage in percent of the mainloop time. Values: [0-1000] - should always be below 1000
  * @param voltage_battery [mV] Battery voltage
  * @param current_battery [cA] Battery current, -1: autopilot does not measure the current
@@ -376,7 +376,7 @@ static inline uint32_t mavlink_msg_sys_status_get_onboard_control_sensors_enable
 /**
  * @brief Get field onboard_control_sensors_health from sys_status message
  *
- * @return  Bitmap showing which onboard controllers and sensors are operational or have an error:  Value of 0: not enabled. Value of 1: enabled.
+ * @return  Bitmap showing which onboard controllers and sensors have an error (or are operational). Value of 0: error. Value of 1: healthy.
  */
 static inline uint32_t mavlink_msg_sys_status_get_onboard_control_sensors_health(const mavlink_message_t* msg)
 {
