@@ -792,7 +792,8 @@ typedef enum PLANE_MODE
    PLANE_MODE_QLOITER=19, /*  | */
    PLANE_MODE_QLAND=20, /*  | */
    PLANE_MODE_QRTL=21, /*  | */
-   PLANE_MODE_ENUM_END=22, /*  | */
+   PLANE_MODE_QAUTOTUNE=22, /*  | */
+   PLANE_MODE_ENUM_END=23, /*  | */
 } PLANE_MODE;
 #endif
 
