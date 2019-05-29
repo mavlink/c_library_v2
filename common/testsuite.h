@@ -429,6 +429,70 @@ static void mavlink_test_auth_key(uint8_t system_id, uint8_t component_id, mavli
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
+static void mavlink_test_link_node_status(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_LINK_NODE_STATUS >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_link_node_status_t packet_in = {
+        93372036854775807ULL,963497880,963498088,963498296,963498504,963498712,18691,18795,18899,235,46
+    };
+    mavlink_link_node_status_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.timestamp = packet_in.timestamp;
+        packet1.tx_rate = packet_in.tx_rate;
+        packet1.rx_rate = packet_in.rx_rate;
+        packet1.messages_sent = packet_in.messages_sent;
+        packet1.messages_received = packet_in.messages_received;
+        packet1.messages_lost = packet_in.messages_lost;
+        packet1.rx_parse_err = packet_in.rx_parse_err;
+        packet1.tx_overflows = packet_in.tx_overflows;
+        packet1.rx_overflows = packet_in.rx_overflows;
+        packet1.tx_buf = packet_in.tx_buf;
+        packet1.rx_buf = packet_in.rx_buf;
+        
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_LINK_NODE_STATUS_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_LINK_NODE_STATUS_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_link_node_status_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_link_node_status_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_link_node_status_pack(system_id, component_id, &msg , packet1.timestamp , packet1.tx_buf , packet1.rx_buf , packet1.tx_rate , packet1.rx_rate , packet1.rx_parse_err , packet1.tx_overflows , packet1.rx_overflows , packet1.messages_sent , packet1.messages_received , packet1.messages_lost );
+    mavlink_msg_link_node_status_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_link_node_status_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.timestamp , packet1.tx_buf , packet1.rx_buf , packet1.tx_rate , packet1.rx_rate , packet1.rx_parse_err , packet1.tx_overflows , packet1.rx_overflows , packet1.messages_sent , packet1.messages_received , packet1.messages_lost );
+    mavlink_msg_link_node_status_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_link_node_status_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_link_node_status_send(MAVLINK_COMM_1 , packet1.timestamp , packet1.tx_buf , packet1.rx_buf , packet1.tx_rate , packet1.rx_rate , packet1.rx_parse_err , packet1.tx_overflows , packet1.rx_overflows , packet1.messages_sent , packet1.messages_received , packet1.messages_lost );
+    mavlink_msg_link_node_status_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
 static void mavlink_test_set_mode(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -10714,6 +10778,7 @@ static void mavlink_test_common(uint8_t system_id, uint8_t component_id, mavlink
     mavlink_test_change_operator_control(system_id, component_id, last_msg);
     mavlink_test_change_operator_control_ack(system_id, component_id, last_msg);
     mavlink_test_auth_key(system_id, component_id, last_msg);
+    mavlink_test_link_node_status(system_id, component_id, last_msg);
     mavlink_test_set_mode(system_id, component_id, last_msg);
     mavlink_test_param_request_read(system_id, component_id, last_msg);
     mavlink_test_param_request_list(system_id, component_id, last_msg);
