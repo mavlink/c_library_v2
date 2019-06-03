@@ -6,8 +6,8 @@
 MAVPACKED(
 typedef struct __mavlink_link_node_status_t {
  uint64_t timestamp; /*< [ms] Timestamp (time since system boot).*/
- uint32_t tx_rate; /*<  Transmit rate in bytes/s*/
- uint32_t rx_rate; /*<  Receive rate in bytes/s*/
+ uint32_t tx_rate; /*< [bytes/s] Transmit rate*/
+ uint32_t rx_rate; /*< [bytes/s] Receive rate*/
  uint32_t messages_sent; /*<  Messages sent*/
  uint32_t messages_received; /*<  Messages received (estimated from counting seq)*/
  uint32_t messages_lost; /*<  Messages lost (estimated from counting seq)*/
@@ -74,8 +74,8 @@ typedef struct __mavlink_link_node_status_t {
  * @param timestamp [ms] Timestamp (time since system boot).
  * @param tx_buf [%] Remaining free transmit buffer space
  * @param rx_buf [%] Remaining free receive buffer space
- * @param tx_rate  Transmit rate in bytes/s
- * @param rx_rate  Receive rate in bytes/s
+ * @param tx_rate [bytes/s] Transmit rate
+ * @param rx_rate [bytes/s] Receive rate
  * @param rx_parse_err  Number of bytes that could not be parsed correctly
  * @param tx_overflows  Transmit buffer overflows. This number wraps around as it reaches UINT16_MAX
  * @param rx_overflows  Receive buffer overflows. This number wraps around as it reaches UINT16_MAX
@@ -132,8 +132,8 @@ static inline uint16_t mavlink_msg_link_node_status_pack(uint8_t system_id, uint
  * @param timestamp [ms] Timestamp (time since system boot).
  * @param tx_buf [%] Remaining free transmit buffer space
  * @param rx_buf [%] Remaining free receive buffer space
- * @param tx_rate  Transmit rate in bytes/s
- * @param rx_rate  Receive rate in bytes/s
+ * @param tx_rate [bytes/s] Transmit rate
+ * @param rx_rate [bytes/s] Receive rate
  * @param rx_parse_err  Number of bytes that could not be parsed correctly
  * @param tx_overflows  Transmit buffer overflows. This number wraps around as it reaches UINT16_MAX
  * @param rx_overflows  Receive buffer overflows. This number wraps around as it reaches UINT16_MAX
@@ -216,8 +216,8 @@ static inline uint16_t mavlink_msg_link_node_status_encode_chan(uint8_t system_i
  * @param timestamp [ms] Timestamp (time since system boot).
  * @param tx_buf [%] Remaining free transmit buffer space
  * @param rx_buf [%] Remaining free receive buffer space
- * @param tx_rate  Transmit rate in bytes/s
- * @param rx_rate  Receive rate in bytes/s
+ * @param tx_rate [bytes/s] Transmit rate
+ * @param rx_rate [bytes/s] Receive rate
  * @param rx_parse_err  Number of bytes that could not be parsed correctly
  * @param tx_overflows  Transmit buffer overflows. This number wraps around as it reaches UINT16_MAX
  * @param rx_overflows  Receive buffer overflows. This number wraps around as it reaches UINT16_MAX
@@ -358,7 +358,7 @@ static inline uint8_t mavlink_msg_link_node_status_get_rx_buf(const mavlink_mess
 /**
  * @brief Get field tx_rate from link_node_status message
  *
- * @return  Transmit rate in bytes/s
+ * @return [bytes/s] Transmit rate
  */
 static inline uint32_t mavlink_msg_link_node_status_get_tx_rate(const mavlink_message_t* msg)
 {
@@ -368,7 +368,7 @@ static inline uint32_t mavlink_msg_link_node_status_get_tx_rate(const mavlink_me
 /**
  * @brief Get field rx_rate from link_node_status message
  *
- * @return  Receive rate in bytes/s
+ * @return [bytes/s] Receive rate
  */
 static inline uint32_t mavlink_msg_link_node_status_get_rx_rate(const mavlink_message_t* msg)
 {
