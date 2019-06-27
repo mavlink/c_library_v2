@@ -10059,7 +10059,7 @@ static void mavlink_test_trajectory_representation_waypoints(uint8_t system_id, 
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_trajectory_representation_waypoints_t packet_in = {
-        93372036854775807ULL,{ 73.0, 74.0, 75.0, 76.0, 77.0 },{ 213.0, 214.0, 215.0, 216.0, 217.0 },{ 353.0, 354.0, 355.0, 356.0, 357.0 },{ 493.0, 494.0, 495.0, 496.0, 497.0 },{ 633.0, 634.0, 635.0, 636.0, 637.0 },{ 773.0, 774.0, 775.0, 776.0, 777.0 },{ 913.0, 914.0, 915.0, 916.0, 917.0 },{ 1053.0, 1054.0, 1055.0, 1056.0, 1057.0 },{ 1193.0, 1194.0, 1195.0, 1196.0, 1197.0 },{ 1333.0, 1334.0, 1335.0, 1336.0, 1337.0 },{ 1473.0, 1474.0, 1475.0, 1476.0, 1477.0 },177
+        93372036854775807ULL,{ 73.0, 74.0, 75.0, 76.0, 77.0 },{ 213.0, 214.0, 215.0, 216.0, 217.0 },{ 353.0, 354.0, 355.0, 356.0, 357.0 },{ 493.0, 494.0, 495.0, 496.0, 497.0 },{ 633.0, 634.0, 635.0, 636.0, 637.0 },{ 773.0, 774.0, 775.0, 776.0, 777.0 },{ 913.0, 914.0, 915.0, 916.0, 917.0 },{ 1053.0, 1054.0, 1055.0, 1056.0, 1057.0 },{ 1193.0, 1194.0, 1195.0, 1196.0, 1197.0 },{ 1333.0, 1334.0, 1335.0, 1336.0, 1337.0 },{ 1473.0, 1474.0, 1475.0, 1476.0, 1477.0 },{ 29091, 29092, 29093, 29094, 29095 },79
     };
     mavlink_trajectory_representation_waypoints_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -10077,6 +10077,7 @@ static void mavlink_test_trajectory_representation_waypoints(uint8_t system_id, 
         mav_array_memcpy(packet1.acc_z, packet_in.acc_z, sizeof(float)*5);
         mav_array_memcpy(packet1.pos_yaw, packet_in.pos_yaw, sizeof(float)*5);
         mav_array_memcpy(packet1.vel_yaw, packet_in.vel_yaw, sizeof(float)*5);
+        mav_array_memcpy(packet1.command, packet_in.command, sizeof(uint16_t)*5);
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
         if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
@@ -10090,12 +10091,12 @@ static void mavlink_test_trajectory_representation_waypoints(uint8_t system_id, 
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_trajectory_representation_waypoints_pack(system_id, component_id, &msg , packet1.time_usec , packet1.valid_points , packet1.pos_x , packet1.pos_y , packet1.pos_z , packet1.vel_x , packet1.vel_y , packet1.vel_z , packet1.acc_x , packet1.acc_y , packet1.acc_z , packet1.pos_yaw , packet1.vel_yaw );
+    mavlink_msg_trajectory_representation_waypoints_pack(system_id, component_id, &msg , packet1.time_usec , packet1.valid_points , packet1.pos_x , packet1.pos_y , packet1.pos_z , packet1.vel_x , packet1.vel_y , packet1.vel_z , packet1.acc_x , packet1.acc_y , packet1.acc_z , packet1.pos_yaw , packet1.vel_yaw , packet1.command );
     mavlink_msg_trajectory_representation_waypoints_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_trajectory_representation_waypoints_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_usec , packet1.valid_points , packet1.pos_x , packet1.pos_y , packet1.pos_z , packet1.vel_x , packet1.vel_y , packet1.vel_z , packet1.acc_x , packet1.acc_y , packet1.acc_z , packet1.pos_yaw , packet1.vel_yaw );
+    mavlink_msg_trajectory_representation_waypoints_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_usec , packet1.valid_points , packet1.pos_x , packet1.pos_y , packet1.pos_z , packet1.vel_x , packet1.vel_y , packet1.vel_z , packet1.acc_x , packet1.acc_y , packet1.acc_z , packet1.pos_yaw , packet1.vel_yaw , packet1.command );
     mavlink_msg_trajectory_representation_waypoints_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -10108,7 +10109,7 @@ static void mavlink_test_trajectory_representation_waypoints(uint8_t system_id, 
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_trajectory_representation_waypoints_send(MAVLINK_COMM_1 , packet1.time_usec , packet1.valid_points , packet1.pos_x , packet1.pos_y , packet1.pos_z , packet1.vel_x , packet1.vel_y , packet1.vel_z , packet1.acc_x , packet1.acc_y , packet1.acc_z , packet1.pos_yaw , packet1.vel_yaw );
+    mavlink_msg_trajectory_representation_waypoints_send(MAVLINK_COMM_1 , packet1.time_usec , packet1.valid_points , packet1.pos_x , packet1.pos_y , packet1.pos_z , packet1.vel_x , packet1.vel_y , packet1.vel_z , packet1.acc_x , packet1.acc_y , packet1.acc_z , packet1.pos_yaw , packet1.vel_yaw , packet1.command );
     mavlink_msg_trajectory_representation_waypoints_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }

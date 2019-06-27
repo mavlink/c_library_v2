@@ -17,16 +17,17 @@ typedef struct __mavlink_trajectory_representation_waypoints_t {
  float acc_z[5]; /*< [m/s/s] Z-acceleration of waypoint, set to NaN if not being used*/
  float pos_yaw[5]; /*< [rad] Yaw angle, set to NaN if not being used*/
  float vel_yaw[5]; /*< [rad/s] Yaw rate, set to NaN if not being used*/
+ uint16_t command[5]; /*<  Scheduled action for each waypoint, UINT16_MAX if not being used.*/
  uint8_t valid_points; /*<  Number of valid points (up-to 5 waypoints are possible)*/
 }) mavlink_trajectory_representation_waypoints_t;
 
-#define MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN 229
-#define MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_MIN_LEN 229
-#define MAVLINK_MSG_ID_332_LEN 229
-#define MAVLINK_MSG_ID_332_MIN_LEN 229
+#define MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN 239
+#define MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_MIN_LEN 239
+#define MAVLINK_MSG_ID_332_LEN 239
+#define MAVLINK_MSG_ID_332_MIN_LEN 239
 
-#define MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_CRC 91
-#define MAVLINK_MSG_ID_332_CRC 91
+#define MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_CRC 236
+#define MAVLINK_MSG_ID_332_CRC 236
 
 #define MAVLINK_MSG_TRAJECTORY_REPRESENTATION_WAYPOINTS_FIELD_POS_X_LEN 5
 #define MAVLINK_MSG_TRAJECTORY_REPRESENTATION_WAYPOINTS_FIELD_POS_Y_LEN 5
@@ -39,14 +40,15 @@ typedef struct __mavlink_trajectory_representation_waypoints_t {
 #define MAVLINK_MSG_TRAJECTORY_REPRESENTATION_WAYPOINTS_FIELD_ACC_Z_LEN 5
 #define MAVLINK_MSG_TRAJECTORY_REPRESENTATION_WAYPOINTS_FIELD_POS_YAW_LEN 5
 #define MAVLINK_MSG_TRAJECTORY_REPRESENTATION_WAYPOINTS_FIELD_VEL_YAW_LEN 5
+#define MAVLINK_MSG_TRAJECTORY_REPRESENTATION_WAYPOINTS_FIELD_COMMAND_LEN 5
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_TRAJECTORY_REPRESENTATION_WAYPOINTS { \
     332, \
     "TRAJECTORY_REPRESENTATION_WAYPOINTS", \
-    13, \
+    14, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_trajectory_representation_waypoints_t, time_usec) }, \
-         { "valid_points", NULL, MAVLINK_TYPE_UINT8_T, 0, 228, offsetof(mavlink_trajectory_representation_waypoints_t, valid_points) }, \
+         { "valid_points", NULL, MAVLINK_TYPE_UINT8_T, 0, 238, offsetof(mavlink_trajectory_representation_waypoints_t, valid_points) }, \
          { "pos_x", NULL, MAVLINK_TYPE_FLOAT, 5, 8, offsetof(mavlink_trajectory_representation_waypoints_t, pos_x) }, \
          { "pos_y", NULL, MAVLINK_TYPE_FLOAT, 5, 28, offsetof(mavlink_trajectory_representation_waypoints_t, pos_y) }, \
          { "pos_z", NULL, MAVLINK_TYPE_FLOAT, 5, 48, offsetof(mavlink_trajectory_representation_waypoints_t, pos_z) }, \
@@ -58,14 +60,15 @@ typedef struct __mavlink_trajectory_representation_waypoints_t {
          { "acc_z", NULL, MAVLINK_TYPE_FLOAT, 5, 168, offsetof(mavlink_trajectory_representation_waypoints_t, acc_z) }, \
          { "pos_yaw", NULL, MAVLINK_TYPE_FLOAT, 5, 188, offsetof(mavlink_trajectory_representation_waypoints_t, pos_yaw) }, \
          { "vel_yaw", NULL, MAVLINK_TYPE_FLOAT, 5, 208, offsetof(mavlink_trajectory_representation_waypoints_t, vel_yaw) }, \
+         { "command", NULL, MAVLINK_TYPE_UINT16_T, 5, 228, offsetof(mavlink_trajectory_representation_waypoints_t, command) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_TRAJECTORY_REPRESENTATION_WAYPOINTS { \
     "TRAJECTORY_REPRESENTATION_WAYPOINTS", \
-    13, \
+    14, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_trajectory_representation_waypoints_t, time_usec) }, \
-         { "valid_points", NULL, MAVLINK_TYPE_UINT8_T, 0, 228, offsetof(mavlink_trajectory_representation_waypoints_t, valid_points) }, \
+         { "valid_points", NULL, MAVLINK_TYPE_UINT8_T, 0, 238, offsetof(mavlink_trajectory_representation_waypoints_t, valid_points) }, \
          { "pos_x", NULL, MAVLINK_TYPE_FLOAT, 5, 8, offsetof(mavlink_trajectory_representation_waypoints_t, pos_x) }, \
          { "pos_y", NULL, MAVLINK_TYPE_FLOAT, 5, 28, offsetof(mavlink_trajectory_representation_waypoints_t, pos_y) }, \
          { "pos_z", NULL, MAVLINK_TYPE_FLOAT, 5, 48, offsetof(mavlink_trajectory_representation_waypoints_t, pos_z) }, \
@@ -77,6 +80,7 @@ typedef struct __mavlink_trajectory_representation_waypoints_t {
          { "acc_z", NULL, MAVLINK_TYPE_FLOAT, 5, 168, offsetof(mavlink_trajectory_representation_waypoints_t, acc_z) }, \
          { "pos_yaw", NULL, MAVLINK_TYPE_FLOAT, 5, 188, offsetof(mavlink_trajectory_representation_waypoints_t, pos_yaw) }, \
          { "vel_yaw", NULL, MAVLINK_TYPE_FLOAT, 5, 208, offsetof(mavlink_trajectory_representation_waypoints_t, vel_yaw) }, \
+         { "command", NULL, MAVLINK_TYPE_UINT16_T, 5, 228, offsetof(mavlink_trajectory_representation_waypoints_t, command) }, \
          } \
 }
 #endif
@@ -100,15 +104,16 @@ typedef struct __mavlink_trajectory_representation_waypoints_t {
  * @param acc_z [m/s/s] Z-acceleration of waypoint, set to NaN if not being used
  * @param pos_yaw [rad] Yaw angle, set to NaN if not being used
  * @param vel_yaw [rad/s] Yaw rate, set to NaN if not being used
+ * @param command  Scheduled action for each waypoint, UINT16_MAX if not being used.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint64_t time_usec, uint8_t valid_points, const float *pos_x, const float *pos_y, const float *pos_z, const float *vel_x, const float *vel_y, const float *vel_z, const float *acc_x, const float *acc_y, const float *acc_z, const float *pos_yaw, const float *vel_yaw)
+                               uint64_t time_usec, uint8_t valid_points, const float *pos_x, const float *pos_y, const float *pos_z, const float *vel_x, const float *vel_y, const float *vel_z, const float *acc_x, const float *acc_y, const float *acc_z, const float *pos_yaw, const float *vel_yaw, const uint16_t *command)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN];
     _mav_put_uint64_t(buf, 0, time_usec);
-    _mav_put_uint8_t(buf, 228, valid_points);
+    _mav_put_uint8_t(buf, 238, valid_points);
     _mav_put_float_array(buf, 8, pos_x, 5);
     _mav_put_float_array(buf, 28, pos_y, 5);
     _mav_put_float_array(buf, 48, pos_z, 5);
@@ -120,6 +125,7 @@ static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack(uint
     _mav_put_float_array(buf, 168, acc_z, 5);
     _mav_put_float_array(buf, 188, pos_yaw, 5);
     _mav_put_float_array(buf, 208, vel_yaw, 5);
+    _mav_put_uint16_t_array(buf, 228, command, 5);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN);
 #else
     mavlink_trajectory_representation_waypoints_t packet;
@@ -136,6 +142,7 @@ static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack(uint
     mav_array_memcpy(packet.acc_z, acc_z, sizeof(float)*5);
     mav_array_memcpy(packet.pos_yaw, pos_yaw, sizeof(float)*5);
     mav_array_memcpy(packet.vel_yaw, vel_yaw, sizeof(float)*5);
+    mav_array_memcpy(packet.command, command, sizeof(uint16_t)*5);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN);
 #endif
 
@@ -162,16 +169,17 @@ static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack(uint
  * @param acc_z [m/s/s] Z-acceleration of waypoint, set to NaN if not being used
  * @param pos_yaw [rad] Yaw angle, set to NaN if not being used
  * @param vel_yaw [rad/s] Yaw rate, set to NaN if not being used
+ * @param command  Scheduled action for each waypoint, UINT16_MAX if not being used.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint64_t time_usec,uint8_t valid_points,const float *pos_x,const float *pos_y,const float *pos_z,const float *vel_x,const float *vel_y,const float *vel_z,const float *acc_x,const float *acc_y,const float *acc_z,const float *pos_yaw,const float *vel_yaw)
+                                   uint64_t time_usec,uint8_t valid_points,const float *pos_x,const float *pos_y,const float *pos_z,const float *vel_x,const float *vel_y,const float *vel_z,const float *acc_x,const float *acc_y,const float *acc_z,const float *pos_yaw,const float *vel_yaw,const uint16_t *command)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN];
     _mav_put_uint64_t(buf, 0, time_usec);
-    _mav_put_uint8_t(buf, 228, valid_points);
+    _mav_put_uint8_t(buf, 238, valid_points);
     _mav_put_float_array(buf, 8, pos_x, 5);
     _mav_put_float_array(buf, 28, pos_y, 5);
     _mav_put_float_array(buf, 48, pos_z, 5);
@@ -183,6 +191,7 @@ static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack_chan
     _mav_put_float_array(buf, 168, acc_z, 5);
     _mav_put_float_array(buf, 188, pos_yaw, 5);
     _mav_put_float_array(buf, 208, vel_yaw, 5);
+    _mav_put_uint16_t_array(buf, 228, command, 5);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN);
 #else
     mavlink_trajectory_representation_waypoints_t packet;
@@ -199,6 +208,7 @@ static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack_chan
     mav_array_memcpy(packet.acc_z, acc_z, sizeof(float)*5);
     mav_array_memcpy(packet.pos_yaw, pos_yaw, sizeof(float)*5);
     mav_array_memcpy(packet.vel_yaw, vel_yaw, sizeof(float)*5);
+    mav_array_memcpy(packet.command, command, sizeof(uint16_t)*5);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN);
 #endif
 
@@ -216,7 +226,7 @@ static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack_chan
  */
 static inline uint16_t mavlink_msg_trajectory_representation_waypoints_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_trajectory_representation_waypoints_t* trajectory_representation_waypoints)
 {
-    return mavlink_msg_trajectory_representation_waypoints_pack(system_id, component_id, msg, trajectory_representation_waypoints->time_usec, trajectory_representation_waypoints->valid_points, trajectory_representation_waypoints->pos_x, trajectory_representation_waypoints->pos_y, trajectory_representation_waypoints->pos_z, trajectory_representation_waypoints->vel_x, trajectory_representation_waypoints->vel_y, trajectory_representation_waypoints->vel_z, trajectory_representation_waypoints->acc_x, trajectory_representation_waypoints->acc_y, trajectory_representation_waypoints->acc_z, trajectory_representation_waypoints->pos_yaw, trajectory_representation_waypoints->vel_yaw);
+    return mavlink_msg_trajectory_representation_waypoints_pack(system_id, component_id, msg, trajectory_representation_waypoints->time_usec, trajectory_representation_waypoints->valid_points, trajectory_representation_waypoints->pos_x, trajectory_representation_waypoints->pos_y, trajectory_representation_waypoints->pos_z, trajectory_representation_waypoints->vel_x, trajectory_representation_waypoints->vel_y, trajectory_representation_waypoints->vel_z, trajectory_representation_waypoints->acc_x, trajectory_representation_waypoints->acc_y, trajectory_representation_waypoints->acc_z, trajectory_representation_waypoints->pos_yaw, trajectory_representation_waypoints->vel_yaw, trajectory_representation_waypoints->command);
 }
 
 /**
@@ -230,7 +240,7 @@ static inline uint16_t mavlink_msg_trajectory_representation_waypoints_encode(ui
  */
 static inline uint16_t mavlink_msg_trajectory_representation_waypoints_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_trajectory_representation_waypoints_t* trajectory_representation_waypoints)
 {
-    return mavlink_msg_trajectory_representation_waypoints_pack_chan(system_id, component_id, chan, msg, trajectory_representation_waypoints->time_usec, trajectory_representation_waypoints->valid_points, trajectory_representation_waypoints->pos_x, trajectory_representation_waypoints->pos_y, trajectory_representation_waypoints->pos_z, trajectory_representation_waypoints->vel_x, trajectory_representation_waypoints->vel_y, trajectory_representation_waypoints->vel_z, trajectory_representation_waypoints->acc_x, trajectory_representation_waypoints->acc_y, trajectory_representation_waypoints->acc_z, trajectory_representation_waypoints->pos_yaw, trajectory_representation_waypoints->vel_yaw);
+    return mavlink_msg_trajectory_representation_waypoints_pack_chan(system_id, component_id, chan, msg, trajectory_representation_waypoints->time_usec, trajectory_representation_waypoints->valid_points, trajectory_representation_waypoints->pos_x, trajectory_representation_waypoints->pos_y, trajectory_representation_waypoints->pos_z, trajectory_representation_waypoints->vel_x, trajectory_representation_waypoints->vel_y, trajectory_representation_waypoints->vel_z, trajectory_representation_waypoints->acc_x, trajectory_representation_waypoints->acc_y, trajectory_representation_waypoints->acc_z, trajectory_representation_waypoints->pos_yaw, trajectory_representation_waypoints->vel_yaw, trajectory_representation_waypoints->command);
 }
 
 /**
@@ -250,15 +260,16 @@ static inline uint16_t mavlink_msg_trajectory_representation_waypoints_encode_ch
  * @param acc_z [m/s/s] Z-acceleration of waypoint, set to NaN if not being used
  * @param pos_yaw [rad] Yaw angle, set to NaN if not being used
  * @param vel_yaw [rad/s] Yaw rate, set to NaN if not being used
+ * @param command  Scheduled action for each waypoint, UINT16_MAX if not being used.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_trajectory_representation_waypoints_send(mavlink_channel_t chan, uint64_t time_usec, uint8_t valid_points, const float *pos_x, const float *pos_y, const float *pos_z, const float *vel_x, const float *vel_y, const float *vel_z, const float *acc_x, const float *acc_y, const float *acc_z, const float *pos_yaw, const float *vel_yaw)
+static inline void mavlink_msg_trajectory_representation_waypoints_send(mavlink_channel_t chan, uint64_t time_usec, uint8_t valid_points, const float *pos_x, const float *pos_y, const float *pos_z, const float *vel_x, const float *vel_y, const float *vel_z, const float *acc_x, const float *acc_y, const float *acc_z, const float *pos_yaw, const float *vel_yaw, const uint16_t *command)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN];
     _mav_put_uint64_t(buf, 0, time_usec);
-    _mav_put_uint8_t(buf, 228, valid_points);
+    _mav_put_uint8_t(buf, 238, valid_points);
     _mav_put_float_array(buf, 8, pos_x, 5);
     _mav_put_float_array(buf, 28, pos_y, 5);
     _mav_put_float_array(buf, 48, pos_z, 5);
@@ -270,6 +281,7 @@ static inline void mavlink_msg_trajectory_representation_waypoints_send(mavlink_
     _mav_put_float_array(buf, 168, acc_z, 5);
     _mav_put_float_array(buf, 188, pos_yaw, 5);
     _mav_put_float_array(buf, 208, vel_yaw, 5);
+    _mav_put_uint16_t_array(buf, 228, command, 5);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS, buf, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_MIN_LEN, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_CRC);
 #else
     mavlink_trajectory_representation_waypoints_t packet;
@@ -286,6 +298,7 @@ static inline void mavlink_msg_trajectory_representation_waypoints_send(mavlink_
     mav_array_memcpy(packet.acc_z, acc_z, sizeof(float)*5);
     mav_array_memcpy(packet.pos_yaw, pos_yaw, sizeof(float)*5);
     mav_array_memcpy(packet.vel_yaw, vel_yaw, sizeof(float)*5);
+    mav_array_memcpy(packet.command, command, sizeof(uint16_t)*5);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS, (const char *)&packet, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_MIN_LEN, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_CRC);
 #endif
 }
@@ -298,7 +311,7 @@ static inline void mavlink_msg_trajectory_representation_waypoints_send(mavlink_
 static inline void mavlink_msg_trajectory_representation_waypoints_send_struct(mavlink_channel_t chan, const mavlink_trajectory_representation_waypoints_t* trajectory_representation_waypoints)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_trajectory_representation_waypoints_send(chan, trajectory_representation_waypoints->time_usec, trajectory_representation_waypoints->valid_points, trajectory_representation_waypoints->pos_x, trajectory_representation_waypoints->pos_y, trajectory_representation_waypoints->pos_z, trajectory_representation_waypoints->vel_x, trajectory_representation_waypoints->vel_y, trajectory_representation_waypoints->vel_z, trajectory_representation_waypoints->acc_x, trajectory_representation_waypoints->acc_y, trajectory_representation_waypoints->acc_z, trajectory_representation_waypoints->pos_yaw, trajectory_representation_waypoints->vel_yaw);
+    mavlink_msg_trajectory_representation_waypoints_send(chan, trajectory_representation_waypoints->time_usec, trajectory_representation_waypoints->valid_points, trajectory_representation_waypoints->pos_x, trajectory_representation_waypoints->pos_y, trajectory_representation_waypoints->pos_z, trajectory_representation_waypoints->vel_x, trajectory_representation_waypoints->vel_y, trajectory_representation_waypoints->vel_z, trajectory_representation_waypoints->acc_x, trajectory_representation_waypoints->acc_y, trajectory_representation_waypoints->acc_z, trajectory_representation_waypoints->pos_yaw, trajectory_representation_waypoints->vel_yaw, trajectory_representation_waypoints->command);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS, (const char *)trajectory_representation_waypoints, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_MIN_LEN, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_CRC);
 #endif
@@ -312,12 +325,12 @@ static inline void mavlink_msg_trajectory_representation_waypoints_send_struct(m
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_trajectory_representation_waypoints_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, uint8_t valid_points, const float *pos_x, const float *pos_y, const float *pos_z, const float *vel_x, const float *vel_y, const float *vel_z, const float *acc_x, const float *acc_y, const float *acc_z, const float *pos_yaw, const float *vel_yaw)
+static inline void mavlink_msg_trajectory_representation_waypoints_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, uint8_t valid_points, const float *pos_x, const float *pos_y, const float *pos_z, const float *vel_x, const float *vel_y, const float *vel_z, const float *acc_x, const float *acc_y, const float *acc_z, const float *pos_yaw, const float *vel_yaw, const uint16_t *command)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_uint64_t(buf, 0, time_usec);
-    _mav_put_uint8_t(buf, 228, valid_points);
+    _mav_put_uint8_t(buf, 238, valid_points);
     _mav_put_float_array(buf, 8, pos_x, 5);
     _mav_put_float_array(buf, 28, pos_y, 5);
     _mav_put_float_array(buf, 48, pos_z, 5);
@@ -329,6 +342,7 @@ static inline void mavlink_msg_trajectory_representation_waypoints_send_buf(mavl
     _mav_put_float_array(buf, 168, acc_z, 5);
     _mav_put_float_array(buf, 188, pos_yaw, 5);
     _mav_put_float_array(buf, 208, vel_yaw, 5);
+    _mav_put_uint16_t_array(buf, 228, command, 5);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS, buf, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_MIN_LEN, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_CRC);
 #else
     mavlink_trajectory_representation_waypoints_t *packet = (mavlink_trajectory_representation_waypoints_t *)msgbuf;
@@ -345,6 +359,7 @@ static inline void mavlink_msg_trajectory_representation_waypoints_send_buf(mavl
     mav_array_memcpy(packet->acc_z, acc_z, sizeof(float)*5);
     mav_array_memcpy(packet->pos_yaw, pos_yaw, sizeof(float)*5);
     mav_array_memcpy(packet->vel_yaw, vel_yaw, sizeof(float)*5);
+    mav_array_memcpy(packet->command, command, sizeof(uint16_t)*5);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS, (const char *)packet, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_MIN_LEN, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_CRC);
 #endif
 }
@@ -372,7 +387,7 @@ static inline uint64_t mavlink_msg_trajectory_representation_waypoints_get_time_
  */
 static inline uint8_t mavlink_msg_trajectory_representation_waypoints_get_valid_points(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  228);
+    return _MAV_RETURN_uint8_t(msg,  238);
 }
 
 /**
@@ -486,6 +501,16 @@ static inline uint16_t mavlink_msg_trajectory_representation_waypoints_get_vel_y
 }
 
 /**
+ * @brief Get field command from trajectory_representation_waypoints message
+ *
+ * @return  Scheduled action for each waypoint, UINT16_MAX if not being used.
+ */
+static inline uint16_t mavlink_msg_trajectory_representation_waypoints_get_command(const mavlink_message_t* msg, uint16_t *command)
+{
+    return _MAV_RETURN_uint16_t_array(msg, command, 5,  228);
+}
+
+/**
  * @brief Decode a trajectory_representation_waypoints message into a struct
  *
  * @param msg The message to decode
@@ -506,6 +531,7 @@ static inline void mavlink_msg_trajectory_representation_waypoints_decode(const 
     mavlink_msg_trajectory_representation_waypoints_get_acc_z(msg, trajectory_representation_waypoints->acc_z);
     mavlink_msg_trajectory_representation_waypoints_get_pos_yaw(msg, trajectory_representation_waypoints->pos_yaw);
     mavlink_msg_trajectory_representation_waypoints_get_vel_yaw(msg, trajectory_representation_waypoints->vel_yaw);
+    mavlink_msg_trajectory_representation_waypoints_get_command(msg, trajectory_representation_waypoints->command);
     trajectory_representation_waypoints->valid_points = mavlink_msg_trajectory_representation_waypoints_get_valid_points(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN? msg->len : MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN;
