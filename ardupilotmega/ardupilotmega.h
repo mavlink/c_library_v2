@@ -900,7 +900,6 @@ typedef enum TRACKER_MODE
 #include "./mavlink_msg_mount_status.h"
 #include "./mavlink_msg_fence_point.h"
 #include "./mavlink_msg_fence_fetch_point.h"
-#include "./mavlink_msg_fence_status.h"
 #include "./mavlink_msg_ahrs.h"
 #include "./mavlink_msg_simstate.h"
 #include "./mavlink_msg_hwstatus.h"
