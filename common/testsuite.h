@@ -10945,6 +10945,302 @@ static void mavlink_test_wheel_distance(uint8_t system_id, uint8_t component_id,
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
+static void mavlink_test_open_drone_id_basic_id(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_OPEN_DRONE_ID_BASIC_ID >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_open_drone_id_basic_id_t packet_in = {
+        5,72,{ 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158 }
+    };
+    mavlink_open_drone_id_basic_id_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.id_type = packet_in.id_type;
+        packet1.ua_type = packet_in.ua_type;
+        
+        mav_array_memcpy(packet1.uas_id, packet_in.uas_id, sizeof(uint8_t)*20);
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_OPEN_DRONE_ID_BASIC_ID_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_OPEN_DRONE_ID_BASIC_ID_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_open_drone_id_basic_id_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_open_drone_id_basic_id_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_open_drone_id_basic_id_pack(system_id, component_id, &msg , packet1.id_type , packet1.ua_type , packet1.uas_id );
+    mavlink_msg_open_drone_id_basic_id_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_open_drone_id_basic_id_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.id_type , packet1.ua_type , packet1.uas_id );
+    mavlink_msg_open_drone_id_basic_id_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_open_drone_id_basic_id_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_open_drone_id_basic_id_send(MAVLINK_COMM_1 , packet1.id_type , packet1.ua_type , packet1.uas_id );
+    mavlink_msg_open_drone_id_basic_id_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
+static void mavlink_test_open_drone_id_location(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_OPEN_DRONE_ID_LOCATION >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_open_drone_id_location_t packet_in = {
+        963497464,963497672,73.0,101.0,129.0,157.0,18483,18587,18691,223,34,101,168,235,46,113
+    };
+    mavlink_open_drone_id_location_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.latitude = packet_in.latitude;
+        packet1.longitude = packet_in.longitude;
+        packet1.altitude_barometric = packet_in.altitude_barometric;
+        packet1.altitude_geodetic = packet_in.altitude_geodetic;
+        packet1.height = packet_in.height;
+        packet1.timestamp = packet_in.timestamp;
+        packet1.direction = packet_in.direction;
+        packet1.speed_horizontal = packet_in.speed_horizontal;
+        packet1.speed_vertical = packet_in.speed_vertical;
+        packet1.status = packet_in.status;
+        packet1.height_reference = packet_in.height_reference;
+        packet1.horizontal_accuracy = packet_in.horizontal_accuracy;
+        packet1.vertical_accuracy = packet_in.vertical_accuracy;
+        packet1.barometer_accuracy = packet_in.barometer_accuracy;
+        packet1.speed_accuracy = packet_in.speed_accuracy;
+        packet1.timestamp_accuracy = packet_in.timestamp_accuracy;
+        
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_OPEN_DRONE_ID_LOCATION_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_OPEN_DRONE_ID_LOCATION_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_open_drone_id_location_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_open_drone_id_location_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_open_drone_id_location_pack(system_id, component_id, &msg , packet1.status , packet1.direction , packet1.speed_horizontal , packet1.speed_vertical , packet1.latitude , packet1.longitude , packet1.altitude_barometric , packet1.altitude_geodetic , packet1.height_reference , packet1.height , packet1.horizontal_accuracy , packet1.vertical_accuracy , packet1.barometer_accuracy , packet1.speed_accuracy , packet1.timestamp , packet1.timestamp_accuracy );
+    mavlink_msg_open_drone_id_location_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_open_drone_id_location_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.status , packet1.direction , packet1.speed_horizontal , packet1.speed_vertical , packet1.latitude , packet1.longitude , packet1.altitude_barometric , packet1.altitude_geodetic , packet1.height_reference , packet1.height , packet1.horizontal_accuracy , packet1.vertical_accuracy , packet1.barometer_accuracy , packet1.speed_accuracy , packet1.timestamp , packet1.timestamp_accuracy );
+    mavlink_msg_open_drone_id_location_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_open_drone_id_location_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_open_drone_id_location_send(MAVLINK_COMM_1 , packet1.status , packet1.direction , packet1.speed_horizontal , packet1.speed_vertical , packet1.latitude , packet1.longitude , packet1.altitude_barometric , packet1.altitude_geodetic , packet1.height_reference , packet1.height , packet1.horizontal_accuracy , packet1.vertical_accuracy , packet1.barometer_accuracy , packet1.speed_accuracy , packet1.timestamp , packet1.timestamp_accuracy );
+    mavlink_msg_open_drone_id_location_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
+static void mavlink_test_open_drone_id_authentication(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_OPEN_DRONE_ID_AUTHENTICATION >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_open_drone_id_authentication_t packet_in = {
+        5,72,{ 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161 }
+    };
+    mavlink_open_drone_id_authentication_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.authentication_type = packet_in.authentication_type;
+        packet1.data_page = packet_in.data_page;
+        
+        mav_array_memcpy(packet1.authentication_data, packet_in.authentication_data, sizeof(uint8_t)*23);
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_OPEN_DRONE_ID_AUTHENTICATION_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_OPEN_DRONE_ID_AUTHENTICATION_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_open_drone_id_authentication_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_open_drone_id_authentication_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_open_drone_id_authentication_pack(system_id, component_id, &msg , packet1.authentication_type , packet1.data_page , packet1.authentication_data );
+    mavlink_msg_open_drone_id_authentication_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_open_drone_id_authentication_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.authentication_type , packet1.data_page , packet1.authentication_data );
+    mavlink_msg_open_drone_id_authentication_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_open_drone_id_authentication_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_open_drone_id_authentication_send(MAVLINK_COMM_1 , packet1.authentication_type , packet1.data_page , packet1.authentication_data );
+    mavlink_msg_open_drone_id_authentication_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
+static void mavlink_test_open_drone_id_selfid(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_OPEN_DRONE_ID_SELFID >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_open_drone_id_selfid_t packet_in = {
+        5,"BCDEFGHIJKLMNOPQRSTUVW"
+    };
+    mavlink_open_drone_id_selfid_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.description_type = packet_in.description_type;
+        
+        mav_array_memcpy(packet1.description, packet_in.description, sizeof(char)*23);
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_OPEN_DRONE_ID_SELFID_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_OPEN_DRONE_ID_SELFID_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_open_drone_id_selfid_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_open_drone_id_selfid_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_open_drone_id_selfid_pack(system_id, component_id, &msg , packet1.description_type , packet1.description );
+    mavlink_msg_open_drone_id_selfid_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_open_drone_id_selfid_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.description_type , packet1.description );
+    mavlink_msg_open_drone_id_selfid_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_open_drone_id_selfid_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_open_drone_id_selfid_send(MAVLINK_COMM_1 , packet1.description_type , packet1.description );
+    mavlink_msg_open_drone_id_selfid_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
+static void mavlink_test_open_drone_id_system(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_OPEN_DRONE_ID_SYSTEM >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_open_drone_id_system_t packet_in = {
+        963497464,963497672,73.0,101.0,18067,18171,65
+    };
+    mavlink_open_drone_id_system_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.remote_pilot_latitude = packet_in.remote_pilot_latitude;
+        packet1.remote_pilot_longitude = packet_in.remote_pilot_longitude;
+        packet1.group_ceiling = packet_in.group_ceiling;
+        packet1.group_floor = packet_in.group_floor;
+        packet1.group_count = packet_in.group_count;
+        packet1.group_radius = packet_in.group_radius;
+        packet1.flags = packet_in.flags;
+        
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_OPEN_DRONE_ID_SYSTEM_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_OPEN_DRONE_ID_SYSTEM_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_open_drone_id_system_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_open_drone_id_system_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_open_drone_id_system_pack(system_id, component_id, &msg , packet1.flags , packet1.remote_pilot_latitude , packet1.remote_pilot_longitude , packet1.group_count , packet1.group_radius , packet1.group_ceiling , packet1.group_floor );
+    mavlink_msg_open_drone_id_system_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_open_drone_id_system_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.flags , packet1.remote_pilot_latitude , packet1.remote_pilot_longitude , packet1.group_count , packet1.group_radius , packet1.group_ceiling , packet1.group_floor );
+    mavlink_msg_open_drone_id_system_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_open_drone_id_system_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_open_drone_id_system_send(MAVLINK_COMM_1 , packet1.flags , packet1.remote_pilot_latitude , packet1.remote_pilot_longitude , packet1.group_count , packet1.group_radius , packet1.group_ceiling , packet1.group_floor );
+    mavlink_msg_open_drone_id_system_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
 static void mavlink_test_common(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
     mavlink_test_heartbeat(system_id, component_id, last_msg);
@@ -11127,6 +11423,11 @@ static void mavlink_test_common(uint8_t system_id, uint8_t component_id, mavlink
     mavlink_test_time_estimate_to_target(system_id, component_id, last_msg);
     mavlink_test_tunnel(system_id, component_id, last_msg);
     mavlink_test_wheel_distance(system_id, component_id, last_msg);
+    mavlink_test_open_drone_id_basic_id(system_id, component_id, last_msg);
+    mavlink_test_open_drone_id_location(system_id, component_id, last_msg);
+    mavlink_test_open_drone_id_authentication(system_id, component_id, last_msg);
+    mavlink_test_open_drone_id_selfid(system_id, component_id, last_msg);
+    mavlink_test_open_drone_id_system(system_id, component_id, last_msg);
 }
 
 #ifdef __cplusplus
