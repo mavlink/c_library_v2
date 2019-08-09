@@ -15,11 +15,12 @@ typedef struct __mavlink_raw_imu_t {
  int16_t xmag; /*<  X Magnetic field (raw)*/
  int16_t ymag; /*<  Y Magnetic field (raw)*/
  int16_t zmag; /*<  Z Magnetic field (raw)*/
+ uint8_t id; /*<  Id. Ids are numbered from 0 and map to IMUs numbered from 1 (e.g. IMU1 will have a message with id=0)*/
 }) mavlink_raw_imu_t;
 
-#define MAVLINK_MSG_ID_RAW_IMU_LEN 26
+#define MAVLINK_MSG_ID_RAW_IMU_LEN 27
 #define MAVLINK_MSG_ID_RAW_IMU_MIN_LEN 26
-#define MAVLINK_MSG_ID_27_LEN 26
+#define MAVLINK_MSG_ID_27_LEN 27
 #define MAVLINK_MSG_ID_27_MIN_LEN 26
 
 #define MAVLINK_MSG_ID_RAW_IMU_CRC 144
@@ -31,7 +32,7 @@ typedef struct __mavlink_raw_imu_t {
 #define MAVLINK_MESSAGE_INFO_RAW_IMU { \
     27, \
     "RAW_IMU", \
-    10, \
+    11, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_raw_imu_t, time_usec) }, \
          { "xacc", NULL, MAVLINK_TYPE_INT16_T, 0, 8, offsetof(mavlink_raw_imu_t, xacc) }, \
          { "yacc", NULL, MAVLINK_TYPE_INT16_T, 0, 10, offsetof(mavlink_raw_imu_t, yacc) }, \
@@ -42,12 +43,13 @@ typedef struct __mavlink_raw_imu_t {
          { "xmag", NULL, MAVLINK_TYPE_INT16_T, 0, 20, offsetof(mavlink_raw_imu_t, xmag) }, \
          { "ymag", NULL, MAVLINK_TYPE_INT16_T, 0, 22, offsetof(mavlink_raw_imu_t, ymag) }, \
          { "zmag", NULL, MAVLINK_TYPE_INT16_T, 0, 24, offsetof(mavlink_raw_imu_t, zmag) }, \
+         { "id", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_raw_imu_t, id) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_RAW_IMU { \
     "RAW_IMU", \
-    10, \
+    11, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_raw_imu_t, time_usec) }, \
          { "xacc", NULL, MAVLINK_TYPE_INT16_T, 0, 8, offsetof(mavlink_raw_imu_t, xacc) }, \
          { "yacc", NULL, MAVLINK_TYPE_INT16_T, 0, 10, offsetof(mavlink_raw_imu_t, yacc) }, \
@@ -58,6 +60,7 @@ typedef struct __mavlink_raw_imu_t {
          { "xmag", NULL, MAVLINK_TYPE_INT16_T, 0, 20, offsetof(mavlink_raw_imu_t, xmag) }, \
          { "ymag", NULL, MAVLINK_TYPE_INT16_T, 0, 22, offsetof(mavlink_raw_imu_t, ymag) }, \
          { "zmag", NULL, MAVLINK_TYPE_INT16_T, 0, 24, offsetof(mavlink_raw_imu_t, zmag) }, \
+         { "id", NULL, MAVLINK_TYPE_UINT8_T, 0, 26, offsetof(mavlink_raw_imu_t, id) }, \
          } \
 }
 #endif
@@ -78,10 +81,11 @@ typedef struct __mavlink_raw_imu_t {
  * @param xmag  X Magnetic field (raw)
  * @param ymag  Y Magnetic field (raw)
  * @param zmag  Z Magnetic field (raw)
+ * @param id  Id. Ids are numbered from 0 and map to IMUs numbered from 1 (e.g. IMU1 will have a message with id=0)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_raw_imu_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint64_t time_usec, int16_t xacc, int16_t yacc, int16_t zacc, int16_t xgyro, int16_t ygyro, int16_t zgyro, int16_t xmag, int16_t ymag, int16_t zmag)
+                               uint64_t time_usec, int16_t xacc, int16_t yacc, int16_t zacc, int16_t xgyro, int16_t ygyro, int16_t zgyro, int16_t xmag, int16_t ymag, int16_t zmag, uint8_t id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_RAW_IMU_LEN];
@@ -95,6 +99,7 @@ static inline uint16_t mavlink_msg_raw_imu_pack(uint8_t system_id, uint8_t compo
     _mav_put_int16_t(buf, 20, xmag);
     _mav_put_int16_t(buf, 22, ymag);
     _mav_put_int16_t(buf, 24, zmag);
+    _mav_put_uint8_t(buf, 26, id);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_RAW_IMU_LEN);
 #else
@@ -109,6 +114,7 @@ static inline uint16_t mavlink_msg_raw_imu_pack(uint8_t system_id, uint8_t compo
     packet.xmag = xmag;
     packet.ymag = ymag;
     packet.zmag = zmag;
+    packet.id = id;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_RAW_IMU_LEN);
 #endif
@@ -133,11 +139,12 @@ static inline uint16_t mavlink_msg_raw_imu_pack(uint8_t system_id, uint8_t compo
  * @param xmag  X Magnetic field (raw)
  * @param ymag  Y Magnetic field (raw)
  * @param zmag  Z Magnetic field (raw)
+ * @param id  Id. Ids are numbered from 0 and map to IMUs numbered from 1 (e.g. IMU1 will have a message with id=0)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_raw_imu_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint64_t time_usec,int16_t xacc,int16_t yacc,int16_t zacc,int16_t xgyro,int16_t ygyro,int16_t zgyro,int16_t xmag,int16_t ymag,int16_t zmag)
+                                   uint64_t time_usec,int16_t xacc,int16_t yacc,int16_t zacc,int16_t xgyro,int16_t ygyro,int16_t zgyro,int16_t xmag,int16_t ymag,int16_t zmag,uint8_t id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_RAW_IMU_LEN];
@@ -151,6 +158,7 @@ static inline uint16_t mavlink_msg_raw_imu_pack_chan(uint8_t system_id, uint8_t 
     _mav_put_int16_t(buf, 20, xmag);
     _mav_put_int16_t(buf, 22, ymag);
     _mav_put_int16_t(buf, 24, zmag);
+    _mav_put_uint8_t(buf, 26, id);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_RAW_IMU_LEN);
 #else
@@ -165,6 +173,7 @@ static inline uint16_t mavlink_msg_raw_imu_pack_chan(uint8_t system_id, uint8_t 
     packet.xmag = xmag;
     packet.ymag = ymag;
     packet.zmag = zmag;
+    packet.id = id;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_RAW_IMU_LEN);
 #endif
@@ -183,7 +192,7 @@ static inline uint16_t mavlink_msg_raw_imu_pack_chan(uint8_t system_id, uint8_t 
  */
 static inline uint16_t mavlink_msg_raw_imu_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_raw_imu_t* raw_imu)
 {
-    return mavlink_msg_raw_imu_pack(system_id, component_id, msg, raw_imu->time_usec, raw_imu->xacc, raw_imu->yacc, raw_imu->zacc, raw_imu->xgyro, raw_imu->ygyro, raw_imu->zgyro, raw_imu->xmag, raw_imu->ymag, raw_imu->zmag);
+    return mavlink_msg_raw_imu_pack(system_id, component_id, msg, raw_imu->time_usec, raw_imu->xacc, raw_imu->yacc, raw_imu->zacc, raw_imu->xgyro, raw_imu->ygyro, raw_imu->zgyro, raw_imu->xmag, raw_imu->ymag, raw_imu->zmag, raw_imu->id);
 }
 
 /**
@@ -197,7 +206,7 @@ static inline uint16_t mavlink_msg_raw_imu_encode(uint8_t system_id, uint8_t com
  */
 static inline uint16_t mavlink_msg_raw_imu_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_raw_imu_t* raw_imu)
 {
-    return mavlink_msg_raw_imu_pack_chan(system_id, component_id, chan, msg, raw_imu->time_usec, raw_imu->xacc, raw_imu->yacc, raw_imu->zacc, raw_imu->xgyro, raw_imu->ygyro, raw_imu->zgyro, raw_imu->xmag, raw_imu->ymag, raw_imu->zmag);
+    return mavlink_msg_raw_imu_pack_chan(system_id, component_id, chan, msg, raw_imu->time_usec, raw_imu->xacc, raw_imu->yacc, raw_imu->zacc, raw_imu->xgyro, raw_imu->ygyro, raw_imu->zgyro, raw_imu->xmag, raw_imu->ymag, raw_imu->zmag, raw_imu->id);
 }
 
 /**
@@ -214,10 +223,11 @@ static inline uint16_t mavlink_msg_raw_imu_encode_chan(uint8_t system_id, uint8_
  * @param xmag  X Magnetic field (raw)
  * @param ymag  Y Magnetic field (raw)
  * @param zmag  Z Magnetic field (raw)
+ * @param id  Id. Ids are numbered from 0 and map to IMUs numbered from 1 (e.g. IMU1 will have a message with id=0)
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_raw_imu_send(mavlink_channel_t chan, uint64_t time_usec, int16_t xacc, int16_t yacc, int16_t zacc, int16_t xgyro, int16_t ygyro, int16_t zgyro, int16_t xmag, int16_t ymag, int16_t zmag)
+static inline void mavlink_msg_raw_imu_send(mavlink_channel_t chan, uint64_t time_usec, int16_t xacc, int16_t yacc, int16_t zacc, int16_t xgyro, int16_t ygyro, int16_t zgyro, int16_t xmag, int16_t ymag, int16_t zmag, uint8_t id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_RAW_IMU_LEN];
@@ -231,6 +241,7 @@ static inline void mavlink_msg_raw_imu_send(mavlink_channel_t chan, uint64_t tim
     _mav_put_int16_t(buf, 20, xmag);
     _mav_put_int16_t(buf, 22, ymag);
     _mav_put_int16_t(buf, 24, zmag);
+    _mav_put_uint8_t(buf, 26, id);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RAW_IMU, buf, MAVLINK_MSG_ID_RAW_IMU_MIN_LEN, MAVLINK_MSG_ID_RAW_IMU_LEN, MAVLINK_MSG_ID_RAW_IMU_CRC);
 #else
@@ -245,6 +256,7 @@ static inline void mavlink_msg_raw_imu_send(mavlink_channel_t chan, uint64_t tim
     packet.xmag = xmag;
     packet.ymag = ymag;
     packet.zmag = zmag;
+    packet.id = id;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RAW_IMU, (const char *)&packet, MAVLINK_MSG_ID_RAW_IMU_MIN_LEN, MAVLINK_MSG_ID_RAW_IMU_LEN, MAVLINK_MSG_ID_RAW_IMU_CRC);
 #endif
@@ -258,7 +270,7 @@ static inline void mavlink_msg_raw_imu_send(mavlink_channel_t chan, uint64_t tim
 static inline void mavlink_msg_raw_imu_send_struct(mavlink_channel_t chan, const mavlink_raw_imu_t* raw_imu)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_raw_imu_send(chan, raw_imu->time_usec, raw_imu->xacc, raw_imu->yacc, raw_imu->zacc, raw_imu->xgyro, raw_imu->ygyro, raw_imu->zgyro, raw_imu->xmag, raw_imu->ymag, raw_imu->zmag);
+    mavlink_msg_raw_imu_send(chan, raw_imu->time_usec, raw_imu->xacc, raw_imu->yacc, raw_imu->zacc, raw_imu->xgyro, raw_imu->ygyro, raw_imu->zgyro, raw_imu->xmag, raw_imu->ymag, raw_imu->zmag, raw_imu->id);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RAW_IMU, (const char *)raw_imu, MAVLINK_MSG_ID_RAW_IMU_MIN_LEN, MAVLINK_MSG_ID_RAW_IMU_LEN, MAVLINK_MSG_ID_RAW_IMU_CRC);
 #endif
@@ -272,7 +284,7 @@ static inline void mavlink_msg_raw_imu_send_struct(mavlink_channel_t chan, const
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_raw_imu_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, int16_t xacc, int16_t yacc, int16_t zacc, int16_t xgyro, int16_t ygyro, int16_t zgyro, int16_t xmag, int16_t ymag, int16_t zmag)
+static inline void mavlink_msg_raw_imu_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, int16_t xacc, int16_t yacc, int16_t zacc, int16_t xgyro, int16_t ygyro, int16_t zgyro, int16_t xmag, int16_t ymag, int16_t zmag, uint8_t id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -286,6 +298,7 @@ static inline void mavlink_msg_raw_imu_send_buf(mavlink_message_t *msgbuf, mavli
     _mav_put_int16_t(buf, 20, xmag);
     _mav_put_int16_t(buf, 22, ymag);
     _mav_put_int16_t(buf, 24, zmag);
+    _mav_put_uint8_t(buf, 26, id);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RAW_IMU, buf, MAVLINK_MSG_ID_RAW_IMU_MIN_LEN, MAVLINK_MSG_ID_RAW_IMU_LEN, MAVLINK_MSG_ID_RAW_IMU_CRC);
 #else
@@ -300,6 +313,7 @@ static inline void mavlink_msg_raw_imu_send_buf(mavlink_message_t *msgbuf, mavli
     packet->xmag = xmag;
     packet->ymag = ymag;
     packet->zmag = zmag;
+    packet->id = id;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RAW_IMU, (const char *)packet, MAVLINK_MSG_ID_RAW_IMU_MIN_LEN, MAVLINK_MSG_ID_RAW_IMU_LEN, MAVLINK_MSG_ID_RAW_IMU_CRC);
 #endif
@@ -412,6 +426,16 @@ static inline int16_t mavlink_msg_raw_imu_get_zmag(const mavlink_message_t* msg)
 }
 
 /**
+ * @brief Get field id from raw_imu message
+ *
+ * @return  Id. Ids are numbered from 0 and map to IMUs numbered from 1 (e.g. IMU1 will have a message with id=0)
+ */
+static inline uint8_t mavlink_msg_raw_imu_get_id(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint8_t(msg,  26);
+}
+
+/**
  * @brief Decode a raw_imu message into a struct
  *
  * @param msg The message to decode
@@ -430,6 +454,7 @@ static inline void mavlink_msg_raw_imu_decode(const mavlink_message_t* msg, mavl
     raw_imu->xmag = mavlink_msg_raw_imu_get_xmag(msg);
     raw_imu->ymag = mavlink_msg_raw_imu_get_ymag(msg);
     raw_imu->zmag = mavlink_msg_raw_imu_get_zmag(msg);
+    raw_imu->id = mavlink_msg_raw_imu_get_id(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_RAW_IMU_LEN? msg->len : MAVLINK_MSG_ID_RAW_IMU_LEN;
         memset(raw_imu, 0, MAVLINK_MSG_ID_RAW_IMU_LEN);
