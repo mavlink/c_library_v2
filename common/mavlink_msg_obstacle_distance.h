@@ -6,7 +6,7 @@
 MAVPACKED(
 typedef struct __mavlink_obstacle_distance_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
- uint16_t distances[72]; /*< [cm] Distance of obstacles around the vehicle with index 0 corresponding to vehicle forward + angle_offset. A value of 0 is valid and means that the obstacle is practically touching the sensor. A value of max_distance +1 means no obstacle is present. A value of UINT16_MAX for unknown/not used. In a array element, one unit corresponds to 1cm.*/
+ uint16_t distances[72]; /*< [cm] Distance of obstacles around the vehicle with index 0 corresponding to local forward + angle_offset. A value of 0 is valid and means that the obstacle is practically touching the sensor. A value of max_distance +1 means no obstacle is present. A value of UINT16_MAX for unknown/not used. In a array element, one unit corresponds to 1cm.*/
  uint16_t min_distance; /*< [cm] Minimum distance the sensor can measure.*/
  uint16_t max_distance; /*< [cm] Maximum distance the sensor can measure.*/
  uint8_t sensor_type; /*<  Class id of the distance sensor type.*/
@@ -64,7 +64,7 @@ typedef struct __mavlink_obstacle_distance_t {
  *
  * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  * @param sensor_type  Class id of the distance sensor type.
- * @param distances [cm] Distance of obstacles around the vehicle with index 0 corresponding to vehicle forward + angle_offset. A value of 0 is valid and means that the obstacle is practically touching the sensor. A value of max_distance +1 means no obstacle is present. A value of UINT16_MAX for unknown/not used. In a array element, one unit corresponds to 1cm.
+ * @param distances [cm] Distance of obstacles around the vehicle with index 0 corresponding to local forward + angle_offset. A value of 0 is valid and means that the obstacle is practically touching the sensor. A value of max_distance +1 means no obstacle is present. A value of UINT16_MAX for unknown/not used. In a array element, one unit corresponds to 1cm.
  * @param increment [deg] Angular width in degrees of each array element. Increment direction is clockwise. This field is ignored if increment_f is non-zero.
  * @param min_distance [cm] Minimum distance the sensor can measure.
  * @param max_distance [cm] Maximum distance the sensor can measure.
@@ -111,7 +111,7 @@ static inline uint16_t mavlink_msg_obstacle_distance_pack(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  * @param sensor_type  Class id of the distance sensor type.
- * @param distances [cm] Distance of obstacles around the vehicle with index 0 corresponding to vehicle forward + angle_offset. A value of 0 is valid and means that the obstacle is practically touching the sensor. A value of max_distance +1 means no obstacle is present. A value of UINT16_MAX for unknown/not used. In a array element, one unit corresponds to 1cm.
+ * @param distances [cm] Distance of obstacles around the vehicle with index 0 corresponding to local forward + angle_offset. A value of 0 is valid and means that the obstacle is practically touching the sensor. A value of max_distance +1 means no obstacle is present. A value of UINT16_MAX for unknown/not used. In a array element, one unit corresponds to 1cm.
  * @param increment [deg] Angular width in degrees of each array element. Increment direction is clockwise. This field is ignored if increment_f is non-zero.
  * @param min_distance [cm] Minimum distance the sensor can measure.
  * @param max_distance [cm] Maximum distance the sensor can measure.
@@ -184,7 +184,7 @@ static inline uint16_t mavlink_msg_obstacle_distance_encode_chan(uint8_t system_
  *
  * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  * @param sensor_type  Class id of the distance sensor type.
- * @param distances [cm] Distance of obstacles around the vehicle with index 0 corresponding to vehicle forward + angle_offset. A value of 0 is valid and means that the obstacle is practically touching the sensor. A value of max_distance +1 means no obstacle is present. A value of UINT16_MAX for unknown/not used. In a array element, one unit corresponds to 1cm.
+ * @param distances [cm] Distance of obstacles around the vehicle with index 0 corresponding to local forward + angle_offset. A value of 0 is valid and means that the obstacle is practically touching the sensor. A value of max_distance +1 means no obstacle is present. A value of UINT16_MAX for unknown/not used. In a array element, one unit corresponds to 1cm.
  * @param increment [deg] Angular width in degrees of each array element. Increment direction is clockwise. This field is ignored if increment_f is non-zero.
  * @param min_distance [cm] Minimum distance the sensor can measure.
  * @param max_distance [cm] Maximum distance the sensor can measure.
@@ -298,7 +298,7 @@ static inline uint8_t mavlink_msg_obstacle_distance_get_sensor_type(const mavlin
 /**
  * @brief Get field distances from obstacle_distance message
  *
- * @return [cm] Distance of obstacles around the vehicle with index 0 corresponding to vehicle forward + angle_offset. A value of 0 is valid and means that the obstacle is practically touching the sensor. A value of max_distance +1 means no obstacle is present. A value of UINT16_MAX for unknown/not used. In a array element, one unit corresponds to 1cm.
+ * @return [cm] Distance of obstacles around the vehicle with index 0 corresponding to local forward + angle_offset. A value of 0 is valid and means that the obstacle is practically touching the sensor. A value of max_distance +1 means no obstacle is present. A value of UINT16_MAX for unknown/not used. In a array element, one unit corresponds to 1cm.
  */
 static inline uint16_t mavlink_msg_obstacle_distance_get_distances(const mavlink_message_t* msg, uint16_t *distances)
 {
