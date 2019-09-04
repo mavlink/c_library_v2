@@ -16,7 +16,7 @@ typedef struct __mavlink_raw_imu_t {
  int16_t ymag; /*<  Y Magnetic field (raw)*/
  int16_t zmag; /*<  Z Magnetic field (raw)*/
  uint8_t id; /*<  Id. Ids are numbered from 0 and map to IMUs numbered from 1 (e.g. IMU1 will have a message with id=0)*/
- int16_t temperature; /*< [cdegC] Temperature, 0 indicates that the IMU does not provide the temperature, if the IMU is actually at 0C, then a value of 1 should be sent.*/
+ int16_t temperature; /*< [cdegC] Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 (0.01C).*/
 }) mavlink_raw_imu_t;
 
 #define MAVLINK_MSG_ID_RAW_IMU_LEN 29
@@ -85,7 +85,7 @@ typedef struct __mavlink_raw_imu_t {
  * @param ymag  Y Magnetic field (raw)
  * @param zmag  Z Magnetic field (raw)
  * @param id  Id. Ids are numbered from 0 and map to IMUs numbered from 1 (e.g. IMU1 will have a message with id=0)
- * @param temperature [cdegC] Temperature, 0 indicates that the IMU does not provide the temperature, if the IMU is actually at 0C, then a value of 1 should be sent.
+ * @param temperature [cdegC] Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 (0.01C).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_raw_imu_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -146,7 +146,7 @@ static inline uint16_t mavlink_msg_raw_imu_pack(uint8_t system_id, uint8_t compo
  * @param ymag  Y Magnetic field (raw)
  * @param zmag  Z Magnetic field (raw)
  * @param id  Id. Ids are numbered from 0 and map to IMUs numbered from 1 (e.g. IMU1 will have a message with id=0)
- * @param temperature [cdegC] Temperature, 0 indicates that the IMU does not provide the temperature, if the IMU is actually at 0C, then a value of 1 should be sent.
+ * @param temperature [cdegC] Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 (0.01C).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_raw_imu_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -233,7 +233,7 @@ static inline uint16_t mavlink_msg_raw_imu_encode_chan(uint8_t system_id, uint8_
  * @param ymag  Y Magnetic field (raw)
  * @param zmag  Z Magnetic field (raw)
  * @param id  Id. Ids are numbered from 0 and map to IMUs numbered from 1 (e.g. IMU1 will have a message with id=0)
- * @param temperature [cdegC] Temperature, 0 indicates that the IMU does not provide the temperature, if the IMU is actually at 0C, then a value of 1 should be sent.
+ * @param temperature [cdegC] Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 (0.01C).
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -452,7 +452,7 @@ static inline uint8_t mavlink_msg_raw_imu_get_id(const mavlink_message_t* msg)
 /**
  * @brief Get field temperature from raw_imu message
  *
- * @return [cdegC] Temperature, 0 indicates that the IMU does not provide the temperature, if the IMU is actually at 0C, then a value of 1 should be sent.
+ * @return [cdegC] Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 (0.01C).
  */
 static inline int16_t mavlink_msg_raw_imu_get_temperature(const mavlink_message_t* msg)
 {
