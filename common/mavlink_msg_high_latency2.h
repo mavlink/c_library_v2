@@ -28,7 +28,7 @@ typedef struct __mavlink_high_latency2_t {
  uint8_t epv; /*< [dm] Maximum error vertical position since last message*/
  int8_t temperature_air; /*< [degC] Air temperature from airspeed sensor*/
  int8_t climb_rate; /*< [dm/s] Maximum climb rate magnitude since last message*/
- int8_t battery; /*< [%] Battery (percentage, -1 for DNU)*/
+ int8_t battery; /*< [%] Battery level (-1 if field not provided).*/
  int8_t custom0; /*<  Field for custom payload.*/
  int8_t custom1; /*<  Field for custom payload.*/
  int8_t custom2; /*<  Field for custom payload.*/
@@ -140,7 +140,7 @@ typedef struct __mavlink_high_latency2_t {
  * @param epv [dm] Maximum error vertical position since last message
  * @param temperature_air [degC] Air temperature from airspeed sensor
  * @param climb_rate [dm/s] Maximum climb rate magnitude since last message
- * @param battery [%] Battery (percentage, -1 for DNU)
+ * @param battery [%] Battery level (-1 if field not provided).
  * @param wp_num  Current waypoint number
  * @param failure_flags  Bitmap of failure flags.
  * @param custom0  Field for custom payload.
@@ -246,7 +246,7 @@ static inline uint16_t mavlink_msg_high_latency2_pack(uint8_t system_id, uint8_t
  * @param epv [dm] Maximum error vertical position since last message
  * @param temperature_air [degC] Air temperature from airspeed sensor
  * @param climb_rate [dm/s] Maximum climb rate magnitude since last message
- * @param battery [%] Battery (percentage, -1 for DNU)
+ * @param battery [%] Battery level (-1 if field not provided).
  * @param wp_num  Current waypoint number
  * @param failure_flags  Bitmap of failure flags.
  * @param custom0  Field for custom payload.
@@ -378,7 +378,7 @@ static inline uint16_t mavlink_msg_high_latency2_encode_chan(uint8_t system_id, 
  * @param epv [dm] Maximum error vertical position since last message
  * @param temperature_air [degC] Air temperature from airspeed sensor
  * @param climb_rate [dm/s] Maximum climb rate magnitude since last message
- * @param battery [%] Battery (percentage, -1 for DNU)
+ * @param battery [%] Battery level (-1 if field not provided).
  * @param wp_num  Current waypoint number
  * @param failure_flags  Bitmap of failure flags.
  * @param custom0  Field for custom payload.
@@ -762,7 +762,7 @@ static inline int8_t mavlink_msg_high_latency2_get_climb_rate(const mavlink_mess
 /**
  * @brief Get field battery from high_latency2 message
  *
- * @return [%] Battery (percentage, -1 for DNU)
+ * @return [%] Battery level (-1 if field not provided).
  */
 static inline int8_t mavlink_msg_high_latency2_get_battery(const mavlink_message_t* msg)
 {
