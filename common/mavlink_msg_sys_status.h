@@ -9,15 +9,15 @@ typedef struct __mavlink_sys_status_t {
  uint32_t onboard_control_sensors_enabled; /*<  Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled.*/
  uint32_t onboard_control_sensors_health; /*<  Bitmap showing which onboard controllers and sensors have an error (or are operational). Value of 0: error. Value of 1: healthy.*/
  uint16_t load; /*< [d%] Maximum usage in percent of the mainloop time. Values: [0-1000] - should always be below 1000*/
- uint16_t voltage_battery; /*< [mV] Battery voltage*/
- int16_t current_battery; /*< [cA] Battery current, -1: autopilot does not measure the current*/
+ uint16_t voltage_battery; /*< [mV] Battery voltage, UINT16_MAX: Voltage not sent by autopilot*/
+ int16_t current_battery; /*< [cA] Battery current, -1: Current not sent by autopilot*/
  uint16_t drop_rate_comm; /*< [c%] Communication drop rate, (UART, I2C, SPI, CAN), dropped packets on all links (packets that were corrupted on reception on the MAV)*/
  uint16_t errors_comm; /*<  Communication errors (UART, I2C, SPI, CAN), dropped packets on all links (packets that were corrupted on reception on the MAV)*/
  uint16_t errors_count1; /*<  Autopilot-specific errors*/
  uint16_t errors_count2; /*<  Autopilot-specific errors*/
  uint16_t errors_count3; /*<  Autopilot-specific errors*/
  uint16_t errors_count4; /*<  Autopilot-specific errors*/
- int8_t battery_remaining; /*< [%] Remaining battery energy, -1: autopilot estimate the remaining battery*/
+ int8_t battery_remaining; /*< [%] Battery energy remaining, -1: Battery remaining energy not sent by autopilot*/
 }) mavlink_sys_status_t;
 
 #define MAVLINK_MSG_ID_SYS_STATUS_LEN 31
@@ -81,9 +81,9 @@ typedef struct __mavlink_sys_status_t {
  * @param onboard_control_sensors_enabled  Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled.
  * @param onboard_control_sensors_health  Bitmap showing which onboard controllers and sensors have an error (or are operational). Value of 0: error. Value of 1: healthy.
  * @param load [d%] Maximum usage in percent of the mainloop time. Values: [0-1000] - should always be below 1000
- * @param voltage_battery [mV] Battery voltage
- * @param current_battery [cA] Battery current, -1: autopilot does not measure the current
- * @param battery_remaining [%] Remaining battery energy, -1: autopilot estimate the remaining battery
+ * @param voltage_battery [mV] Battery voltage, UINT16_MAX: Voltage not sent by autopilot
+ * @param current_battery [cA] Battery current, -1: Current not sent by autopilot
+ * @param battery_remaining [%] Battery energy remaining, -1: Battery remaining energy not sent by autopilot
  * @param drop_rate_comm [c%] Communication drop rate, (UART, I2C, SPI, CAN), dropped packets on all links (packets that were corrupted on reception on the MAV)
  * @param errors_comm  Communication errors (UART, I2C, SPI, CAN), dropped packets on all links (packets that were corrupted on reception on the MAV)
  * @param errors_count1  Autopilot-specific errors
@@ -145,9 +145,9 @@ static inline uint16_t mavlink_msg_sys_status_pack(uint8_t system_id, uint8_t co
  * @param onboard_control_sensors_enabled  Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled.
  * @param onboard_control_sensors_health  Bitmap showing which onboard controllers and sensors have an error (or are operational). Value of 0: error. Value of 1: healthy.
  * @param load [d%] Maximum usage in percent of the mainloop time. Values: [0-1000] - should always be below 1000
- * @param voltage_battery [mV] Battery voltage
- * @param current_battery [cA] Battery current, -1: autopilot does not measure the current
- * @param battery_remaining [%] Remaining battery energy, -1: autopilot estimate the remaining battery
+ * @param voltage_battery [mV] Battery voltage, UINT16_MAX: Voltage not sent by autopilot
+ * @param current_battery [cA] Battery current, -1: Current not sent by autopilot
+ * @param battery_remaining [%] Battery energy remaining, -1: Battery remaining energy not sent by autopilot
  * @param drop_rate_comm [c%] Communication drop rate, (UART, I2C, SPI, CAN), dropped packets on all links (packets that were corrupted on reception on the MAV)
  * @param errors_comm  Communication errors (UART, I2C, SPI, CAN), dropped packets on all links (packets that were corrupted on reception on the MAV)
  * @param errors_count1  Autopilot-specific errors
@@ -235,9 +235,9 @@ static inline uint16_t mavlink_msg_sys_status_encode_chan(uint8_t system_id, uin
  * @param onboard_control_sensors_enabled  Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled.
  * @param onboard_control_sensors_health  Bitmap showing which onboard controllers and sensors have an error (or are operational). Value of 0: error. Value of 1: healthy.
  * @param load [d%] Maximum usage in percent of the mainloop time. Values: [0-1000] - should always be below 1000
- * @param voltage_battery [mV] Battery voltage
- * @param current_battery [cA] Battery current, -1: autopilot does not measure the current
- * @param battery_remaining [%] Remaining battery energy, -1: autopilot estimate the remaining battery
+ * @param voltage_battery [mV] Battery voltage, UINT16_MAX: Voltage not sent by autopilot
+ * @param current_battery [cA] Battery current, -1: Current not sent by autopilot
+ * @param battery_remaining [%] Battery energy remaining, -1: Battery remaining energy not sent by autopilot
  * @param drop_rate_comm [c%] Communication drop rate, (UART, I2C, SPI, CAN), dropped packets on all links (packets that were corrupted on reception on the MAV)
  * @param errors_comm  Communication errors (UART, I2C, SPI, CAN), dropped packets on all links (packets that were corrupted on reception on the MAV)
  * @param errors_count1  Autopilot-specific errors
@@ -396,7 +396,7 @@ static inline uint16_t mavlink_msg_sys_status_get_load(const mavlink_message_t* 
 /**
  * @brief Get field voltage_battery from sys_status message
  *
- * @return [mV] Battery voltage
+ * @return [mV] Battery voltage, UINT16_MAX: Voltage not sent by autopilot
  */
 static inline uint16_t mavlink_msg_sys_status_get_voltage_battery(const mavlink_message_t* msg)
 {
@@ -406,7 +406,7 @@ static inline uint16_t mavlink_msg_sys_status_get_voltage_battery(const mavlink_
 /**
  * @brief Get field current_battery from sys_status message
  *
- * @return [cA] Battery current, -1: autopilot does not measure the current
+ * @return [cA] Battery current, -1: Current not sent by autopilot
  */
 static inline int16_t mavlink_msg_sys_status_get_current_battery(const mavlink_message_t* msg)
 {
@@ -416,7 +416,7 @@ static inline int16_t mavlink_msg_sys_status_get_current_battery(const mavlink_m
 /**
  * @brief Get field battery_remaining from sys_status message
  *
- * @return [%] Remaining battery energy, -1: autopilot estimate the remaining battery
+ * @return [%] Battery energy remaining, -1: Battery remaining energy not sent by autopilot
  */
 static inline int8_t mavlink_msg_sys_status_get_battery_remaining(const mavlink_message_t* msg)
 {
