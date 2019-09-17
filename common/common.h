@@ -1370,7 +1370,8 @@ typedef enum CAMERA_ZOOM_TYPE
    ZOOM_TYPE_STEP=0, /* Zoom one step increment (-1 for wide, 1 for tele) | */
    ZOOM_TYPE_CONTINUOUS=1, /* Continuous zoom up/down until stopped (-1 for wide, 1 for tele, 0 to stop zooming) | */
    ZOOM_TYPE_RANGE=2, /* Zoom value as proportion of full camera range (a value between 0.0 and 100.0) | */
-   CAMERA_ZOOM_TYPE_ENUM_END=3, /*  | */
+   ZOOM_TYPE_FOCAL_LENGTH=3, /* Zoom value/variable focal length in milimetres. Note that there is no message to get the valid zoom range of the camera, so this can type can only be used for cameras where the zoom range is known (implying that this cannot reliably be used in a GCS for an arbitrary camera) | */
+   CAMERA_ZOOM_TYPE_ENUM_END=4, /*  | */
 } CAMERA_ZOOM_TYPE;
 #endif
 
@@ -1382,7 +1383,8 @@ typedef enum SET_FOCUS_TYPE
    FOCUS_TYPE_STEP=0, /* Focus one step increment (-1 for focusing in, 1 for focusing out towards infinity). | */
    FOCUS_TYPE_CONTINUOUS=1, /* Continuous focus up/down until stopped (-1 for focusing in, 1 for focusing out towards infinity, 0 to stop focusing) | */
    FOCUS_TYPE_RANGE=2, /* Focus value as proportion of full camera focus range (a value between 0.0 and 100.0) | */
-   SET_FOCUS_TYPE_ENUM_END=3, /*  | */
+   FOCUS_TYPE_METERS=3, /* Focus value in metres. Note that there is no message to get the valid focus range of the camera, so this can type can only be used for cameras where the range is known (implying that this cannot reliably be used in a GCS for an arbitrary camera). | */
+   SET_FOCUS_TYPE_ENUM_END=4, /*  | */
 } SET_FOCUS_TYPE;
 #endif
 
