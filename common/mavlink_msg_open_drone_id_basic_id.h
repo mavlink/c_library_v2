@@ -7,7 +7,7 @@ MAVPACKED(
 typedef struct __mavlink_open_drone_id_basic_id_t {
  uint8_t id_type; /*<  Indicates the format for the uas_id field of this message.*/
  uint8_t ua_type; /*<  Indicates the type of UA (Unmanned Aircraft).*/
- uint8_t uas_id[20]; /*<  UAS ID following the format specified by id_type. Shall be filled with nulls in the unused portion of the field.*/
+ uint8_t uas_id[20]; /*<  UAS (Unmanned Aircraft System) ID following the format specified by id_type. Shall be filled with nulls in the unused portion of the field.*/
 }) mavlink_open_drone_id_basic_id_t;
 
 #define MAVLINK_MSG_ID_OPEN_DRONE_ID_BASIC_ID_LEN 22
@@ -49,7 +49,7 @@ typedef struct __mavlink_open_drone_id_basic_id_t {
  *
  * @param id_type  Indicates the format for the uas_id field of this message.
  * @param ua_type  Indicates the type of UA (Unmanned Aircraft).
- * @param uas_id  UAS ID following the format specified by id_type. Shall be filled with nulls in the unused portion of the field.
+ * @param uas_id  UAS (Unmanned Aircraft System) ID following the format specified by id_type. Shall be filled with nulls in the unused portion of the field.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_open_drone_id_basic_id_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -81,7 +81,7 @@ static inline uint16_t mavlink_msg_open_drone_id_basic_id_pack(uint8_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param id_type  Indicates the format for the uas_id field of this message.
  * @param ua_type  Indicates the type of UA (Unmanned Aircraft).
- * @param uas_id  UAS ID following the format specified by id_type. Shall be filled with nulls in the unused portion of the field.
+ * @param uas_id  UAS (Unmanned Aircraft System) ID following the format specified by id_type. Shall be filled with nulls in the unused portion of the field.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_open_drone_id_basic_id_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -139,7 +139,7 @@ static inline uint16_t mavlink_msg_open_drone_id_basic_id_encode_chan(uint8_t sy
  *
  * @param id_type  Indicates the format for the uas_id field of this message.
  * @param ua_type  Indicates the type of UA (Unmanned Aircraft).
- * @param uas_id  UAS ID following the format specified by id_type. Shall be filled with nulls in the unused portion of the field.
+ * @param uas_id  UAS (Unmanned Aircraft System) ID following the format specified by id_type. Shall be filled with nulls in the unused portion of the field.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -228,7 +228,7 @@ static inline uint8_t mavlink_msg_open_drone_id_basic_id_get_ua_type(const mavli
 /**
  * @brief Get field uas_id from open_drone_id_basic_id message
  *
- * @return  UAS ID following the format specified by id_type. Shall be filled with nulls in the unused portion of the field.
+ * @return  UAS (Unmanned Aircraft System) ID following the format specified by id_type. Shall be filled with nulls in the unused portion of the field.
  */
 static inline uint16_t mavlink_msg_open_drone_id_basic_id_get_uas_id(const mavlink_message_t* msg, uint8_t *uas_id)
 {

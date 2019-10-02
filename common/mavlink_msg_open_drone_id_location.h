@@ -5,15 +5,15 @@
 
 MAVPACKED(
 typedef struct __mavlink_open_drone_id_location_t {
- int32_t latitude; /*< [degE7] Current latitude of the UA.*/
- int32_t longitude; /*< [degE7] Current longitude of the UA.*/
- float altitude_barometric; /*< [m] The altitude calculated from the barometric pressue. Reference is against 29.92inHg or 1013.2mb.*/
- float altitude_geodetic; /*< [m] The geodetic altitude as defined by WGS84.*/
- float height; /*< [m] The current height of the UA above the take-off location or the ground as indicated by height_reference.*/
+ int32_t latitude; /*< [degE7] Current latitude of the UA (Unmanned Aircraft). If unknown: 0 deg (both Lat/Lon).*/
+ int32_t longitude; /*< [degE7] Current longitude of the UA (Unmanned Aircraft). If unknown: 0 deg (both Lat/Lon).*/
+ float altitude_barometric; /*< [m] The altitude calculated from the barometric pressue. Reference is against 29.92inHg or 1013.2mb. If unknown: -1000 m.*/
+ float altitude_geodetic; /*< [m] The geodetic altitude as defined by WGS84. If unknown: -1000 m.*/
+ float height; /*< [m] The current height of the UA (Unmanned Aircraft) above the take-off location or the ground as indicated by height_reference. If unknown: -1000 m.*/
  float timestamp; /*< [s] Seconds after the full hour. Typically the GPS outputs a time of week value in milliseconds. That value can be easily converted for this field using ((float) (time_week_ms % (60*60*1000))) / 1000.*/
- uint16_t direction; /*< [cdeg] Direction over ground (not heading, but direction of movement) in degrees * 100: 0.0 - 359.99 degrees.*/
- uint16_t speed_horizontal; /*< [cm/s] Ground speed.*/
- int16_t speed_vertical; /*< [cm/s] The vertical speed. Up is positive.*/
+ uint16_t direction; /*< [cdeg] Direction over ground (not heading, but direction of movement) in degrees * 100: 0.0 - 359.99 degrees. If unknown: 361.00 degrees.*/
+ uint16_t speed_horizontal; /*< [cm/s] Ground speed. Positive only. If unknown: 255.00 m/s. If speed is larger than 254.25 m/s, use 254.25 m/s.*/
+ int16_t speed_vertical; /*< [cm/s] The vertical speed. Up is positive. If unknown: 63.00 m/s. If speed is larger than 62.00 m/s, use 62.00 m/s.*/
  uint8_t status; /*<  Indicates whether the Unmanned Aircraft is on the ground or in the air.*/
  uint8_t height_reference; /*<  Indicates the reference point for the height field.*/
  uint8_t horizontal_accuracy; /*<  The accuracy of the horizontal position.*/
@@ -87,15 +87,15 @@ typedef struct __mavlink_open_drone_id_location_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param status  Indicates whether the Unmanned Aircraft is on the ground or in the air.
- * @param direction [cdeg] Direction over ground (not heading, but direction of movement) in degrees * 100: 0.0 - 359.99 degrees.
- * @param speed_horizontal [cm/s] Ground speed.
- * @param speed_vertical [cm/s] The vertical speed. Up is positive.
- * @param latitude [degE7] Current latitude of the UA.
- * @param longitude [degE7] Current longitude of the UA.
- * @param altitude_barometric [m] The altitude calculated from the barometric pressue. Reference is against 29.92inHg or 1013.2mb.
- * @param altitude_geodetic [m] The geodetic altitude as defined by WGS84.
+ * @param direction [cdeg] Direction over ground (not heading, but direction of movement) in degrees * 100: 0.0 - 359.99 degrees. If unknown: 361.00 degrees.
+ * @param speed_horizontal [cm/s] Ground speed. Positive only. If unknown: 255.00 m/s. If speed is larger than 254.25 m/s, use 254.25 m/s.
+ * @param speed_vertical [cm/s] The vertical speed. Up is positive. If unknown: 63.00 m/s. If speed is larger than 62.00 m/s, use 62.00 m/s.
+ * @param latitude [degE7] Current latitude of the UA (Unmanned Aircraft). If unknown: 0 deg (both Lat/Lon).
+ * @param longitude [degE7] Current longitude of the UA (Unmanned Aircraft). If unknown: 0 deg (both Lat/Lon).
+ * @param altitude_barometric [m] The altitude calculated from the barometric pressue. Reference is against 29.92inHg or 1013.2mb. If unknown: -1000 m.
+ * @param altitude_geodetic [m] The geodetic altitude as defined by WGS84. If unknown: -1000 m.
  * @param height_reference  Indicates the reference point for the height field.
- * @param height [m] The current height of the UA above the take-off location or the ground as indicated by height_reference.
+ * @param height [m] The current height of the UA (Unmanned Aircraft) above the take-off location or the ground as indicated by height_reference. If unknown: -1000 m.
  * @param horizontal_accuracy  The accuracy of the horizontal position.
  * @param vertical_accuracy  The accuracy of the vertical position.
  * @param barometer_accuracy  The accuracy of the barometric altitude.
@@ -160,15 +160,15 @@ static inline uint16_t mavlink_msg_open_drone_id_location_pack(uint8_t system_id
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param status  Indicates whether the Unmanned Aircraft is on the ground or in the air.
- * @param direction [cdeg] Direction over ground (not heading, but direction of movement) in degrees * 100: 0.0 - 359.99 degrees.
- * @param speed_horizontal [cm/s] Ground speed.
- * @param speed_vertical [cm/s] The vertical speed. Up is positive.
- * @param latitude [degE7] Current latitude of the UA.
- * @param longitude [degE7] Current longitude of the UA.
- * @param altitude_barometric [m] The altitude calculated from the barometric pressue. Reference is against 29.92inHg or 1013.2mb.
- * @param altitude_geodetic [m] The geodetic altitude as defined by WGS84.
+ * @param direction [cdeg] Direction over ground (not heading, but direction of movement) in degrees * 100: 0.0 - 359.99 degrees. If unknown: 361.00 degrees.
+ * @param speed_horizontal [cm/s] Ground speed. Positive only. If unknown: 255.00 m/s. If speed is larger than 254.25 m/s, use 254.25 m/s.
+ * @param speed_vertical [cm/s] The vertical speed. Up is positive. If unknown: 63.00 m/s. If speed is larger than 62.00 m/s, use 62.00 m/s.
+ * @param latitude [degE7] Current latitude of the UA (Unmanned Aircraft). If unknown: 0 deg (both Lat/Lon).
+ * @param longitude [degE7] Current longitude of the UA (Unmanned Aircraft). If unknown: 0 deg (both Lat/Lon).
+ * @param altitude_barometric [m] The altitude calculated from the barometric pressue. Reference is against 29.92inHg or 1013.2mb. If unknown: -1000 m.
+ * @param altitude_geodetic [m] The geodetic altitude as defined by WGS84. If unknown: -1000 m.
  * @param height_reference  Indicates the reference point for the height field.
- * @param height [m] The current height of the UA above the take-off location or the ground as indicated by height_reference.
+ * @param height [m] The current height of the UA (Unmanned Aircraft) above the take-off location or the ground as indicated by height_reference. If unknown: -1000 m.
  * @param horizontal_accuracy  The accuracy of the horizontal position.
  * @param vertical_accuracy  The accuracy of the vertical position.
  * @param barometer_accuracy  The accuracy of the barometric altitude.
@@ -259,15 +259,15 @@ static inline uint16_t mavlink_msg_open_drone_id_location_encode_chan(uint8_t sy
  * @param chan MAVLink channel to send the message
  *
  * @param status  Indicates whether the Unmanned Aircraft is on the ground or in the air.
- * @param direction [cdeg] Direction over ground (not heading, but direction of movement) in degrees * 100: 0.0 - 359.99 degrees.
- * @param speed_horizontal [cm/s] Ground speed.
- * @param speed_vertical [cm/s] The vertical speed. Up is positive.
- * @param latitude [degE7] Current latitude of the UA.
- * @param longitude [degE7] Current longitude of the UA.
- * @param altitude_barometric [m] The altitude calculated from the barometric pressue. Reference is against 29.92inHg or 1013.2mb.
- * @param altitude_geodetic [m] The geodetic altitude as defined by WGS84.
+ * @param direction [cdeg] Direction over ground (not heading, but direction of movement) in degrees * 100: 0.0 - 359.99 degrees. If unknown: 361.00 degrees.
+ * @param speed_horizontal [cm/s] Ground speed. Positive only. If unknown: 255.00 m/s. If speed is larger than 254.25 m/s, use 254.25 m/s.
+ * @param speed_vertical [cm/s] The vertical speed. Up is positive. If unknown: 63.00 m/s. If speed is larger than 62.00 m/s, use 62.00 m/s.
+ * @param latitude [degE7] Current latitude of the UA (Unmanned Aircraft). If unknown: 0 deg (both Lat/Lon).
+ * @param longitude [degE7] Current longitude of the UA (Unmanned Aircraft). If unknown: 0 deg (both Lat/Lon).
+ * @param altitude_barometric [m] The altitude calculated from the barometric pressue. Reference is against 29.92inHg or 1013.2mb. If unknown: -1000 m.
+ * @param altitude_geodetic [m] The geodetic altitude as defined by WGS84. If unknown: -1000 m.
  * @param height_reference  Indicates the reference point for the height field.
- * @param height [m] The current height of the UA above the take-off location or the ground as indicated by height_reference.
+ * @param height [m] The current height of the UA (Unmanned Aircraft) above the take-off location or the ground as indicated by height_reference. If unknown: -1000 m.
  * @param horizontal_accuracy  The accuracy of the horizontal position.
  * @param vertical_accuracy  The accuracy of the vertical position.
  * @param barometer_accuracy  The accuracy of the barometric altitude.
@@ -408,7 +408,7 @@ static inline uint8_t mavlink_msg_open_drone_id_location_get_status(const mavlin
 /**
  * @brief Get field direction from open_drone_id_location message
  *
- * @return [cdeg] Direction over ground (not heading, but direction of movement) in degrees * 100: 0.0 - 359.99 degrees.
+ * @return [cdeg] Direction over ground (not heading, but direction of movement) in degrees * 100: 0.0 - 359.99 degrees. If unknown: 361.00 degrees.
  */
 static inline uint16_t mavlink_msg_open_drone_id_location_get_direction(const mavlink_message_t* msg)
 {
@@ -418,7 +418,7 @@ static inline uint16_t mavlink_msg_open_drone_id_location_get_direction(const ma
 /**
  * @brief Get field speed_horizontal from open_drone_id_location message
  *
- * @return [cm/s] Ground speed.
+ * @return [cm/s] Ground speed. Positive only. If unknown: 255.00 m/s. If speed is larger than 254.25 m/s, use 254.25 m/s.
  */
 static inline uint16_t mavlink_msg_open_drone_id_location_get_speed_horizontal(const mavlink_message_t* msg)
 {
@@ -428,7 +428,7 @@ static inline uint16_t mavlink_msg_open_drone_id_location_get_speed_horizontal(c
 /**
  * @brief Get field speed_vertical from open_drone_id_location message
  *
- * @return [cm/s] The vertical speed. Up is positive.
+ * @return [cm/s] The vertical speed. Up is positive. If unknown: 63.00 m/s. If speed is larger than 62.00 m/s, use 62.00 m/s.
  */
 static inline int16_t mavlink_msg_open_drone_id_location_get_speed_vertical(const mavlink_message_t* msg)
 {
@@ -438,7 +438,7 @@ static inline int16_t mavlink_msg_open_drone_id_location_get_speed_vertical(cons
 /**
  * @brief Get field latitude from open_drone_id_location message
  *
- * @return [degE7] Current latitude of the UA.
+ * @return [degE7] Current latitude of the UA (Unmanned Aircraft). If unknown: 0 deg (both Lat/Lon).
  */
 static inline int32_t mavlink_msg_open_drone_id_location_get_latitude(const mavlink_message_t* msg)
 {
@@ -448,7 +448,7 @@ static inline int32_t mavlink_msg_open_drone_id_location_get_latitude(const mavl
 /**
  * @brief Get field longitude from open_drone_id_location message
  *
- * @return [degE7] Current longitude of the UA.
+ * @return [degE7] Current longitude of the UA (Unmanned Aircraft). If unknown: 0 deg (both Lat/Lon).
  */
 static inline int32_t mavlink_msg_open_drone_id_location_get_longitude(const mavlink_message_t* msg)
 {
@@ -458,7 +458,7 @@ static inline int32_t mavlink_msg_open_drone_id_location_get_longitude(const mav
 /**
  * @brief Get field altitude_barometric from open_drone_id_location message
  *
- * @return [m] The altitude calculated from the barometric pressue. Reference is against 29.92inHg or 1013.2mb.
+ * @return [m] The altitude calculated from the barometric pressue. Reference is against 29.92inHg or 1013.2mb. If unknown: -1000 m.
  */
 static inline float mavlink_msg_open_drone_id_location_get_altitude_barometric(const mavlink_message_t* msg)
 {
@@ -468,7 +468,7 @@ static inline float mavlink_msg_open_drone_id_location_get_altitude_barometric(c
 /**
  * @brief Get field altitude_geodetic from open_drone_id_location message
  *
- * @return [m] The geodetic altitude as defined by WGS84.
+ * @return [m] The geodetic altitude as defined by WGS84. If unknown: -1000 m.
  */
 static inline float mavlink_msg_open_drone_id_location_get_altitude_geodetic(const mavlink_message_t* msg)
 {
@@ -488,7 +488,7 @@ static inline uint8_t mavlink_msg_open_drone_id_location_get_height_reference(co
 /**
  * @brief Get field height from open_drone_id_location message
  *
- * @return [m] The current height of the UA above the take-off location or the ground as indicated by height_reference.
+ * @return [m] The current height of the UA (Unmanned Aircraft) above the take-off location or the ground as indicated by height_reference. If unknown: -1000 m.
  */
 static inline float mavlink_msg_open_drone_id_location_get_height(const mavlink_message_t* msg)
 {
