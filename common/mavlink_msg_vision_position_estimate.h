@@ -6,9 +6,9 @@
 MAVPACKED(
 typedef struct __mavlink_vision_position_estimate_t {
  uint64_t usec; /*< [us] Timestamp (UNIX time or time since system boot)*/
- float x; /*< [m] Global X position*/
- float y; /*< [m] Global Y position*/
- float z; /*< [m] Global Z position*/
+ float x; /*< [m] Local X position*/
+ float y; /*< [m] Local Y position*/
+ float z; /*< [m] Local Z position*/
  float roll; /*< [rad] Roll angle*/
  float pitch; /*< [rad] Pitch angle*/
  float yaw; /*< [rad] Yaw angle*/
@@ -66,9 +66,9 @@ typedef struct __mavlink_vision_position_estimate_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param usec [us] Timestamp (UNIX time or time since system boot)
- * @param x [m] Global X position
- * @param y [m] Global Y position
- * @param z [m] Global Z position
+ * @param x [m] Local X position
+ * @param y [m] Local Y position
+ * @param z [m] Local Z position
  * @param roll [rad] Roll angle
  * @param pitch [rad] Pitch angle
  * @param yaw [rad] Yaw angle
@@ -116,9 +116,9 @@ static inline uint16_t mavlink_msg_vision_position_estimate_pack(uint8_t system_
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param usec [us] Timestamp (UNIX time or time since system boot)
- * @param x [m] Global X position
- * @param y [m] Global Y position
- * @param z [m] Global Z position
+ * @param x [m] Local X position
+ * @param y [m] Local Y position
+ * @param z [m] Local Z position
  * @param roll [rad] Roll angle
  * @param pitch [rad] Pitch angle
  * @param yaw [rad] Yaw angle
@@ -192,9 +192,9 @@ static inline uint16_t mavlink_msg_vision_position_estimate_encode_chan(uint8_t 
  * @param chan MAVLink channel to send the message
  *
  * @param usec [us] Timestamp (UNIX time or time since system boot)
- * @param x [m] Global X position
- * @param y [m] Global Y position
- * @param z [m] Global Z position
+ * @param x [m] Local X position
+ * @param y [m] Local Y position
+ * @param z [m] Local Z position
  * @param roll [rad] Roll angle
  * @param pitch [rad] Pitch angle
  * @param yaw [rad] Yaw angle
@@ -302,7 +302,7 @@ static inline uint64_t mavlink_msg_vision_position_estimate_get_usec(const mavli
 /**
  * @brief Get field x from vision_position_estimate message
  *
- * @return [m] Global X position
+ * @return [m] Local X position
  */
 static inline float mavlink_msg_vision_position_estimate_get_x(const mavlink_message_t* msg)
 {
@@ -312,7 +312,7 @@ static inline float mavlink_msg_vision_position_estimate_get_x(const mavlink_mes
 /**
  * @brief Get field y from vision_position_estimate message
  *
- * @return [m] Global Y position
+ * @return [m] Local Y position
  */
 static inline float mavlink_msg_vision_position_estimate_get_y(const mavlink_message_t* msg)
 {
@@ -322,7 +322,7 @@ static inline float mavlink_msg_vision_position_estimate_get_y(const mavlink_mes
 /**
  * @brief Get field z from vision_position_estimate message
  *
- * @return [m] Global Z position
+ * @return [m] Local Z position
  */
 static inline float mavlink_msg_vision_position_estimate_get_z(const mavlink_message_t* msg)
 {
