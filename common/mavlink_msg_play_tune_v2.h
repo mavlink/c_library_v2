@@ -5,19 +5,19 @@
 
 MAVPACKED(
 typedef struct __mavlink_play_tune_v2_t {
+ uint32_t format; /*<  Tune format*/
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
- uint8_t format; /*<  Tune format*/
- char tune[252]; /*<  Tune definition*/
+ char tune[252]; /*<  Tune definition as a NULL-terminated string.*/
 }) mavlink_play_tune_v2_t;
 
-#define MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN 255
-#define MAVLINK_MSG_ID_PLAY_TUNE_V2_MIN_LEN 255
-#define MAVLINK_MSG_ID_400_LEN 255
-#define MAVLINK_MSG_ID_400_MIN_LEN 255
+#define MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN 258
+#define MAVLINK_MSG_ID_PLAY_TUNE_V2_MIN_LEN 258
+#define MAVLINK_MSG_ID_400_LEN 258
+#define MAVLINK_MSG_ID_400_MIN_LEN 258
 
-#define MAVLINK_MSG_ID_PLAY_TUNE_V2_CRC 238
-#define MAVLINK_MSG_ID_400_CRC 238
+#define MAVLINK_MSG_ID_PLAY_TUNE_V2_CRC 12
+#define MAVLINK_MSG_ID_400_CRC 12
 
 #define MAVLINK_MSG_PLAY_TUNE_V2_FIELD_TUNE_LEN 252
 
@@ -26,20 +26,20 @@ typedef struct __mavlink_play_tune_v2_t {
     400, \
     "PLAY_TUNE_V2", \
     4, \
-    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_play_tune_v2_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 1, offsetof(mavlink_play_tune_v2_t, target_component) }, \
-         { "format", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_play_tune_v2_t, format) }, \
-         { "tune", NULL, MAVLINK_TYPE_CHAR, 252, 3, offsetof(mavlink_play_tune_v2_t, tune) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_play_tune_v2_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_play_tune_v2_t, target_component) }, \
+         { "format", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_play_tune_v2_t, format) }, \
+         { "tune", NULL, MAVLINK_TYPE_CHAR, 252, 6, offsetof(mavlink_play_tune_v2_t, tune) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_PLAY_TUNE_V2 { \
     "PLAY_TUNE_V2", \
     4, \
-    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_play_tune_v2_t, target_system) }, \
-         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 1, offsetof(mavlink_play_tune_v2_t, target_component) }, \
-         { "format", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_play_tune_v2_t, format) }, \
-         { "tune", NULL, MAVLINK_TYPE_CHAR, 252, 3, offsetof(mavlink_play_tune_v2_t, tune) }, \
+    {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_play_tune_v2_t, target_system) }, \
+         { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_play_tune_v2_t, target_component) }, \
+         { "format", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_play_tune_v2_t, format) }, \
+         { "tune", NULL, MAVLINK_TYPE_CHAR, 252, 6, offsetof(mavlink_play_tune_v2_t, tune) }, \
          } \
 }
 #endif
@@ -53,24 +53,24 @@ typedef struct __mavlink_play_tune_v2_t {
  * @param target_system  System ID
  * @param target_component  Component ID
  * @param format  Tune format
- * @param tune  Tune definition
+ * @param tune  Tune definition as a NULL-terminated string.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_play_tune_v2_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint8_t format, const char *tune)
+                               uint8_t target_system, uint8_t target_component, uint32_t format, const char *tune)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN];
-    _mav_put_uint8_t(buf, 0, target_system);
-    _mav_put_uint8_t(buf, 1, target_component);
-    _mav_put_uint8_t(buf, 2, format);
-    _mav_put_char_array(buf, 3, tune, 252);
+    _mav_put_uint32_t(buf, 0, format);
+    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 5, target_component);
+    _mav_put_char_array(buf, 6, tune, 252);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN);
 #else
     mavlink_play_tune_v2_t packet;
+    packet.format = format;
     packet.target_system = target_system;
     packet.target_component = target_component;
-    packet.format = format;
     mav_array_memcpy(packet.tune, tune, sizeof(char)*252);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN);
 #endif
@@ -88,25 +88,25 @@ static inline uint16_t mavlink_msg_play_tune_v2_pack(uint8_t system_id, uint8_t 
  * @param target_system  System ID
  * @param target_component  Component ID
  * @param format  Tune format
- * @param tune  Tune definition
+ * @param tune  Tune definition as a NULL-terminated string.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_play_tune_v2_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t target_system,uint8_t target_component,uint8_t format,const char *tune)
+                                   uint8_t target_system,uint8_t target_component,uint32_t format,const char *tune)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN];
-    _mav_put_uint8_t(buf, 0, target_system);
-    _mav_put_uint8_t(buf, 1, target_component);
-    _mav_put_uint8_t(buf, 2, format);
-    _mav_put_char_array(buf, 3, tune, 252);
+    _mav_put_uint32_t(buf, 0, format);
+    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 5, target_component);
+    _mav_put_char_array(buf, 6, tune, 252);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN);
 #else
     mavlink_play_tune_v2_t packet;
+    packet.format = format;
     packet.target_system = target_system;
     packet.target_component = target_component;
-    packet.format = format;
     mav_array_memcpy(packet.tune, tune, sizeof(char)*252);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN);
 #endif
@@ -149,24 +149,24 @@ static inline uint16_t mavlink_msg_play_tune_v2_encode_chan(uint8_t system_id, u
  * @param target_system  System ID
  * @param target_component  Component ID
  * @param format  Tune format
- * @param tune  Tune definition
+ * @param tune  Tune definition as a NULL-terminated string.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_play_tune_v2_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint8_t format, const char *tune)
+static inline void mavlink_msg_play_tune_v2_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint32_t format, const char *tune)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN];
-    _mav_put_uint8_t(buf, 0, target_system);
-    _mav_put_uint8_t(buf, 1, target_component);
-    _mav_put_uint8_t(buf, 2, format);
-    _mav_put_char_array(buf, 3, tune, 252);
+    _mav_put_uint32_t(buf, 0, format);
+    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 5, target_component);
+    _mav_put_char_array(buf, 6, tune, 252);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PLAY_TUNE_V2, buf, MAVLINK_MSG_ID_PLAY_TUNE_V2_MIN_LEN, MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN, MAVLINK_MSG_ID_PLAY_TUNE_V2_CRC);
 #else
     mavlink_play_tune_v2_t packet;
+    packet.format = format;
     packet.target_system = target_system;
     packet.target_component = target_component;
-    packet.format = format;
     mav_array_memcpy(packet.tune, tune, sizeof(char)*252);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PLAY_TUNE_V2, (const char *)&packet, MAVLINK_MSG_ID_PLAY_TUNE_V2_MIN_LEN, MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN, MAVLINK_MSG_ID_PLAY_TUNE_V2_CRC);
 #endif
@@ -194,20 +194,20 @@ static inline void mavlink_msg_play_tune_v2_send_struct(mavlink_channel_t chan, 
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_play_tune_v2_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, uint8_t format, const char *tune)
+static inline void mavlink_msg_play_tune_v2_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, uint32_t format, const char *tune)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
-    _mav_put_uint8_t(buf, 0, target_system);
-    _mav_put_uint8_t(buf, 1, target_component);
-    _mav_put_uint8_t(buf, 2, format);
-    _mav_put_char_array(buf, 3, tune, 252);
+    _mav_put_uint32_t(buf, 0, format);
+    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 5, target_component);
+    _mav_put_char_array(buf, 6, tune, 252);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PLAY_TUNE_V2, buf, MAVLINK_MSG_ID_PLAY_TUNE_V2_MIN_LEN, MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN, MAVLINK_MSG_ID_PLAY_TUNE_V2_CRC);
 #else
     mavlink_play_tune_v2_t *packet = (mavlink_play_tune_v2_t *)msgbuf;
+    packet->format = format;
     packet->target_system = target_system;
     packet->target_component = target_component;
-    packet->format = format;
     mav_array_memcpy(packet->tune, tune, sizeof(char)*252);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PLAY_TUNE_V2, (const char *)packet, MAVLINK_MSG_ID_PLAY_TUNE_V2_MIN_LEN, MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN, MAVLINK_MSG_ID_PLAY_TUNE_V2_CRC);
 #endif
@@ -226,7 +226,7 @@ static inline void mavlink_msg_play_tune_v2_send_buf(mavlink_message_t *msgbuf, 
  */
 static inline uint8_t mavlink_msg_play_tune_v2_get_target_system(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  0);
+    return _MAV_RETURN_uint8_t(msg,  4);
 }
 
 /**
@@ -236,7 +236,7 @@ static inline uint8_t mavlink_msg_play_tune_v2_get_target_system(const mavlink_m
  */
 static inline uint8_t mavlink_msg_play_tune_v2_get_target_component(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  1);
+    return _MAV_RETURN_uint8_t(msg,  5);
 }
 
 /**
@@ -244,19 +244,19 @@ static inline uint8_t mavlink_msg_play_tune_v2_get_target_component(const mavlin
  *
  * @return  Tune format
  */
-static inline uint8_t mavlink_msg_play_tune_v2_get_format(const mavlink_message_t* msg)
+static inline uint32_t mavlink_msg_play_tune_v2_get_format(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  2);
+    return _MAV_RETURN_uint32_t(msg,  0);
 }
 
 /**
  * @brief Get field tune from play_tune_v2 message
  *
- * @return  Tune definition
+ * @return  Tune definition as a NULL-terminated string.
  */
 static inline uint16_t mavlink_msg_play_tune_v2_get_tune(const mavlink_message_t* msg, char *tune)
 {
-    return _MAV_RETURN_char_array(msg, tune, 252,  3);
+    return _MAV_RETURN_char_array(msg, tune, 252,  6);
 }
 
 /**
@@ -268,9 +268,9 @@ static inline uint16_t mavlink_msg_play_tune_v2_get_tune(const mavlink_message_t
 static inline void mavlink_msg_play_tune_v2_decode(const mavlink_message_t* msg, mavlink_play_tune_v2_t* play_tune_v2)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    play_tune_v2->format = mavlink_msg_play_tune_v2_get_format(msg);
     play_tune_v2->target_system = mavlink_msg_play_tune_v2_get_target_system(msg);
     play_tune_v2->target_component = mavlink_msg_play_tune_v2_get_target_component(msg);
-    play_tune_v2->format = mavlink_msg_play_tune_v2_get_format(msg);
     mavlink_msg_play_tune_v2_get_tune(msg, play_tune_v2->tune);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN? msg->len : MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN;
