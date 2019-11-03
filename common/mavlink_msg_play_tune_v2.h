@@ -8,18 +8,18 @@ typedef struct __mavlink_play_tune_v2_t {
  uint32_t format; /*<  Tune format*/
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
- char tune[252]; /*<  Tune definition as a NULL-terminated string.*/
+ char tune[248]; /*<  Tune definition as a NULL-terminated string.*/
 }) mavlink_play_tune_v2_t;
 
-#define MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN 258
-#define MAVLINK_MSG_ID_PLAY_TUNE_V2_MIN_LEN 258
-#define MAVLINK_MSG_ID_400_LEN 258
-#define MAVLINK_MSG_ID_400_MIN_LEN 258
+#define MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN 254
+#define MAVLINK_MSG_ID_PLAY_TUNE_V2_MIN_LEN 254
+#define MAVLINK_MSG_ID_400_LEN 254
+#define MAVLINK_MSG_ID_400_MIN_LEN 254
 
-#define MAVLINK_MSG_ID_PLAY_TUNE_V2_CRC 12
-#define MAVLINK_MSG_ID_400_CRC 12
+#define MAVLINK_MSG_ID_PLAY_TUNE_V2_CRC 110
+#define MAVLINK_MSG_ID_400_CRC 110
 
-#define MAVLINK_MSG_PLAY_TUNE_V2_FIELD_TUNE_LEN 252
+#define MAVLINK_MSG_PLAY_TUNE_V2_FIELD_TUNE_LEN 248
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_PLAY_TUNE_V2 { \
@@ -29,7 +29,7 @@ typedef struct __mavlink_play_tune_v2_t {
     {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_play_tune_v2_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_play_tune_v2_t, target_component) }, \
          { "format", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_play_tune_v2_t, format) }, \
-         { "tune", NULL, MAVLINK_TYPE_CHAR, 252, 6, offsetof(mavlink_play_tune_v2_t, tune) }, \
+         { "tune", NULL, MAVLINK_TYPE_CHAR, 248, 6, offsetof(mavlink_play_tune_v2_t, tune) }, \
          } \
 }
 #else
@@ -39,7 +39,7 @@ typedef struct __mavlink_play_tune_v2_t {
     {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_play_tune_v2_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_play_tune_v2_t, target_component) }, \
          { "format", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_play_tune_v2_t, format) }, \
-         { "tune", NULL, MAVLINK_TYPE_CHAR, 252, 6, offsetof(mavlink_play_tune_v2_t, tune) }, \
+         { "tune", NULL, MAVLINK_TYPE_CHAR, 248, 6, offsetof(mavlink_play_tune_v2_t, tune) }, \
          } \
 }
 #endif
@@ -64,14 +64,14 @@ static inline uint16_t mavlink_msg_play_tune_v2_pack(uint8_t system_id, uint8_t 
     _mav_put_uint32_t(buf, 0, format);
     _mav_put_uint8_t(buf, 4, target_system);
     _mav_put_uint8_t(buf, 5, target_component);
-    _mav_put_char_array(buf, 6, tune, 252);
+    _mav_put_char_array(buf, 6, tune, 248);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN);
 #else
     mavlink_play_tune_v2_t packet;
     packet.format = format;
     packet.target_system = target_system;
     packet.target_component = target_component;
-    mav_array_memcpy(packet.tune, tune, sizeof(char)*252);
+    mav_array_memcpy(packet.tune, tune, sizeof(char)*248);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN);
 #endif
 
@@ -100,14 +100,14 @@ static inline uint16_t mavlink_msg_play_tune_v2_pack_chan(uint8_t system_id, uin
     _mav_put_uint32_t(buf, 0, format);
     _mav_put_uint8_t(buf, 4, target_system);
     _mav_put_uint8_t(buf, 5, target_component);
-    _mav_put_char_array(buf, 6, tune, 252);
+    _mav_put_char_array(buf, 6, tune, 248);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN);
 #else
     mavlink_play_tune_v2_t packet;
     packet.format = format;
     packet.target_system = target_system;
     packet.target_component = target_component;
-    mav_array_memcpy(packet.tune, tune, sizeof(char)*252);
+    mav_array_memcpy(packet.tune, tune, sizeof(char)*248);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN);
 #endif
 
@@ -160,14 +160,14 @@ static inline void mavlink_msg_play_tune_v2_send(mavlink_channel_t chan, uint8_t
     _mav_put_uint32_t(buf, 0, format);
     _mav_put_uint8_t(buf, 4, target_system);
     _mav_put_uint8_t(buf, 5, target_component);
-    _mav_put_char_array(buf, 6, tune, 252);
+    _mav_put_char_array(buf, 6, tune, 248);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PLAY_TUNE_V2, buf, MAVLINK_MSG_ID_PLAY_TUNE_V2_MIN_LEN, MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN, MAVLINK_MSG_ID_PLAY_TUNE_V2_CRC);
 #else
     mavlink_play_tune_v2_t packet;
     packet.format = format;
     packet.target_system = target_system;
     packet.target_component = target_component;
-    mav_array_memcpy(packet.tune, tune, sizeof(char)*252);
+    mav_array_memcpy(packet.tune, tune, sizeof(char)*248);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PLAY_TUNE_V2, (const char *)&packet, MAVLINK_MSG_ID_PLAY_TUNE_V2_MIN_LEN, MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN, MAVLINK_MSG_ID_PLAY_TUNE_V2_CRC);
 #endif
 }
@@ -201,14 +201,14 @@ static inline void mavlink_msg_play_tune_v2_send_buf(mavlink_message_t *msgbuf, 
     _mav_put_uint32_t(buf, 0, format);
     _mav_put_uint8_t(buf, 4, target_system);
     _mav_put_uint8_t(buf, 5, target_component);
-    _mav_put_char_array(buf, 6, tune, 252);
+    _mav_put_char_array(buf, 6, tune, 248);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PLAY_TUNE_V2, buf, MAVLINK_MSG_ID_PLAY_TUNE_V2_MIN_LEN, MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN, MAVLINK_MSG_ID_PLAY_TUNE_V2_CRC);
 #else
     mavlink_play_tune_v2_t *packet = (mavlink_play_tune_v2_t *)msgbuf;
     packet->format = format;
     packet->target_system = target_system;
     packet->target_component = target_component;
-    mav_array_memcpy(packet->tune, tune, sizeof(char)*252);
+    mav_array_memcpy(packet->tune, tune, sizeof(char)*248);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PLAY_TUNE_V2, (const char *)packet, MAVLINK_MSG_ID_PLAY_TUNE_V2_MIN_LEN, MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN, MAVLINK_MSG_ID_PLAY_TUNE_V2_CRC);
 #endif
 }
@@ -256,7 +256,7 @@ static inline uint32_t mavlink_msg_play_tune_v2_get_format(const mavlink_message
  */
 static inline uint16_t mavlink_msg_play_tune_v2_get_tune(const mavlink_message_t* msg, char *tune)
 {
-    return _MAV_RETURN_char_array(msg, tune, 252,  6);
+    return _MAV_RETURN_char_array(msg, tune, 248,  6);
 }
 
 /**

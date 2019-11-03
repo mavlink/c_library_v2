@@ -10985,7 +10985,7 @@ static void mavlink_test_play_tune_v2(uint8_t system_id, uint8_t component_id, m
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_play_tune_v2_t packet_in = {
-        963497464,17,84,"GHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVW"
+        963497464,17,84,"GHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRS"
     };
     mavlink_play_tune_v2_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -10993,7 +10993,7 @@ static void mavlink_test_play_tune_v2(uint8_t system_id, uint8_t component_id, m
         packet1.target_system = packet_in.target_system;
         packet1.target_component = packet_in.target_component;
         
-        mav_array_memcpy(packet1.tune, packet_in.tune, sizeof(char)*252);
+        mav_array_memcpy(packet1.tune, packet_in.tune, sizeof(char)*248);
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
         if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
