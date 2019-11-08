@@ -23,9 +23,9 @@ typedef struct __mavlink_sim_state_t {
  float alt; /*< [m] Altitude*/
  float std_dev_horz; /*<  Horizontal position standard deviation*/
  float std_dev_vert; /*<  Vertical position standard deviation*/
- float vn; /*< [m/s] True velocity in NORTH direction in earth-fixed NED frame*/
- float ve; /*< [m/s] True velocity in EAST direction in earth-fixed NED frame*/
- float vd; /*< [m/s] True velocity in DOWN direction in earth-fixed NED frame*/
+ float vn; /*< [m/s] True velocity in north direction in earth-fixed NED frame*/
+ float ve; /*< [m/s] True velocity in east direction in earth-fixed NED frame*/
+ float vd; /*< [m/s] True velocity in down direction in earth-fixed NED frame*/
 }) mavlink_sim_state_t;
 
 #define MAVLINK_MSG_ID_SIM_STATE_LEN 84
@@ -119,9 +119,9 @@ typedef struct __mavlink_sim_state_t {
  * @param alt [m] Altitude
  * @param std_dev_horz  Horizontal position standard deviation
  * @param std_dev_vert  Vertical position standard deviation
- * @param vn [m/s] True velocity in NORTH direction in earth-fixed NED frame
- * @param ve [m/s] True velocity in EAST direction in earth-fixed NED frame
- * @param vd [m/s] True velocity in DOWN direction in earth-fixed NED frame
+ * @param vn [m/s] True velocity in north direction in earth-fixed NED frame
+ * @param ve [m/s] True velocity in east direction in earth-fixed NED frame
+ * @param vd [m/s] True velocity in down direction in earth-fixed NED frame
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_sim_state_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -207,9 +207,9 @@ static inline uint16_t mavlink_msg_sim_state_pack(uint8_t system_id, uint8_t com
  * @param alt [m] Altitude
  * @param std_dev_horz  Horizontal position standard deviation
  * @param std_dev_vert  Vertical position standard deviation
- * @param vn [m/s] True velocity in NORTH direction in earth-fixed NED frame
- * @param ve [m/s] True velocity in EAST direction in earth-fixed NED frame
- * @param vd [m/s] True velocity in DOWN direction in earth-fixed NED frame
+ * @param vn [m/s] True velocity in north direction in earth-fixed NED frame
+ * @param ve [m/s] True velocity in east direction in earth-fixed NED frame
+ * @param vd [m/s] True velocity in down direction in earth-fixed NED frame
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_sim_state_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -321,9 +321,9 @@ static inline uint16_t mavlink_msg_sim_state_encode_chan(uint8_t system_id, uint
  * @param alt [m] Altitude
  * @param std_dev_horz  Horizontal position standard deviation
  * @param std_dev_vert  Vertical position standard deviation
- * @param vn [m/s] True velocity in NORTH direction in earth-fixed NED frame
- * @param ve [m/s] True velocity in EAST direction in earth-fixed NED frame
- * @param vd [m/s] True velocity in DOWN direction in earth-fixed NED frame
+ * @param vn [m/s] True velocity in north direction in earth-fixed NED frame
+ * @param ve [m/s] True velocity in east direction in earth-fixed NED frame
+ * @param vd [m/s] True velocity in down direction in earth-fixed NED frame
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -648,7 +648,7 @@ static inline float mavlink_msg_sim_state_get_std_dev_vert(const mavlink_message
 /**
  * @brief Get field vn from sim_state message
  *
- * @return [m/s] True velocity in NORTH direction in earth-fixed NED frame
+ * @return [m/s] True velocity in north direction in earth-fixed NED frame
  */
 static inline float mavlink_msg_sim_state_get_vn(const mavlink_message_t* msg)
 {
@@ -658,7 +658,7 @@ static inline float mavlink_msg_sim_state_get_vn(const mavlink_message_t* msg)
 /**
  * @brief Get field ve from sim_state message
  *
- * @return [m/s] True velocity in EAST direction in earth-fixed NED frame
+ * @return [m/s] True velocity in east direction in earth-fixed NED frame
  */
 static inline float mavlink_msg_sim_state_get_ve(const mavlink_message_t* msg)
 {
@@ -668,7 +668,7 @@ static inline float mavlink_msg_sim_state_get_ve(const mavlink_message_t* msg)
 /**
  * @brief Get field vd from sim_state message
  *
- * @return [m/s] True velocity in DOWN direction in earth-fixed NED frame
+ * @return [m/s] True velocity in down direction in earth-fixed NED frame
  */
 static inline float mavlink_msg_sim_state_get_vd(const mavlink_message_t* msg)
 {

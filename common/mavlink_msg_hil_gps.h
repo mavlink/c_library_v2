@@ -12,9 +12,9 @@ typedef struct __mavlink_hil_gps_t {
  uint16_t eph; /*< [cm] GPS HDOP horizontal dilution of position. If unknown, set to: 65535*/
  uint16_t epv; /*< [cm] GPS VDOP vertical dilution of position. If unknown, set to: 65535*/
  uint16_t vel; /*< [cm/s] GPS ground speed. If unknown, set to: 65535*/
- int16_t vn; /*< [cm/s] GPS velocity in NORTH direction in earth-fixed NED frame*/
- int16_t ve; /*< [cm/s] GPS velocity in EAST direction in earth-fixed NED frame*/
- int16_t vd; /*< [cm/s] GPS velocity in DOWN direction in earth-fixed NED frame*/
+ int16_t vn; /*< [cm/s] GPS velocity in north direction in earth-fixed NED frame*/
+ int16_t ve; /*< [cm/s] GPS velocity in east direction in earth-fixed NED frame*/
+ int16_t vd; /*< [cm/s] GPS velocity in down direction in earth-fixed NED frame*/
  uint16_t cog; /*< [cdeg] Course over ground (NOT heading, but direction of movement), 0.0..359.99 degrees. If unknown, set to: 65535*/
  uint8_t fix_type; /*<  0-1: no fix, 2: 2D fix, 3: 3D fix. Some applications will not use the value of this field unless it is at least two, so always correctly fill in the fix.*/
  uint8_t satellites_visible; /*<  Number of satellites visible. If unknown, set to 255*/
@@ -85,9 +85,9 @@ typedef struct __mavlink_hil_gps_t {
  * @param eph [cm] GPS HDOP horizontal dilution of position. If unknown, set to: 65535
  * @param epv [cm] GPS VDOP vertical dilution of position. If unknown, set to: 65535
  * @param vel [cm/s] GPS ground speed. If unknown, set to: 65535
- * @param vn [cm/s] GPS velocity in NORTH direction in earth-fixed NED frame
- * @param ve [cm/s] GPS velocity in EAST direction in earth-fixed NED frame
- * @param vd [cm/s] GPS velocity in DOWN direction in earth-fixed NED frame
+ * @param vn [cm/s] GPS velocity in north direction in earth-fixed NED frame
+ * @param ve [cm/s] GPS velocity in east direction in earth-fixed NED frame
+ * @param vd [cm/s] GPS velocity in down direction in earth-fixed NED frame
  * @param cog [cdeg] Course over ground (NOT heading, but direction of movement), 0.0..359.99 degrees. If unknown, set to: 65535
  * @param satellites_visible  Number of satellites visible. If unknown, set to 255
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -149,9 +149,9 @@ static inline uint16_t mavlink_msg_hil_gps_pack(uint8_t system_id, uint8_t compo
  * @param eph [cm] GPS HDOP horizontal dilution of position. If unknown, set to: 65535
  * @param epv [cm] GPS VDOP vertical dilution of position. If unknown, set to: 65535
  * @param vel [cm/s] GPS ground speed. If unknown, set to: 65535
- * @param vn [cm/s] GPS velocity in NORTH direction in earth-fixed NED frame
- * @param ve [cm/s] GPS velocity in EAST direction in earth-fixed NED frame
- * @param vd [cm/s] GPS velocity in DOWN direction in earth-fixed NED frame
+ * @param vn [cm/s] GPS velocity in north direction in earth-fixed NED frame
+ * @param ve [cm/s] GPS velocity in east direction in earth-fixed NED frame
+ * @param vd [cm/s] GPS velocity in down direction in earth-fixed NED frame
  * @param cog [cdeg] Course over ground (NOT heading, but direction of movement), 0.0..359.99 degrees. If unknown, set to: 65535
  * @param satellites_visible  Number of satellites visible. If unknown, set to 255
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -239,9 +239,9 @@ static inline uint16_t mavlink_msg_hil_gps_encode_chan(uint8_t system_id, uint8_
  * @param eph [cm] GPS HDOP horizontal dilution of position. If unknown, set to: 65535
  * @param epv [cm] GPS VDOP vertical dilution of position. If unknown, set to: 65535
  * @param vel [cm/s] GPS ground speed. If unknown, set to: 65535
- * @param vn [cm/s] GPS velocity in NORTH direction in earth-fixed NED frame
- * @param ve [cm/s] GPS velocity in EAST direction in earth-fixed NED frame
- * @param vd [cm/s] GPS velocity in DOWN direction in earth-fixed NED frame
+ * @param vn [cm/s] GPS velocity in north direction in earth-fixed NED frame
+ * @param ve [cm/s] GPS velocity in east direction in earth-fixed NED frame
+ * @param vd [cm/s] GPS velocity in down direction in earth-fixed NED frame
  * @param cog [cdeg] Course over ground (NOT heading, but direction of movement), 0.0..359.99 degrees. If unknown, set to: 65535
  * @param satellites_visible  Number of satellites visible. If unknown, set to 255
  */
@@ -436,7 +436,7 @@ static inline uint16_t mavlink_msg_hil_gps_get_vel(const mavlink_message_t* msg)
 /**
  * @brief Get field vn from hil_gps message
  *
- * @return [cm/s] GPS velocity in NORTH direction in earth-fixed NED frame
+ * @return [cm/s] GPS velocity in north direction in earth-fixed NED frame
  */
 static inline int16_t mavlink_msg_hil_gps_get_vn(const mavlink_message_t* msg)
 {
@@ -446,7 +446,7 @@ static inline int16_t mavlink_msg_hil_gps_get_vn(const mavlink_message_t* msg)
 /**
  * @brief Get field ve from hil_gps message
  *
- * @return [cm/s] GPS velocity in EAST direction in earth-fixed NED frame
+ * @return [cm/s] GPS velocity in east direction in earth-fixed NED frame
  */
 static inline int16_t mavlink_msg_hil_gps_get_ve(const mavlink_message_t* msg)
 {
@@ -456,7 +456,7 @@ static inline int16_t mavlink_msg_hil_gps_get_ve(const mavlink_message_t* msg)
 /**
  * @brief Get field vd from hil_gps message
  *
- * @return [cm/s] GPS velocity in DOWN direction in earth-fixed NED frame
+ * @return [cm/s] GPS velocity in down direction in earth-fixed NED frame
  */
 static inline int16_t mavlink_msg_hil_gps_get_vd(const mavlink_message_t* msg)
 {
