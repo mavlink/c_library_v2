@@ -477,9 +477,10 @@ typedef enum FENCE_BREACH
 #define HAVE_ENUM_FENCE_MITIGATE
 typedef enum FENCE_MITIGATE
 {
-   FENCE_MITIGATE_NONE=0, /* No actions being taken | */
-   FENCE_MITIGATE_VEL_LIMIT=1, /* Velocity limiting active to prevent breach | */
-   FENCE_MITIGATE_ENUM_END=2, /*  | */
+   FENCE_MITIGATE_UNKNOWN=0, /* Unknown | */
+   FENCE_MITIGATE_NONE=1, /* No actions being taken | */
+   FENCE_MITIGATE_VEL_LIMIT=2, /* Velocity limiting active to prevent breach | */
+   FENCE_MITIGATE_ENUM_END=3, /*  | */
 } FENCE_MITIGATE;
 #endif
 
