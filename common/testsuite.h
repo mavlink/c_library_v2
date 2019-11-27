@@ -9577,6 +9577,76 @@ static void mavlink_test_protocol_version(uint8_t system_id, uint8_t component_i
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
+static void mavlink_test_ais_vessel(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_AIS_VESSEL >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_ais_vessel_t packet_in = {
+        963497464,963497672,963497880,17859,17963,18067,18171,18275,18379,18483,211,22,89,156,223,"FGHIJK","MNOPQRSTUVWXYZABCDE"
+    };
+    mavlink_ais_vessel_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.MMSI = packet_in.MMSI;
+        packet1.lat = packet_in.lat;
+        packet1.lon = packet_in.lon;
+        packet1.COG = packet_in.COG;
+        packet1.heading = packet_in.heading;
+        packet1.velocity = packet_in.velocity;
+        packet1.dimension_bow = packet_in.dimension_bow;
+        packet1.dimension_stern = packet_in.dimension_stern;
+        packet1.tslc = packet_in.tslc;
+        packet1.flags = packet_in.flags;
+        packet1.turn_rate = packet_in.turn_rate;
+        packet1.navigational_status = packet_in.navigational_status;
+        packet1.type = packet_in.type;
+        packet1.dimension_port = packet_in.dimension_port;
+        packet1.dimension_starboard = packet_in.dimension_starboard;
+        
+        mav_array_memcpy(packet1.callsign, packet_in.callsign, sizeof(char)*7);
+        mav_array_memcpy(packet1.name, packet_in.name, sizeof(char)*20);
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_AIS_VESSEL_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_AIS_VESSEL_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_ais_vessel_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_ais_vessel_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_ais_vessel_pack(system_id, component_id, &msg , packet1.MMSI , packet1.lat , packet1.lon , packet1.COG , packet1.heading , packet1.velocity , packet1.turn_rate , packet1.navigational_status , packet1.type , packet1.dimension_bow , packet1.dimension_stern , packet1.dimension_port , packet1.dimension_starboard , packet1.callsign , packet1.name , packet1.tslc , packet1.flags );
+    mavlink_msg_ais_vessel_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_ais_vessel_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.MMSI , packet1.lat , packet1.lon , packet1.COG , packet1.heading , packet1.velocity , packet1.turn_rate , packet1.navigational_status , packet1.type , packet1.dimension_bow , packet1.dimension_stern , packet1.dimension_port , packet1.dimension_starboard , packet1.callsign , packet1.name , packet1.tslc , packet1.flags );
+    mavlink_msg_ais_vessel_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_ais_vessel_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_ais_vessel_send(MAVLINK_COMM_1 , packet1.MMSI , packet1.lat , packet1.lon , packet1.COG , packet1.heading , packet1.velocity , packet1.turn_rate , packet1.navigational_status , packet1.type , packet1.dimension_bow , packet1.dimension_stern , packet1.dimension_port , packet1.dimension_starboard , packet1.callsign , packet1.name , packet1.tslc , packet1.flags );
+    mavlink_msg_ais_vessel_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
 static void mavlink_test_uavcan_node_status(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -11712,6 +11782,7 @@ static void mavlink_test_common(uint8_t system_id, uint8_t component_id, mavlink
     mavlink_test_video_stream_status(system_id, component_id, last_msg);
     mavlink_test_wifi_config_ap(system_id, component_id, last_msg);
     mavlink_test_protocol_version(system_id, component_id, last_msg);
+    mavlink_test_ais_vessel(system_id, component_id, last_msg);
     mavlink_test_uavcan_node_status(system_id, component_id, last_msg);
     mavlink_test_uavcan_node_info(system_id, component_id, last_msg);
     mavlink_test_param_ext_request_read(system_id, component_id, last_msg);
