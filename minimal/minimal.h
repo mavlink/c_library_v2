@@ -273,6 +273,7 @@ typedef enum MAV_COMPONENT
    MAV_COMP_ID_PATHPLANNER=195, /* Component that finds an optimal path between points based on a certain constraint (e.g. minimum snap, shortest path, cost, etc.). | */
    MAV_COMP_ID_OBSTACLE_AVOIDANCE=196, /* Component that plans a collision free path between two points. | */
    MAV_COMP_ID_VISUAL_INERTIAL_ODOMETRY=197, /* Component that provides position estimates using VIO techniques. | */
+   MAV_COMP_ID_PAIRING_MANAGER=198, /* Component that manages pairing of vehicle and GCS. | */
    MAV_COMP_ID_IMU=200, /* Inertial Measurement Unit (IMU) #1. | */
    MAV_COMP_ID_IMU_2=201, /* Inertial Measurement Unit (IMU) #2. | */
    MAV_COMP_ID_IMU_3=202, /* Inertial Measurement Unit (IMU) #3. | */
