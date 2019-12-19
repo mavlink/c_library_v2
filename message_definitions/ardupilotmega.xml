@@ -111,6 +111,16 @@
         <param index="6">Empty.</param>
         <param index="7">Empty.</param>
       </entry>
+      <entry value="42006" name="MAV_CMD_FIXED_MAG_CAL_YAW">
+        <description>Magnetometer calibration based on provided known yaw. This allows for fast calibration using WMM field tables in the vehicle, given only the known yaw of the vehicle. If Latitude and longitude are both zero then use the current vehicle location.</description>
+        <param index="1" label="Yaw" units="deg">Yaw of vehicle in earth frame.</param>
+        <param index="2" label="CompassMask">CompassMask, 0 for all.</param>
+        <param index="3" label="Latitude" units="deg">Latitude.</param>
+        <param index="4" label="Longitude" units="deg">Longitude.</param>
+        <param index="5">Empty.</param>
+        <param index="6">Empty.</param>
+        <param index="7">Empty.</param>
+      </entry>
       <entry value="42424" name="MAV_CMD_DO_START_MAG_CAL">
         <description>Initiate a magnetometer calibration.</description>
         <param index="1">uint8_t bitmask of magnetometers (0 means all).</param>
@@ -867,6 +877,7 @@
       <entry value="4" name="MAG_CAL_SUCCESS"/>
       <entry value="5" name="MAG_CAL_FAILED"/>
       <entry value="6" name="MAG_CAL_BAD_ORIENTATION"/>
+      <entry value="7" name="MAG_CAL_BAD_RADIUS"/>
     </enum>
     <enum name="MAV_REMOTE_LOG_DATA_BLOCK_COMMANDS">
       <description>Special ACK block numbers control activation of dataflash log streaming.</description>
@@ -1382,6 +1393,7 @@
       <field type="float" name="orientation_confidence">Confidence in orientation (higher is better).</field>
       <field type="uint8_t" name="old_orientation" enum="MAV_SENSOR_ORIENTATION">orientation before calibration.</field>
       <field type="uint8_t" name="new_orientation" enum="MAV_SENSOR_ORIENTATION">orientation after calibration.</field>
+      <field type="float" name="scale_factor">field radius correction factor</field>
     </message>
     <!-- EKF status message from autopilot to GCS. -->
     <message id="193" name="EKF_STATUS_REPORT">
@@ -1485,6 +1497,23 @@
       <field type="uint8_t" name="status" enum="GOPRO_REQUEST_STATUS">Status.</field>
     </message>
     <!-- 219 to 224 RESERVED for more GOPRO-->
+    <message id="225" name="EFI_STATUS">
+      <description>EFI Status Output</description>
+      <field type="uint8_t" name="health">EFI Health status</field>
+      <field type="float" name="ecu_index">ECU Index</field>
+      <field type="float" name="rpm">RPM</field>
+      <field type="float" name="fuel_consumed" units="g">Fuel Consumed (grams)</field>
+      <field type="float" name="fuel_flow" units="g/min">Fuel Flow Rate (g/min)</field>
+      <field type="float" name="engine_load" units="%">Engine Load (%)</field>
+      <field type="float" name="throttle_position" units="%">Throttle Position (%)</field>
+      <field type="float" name="spark_dwell_time" units="ms">Spark Dwell Time (ms)</field>
+      <field type="float" name="barometric_pressure" units="kPa">Barometric Pressure (kPa)</field>
+      <field type="float" name="intake_manifold_pressure" units="kPa">Intake Manifold Pressure (kPa)(</field>
+      <field type="float" name="intake_manifold_temperature" units="degC">Intake Manifold Temperature (degC)</field>
+      <field type="float" name="cylinder_head_temperature" units="degC">cylinder_head_temperature (degC)</field>
+      <field type="float" name="ignition_timing" units="deg">Ignition timing for cylinder i (Crank Angle degrees)</field>
+      <field type="float" name="injection_time" units="ms">Injection time for injector i (ms)</field>
+    </message>
     <message id="226" name="RPM">
       <description>RPM sensor output.</description>
       <field type="float" name="rpm1">RPM Sensor1.</field>
