@@ -20,11 +20,12 @@ typedef struct __mavlink_gps_raw_int_t {
  uint32_t v_acc; /*< [mm] Altitude uncertainty. Positive for up.*/
  uint32_t vel_acc; /*< [mm] Speed uncertainty. Positive for up.*/
  uint32_t hdg_acc; /*< [degE5] Heading / track uncertainty*/
+ uint16_t yaw; /*< [cdeg] Yaw in earth frame from north. Use 0 if this GPS does not provide yaw. Use 65535 if this GPS is configured to provide yaw and is currently unable to provide it. Use 36000 for north.*/
 }) mavlink_gps_raw_int_t;
 
-#define MAVLINK_MSG_ID_GPS_RAW_INT_LEN 50
+#define MAVLINK_MSG_ID_GPS_RAW_INT_LEN 52
 #define MAVLINK_MSG_ID_GPS_RAW_INT_MIN_LEN 30
-#define MAVLINK_MSG_ID_24_LEN 50
+#define MAVLINK_MSG_ID_24_LEN 52
 #define MAVLINK_MSG_ID_24_MIN_LEN 30
 
 #define MAVLINK_MSG_ID_GPS_RAW_INT_CRC 24
@@ -36,7 +37,7 @@ typedef struct __mavlink_gps_raw_int_t {
 #define MAVLINK_MESSAGE_INFO_GPS_RAW_INT { \
     24, \
     "GPS_RAW_INT", \
-    15, \
+    16, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_gps_raw_int_t, time_usec) }, \
          { "fix_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 28, offsetof(mavlink_gps_raw_int_t, fix_type) }, \
          { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_gps_raw_int_t, lat) }, \
@@ -52,12 +53,13 @@ typedef struct __mavlink_gps_raw_int_t {
          { "v_acc", NULL, MAVLINK_TYPE_UINT32_T, 0, 38, offsetof(mavlink_gps_raw_int_t, v_acc) }, \
          { "vel_acc", NULL, MAVLINK_TYPE_UINT32_T, 0, 42, offsetof(mavlink_gps_raw_int_t, vel_acc) }, \
          { "hdg_acc", NULL, MAVLINK_TYPE_UINT32_T, 0, 46, offsetof(mavlink_gps_raw_int_t, hdg_acc) }, \
+         { "yaw", NULL, MAVLINK_TYPE_UINT16_T, 0, 50, offsetof(mavlink_gps_raw_int_t, yaw) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_GPS_RAW_INT { \
     "GPS_RAW_INT", \
-    15, \
+    16, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_gps_raw_int_t, time_usec) }, \
          { "fix_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 28, offsetof(mavlink_gps_raw_int_t, fix_type) }, \
          { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_gps_raw_int_t, lat) }, \
@@ -73,6 +75,7 @@ typedef struct __mavlink_gps_raw_int_t {
          { "v_acc", NULL, MAVLINK_TYPE_UINT32_T, 0, 38, offsetof(mavlink_gps_raw_int_t, v_acc) }, \
          { "vel_acc", NULL, MAVLINK_TYPE_UINT32_T, 0, 42, offsetof(mavlink_gps_raw_int_t, vel_acc) }, \
          { "hdg_acc", NULL, MAVLINK_TYPE_UINT32_T, 0, 46, offsetof(mavlink_gps_raw_int_t, hdg_acc) }, \
+         { "yaw", NULL, MAVLINK_TYPE_UINT16_T, 0, 50, offsetof(mavlink_gps_raw_int_t, yaw) }, \
          } \
 }
 #endif
@@ -98,10 +101,11 @@ typedef struct __mavlink_gps_raw_int_t {
  * @param v_acc [mm] Altitude uncertainty. Positive for up.
  * @param vel_acc [mm] Speed uncertainty. Positive for up.
  * @param hdg_acc [degE5] Heading / track uncertainty
+ * @param yaw [cdeg] Yaw in earth frame from north. Use 0 if this GPS does not provide yaw. Use 65535 if this GPS is configured to provide yaw and is currently unable to provide it. Use 36000 for north.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_gps_raw_int_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint64_t time_usec, uint8_t fix_type, int32_t lat, int32_t lon, int32_t alt, uint16_t eph, uint16_t epv, uint16_t vel, uint16_t cog, uint8_t satellites_visible, int32_t alt_ellipsoid, uint32_t h_acc, uint32_t v_acc, uint32_t vel_acc, uint32_t hdg_acc)
+                               uint64_t time_usec, uint8_t fix_type, int32_t lat, int32_t lon, int32_t alt, uint16_t eph, uint16_t epv, uint16_t vel, uint16_t cog, uint8_t satellites_visible, int32_t alt_ellipsoid, uint32_t h_acc, uint32_t v_acc, uint32_t vel_acc, uint32_t hdg_acc, uint16_t yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_GPS_RAW_INT_LEN];
@@ -120,6 +124,7 @@ static inline uint16_t mavlink_msg_gps_raw_int_pack(uint8_t system_id, uint8_t c
     _mav_put_uint32_t(buf, 38, v_acc);
     _mav_put_uint32_t(buf, 42, vel_acc);
     _mav_put_uint32_t(buf, 46, hdg_acc);
+    _mav_put_uint16_t(buf, 50, yaw);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_GPS_RAW_INT_LEN);
 #else
@@ -139,6 +144,7 @@ static inline uint16_t mavlink_msg_gps_raw_int_pack(uint8_t system_id, uint8_t c
     packet.v_acc = v_acc;
     packet.vel_acc = vel_acc;
     packet.hdg_acc = hdg_acc;
+    packet.yaw = yaw;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_GPS_RAW_INT_LEN);
 #endif
@@ -168,11 +174,12 @@ static inline uint16_t mavlink_msg_gps_raw_int_pack(uint8_t system_id, uint8_t c
  * @param v_acc [mm] Altitude uncertainty. Positive for up.
  * @param vel_acc [mm] Speed uncertainty. Positive for up.
  * @param hdg_acc [degE5] Heading / track uncertainty
+ * @param yaw [cdeg] Yaw in earth frame from north. Use 0 if this GPS does not provide yaw. Use 65535 if this GPS is configured to provide yaw and is currently unable to provide it. Use 36000 for north.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_gps_raw_int_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint64_t time_usec,uint8_t fix_type,int32_t lat,int32_t lon,int32_t alt,uint16_t eph,uint16_t epv,uint16_t vel,uint16_t cog,uint8_t satellites_visible,int32_t alt_ellipsoid,uint32_t h_acc,uint32_t v_acc,uint32_t vel_acc,uint32_t hdg_acc)
+                                   uint64_t time_usec,uint8_t fix_type,int32_t lat,int32_t lon,int32_t alt,uint16_t eph,uint16_t epv,uint16_t vel,uint16_t cog,uint8_t satellites_visible,int32_t alt_ellipsoid,uint32_t h_acc,uint32_t v_acc,uint32_t vel_acc,uint32_t hdg_acc,uint16_t yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_GPS_RAW_INT_LEN];
@@ -191,6 +198,7 @@ static inline uint16_t mavlink_msg_gps_raw_int_pack_chan(uint8_t system_id, uint
     _mav_put_uint32_t(buf, 38, v_acc);
     _mav_put_uint32_t(buf, 42, vel_acc);
     _mav_put_uint32_t(buf, 46, hdg_acc);
+    _mav_put_uint16_t(buf, 50, yaw);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_GPS_RAW_INT_LEN);
 #else
@@ -210,6 +218,7 @@ static inline uint16_t mavlink_msg_gps_raw_int_pack_chan(uint8_t system_id, uint
     packet.v_acc = v_acc;
     packet.vel_acc = vel_acc;
     packet.hdg_acc = hdg_acc;
+    packet.yaw = yaw;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_GPS_RAW_INT_LEN);
 #endif
@@ -228,7 +237,7 @@ static inline uint16_t mavlink_msg_gps_raw_int_pack_chan(uint8_t system_id, uint
  */
 static inline uint16_t mavlink_msg_gps_raw_int_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_gps_raw_int_t* gps_raw_int)
 {
-    return mavlink_msg_gps_raw_int_pack(system_id, component_id, msg, gps_raw_int->time_usec, gps_raw_int->fix_type, gps_raw_int->lat, gps_raw_int->lon, gps_raw_int->alt, gps_raw_int->eph, gps_raw_int->epv, gps_raw_int->vel, gps_raw_int->cog, gps_raw_int->satellites_visible, gps_raw_int->alt_ellipsoid, gps_raw_int->h_acc, gps_raw_int->v_acc, gps_raw_int->vel_acc, gps_raw_int->hdg_acc);
+    return mavlink_msg_gps_raw_int_pack(system_id, component_id, msg, gps_raw_int->time_usec, gps_raw_int->fix_type, gps_raw_int->lat, gps_raw_int->lon, gps_raw_int->alt, gps_raw_int->eph, gps_raw_int->epv, gps_raw_int->vel, gps_raw_int->cog, gps_raw_int->satellites_visible, gps_raw_int->alt_ellipsoid, gps_raw_int->h_acc, gps_raw_int->v_acc, gps_raw_int->vel_acc, gps_raw_int->hdg_acc, gps_raw_int->yaw);
 }
 
 /**
@@ -242,7 +251,7 @@ static inline uint16_t mavlink_msg_gps_raw_int_encode(uint8_t system_id, uint8_t
  */
 static inline uint16_t mavlink_msg_gps_raw_int_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gps_raw_int_t* gps_raw_int)
 {
-    return mavlink_msg_gps_raw_int_pack_chan(system_id, component_id, chan, msg, gps_raw_int->time_usec, gps_raw_int->fix_type, gps_raw_int->lat, gps_raw_int->lon, gps_raw_int->alt, gps_raw_int->eph, gps_raw_int->epv, gps_raw_int->vel, gps_raw_int->cog, gps_raw_int->satellites_visible, gps_raw_int->alt_ellipsoid, gps_raw_int->h_acc, gps_raw_int->v_acc, gps_raw_int->vel_acc, gps_raw_int->hdg_acc);
+    return mavlink_msg_gps_raw_int_pack_chan(system_id, component_id, chan, msg, gps_raw_int->time_usec, gps_raw_int->fix_type, gps_raw_int->lat, gps_raw_int->lon, gps_raw_int->alt, gps_raw_int->eph, gps_raw_int->epv, gps_raw_int->vel, gps_raw_int->cog, gps_raw_int->satellites_visible, gps_raw_int->alt_ellipsoid, gps_raw_int->h_acc, gps_raw_int->v_acc, gps_raw_int->vel_acc, gps_raw_int->hdg_acc, gps_raw_int->yaw);
 }
 
 /**
@@ -264,10 +273,11 @@ static inline uint16_t mavlink_msg_gps_raw_int_encode_chan(uint8_t system_id, ui
  * @param v_acc [mm] Altitude uncertainty. Positive for up.
  * @param vel_acc [mm] Speed uncertainty. Positive for up.
  * @param hdg_acc [degE5] Heading / track uncertainty
+ * @param yaw [cdeg] Yaw in earth frame from north. Use 0 if this GPS does not provide yaw. Use 65535 if this GPS is configured to provide yaw and is currently unable to provide it. Use 36000 for north.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_gps_raw_int_send(mavlink_channel_t chan, uint64_t time_usec, uint8_t fix_type, int32_t lat, int32_t lon, int32_t alt, uint16_t eph, uint16_t epv, uint16_t vel, uint16_t cog, uint8_t satellites_visible, int32_t alt_ellipsoid, uint32_t h_acc, uint32_t v_acc, uint32_t vel_acc, uint32_t hdg_acc)
+static inline void mavlink_msg_gps_raw_int_send(mavlink_channel_t chan, uint64_t time_usec, uint8_t fix_type, int32_t lat, int32_t lon, int32_t alt, uint16_t eph, uint16_t epv, uint16_t vel, uint16_t cog, uint8_t satellites_visible, int32_t alt_ellipsoid, uint32_t h_acc, uint32_t v_acc, uint32_t vel_acc, uint32_t hdg_acc, uint16_t yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_GPS_RAW_INT_LEN];
@@ -286,6 +296,7 @@ static inline void mavlink_msg_gps_raw_int_send(mavlink_channel_t chan, uint64_t
     _mav_put_uint32_t(buf, 38, v_acc);
     _mav_put_uint32_t(buf, 42, vel_acc);
     _mav_put_uint32_t(buf, 46, hdg_acc);
+    _mav_put_uint16_t(buf, 50, yaw);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GPS_RAW_INT, buf, MAVLINK_MSG_ID_GPS_RAW_INT_MIN_LEN, MAVLINK_MSG_ID_GPS_RAW_INT_LEN, MAVLINK_MSG_ID_GPS_RAW_INT_CRC);
 #else
@@ -305,6 +316,7 @@ static inline void mavlink_msg_gps_raw_int_send(mavlink_channel_t chan, uint64_t
     packet.v_acc = v_acc;
     packet.vel_acc = vel_acc;
     packet.hdg_acc = hdg_acc;
+    packet.yaw = yaw;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GPS_RAW_INT, (const char *)&packet, MAVLINK_MSG_ID_GPS_RAW_INT_MIN_LEN, MAVLINK_MSG_ID_GPS_RAW_INT_LEN, MAVLINK_MSG_ID_GPS_RAW_INT_CRC);
 #endif
@@ -318,7 +330,7 @@ static inline void mavlink_msg_gps_raw_int_send(mavlink_channel_t chan, uint64_t
 static inline void mavlink_msg_gps_raw_int_send_struct(mavlink_channel_t chan, const mavlink_gps_raw_int_t* gps_raw_int)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_gps_raw_int_send(chan, gps_raw_int->time_usec, gps_raw_int->fix_type, gps_raw_int->lat, gps_raw_int->lon, gps_raw_int->alt, gps_raw_int->eph, gps_raw_int->epv, gps_raw_int->vel, gps_raw_int->cog, gps_raw_int->satellites_visible, gps_raw_int->alt_ellipsoid, gps_raw_int->h_acc, gps_raw_int->v_acc, gps_raw_int->vel_acc, gps_raw_int->hdg_acc);
+    mavlink_msg_gps_raw_int_send(chan, gps_raw_int->time_usec, gps_raw_int->fix_type, gps_raw_int->lat, gps_raw_int->lon, gps_raw_int->alt, gps_raw_int->eph, gps_raw_int->epv, gps_raw_int->vel, gps_raw_int->cog, gps_raw_int->satellites_visible, gps_raw_int->alt_ellipsoid, gps_raw_int->h_acc, gps_raw_int->v_acc, gps_raw_int->vel_acc, gps_raw_int->hdg_acc, gps_raw_int->yaw);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GPS_RAW_INT, (const char *)gps_raw_int, MAVLINK_MSG_ID_GPS_RAW_INT_MIN_LEN, MAVLINK_MSG_ID_GPS_RAW_INT_LEN, MAVLINK_MSG_ID_GPS_RAW_INT_CRC);
 #endif
@@ -332,7 +344,7 @@ static inline void mavlink_msg_gps_raw_int_send_struct(mavlink_channel_t chan, c
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_gps_raw_int_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, uint8_t fix_type, int32_t lat, int32_t lon, int32_t alt, uint16_t eph, uint16_t epv, uint16_t vel, uint16_t cog, uint8_t satellites_visible, int32_t alt_ellipsoid, uint32_t h_acc, uint32_t v_acc, uint32_t vel_acc, uint32_t hdg_acc)
+static inline void mavlink_msg_gps_raw_int_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, uint8_t fix_type, int32_t lat, int32_t lon, int32_t alt, uint16_t eph, uint16_t epv, uint16_t vel, uint16_t cog, uint8_t satellites_visible, int32_t alt_ellipsoid, uint32_t h_acc, uint32_t v_acc, uint32_t vel_acc, uint32_t hdg_acc, uint16_t yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -351,6 +363,7 @@ static inline void mavlink_msg_gps_raw_int_send_buf(mavlink_message_t *msgbuf, m
     _mav_put_uint32_t(buf, 38, v_acc);
     _mav_put_uint32_t(buf, 42, vel_acc);
     _mav_put_uint32_t(buf, 46, hdg_acc);
+    _mav_put_uint16_t(buf, 50, yaw);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GPS_RAW_INT, buf, MAVLINK_MSG_ID_GPS_RAW_INT_MIN_LEN, MAVLINK_MSG_ID_GPS_RAW_INT_LEN, MAVLINK_MSG_ID_GPS_RAW_INT_CRC);
 #else
@@ -370,6 +383,7 @@ static inline void mavlink_msg_gps_raw_int_send_buf(mavlink_message_t *msgbuf, m
     packet->v_acc = v_acc;
     packet->vel_acc = vel_acc;
     packet->hdg_acc = hdg_acc;
+    packet->yaw = yaw;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GPS_RAW_INT, (const char *)packet, MAVLINK_MSG_ID_GPS_RAW_INT_MIN_LEN, MAVLINK_MSG_ID_GPS_RAW_INT_LEN, MAVLINK_MSG_ID_GPS_RAW_INT_CRC);
 #endif
@@ -532,6 +546,16 @@ static inline uint32_t mavlink_msg_gps_raw_int_get_hdg_acc(const mavlink_message
 }
 
 /**
+ * @brief Get field yaw from gps_raw_int message
+ *
+ * @return [cdeg] Yaw in earth frame from north. Use 0 if this GPS does not provide yaw. Use 65535 if this GPS is configured to provide yaw and is currently unable to provide it. Use 36000 for north.
+ */
+static inline uint16_t mavlink_msg_gps_raw_int_get_yaw(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint16_t(msg,  50);
+}
+
+/**
  * @brief Decode a gps_raw_int message into a struct
  *
  * @param msg The message to decode
@@ -555,6 +579,7 @@ static inline void mavlink_msg_gps_raw_int_decode(const mavlink_message_t* msg, 
     gps_raw_int->v_acc = mavlink_msg_gps_raw_int_get_v_acc(msg);
     gps_raw_int->vel_acc = mavlink_msg_gps_raw_int_get_vel_acc(msg);
     gps_raw_int->hdg_acc = mavlink_msg_gps_raw_int_get_hdg_acc(msg);
+    gps_raw_int->yaw = mavlink_msg_gps_raw_int_get_yaw(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_GPS_RAW_INT_LEN? msg->len : MAVLINK_MSG_ID_GPS_RAW_INT_LEN;
         memset(gps_raw_int, 0, MAVLINK_MSG_ID_GPS_RAW_INT_LEN);
