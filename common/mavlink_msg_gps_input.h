@@ -5,7 +5,7 @@
 
 MAVPACKED(
 typedef struct __mavlink_gps_input_t {
- uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
+ uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  uint32_t time_week_ms; /*< [ms] GPS time (from start of GPS week)*/
  int32_t lat; /*< [degE7] Latitude (WGS84)*/
  int32_t lon; /*< [degE7] Longitude (WGS84)*/
@@ -95,7 +95,7 @@ typedef struct __mavlink_gps_input_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param gps_id  ID of the GPS for multiple GPS inputs
  * @param ignore_flags  Bitmap indicating which GPS input flags fields to ignore.  All other fields must be provided.
  * @param time_week_ms [ms] GPS time (from start of GPS week)
@@ -177,7 +177,7 @@ static inline uint16_t mavlink_msg_gps_input_pack(uint8_t system_id, uint8_t com
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param gps_id  ID of the GPS for multiple GPS inputs
  * @param ignore_flags  Bitmap indicating which GPS input flags fields to ignore.  All other fields must be provided.
  * @param time_week_ms [ms] GPS time (from start of GPS week)
@@ -285,7 +285,7 @@ static inline uint16_t mavlink_msg_gps_input_encode_chan(uint8_t system_id, uint
  * @brief Send a gps_input message
  * @param chan MAVLink channel to send the message
  *
- * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param gps_id  ID of the GPS for multiple GPS inputs
  * @param ignore_flags  Bitmap indicating which GPS input flags fields to ignore.  All other fields must be provided.
  * @param time_week_ms [ms] GPS time (from start of GPS week)
@@ -440,7 +440,7 @@ static inline void mavlink_msg_gps_input_send_buf(mavlink_message_t *msgbuf, mav
 /**
  * @brief Get field time_usec from gps_input message
  *
- * @return [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @return [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  */
 static inline uint64_t mavlink_msg_gps_input_get_time_usec(const mavlink_message_t* msg)
 {

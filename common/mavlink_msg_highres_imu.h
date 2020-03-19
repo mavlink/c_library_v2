@@ -5,7 +5,7 @@
 
 MAVPACKED(
 typedef struct __mavlink_highres_imu_t {
- uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
+ uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  float xacc; /*< [m/s/s] X acceleration*/
  float yacc; /*< [m/s/s] Y acceleration*/
  float zacc; /*< [m/s/s] Z acceleration*/
@@ -86,7 +86,7 @@ typedef struct __mavlink_highres_imu_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param xacc [m/s/s] X acceleration
  * @param yacc [m/s/s] Y acceleration
  * @param zacc [m/s/s] Z acceleration
@@ -159,7 +159,7 @@ static inline uint16_t mavlink_msg_highres_imu_pack(uint8_t system_id, uint8_t c
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param xacc [m/s/s] X acceleration
  * @param yacc [m/s/s] Y acceleration
  * @param zacc [m/s/s] Z acceleration
@@ -258,7 +258,7 @@ static inline uint16_t mavlink_msg_highres_imu_encode_chan(uint8_t system_id, ui
  * @brief Send a highres_imu message
  * @param chan MAVLink channel to send the message
  *
- * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param xacc [m/s/s] X acceleration
  * @param yacc [m/s/s] Y acceleration
  * @param zacc [m/s/s] Z acceleration
@@ -398,7 +398,7 @@ static inline void mavlink_msg_highres_imu_send_buf(mavlink_message_t *msgbuf, m
 /**
  * @brief Get field time_usec from highres_imu message
  *
- * @return [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @return [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  */
 static inline uint64_t mavlink_msg_highres_imu_get_time_usec(const mavlink_message_t* msg)
 {
