@@ -578,7 +578,8 @@ typedef enum GIMBAL_MANAGER_FLAGS
    GIMBAL_MANAGER_FLAGS_ANGULAR_VELOCITY_RELATIVE_TO_FOCAL_LENGTH=1048576, /* Scale angular velocity relative to focal length. This means the gimbal moves slower if it is zoomed in. | */
    GIMBAL_MANAGER_FLAGS_NUDGE=2097152, /* Interpret attitude control on top of pointing to a location or tracking. If this flag is set, the quaternion is relative to the existing tracking angle. | */
    GIMBAL_MANAGER_FLAGS_OVERRIDE=4194304, /* Completely override pointing to a location or tracking. If this flag is set, the quaternion is (as usual) according to GIMBAL_MANAGER_FLAGS_YAW_LOCK. | */
-   GIMBAL_MANAGER_FLAGS_ENUM_END=4194305, /*  | */
+   GIMBAL_MANAGER_FLAGS_NONE=8388608, /* This flag can be set to give up control previously set using MAV_CMD_DO_GIMBAL_MANAGER_ATTITUDE. This flag must not be combined with other flags. | */
+   GIMBAL_MANAGER_FLAGS_ENUM_END=8388609, /*  | */
 } GIMBAL_MANAGER_FLAGS;
 #endif
 
