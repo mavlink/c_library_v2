@@ -5,8 +5,8 @@
 
 MAVPACKED(
 typedef struct __mavlink_open_drone_id_system_t {
- int32_t operator_latitude; /*< [degE7] Latitude of the operator. If unknown: 0 deg (both Lat/Lon).*/
- int32_t operator_longitude; /*< [degE7] Longitude of the operator. If unknown: 0 deg (both Lat/Lon).*/
+ int32_t operator_latitude; /*< [degE7] Latitude of the operator. If unknown: 0 (both Lat/Lon).*/
+ int32_t operator_longitude; /*< [degE7] Longitude of the operator. If unknown: 0 (both Lat/Lon).*/
  float area_ceiling; /*< [m] Area Operations Ceiling relative to WGS84. If unknown: -1000 m.*/
  float area_floor; /*< [m] Area Operations Floor relative to WGS84. If unknown: -1000 m.*/
  uint16_t area_count; /*<  Number of aircraft in the area, group or formation (default 1).*/
@@ -60,8 +60,8 @@ typedef struct __mavlink_open_drone_id_system_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param flags  Specifies the location source for the operator location.
- * @param operator_latitude [degE7] Latitude of the operator. If unknown: 0 deg (both Lat/Lon).
- * @param operator_longitude [degE7] Longitude of the operator. If unknown: 0 deg (both Lat/Lon).
+ * @param operator_latitude [degE7] Latitude of the operator. If unknown: 0 (both Lat/Lon).
+ * @param operator_longitude [degE7] Longitude of the operator. If unknown: 0 (both Lat/Lon).
  * @param area_count  Number of aircraft in the area, group or formation (default 1).
  * @param area_radius [m] Radius of the cylindrical area of the group or formation (default 0).
  * @param area_ceiling [m] Area Operations Ceiling relative to WGS84. If unknown: -1000 m.
@@ -106,8 +106,8 @@ static inline uint16_t mavlink_msg_open_drone_id_system_pack(uint8_t system_id, 
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param flags  Specifies the location source for the operator location.
- * @param operator_latitude [degE7] Latitude of the operator. If unknown: 0 deg (both Lat/Lon).
- * @param operator_longitude [degE7] Longitude of the operator. If unknown: 0 deg (both Lat/Lon).
+ * @param operator_latitude [degE7] Latitude of the operator. If unknown: 0 (both Lat/Lon).
+ * @param operator_longitude [degE7] Longitude of the operator. If unknown: 0 (both Lat/Lon).
  * @param area_count  Number of aircraft in the area, group or formation (default 1).
  * @param area_radius [m] Radius of the cylindrical area of the group or formation (default 0).
  * @param area_ceiling [m] Area Operations Ceiling relative to WGS84. If unknown: -1000 m.
@@ -178,8 +178,8 @@ static inline uint16_t mavlink_msg_open_drone_id_system_encode_chan(uint8_t syst
  * @param chan MAVLink channel to send the message
  *
  * @param flags  Specifies the location source for the operator location.
- * @param operator_latitude [degE7] Latitude of the operator. If unknown: 0 deg (both Lat/Lon).
- * @param operator_longitude [degE7] Longitude of the operator. If unknown: 0 deg (both Lat/Lon).
+ * @param operator_latitude [degE7] Latitude of the operator. If unknown: 0 (both Lat/Lon).
+ * @param operator_longitude [degE7] Longitude of the operator. If unknown: 0 (both Lat/Lon).
  * @param area_count  Number of aircraft in the area, group or formation (default 1).
  * @param area_radius [m] Radius of the cylindrical area of the group or formation (default 0).
  * @param area_ceiling [m] Area Operations Ceiling relative to WGS84. If unknown: -1000 m.
@@ -282,7 +282,7 @@ static inline uint8_t mavlink_msg_open_drone_id_system_get_flags(const mavlink_m
 /**
  * @brief Get field operator_latitude from open_drone_id_system message
  *
- * @return [degE7] Latitude of the operator. If unknown: 0 deg (both Lat/Lon).
+ * @return [degE7] Latitude of the operator. If unknown: 0 (both Lat/Lon).
  */
 static inline int32_t mavlink_msg_open_drone_id_system_get_operator_latitude(const mavlink_message_t* msg)
 {
@@ -292,7 +292,7 @@ static inline int32_t mavlink_msg_open_drone_id_system_get_operator_latitude(con
 /**
  * @brief Get field operator_longitude from open_drone_id_system message
  *
- * @return [degE7] Longitude of the operator. If unknown: 0 deg (both Lat/Lon).
+ * @return [degE7] Longitude of the operator. If unknown: 0 (both Lat/Lon).
  */
 static inline int32_t mavlink_msg_open_drone_id_system_get_operator_longitude(const mavlink_message_t* msg)
 {
