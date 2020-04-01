@@ -6310,7 +6310,13 @@
       <field type="uint8_t" name="ring_pending">1: Ring call pending, 0: No call pending.</field>
       <field type="uint8_t" name="tx_session_pending">1: Transmission session pending, 0: No transmission session pending.</field>
       <field type="uint8_t" name="rx_session_pending">1: Receiving session pending, 0: No receiving session pending.</field>
-    </message>
+  </message>
+    <message id="336" name="RAW_RPM">
+      <description>RPM sensor data message.</description>
+      <field type="uint64_t" name="timestamp" units="us">Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.</field>
+      <field type="float" name="indicated_frequency_rpm">indicated rotor Frequency in Revolution per minute.</field>
+      <field type="float" name="estimated_accurancy_rpm">estimated accurancy in Revolution per minute.</field>
+  </message>
     <message id="340" name="UTM_GLOBAL_POSITION">
       <wip/>
       <!-- This message is work-in-progress it can therefore change, and should NOT be used in stable production environments -->
