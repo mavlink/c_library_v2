@@ -738,6 +738,7 @@ typedef enum MAV_CMD
    MAV_CMD_COMPONENT_ARM_DISARM=400, /* Arms / Disarms a component |0: disarm, 1: arm| 0: arm-disarm unless prevented by safety checks (i.e. when landed), 21196: force arming/disarming (e.g. allow arming to override preflight checks and disarming in flight)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
    MAV_CMD_ILLUMINATOR_ON_OFF=405, /* Turns illuminators ON/OFF. An illuminator is a light source that is used for lighting up dark areas external to the sytstem: e.g. a torch or searchlight (as opposed to a light source for illuminating the system itself, e.g. an indicator light). |0: Illuminators OFF, 1: Illuminators ON| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
    MAV_CMD_GET_HOME_POSITION=410, /* Request the home position from the vehicle. |Reserved| Reserved| Reserved| Reserved| Reserved| Reserved| Reserved|  */
+   MAV_CMD_INJECT_FAILURE=420, /* Inject artificial failure for testing purposes. Note that autopilots should implement an additional protection before accepting this command such as a specific param setting. |The unit which is affected by the failure.| The type how the failure manifests itself.| Instance affected by failure (0 to signal all).| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
    MAV_CMD_START_RX_PAIR=500, /* Starts receiver pairing. |0:Spektrum.| RC type.| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
    MAV_CMD_GET_MESSAGE_INTERVAL=510, /* Request the interval between messages for a particular MAVLink message ID. The receiver should ACK the command and then emit its response in a MESSAGE_INTERVAL message. |The MAVLink message ID| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
    MAV_CMD_SET_MESSAGE_INTERVAL=511, /* Set the interval between messages for a particular MAVLink message ID. This interface replaces REQUEST_DATA_STREAM. |The MAVLink message ID| The interval between two messages. Set to -1 to disable and 0 to request default rate.| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Target address of message stream (if message has target address fields). 0: Flight-stack default (recommended), 1: address of requestor, 2: broadcast.|  */
@@ -2055,6 +2056,46 @@ typedef enum AIS_FLAGS
    AIS_FLAGS_VALID_NAME=4096, /*  | */
    AIS_FLAGS_ENUM_END=4097, /*  | */
 } AIS_FLAGS;
+#endif
+
+/** @brief List of possible units where failures can be injected. */
+#ifndef HAVE_ENUM_FAILURE_UNIT
+#define HAVE_ENUM_FAILURE_UNIT
+typedef enum FAILURE_UNIT
+{
+   FAILURE_UNIT_SENSOR_GYRO=0, /*  | */
+   FAILURE_UNIT_SENSOR_ACCEL=1, /*  | */
+   FAILURE_UNIT_SENSOR_MAG=2, /*  | */
+   FAILURE_UNIT_SENSOR_BARO=3, /*  | */
+   FAILURE_UNIT_SENSOR_GPS=4, /*  | */
+   FAILURE_UNIT_SENSOR_OPTICAL_FLOW=5, /*  | */
+   FAILURE_UNIT_SENSOR_VIO=6, /*  | */
+   FAILURE_UNIT_SENSOR_DISTANCE_SENSOR=7, /*  | */
+   FAILURE_UNIT_SYSTEM_BATTERY=100, /*  | */
+   FAILURE_UNIT_SYSTEM_MOTOR=101, /*  | */
+   FAILURE_UNIT_SYSTEM_SERVO=102, /*  | */
+   FAILURE_UNIT_SYSTEM_AVOIDANCE=103, /*  | */
+   FAILURE_UNIT_SYSTEM_RC_SIGNAL=104, /*  | */
+   FAILURE_UNIT_SYSTEM_MAVLINK_SIGNAL=105, /*  | */
+   FAILURE_UNIT_ENUM_END=106, /*  | */
+} FAILURE_UNIT;
+#endif
+
+/** @brief List of possible failure type to inject. */
+#ifndef HAVE_ENUM_FAILURE_TYPE
+#define HAVE_ENUM_FAILURE_TYPE
+typedef enum FAILURE_TYPE
+{
+   FAILURE_TYPE_OK=0, /* No failure injected, used to reset a previous failure. | */
+   FAILURE_TYPE_OFF=1, /* Sets unit off, so completely non-responsive. | */
+   FAILURE_TYPE_STUCK=2, /* Unit is stuck e.g. keeps reporting the same value. | */
+   FAILURE_TYPE_GARBAGE=3, /* Unit is reporting complete garbage. | */
+   FAILURE_TYPE_WRONG=4, /* Unit is consistently wrong. | */
+   FAILURE_TYPE_SLOW=5, /* Unit is slow, so e.g. reporting at slower than expected rate. | */
+   FAILURE_TYPE_DELAYED=6, /* Data of unit is delayed in time. | */
+   FAILURE_TYPE_INTERMITTENT=7, /* Unit is sometimes working, sometimes not. | */
+   FAILURE_TYPE_ENUM_END=8, /*  | */
+} FAILURE_TYPE;
 #endif
 
 // MAVLINK VERSION
