@@ -9492,7 +9492,7 @@ static void mavlink_test_gimbal_manager_information(uint8_t system_id, uint8_t c
         packet1.pan_max = packet_in.pan_max;
         packet1.pan_min = packet_in.pan_min;
         packet1.pan_rate_max = packet_in.pan_rate_max;
-        packet1.gimbal_component = packet_in.gimbal_component;
+        packet1.gimbal_device_id = packet_in.gimbal_device_id;
         
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -9507,12 +9507,12 @@ static void mavlink_test_gimbal_manager_information(uint8_t system_id, uint8_t c
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_gimbal_manager_information_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.cap_flags , packet1.gimbal_component , packet1.tilt_max , packet1.tilt_min , packet1.tilt_rate_max , packet1.pan_max , packet1.pan_min , packet1.pan_rate_max );
+    mavlink_msg_gimbal_manager_information_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.cap_flags , packet1.gimbal_device_id , packet1.tilt_max , packet1.tilt_min , packet1.tilt_rate_max , packet1.pan_max , packet1.pan_min , packet1.pan_rate_max );
     mavlink_msg_gimbal_manager_information_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_gimbal_manager_information_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.cap_flags , packet1.gimbal_component , packet1.tilt_max , packet1.tilt_min , packet1.tilt_rate_max , packet1.pan_max , packet1.pan_min , packet1.pan_rate_max );
+    mavlink_msg_gimbal_manager_information_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.cap_flags , packet1.gimbal_device_id , packet1.tilt_max , packet1.tilt_min , packet1.tilt_rate_max , packet1.pan_max , packet1.pan_min , packet1.pan_rate_max );
     mavlink_msg_gimbal_manager_information_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -9525,7 +9525,7 @@ static void mavlink_test_gimbal_manager_information(uint8_t system_id, uint8_t c
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_gimbal_manager_information_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.cap_flags , packet1.gimbal_component , packet1.tilt_max , packet1.tilt_min , packet1.tilt_rate_max , packet1.pan_max , packet1.pan_min , packet1.pan_rate_max );
+    mavlink_msg_gimbal_manager_information_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.cap_flags , packet1.gimbal_device_id , packet1.tilt_max , packet1.tilt_min , packet1.tilt_rate_max , packet1.pan_max , packet1.pan_min , packet1.pan_rate_max );
     mavlink_msg_gimbal_manager_information_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
@@ -9542,12 +9542,13 @@ static void mavlink_test_gimbal_manager_status(uint8_t system_id, uint8_t compon
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_gimbal_manager_status_t packet_in = {
-        963497464,963497672
+        963497464,963497672,29
     };
     mavlink_gimbal_manager_status_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         packet1.time_boot_ms = packet_in.time_boot_ms;
         packet1.flags = packet_in.flags;
+        packet1.gimbal_device_id = packet_in.gimbal_device_id;
         
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -9562,12 +9563,12 @@ static void mavlink_test_gimbal_manager_status(uint8_t system_id, uint8_t compon
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_gimbal_manager_status_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.flags );
+    mavlink_msg_gimbal_manager_status_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.flags , packet1.gimbal_device_id );
     mavlink_msg_gimbal_manager_status_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_gimbal_manager_status_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.flags );
+    mavlink_msg_gimbal_manager_status_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.flags , packet1.gimbal_device_id );
     mavlink_msg_gimbal_manager_status_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -9580,7 +9581,7 @@ static void mavlink_test_gimbal_manager_status(uint8_t system_id, uint8_t compon
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_gimbal_manager_status_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.flags );
+    mavlink_msg_gimbal_manager_status_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.flags , packet1.gimbal_device_id );
     mavlink_msg_gimbal_manager_status_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
@@ -9597,7 +9598,7 @@ static void mavlink_test_gimbal_manager_set_attitude(uint8_t system_id, uint8_t 
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_gimbal_manager_set_attitude_t packet_in = {
-        963497464,{ 45.0, 46.0, 47.0, 48.0 },157.0,185.0,213.0,101,168
+        963497464,{ 45.0, 46.0, 47.0, 48.0 },157.0,185.0,213.0,101,168,235
     };
     mavlink_gimbal_manager_set_attitude_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -9607,6 +9608,7 @@ static void mavlink_test_gimbal_manager_set_attitude(uint8_t system_id, uint8_t 
         packet1.angular_velocity_z = packet_in.angular_velocity_z;
         packet1.target_system = packet_in.target_system;
         packet1.target_component = packet_in.target_component;
+        packet1.gimbal_device_id = packet_in.gimbal_device_id;
         
         mav_array_memcpy(packet1.q, packet_in.q, sizeof(float)*4);
         
@@ -9622,12 +9624,12 @@ static void mavlink_test_gimbal_manager_set_attitude(uint8_t system_id, uint8_t 
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_gimbal_manager_set_attitude_pack(system_id, component_id, &msg , packet1.target_system , packet1.target_component , packet1.flags , packet1.q , packet1.angular_velocity_x , packet1.angular_velocity_y , packet1.angular_velocity_z );
+    mavlink_msg_gimbal_manager_set_attitude_pack(system_id, component_id, &msg , packet1.target_system , packet1.target_component , packet1.flags , packet1.gimbal_device_id , packet1.q , packet1.angular_velocity_x , packet1.angular_velocity_y , packet1.angular_velocity_z );
     mavlink_msg_gimbal_manager_set_attitude_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_gimbal_manager_set_attitude_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.target_system , packet1.target_component , packet1.flags , packet1.q , packet1.angular_velocity_x , packet1.angular_velocity_y , packet1.angular_velocity_z );
+    mavlink_msg_gimbal_manager_set_attitude_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.target_system , packet1.target_component , packet1.flags , packet1.gimbal_device_id , packet1.q , packet1.angular_velocity_x , packet1.angular_velocity_y , packet1.angular_velocity_z );
     mavlink_msg_gimbal_manager_set_attitude_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -9640,7 +9642,7 @@ static void mavlink_test_gimbal_manager_set_attitude(uint8_t system_id, uint8_t 
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_gimbal_manager_set_attitude_send(MAVLINK_COMM_1 , packet1.target_system , packet1.target_component , packet1.flags , packet1.q , packet1.angular_velocity_x , packet1.angular_velocity_y , packet1.angular_velocity_z );
+    mavlink_msg_gimbal_manager_set_attitude_send(MAVLINK_COMM_1 , packet1.target_system , packet1.target_component , packet1.flags , packet1.gimbal_device_id , packet1.q , packet1.angular_velocity_x , packet1.angular_velocity_y , packet1.angular_velocity_z );
     mavlink_msg_gimbal_manager_set_attitude_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
