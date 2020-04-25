@@ -946,7 +946,8 @@ typedef enum MAV_MISSION_RESULT
    MAV_MISSION_INVALID_SEQUENCE=13, /* Mission item received out of sequence | */
    MAV_MISSION_DENIED=14, /* Not accepting any mission commands from this communication partner. | */
    MAV_MISSION_OPERATION_CANCELLED=15, /* Current mission operation cancelled (e.g. mission upload, mission download). | */
-   MAV_MISSION_RESULT_ENUM_END=16, /*  | */
+   MAV_MISSION_TOO_MANY_ITEMS=16, /* Mission has too many items for recipient. Upload cancelled. | */
+   MAV_MISSION_RESULT_ENUM_END=17, /*  | */
 } MAV_MISSION_RESULT;
 #endif
 
