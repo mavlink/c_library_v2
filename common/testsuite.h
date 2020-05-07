@@ -9906,10 +9906,12 @@ static void mavlink_test_wifi_config_ap(uint8_t system_id, uint8_t component_id,
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_wifi_config_ap_t packet_in = {
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDE","GHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQ"
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDE","GHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQ",37,104
     };
     mavlink_wifi_config_ap_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
+        packet1.mode = packet_in.mode;
+        packet1.response = packet_in.response;
         
         mav_array_memcpy(packet1.ssid, packet_in.ssid, sizeof(char)*32);
         mav_array_memcpy(packet1.password, packet_in.password, sizeof(char)*64);
@@ -9926,12 +9928,12 @@ static void mavlink_test_wifi_config_ap(uint8_t system_id, uint8_t component_id,
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_wifi_config_ap_pack(system_id, component_id, &msg , packet1.ssid , packet1.password );
+    mavlink_msg_wifi_config_ap_pack(system_id, component_id, &msg , packet1.ssid , packet1.password , packet1.mode , packet1.response );
     mavlink_msg_wifi_config_ap_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_wifi_config_ap_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.ssid , packet1.password );
+    mavlink_msg_wifi_config_ap_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.ssid , packet1.password , packet1.mode , packet1.response );
     mavlink_msg_wifi_config_ap_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -9944,7 +9946,7 @@ static void mavlink_test_wifi_config_ap(uint8_t system_id, uint8_t component_id,
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_wifi_config_ap_send(MAVLINK_COMM_1 , packet1.ssid , packet1.password );
+    mavlink_msg_wifi_config_ap_send(MAVLINK_COMM_1 , packet1.ssid , packet1.password , packet1.mode , packet1.response );
     mavlink_msg_wifi_config_ap_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
