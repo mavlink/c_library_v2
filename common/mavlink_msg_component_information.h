@@ -6,8 +6,8 @@
 MAVPACKED(
 typedef struct __mavlink_component_information_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
- uint32_t firmware_version; /*<  Version of the component firmware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 0xff = Major)*/
- uint32_t hardware_version; /*<  Version of the component hardware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 0xff = Major)*/
+ uint32_t firmware_version; /*<  Version of the component firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff)*/
+ uint32_t hardware_version; /*<  Version of the component hardware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff)*/
  uint32_t capability_flags; /*<  Bitmap of component capability flags.*/
  uint16_t component_definition_version; /*<  Component definition version (iteration)*/
  uint8_t vendor_name[32]; /*<  Name of the component vendor*/
@@ -67,8 +67,8 @@ typedef struct __mavlink_component_information_t {
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param vendor_name  Name of the component vendor
  * @param model_name  Name of the component model
- * @param firmware_version  Version of the component firmware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 0xff = Major)
- * @param hardware_version  Version of the component hardware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 0xff = Major)
+ * @param firmware_version  Version of the component firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff)
+ * @param hardware_version  Version of the component hardware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff)
  * @param capability_flags  Bitmap of component capability flags.
  * @param component_definition_version  Component definition version (iteration)
  * @param component_definition_uri  Component definition URI (if any, otherwise only basic functions will be available). The XML format is not yet specified and work in progress. 
@@ -114,8 +114,8 @@ static inline uint16_t mavlink_msg_component_information_pack(uint8_t system_id,
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param vendor_name  Name of the component vendor
  * @param model_name  Name of the component model
- * @param firmware_version  Version of the component firmware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 0xff = Major)
- * @param hardware_version  Version of the component hardware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 0xff = Major)
+ * @param firmware_version  Version of the component firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff)
+ * @param hardware_version  Version of the component hardware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff)
  * @param capability_flags  Bitmap of component capability flags.
  * @param component_definition_version  Component definition version (iteration)
  * @param component_definition_uri  Component definition URI (if any, otherwise only basic functions will be available). The XML format is not yet specified and work in progress. 
@@ -187,8 +187,8 @@ static inline uint16_t mavlink_msg_component_information_encode_chan(uint8_t sys
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param vendor_name  Name of the component vendor
  * @param model_name  Name of the component model
- * @param firmware_version  Version of the component firmware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 0xff = Major)
- * @param hardware_version  Version of the component hardware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 0xff = Major)
+ * @param firmware_version  Version of the component firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff)
+ * @param hardware_version  Version of the component hardware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff)
  * @param capability_flags  Bitmap of component capability flags.
  * @param component_definition_version  Component definition version (iteration)
  * @param component_definition_uri  Component definition URI (if any, otherwise only basic functions will be available). The XML format is not yet specified and work in progress. 
@@ -310,7 +310,7 @@ static inline uint16_t mavlink_msg_component_information_get_model_name(const ma
 /**
  * @brief Get field firmware_version from component_information message
  *
- * @return  Version of the component firmware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 0xff = Major)
+ * @return  Version of the component firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff)
  */
 static inline uint32_t mavlink_msg_component_information_get_firmware_version(const mavlink_message_t* msg)
 {
@@ -320,7 +320,7 @@ static inline uint32_t mavlink_msg_component_information_get_firmware_version(co
 /**
  * @brief Get field hardware_version from component_information message
  *
- * @return  Version of the component hardware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 0xff = Major)
+ * @return  Version of the component hardware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff)
  */
 static inline uint32_t mavlink_msg_component_information_get_hardware_version(const mavlink_message_t* msg)
 {
