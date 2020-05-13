@@ -3,12 +3,12 @@
 
 #define MAVLINK_MSG_ID_BUTTON_CHANGE 257
 
-MAVPACKED(
+
 typedef struct __mavlink_button_change_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
  uint32_t last_change_ms; /*< [ms] Time of last change of button state.*/
  uint8_t state; /*<  Bitmap for state of buttons.*/
-}) mavlink_button_change_t;
+} mavlink_button_change_t;
 
 #define MAVLINK_MSG_ID_BUTTON_CHANGE_LEN 9
 #define MAVLINK_MSG_ID_BUTTON_CHANGE_MIN_LEN 9

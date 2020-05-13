@@ -3,14 +3,14 @@
 
 #define MAVLINK_MSG_ID_GIMBAL_CONTROL 201
 
-MAVPACKED(
+
 typedef struct __mavlink_gimbal_control_t {
  float demanded_rate_x; /*< [rad/s] Demanded angular rate X.*/
  float demanded_rate_y; /*< [rad/s] Demanded angular rate Y.*/
  float demanded_rate_z; /*< [rad/s] Demanded angular rate Z.*/
  uint8_t target_system; /*<  System ID.*/
  uint8_t target_component; /*<  Component ID.*/
-}) mavlink_gimbal_control_t;
+} mavlink_gimbal_control_t;
 
 #define MAVLINK_MSG_ID_GIMBAL_CONTROL_LEN 14
 #define MAVLINK_MSG_ID_GIMBAL_CONTROL_MIN_LEN 14

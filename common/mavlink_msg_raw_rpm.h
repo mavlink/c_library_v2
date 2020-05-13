@@ -3,11 +3,11 @@
 
 #define MAVLINK_MSG_ID_RAW_RPM 339
 
-MAVPACKED(
+
 typedef struct __mavlink_raw_rpm_t {
  float frequency; /*< [rpm] Indicated rate*/
  uint8_t index; /*<  Index of this RPM sensor (0-indexed)*/
-}) mavlink_raw_rpm_t;
+} mavlink_raw_rpm_t;
 
 #define MAVLINK_MSG_ID_RAW_RPM_LEN 5
 #define MAVLINK_MSG_ID_RAW_RPM_MIN_LEN 5

@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_ASLCTRL_DEBUG 204
 
-MAVPACKED(
+
 typedef struct __mavlink_aslctrl_debug_t {
  uint32_t i32_1; /*<   Debug data*/
  float f_1; /*<   Debug data */
@@ -16,7 +16,7 @@ typedef struct __mavlink_aslctrl_debug_t {
  float f_8; /*<   Debug data*/
  uint8_t i8_1; /*<   Debug data*/
  uint8_t i8_2; /*<   Debug data*/
-}) mavlink_aslctrl_debug_t;
+} mavlink_aslctrl_debug_t;
 
 #define MAVLINK_MSG_ID_ASLCTRL_DEBUG_LEN 38
 #define MAVLINK_MSG_ID_ASLCTRL_DEBUG_MIN_LEN 38

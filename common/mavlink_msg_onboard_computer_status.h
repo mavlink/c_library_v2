@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_ONBOARD_COMPUTER_STATUS 390
 
-MAVPACKED(
+
 typedef struct __mavlink_onboard_computer_status_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  uint32_t uptime; /*< [ms] Time since system boot.*/
@@ -25,7 +25,7 @@ typedef struct __mavlink_onboard_computer_status_t {
  uint8_t gpu_combined[10]; /*<  Combined GPU usage as the last 10 slices of 100 MS (a histogram). This allows to identify spikes in load that max out the system, but only for a short amount of time. A value of UINT8_MAX implies the field is unused.*/
  int8_t temperature_board; /*< [degC] Temperature of the board. A value of INT8_MAX implies the field is unused.*/
  int8_t temperature_core[8]; /*< [degC] Temperature of the CPU core. A value of INT8_MAX implies the field is unused.*/
-}) mavlink_onboard_computer_status_t;
+} mavlink_onboard_computer_status_t;
 
 #define MAVLINK_MSG_ID_ONBOARD_COMPUTER_STATUS_LEN 238
 #define MAVLINK_MSG_ID_ONBOARD_COMPUTER_STATUS_MIN_LEN 238

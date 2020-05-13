@@ -3,13 +3,13 @@
 
 #define MAVLINK_MSG_ID_MEMORY_VECT 249
 
-MAVPACKED(
+
 typedef struct __mavlink_memory_vect_t {
  uint16_t address; /*<  Starting address of the debug variables*/
  uint8_t ver; /*<  Version code of the type variable. 0=unknown, type ignored and assumed int16_t. 1=as below*/
  uint8_t type; /*<  Type code of the memory variables. for ver = 1: 0=16 x int16_t, 1=16 x uint16_t, 2=16 x Q15, 3=16 x 1Q14*/
  int8_t value[32]; /*<  Memory contents at specified address*/
-}) mavlink_memory_vect_t;
+} mavlink_memory_vect_t;
 
 #define MAVLINK_MSG_ID_MEMORY_VECT_LEN 36
 #define MAVLINK_MSG_ID_MEMORY_VECT_MIN_LEN 36

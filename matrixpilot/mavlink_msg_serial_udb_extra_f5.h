@@ -3,13 +3,13 @@
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F5 173
 
-MAVPACKED(
+
 typedef struct __mavlink_serial_udb_extra_f5_t {
  float sue_YAWKP_AILERON; /*<  Serial UDB YAWKP_AILERON Gain for Proporional control of navigation*/
  float sue_YAWKD_AILERON; /*<  Serial UDB YAWKD_AILERON Gain for Rate control of navigation*/
  float sue_ROLLKP; /*<  Serial UDB Extra ROLLKP Gain for Proportional control of roll stabilization*/
  float sue_ROLLKD; /*<  Serial UDB Extra ROLLKD Gain for Rate control of roll stabilization*/
-}) mavlink_serial_udb_extra_f5_t;
+} mavlink_serial_udb_extra_f5_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F5_LEN 16
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F5_MIN_LEN 16

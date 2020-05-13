@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION 152
 
-MAVPACKED(
+
 typedef struct __mavlink_flexifunction_buffer_function_t {
  uint16_t func_index; /*<  Function index*/
  uint16_t func_count; /*<  Total count of functions*/
@@ -12,7 +12,7 @@ typedef struct __mavlink_flexifunction_buffer_function_t {
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
  int8_t data[48]; /*<  Settings data*/
-}) mavlink_flexifunction_buffer_function_t;
+} mavlink_flexifunction_buffer_function_t;
 
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_LEN 58
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_MIN_LEN 58

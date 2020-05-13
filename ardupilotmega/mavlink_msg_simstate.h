@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_SIMSTATE 164
 
-MAVPACKED(
+
 typedef struct __mavlink_simstate_t {
  float roll; /*< [rad] Roll angle.*/
  float pitch; /*< [rad] Pitch angle.*/
@@ -16,7 +16,7 @@ typedef struct __mavlink_simstate_t {
  float zgyro; /*< [rad/s] Angular speed around Z axis.*/
  int32_t lat; /*< [degE7] Latitude.*/
  int32_t lng; /*< [degE7] Longitude.*/
-}) mavlink_simstate_t;
+} mavlink_simstate_t;
 
 #define MAVLINK_MSG_ID_SIMSTATE_LEN 44
 #define MAVLINK_MSG_ID_SIMSTATE_MIN_LEN 44

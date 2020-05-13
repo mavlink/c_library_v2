@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_UAVCAN_NODE_INFO 311
 
-MAVPACKED(
+
 typedef struct __mavlink_uavcan_node_info_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  uint32_t uptime_sec; /*< [s] Time since the start-up of the node.*/
@@ -14,7 +14,7 @@ typedef struct __mavlink_uavcan_node_info_t {
  uint8_t hw_unique_id[16]; /*<  Hardware unique 128-bit ID.*/
  uint8_t sw_version_major; /*<  Software major version number.*/
  uint8_t sw_version_minor; /*<  Software minor version number.*/
-}) mavlink_uavcan_node_info_t;
+} mavlink_uavcan_node_info_t;
 
 #define MAVLINK_MSG_ID_UAVCAN_NODE_INFO_LEN 116
 #define MAVLINK_MSG_ID_UAVCAN_NODE_INFO_MIN_LEN 116

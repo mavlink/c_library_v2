@@ -3,11 +3,11 @@
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16 180
 
-MAVPACKED(
+
 typedef struct __mavlink_serial_udb_extra_f16_t {
  uint8_t sue_ID_LEAD_PILOT[40]; /*<  Serial UDB Extra Name of Expected Lead Pilot*/
  uint8_t sue_ID_DIY_DRONES_URL[70]; /*<  Serial UDB Extra URL of Lead Pilot or Team*/
-}) mavlink_serial_udb_extra_f16_t;
+} mavlink_serial_udb_extra_f16_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_LEN 110
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_MIN_LEN 110

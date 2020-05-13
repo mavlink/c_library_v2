@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_MISSION_ITEM_INT 73
 
-MAVPACKED(
+
 typedef struct __mavlink_mission_item_int_t {
  float param1; /*<  PARAM1, see MAV_CMD enum*/
  float param2; /*<  PARAM2, see MAV_CMD enum*/
@@ -20,7 +20,7 @@ typedef struct __mavlink_mission_item_int_t {
  uint8_t current; /*<  false:0, true:1*/
  uint8_t autocontinue; /*<  Autocontinue to next waypoint*/
  uint8_t mission_type; /*<  Mission type.*/
-}) mavlink_mission_item_int_t;
+} mavlink_mission_item_int_t;
 
 #define MAVLINK_MSG_ID_MISSION_ITEM_INT_LEN 38
 #define MAVLINK_MSG_ID_MISSION_ITEM_INT_MIN_LEN 37

@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_AIRSPEED_AUTOCAL 174
 
-MAVPACKED(
+
 typedef struct __mavlink_airspeed_autocal_t {
  float vx; /*< [m/s] GPS velocity north.*/
  float vy; /*< [m/s] GPS velocity east.*/
@@ -17,7 +17,7 @@ typedef struct __mavlink_airspeed_autocal_t {
  float Pax; /*<  EKF Pax.*/
  float Pby; /*<  EKF Pby.*/
  float Pcz; /*<  EKF Pcz.*/
-}) mavlink_airspeed_autocal_t;
+} mavlink_airspeed_autocal_t;
 
 #define MAVLINK_MSG_ID_AIRSPEED_AUTOCAL_LEN 48
 #define MAVLINK_MSG_ID_AIRSPEED_AUTOCAL_MIN_LEN 48

@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_PID_TUNING 194
 
-MAVPACKED(
+
 typedef struct __mavlink_pid_tuning_t {
  float desired; /*< [deg/s] Desired rate.*/
  float achieved; /*< [deg/s] Achieved rate.*/
@@ -12,7 +12,7 @@ typedef struct __mavlink_pid_tuning_t {
  float I; /*<  I component.*/
  float D; /*<  D component.*/
  uint8_t axis; /*<  Axis.*/
-}) mavlink_pid_tuning_t;
+} mavlink_pid_tuning_t;
 
 #define MAVLINK_MSG_ID_PID_TUNING_LEN 25
 #define MAVLINK_MSG_ID_PID_TUNING_MIN_LEN 25

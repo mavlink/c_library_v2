@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_CAMERA_INFORMATION 259
 
-MAVPACKED(
+
 typedef struct __mavlink_camera_information_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
  uint32_t firmware_version; /*<  Version of the camera firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff)*/
@@ -18,7 +18,7 @@ typedef struct __mavlink_camera_information_t {
  uint8_t model_name[32]; /*<  Name of the camera model*/
  uint8_t lens_id; /*<  Reserved for a lens ID*/
  char cam_definition_uri[140]; /*<  Camera definition URI (if any, otherwise only basic functions will be available). HTTP- (http://) and MAVLink FTP- (mavlinkftp://) formatted URIs are allowed (and both must be supported by any GCS that implements the Camera Protocol).*/
-}) mavlink_camera_information_t;
+} mavlink_camera_information_t;
 
 #define MAVLINK_MSG_ID_CAMERA_INFORMATION_LEN 235
 #define MAVLINK_MSG_ID_CAMERA_INFORMATION_MIN_LEN 235

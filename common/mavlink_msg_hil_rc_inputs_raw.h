@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_HIL_RC_INPUTS_RAW 92
 
-MAVPACKED(
+
 typedef struct __mavlink_hil_rc_inputs_raw_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  uint16_t chan1_raw; /*< [us] RC channel 1 value*/
@@ -19,7 +19,7 @@ typedef struct __mavlink_hil_rc_inputs_raw_t {
  uint16_t chan11_raw; /*< [us] RC channel 11 value*/
  uint16_t chan12_raw; /*< [us] RC channel 12 value*/
  uint8_t rssi; /*<  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: invalid/unknown.*/
-}) mavlink_hil_rc_inputs_raw_t;
+} mavlink_hil_rc_inputs_raw_t;
 
 #define MAVLINK_MSG_ID_HIL_RC_INPUTS_RAW_LEN 33
 #define MAVLINK_MSG_ID_HIL_RC_INPUTS_RAW_MIN_LEN 33

@@ -3,13 +3,13 @@
 
 #define MAVLINK_MSG_ID_TERRAIN_REQUEST 133
 
-MAVPACKED(
+
 typedef struct __mavlink_terrain_request_t {
  uint64_t mask; /*<  Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits)*/
  int32_t lat; /*< [degE7] Latitude of SW corner of first grid*/
  int32_t lon; /*< [degE7] Longitude of SW corner of first grid*/
  uint16_t grid_spacing; /*< [m] Grid spacing*/
-}) mavlink_terrain_request_t;
+} mavlink_terrain_request_t;
 
 #define MAVLINK_MSG_ID_TERRAIN_REQUEST_LEN 18
 #define MAVLINK_MSG_ID_TERRAIN_REQUEST_MIN_LEN 18

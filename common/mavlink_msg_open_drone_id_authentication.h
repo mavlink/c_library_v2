@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_OPEN_DRONE_ID_AUTHENTICATION 12902
 
-MAVPACKED(
+
 typedef struct __mavlink_open_drone_id_authentication_t {
  uint32_t timestamp; /*< [s] This field is only present for page 0. 32 bit Unix Timestamp in seconds since 00:00:00 01/01/2019.*/
  uint8_t authentication_type; /*<  Indicates the type of authentication.*/
@@ -11,7 +11,7 @@ typedef struct __mavlink_open_drone_id_authentication_t {
  uint8_t page_count; /*<  This field is only present for page 0. Allowed range is 0 - 5.*/
  uint8_t length; /*< [bytes] This field is only present for page 0. Total bytes of authentication_data from all data pages. Allowed range is 0 - 109 (17 + 23*4).*/
  uint8_t authentication_data[23]; /*<  Opaque authentication data. For page 0, the size is only 17 bytes. For other pages, the size is 23 bytes. Shall be filled with nulls in the unused portion of the field.*/
-}) mavlink_open_drone_id_authentication_t;
+} mavlink_open_drone_id_authentication_t;
 
 #define MAVLINK_MSG_ID_OPEN_DRONE_ID_AUTHENTICATION_LEN 31
 #define MAVLINK_MSG_ID_OPEN_DRONE_ID_AUTHENTICATION_MIN_LEN 31

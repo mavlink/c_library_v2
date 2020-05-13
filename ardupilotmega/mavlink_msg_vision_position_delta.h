@@ -3,14 +3,14 @@
 
 #define MAVLINK_MSG_ID_VISION_POSITION_DELTA 11011
 
-MAVPACKED(
+
 typedef struct __mavlink_vision_position_delta_t {
  uint64_t time_usec; /*< [us] Timestamp (synced to UNIX time or since system boot).*/
  uint64_t time_delta_usec; /*< [us] Time since the last reported camera frame.*/
  float angle_delta[3]; /*<  Defines a rotation vector in body frame that rotates the vehicle from the previous to the current orientation.*/
  float position_delta[3]; /*< [m] Change in position from previous to current frame rotated into body frame (0=forward, 1=right, 2=down).*/
  float confidence; /*< [%] Normalised confidence value from 0 to 100.*/
-}) mavlink_vision_position_delta_t;
+} mavlink_vision_position_delta_t;
 
 #define MAVLINK_MSG_ID_VISION_POSITION_DELTA_LEN 44
 #define MAVLINK_MSG_ID_VISION_POSITION_DELTA_MIN_LEN 44

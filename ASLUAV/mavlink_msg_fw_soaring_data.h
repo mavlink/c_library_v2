@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_FW_SOARING_DATA 210
 
-MAVPACKED(
+
 typedef struct __mavlink_fw_soaring_data_t {
  uint64_t timestamp; /*< [ms] Timestamp*/
  uint64_t timestampModeChanged; /*< [ms] Timestamp since last mode change*/
@@ -30,7 +30,7 @@ typedef struct __mavlink_fw_soaring_data_t {
  float DebugVar2; /*<   Debug variable 2*/
  uint8_t ControlMode; /*<  Control Mode [-]*/
  uint8_t valid; /*<  Data valid [-]*/
-}) mavlink_fw_soaring_data_t;
+} mavlink_fw_soaring_data_t;
 
 #define MAVLINK_MSG_ID_FW_SOARING_DATA_LEN 102
 #define MAVLINK_MSG_ID_FW_SOARING_DATA_MIN_LEN 102

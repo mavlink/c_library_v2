@@ -3,11 +3,11 @@
 
 #define MAVLINK_MSG_ID_CAMERA_TRIGGER 112
 
-MAVPACKED(
+
 typedef struct __mavlink_camera_trigger_t {
  uint64_t time_usec; /*< [us] Timestamp for image frame (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  uint32_t seq; /*<  Image frame sequence*/
-}) mavlink_camera_trigger_t;
+} mavlink_camera_trigger_t;
 
 #define MAVLINK_MSG_ID_CAMERA_TRIGGER_LEN 12
 #define MAVLINK_MSG_ID_CAMERA_TRIGGER_MIN_LEN 12

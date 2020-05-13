@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_COLLISION 247
 
-MAVPACKED(
+
 typedef struct __mavlink_collision_t {
  uint32_t id; /*<  Unique identifier, domain based on src field*/
  float time_to_minimum_delta; /*< [s] Estimated time until collision occurs*/
@@ -12,7 +12,7 @@ typedef struct __mavlink_collision_t {
  uint8_t src; /*<  Collision data source*/
  uint8_t action; /*<  Action that is being taken to avoid this collision*/
  uint8_t threat_level; /*<  How concerned the aircraft is about this collision*/
-}) mavlink_collision_t;
+} mavlink_collision_t;
 
 #define MAVLINK_MSG_ID_COLLISION_LEN 19
 #define MAVLINK_MSG_ID_COLLISION_MIN_LEN 19

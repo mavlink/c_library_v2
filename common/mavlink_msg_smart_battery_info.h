@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_SMART_BATTERY_INFO 370
 
-MAVPACKED(
+
 typedef struct __mavlink_smart_battery_info_t {
  int32_t capacity_full_specification; /*< [mAh] Capacity when full according to manufacturer, -1: field not provided.*/
  int32_t capacity_full; /*< [mAh] Capacity when full (accounting for battery degradation), -1: field not provided.*/
@@ -15,7 +15,7 @@ typedef struct __mavlink_smart_battery_info_t {
  uint16_t resting_minimum_voltage; /*< [mV] Minimum per-cell voltage when resting. If not supplied set to UINT16_MAX value.*/
  uint8_t id; /*<  Battery ID*/
  char device_name[50]; /*<  Static device name. Encode as manufacturer and product names separated using an underscore.*/
-}) mavlink_smart_battery_info_t;
+} mavlink_smart_battery_info_t;
 
 #define MAVLINK_MSG_ID_SMART_BATTERY_INFO_LEN 73
 #define MAVLINK_MSG_ID_SMART_BATTERY_INFO_MIN_LEN 73

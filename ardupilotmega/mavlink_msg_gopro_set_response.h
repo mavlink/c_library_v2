@@ -3,11 +3,11 @@
 
 #define MAVLINK_MSG_ID_GOPRO_SET_RESPONSE 219
 
-MAVPACKED(
+
 typedef struct __mavlink_gopro_set_response_t {
  uint8_t cmd_id; /*<  Command ID.*/
  uint8_t status; /*<  Status.*/
-}) mavlink_gopro_set_response_t;
+} mavlink_gopro_set_response_t;
 
 #define MAVLINK_MSG_ID_GOPRO_SET_RESPONSE_LEN 2
 #define MAVLINK_MSG_ID_GOPRO_SET_RESPONSE_MIN_LEN 2

@@ -3,14 +3,14 @@
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F18 184
 
-MAVPACKED(
+
 typedef struct __mavlink_serial_udb_extra_f18_t {
  float angle_of_attack_normal; /*<  SUE Angle of Attack Normal*/
  float angle_of_attack_inverted; /*<  SUE Angle of Attack Inverted*/
  float elevator_trim_normal; /*<  SUE Elevator Trim Normal*/
  float elevator_trim_inverted; /*<  SUE Elevator Trim Inverted*/
  float reference_speed; /*<  SUE reference_speed*/
-}) mavlink_serial_udb_extra_f18_t;
+} mavlink_serial_udb_extra_f18_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F18_LEN 20
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F18_MIN_LEN 20

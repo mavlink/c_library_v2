@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_GLOBAL_POSITION_INT_COV 63
 
-MAVPACKED(
+
 typedef struct __mavlink_global_position_int_cov_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  int32_t lat; /*< [degE7] Latitude*/
@@ -15,7 +15,7 @@ typedef struct __mavlink_global_position_int_cov_t {
  float vz; /*< [m/s] Ground Z Speed (Altitude)*/
  float covariance[36]; /*<  Row-major representation of a 6x6 position and velocity 6x6 cross-covariance matrix (states: lat, lon, alt, vx, vy, vz; first six entries are the first ROW, next six entries are the second row, etc.). If unknown, assign NaN value to first element in the array.*/
  uint8_t estimator_type; /*<  Class id of the estimator this estimate originated from.*/
-}) mavlink_global_position_int_cov_t;
+} mavlink_global_position_int_cov_t;
 
 #define MAVLINK_MSG_ID_GLOBAL_POSITION_INT_COV_LEN 181
 #define MAVLINK_MSG_ID_GLOBAL_POSITION_INT_COV_MIN_LEN 181

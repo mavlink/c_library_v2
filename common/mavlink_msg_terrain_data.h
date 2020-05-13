@@ -3,14 +3,14 @@
 
 #define MAVLINK_MSG_ID_TERRAIN_DATA 134
 
-MAVPACKED(
+
 typedef struct __mavlink_terrain_data_t {
  int32_t lat; /*< [degE7] Latitude of SW corner of first grid*/
  int32_t lon; /*< [degE7] Longitude of SW corner of first grid*/
  uint16_t grid_spacing; /*< [m] Grid spacing*/
  int16_t data[16]; /*< [m] Terrain data MSL*/
  uint8_t gridbit; /*<  bit within the terrain request mask*/
-}) mavlink_terrain_data_t;
+} mavlink_terrain_data_t;
 
 #define MAVLINK_MSG_ID_TERRAIN_DATA_LEN 43
 #define MAVLINK_MSG_ID_TERRAIN_DATA_MIN_LEN 43

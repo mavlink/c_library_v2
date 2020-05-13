@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_GSM_LINK_STATUS 213
 
-MAVPACKED(
+
 typedef struct __mavlink_gsm_link_status_t {
  uint64_t timestamp; /*< [us] Timestamp (of OBC)*/
  uint8_t gsm_modem_type; /*<  GSM modem used*/
@@ -12,7 +12,7 @@ typedef struct __mavlink_gsm_link_status_t {
  uint8_t rsrp_rscp; /*<  RSRP (LTE) or RSCP (WCDMA) as reported by modem (unconverted)*/
  uint8_t sinr_ecio; /*<  SINR (LTE) or ECIO (WCDMA) as reported by modem (unconverted)*/
  uint8_t rsrq; /*<  RSRQ (LTE only) as reported by modem (unconverted)*/
-}) mavlink_gsm_link_status_t;
+} mavlink_gsm_link_status_t;
 
 #define MAVLINK_MSG_ID_GSM_LINK_STATUS_LEN 14
 #define MAVLINK_MSG_ID_GSM_LINK_STATUS_MIN_LEN 14

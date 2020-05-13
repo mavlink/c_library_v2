@@ -3,13 +3,13 @@
 
 #define MAVLINK_MSG_ID_PLAY_TUNE 258
 
-MAVPACKED(
+
 typedef struct __mavlink_play_tune_t {
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
  char tune[30]; /*<  tune in board specific format*/
  char tune2[200]; /*<  tune extension (appended to tune)*/
-}) mavlink_play_tune_t;
+} mavlink_play_tune_t;
 
 #define MAVLINK_MSG_ID_PLAY_TUNE_LEN 232
 #define MAVLINK_MSG_ID_PLAY_TUNE_MIN_LEN 32

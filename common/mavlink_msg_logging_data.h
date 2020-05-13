@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_LOGGING_DATA 266
 
-MAVPACKED(
+
 typedef struct __mavlink_logging_data_t {
  uint16_t sequence; /*<  sequence number (can wrap)*/
  uint8_t target_system; /*<  system ID of the target*/
@@ -11,7 +11,7 @@ typedef struct __mavlink_logging_data_t {
  uint8_t length; /*< [bytes] data length*/
  uint8_t first_message_offset; /*< [bytes] offset into data where first message starts. This can be used for recovery, when a previous message got lost (set to 255 if no start exists).*/
  uint8_t data[249]; /*<  logged data*/
-}) mavlink_logging_data_t;
+} mavlink_logging_data_t;
 
 #define MAVLINK_MSG_ID_LOGGING_DATA_LEN 255
 #define MAVLINK_MSG_ID_LOGGING_DATA_MIN_LEN 255

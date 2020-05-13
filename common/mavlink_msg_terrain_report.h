@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_TERRAIN_REPORT 136
 
-MAVPACKED(
+
 typedef struct __mavlink_terrain_report_t {
  int32_t lat; /*< [degE7] Latitude*/
  int32_t lon; /*< [degE7] Longitude*/
@@ -12,7 +12,7 @@ typedef struct __mavlink_terrain_report_t {
  uint16_t spacing; /*<  grid spacing (zero if terrain at this location unavailable)*/
  uint16_t pending; /*<  Number of 4x4 terrain blocks waiting to be received or read from disk*/
  uint16_t loaded; /*<  Number of 4x4 terrain blocks in memory*/
-}) mavlink_terrain_report_t;
+} mavlink_terrain_report_t;
 
 #define MAVLINK_MSG_ID_TERRAIN_REPORT_LEN 22
 #define MAVLINK_MSG_ID_TERRAIN_REPORT_MIN_LEN 22

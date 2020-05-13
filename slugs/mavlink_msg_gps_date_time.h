@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_GPS_DATE_TIME 179
 
-MAVPACKED(
+
 typedef struct __mavlink_gps_date_time_t {
  uint8_t year; /*<  Year reported by Gps */
  uint8_t month; /*<  Month reported by Gps */
@@ -17,7 +17,7 @@ typedef struct __mavlink_gps_date_time_t {
  uint8_t GppGl; /*<  GPS+GLONASS satellites in Solution  */
  uint8_t sigUsedMask; /*<  GPS and GLONASS usage mask (bit 0 GPS_used? bit_4 GLONASS_used?)*/
  uint8_t percentUsed; /*< [%] Percent used GPS*/
-}) mavlink_gps_date_time_t;
+} mavlink_gps_date_time_t;
 
 #define MAVLINK_MSG_ID_GPS_DATE_TIME_LEN 12
 #define MAVLINK_MSG_ID_GPS_DATE_TIME_MIN_LEN 12

@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_AHRS2 178
 
-MAVPACKED(
+
 typedef struct __mavlink_ahrs2_t {
  float roll; /*< [rad] Roll angle.*/
  float pitch; /*< [rad] Pitch angle.*/
@@ -11,7 +11,7 @@ typedef struct __mavlink_ahrs2_t {
  float altitude; /*< [m] Altitude (MSL).*/
  int32_t lat; /*< [degE7] Latitude.*/
  int32_t lng; /*< [degE7] Longitude.*/
-}) mavlink_ahrs2_t;
+} mavlink_ahrs2_t;
 
 #define MAVLINK_MSG_ID_AHRS2_LEN 24
 #define MAVLINK_MSG_ID_AHRS2_MIN_LEN 24

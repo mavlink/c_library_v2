@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_ESC_TELEMETRY_1_TO_4 11030
 
-MAVPACKED(
+
 typedef struct __mavlink_esc_telemetry_1_to_4_t {
  uint16_t voltage[4]; /*< [cV] Voltage.*/
  uint16_t current[4]; /*< [cA] Current.*/
@@ -11,7 +11,7 @@ typedef struct __mavlink_esc_telemetry_1_to_4_t {
  uint16_t rpm[4]; /*< [rpm] RPM (eRPM).*/
  uint16_t count[4]; /*<  count of telemetry packets received (wraps at 65535).*/
  uint8_t temperature[4]; /*< [degC] Temperature.*/
-}) mavlink_esc_telemetry_1_to_4_t;
+} mavlink_esc_telemetry_1_to_4_t;
 
 #define MAVLINK_MSG_ID_ESC_TELEMETRY_1_TO_4_LEN 44
 #define MAVLINK_MSG_ID_ESC_TELEMETRY_1_TO_4_MIN_LEN 44

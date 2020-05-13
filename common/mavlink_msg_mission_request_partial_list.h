@@ -3,14 +3,14 @@
 
 #define MAVLINK_MSG_ID_MISSION_REQUEST_PARTIAL_LIST 37
 
-MAVPACKED(
+
 typedef struct __mavlink_mission_request_partial_list_t {
  int16_t start_index; /*<  Start index*/
  int16_t end_index; /*<  End index, -1 by default (-1: send list to end). Else a valid index of the list*/
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
  uint8_t mission_type; /*<  Mission type.*/
-}) mavlink_mission_request_partial_list_t;
+} mavlink_mission_request_partial_list_t;
 
 #define MAVLINK_MSG_ID_MISSION_REQUEST_PARTIAL_LIST_LEN 7
 #define MAVLINK_MSG_ID_MISSION_REQUEST_PARTIAL_LIST_MIN_LEN 6

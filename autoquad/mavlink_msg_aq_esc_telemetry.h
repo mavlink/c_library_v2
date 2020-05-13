@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_AQ_ESC_TELEMETRY 152
 
-MAVPACKED(
+
 typedef struct __mavlink_aq_esc_telemetry_t {
  uint32_t time_boot_ms; /*<  Timestamp of the component clock since boot time in ms.*/
  uint32_t data0[4]; /*<  Data bits 1-32 for each ESC.*/
@@ -14,7 +14,7 @@ typedef struct __mavlink_aq_esc_telemetry_t {
  uint8_t num_in_seq; /*<  Number of active ESCs in this sequence (1 through this many array members will be populated with data)*/
  uint8_t escid[4]; /*<  ESC/Motor ID*/
  uint8_t data_version[4]; /*<  Version of data structure (determines contents).*/
-}) mavlink_aq_esc_telemetry_t;
+} mavlink_aq_esc_telemetry_t;
 
 #define MAVLINK_MSG_ID_AQ_ESC_TELEMETRY_LEN 55
 #define MAVLINK_MSG_ID_AQ_ESC_TELEMETRY_MIN_LEN 55

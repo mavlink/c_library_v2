@@ -3,14 +3,14 @@
 
 #define MAVLINK_MSG_ID_MISSION_CHANGED 52
 
-MAVPACKED(
+
 typedef struct __mavlink_mission_changed_t {
  int16_t start_index; /*<  Start index for partial mission change (-1 for all items).*/
  int16_t end_index; /*<  End index of a partial mission change. -1 is a synonym for the last mission item (i.e. selects all items from start_index). Ignore field if start_index=-1.*/
  uint8_t origin_sysid; /*<  System ID of the author of the new mission.*/
  uint8_t origin_compid; /*<  Compnent ID of the author of the new mission.*/
  uint8_t mission_type; /*<  Mission type.*/
-}) mavlink_mission_changed_t;
+} mavlink_mission_changed_t;
 
 #define MAVLINK_MSG_ID_MISSION_CHANGED_LEN 7
 #define MAVLINK_MSG_ID_MISSION_CHANGED_MIN_LEN 7

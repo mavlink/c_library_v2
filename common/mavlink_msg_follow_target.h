@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_FOLLOW_TARGET 144
 
-MAVPACKED(
+
 typedef struct __mavlink_follow_target_t {
  uint64_t timestamp; /*< [ms] Timestamp (time since system boot).*/
  uint64_t custom_state; /*<  button states or switches of a tracker device*/
@@ -16,7 +16,7 @@ typedef struct __mavlink_follow_target_t {
  float rates[3]; /*<  (0 0 0 for unknown)*/
  float position_cov[3]; /*<  eph epv*/
  uint8_t est_capabilities; /*<  bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3)*/
-}) mavlink_follow_target_t;
+} mavlink_follow_target_t;
 
 #define MAVLINK_MSG_ID_FOLLOW_TARGET_LEN 93
 #define MAVLINK_MSG_ID_FOLLOW_TARGET_MIN_LEN 93

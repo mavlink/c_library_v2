@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_GPS2_RTK 128
 
-MAVPACKED(
+
 typedef struct __mavlink_gps2_rtk_t {
  uint32_t time_last_baseline_ms; /*< [ms] Time since boot of last baseline message received.*/
  uint32_t tow; /*< [ms] GPS Time of Week of last baseline*/
@@ -18,7 +18,7 @@ typedef struct __mavlink_gps2_rtk_t {
  uint8_t rtk_rate; /*< [Hz] Rate of baseline messages being received by GPS*/
  uint8_t nsats; /*<  Current number of sats used for RTK calculation.*/
  uint8_t baseline_coords_type; /*<  Coordinate system of baseline*/
-}) mavlink_gps2_rtk_t;
+} mavlink_gps2_rtk_t;
 
 #define MAVLINK_MSG_ID_GPS2_RTK_LEN 35
 #define MAVLINK_MSG_ID_GPS2_RTK_MIN_LEN 35

@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_AHRS 163
 
-MAVPACKED(
+
 typedef struct __mavlink_ahrs_t {
  float omegaIx; /*< [rad/s] X gyro drift estimate.*/
  float omegaIy; /*< [rad/s] Y gyro drift estimate.*/
@@ -12,7 +12,7 @@ typedef struct __mavlink_ahrs_t {
  float renorm_val; /*<  Average renormalisation value.*/
  float error_rp; /*<  Average error_roll_pitch value.*/
  float error_yaw; /*<  Average error_yaw value.*/
-}) mavlink_ahrs_t;
+} mavlink_ahrs_t;
 
 #define MAVLINK_MSG_ID_AHRS_LEN 28
 #define MAVLINK_MSG_ID_AHRS_MIN_LEN 28

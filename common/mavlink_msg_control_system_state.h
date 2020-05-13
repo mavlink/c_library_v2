@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE 146
 
-MAVPACKED(
+
 typedef struct __mavlink_control_system_state_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  float x_acc; /*< [m/s/s] X acceleration in body frame*/
@@ -22,7 +22,7 @@ typedef struct __mavlink_control_system_state_t {
  float roll_rate; /*< [rad/s] Angular rate in roll axis*/
  float pitch_rate; /*< [rad/s] Angular rate in pitch axis*/
  float yaw_rate; /*< [rad/s] Angular rate in yaw axis*/
-}) mavlink_control_system_state_t;
+} mavlink_control_system_state_t;
 
 #define MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE_LEN 100
 #define MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE_MIN_LEN 100

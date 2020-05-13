@@ -3,11 +3,11 @@
 
 #define MAVLINK_MSG_ID_RPM 226
 
-MAVPACKED(
+
 typedef struct __mavlink_rpm_t {
  float rpm1; /*<  RPM Sensor1.*/
  float rpm2; /*<  RPM Sensor2.*/
-}) mavlink_rpm_t;
+} mavlink_rpm_t;
 
 #define MAVLINK_MSG_ID_RPM_LEN 8
 #define MAVLINK_MSG_ID_RPM_MIN_LEN 8

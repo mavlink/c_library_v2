@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_OPTICAL_FLOW_RAD 106
 
-MAVPACKED(
+
 typedef struct __mavlink_optical_flow_rad_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  uint32_t integration_time_us; /*< [us] Integration time. Divide integrated_x and integrated_y by the integration time to obtain average flow. The integration time also indicates the.*/
@@ -17,7 +17,7 @@ typedef struct __mavlink_optical_flow_rad_t {
  int16_t temperature; /*< [cdegC] Temperature*/
  uint8_t sensor_id; /*<  Sensor ID*/
  uint8_t quality; /*<  Optical flow quality / confidence. 0: no valid flow, 255: maximum quality*/
-}) mavlink_optical_flow_rad_t;
+} mavlink_optical_flow_rad_t;
 
 #define MAVLINK_MSG_ID_OPTICAL_FLOW_RAD_LEN 44
 #define MAVLINK_MSG_ID_OPTICAL_FLOW_RAD_MIN_LEN 44

@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_COMMAND_LONG_STAMPED 79
 
-MAVPACKED(
+
 typedef struct __mavlink_command_long_stamped_t {
  uint64_t vehicle_timestamp; /*<  Microseconds elapsed since vehicle boot*/
  uint32_t utc_time; /*<  UTC time, seconds elapsed since 01.01.1970*/
@@ -18,7 +18,7 @@ typedef struct __mavlink_command_long_stamped_t {
  uint8_t target_system; /*<  System which should execute the command*/
  uint8_t target_component; /*<  Component which should execute the command, 0 for all components*/
  uint8_t confirmation; /*<  0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)*/
-}) mavlink_command_long_stamped_t;
+} mavlink_command_long_stamped_t;
 
 #define MAVLINK_MSG_ID_COMMAND_LONG_STAMPED_LEN 45
 #define MAVLINK_MSG_ID_COMMAND_LONG_STAMPED_MIN_LEN 45

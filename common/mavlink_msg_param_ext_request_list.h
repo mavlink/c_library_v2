@@ -3,11 +3,11 @@
 
 #define MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST 321
 
-MAVPACKED(
+
 typedef struct __mavlink_param_ext_request_list_t {
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
-}) mavlink_param_ext_request_list_t;
+} mavlink_param_ext_request_list_t;
 
 #define MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_LEN 2
 #define MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_MIN_LEN 2

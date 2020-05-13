@@ -3,14 +3,14 @@
 
 #define MAVLINK_MSG_ID_MISSION_WRITE_PARTIAL_LIST 38
 
-MAVPACKED(
+
 typedef struct __mavlink_mission_write_partial_list_t {
  int16_t start_index; /*<  Start index. Must be smaller / equal to the largest index of the current onboard list.*/
  int16_t end_index; /*<  End index, equal or greater than start index.*/
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
  uint8_t mission_type; /*<  Mission type.*/
-}) mavlink_mission_write_partial_list_t;
+} mavlink_mission_write_partial_list_t;
 
 #define MAVLINK_MSG_ID_MISSION_WRITE_PARTIAL_LIST_LEN 7
 #define MAVLINK_MSG_ID_MISSION_WRITE_PARTIAL_LIST_MIN_LEN 6

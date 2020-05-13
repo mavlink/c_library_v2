@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_GIMBAL_MANAGER_SET_ATTITUDE 282
 
-MAVPACKED(
+
 typedef struct __mavlink_gimbal_manager_set_attitude_t {
  uint32_t flags; /*<  High level gimbal manager flags to use.*/
  float q[4]; /*<  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation, the frame is depends on whether the flag GIMBAL_MANAGER_FLAGS_YAW_LOCK is set)*/
@@ -13,7 +13,7 @@ typedef struct __mavlink_gimbal_manager_set_attitude_t {
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
  uint8_t gimbal_device_id; /*<  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. (Send command multiple times for more than one but not all gimbals.)*/
-}) mavlink_gimbal_manager_set_attitude_t;
+} mavlink_gimbal_manager_set_attitude_t;
 
 #define MAVLINK_MSG_ID_GIMBAL_MANAGER_SET_ATTITUDE_LEN 35
 #define MAVLINK_MSG_ID_GIMBAL_MANAGER_SET_ATTITUDE_MIN_LEN 35

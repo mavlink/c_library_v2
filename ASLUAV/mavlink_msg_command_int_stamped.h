@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_COMMAND_INT_STAMPED 78
 
-MAVPACKED(
+
 typedef struct __mavlink_command_int_stamped_t {
  uint64_t vehicle_timestamp; /*<  Microseconds elapsed since vehicle boot*/
  uint32_t utc_time; /*<  UTC time, seconds elapsed since 01.01.1970*/
@@ -20,7 +20,7 @@ typedef struct __mavlink_command_int_stamped_t {
  uint8_t frame; /*<  The coordinate system of the COMMAND, as defined by MAV_FRAME enum*/
  uint8_t current; /*<  false:0, true:1*/
  uint8_t autocontinue; /*<  autocontinue to next wp*/
-}) mavlink_command_int_stamped_t;
+} mavlink_command_int_stamped_t;
 
 #define MAVLINK_MSG_ID_COMMAND_INT_STAMPED_LEN 47
 #define MAVLINK_MSG_ID_COMMAND_INT_STAMPED_MIN_LEN 47

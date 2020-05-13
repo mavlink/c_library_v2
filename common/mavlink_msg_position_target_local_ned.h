@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_POSITION_TARGET_LOCAL_NED 85
 
-MAVPACKED(
+
 typedef struct __mavlink_position_target_local_ned_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
  float x; /*< [m] X Position in NED frame*/
@@ -19,7 +19,7 @@ typedef struct __mavlink_position_target_local_ned_t {
  float yaw_rate; /*< [rad/s] yaw rate setpoint*/
  uint16_t type_mask; /*<  Bitmap to indicate which dimensions should be ignored by the vehicle.*/
  uint8_t coordinate_frame; /*<  Valid options are: MAV_FRAME_LOCAL_NED = 1, MAV_FRAME_LOCAL_OFFSET_NED = 7, MAV_FRAME_BODY_NED = 8, MAV_FRAME_BODY_OFFSET_NED = 9*/
-}) mavlink_position_target_local_ned_t;
+} mavlink_position_target_local_ned_t;
 
 #define MAVLINK_MSG_ID_POSITION_TARGET_LOCAL_NED_LEN 51
 #define MAVLINK_MSG_ID_POSITION_TARGET_LOCAL_NED_MIN_LEN 51

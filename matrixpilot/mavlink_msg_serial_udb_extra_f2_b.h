@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_B 171
 
-MAVPACKED(
+
 typedef struct __mavlink_serial_udb_extra_f2_b_t {
  uint32_t sue_time; /*<  Serial UDB Extra Time*/
  uint32_t sue_flags; /*<  Serial UDB Extra Status Flags*/
@@ -55,7 +55,7 @@ typedef struct __mavlink_serial_udb_extra_f2_b_t {
  int16_t sue_bat_amp_hours; /*<  SUE battery milli amp hours used*/
  int16_t sue_desired_height; /*<  Sue autopilot desired height*/
  int16_t sue_memory_stack_free; /*<  Serial UDB Extra Stack Memory Free*/
-}) mavlink_serial_udb_extra_f2_b_t;
+} mavlink_serial_udb_extra_f2_b_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_B_LEN 108
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_B_MIN_LEN 108

@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_CELLULAR_STATUS 334
 
-MAVPACKED(
+
 typedef struct __mavlink_cellular_status_t {
  uint32_t cid; /*<  Cell ID. If unknown, set to: UINT32_MAX*/
  uint16_t status; /*<  Status bitmap*/
@@ -12,7 +12,7 @@ typedef struct __mavlink_cellular_status_t {
  uint16_t lac; /*<  Location area code. If unknown, set to: 0*/
  uint8_t type; /*<  Cellular network radio type: gsm, cdma, lte...*/
  uint8_t quality; /*<  Cellular network RSSI/RSRP in dBm, absolute value*/
-}) mavlink_cellular_status_t;
+} mavlink_cellular_status_t;
 
 #define MAVLINK_MSG_ID_CELLULAR_STATUS_LEN 14
 #define MAVLINK_MSG_ID_CELLULAR_STATUS_MIN_LEN 14

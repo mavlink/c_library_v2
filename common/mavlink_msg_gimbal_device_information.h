@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION 283
 
-MAVPACKED(
+
 typedef struct __mavlink_gimbal_device_information_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
  uint32_t firmware_version; /*<  Version of the gimbal firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff)*/
@@ -16,7 +16,7 @@ typedef struct __mavlink_gimbal_device_information_t {
  uint16_t cap_flags; /*<  Bitmap of gimbal capability flags.*/
  uint8_t vendor_name[32]; /*<  Name of the gimbal vendor*/
  uint8_t model_name[32]; /*<  Name of the gimbal model*/
-}) mavlink_gimbal_device_information_t;
+} mavlink_gimbal_device_information_t;
 
 #define MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN 98
 #define MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_MIN_LEN 98

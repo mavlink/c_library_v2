@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_TEST_TYPES 0
 
-MAVPACKED(
+
 typedef struct __mavlink_test_types_t {
  uint64_t u64; /*<  uint64_t*/
  int64_t s64; /*<  int64_t*/
@@ -27,7 +27,7 @@ typedef struct __mavlink_test_types_t {
  int8_t s8; /*<  int8_t*/
  uint8_t u8_array[3]; /*<  uint8_t_array*/
  int8_t s8_array[3]; /*<  int8_t_array*/
-}) mavlink_test_types_t;
+} mavlink_test_types_t;
 
 #define MAVLINK_MSG_ID_TEST_TYPES_LEN 179
 #define MAVLINK_MSG_ID_TEST_TYPES_MIN_LEN 179

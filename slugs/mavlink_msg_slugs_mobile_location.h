@@ -3,12 +3,12 @@
 
 #define MAVLINK_MSG_ID_SLUGS_MOBILE_LOCATION 186
 
-MAVPACKED(
+
 typedef struct __mavlink_slugs_mobile_location_t {
  float latitude; /*< [deg] Mobile Latitude*/
  float longitude; /*< [deg] Mobile Longitude*/
  uint8_t target; /*<  The system reporting the action*/
-}) mavlink_slugs_mobile_location_t;
+} mavlink_slugs_mobile_location_t;
 
 #define MAVLINK_MSG_ID_SLUGS_MOBILE_LOCATION_LEN 9
 #define MAVLINK_MSG_ID_SLUGS_MOBILE_LOCATION_MIN_LEN 9

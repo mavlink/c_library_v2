@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED 263
 
-MAVPACKED(
+
 typedef struct __mavlink_camera_image_captured_t {
  uint64_t time_utc; /*< [us] Timestamp (time since UNIX epoch) in UTC. 0 for unknown.*/
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
@@ -16,7 +16,7 @@ typedef struct __mavlink_camera_image_captured_t {
  uint8_t camera_id; /*<  Camera ID (1 for first, 2 for second, etc.)*/
  int8_t capture_result; /*<  Boolean indicating success (1) or failure (0) while capturing this image.*/
  char file_url[205]; /*<  URL of image taken. Either local storage or http://foo.jpg if camera provides an HTTP interface.*/
-}) mavlink_camera_image_captured_t;
+} mavlink_camera_image_captured_t;
 
 #define MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_LEN 255
 #define MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_MIN_LEN 255

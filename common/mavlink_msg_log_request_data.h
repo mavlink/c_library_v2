@@ -3,14 +3,14 @@
 
 #define MAVLINK_MSG_ID_LOG_REQUEST_DATA 119
 
-MAVPACKED(
+
 typedef struct __mavlink_log_request_data_t {
  uint32_t ofs; /*<  Offset into the log*/
  uint32_t count; /*< [bytes] Number of bytes*/
  uint16_t id; /*<  Log id (from LOG_ENTRY reply)*/
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
-}) mavlink_log_request_data_t;
+} mavlink_log_request_data_t;
 
 #define MAVLINK_MSG_ID_LOG_REQUEST_DATA_LEN 12
 #define MAVLINK_MSG_ID_LOG_REQUEST_DATA_MIN_LEN 12

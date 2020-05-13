@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_ESTIMATOR_STATUS 230
 
-MAVPACKED(
+
 typedef struct __mavlink_estimator_status_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  float vel_ratio; /*<  Velocity innovation test ratio*/
@@ -15,7 +15,7 @@ typedef struct __mavlink_estimator_status_t {
  float pos_horiz_accuracy; /*< [m] Horizontal position 1-STD accuracy relative to the EKF local origin*/
  float pos_vert_accuracy; /*< [m] Vertical position 1-STD accuracy relative to the EKF local origin*/
  uint16_t flags; /*<  Bitmap indicating which EKF outputs are valid.*/
-}) mavlink_estimator_status_t;
+} mavlink_estimator_status_t;
 
 #define MAVLINK_MSG_ID_ESTIMATOR_STATUS_LEN 42
 #define MAVLINK_MSG_ID_ESTIMATOR_STATUS_MIN_LEN 42

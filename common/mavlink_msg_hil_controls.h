@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_HIL_CONTROLS 91
 
-MAVPACKED(
+
 typedef struct __mavlink_hil_controls_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  float roll_ailerons; /*<  Control output -1 .. 1*/
@@ -16,7 +16,7 @@ typedef struct __mavlink_hil_controls_t {
  float aux4; /*<  Aux 4, -1 .. 1*/
  uint8_t mode; /*<  System mode.*/
  uint8_t nav_mode; /*<  Navigation mode (MAV_NAV_MODE)*/
-}) mavlink_hil_controls_t;
+} mavlink_hil_controls_t;
 
 #define MAVLINK_MSG_ID_HIL_CONTROLS_LEN 42
 #define MAVLINK_MSG_ID_HIL_CONTROLS_MIN_LEN 42

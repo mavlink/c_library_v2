@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_SIM_STATE 108
 
-MAVPACKED(
+
 typedef struct __mavlink_sim_state_t {
  float q1; /*<  True attitude quaternion component 1, w (1 in null-rotation)*/
  float q2; /*<  True attitude quaternion component 2, x (0 in null-rotation)*/
@@ -26,7 +26,7 @@ typedef struct __mavlink_sim_state_t {
  float vn; /*< [m/s] True velocity in north direction in earth-fixed NED frame*/
  float ve; /*< [m/s] True velocity in east direction in earth-fixed NED frame*/
  float vd; /*< [m/s] True velocity in down direction in earth-fixed NED frame*/
-}) mavlink_sim_state_t;
+} mavlink_sim_state_t;
 
 #define MAVLINK_MSG_ID_SIM_STATE_LEN 84
 #define MAVLINK_MSG_ID_SIM_STATE_MIN_LEN 84

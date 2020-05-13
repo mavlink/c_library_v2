@@ -3,13 +3,13 @@
 
 #define MAVLINK_MSG_ID_LOG_DATA 120
 
-MAVPACKED(
+
 typedef struct __mavlink_log_data_t {
  uint32_t ofs; /*<  Offset into the log*/
  uint16_t id; /*<  Log id (from LOG_ENTRY reply)*/
  uint8_t count; /*< [bytes] Number of bytes (zero for end of log)*/
  uint8_t data[90]; /*<  log data*/
-}) mavlink_log_data_t;
+} mavlink_log_data_t;
 
 #define MAVLINK_MSG_ID_LOG_DATA_LEN 97
 #define MAVLINK_MSG_ID_LOG_DATA_MIN_LEN 97

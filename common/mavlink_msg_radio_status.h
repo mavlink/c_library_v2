@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_RADIO_STATUS 109
 
-MAVPACKED(
+
 typedef struct __mavlink_radio_status_t {
  uint16_t rxerrors; /*<  Count of radio packet receive errors (since boot).*/
  uint16_t fixed; /*<  Count of error corrected radio packets (since boot).*/
@@ -12,7 +12,7 @@ typedef struct __mavlink_radio_status_t {
  uint8_t txbuf; /*< [%] Remaining free transmitter buffer space.*/
  uint8_t noise; /*<  Local background noise level. These are device dependent RSSI values (scale as approx 2x dB on SiK radios). Values: [0-254], 255: invalid/unknown.*/
  uint8_t remnoise; /*<  Remote background noise level. These are device dependent RSSI values (scale as approx 2x dB on SiK radios). Values: [0-254], 255: invalid/unknown.*/
-}) mavlink_radio_status_t;
+} mavlink_radio_status_t;
 
 #define MAVLINK_MSG_ID_RADIO_STATUS_LEN 9
 #define MAVLINK_MSG_ID_RADIO_STATUS_MIN_LEN 9

@@ -3,12 +3,12 @@
 
 #define MAVLINK_MSG_ID_OPEN_DRONE_ID_MESSAGE_PACK 12915
 
-MAVPACKED(
+
 typedef struct __mavlink_open_drone_id_message_pack_t {
  uint8_t single_message_size; /*< [bytes] This field must currently always be equal to 25 bytes, since all encoded OpenDroneID messages are specificed to have this length.*/
  uint8_t msg_pack_size; /*<  Number of encoded messages in the pack (not the number of bytes). Allowed range is 1 - 10.*/
  uint8_t messages[250]; /*<  Concatenation of encoded OpenDroneID messages. Shall be filled with nulls in the unused portion of the field.*/
-}) mavlink_open_drone_id_message_pack_t;
+} mavlink_open_drone_id_message_pack_t;
 
 #define MAVLINK_MSG_ID_OPEN_DRONE_ID_MESSAGE_PACK_LEN 252
 #define MAVLINK_MSG_ID_OPEN_DRONE_ID_MESSAGE_PACK_MIN_LEN 252

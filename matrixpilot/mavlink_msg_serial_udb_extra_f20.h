@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F20 186
 
-MAVPACKED(
+
 typedef struct __mavlink_serial_udb_extra_f20_t {
  int16_t sue_trim_value_input_1; /*<  SUE UDB PWM Trim Value on Input 1*/
  int16_t sue_trim_value_input_2; /*<  SUE UDB PWM Trim Value on Input 2*/
@@ -18,7 +18,7 @@ typedef struct __mavlink_serial_udb_extra_f20_t {
  int16_t sue_trim_value_input_11; /*<  SUE UDB PWM Trim Value on Input 11*/
  int16_t sue_trim_value_input_12; /*<  SUE UDB PWM Trim Value on Input 12*/
  uint8_t sue_number_of_inputs; /*<  SUE Number of Input Channels*/
-}) mavlink_serial_udb_extra_f20_t;
+} mavlink_serial_udb_extra_f20_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F20_LEN 25
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F20_MIN_LEN 25

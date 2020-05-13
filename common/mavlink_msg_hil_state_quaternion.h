@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_HIL_STATE_QUATERNION 115
 
-MAVPACKED(
+
 typedef struct __mavlink_hil_state_quaternion_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  float attitude_quaternion[4]; /*<  Vehicle attitude expressed as normalized quaternion in w, x, y, z order (with 1 0 0 0 being the null-rotation)*/
@@ -21,7 +21,7 @@ typedef struct __mavlink_hil_state_quaternion_t {
  int16_t xacc; /*< [mG] X acceleration*/
  int16_t yacc; /*< [mG] Y acceleration*/
  int16_t zacc; /*< [mG] Z acceleration*/
-}) mavlink_hil_state_quaternion_t;
+} mavlink_hil_state_quaternion_t;
 
 #define MAVLINK_MSG_ID_HIL_STATE_QUATERNION_LEN 64
 #define MAVLINK_MSG_ID_HIL_STATE_QUATERNION_MIN_LEN 64

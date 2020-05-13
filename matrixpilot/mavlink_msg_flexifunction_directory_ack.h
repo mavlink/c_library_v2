@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_ACK 156
 
-MAVPACKED(
+
 typedef struct __mavlink_flexifunction_directory_ack_t {
  uint16_t result; /*<  result of acknowledge, 0=fail, 1=good*/
  uint8_t target_system; /*<  System ID*/
@@ -11,7 +11,7 @@ typedef struct __mavlink_flexifunction_directory_ack_t {
  uint8_t directory_type; /*<  0=inputs, 1=outputs*/
  uint8_t start_index; /*<  index of first directory entry to write*/
  uint8_t count; /*<  count of directory entries to write*/
-}) mavlink_flexifunction_directory_ack_t;
+} mavlink_flexifunction_directory_ack_t;
 
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_ACK_LEN 7
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_ACK_MIN_LEN 7

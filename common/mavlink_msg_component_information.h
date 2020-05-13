@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_COMPONENT_INFORMATION 395
 
-MAVPACKED(
+
 typedef struct __mavlink_component_information_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
  uint32_t firmware_version; /*<  Version of the component firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff)*/
@@ -13,7 +13,7 @@ typedef struct __mavlink_component_information_t {
  uint8_t vendor_name[32]; /*<  Name of the component vendor*/
  uint8_t model_name[32]; /*<  Name of the component model*/
  char component_definition_uri[140]; /*<  Component definition URI (if any, otherwise only basic functions will be available). The XML format is not yet specified and work in progress. */
-}) mavlink_component_information_t;
+} mavlink_component_information_t;
 
 #define MAVLINK_MSG_ID_COMPONENT_INFORMATION_LEN 222
 #define MAVLINK_MSG_ID_COMPONENT_INFORMATION_MIN_LEN 222

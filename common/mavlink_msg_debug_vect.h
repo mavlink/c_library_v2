@@ -3,14 +3,14 @@
 
 #define MAVLINK_MSG_ID_DEBUG_VECT 250
 
-MAVPACKED(
+
 typedef struct __mavlink_debug_vect_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  float x; /*<  x*/
  float y; /*<  y*/
  float z; /*<  z*/
  char name[10]; /*<  Name*/
-}) mavlink_debug_vect_t;
+} mavlink_debug_vect_t;
 
 #define MAVLINK_MSG_ID_DEBUG_VECT_LEN 30
 #define MAVLINK_MSG_ID_DEBUG_VECT_MIN_LEN 30

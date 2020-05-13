@@ -3,11 +3,11 @@
 
 #define MAVLINK_MSG_ID_TIMESYNC 111
 
-MAVPACKED(
+
 typedef struct __mavlink_timesync_t {
  int64_t tc1; /*<  Time sync timestamp 1*/
  int64_t ts1; /*<  Time sync timestamp 2*/
-}) mavlink_timesync_t;
+} mavlink_timesync_t;
 
 #define MAVLINK_MSG_ID_TIMESYNC_LEN 16
 #define MAVLINK_MSG_ID_TIMESYNC_MIN_LEN 16

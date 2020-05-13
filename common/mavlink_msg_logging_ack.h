@@ -3,12 +3,12 @@
 
 #define MAVLINK_MSG_ID_LOGGING_ACK 268
 
-MAVPACKED(
+
 typedef struct __mavlink_logging_ack_t {
  uint16_t sequence; /*<  sequence number (must match the one in LOGGING_DATA_ACKED)*/
  uint8_t target_system; /*<  system ID of the target*/
  uint8_t target_component; /*<  component ID of the target*/
-}) mavlink_logging_ack_t;
+} mavlink_logging_ack_t;
 
 #define MAVLINK_MSG_ID_LOGGING_ACK_LEN 4
 #define MAVLINK_MSG_ID_LOGGING_ACK_MIN_LEN 4

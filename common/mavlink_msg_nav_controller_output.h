@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_NAV_CONTROLLER_OUTPUT 62
 
-MAVPACKED(
+
 typedef struct __mavlink_nav_controller_output_t {
  float nav_roll; /*< [deg] Current desired roll*/
  float nav_pitch; /*< [deg] Current desired pitch*/
@@ -13,7 +13,7 @@ typedef struct __mavlink_nav_controller_output_t {
  int16_t nav_bearing; /*< [deg] Current desired heading*/
  int16_t target_bearing; /*< [deg] Bearing to current waypoint/target*/
  uint16_t wp_dist; /*< [m] Distance to active waypoint*/
-}) mavlink_nav_controller_output_t;
+} mavlink_nav_controller_output_t;
 
 #define MAVLINK_MSG_ID_NAV_CONTROLLER_OUTPUT_LEN 26
 #define MAVLINK_MSG_ID_NAV_CONTROLLER_OUTPUT_MIN_LEN 26

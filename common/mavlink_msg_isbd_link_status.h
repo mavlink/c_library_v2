@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_ISBD_LINK_STATUS 335
 
-MAVPACKED(
+
 typedef struct __mavlink_isbd_link_status_t {
  uint64_t timestamp; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  uint64_t last_heartbeat; /*< [us] Timestamp of the last successful sbd session. The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
@@ -13,7 +13,7 @@ typedef struct __mavlink_isbd_link_status_t {
  uint8_t ring_pending; /*<  1: Ring call pending, 0: No call pending.*/
  uint8_t tx_session_pending; /*<  1: Transmission session pending, 0: No transmission session pending.*/
  uint8_t rx_session_pending; /*<  1: Receiving session pending, 0: No receiving session pending.*/
-}) mavlink_isbd_link_status_t;
+} mavlink_isbd_link_status_t;
 
 #define MAVLINK_MSG_ID_ISBD_LINK_STATUS_LEN 24
 #define MAVLINK_MSG_ID_ISBD_LINK_STATUS_MIN_LEN 24

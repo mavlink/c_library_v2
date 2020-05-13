@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_STORAGE_INFORMATION 261
 
-MAVPACKED(
+
 typedef struct __mavlink_storage_information_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
  float total_capacity; /*< [MiB] Total capacity. If storage is not ready (STORAGE_STATUS_READY) value will be ignored.*/
@@ -14,7 +14,7 @@ typedef struct __mavlink_storage_information_t {
  uint8_t storage_id; /*<  Storage ID (1 for first, 2 for second, etc.)*/
  uint8_t storage_count; /*<  Number of storage devices*/
  uint8_t status; /*<  Status of storage*/
-}) mavlink_storage_information_t;
+} mavlink_storage_information_t;
 
 #define MAVLINK_MSG_ID_STORAGE_INFORMATION_LEN 27
 #define MAVLINK_MSG_ID_STORAGE_INFORMATION_MIN_LEN 27

@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_AIS_VESSEL 301
 
-MAVPACKED(
+
 typedef struct __mavlink_ais_vessel_t {
  uint32_t MMSI; /*<  Mobile Marine Service Identifier, 9 decimal digits*/
  int32_t lat; /*< [degE7] Latitude*/
@@ -22,7 +22,7 @@ typedef struct __mavlink_ais_vessel_t {
  uint8_t dimension_starboard; /*< [m] Distance from lat/lon location to starboard side*/
  char callsign[7]; /*<  The vessel callsign*/
  char name[20]; /*<  The vessel name*/
-}) mavlink_ais_vessel_t;
+} mavlink_ais_vessel_t;
 
 #define MAVLINK_MSG_ID_AIS_VESSEL_LEN 58
 #define MAVLINK_MSG_ID_AIS_VESSEL_MIN_LEN 58

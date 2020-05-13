@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_LIMITS_STATUS 167
 
-MAVPACKED(
+
 typedef struct __mavlink_limits_status_t {
  uint32_t last_trigger; /*< [ms] Time (since boot) of last breach.*/
  uint32_t last_action; /*< [ms] Time (since boot) of last recovery action.*/
@@ -14,7 +14,7 @@ typedef struct __mavlink_limits_status_t {
  uint8_t mods_enabled; /*<  AP_Limit_Module bitfield of enabled modules.*/
  uint8_t mods_required; /*<  AP_Limit_Module bitfield of required modules.*/
  uint8_t mods_triggered; /*<  AP_Limit_Module bitfield of triggered modules.*/
-}) mavlink_limits_status_t;
+} mavlink_limits_status_t;
 
 #define MAVLINK_MSG_ID_LIMITS_STATUS_LEN 22
 #define MAVLINK_MSG_ID_LIMITS_STATUS_MIN_LEN 22

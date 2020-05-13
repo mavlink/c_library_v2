@@ -3,11 +3,11 @@
 
 #define MAVLINK_MSG_ID_OPEN_DRONE_ID_OPERATOR_ID 12905
 
-MAVPACKED(
+
 typedef struct __mavlink_open_drone_id_operator_id_t {
  uint8_t operator_id_type; /*<  Indicates the type of the operator_id field.*/
  char operator_id[20]; /*<  Text description or numeric value expressed as ASCII characters. Shall be filled with nulls in the unused portion of the field.*/
-}) mavlink_open_drone_id_operator_id_t;
+} mavlink_open_drone_id_operator_id_t;
 
 #define MAVLINK_MSG_ID_OPEN_DRONE_ID_OPERATOR_ID_LEN 21
 #define MAVLINK_MSG_ID_OPEN_DRONE_ID_OPERATOR_ID_MIN_LEN 21

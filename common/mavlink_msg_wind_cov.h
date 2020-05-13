@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_WIND_COV 231
 
-MAVPACKED(
+
 typedef struct __mavlink_wind_cov_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  float wind_x; /*< [m/s] Wind in X (NED) direction*/
@@ -14,7 +14,7 @@ typedef struct __mavlink_wind_cov_t {
  float wind_alt; /*< [m] Altitude (MSL) that this measurement was taken at*/
  float horiz_accuracy; /*< [m] Horizontal speed 1-STD accuracy*/
  float vert_accuracy; /*< [m] Vertical speed 1-STD accuracy*/
-}) mavlink_wind_cov_t;
+} mavlink_wind_cov_t;
 
 #define MAVLINK_MSG_ID_WIND_COV_LEN 40
 #define MAVLINK_MSG_ID_WIND_COV_MIN_LEN 40

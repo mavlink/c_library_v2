@@ -3,11 +3,11 @@
 
 #define MAVLINK_MSG_ID_RANGEFINDER 173
 
-MAVPACKED(
+
 typedef struct __mavlink_rangefinder_t {
  float distance; /*< [m] Distance.*/
  float voltage; /*< [V] Raw voltage if available, zero otherwise.*/
-}) mavlink_rangefinder_t;
+} mavlink_rangefinder_t;
 
 #define MAVLINK_MSG_ID_RANGEFINDER_LEN 8
 #define MAVLINK_MSG_ID_RANGEFINDER_MIN_LEN 8

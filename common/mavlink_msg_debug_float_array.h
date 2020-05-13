@@ -3,13 +3,13 @@
 
 #define MAVLINK_MSG_ID_DEBUG_FLOAT_ARRAY 350
 
-MAVPACKED(
+
 typedef struct __mavlink_debug_float_array_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  uint16_t array_id; /*<  Unique ID used to discriminate between arrays*/
  char name[10]; /*<  Name, for human-friendly display in a Ground Control Station*/
  float data[58]; /*<  data*/
-}) mavlink_debug_float_array_t;
+} mavlink_debug_float_array_t;
 
 #define MAVLINK_MSG_ID_DEBUG_FLOAT_ARRAY_LEN 252
 #define MAVLINK_MSG_ID_DEBUG_FLOAT_ARRAY_MIN_LEN 20

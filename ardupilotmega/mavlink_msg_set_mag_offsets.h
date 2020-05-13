@@ -3,14 +3,14 @@
 
 #define MAVLINK_MSG_ID_SET_MAG_OFFSETS 151
 
-MAVPACKED(
+
 typedef struct __mavlink_set_mag_offsets_t {
  int16_t mag_ofs_x; /*<  Magnetometer X offset.*/
  int16_t mag_ofs_y; /*<  Magnetometer Y offset.*/
  int16_t mag_ofs_z; /*<  Magnetometer Z offset.*/
  uint8_t target_system; /*<  System ID.*/
  uint8_t target_component; /*<  Component ID.*/
-}) mavlink_set_mag_offsets_t;
+} mavlink_set_mag_offsets_t;
 
 #define MAVLINK_MSG_ID_SET_MAG_OFFSETS_LEN 8
 #define MAVLINK_MSG_ID_SET_MAG_OFFSETS_MIN_LEN 8

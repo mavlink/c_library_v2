@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_POSITION_TARGET_GLOBAL_INT 87
 
-MAVPACKED(
+
 typedef struct __mavlink_position_target_global_int_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot). The rationale for the timestamp in the setpoint is to allow the system to compensate for the transport delay of the setpoint. This allows the system to compensate processing latency.*/
  int32_t lat_int; /*< [degE7] X Position in WGS84 frame*/
@@ -19,7 +19,7 @@ typedef struct __mavlink_position_target_global_int_t {
  float yaw_rate; /*< [rad/s] yaw rate setpoint*/
  uint16_t type_mask; /*<  Bitmap to indicate which dimensions should be ignored by the vehicle.*/
  uint8_t coordinate_frame; /*<  Valid options are: MAV_FRAME_GLOBAL_INT = 5, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT = 6, MAV_FRAME_GLOBAL_TERRAIN_ALT_INT = 11*/
-}) mavlink_position_target_global_int_t;
+} mavlink_position_target_global_int_t;
 
 #define MAVLINK_MSG_ID_POSITION_TARGET_GLOBAL_INT_LEN 51
 #define MAVLINK_MSG_ID_POSITION_TARGET_GLOBAL_INT_MIN_LEN 51

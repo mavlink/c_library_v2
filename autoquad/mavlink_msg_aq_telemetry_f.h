@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_AQ_TELEMETRY_F 150
 
-MAVPACKED(
+
 typedef struct __mavlink_aq_telemetry_f_t {
  float value1; /*<  value1*/
  float value2; /*<  value2*/
@@ -26,7 +26,7 @@ typedef struct __mavlink_aq_telemetry_f_t {
  float value19; /*<  value19*/
  float value20; /*<  value20*/
  uint16_t Index; /*<  Index of message*/
-}) mavlink_aq_telemetry_f_t;
+} mavlink_aq_telemetry_f_t;
 
 #define MAVLINK_MSG_ID_AQ_TELEMETRY_F_LEN 82
 #define MAVLINK_MSG_ID_AQ_TELEMETRY_F_MIN_LEN 82

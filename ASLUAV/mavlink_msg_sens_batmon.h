@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_SENS_BATMON 209
 
-MAVPACKED(
+
 typedef struct __mavlink_sens_batmon_t {
  uint64_t batmon_timestamp; /*< [us] Time since system start*/
  float temperature; /*< [degC] Battery pack temperature*/
@@ -20,7 +20,7 @@ typedef struct __mavlink_sens_batmon_t {
  uint16_t cellvoltage5; /*< [mV] Battery pack cell 5 voltage*/
  uint16_t cellvoltage6; /*< [mV] Battery pack cell 6 voltage*/
  uint8_t SoC; /*<  Battery pack state-of-charge*/
-}) mavlink_sens_batmon_t;
+} mavlink_sens_batmon_t;
 
 #define MAVLINK_MSG_ID_SENS_BATMON_LEN 41
 #define MAVLINK_MSG_ID_SENS_BATMON_MIN_LEN 41

@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F22 188
 
-MAVPACKED(
+
 typedef struct __mavlink_serial_udb_extra_f22_t {
  int16_t sue_accel_x_at_calibration; /*<  SUE X accelerometer at calibration time*/
  int16_t sue_accel_y_at_calibration; /*<  SUE Y accelerometer at calibration time*/
@@ -11,7 +11,7 @@ typedef struct __mavlink_serial_udb_extra_f22_t {
  int16_t sue_gyro_x_at_calibration; /*<  SUE X gyro at calibration time*/
  int16_t sue_gyro_y_at_calibration; /*<  SUE Y gyro at calibration time*/
  int16_t sue_gyro_z_at_calibration; /*<  SUE Z gyro at calibration time*/
-}) mavlink_serial_udb_extra_f22_t;
+} mavlink_serial_udb_extra_f22_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F22_LEN 12
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F22_MIN_LEN 12

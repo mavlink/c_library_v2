@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_SENSORPOD_STATUS 211
 
-MAVPACKED(
+
 typedef struct __mavlink_sensorpod_status_t {
  uint64_t timestamp; /*< [ms] Timestamp in linuxtime (since 1.1.1970)*/
  uint16_t free_space; /*<  Free space available in recordings directory in [Gb] * 1e2*/
@@ -13,7 +13,7 @@ typedef struct __mavlink_sensorpod_status_t {
  uint8_t visensor_rate_4; /*<  Rate of ROS topic 4*/
  uint8_t recording_nodes_count; /*<  Number of recording nodes*/
  uint8_t cpu_temp; /*< [degC] Temperature of sensorpod CPU in*/
-}) mavlink_sensorpod_status_t;
+} mavlink_sensorpod_status_t;
 
 #define MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN 16
 #define MAVLINK_MSG_ID_SENSORPOD_STATUS_MIN_LEN 16

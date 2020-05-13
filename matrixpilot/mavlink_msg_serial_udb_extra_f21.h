@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F21 187
 
-MAVPACKED(
+
 typedef struct __mavlink_serial_udb_extra_f21_t {
  int16_t sue_accel_x_offset; /*<  SUE X accelerometer offset*/
  int16_t sue_accel_y_offset; /*<  SUE Y accelerometer offset*/
@@ -11,7 +11,7 @@ typedef struct __mavlink_serial_udb_extra_f21_t {
  int16_t sue_gyro_x_offset; /*<  SUE X gyro offset*/
  int16_t sue_gyro_y_offset; /*<  SUE Y gyro offset*/
  int16_t sue_gyro_z_offset; /*<  SUE Z gyro offset*/
-}) mavlink_serial_udb_extra_f21_t;
+} mavlink_serial_udb_extra_f21_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F21_LEN 12
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F21_MIN_LEN 12

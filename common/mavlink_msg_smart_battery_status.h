@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_SMART_BATTERY_STATUS 371
 
-MAVPACKED(
+
 typedef struct __mavlink_smart_battery_status_t {
  int32_t fault_bitmask; /*<  Fault/health indications.*/
  int32_t time_remaining; /*< [s] Estimated remaining battery time. -1: field not provided.*/
@@ -13,7 +13,7 @@ typedef struct __mavlink_smart_battery_status_t {
  int16_t temperature; /*< [cdegC] Battery temperature. -1: field not provided.*/
  uint16_t cell_offset; /*<  The cell number of the first index in the 'voltages' array field. Using this field allows you to specify cell voltages for batteries with more than 16 cells.*/
  uint16_t voltages[16]; /*< [mV] Individual cell voltages. Batteries with more 16 cells can use the cell_offset field to specify the cell offset for the array specified in the current message . Index values above the valid cell count for this battery should have the UINT16_MAX value.*/
-}) mavlink_smart_battery_status_t;
+} mavlink_smart_battery_status_t;
 
 #define MAVLINK_MSG_ID_SMART_BATTERY_STATUS_LEN 50
 #define MAVLINK_MSG_ID_SMART_BATTERY_STATUS_MIN_LEN 50

@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_VIDEO_STREAM_INFORMATION 269
 
-MAVPACKED(
+
 typedef struct __mavlink_video_stream_information_t {
  float framerate; /*< [Hz] Frame rate.*/
  uint32_t bitrate; /*< [bits/s] Bit rate.*/
@@ -17,7 +17,7 @@ typedef struct __mavlink_video_stream_information_t {
  uint8_t type; /*<  Type of stream.*/
  char name[32]; /*<  Stream name.*/
  char uri[160]; /*<  Video stream URI (TCP or RTSP URI ground station should connect to) or port number (UDP port ground station should listen to).*/
-}) mavlink_video_stream_information_t;
+} mavlink_video_stream_information_t;
 
 #define MAVLINK_MSG_ID_VIDEO_STREAM_INFORMATION_LEN 213
 #define MAVLINK_MSG_ID_VIDEO_STREAM_INFORMATION_MIN_LEN 213

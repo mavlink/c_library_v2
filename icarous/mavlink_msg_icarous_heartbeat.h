@@ -3,10 +3,10 @@
 
 #define MAVLINK_MSG_ID_ICAROUS_HEARTBEAT 42000
 
-MAVPACKED(
+
 typedef struct __mavlink_icarous_heartbeat_t {
  uint8_t status; /*<  See the FMS_STATE enum.*/
-}) mavlink_icarous_heartbeat_t;
+} mavlink_icarous_heartbeat_t;
 
 #define MAVLINK_MSG_ID_ICAROUS_HEARTBEAT_LEN 1
 #define MAVLINK_MSG_ID_ICAROUS_HEARTBEAT_MIN_LEN 1

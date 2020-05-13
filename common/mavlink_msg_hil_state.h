@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_HIL_STATE 90
 
-MAVPACKED(
+
 typedef struct __mavlink_hil_state_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  float roll; /*< [rad] Roll angle*/
@@ -21,7 +21,7 @@ typedef struct __mavlink_hil_state_t {
  int16_t xacc; /*< [mG] X acceleration*/
  int16_t yacc; /*< [mG] Y acceleration*/
  int16_t zacc; /*< [mG] Z acceleration*/
-}) mavlink_hil_state_t;
+} mavlink_hil_state_t;
 
 #define MAVLINK_MSG_ID_HIL_STATE_LEN 56
 #define MAVLINK_MSG_ID_HIL_STATE_MIN_LEN 56

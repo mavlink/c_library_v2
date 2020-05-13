@@ -3,14 +3,14 @@
 
 #define MAVLINK_MSG_ID_MOUNT_STATUS 158
 
-MAVPACKED(
+
 typedef struct __mavlink_mount_status_t {
  int32_t pointing_a; /*< [cdeg] Pitch.*/
  int32_t pointing_b; /*< [cdeg] Roll.*/
  int32_t pointing_c; /*< [cdeg] Yaw.*/
  uint8_t target_system; /*<  System ID.*/
  uint8_t target_component; /*<  Component ID.*/
-}) mavlink_mount_status_t;
+} mavlink_mount_status_t;
 
 #define MAVLINK_MSG_ID_MOUNT_STATUS_LEN 14
 #define MAVLINK_MSG_ID_MOUNT_STATUS_MIN_LEN 14

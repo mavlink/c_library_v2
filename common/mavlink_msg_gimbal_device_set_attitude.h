@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_GIMBAL_DEVICE_SET_ATTITUDE 284
 
-MAVPACKED(
+
 typedef struct __mavlink_gimbal_device_set_attitude_t {
  float q[4]; /*<  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation, the frame is depends on whether the flag GIMBAL_DEVICE_FLAGS_YAW_LOCK is set, set all fields to NaN if only angular velocity should be used)*/
  float angular_velocity_x; /*< [rad/s] X component of angular velocity, positive is banking to the right, NaN to be ignored.*/
@@ -12,7 +12,7 @@ typedef struct __mavlink_gimbal_device_set_attitude_t {
  uint16_t flags; /*<  Low level gimbal flags.*/
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
-}) mavlink_gimbal_device_set_attitude_t;
+} mavlink_gimbal_device_set_attitude_t;
 
 #define MAVLINK_MSG_ID_GIMBAL_DEVICE_SET_ATTITUDE_LEN 32
 #define MAVLINK_MSG_ID_GIMBAL_DEVICE_SET_ATTITUDE_MIN_LEN 32

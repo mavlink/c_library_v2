@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_HIGH_LATENCY2 235
 
-MAVPACKED(
+
 typedef struct __mavlink_high_latency2_t {
  uint32_t timestamp; /*< [ms] Timestamp (milliseconds since boot or Unix epoch)*/
  int32_t latitude; /*< [degE7] Latitude*/
@@ -32,7 +32,7 @@ typedef struct __mavlink_high_latency2_t {
  int8_t custom0; /*<  Field for custom payload.*/
  int8_t custom1; /*<  Field for custom payload.*/
  int8_t custom2; /*<  Field for custom payload.*/
-}) mavlink_high_latency2_t;
+} mavlink_high_latency2_t;
 
 #define MAVLINK_MSG_ID_HIGH_LATENCY2_LEN 42
 #define MAVLINK_MSG_ID_HIGH_LATENCY2_MIN_LEN 42

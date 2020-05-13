@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_RC_CHANNELS 65
 
-MAVPACKED(
+
 typedef struct __mavlink_rc_channels_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
  uint16_t chan1_raw; /*< [us] RC channel 1 value.*/
@@ -26,7 +26,7 @@ typedef struct __mavlink_rc_channels_t {
  uint16_t chan18_raw; /*< [us] RC channel 18 value.*/
  uint8_t chancount; /*<  Total number of RC channels being received. This can be larger than 18, indicating that more channels are available but not given in this message. This value should be 0 when no RC channels are available.*/
  uint8_t rssi; /*<  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: invalid/unknown.*/
-}) mavlink_rc_channels_t;
+} mavlink_rc_channels_t;
 
 #define MAVLINK_MSG_ID_RC_CHANNELS_LEN 42
 #define MAVLINK_MSG_ID_RC_CHANNELS_MIN_LEN 42

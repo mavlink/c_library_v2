@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC 10002
 
-MAVPACKED(
+
 typedef struct __mavlink_uavionix_adsb_out_dynamic_t {
  uint32_t utcTime; /*< [s] UTC time in seconds since GPS epoch (Jan 6, 1980). If unknown set to UINT32_MAX*/
  int32_t gpsLat; /*< [degE7] Latitude WGS84 (deg * 1E7). If unknown set to INT32_MAX*/
@@ -21,7 +21,7 @@ typedef struct __mavlink_uavionix_adsb_out_dynamic_t {
  uint8_t gpsFix; /*<  0-1: no fix, 2: 2D fix, 3: 3D fix, 4: DGPS, 5: RTK*/
  uint8_t numSats; /*<  Number of satellites visible. If unknown set to UINT8_MAX*/
  uint8_t emergencyStatus; /*<  Emergency status*/
-}) mavlink_uavionix_adsb_out_dynamic_t;
+} mavlink_uavionix_adsb_out_dynamic_t;
 
 #define MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN 41
 #define MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_MIN_LEN 41

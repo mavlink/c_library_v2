@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_EFI_STATUS 225
 
-MAVPACKED(
+
 typedef struct __mavlink_efi_status_t {
  float ecu_index; /*<  ECU index*/
  float rpm; /*<  RPM*/
@@ -22,7 +22,7 @@ typedef struct __mavlink_efi_status_t {
  float throttle_out; /*< [%] Output throttle*/
  float pt_compensation; /*<  Pressure/temperature compensation*/
  uint8_t health; /*<  EFI health status*/
-}) mavlink_efi_status_t;
+} mavlink_efi_status_t;
 
 #define MAVLINK_MSG_ID_EFI_STATUS_LEN 65
 #define MAVLINK_MSG_ID_EFI_STATUS_MIN_LEN 65

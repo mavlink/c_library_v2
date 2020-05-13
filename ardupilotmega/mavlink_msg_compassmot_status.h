@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_COMPASSMOT_STATUS 177
 
-MAVPACKED(
+
 typedef struct __mavlink_compassmot_status_t {
  float current; /*< [A] Current.*/
  float CompensationX; /*<  Motor Compensation X.*/
@@ -11,7 +11,7 @@ typedef struct __mavlink_compassmot_status_t {
  float CompensationZ; /*<  Motor Compensation Z.*/
  uint16_t throttle; /*< [d%] Throttle.*/
  uint16_t interference; /*< [%] Interference.*/
-}) mavlink_compassmot_status_t;
+} mavlink_compassmot_status_t;
 
 #define MAVLINK_MSG_ID_COMPASSMOT_STATUS_LEN 20
 #define MAVLINK_MSG_ID_COMPASSMOT_STATUS_MIN_LEN 20

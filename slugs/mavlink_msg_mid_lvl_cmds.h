@@ -3,13 +3,13 @@
 
 #define MAVLINK_MSG_ID_MID_LVL_CMDS 180
 
-MAVPACKED(
+
 typedef struct __mavlink_mid_lvl_cmds_t {
  float hCommand; /*< [m] Commanded altitude (MSL)*/
  float uCommand; /*< [m/s] Commanded Airspeed*/
  float rCommand; /*< [rad/s] Commanded Turnrate*/
  uint8_t target; /*<  The system setting the commands*/
-}) mavlink_mid_lvl_cmds_t;
+} mavlink_mid_lvl_cmds_t;
 
 #define MAVLINK_MSG_ID_MID_LVL_CMDS_LEN 13
 #define MAVLINK_MSG_ID_MID_LVL_CMDS_MIN_LEN 13

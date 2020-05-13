@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_COMMAND_INT 75
 
-MAVPACKED(
+
 typedef struct __mavlink_command_int_t {
  float param1; /*<  PARAM1, see MAV_CMD enum*/
  float param2; /*<  PARAM2, see MAV_CMD enum*/
@@ -18,7 +18,7 @@ typedef struct __mavlink_command_int_t {
  uint8_t frame; /*<  The coordinate system of the COMMAND.*/
  uint8_t current; /*<  false:0, true:1*/
  uint8_t autocontinue; /*<  autocontinue to next wp*/
-}) mavlink_command_int_t;
+} mavlink_command_int_t;
 
 #define MAVLINK_MSG_ID_COMMAND_INT_LEN 35
 #define MAVLINK_MSG_ID_COMMAND_INT_MIN_LEN 35

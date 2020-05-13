@@ -3,11 +3,11 @@
 
 #define MAVLINK_MSG_ID_OPEN_DRONE_ID_SELF_ID 12903
 
-MAVPACKED(
+
 typedef struct __mavlink_open_drone_id_self_id_t {
  uint8_t description_type; /*<  Indicates the type of the description field.*/
  char description[23]; /*<  Text description or numeric value expressed as ASCII characters. Shall be filled with nulls in the unused portion of the field.*/
-}) mavlink_open_drone_id_self_id_t;
+} mavlink_open_drone_id_self_id_t;
 
 #define MAVLINK_MSG_ID_OPEN_DRONE_ID_SELF_ID_LEN 24
 #define MAVLINK_MSG_ID_OPEN_DRONE_ID_SELF_ID_MIN_LEN 24

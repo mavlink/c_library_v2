@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_DEEPSTALL 195
 
-MAVPACKED(
+
 typedef struct __mavlink_deepstall_t {
  int32_t landing_lat; /*< [degE7] Landing latitude.*/
  int32_t landing_lon; /*< [degE7] Landing longitude.*/
@@ -15,7 +15,7 @@ typedef struct __mavlink_deepstall_t {
  float expected_travel_distance; /*< [m] Distance the aircraft expects to travel during the deepstall.*/
  float cross_track_error; /*< [m] Deepstall cross track error (only valid when in DEEPSTALL_STAGE_LAND).*/
  uint8_t stage; /*<  Deepstall stage.*/
-}) mavlink_deepstall_t;
+} mavlink_deepstall_t;
 
 #define MAVLINK_MSG_ID_DEEPSTALL_LEN 37
 #define MAVLINK_MSG_ID_DEEPSTALL_MIN_LEN 37

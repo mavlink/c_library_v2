@@ -3,11 +3,11 @@
 
 #define MAVLINK_MSG_ID_HWSTATUS 165
 
-MAVPACKED(
+
 typedef struct __mavlink_hwstatus_t {
  uint16_t Vcc; /*< [mV] Board voltage.*/
  uint8_t I2Cerr; /*<  I2C error count.*/
-}) mavlink_hwstatus_t;
+} mavlink_hwstatus_t;
 
 #define MAVLINK_MSG_ID_HWSTATUS_LEN 3
 #define MAVLINK_MSG_ID_HWSTATUS_MIN_LEN 3

@@ -3,13 +3,13 @@
 
 #define MAVLINK_MSG_ID_SETUP_SIGNING 256
 
-MAVPACKED(
+
 typedef struct __mavlink_setup_signing_t {
  uint64_t initial_timestamp; /*<  initial timestamp*/
  uint8_t target_system; /*<  system id of the target*/
  uint8_t target_component; /*<  component ID of the target*/
  uint8_t secret_key[32]; /*<  signing key*/
-}) mavlink_setup_signing_t;
+} mavlink_setup_signing_t;
 
 #define MAVLINK_MSG_ID_SETUP_SIGNING_LEN 42
 #define MAVLINK_MSG_ID_SETUP_SIGNING_MIN_LEN 42

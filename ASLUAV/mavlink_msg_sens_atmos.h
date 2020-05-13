@@ -3,12 +3,12 @@
 
 #define MAVLINK_MSG_ID_SENS_ATMOS 208
 
-MAVPACKED(
+
 typedef struct __mavlink_sens_atmos_t {
  uint64_t timestamp; /*< [us] Time since system boot*/
  float TempAmbient; /*< [degC]  Ambient temperature*/
  float Humidity; /*< [%]  Relative humidity*/
-}) mavlink_sens_atmos_t;
+} mavlink_sens_atmos_t;
 
 #define MAVLINK_MSG_ID_SENS_ATMOS_LEN 16
 #define MAVLINK_MSG_ID_SENS_ATMOS_MIN_LEN 16

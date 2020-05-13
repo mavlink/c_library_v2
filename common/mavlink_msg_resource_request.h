@@ -3,14 +3,14 @@
 
 #define MAVLINK_MSG_ID_RESOURCE_REQUEST 142
 
-MAVPACKED(
+
 typedef struct __mavlink_resource_request_t {
  uint8_t request_id; /*<  Request ID. This ID should be re-used when sending back URI contents*/
  uint8_t uri_type; /*<  The type of requested URI. 0 = a file via URL. 1 = a UAVCAN binary*/
  uint8_t uri[120]; /*<  The requested unique resource identifier (URI). It is not necessarily a straight domain name (depends on the URI type enum)*/
  uint8_t transfer_type; /*<  The way the autopilot wants to receive the URI. 0 = MAVLink FTP. 1 = binary stream.*/
  uint8_t storage[120]; /*<  The storage path the autopilot wants the URI to be stored in. Will only be valid if the transfer_type has a storage associated (e.g. MAVLink FTP).*/
-}) mavlink_resource_request_t;
+} mavlink_resource_request_t;
 
 #define MAVLINK_MSG_ID_RESOURCE_REQUEST_LEN 243
 #define MAVLINK_MSG_ID_RESOURCE_REQUEST_MIN_LEN 243

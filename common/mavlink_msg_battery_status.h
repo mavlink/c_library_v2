@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_BATTERY_STATUS 147
 
-MAVPACKED(
+
 typedef struct __mavlink_battery_status_t {
  int32_t current_consumed; /*< [mAh] Consumed charge, -1: autopilot does not provide consumption estimate*/
  int32_t energy_consumed; /*< [hJ] Consumed energy, -1: autopilot does not provide energy consumption estimate*/
@@ -16,7 +16,7 @@ typedef struct __mavlink_battery_status_t {
  int8_t battery_remaining; /*< [%] Remaining battery energy. Values: [0-100], -1: autopilot does not estimate the remaining battery.*/
  int32_t time_remaining; /*< [s] Remaining battery time, 0: autopilot does not provide remaining battery time estimate*/
  uint8_t charge_state; /*<  State for extent of discharge, provided by autopilot for warning or external reactions*/
-}) mavlink_battery_status_t;
+} mavlink_battery_status_t;
 
 #define MAVLINK_MSG_ID_BATTERY_STATUS_LEN 41
 #define MAVLINK_MSG_ID_BATTERY_STATUS_MIN_LEN 36

@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_VIDEO_STREAM_STATUS 270
 
-MAVPACKED(
+
 typedef struct __mavlink_video_stream_status_t {
  float framerate; /*< [Hz] Frame rate*/
  uint32_t bitrate; /*< [bits/s] Bit rate*/
@@ -13,7 +13,7 @@ typedef struct __mavlink_video_stream_status_t {
  uint16_t rotation; /*< [deg] Video image rotation clockwise*/
  uint16_t hfov; /*< [deg] Horizontal Field of view*/
  uint8_t stream_id; /*<  Video Stream ID (1 for first, 2 for second, etc.)*/
-}) mavlink_video_stream_status_t;
+} mavlink_video_stream_status_t;
 
 #define MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN 19
 #define MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_MIN_LEN 19

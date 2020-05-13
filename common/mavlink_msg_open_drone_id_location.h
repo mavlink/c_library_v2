@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_OPEN_DRONE_ID_LOCATION 12901
 
-MAVPACKED(
+
 typedef struct __mavlink_open_drone_id_location_t {
  int32_t latitude; /*< [degE7] Current latitude of the unmanned aircraft. If unknown: 0 (both Lat/Lon).*/
  int32_t longitude; /*< [degE7] Current longitude of the unmanned aircraft. If unknown: 0 (both Lat/Lon).*/
@@ -21,7 +21,7 @@ typedef struct __mavlink_open_drone_id_location_t {
  uint8_t barometer_accuracy; /*<  The accuracy of the barometric altitude.*/
  uint8_t speed_accuracy; /*<  The accuracy of the horizontal and vertical speed.*/
  uint8_t timestamp_accuracy; /*<  The accuracy of the timestamps.*/
-}) mavlink_open_drone_id_location_t;
+} mavlink_open_drone_id_location_t;
 
 #define MAVLINK_MSG_ID_OPEN_DRONE_ID_LOCATION_LEN 37
 #define MAVLINK_MSG_ID_OPEN_DRONE_ID_LOCATION_MIN_LEN 37

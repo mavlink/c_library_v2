@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_DEVICE_OP_READ 11000
 
-MAVPACKED(
+
 typedef struct __mavlink_device_op_read_t {
  uint32_t request_id; /*<  Request ID - copied to reply.*/
  uint8_t target_system; /*<  System ID.*/
@@ -14,7 +14,7 @@ typedef struct __mavlink_device_op_read_t {
  char busname[40]; /*<  Name of device on bus (for SPI).*/
  uint8_t regstart; /*<  First register to read.*/
  uint8_t count; /*<  Count of registers to read.*/
-}) mavlink_device_op_read_t;
+} mavlink_device_op_read_t;
 
 #define MAVLINK_MSG_ID_DEVICE_OP_READ_LEN 51
 #define MAVLINK_MSG_ID_DEVICE_OP_READ_MIN_LEN 51

@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_OPEN_DRONE_ID_SYSTEM 12904
 
-MAVPACKED(
+
 typedef struct __mavlink_open_drone_id_system_t {
  int32_t operator_latitude; /*< [degE7] Latitude of the operator. If unknown: 0 (both Lat/Lon).*/
  int32_t operator_longitude; /*< [degE7] Longitude of the operator. If unknown: 0 (both Lat/Lon).*/
@@ -12,7 +12,7 @@ typedef struct __mavlink_open_drone_id_system_t {
  uint16_t area_count; /*<  Number of aircraft in the area, group or formation (default 1).*/
  uint16_t area_radius; /*< [m] Radius of the cylindrical area of the group or formation (default 0).*/
  uint8_t flags; /*<  Specifies the location source for the operator location.*/
-}) mavlink_open_drone_id_system_t;
+} mavlink_open_drone_id_system_t;
 
 #define MAVLINK_MSG_ID_OPEN_DRONE_ID_SYSTEM_LEN 21
 #define MAVLINK_MSG_ID_OPEN_DRONE_ID_SYSTEM_MIN_LEN 21

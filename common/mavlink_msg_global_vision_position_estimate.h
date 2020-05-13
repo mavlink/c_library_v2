@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_GLOBAL_VISION_POSITION_ESTIMATE 101
 
-MAVPACKED(
+
 typedef struct __mavlink_global_vision_position_estimate_t {
  uint64_t usec; /*< [us] Timestamp (UNIX time or since system boot)*/
  float x; /*< [m] Global X position*/
@@ -14,7 +14,7 @@ typedef struct __mavlink_global_vision_position_estimate_t {
  float yaw; /*< [rad] Yaw angle*/
  float covariance[21]; /*<  Row-major representation of pose 6x6 cross-covariance matrix upper right triangle (states: x_global, y_global, z_global, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array.*/
  uint8_t reset_counter; /*<  Estimate reset counter. This should be incremented when the estimate resets in any of the dimensions (position, velocity, attitude, angular speed). This is designed to be used when e.g an external SLAM system detects a loop-closure and the estimate jumps.*/
-}) mavlink_global_vision_position_estimate_t;
+} mavlink_global_vision_position_estimate_t;
 
 #define MAVLINK_MSG_ID_GLOBAL_VISION_POSITION_ESTIMATE_LEN 117
 #define MAVLINK_MSG_ID_GLOBAL_VISION_POSITION_ESTIMATE_MIN_LEN 32

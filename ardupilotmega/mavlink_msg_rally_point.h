@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_RALLY_POINT 175
 
-MAVPACKED(
+
 typedef struct __mavlink_rally_point_t {
  int32_t lat; /*< [degE7] Latitude of point.*/
  int32_t lng; /*< [degE7] Longitude of point.*/
@@ -15,7 +15,7 @@ typedef struct __mavlink_rally_point_t {
  uint8_t idx; /*<  Point index (first point is 0).*/
  uint8_t count; /*<  Total number of points (for sanity checking).*/
  uint8_t flags; /*<  Configuration flags.*/
-}) mavlink_rally_point_t;
+} mavlink_rally_point_t;
 
 #define MAVLINK_MSG_ID_RALLY_POINT_LEN 19
 #define MAVLINK_MSG_ID_RALLY_POINT_MIN_LEN 19

@@ -3,12 +3,12 @@
 
 #define MAVLINK_MSG_ID_SUPPORTED_TUNES 401
 
-MAVPACKED(
+
 typedef struct __mavlink_supported_tunes_t {
  uint32_t format; /*<  Bitfield of supported tune formats.*/
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
-}) mavlink_supported_tunes_t;
+} mavlink_supported_tunes_t;
 
 #define MAVLINK_MSG_ID_SUPPORTED_TUNES_LEN 6
 #define MAVLINK_MSG_ID_SUPPORTED_TUNES_MIN_LEN 6

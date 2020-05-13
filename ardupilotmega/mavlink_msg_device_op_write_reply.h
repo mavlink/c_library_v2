@@ -3,11 +3,11 @@
 
 #define MAVLINK_MSG_ID_DEVICE_OP_WRITE_REPLY 11003
 
-MAVPACKED(
+
 typedef struct __mavlink_device_op_write_reply_t {
  uint32_t request_id; /*<  Request ID - copied from request.*/
  uint8_t result; /*<  0 for success, anything else is failure code.*/
-}) mavlink_device_op_write_reply_t;
+} mavlink_device_op_write_reply_t;
 
 #define MAVLINK_MSG_ID_DEVICE_OP_WRITE_REPLY_LEN 5
 #define MAVLINK_MSG_ID_DEVICE_OP_WRITE_REPLY_MIN_LEN 5

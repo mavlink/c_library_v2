@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_SERIAL_CONTROL 126
 
-MAVPACKED(
+
 typedef struct __mavlink_serial_control_t {
  uint32_t baudrate; /*< [bits/s] Baudrate of transfer. Zero means no change.*/
  uint16_t timeout; /*< [ms] Timeout for reply data*/
@@ -11,7 +11,7 @@ typedef struct __mavlink_serial_control_t {
  uint8_t flags; /*<  Bitmap of serial control flags.*/
  uint8_t count; /*< [bytes] how many bytes in this transfer*/
  uint8_t data[70]; /*<  serial data*/
-}) mavlink_serial_control_t;
+} mavlink_serial_control_t;
 
 #define MAVLINK_MSG_ID_SERIAL_CONTROL_LEN 79
 #define MAVLINK_MSG_ID_SERIAL_CONTROL_MIN_LEN 79

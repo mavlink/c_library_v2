@@ -3,10 +3,10 @@
 
 #define MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT 10003
 
-MAVPACKED(
+
 typedef struct __mavlink_uavionix_adsb_transceiver_health_report_t {
  uint8_t rfHealth; /*<  ADS-B transponder messages*/
-}) mavlink_uavionix_adsb_transceiver_health_report_t;
+} mavlink_uavionix_adsb_transceiver_health_report_t;
 
 #define MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN 1
 #define MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_MIN_LEN 1

@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS 285
 
-MAVPACKED(
+
 typedef struct __mavlink_gimbal_device_attitude_status_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
  float q[4]; /*<  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation, the frame is depends on whether the flag GIMBAL_DEVICE_FLAGS_YAW_LOCK is set)*/
@@ -12,7 +12,7 @@ typedef struct __mavlink_gimbal_device_attitude_status_t {
  float angular_velocity_z; /*< [rad/s] Z component of angular velocity (NaN if unknown)*/
  uint32_t failure_flags; /*<  Failure flags (0 for no failure)*/
  uint16_t flags; /*<  Current gimbal flags set.*/
-}) mavlink_gimbal_device_attitude_status_t;
+} mavlink_gimbal_device_attitude_status_t;
 
 #define MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN 38
 #define MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_MIN_LEN 38

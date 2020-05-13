@@ -3,11 +3,11 @@
 
 #define MAVLINK_MSG_ID_BATTERY2 181
 
-MAVPACKED(
+
 typedef struct __mavlink_battery2_t {
  uint16_t voltage; /*< [mV] Voltage.*/
  int16_t current_battery; /*< [cA] Battery current, -1: autopilot does not measure the current.*/
-}) mavlink_battery2_t;
+} mavlink_battery2_t;
 
 #define MAVLINK_MSG_ID_BATTERY2_LEN 4
 #define MAVLINK_MSG_ID_BATTERY2_MIN_LEN 4

@@ -3,14 +3,14 @@
 
 #define MAVLINK_MSG_ID_REQUEST_DATA_STREAM 66
 
-MAVPACKED(
+
 typedef struct __mavlink_request_data_stream_t {
  uint16_t req_message_rate; /*< [Hz] The requested message rate*/
  uint8_t target_system; /*<  The target requested to send the message stream.*/
  uint8_t target_component; /*<  The target requested to send the message stream.*/
  uint8_t req_stream_id; /*<  The ID of the requested data stream*/
  uint8_t start_stop; /*<  1 to start sending, 0 to stop sending.*/
-}) mavlink_request_data_stream_t;
+} mavlink_request_data_stream_t;
 
 #define MAVLINK_MSG_ID_REQUEST_DATA_STREAM_LEN 6
 #define MAVLINK_MSG_ID_REQUEST_DATA_STREAM_MIN_LEN 6

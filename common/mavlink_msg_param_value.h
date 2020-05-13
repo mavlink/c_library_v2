@@ -3,14 +3,14 @@
 
 #define MAVLINK_MSG_ID_PARAM_VALUE 22
 
-MAVPACKED(
+
 typedef struct __mavlink_param_value_t {
  float param_value; /*<  Onboard parameter value*/
  uint16_t param_count; /*<  Total number of onboard parameters*/
  uint16_t param_index; /*<  Index of this onboard parameter*/
  char param_id[16]; /*<  Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string*/
  uint8_t param_type; /*<  Onboard parameter type.*/
-}) mavlink_param_value_t;
+} mavlink_param_value_t;
 
 #define MAVLINK_MSG_ID_PARAM_VALUE_LEN 25
 #define MAVLINK_MSG_ID_PARAM_VALUE_MIN_LEN 25

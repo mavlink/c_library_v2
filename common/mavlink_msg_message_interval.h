@@ -3,11 +3,11 @@
 
 #define MAVLINK_MSG_ID_MESSAGE_INTERVAL 244
 
-MAVPACKED(
+
 typedef struct __mavlink_message_interval_t {
  int32_t interval_us; /*< [us] The interval between two messages. A value of -1 indicates this stream is disabled, 0 indicates it is not available, > 0 indicates the interval at which it is sent.*/
  uint16_t message_id; /*<  The ID of the requested MAVLink message. v1.0 is limited to 254 messages.*/
-}) mavlink_message_interval_t;
+} mavlink_message_interval_t;
 
 #define MAVLINK_MSG_ID_MESSAGE_INTERVAL_LEN 6
 #define MAVLINK_MSG_ID_MESSAGE_INTERVAL_MIN_LEN 6

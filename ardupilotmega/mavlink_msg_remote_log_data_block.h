@@ -3,13 +3,13 @@
 
 #define MAVLINK_MSG_ID_REMOTE_LOG_DATA_BLOCK 184
 
-MAVPACKED(
+
 typedef struct __mavlink_remote_log_data_block_t {
  uint32_t seqno; /*<  Log data block sequence number.*/
  uint8_t target_system; /*<  System ID.*/
  uint8_t target_component; /*<  Component ID.*/
  uint8_t data[200]; /*<  Log data block.*/
-}) mavlink_remote_log_data_block_t;
+} mavlink_remote_log_data_block_t;
 
 #define MAVLINK_MSG_ID_REMOTE_LOG_DATA_BLOCK_LEN 206
 #define MAVLINK_MSG_ID_REMOTE_LOG_DATA_BLOCK_MIN_LEN 206

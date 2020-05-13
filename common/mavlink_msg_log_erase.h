@@ -3,11 +3,11 @@
 
 #define MAVLINK_MSG_ID_LOG_ERASE 121
 
-MAVPACKED(
+
 typedef struct __mavlink_log_erase_t {
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
-}) mavlink_log_erase_t;
+} mavlink_log_erase_t;
 
 #define MAVLINK_MSG_ID_LOG_ERASE_LEN 2
 #define MAVLINK_MSG_ID_LOG_ERASE_MIN_LEN 2

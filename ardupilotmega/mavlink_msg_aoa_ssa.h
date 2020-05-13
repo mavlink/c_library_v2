@@ -3,12 +3,12 @@
 
 #define MAVLINK_MSG_ID_AOA_SSA 11020
 
-MAVPACKED(
+
 typedef struct __mavlink_aoa_ssa_t {
  uint64_t time_usec; /*< [us] Timestamp (since boot or Unix epoch).*/
  float AOA; /*< [deg] Angle of Attack.*/
  float SSA; /*< [deg] Side Slip Angle.*/
-}) mavlink_aoa_ssa_t;
+} mavlink_aoa_ssa_t;
 
 #define MAVLINK_MSG_ID_AOA_SSA_LEN 16
 #define MAVLINK_MSG_ID_AOA_SSA_MIN_LEN 16

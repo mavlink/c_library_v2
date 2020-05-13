@@ -3,13 +3,13 @@
 
 #define MAVLINK_MSG_ID_SCALED_PRESSURE3 143
 
-MAVPACKED(
+
 typedef struct __mavlink_scaled_pressure3_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
  float press_abs; /*< [hPa] Absolute pressure*/
  float press_diff; /*< [hPa] Differential pressure*/
  int16_t temperature; /*< [cdegC] Temperature measurement*/
-}) mavlink_scaled_pressure3_t;
+} mavlink_scaled_pressure3_t;
 
 #define MAVLINK_MSG_ID_SCALED_PRESSURE3_LEN 14
 #define MAVLINK_MSG_ID_SCALED_PRESSURE3_MIN_LEN 14

@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY 155
 
-MAVPACKED(
+
 typedef struct __mavlink_flexifunction_directory_t {
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
@@ -11,7 +11,7 @@ typedef struct __mavlink_flexifunction_directory_t {
  uint8_t start_index; /*<  index of first directory entry to write*/
  uint8_t count; /*<  count of directory entries to write*/
  int8_t directory_data[48]; /*<  Settings data*/
-}) mavlink_flexifunction_directory_t;
+} mavlink_flexifunction_directory_t;
 
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_LEN 53
 #define MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_MIN_LEN 53

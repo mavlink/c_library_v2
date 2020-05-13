@@ -3,12 +3,12 @@
 
 #define MAVLINK_MSG_ID_GPS_RTCM_DATA 233
 
-MAVPACKED(
+
 typedef struct __mavlink_gps_rtcm_data_t {
  uint8_t flags; /*<  LSB: 1 means message is fragmented, next 2 bits are the fragment ID, the remaining 5 bits are used for the sequence ID. Messages are only to be flushed to the GPS when the entire message has been reconstructed on the autopilot. The fragment ID specifies which order the fragments should be assembled into a buffer, while the sequence ID is used to detect a mismatch between different buffers. The buffer is considered fully reconstructed when either all 4 fragments are present, or all the fragments before the first fragment with a non full payload is received. This management is used to ensure that normal GPS operation doesn't corrupt RTCM data, and to recover from a unreliable transport delivery order.*/
  uint8_t len; /*< [bytes] data length*/
  uint8_t data[180]; /*<  RTCM message (may be fragmented)*/
-}) mavlink_gps_rtcm_data_t;
+} mavlink_gps_rtcm_data_t;
 
 #define MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN 182
 #define MAVLINK_MSG_ID_GPS_RTCM_DATA_MIN_LEN 182

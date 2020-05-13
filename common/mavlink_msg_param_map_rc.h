@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_PARAM_MAP_RC 50
 
-MAVPACKED(
+
 typedef struct __mavlink_param_map_rc_t {
  float param_value0; /*<  Initial parameter value*/
  float scale; /*<  Scale, maps the RC range [-1, 1] to a parameter value*/
@@ -14,7 +14,7 @@ typedef struct __mavlink_param_map_rc_t {
  uint8_t target_component; /*<  Component ID*/
  char param_id[16]; /*<  Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string*/
  uint8_t parameter_rc_channel_index; /*<  Index of parameter RC channel. Not equal to the RC channel id. Typically corresponds to a potentiometer-knob on the RC.*/
-}) mavlink_param_map_rc_t;
+} mavlink_param_map_rc_t;
 
 #define MAVLINK_MSG_ID_PARAM_MAP_RC_LEN 37
 #define MAVLINK_MSG_ID_PARAM_MAP_RC_MIN_LEN 37

@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_DEVICE_OP_WRITE 11002
 
-MAVPACKED(
+
 typedef struct __mavlink_device_op_write_t {
  uint32_t request_id; /*<  Request ID - copied to reply.*/
  uint8_t target_system; /*<  System ID.*/
@@ -15,7 +15,7 @@ typedef struct __mavlink_device_op_write_t {
  uint8_t regstart; /*<  First register to write.*/
  uint8_t count; /*<  Count of registers to write.*/
  uint8_t data[128]; /*<  Write data.*/
-}) mavlink_device_op_write_t;
+} mavlink_device_op_write_t;
 
 #define MAVLINK_MSG_ID_DEVICE_OP_WRITE_LEN 179
 #define MAVLINK_MSG_ID_DEVICE_OP_WRITE_MIN_LEN 179

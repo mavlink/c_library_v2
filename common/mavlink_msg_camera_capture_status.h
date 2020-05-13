@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS 262
 
-MAVPACKED(
+
 typedef struct __mavlink_camera_capture_status_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
  float image_interval; /*< [s] Image capture interval*/
@@ -11,7 +11,7 @@ typedef struct __mavlink_camera_capture_status_t {
  float available_capacity; /*< [MiB] Available storage capacity.*/
  uint8_t image_status; /*<  Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)*/
  uint8_t video_status; /*<  Current status of video capturing (0: idle, 1: capture in progress)*/
-}) mavlink_camera_capture_status_t;
+} mavlink_camera_capture_status_t;
 
 #define MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_LEN 18
 #define MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_MIN_LEN 18

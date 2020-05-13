@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_UTM_GLOBAL_POSITION 340
 
-MAVPACKED(
+
 typedef struct __mavlink_utm_global_position_t {
  uint64_t time; /*< [us] Time of applicability of position (microseconds since UNIX epoch).*/
  int32_t lat; /*< [degE7] Latitude (WGS84)*/
@@ -23,7 +23,7 @@ typedef struct __mavlink_utm_global_position_t {
  uint8_t uas_id[18]; /*<  Unique UAS ID.*/
  uint8_t flight_state; /*<  Flight state*/
  uint8_t flags; /*<  Bitwise OR combination of the data available flags.*/
-}) mavlink_utm_global_position_t;
+} mavlink_utm_global_position_t;
 
 #define MAVLINK_MSG_ID_UTM_GLOBAL_POSITION_LEN 70
 #define MAVLINK_MSG_ID_UTM_GLOBAL_POSITION_MIN_LEN 70

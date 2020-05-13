@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_STATUS_GPS 194
 
-MAVPACKED(
+
 typedef struct __mavlink_status_gps_t {
  float magVar; /*< [deg] Magnetic variation*/
  uint16_t csFails; /*<  Number of times checksum has failed*/
@@ -12,7 +12,7 @@ typedef struct __mavlink_status_gps_t {
  uint8_t posStatus; /*<   A = data valid, V = data invalid*/
  int8_t magDir; /*<   Magnetic variation direction E/W. Easterly variation (E) subtracts from True course and Westerly variation (W) adds to True course*/
  uint8_t modeInd; /*<   Positioning system mode indicator. A - Autonomous;D-Differential; E-Estimated (dead reckoning) mode;M-Manual input; N-Data not valid*/
-}) mavlink_status_gps_t;
+} mavlink_status_gps_t;
 
 #define MAVLINK_MSG_ID_STATUS_GPS_LEN 11
 #define MAVLINK_MSG_ID_STATUS_GPS_MIN_LEN 11

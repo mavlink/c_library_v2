@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_HIGHRES_IMU 105
 
-MAVPACKED(
+
 typedef struct __mavlink_highres_imu_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  float xacc; /*< [m/s/s] X acceleration*/
@@ -21,7 +21,7 @@ typedef struct __mavlink_highres_imu_t {
  float temperature; /*< [degC] Temperature*/
  uint16_t fields_updated; /*<  Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature*/
  uint8_t id; /*<  Id. Ids are numbered from 0 and map to IMUs numbered from 1 (e.g. IMU1 will have a message with id=0)*/
-}) mavlink_highres_imu_t;
+} mavlink_highres_imu_t;
 
 #define MAVLINK_MSG_ID_HIGHRES_IMU_LEN 63
 #define MAVLINK_MSG_ID_HIGHRES_IMU_MIN_LEN 62

@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_AHRS3 182
 
-MAVPACKED(
+
 typedef struct __mavlink_ahrs3_t {
  float roll; /*< [rad] Roll angle.*/
  float pitch; /*< [rad] Pitch angle.*/
@@ -15,7 +15,7 @@ typedef struct __mavlink_ahrs3_t {
  float v2; /*<  Test variable2.*/
  float v3; /*<  Test variable3.*/
  float v4; /*<  Test variable4.*/
-}) mavlink_ahrs3_t;
+} mavlink_ahrs3_t;
 
 #define MAVLINK_MSG_ID_AHRS3_LEN 40
 #define MAVLINK_MSG_ID_AHRS3_MIN_LEN 40

@@ -3,14 +3,14 @@
 
 #define MAVLINK_MSG_ID_RAW_PRESSURE 28
 
-MAVPACKED(
+
 typedef struct __mavlink_raw_pressure_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  int16_t press_abs; /*<  Absolute pressure (raw)*/
  int16_t press_diff1; /*<  Differential pressure 1 (raw, 0 if nonexistent)*/
  int16_t press_diff2; /*<  Differential pressure 2 (raw, 0 if nonexistent)*/
  int16_t temperature; /*<  Raw Temperature measurement (raw)*/
-}) mavlink_raw_pressure_t;
+} mavlink_raw_pressure_t;
 
 #define MAVLINK_MSG_ID_RAW_PRESSURE_LEN 16
 #define MAVLINK_MSG_ID_RAW_PRESSURE_MIN_LEN 16

@@ -3,13 +3,13 @@
 
 #define MAVLINK_MSG_ID_HIL_ACTUATOR_CONTROLS 93
 
-MAVPACKED(
+
 typedef struct __mavlink_hil_actuator_controls_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  uint64_t flags; /*<  Flags as bitfield, 1: indicate simulation using lockstep.*/
  float controls[16]; /*<  Control outputs -1 .. 1. Channel assignment depends on the simulated hardware.*/
  uint8_t mode; /*<  System mode. Includes arming state.*/
-}) mavlink_hil_actuator_controls_t;
+} mavlink_hil_actuator_controls_t;
 
 #define MAVLINK_MSG_ID_HIL_ACTUATOR_CONTROLS_LEN 81
 #define MAVLINK_MSG_ID_HIL_ACTUATOR_CONTROLS_MIN_LEN 81

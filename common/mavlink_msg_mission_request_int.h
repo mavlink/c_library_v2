@@ -3,13 +3,13 @@
 
 #define MAVLINK_MSG_ID_MISSION_REQUEST_INT 51
 
-MAVPACKED(
+
 typedef struct __mavlink_mission_request_int_t {
  uint16_t seq; /*<  Sequence*/
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
  uint8_t mission_type; /*<  Mission type.*/
-}) mavlink_mission_request_int_t;
+} mavlink_mission_request_int_t;
 
 #define MAVLINK_MSG_ID_MISSION_REQUEST_INT_LEN 5
 #define MAVLINK_MSG_ID_MISSION_REQUEST_INT_MIN_LEN 4

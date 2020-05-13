@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_VIBRATION 241
 
-MAVPACKED(
+
 typedef struct __mavlink_vibration_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  float vibration_x; /*<  Vibration levels on X-axis*/
@@ -12,7 +12,7 @@ typedef struct __mavlink_vibration_t {
  uint32_t clipping_0; /*<  first accelerometer clipping count*/
  uint32_t clipping_1; /*<  second accelerometer clipping count*/
  uint32_t clipping_2; /*<  third accelerometer clipping count*/
-}) mavlink_vibration_t;
+} mavlink_vibration_t;
 
 #define MAVLINK_MSG_ID_VIBRATION_LEN 32
 #define MAVLINK_MSG_ID_VIBRATION_MIN_LEN 32

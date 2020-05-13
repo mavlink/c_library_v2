@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_HIGH_LATENCY 234
 
-MAVPACKED(
+
 typedef struct __mavlink_high_latency_t {
  uint32_t custom_mode; /*<  A bitfield for use for autopilot-specific flags.*/
  int32_t latitude; /*< [degE7] Latitude*/
@@ -29,7 +29,7 @@ typedef struct __mavlink_high_latency_t {
  int8_t temperature_air; /*< [degC] Air temperature (degrees C) from airspeed sensor*/
  uint8_t failsafe; /*<  failsafe (each bit represents a failsafe where 0=ok, 1=failsafe active (bit0:RC, bit1:batt, bit2:GPS, bit3:GCS, bit4:fence)*/
  uint8_t wp_num; /*<  current waypoint number*/
-}) mavlink_high_latency_t;
+} mavlink_high_latency_t;
 
 #define MAVLINK_MSG_ID_HIGH_LATENCY_LEN 40
 #define MAVLINK_MSG_ID_HIGH_LATENCY_MIN_LEN 40

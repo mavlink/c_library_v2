@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F19 185
 
-MAVPACKED(
+
 typedef struct __mavlink_serial_udb_extra_f19_t {
  uint8_t sue_aileron_output_channel; /*<  SUE aileron output channel*/
  uint8_t sue_aileron_reversed; /*<  SUE aileron reversed*/
@@ -13,7 +13,7 @@ typedef struct __mavlink_serial_udb_extra_f19_t {
  uint8_t sue_throttle_reversed; /*<  SUE throttle reversed*/
  uint8_t sue_rudder_output_channel; /*<  SUE rudder output channel*/
  uint8_t sue_rudder_reversed; /*<  SUE rudder reversed*/
-}) mavlink_serial_udb_extra_f19_t;
+} mavlink_serial_udb_extra_f19_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F19_LEN 8
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F19_MIN_LEN 8
