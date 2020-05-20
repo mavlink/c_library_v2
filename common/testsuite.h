@@ -11231,6 +11231,68 @@ static void mavlink_test_smart_battery_status(uint8_t system_id, uint8_t compone
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
+static void mavlink_test_generator_status(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_GENERATOR_STATUS >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_generator_status_t packet_in = {
+        93372036854775807ULL,73.0,101.0,129.0,157.0,185.0,18691,18795,18899
+    };
+    mavlink_generator_status_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.status = packet_in.status;
+        packet1.battery_current = packet_in.battery_current;
+        packet1.load_current = packet_in.load_current;
+        packet1.power_generated = packet_in.power_generated;
+        packet1.bus_voltage = packet_in.bus_voltage;
+        packet1.bat_current_setpoint = packet_in.bat_current_setpoint;
+        packet1.generator_speed = packet_in.generator_speed;
+        packet1.rectifier_temperature = packet_in.rectifier_temperature;
+        packet1.generator_temperature = packet_in.generator_temperature;
+        
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_GENERATOR_STATUS_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_GENERATOR_STATUS_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_generator_status_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_generator_status_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_generator_status_pack(system_id, component_id, &msg , packet1.status , packet1.generator_speed , packet1.battery_current , packet1.load_current , packet1.power_generated , packet1.bus_voltage , packet1.rectifier_temperature , packet1.bat_current_setpoint , packet1.generator_temperature );
+    mavlink_msg_generator_status_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_generator_status_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.status , packet1.generator_speed , packet1.battery_current , packet1.load_current , packet1.power_generated , packet1.bus_voltage , packet1.rectifier_temperature , packet1.bat_current_setpoint , packet1.generator_temperature );
+    mavlink_msg_generator_status_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_generator_status_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_generator_status_send(MAVLINK_COMM_1 , packet1.status , packet1.generator_speed , packet1.battery_current , packet1.load_current , packet1.power_generated , packet1.bus_voltage , packet1.rectifier_temperature , packet1.bat_current_setpoint , packet1.generator_temperature );
+    mavlink_msg_generator_status_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
 static void mavlink_test_actuator_output_status(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -12302,6 +12364,7 @@ static void mavlink_test_common(uint8_t system_id, uint8_t component_id, mavlink
     mavlink_test_orbit_execution_status(system_id, component_id, last_msg);
     mavlink_test_smart_battery_info(system_id, component_id, last_msg);
     mavlink_test_smart_battery_status(system_id, component_id, last_msg);
+    mavlink_test_generator_status(system_id, component_id, last_msg);
     mavlink_test_actuator_output_status(system_id, component_id, last_msg);
     mavlink_test_time_estimate_to_target(system_id, component_id, last_msg);
     mavlink_test_tunnel(system_id, component_id, last_msg);
