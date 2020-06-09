@@ -11,7 +11,7 @@ typedef struct __mavlink_camera_capture_status_t {
  float available_capacity; /*< [MiB] Available storage capacity.*/
  uint8_t image_status; /*<  Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)*/
  uint8_t video_status; /*<  Current status of video capturing (0: idle, 1: capture in progress)*/
- int32_t image_count; /*<  Total number of images.*/
+ int32_t image_count; /*<  Total number of images captured ('forever', or until reset using MAV_CMD_STORAGE_FORMAT).*/
 }) mavlink_camera_capture_status_t;
 
 #define MAVLINK_MSG_ID_CAMERA_CAPTURE_STATUS_LEN 22
@@ -65,7 +65,7 @@ typedef struct __mavlink_camera_capture_status_t {
  * @param image_interval [s] Image capture interval
  * @param recording_time_ms [ms] Time since recording started
  * @param available_capacity [MiB] Available storage capacity.
- * @param image_count  Total number of images.
+ * @param image_count  Total number of images captured ('forever', or until reset using MAV_CMD_STORAGE_FORMAT).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_camera_capture_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -111,7 +111,7 @@ static inline uint16_t mavlink_msg_camera_capture_status_pack(uint8_t system_id,
  * @param image_interval [s] Image capture interval
  * @param recording_time_ms [ms] Time since recording started
  * @param available_capacity [MiB] Available storage capacity.
- * @param image_count  Total number of images.
+ * @param image_count  Total number of images captured ('forever', or until reset using MAV_CMD_STORAGE_FORMAT).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_camera_capture_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -183,7 +183,7 @@ static inline uint16_t mavlink_msg_camera_capture_status_encode_chan(uint8_t sys
  * @param image_interval [s] Image capture interval
  * @param recording_time_ms [ms] Time since recording started
  * @param available_capacity [MiB] Available storage capacity.
- * @param image_count  Total number of images.
+ * @param image_count  Total number of images captured ('forever', or until reset using MAV_CMD_STORAGE_FORMAT).
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -332,7 +332,7 @@ static inline float mavlink_msg_camera_capture_status_get_available_capacity(con
 /**
  * @brief Get field image_count from camera_capture_status message
  *
- * @return  Total number of images.
+ * @return  Total number of images captured ('forever', or until reset using MAV_CMD_STORAGE_FORMAT).
  */
 static inline int32_t mavlink_msg_camera_capture_status_get_image_count(const mavlink_message_t* msg)
 {
