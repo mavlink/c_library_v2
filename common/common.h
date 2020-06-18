@@ -1360,7 +1360,7 @@ typedef enum MAV_DO_REPOSITION_FLAGS
 } MAV_DO_REPOSITION_FLAGS;
 #endif
 
-/** @brief Flags in EKF_STATUS message */
+/** @brief Flags in ESTIMATOR_STATUS message */
 #ifndef HAVE_ENUM_ESTIMATOR_STATUS_FLAGS
 #define HAVE_ENUM_ESTIMATOR_STATUS_FLAGS
 typedef enum ESTIMATOR_STATUS_FLAGS
