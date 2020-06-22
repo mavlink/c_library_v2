@@ -11553,19 +11553,17 @@ static void mavlink_test_component_information(uint8_t system_id, uint8_t compon
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_component_information_t packet_in = {
-        963497464,963497672,963497880,963498088,18067,{ 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218 },{ 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58 },"EFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLM"
+        963497464,963497672,963497880,963498088,"QRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFG","IJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXY"
     };
     mavlink_component_information_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         packet1.time_boot_ms = packet_in.time_boot_ms;
-        packet1.firmware_version = packet_in.firmware_version;
-        packet1.hardware_version = packet_in.hardware_version;
-        packet1.capability_flags = packet_in.capability_flags;
-        packet1.component_definition_version = packet_in.component_definition_version;
+        packet1.metadata_type = packet_in.metadata_type;
+        packet1.metadata_uid = packet_in.metadata_uid;
+        packet1.translation_uid = packet_in.translation_uid;
         
-        mav_array_memcpy(packet1.vendor_name, packet_in.vendor_name, sizeof(uint8_t)*32);
-        mav_array_memcpy(packet1.model_name, packet_in.model_name, sizeof(uint8_t)*32);
-        mav_array_memcpy(packet1.component_definition_uri, packet_in.component_definition_uri, sizeof(char)*140);
+        mav_array_memcpy(packet1.metadata_uri, packet_in.metadata_uri, sizeof(char)*70);
+        mav_array_memcpy(packet1.translation_uri, packet_in.translation_uri, sizeof(char)*70);
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
         if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
@@ -11579,12 +11577,12 @@ static void mavlink_test_component_information(uint8_t system_id, uint8_t compon
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_component_information_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.vendor_name , packet1.model_name , packet1.firmware_version , packet1.hardware_version , packet1.capability_flags , packet1.component_definition_version , packet1.component_definition_uri );
+    mavlink_msg_component_information_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.metadata_type , packet1.metadata_uid , packet1.metadata_uri , packet1.translation_uid , packet1.translation_uri );
     mavlink_msg_component_information_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_component_information_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.vendor_name , packet1.model_name , packet1.firmware_version , packet1.hardware_version , packet1.capability_flags , packet1.component_definition_version , packet1.component_definition_uri );
+    mavlink_msg_component_information_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.metadata_type , packet1.metadata_uid , packet1.metadata_uri , packet1.translation_uid , packet1.translation_uri );
     mavlink_msg_component_information_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -11597,7 +11595,7 @@ static void mavlink_test_component_information(uint8_t system_id, uint8_t compon
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_component_information_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.vendor_name , packet1.model_name , packet1.firmware_version , packet1.hardware_version , packet1.capability_flags , packet1.component_definition_version , packet1.component_definition_uri );
+    mavlink_msg_component_information_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.metadata_type , packet1.metadata_uid , packet1.metadata_uri , packet1.translation_uid , packet1.translation_uri );
     mavlink_msg_component_information_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
