@@ -9846,7 +9846,7 @@ static void mavlink_test_autopilot_state_for_gimbal_device(uint8_t system_id, ui
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_autopilot_state_for_gimbal_device_t packet_in = {
-        93372036854775807ULL,{ 73.0, 74.0, 75.0, 76.0 },963498712,213.0,241.0,269.0,963499544,325.0,149,216
+        93372036854775807ULL,{ 73.0, 74.0, 75.0, 76.0 },963498712,213.0,241.0,269.0,963499544,325.0,19731,27,94,161
     };
     mavlink_autopilot_state_for_gimbal_device_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -9857,8 +9857,10 @@ static void mavlink_test_autopilot_state_for_gimbal_device(uint8_t system_id, ui
         packet1.vz = packet_in.vz;
         packet1.v_estimated_delay_us = packet_in.v_estimated_delay_us;
         packet1.feed_forward_angular_velocity_z = packet_in.feed_forward_angular_velocity_z;
+        packet1.estimator_status = packet_in.estimator_status;
         packet1.target_system = packet_in.target_system;
         packet1.target_component = packet_in.target_component;
+        packet1.landed_state = packet_in.landed_state;
         
         mav_array_memcpy(packet1.q, packet_in.q, sizeof(float)*4);
         
@@ -9874,12 +9876,12 @@ static void mavlink_test_autopilot_state_for_gimbal_device(uint8_t system_id, ui
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_autopilot_state_for_gimbal_device_pack(system_id, component_id, &msg , packet1.time_boot_us , packet1.target_system , packet1.target_component , packet1.q , packet1.q_estimated_delay_us , packet1.vx , packet1.vy , packet1.vz , packet1.v_estimated_delay_us , packet1.feed_forward_angular_velocity_z );
+    mavlink_msg_autopilot_state_for_gimbal_device_pack(system_id, component_id, &msg , packet1.time_boot_us , packet1.target_system , packet1.target_component , packet1.q , packet1.q_estimated_delay_us , packet1.vx , packet1.vy , packet1.vz , packet1.v_estimated_delay_us , packet1.feed_forward_angular_velocity_z , packet1.estimator_status , packet1.landed_state );
     mavlink_msg_autopilot_state_for_gimbal_device_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_autopilot_state_for_gimbal_device_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_us , packet1.target_system , packet1.target_component , packet1.q , packet1.q_estimated_delay_us , packet1.vx , packet1.vy , packet1.vz , packet1.v_estimated_delay_us , packet1.feed_forward_angular_velocity_z );
+    mavlink_msg_autopilot_state_for_gimbal_device_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_us , packet1.target_system , packet1.target_component , packet1.q , packet1.q_estimated_delay_us , packet1.vx , packet1.vy , packet1.vz , packet1.v_estimated_delay_us , packet1.feed_forward_angular_velocity_z , packet1.estimator_status , packet1.landed_state );
     mavlink_msg_autopilot_state_for_gimbal_device_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -9892,7 +9894,7 @@ static void mavlink_test_autopilot_state_for_gimbal_device(uint8_t system_id, ui
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_autopilot_state_for_gimbal_device_send(MAVLINK_COMM_1 , packet1.time_boot_us , packet1.target_system , packet1.target_component , packet1.q , packet1.q_estimated_delay_us , packet1.vx , packet1.vy , packet1.vz , packet1.v_estimated_delay_us , packet1.feed_forward_angular_velocity_z );
+    mavlink_msg_autopilot_state_for_gimbal_device_send(MAVLINK_COMM_1 , packet1.time_boot_us , packet1.target_system , packet1.target_component , packet1.q , packet1.q_estimated_delay_us , packet1.vx , packet1.vy , packet1.vz , packet1.v_estimated_delay_us , packet1.feed_forward_angular_velocity_z , packet1.estimator_status , packet1.landed_state );
     mavlink_msg_autopilot_state_for_gimbal_device_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
