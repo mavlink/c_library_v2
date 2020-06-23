@@ -12032,7 +12032,7 @@ static void mavlink_test_open_drone_id_system(uint8_t system_id, uint8_t compone
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_open_drone_id_system_t packet_in = {
-        963497464,963497672,73.0,101.0,18067,18171,65,132,{ 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218 },3
+        963497464,963497672,73.0,101.0,18067,18171,65,132,{ 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218 },3,70,137,204
     };
     mavlink_open_drone_id_system_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -12044,7 +12044,10 @@ static void mavlink_test_open_drone_id_system(uint8_t system_id, uint8_t compone
         packet1.area_radius = packet_in.area_radius;
         packet1.target_system = packet_in.target_system;
         packet1.target_component = packet_in.target_component;
-        packet1.flags = packet_in.flags;
+        packet1.operator_location_type = packet_in.operator_location_type;
+        packet1.classification_type = packet_in.classification_type;
+        packet1.category_eu = packet_in.category_eu;
+        packet1.class_eu = packet_in.class_eu;
         
         mav_array_memcpy(packet1.id_or_mac, packet_in.id_or_mac, sizeof(uint8_t)*20);
         
@@ -12060,12 +12063,12 @@ static void mavlink_test_open_drone_id_system(uint8_t system_id, uint8_t compone
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_open_drone_id_system_pack(system_id, component_id, &msg , packet1.target_system , packet1.target_component , packet1.id_or_mac , packet1.flags , packet1.operator_latitude , packet1.operator_longitude , packet1.area_count , packet1.area_radius , packet1.area_ceiling , packet1.area_floor );
+    mavlink_msg_open_drone_id_system_pack(system_id, component_id, &msg , packet1.target_system , packet1.target_component , packet1.id_or_mac , packet1.operator_location_type , packet1.classification_type , packet1.operator_latitude , packet1.operator_longitude , packet1.area_count , packet1.area_radius , packet1.area_ceiling , packet1.area_floor , packet1.category_eu , packet1.class_eu );
     mavlink_msg_open_drone_id_system_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_open_drone_id_system_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.target_system , packet1.target_component , packet1.id_or_mac , packet1.flags , packet1.operator_latitude , packet1.operator_longitude , packet1.area_count , packet1.area_radius , packet1.area_ceiling , packet1.area_floor );
+    mavlink_msg_open_drone_id_system_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.target_system , packet1.target_component , packet1.id_or_mac , packet1.operator_location_type , packet1.classification_type , packet1.operator_latitude , packet1.operator_longitude , packet1.area_count , packet1.area_radius , packet1.area_ceiling , packet1.area_floor , packet1.category_eu , packet1.class_eu );
     mavlink_msg_open_drone_id_system_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -12078,7 +12081,7 @@ static void mavlink_test_open_drone_id_system(uint8_t system_id, uint8_t compone
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_open_drone_id_system_send(MAVLINK_COMM_1 , packet1.target_system , packet1.target_component , packet1.id_or_mac , packet1.flags , packet1.operator_latitude , packet1.operator_longitude , packet1.area_count , packet1.area_radius , packet1.area_ceiling , packet1.area_floor );
+    mavlink_msg_open_drone_id_system_send(MAVLINK_COMM_1 , packet1.target_system , packet1.target_component , packet1.id_or_mac , packet1.operator_location_type , packet1.classification_type , packet1.operator_latitude , packet1.operator_longitude , packet1.area_count , packet1.area_radius , packet1.area_ceiling , packet1.area_floor , packet1.category_eu , packet1.class_eu );
     mavlink_msg_open_drone_id_system_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
