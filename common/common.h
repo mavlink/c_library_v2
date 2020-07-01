@@ -760,7 +760,7 @@ typedef enum MAV_CMD
    MAV_CMD_DO_MOUNT_CONTROL=205, /* Mission command to control a camera or antenna mount |pitch depending on mount mode (degrees or degrees/second depending on pitch input).| roll depending on mount mode (degrees or degrees/second depending on roll input).| yaw depending on mount mode (degrees or degrees/second depending on yaw input).| altitude depending on mount mode.| latitude, set if appropriate mount mode.| longitude, set if appropriate mount mode.| Mount mode.|  */
    MAV_CMD_DO_SET_CAM_TRIGG_DIST=206, /* Mission command to set camera trigger distance for this flight. The camera is triggered each time this distance is exceeded. This command can also be used to set the shutter integration time for the camera. |Camera trigger distance. 0 to stop triggering.| Camera shutter integration time. -1 or 0 to ignore| Trigger camera once immediately. (0 = no trigger, 1 = trigger)| Empty| Empty| Empty| Empty|  */
    MAV_CMD_DO_FENCE_ENABLE=207, /* Mission command to enable the geofence |enable? (0=disable, 1=enable, 2=disable_floor_only)| Empty| Empty| Empty| Empty| Empty| Empty|  */
-   MAV_CMD_DO_PARACHUTE=208, /* Mission command to trigger a parachute |Action| Empty| Empty| Empty| Empty| Empty| Empty|  */
+   MAV_CMD_DO_PARACHUTE=208, /* Mission item/command to release a parachute or enable/disable auto release. |Action| Empty| Empty| Empty| Empty| Empty| Empty|  */
    MAV_CMD_DO_MOTOR_TEST=209, /* Mission command to perform motor test. |Motor instance number. (from 1 to max number of motors on the vehicle)| Throttle type.| Throttle.| Timeout.| Motor count. (number of motors to test to test in sequence, waiting for the timeout above between them; 0=1 motor, 1=1 motor, 2=2 motors...)| Motor test order.| Empty|  */
    MAV_CMD_DO_INVERTED_FLIGHT=210, /* Change to/from inverted flight. |Inverted flight. (0=normal, 1=inverted)| Empty| Empty| Empty| Empty| Empty| Empty|  */
    MAV_CMD_NAV_SET_YAW_SPEED=213, /* Sets a desired vehicle turn angle and speed change. |Yaw angle to adjust steering by.| Speed.| Final angle. (0=absolute, 1=relative)| Empty| Empty| Empty| Empty|  */
@@ -1740,14 +1740,14 @@ typedef enum PRECISION_LAND_MODE
 } PRECISION_LAND_MODE;
 #endif
 
-/** @brief  */
+/** @brief Parachute actions. Trigger release and enable/disable auto-release. */
 #ifndef HAVE_ENUM_PARACHUTE_ACTION
 #define HAVE_ENUM_PARACHUTE_ACTION
 typedef enum PARACHUTE_ACTION
 {
-   PARACHUTE_DISABLE=0, /* Disable parachute release. | */
-   PARACHUTE_ENABLE=1, /* Enable parachute release. | */
-   PARACHUTE_RELEASE=2, /* Release parachute. | */
+   PARACHUTE_DISABLE=0, /* Disable auto-release of parachute (i.e. release triggered by crash detectors). | */
+   PARACHUTE_ENABLE=1, /* Enable auto-release of parachute. | */
+   PARACHUTE_RELEASE=2, /* Release parachute and kill motors. | */
    PARACHUTE_ACTION_ENUM_END=3, /*  | */
 } PARACHUTE_ACTION;
 #endif
