@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<mavlink>
+
+    <include>common.xml</include>
+    <!-- <version>9</version> -->
+    <dialect>5</dialect>
+
+    <enums>
+        <!-- Enums are defined here (optional) -->
+    </enums>
+
+    <messages>
+        <!-- Messages are defined here (optional) -->
+        <message id="20001" name="ACTUATOR_CMD">
+            <description>Control the actuators</description>
+            <field type="uint16_t" name="actuator1">Value for servo Nr 1</field>
+            <field type="uint16_t" name="actuator2">Value for servo Nr 2</field>
+            <field type="uint16_t" name="actuator3">Value for servo Nr 3</field>
+            <field type="uint16_t" name="actuator4">Value for servo Nr 4</field>
+            <field type="uint16_t" name="actuator5">Value for servo Nr 5</field>
+            <field type="uint16_t" name="actuator6">Value for servo Nr 6</field>
+            <field type="uint16_t" name="actuator7">Value for servo Nr 7</field>
+            <field type="uint16_t" name="actuator8">Value for servo Nr 8</field>
+          </message>
+    </messages>
+
+</mavlink>
