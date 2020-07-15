@@ -11122,17 +11122,19 @@ static void mavlink_test_cellular_config(uint8_t system_id, uint8_t component_id
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_cellular_config_t packet_in = {
-        5,"BCDEFGHIJKLMNOPQRSTUVWXYZABCDEF","HIJKLMNOPQRSTUVWXYZABCDEFGHIJKL","NOPQRSTUVWXYZABCDEFGHIJKLMNOPQR",104,171
+        5,72,"CDEFGHIJKLMNOPQ","STUVWXYZABCDEFG","IJKLMNOPQRSTUVWXYZABCDEFGHIJKLM","OPQRSTUVWXYZABC",123,190
     };
     mavlink_cellular_config_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
+        packet1.enable_lte = packet_in.enable_lte;
         packet1.enable_pin = packet_in.enable_pin;
         packet1.roaming = packet_in.roaming;
         packet1.response = packet_in.response;
         
-        mav_array_memcpy(packet1.pin, packet_in.pin, sizeof(char)*32);
+        mav_array_memcpy(packet1.pin, packet_in.pin, sizeof(char)*16);
+        mav_array_memcpy(packet1.new_pin, packet_in.new_pin, sizeof(char)*16);
         mav_array_memcpy(packet1.apn, packet_in.apn, sizeof(char)*32);
-        mav_array_memcpy(packet1.puk, packet_in.puk, sizeof(char)*32);
+        mav_array_memcpy(packet1.puk, packet_in.puk, sizeof(char)*16);
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
         if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
@@ -11146,12 +11148,12 @@ static void mavlink_test_cellular_config(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_cellular_config_pack(system_id, component_id, &msg , packet1.enable_pin , packet1.pin , packet1.apn , packet1.puk , packet1.roaming , packet1.response );
+    mavlink_msg_cellular_config_pack(system_id, component_id, &msg , packet1.enable_lte , packet1.enable_pin , packet1.pin , packet1.new_pin , packet1.apn , packet1.puk , packet1.roaming , packet1.response );
     mavlink_msg_cellular_config_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_cellular_config_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.enable_pin , packet1.pin , packet1.apn , packet1.puk , packet1.roaming , packet1.response );
+    mavlink_msg_cellular_config_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.enable_lte , packet1.enable_pin , packet1.pin , packet1.new_pin , packet1.apn , packet1.puk , packet1.roaming , packet1.response );
     mavlink_msg_cellular_config_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -11164,7 +11166,7 @@ static void mavlink_test_cellular_config(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_cellular_config_send(MAVLINK_COMM_1 , packet1.enable_pin , packet1.pin , packet1.apn , packet1.puk , packet1.roaming , packet1.response );
+    mavlink_msg_cellular_config_send(MAVLINK_COMM_1 , packet1.enable_lte , packet1.enable_pin , packet1.pin , packet1.new_pin , packet1.apn , packet1.puk , packet1.roaming , packet1.response );
     mavlink_msg_cellular_config_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
