@@ -1163,7 +1163,7 @@ static void mavlink_test_scaled_pressure(uint8_t system_id, uint8_t component_id
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_scaled_pressure_t packet_in = {
-        963497464,45.0,73.0,17859
+        963497464,45.0,73.0,17859,17963
     };
     mavlink_scaled_pressure_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -1171,6 +1171,7 @@ static void mavlink_test_scaled_pressure(uint8_t system_id, uint8_t component_id
         packet1.press_abs = packet_in.press_abs;
         packet1.press_diff = packet_in.press_diff;
         packet1.temperature = packet_in.temperature;
+        packet1.temperature_press_diff = packet_in.temperature_press_diff;
         
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -1185,12 +1186,12 @@ static void mavlink_test_scaled_pressure(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_scaled_pressure_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.press_abs , packet1.press_diff , packet1.temperature );
+    mavlink_msg_scaled_pressure_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.press_abs , packet1.press_diff , packet1.temperature , packet1.temperature_press_diff );
     mavlink_msg_scaled_pressure_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_scaled_pressure_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.press_abs , packet1.press_diff , packet1.temperature );
+    mavlink_msg_scaled_pressure_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.press_abs , packet1.press_diff , packet1.temperature , packet1.temperature_press_diff );
     mavlink_msg_scaled_pressure_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -1203,7 +1204,7 @@ static void mavlink_test_scaled_pressure(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_scaled_pressure_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.press_abs , packet1.press_diff , packet1.temperature );
+    mavlink_msg_scaled_pressure_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.press_abs , packet1.press_diff , packet1.temperature , packet1.temperature_press_diff );
     mavlink_msg_scaled_pressure_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
@@ -6678,7 +6679,7 @@ static void mavlink_test_scaled_pressure2(uint8_t system_id, uint8_t component_i
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_scaled_pressure2_t packet_in = {
-        963497464,45.0,73.0,17859
+        963497464,45.0,73.0,17859,17963
     };
     mavlink_scaled_pressure2_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -6686,6 +6687,7 @@ static void mavlink_test_scaled_pressure2(uint8_t system_id, uint8_t component_i
         packet1.press_abs = packet_in.press_abs;
         packet1.press_diff = packet_in.press_diff;
         packet1.temperature = packet_in.temperature;
+        packet1.temperature_press_diff = packet_in.temperature_press_diff;
         
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -6700,12 +6702,12 @@ static void mavlink_test_scaled_pressure2(uint8_t system_id, uint8_t component_i
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_scaled_pressure2_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.press_abs , packet1.press_diff , packet1.temperature );
+    mavlink_msg_scaled_pressure2_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.press_abs , packet1.press_diff , packet1.temperature , packet1.temperature_press_diff );
     mavlink_msg_scaled_pressure2_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_scaled_pressure2_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.press_abs , packet1.press_diff , packet1.temperature );
+    mavlink_msg_scaled_pressure2_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.press_abs , packet1.press_diff , packet1.temperature , packet1.temperature_press_diff );
     mavlink_msg_scaled_pressure2_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -6718,7 +6720,7 @@ static void mavlink_test_scaled_pressure2(uint8_t system_id, uint8_t component_i
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_scaled_pressure2_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.press_abs , packet1.press_diff , packet1.temperature );
+    mavlink_msg_scaled_pressure2_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.press_abs , packet1.press_diff , packet1.temperature , packet1.temperature_press_diff );
     mavlink_msg_scaled_pressure2_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
@@ -7026,7 +7028,7 @@ static void mavlink_test_scaled_pressure3(uint8_t system_id, uint8_t component_i
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_scaled_pressure3_t packet_in = {
-        963497464,45.0,73.0,17859
+        963497464,45.0,73.0,17859,17963
     };
     mavlink_scaled_pressure3_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -7034,6 +7036,7 @@ static void mavlink_test_scaled_pressure3(uint8_t system_id, uint8_t component_i
         packet1.press_abs = packet_in.press_abs;
         packet1.press_diff = packet_in.press_diff;
         packet1.temperature = packet_in.temperature;
+        packet1.temperature_press_diff = packet_in.temperature_press_diff;
         
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -7048,12 +7051,12 @@ static void mavlink_test_scaled_pressure3(uint8_t system_id, uint8_t component_i
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_scaled_pressure3_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.press_abs , packet1.press_diff , packet1.temperature );
+    mavlink_msg_scaled_pressure3_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.press_abs , packet1.press_diff , packet1.temperature , packet1.temperature_press_diff );
     mavlink_msg_scaled_pressure3_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_scaled_pressure3_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.press_abs , packet1.press_diff , packet1.temperature );
+    mavlink_msg_scaled_pressure3_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.press_abs , packet1.press_diff , packet1.temperature , packet1.temperature_press_diff );
     mavlink_msg_scaled_pressure3_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -7066,7 +7069,7 @@ static void mavlink_test_scaled_pressure3(uint8_t system_id, uint8_t component_i
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_scaled_pressure3_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.press_abs , packet1.press_diff , packet1.temperature );
+    mavlink_msg_scaled_pressure3_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.press_abs , packet1.press_diff , packet1.temperature , packet1.temperature_press_diff );
     mavlink_msg_scaled_pressure3_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
