@@ -11034,12 +11034,13 @@ static void mavlink_test_param_commit_transaction(uint8_t system_id, uint8_t com
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_param_commit_transaction_t packet_in = {
-        5,72,139
+        5,72,139,206
     };
     mavlink_param_commit_transaction_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         packet1.target_system = packet_in.target_system;
         packet1.target_component = packet_in.target_component;
+        packet1.param_action = packet_in.param_action;
         packet1.response = packet_in.response;
         
         
@@ -11055,12 +11056,12 @@ static void mavlink_test_param_commit_transaction(uint8_t system_id, uint8_t com
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_param_commit_transaction_pack(system_id, component_id, &msg , packet1.target_system , packet1.target_component , packet1.response );
+    mavlink_msg_param_commit_transaction_pack(system_id, component_id, &msg , packet1.target_system , packet1.target_component , packet1.param_action , packet1.response );
     mavlink_msg_param_commit_transaction_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_param_commit_transaction_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.target_system , packet1.target_component , packet1.response );
+    mavlink_msg_param_commit_transaction_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.target_system , packet1.target_component , packet1.param_action , packet1.response );
     mavlink_msg_param_commit_transaction_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -11073,7 +11074,7 @@ static void mavlink_test_param_commit_transaction(uint8_t system_id, uint8_t com
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_param_commit_transaction_send(MAVLINK_COMM_1 , packet1.target_system , packet1.target_component , packet1.response );
+    mavlink_msg_param_commit_transaction_send(MAVLINK_COMM_1 , packet1.target_system , packet1.target_component , packet1.param_action , packet1.response );
     mavlink_msg_param_commit_transaction_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
