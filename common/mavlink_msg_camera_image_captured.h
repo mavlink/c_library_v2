@@ -11,7 +11,7 @@ typedef struct __mavlink_camera_image_captured_t {
  int32_t lon; /*< [degE7] Longitude where capture was taken*/
  int32_t alt; /*< [mm] Altitude (MSL) where image was taken*/
  int32_t relative_alt; /*< [mm] Altitude above ground*/
- float q[4]; /*<  Quaternion of camera orientation (w, x, y, z order, zero-rotation is 0, 0, 0, 0)*/
+ float q[4]; /*<  Quaternion of camera orientation (w, x, y, z order, zero-rotation is 1, 0, 0, 0)*/
  int32_t image_index; /*<  Zero based index of this image (i.e. a new image will have index CAMERA_CAPTURE_STATUS.image count -1)*/
  uint8_t camera_id; /*<  Deprecated/unused. Component IDs are used to differentiate multiple cameras.*/
  int8_t capture_result; /*<  Boolean indicating success (1) or failure (0) while capturing this image.*/
@@ -79,7 +79,7 @@ typedef struct __mavlink_camera_image_captured_t {
  * @param lon [degE7] Longitude where capture was taken
  * @param alt [mm] Altitude (MSL) where image was taken
  * @param relative_alt [mm] Altitude above ground
- * @param q  Quaternion of camera orientation (w, x, y, z order, zero-rotation is 0, 0, 0, 0)
+ * @param q  Quaternion of camera orientation (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
  * @param image_index  Zero based index of this image (i.e. a new image will have index CAMERA_CAPTURE_STATUS.image count -1)
  * @param capture_result  Boolean indicating success (1) or failure (0) while capturing this image.
  * @param file_url  URL of image taken. Either local storage or http://foo.jpg if camera provides an HTTP interface.
@@ -135,7 +135,7 @@ static inline uint16_t mavlink_msg_camera_image_captured_pack(uint8_t system_id,
  * @param lon [degE7] Longitude where capture was taken
  * @param alt [mm] Altitude (MSL) where image was taken
  * @param relative_alt [mm] Altitude above ground
- * @param q  Quaternion of camera orientation (w, x, y, z order, zero-rotation is 0, 0, 0, 0)
+ * @param q  Quaternion of camera orientation (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
  * @param image_index  Zero based index of this image (i.e. a new image will have index CAMERA_CAPTURE_STATUS.image count -1)
  * @param capture_result  Boolean indicating success (1) or failure (0) while capturing this image.
  * @param file_url  URL of image taken. Either local storage or http://foo.jpg if camera provides an HTTP interface.
@@ -217,7 +217,7 @@ static inline uint16_t mavlink_msg_camera_image_captured_encode_chan(uint8_t sys
  * @param lon [degE7] Longitude where capture was taken
  * @param alt [mm] Altitude (MSL) where image was taken
  * @param relative_alt [mm] Altitude above ground
- * @param q  Quaternion of camera orientation (w, x, y, z order, zero-rotation is 0, 0, 0, 0)
+ * @param q  Quaternion of camera orientation (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
  * @param image_index  Zero based index of this image (i.e. a new image will have index CAMERA_CAPTURE_STATUS.image count -1)
  * @param capture_result  Boolean indicating success (1) or failure (0) while capturing this image.
  * @param file_url  URL of image taken. Either local storage or http://foo.jpg if camera provides an HTTP interface.
@@ -391,7 +391,7 @@ static inline int32_t mavlink_msg_camera_image_captured_get_relative_alt(const m
 /**
  * @brief Get field q from camera_image_captured message
  *
- * @return  Quaternion of camera orientation (w, x, y, z order, zero-rotation is 0, 0, 0, 0)
+ * @return  Quaternion of camera orientation (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
  */
 static inline uint16_t mavlink_msg_camera_image_captured_get_q(const mavlink_message_t* msg, float *q)
 {
