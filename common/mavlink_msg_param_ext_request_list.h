@@ -7,11 +7,12 @@
 typedef struct __mavlink_param_ext_request_list_t {
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
+ uint8_t trimmed; /*<  Request _TRIMMED variants of PARAM_EXT_ messages. Set to 1 if _TRIMMED message variants are supported, and 0 otherwise. This signals the recipient that _TRIMMED messages are supported by the sender (and should be used if supported by the recipient).*/
 } mavlink_param_ext_request_list_t;
 
-#define MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_LEN 2
+#define MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_LEN 3
 #define MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_MIN_LEN 2
-#define MAVLINK_MSG_ID_321_LEN 2
+#define MAVLINK_MSG_ID_321_LEN 3
 #define MAVLINK_MSG_ID_321_MIN_LEN 2
 
 #define MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_CRC 88
@@ -23,17 +24,19 @@ typedef struct __mavlink_param_ext_request_list_t {
 #define MAVLINK_MESSAGE_INFO_PARAM_EXT_REQUEST_LIST { \
     321, \
     "PARAM_EXT_REQUEST_LIST", \
-    2, \
+    3, \
     {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_param_ext_request_list_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 1, offsetof(mavlink_param_ext_request_list_t, target_component) }, \
+         { "trimmed", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_param_ext_request_list_t, trimmed) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_PARAM_EXT_REQUEST_LIST { \
     "PARAM_EXT_REQUEST_LIST", \
-    2, \
+    3, \
     {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_param_ext_request_list_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 1, offsetof(mavlink_param_ext_request_list_t, target_component) }, \
+         { "trimmed", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_param_ext_request_list_t, trimmed) }, \
          } \
 }
 #endif
@@ -46,21 +49,24 @@ typedef struct __mavlink_param_ext_request_list_t {
  *
  * @param target_system  System ID
  * @param target_component  Component ID
+ * @param trimmed  Request _TRIMMED variants of PARAM_EXT_ messages. Set to 1 if _TRIMMED message variants are supported, and 0 otherwise. This signals the recipient that _TRIMMED messages are supported by the sender (and should be used if supported by the recipient).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_param_ext_request_list_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component)
+                               uint8_t target_system, uint8_t target_component, uint8_t trimmed)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_LEN];
     _mav_put_uint8_t(buf, 0, target_system);
     _mav_put_uint8_t(buf, 1, target_component);
+    _mav_put_uint8_t(buf, 2, trimmed);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_LEN);
 #else
     mavlink_param_ext_request_list_t packet;
     packet.target_system = target_system;
     packet.target_component = target_component;
+    packet.trimmed = trimmed;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_LEN);
 #endif
@@ -77,22 +83,25 @@ static inline uint16_t mavlink_msg_param_ext_request_list_pack(uint8_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param target_system  System ID
  * @param target_component  Component ID
+ * @param trimmed  Request _TRIMMED variants of PARAM_EXT_ messages. Set to 1 if _TRIMMED message variants are supported, and 0 otherwise. This signals the recipient that _TRIMMED messages are supported by the sender (and should be used if supported by the recipient).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_param_ext_request_list_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t target_system,uint8_t target_component)
+                                   uint8_t target_system,uint8_t target_component,uint8_t trimmed)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_LEN];
     _mav_put_uint8_t(buf, 0, target_system);
     _mav_put_uint8_t(buf, 1, target_component);
+    _mav_put_uint8_t(buf, 2, trimmed);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_LEN);
 #else
     mavlink_param_ext_request_list_t packet;
     packet.target_system = target_system;
     packet.target_component = target_component;
+    packet.trimmed = trimmed;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_LEN);
 #endif
@@ -111,7 +120,7 @@ static inline uint16_t mavlink_msg_param_ext_request_list_pack_chan(uint8_t syst
  */
 static inline uint16_t mavlink_msg_param_ext_request_list_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_param_ext_request_list_t* param_ext_request_list)
 {
-    return mavlink_msg_param_ext_request_list_pack(system_id, component_id, msg, param_ext_request_list->target_system, param_ext_request_list->target_component);
+    return mavlink_msg_param_ext_request_list_pack(system_id, component_id, msg, param_ext_request_list->target_system, param_ext_request_list->target_component, param_ext_request_list->trimmed);
 }
 
 /**
@@ -125,7 +134,7 @@ static inline uint16_t mavlink_msg_param_ext_request_list_encode(uint8_t system_
  */
 static inline uint16_t mavlink_msg_param_ext_request_list_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_param_ext_request_list_t* param_ext_request_list)
 {
-    return mavlink_msg_param_ext_request_list_pack_chan(system_id, component_id, chan, msg, param_ext_request_list->target_system, param_ext_request_list->target_component);
+    return mavlink_msg_param_ext_request_list_pack_chan(system_id, component_id, chan, msg, param_ext_request_list->target_system, param_ext_request_list->target_component, param_ext_request_list->trimmed);
 }
 
 /**
@@ -134,21 +143,24 @@ static inline uint16_t mavlink_msg_param_ext_request_list_encode_chan(uint8_t sy
  *
  * @param target_system  System ID
  * @param target_component  Component ID
+ * @param trimmed  Request _TRIMMED variants of PARAM_EXT_ messages. Set to 1 if _TRIMMED message variants are supported, and 0 otherwise. This signals the recipient that _TRIMMED messages are supported by the sender (and should be used if supported by the recipient).
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_param_ext_request_list_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component)
+static inline void mavlink_msg_param_ext_request_list_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint8_t trimmed)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_LEN];
     _mav_put_uint8_t(buf, 0, target_system);
     _mav_put_uint8_t(buf, 1, target_component);
+    _mav_put_uint8_t(buf, 2, trimmed);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST, buf, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_MIN_LEN, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_LEN, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_CRC);
 #else
     mavlink_param_ext_request_list_t packet;
     packet.target_system = target_system;
     packet.target_component = target_component;
+    packet.trimmed = trimmed;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST, (const char *)&packet, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_MIN_LEN, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_LEN, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_CRC);
 #endif
@@ -162,7 +174,7 @@ static inline void mavlink_msg_param_ext_request_list_send(mavlink_channel_t cha
 static inline void mavlink_msg_param_ext_request_list_send_struct(mavlink_channel_t chan, const mavlink_param_ext_request_list_t* param_ext_request_list)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_param_ext_request_list_send(chan, param_ext_request_list->target_system, param_ext_request_list->target_component);
+    mavlink_msg_param_ext_request_list_send(chan, param_ext_request_list->target_system, param_ext_request_list->target_component, param_ext_request_list->trimmed);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST, (const char *)param_ext_request_list, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_MIN_LEN, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_LEN, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_CRC);
 #endif
@@ -176,18 +188,20 @@ static inline void mavlink_msg_param_ext_request_list_send_struct(mavlink_channe
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_param_ext_request_list_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component)
+static inline void mavlink_msg_param_ext_request_list_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, uint8_t trimmed)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_uint8_t(buf, 0, target_system);
     _mav_put_uint8_t(buf, 1, target_component);
+    _mav_put_uint8_t(buf, 2, trimmed);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST, buf, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_MIN_LEN, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_LEN, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_CRC);
 #else
     mavlink_param_ext_request_list_t *packet = (mavlink_param_ext_request_list_t *)msgbuf;
     packet->target_system = target_system;
     packet->target_component = target_component;
+    packet->trimmed = trimmed;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST, (const char *)packet, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_MIN_LEN, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_LEN, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_CRC);
 #endif
@@ -220,6 +234,16 @@ static inline uint8_t mavlink_msg_param_ext_request_list_get_target_component(co
 }
 
 /**
+ * @brief Get field trimmed from param_ext_request_list message
+ *
+ * @return  Request _TRIMMED variants of PARAM_EXT_ messages. Set to 1 if _TRIMMED message variants are supported, and 0 otherwise. This signals the recipient that _TRIMMED messages are supported by the sender (and should be used if supported by the recipient).
+ */
+static inline uint8_t mavlink_msg_param_ext_request_list_get_trimmed(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint8_t(msg,  2);
+}
+
+/**
  * @brief Decode a param_ext_request_list message into a struct
  *
  * @param msg The message to decode
@@ -230,6 +254,7 @@ static inline void mavlink_msg_param_ext_request_list_decode(const mavlink_messa
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     param_ext_request_list->target_system = mavlink_msg_param_ext_request_list_get_target_system(msg);
     param_ext_request_list->target_component = mavlink_msg_param_ext_request_list_get_target_component(msg);
+    param_ext_request_list->trimmed = mavlink_msg_param_ext_request_list_get_trimmed(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_LEN? msg->len : MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_LEN;
         memset(param_ext_request_list, 0, MAVLINK_MSG_ID_PARAM_EXT_REQUEST_LIST_LEN);
