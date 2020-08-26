@@ -604,6 +604,29 @@ typedef enum GIMBAL_DEVICE_ERROR_FLAGS
 } GIMBAL_DEVICE_ERROR_FLAGS;
 #endif
 
+/** @brief Gripper actions. */
+#ifndef HAVE_ENUM_GRIPPER_ACTIONS
+#define HAVE_ENUM_GRIPPER_ACTIONS
+typedef enum GRIPPER_ACTIONS
+{
+   GRIPPER_ACTION_RELEASE=0, /* Gripper release cargo. | */
+   GRIPPER_ACTION_GRAB=1, /* Gripper grab onto cargo. | */
+   GRIPPER_ACTIONS_ENUM_END=2, /*  | */
+} GRIPPER_ACTIONS;
+#endif
+
+/** @brief Winch actions. */
+#ifndef HAVE_ENUM_WINCH_ACTIONS
+#define HAVE_ENUM_WINCH_ACTIONS
+typedef enum WINCH_ACTIONS
+{
+   WINCH_RELAXED=0, /* Relax winch. | */
+   WINCH_RELATIVE_LENGTH_CONTROL=1, /* Wind or unwind specified length of cable, optionally using specified rate. | */
+   WINCH_RATE_CONTROL=2, /* Wind or unwind cable at specified rate. | */
+   WINCH_ACTIONS_ENUM_END=3, /*  | */
+} WINCH_ACTIONS;
+#endif
+
 /** @brief Generalized UAVCAN node health */
 #ifndef HAVE_ENUM_UAVCAN_NODE_HEALTH
 #define HAVE_ENUM_UAVCAN_NODE_HEALTH
@@ -833,6 +856,7 @@ typedef enum MAV_CMD
    MAV_CMD_DO_PARACHUTE=208, /* Mission item/command to release a parachute or enable/disable auto release. |Action| Empty| Empty| Empty| Empty| Empty| Empty|  */
    MAV_CMD_DO_MOTOR_TEST=209, /* Mission command to perform motor test. |Motor instance number. (from 1 to max number of motors on the vehicle)| Throttle type.| Throttle.| Timeout.| Motor count. (number of motors to test to test in sequence, waiting for the timeout above between them; 0=1 motor, 1=1 motor, 2=2 motors...)| Motor test order.| Empty|  */
    MAV_CMD_DO_INVERTED_FLIGHT=210, /* Change to/from inverted flight. |Inverted flight. (0=normal, 1=inverted)| Empty| Empty| Empty| Empty| Empty| Empty|  */
+   MAV_CMD_DO_GRIPPER=211, /* Mission command to operate a gripper. |Gripper instance number.| Gripper action to perform.| Empty| Empty| Empty| Empty| Empty|  */
    MAV_CMD_NAV_SET_YAW_SPEED=213, /* Sets a desired vehicle turn angle and speed change. |Yaw angle to adjust steering by.| Speed.| Final angle. (0=absolute, 1=relative)| Empty| Empty| Empty| Empty|  */
    MAV_CMD_DO_SET_CAM_TRIGG_INTERVAL=214, /* Mission command to set camera trigger interval for this flight. If triggering is enabled, the camera is triggered each time this interval expires. This command can also be used to set the shutter integration time for the camera. |Camera trigger cycle time. -1 or 0 to ignore.| Camera shutter integration time. Should be less than trigger cycle time. -1 or 0 to ignore.| Empty| Empty| Empty| Empty| Empty|  */
    MAV_CMD_DO_MOUNT_CONTROL_QUAT=220, /* Mission command to control a camera or antenna mount, using a quaternion as reference. |quaternion param q1, w (1 in null-rotation)| quaternion param q2, x (0 in null-rotation)| quaternion param q3, y (0 in null-rotation)| quaternion param q4, z (0 in null-rotation)| Empty| Empty| Empty|  */
@@ -929,7 +953,8 @@ typedef enum MAV_CMD
    MAV_CMD_USER_3=31012, /* User defined command. Ground Station will not show the Vehicle as flying through this item. Example: MAV_CMD_DO_SET_PARAMETER item. |User defined| User defined| User defined| User defined| User defined| User defined| User defined|  */
    MAV_CMD_USER_4=31013, /* User defined command. Ground Station will not show the Vehicle as flying through this item. Example: MAV_CMD_DO_SET_PARAMETER item. |User defined| User defined| User defined| User defined| User defined| User defined| User defined|  */
    MAV_CMD_USER_5=31014, /* User defined command. Ground Station will not show the Vehicle as flying through this item. Example: MAV_CMD_DO_SET_PARAMETER item. |User defined| User defined| User defined| User defined| User defined| User defined| User defined|  */
-   MAV_CMD_ENUM_END=31015, /*  | */
+   MAV_CMD_DO_WINCH=42600, /* Command to operate winch. |Winch instance number.| Action to perform.| Length of cable to release (negative to wind).| Release rate (negative to wind).| Empty.| Empty.| Empty.|  */
+   MAV_CMD_ENUM_END=42601, /*  | */
 } MAV_CMD;
 #endif
 
