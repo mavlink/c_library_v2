@@ -706,23 +706,6 @@ typedef enum PID_TUNING_AXIS
 } PID_TUNING_AXIS;
 #endif
 
-/** @brief  */
-#ifndef HAVE_ENUM_MAG_CAL_STATUS
-#define HAVE_ENUM_MAG_CAL_STATUS
-typedef enum MAG_CAL_STATUS
-{
-   MAG_CAL_NOT_STARTED=0, /*  | */
-   MAG_CAL_WAITING_TO_START=1, /*  | */
-   MAG_CAL_RUNNING_STEP_ONE=2, /*  | */
-   MAG_CAL_RUNNING_STEP_TWO=3, /*  | */
-   MAG_CAL_SUCCESS=4, /*  | */
-   MAG_CAL_FAILED=5, /*  | */
-   MAG_CAL_BAD_ORIENTATION=6, /*  | */
-   MAG_CAL_BAD_RADIUS=7, /*  | */
-   MAG_CAL_STATUS_ENUM_END=8, /*  | */
-} MAG_CAL_STATUS;
-#endif
-
 /** @brief Special ACK block numbers control activation of dataflash log streaming. */
 #ifndef HAVE_ENUM_MAV_REMOTE_LOG_DATA_BLOCK_COMMANDS
 #define HAVE_ENUM_MAV_REMOTE_LOG_DATA_BLOCK_COMMANDS
@@ -931,7 +914,6 @@ typedef enum TRACKER_MODE
 #include "./mavlink_msg_remote_log_block_status.h"
 #include "./mavlink_msg_led_control.h"
 #include "./mavlink_msg_mag_cal_progress.h"
-#include "./mavlink_msg_mag_cal_report.h"
 #include "./mavlink_msg_ekf_status_report.h"
 #include "./mavlink_msg_pid_tuning.h"
 #include "./mavlink_msg_deepstall.h"
