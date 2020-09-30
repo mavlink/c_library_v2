@@ -5,8 +5,8 @@
 
 
 typedef struct __mavlink_pid_tuning_t {
- float desired; /*< [deg/s] Desired rate.*/
- float achieved; /*< [deg/s] Achieved rate.*/
+ float desired; /*<  Desired rate.*/
+ float achieved; /*<  Achieved rate.*/
  float FF; /*<  FF component.*/
  float P; /*<  P component.*/
  float I; /*<  I component.*/
@@ -60,8 +60,8 @@ typedef struct __mavlink_pid_tuning_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param axis  Axis.
- * @param desired [deg/s] Desired rate.
- * @param achieved [deg/s] Achieved rate.
+ * @param desired  Desired rate.
+ * @param achieved  Achieved rate.
  * @param FF  FF component.
  * @param P  P component.
  * @param I  I component.
@@ -106,8 +106,8 @@ static inline uint16_t mavlink_msg_pid_tuning_pack(uint8_t system_id, uint8_t co
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param axis  Axis.
- * @param desired [deg/s] Desired rate.
- * @param achieved [deg/s] Achieved rate.
+ * @param desired  Desired rate.
+ * @param achieved  Achieved rate.
  * @param FF  FF component.
  * @param P  P component.
  * @param I  I component.
@@ -178,8 +178,8 @@ static inline uint16_t mavlink_msg_pid_tuning_encode_chan(uint8_t system_id, uin
  * @param chan MAVLink channel to send the message
  *
  * @param axis  Axis.
- * @param desired [deg/s] Desired rate.
- * @param achieved [deg/s] Achieved rate.
+ * @param desired  Desired rate.
+ * @param achieved  Achieved rate.
  * @param FF  FF component.
  * @param P  P component.
  * @param I  I component.
@@ -282,7 +282,7 @@ static inline uint8_t mavlink_msg_pid_tuning_get_axis(const mavlink_message_t* m
 /**
  * @brief Get field desired from pid_tuning message
  *
- * @return [deg/s] Desired rate.
+ * @return  Desired rate.
  */
 static inline float mavlink_msg_pid_tuning_get_desired(const mavlink_message_t* msg)
 {
@@ -292,7 +292,7 @@ static inline float mavlink_msg_pid_tuning_get_desired(const mavlink_message_t* 
 /**
  * @brief Get field achieved from pid_tuning message
  *
- * @return [deg/s] Achieved rate.
+ * @return  Achieved rate.
  */
 static inline float mavlink_msg_pid_tuning_get_achieved(const mavlink_message_t* msg)
 {
