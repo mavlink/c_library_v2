@@ -12,7 +12,7 @@ typedef struct __mavlink_gimbal_manager_set_tiltpan_t {
  float pan_rate; /*< [rad/s] Pan/yaw angular rate (positive: to the right, negative: to the left, NaN to be ignored).*/
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
- uint8_t gimbal_device_id; /*<  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. (Send command multiple times for more than one but not all gimbals.)*/
+ uint8_t gimbal_device_id; /*<  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).*/
 } mavlink_gimbal_manager_set_tiltpan_t;
 
 #define MAVLINK_MSG_ID_GIMBAL_MANAGER_SET_TILTPAN_LEN 23
@@ -65,7 +65,7 @@ typedef struct __mavlink_gimbal_manager_set_tiltpan_t {
  * @param target_system  System ID
  * @param target_component  Component ID
  * @param flags  High level gimbal manager flags to use.
- * @param gimbal_device_id  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. (Send command multiple times for more than one but not all gimbals.)
+ * @param gimbal_device_id  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).
  * @param tilt [rad] Tilt/pitch angle (positive: up, negative: down, NaN to be ignored).
  * @param pan [rad] Pan/yaw angle (positive: to the right, negative: to the left, NaN to be ignored).
  * @param tilt_rate [rad/s] Tilt/pitch angular rate (positive: up, negative: down, NaN to be ignored).
@@ -114,7 +114,7 @@ static inline uint16_t mavlink_msg_gimbal_manager_set_tiltpan_pack(uint8_t syste
  * @param target_system  System ID
  * @param target_component  Component ID
  * @param flags  High level gimbal manager flags to use.
- * @param gimbal_device_id  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. (Send command multiple times for more than one but not all gimbals.)
+ * @param gimbal_device_id  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).
  * @param tilt [rad] Tilt/pitch angle (positive: up, negative: down, NaN to be ignored).
  * @param pan [rad] Pan/yaw angle (positive: to the right, negative: to the left, NaN to be ignored).
  * @param tilt_rate [rad/s] Tilt/pitch angular rate (positive: up, negative: down, NaN to be ignored).
@@ -189,7 +189,7 @@ static inline uint16_t mavlink_msg_gimbal_manager_set_tiltpan_encode_chan(uint8_
  * @param target_system  System ID
  * @param target_component  Component ID
  * @param flags  High level gimbal manager flags to use.
- * @param gimbal_device_id  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. (Send command multiple times for more than one but not all gimbals.)
+ * @param gimbal_device_id  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).
  * @param tilt [rad] Tilt/pitch angle (positive: up, negative: down, NaN to be ignored).
  * @param pan [rad] Pan/yaw angle (positive: to the right, negative: to the left, NaN to be ignored).
  * @param tilt_rate [rad/s] Tilt/pitch angular rate (positive: up, negative: down, NaN to be ignored).
@@ -316,7 +316,7 @@ static inline uint32_t mavlink_msg_gimbal_manager_set_tiltpan_get_flags(const ma
 /**
  * @brief Get field gimbal_device_id from gimbal_manager_set_tiltpan message
  *
- * @return  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. (Send command multiple times for more than one but not all gimbals.)
+ * @return  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).
  */
 static inline uint8_t mavlink_msg_gimbal_manager_set_tiltpan_get_gimbal_device_id(const mavlink_message_t* msg)
 {

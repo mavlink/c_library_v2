@@ -9,12 +9,12 @@ typedef struct __mavlink_gimbal_device_information_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
  uint32_t firmware_version; /*<  Version of the gimbal firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff).*/
  uint32_t hardware_version; /*<  Version of the gimbal hardware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff).*/
- float tilt_max; /*< [rad] Maximum tilt/pitch angle (positive: up, negative: down).*/
- float tilt_min; /*< [rad] Minimum tilt/pitch angle (positive: up, negative: down).*/
- float tilt_rate_max; /*< [rad/s] Maximum tilt/pitch angular rate (positive: up, negative: down).*/
- float pan_max; /*< [rad] Maximum pan/yaw angle (positive: to the right, negative: to the left).*/
- float pan_min; /*< [rad] Minimum pan/yaw angle (positive: to the right, negative: to the left).*/
- float pan_rate_max; /*< [rad/s] Minimum pan/yaw angular rate (positive: to the right, negative: to the left).*/
+ float tilt_max; /*< [rad] Maximum hardware tilt/pitch angle (positive: up, negative: down)*/
+ float tilt_min; /*< [rad] Minimum hardware tilt/pitch angle (positive: up, negative: down)*/
+ float tilt_rate_max; /*< [rad/s] Maximum hardware tilt/pitch angular rate (positive: up, negative: down)*/
+ float pan_max; /*< [rad] Maximum hardware pan/yaw angle (positive: to the right, negative: to the left)*/
+ float pan_min; /*< [rad] Minimum hardware pan/yaw angle (positive: to the right, negative: to the left)*/
+ float pan_rate_max; /*< [rad/s] Maximum hardware pan/yaw angular rate (positive: to the right, negative: to the left)*/
  uint16_t cap_flags; /*<  Bitmap of gimbal capability flags.*/
  uint16_t custom_cap_flags; /*<  Bitmap for use for gimbal-specific capability flags.*/
  uint8_t vendor_name[32]; /*<  Name of the gimbal vendor.*/
@@ -94,12 +94,12 @@ typedef struct __mavlink_gimbal_device_information_t {
  * @param uid  UID of gimbal hardware (0 if unknown).
  * @param cap_flags  Bitmap of gimbal capability flags.
  * @param custom_cap_flags  Bitmap for use for gimbal-specific capability flags.
- * @param tilt_max [rad] Maximum tilt/pitch angle (positive: up, negative: down).
- * @param tilt_min [rad] Minimum tilt/pitch angle (positive: up, negative: down).
- * @param tilt_rate_max [rad/s] Maximum tilt/pitch angular rate (positive: up, negative: down).
- * @param pan_max [rad] Maximum pan/yaw angle (positive: to the right, negative: to the left).
- * @param pan_min [rad] Minimum pan/yaw angle (positive: to the right, negative: to the left).
- * @param pan_rate_max [rad/s] Minimum pan/yaw angular rate (positive: to the right, negative: to the left).
+ * @param tilt_max [rad] Maximum hardware tilt/pitch angle (positive: up, negative: down)
+ * @param tilt_min [rad] Minimum hardware tilt/pitch angle (positive: up, negative: down)
+ * @param tilt_rate_max [rad/s] Maximum hardware tilt/pitch angular rate (positive: up, negative: down)
+ * @param pan_max [rad] Maximum hardware pan/yaw angle (positive: to the right, negative: to the left)
+ * @param pan_min [rad] Minimum hardware pan/yaw angle (positive: to the right, negative: to the left)
+ * @param pan_rate_max [rad/s] Maximum hardware pan/yaw angular rate (positive: to the right, negative: to the left)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_gimbal_device_information_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -162,12 +162,12 @@ static inline uint16_t mavlink_msg_gimbal_device_information_pack(uint8_t system
  * @param uid  UID of gimbal hardware (0 if unknown).
  * @param cap_flags  Bitmap of gimbal capability flags.
  * @param custom_cap_flags  Bitmap for use for gimbal-specific capability flags.
- * @param tilt_max [rad] Maximum tilt/pitch angle (positive: up, negative: down).
- * @param tilt_min [rad] Minimum tilt/pitch angle (positive: up, negative: down).
- * @param tilt_rate_max [rad/s] Maximum tilt/pitch angular rate (positive: up, negative: down).
- * @param pan_max [rad] Maximum pan/yaw angle (positive: to the right, negative: to the left).
- * @param pan_min [rad] Minimum pan/yaw angle (positive: to the right, negative: to the left).
- * @param pan_rate_max [rad/s] Minimum pan/yaw angular rate (positive: to the right, negative: to the left).
+ * @param tilt_max [rad] Maximum hardware tilt/pitch angle (positive: up, negative: down)
+ * @param tilt_min [rad] Minimum hardware tilt/pitch angle (positive: up, negative: down)
+ * @param tilt_rate_max [rad/s] Maximum hardware tilt/pitch angular rate (positive: up, negative: down)
+ * @param pan_max [rad] Maximum hardware pan/yaw angle (positive: to the right, negative: to the left)
+ * @param pan_min [rad] Minimum hardware pan/yaw angle (positive: to the right, negative: to the left)
+ * @param pan_rate_max [rad/s] Maximum hardware pan/yaw angular rate (positive: to the right, negative: to the left)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_gimbal_device_information_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -256,12 +256,12 @@ static inline uint16_t mavlink_msg_gimbal_device_information_encode_chan(uint8_t
  * @param uid  UID of gimbal hardware (0 if unknown).
  * @param cap_flags  Bitmap of gimbal capability flags.
  * @param custom_cap_flags  Bitmap for use for gimbal-specific capability flags.
- * @param tilt_max [rad] Maximum tilt/pitch angle (positive: up, negative: down).
- * @param tilt_min [rad] Minimum tilt/pitch angle (positive: up, negative: down).
- * @param tilt_rate_max [rad/s] Maximum tilt/pitch angular rate (positive: up, negative: down).
- * @param pan_max [rad] Maximum pan/yaw angle (positive: to the right, negative: to the left).
- * @param pan_min [rad] Minimum pan/yaw angle (positive: to the right, negative: to the left).
- * @param pan_rate_max [rad/s] Minimum pan/yaw angular rate (positive: to the right, negative: to the left).
+ * @param tilt_max [rad] Maximum hardware tilt/pitch angle (positive: up, negative: down)
+ * @param tilt_min [rad] Minimum hardware tilt/pitch angle (positive: up, negative: down)
+ * @param tilt_rate_max [rad/s] Maximum hardware tilt/pitch angular rate (positive: up, negative: down)
+ * @param pan_max [rad] Maximum hardware pan/yaw angle (positive: to the right, negative: to the left)
+ * @param pan_min [rad] Minimum hardware pan/yaw angle (positive: to the right, negative: to the left)
+ * @param pan_rate_max [rad/s] Maximum hardware pan/yaw angular rate (positive: to the right, negative: to the left)
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -468,7 +468,7 @@ static inline uint16_t mavlink_msg_gimbal_device_information_get_custom_cap_flag
 /**
  * @brief Get field tilt_max from gimbal_device_information message
  *
- * @return [rad] Maximum tilt/pitch angle (positive: up, negative: down).
+ * @return [rad] Maximum hardware tilt/pitch angle (positive: up, negative: down)
  */
 static inline float mavlink_msg_gimbal_device_information_get_tilt_max(const mavlink_message_t* msg)
 {
@@ -478,7 +478,7 @@ static inline float mavlink_msg_gimbal_device_information_get_tilt_max(const mav
 /**
  * @brief Get field tilt_min from gimbal_device_information message
  *
- * @return [rad] Minimum tilt/pitch angle (positive: up, negative: down).
+ * @return [rad] Minimum hardware tilt/pitch angle (positive: up, negative: down)
  */
 static inline float mavlink_msg_gimbal_device_information_get_tilt_min(const mavlink_message_t* msg)
 {
@@ -488,7 +488,7 @@ static inline float mavlink_msg_gimbal_device_information_get_tilt_min(const mav
 /**
  * @brief Get field tilt_rate_max from gimbal_device_information message
  *
- * @return [rad/s] Maximum tilt/pitch angular rate (positive: up, negative: down).
+ * @return [rad/s] Maximum hardware tilt/pitch angular rate (positive: up, negative: down)
  */
 static inline float mavlink_msg_gimbal_device_information_get_tilt_rate_max(const mavlink_message_t* msg)
 {
@@ -498,7 +498,7 @@ static inline float mavlink_msg_gimbal_device_information_get_tilt_rate_max(cons
 /**
  * @brief Get field pan_max from gimbal_device_information message
  *
- * @return [rad] Maximum pan/yaw angle (positive: to the right, negative: to the left).
+ * @return [rad] Maximum hardware pan/yaw angle (positive: to the right, negative: to the left)
  */
 static inline float mavlink_msg_gimbal_device_information_get_pan_max(const mavlink_message_t* msg)
 {
@@ -508,7 +508,7 @@ static inline float mavlink_msg_gimbal_device_information_get_pan_max(const mavl
 /**
  * @brief Get field pan_min from gimbal_device_information message
  *
- * @return [rad] Minimum pan/yaw angle (positive: to the right, negative: to the left).
+ * @return [rad] Minimum hardware pan/yaw angle (positive: to the right, negative: to the left)
  */
 static inline float mavlink_msg_gimbal_device_information_get_pan_min(const mavlink_message_t* msg)
 {
@@ -518,7 +518,7 @@ static inline float mavlink_msg_gimbal_device_information_get_pan_min(const mavl
 /**
  * @brief Get field pan_rate_max from gimbal_device_information message
  *
- * @return [rad/s] Minimum pan/yaw angular rate (positive: to the right, negative: to the left).
+ * @return [rad/s] Maximum hardware pan/yaw angular rate (positive: to the right, negative: to the left)
  */
 static inline float mavlink_msg_gimbal_device_information_get_pan_rate_max(const mavlink_message_t* msg)
 {

@@ -12,7 +12,7 @@ typedef struct __mavlink_gimbal_manager_set_attitude_t {
  float angular_velocity_z; /*< [rad/s] Z component of angular velocity, positive is panning to the right, NaN to be ignored.*/
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
- uint8_t gimbal_device_id; /*<  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. (Send command multiple times for more than one but not all gimbals.)*/
+ uint8_t gimbal_device_id; /*<  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).*/
 } mavlink_gimbal_manager_set_attitude_t;
 
 #define MAVLINK_MSG_ID_GIMBAL_MANAGER_SET_ATTITUDE_LEN 35
@@ -65,7 +65,7 @@ typedef struct __mavlink_gimbal_manager_set_attitude_t {
  * @param target_system  System ID
  * @param target_component  Component ID
  * @param flags  High level gimbal manager flags to use.
- * @param gimbal_device_id  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. (Send command multiple times for more than one but not all gimbals.)
+ * @param gimbal_device_id  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).
  * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation, the frame is depends on whether the flag GIMBAL_MANAGER_FLAGS_YAW_LOCK is set)
  * @param angular_velocity_x [rad/s] X component of angular velocity, positive is banking to the right, NaN to be ignored.
  * @param angular_velocity_y [rad/s] Y component of angular velocity, positive is tilting up, NaN to be ignored.
@@ -112,7 +112,7 @@ static inline uint16_t mavlink_msg_gimbal_manager_set_attitude_pack(uint8_t syst
  * @param target_system  System ID
  * @param target_component  Component ID
  * @param flags  High level gimbal manager flags to use.
- * @param gimbal_device_id  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. (Send command multiple times for more than one but not all gimbals.)
+ * @param gimbal_device_id  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).
  * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation, the frame is depends on whether the flag GIMBAL_MANAGER_FLAGS_YAW_LOCK is set)
  * @param angular_velocity_x [rad/s] X component of angular velocity, positive is banking to the right, NaN to be ignored.
  * @param angular_velocity_y [rad/s] Y component of angular velocity, positive is tilting up, NaN to be ignored.
@@ -185,7 +185,7 @@ static inline uint16_t mavlink_msg_gimbal_manager_set_attitude_encode_chan(uint8
  * @param target_system  System ID
  * @param target_component  Component ID
  * @param flags  High level gimbal manager flags to use.
- * @param gimbal_device_id  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. (Send command multiple times for more than one but not all gimbals.)
+ * @param gimbal_device_id  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).
  * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation, the frame is depends on whether the flag GIMBAL_MANAGER_FLAGS_YAW_LOCK is set)
  * @param angular_velocity_x [rad/s] X component of angular velocity, positive is banking to the right, NaN to be ignored.
  * @param angular_velocity_y [rad/s] Y component of angular velocity, positive is tilting up, NaN to be ignored.
@@ -308,7 +308,7 @@ static inline uint32_t mavlink_msg_gimbal_manager_set_attitude_get_flags(const m
 /**
  * @brief Get field gimbal_device_id from gimbal_manager_set_attitude message
  *
- * @return  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. (Send command multiple times for more than one but not all gimbals.)
+ * @return  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).
  */
 static inline uint8_t mavlink_msg_gimbal_manager_set_attitude_get_gimbal_device_id(const mavlink_message_t* msg)
 {
