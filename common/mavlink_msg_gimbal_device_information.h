@@ -17,9 +17,9 @@ typedef struct __mavlink_gimbal_device_information_t {
  float pan_rate_max; /*< [rad/s] Maximum hardware pan/yaw angular rate (positive: to the right, negative: to the left)*/
  uint16_t cap_flags; /*<  Bitmap of gimbal capability flags.*/
  uint16_t custom_cap_flags; /*<  Bitmap for use for gimbal-specific capability flags.*/
- uint8_t vendor_name[32]; /*<  Name of the gimbal vendor.*/
- uint8_t model_name[32]; /*<  Name of the gimbal model.*/
- uint8_t custom_name[32]; /*<  Custom name of the gimbal given to it by the user.*/
+ char vendor_name[32]; /*<  Name of the gimbal vendor.*/
+ char model_name[32]; /*<  Name of the gimbal model.*/
+ char custom_name[32]; /*<  Custom name of the gimbal given to it by the user.*/
 } mavlink_gimbal_device_information_t;
 
 #define MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN 144
@@ -27,8 +27,8 @@ typedef struct __mavlink_gimbal_device_information_t {
 #define MAVLINK_MSG_ID_283_LEN 144
 #define MAVLINK_MSG_ID_283_MIN_LEN 144
 
-#define MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_CRC 164
-#define MAVLINK_MSG_ID_283_CRC 164
+#define MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_CRC 33
+#define MAVLINK_MSG_ID_283_CRC 33
 
 #define MAVLINK_MSG_GIMBAL_DEVICE_INFORMATION_FIELD_VENDOR_NAME_LEN 32
 #define MAVLINK_MSG_GIMBAL_DEVICE_INFORMATION_FIELD_MODEL_NAME_LEN 32
@@ -40,9 +40,9 @@ typedef struct __mavlink_gimbal_device_information_t {
     "GIMBAL_DEVICE_INFORMATION", \
     15, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_gimbal_device_information_t, time_boot_ms) }, \
-         { "vendor_name", NULL, MAVLINK_TYPE_UINT8_T, 32, 48, offsetof(mavlink_gimbal_device_information_t, vendor_name) }, \
-         { "model_name", NULL, MAVLINK_TYPE_UINT8_T, 32, 80, offsetof(mavlink_gimbal_device_information_t, model_name) }, \
-         { "custom_name", NULL, MAVLINK_TYPE_UINT8_T, 32, 112, offsetof(mavlink_gimbal_device_information_t, custom_name) }, \
+         { "vendor_name", NULL, MAVLINK_TYPE_CHAR, 32, 48, offsetof(mavlink_gimbal_device_information_t, vendor_name) }, \
+         { "model_name", NULL, MAVLINK_TYPE_CHAR, 32, 80, offsetof(mavlink_gimbal_device_information_t, model_name) }, \
+         { "custom_name", NULL, MAVLINK_TYPE_CHAR, 32, 112, offsetof(mavlink_gimbal_device_information_t, custom_name) }, \
          { "firmware_version", NULL, MAVLINK_TYPE_UINT32_T, 0, 12, offsetof(mavlink_gimbal_device_information_t, firmware_version) }, \
          { "hardware_version", NULL, MAVLINK_TYPE_UINT32_T, 0, 16, offsetof(mavlink_gimbal_device_information_t, hardware_version) }, \
          { "uid", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_gimbal_device_information_t, uid) }, \
@@ -61,9 +61,9 @@ typedef struct __mavlink_gimbal_device_information_t {
     "GIMBAL_DEVICE_INFORMATION", \
     15, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_gimbal_device_information_t, time_boot_ms) }, \
-         { "vendor_name", NULL, MAVLINK_TYPE_UINT8_T, 32, 48, offsetof(mavlink_gimbal_device_information_t, vendor_name) }, \
-         { "model_name", NULL, MAVLINK_TYPE_UINT8_T, 32, 80, offsetof(mavlink_gimbal_device_information_t, model_name) }, \
-         { "custom_name", NULL, MAVLINK_TYPE_UINT8_T, 32, 112, offsetof(mavlink_gimbal_device_information_t, custom_name) }, \
+         { "vendor_name", NULL, MAVLINK_TYPE_CHAR, 32, 48, offsetof(mavlink_gimbal_device_information_t, vendor_name) }, \
+         { "model_name", NULL, MAVLINK_TYPE_CHAR, 32, 80, offsetof(mavlink_gimbal_device_information_t, model_name) }, \
+         { "custom_name", NULL, MAVLINK_TYPE_CHAR, 32, 112, offsetof(mavlink_gimbal_device_information_t, custom_name) }, \
          { "firmware_version", NULL, MAVLINK_TYPE_UINT32_T, 0, 12, offsetof(mavlink_gimbal_device_information_t, firmware_version) }, \
          { "hardware_version", NULL, MAVLINK_TYPE_UINT32_T, 0, 16, offsetof(mavlink_gimbal_device_information_t, hardware_version) }, \
          { "uid", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_gimbal_device_information_t, uid) }, \
@@ -103,7 +103,7 @@ typedef struct __mavlink_gimbal_device_information_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_gimbal_device_information_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint32_t time_boot_ms, const uint8_t *vendor_name, const uint8_t *model_name, const uint8_t *custom_name, uint32_t firmware_version, uint32_t hardware_version, uint64_t uid, uint16_t cap_flags, uint16_t custom_cap_flags, float tilt_max, float tilt_min, float tilt_rate_max, float pan_max, float pan_min, float pan_rate_max)
+                               uint32_t time_boot_ms, const char *vendor_name, const char *model_name, const char *custom_name, uint32_t firmware_version, uint32_t hardware_version, uint64_t uid, uint16_t cap_flags, uint16_t custom_cap_flags, float tilt_max, float tilt_min, float tilt_rate_max, float pan_max, float pan_min, float pan_rate_max)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN];
@@ -119,9 +119,9 @@ static inline uint16_t mavlink_msg_gimbal_device_information_pack(uint8_t system
     _mav_put_float(buf, 40, pan_rate_max);
     _mav_put_uint16_t(buf, 44, cap_flags);
     _mav_put_uint16_t(buf, 46, custom_cap_flags);
-    _mav_put_uint8_t_array(buf, 48, vendor_name, 32);
-    _mav_put_uint8_t_array(buf, 80, model_name, 32);
-    _mav_put_uint8_t_array(buf, 112, custom_name, 32);
+    _mav_put_char_array(buf, 48, vendor_name, 32);
+    _mav_put_char_array(buf, 80, model_name, 32);
+    _mav_put_char_array(buf, 112, custom_name, 32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN);
 #else
     mavlink_gimbal_device_information_t packet;
@@ -137,9 +137,9 @@ static inline uint16_t mavlink_msg_gimbal_device_information_pack(uint8_t system
     packet.pan_rate_max = pan_rate_max;
     packet.cap_flags = cap_flags;
     packet.custom_cap_flags = custom_cap_flags;
-    mav_array_memcpy(packet.vendor_name, vendor_name, sizeof(uint8_t)*32);
-    mav_array_memcpy(packet.model_name, model_name, sizeof(uint8_t)*32);
-    mav_array_memcpy(packet.custom_name, custom_name, sizeof(uint8_t)*32);
+    mav_array_memcpy(packet.vendor_name, vendor_name, sizeof(char)*32);
+    mav_array_memcpy(packet.model_name, model_name, sizeof(char)*32);
+    mav_array_memcpy(packet.custom_name, custom_name, sizeof(char)*32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN);
 #endif
 
@@ -172,7 +172,7 @@ static inline uint16_t mavlink_msg_gimbal_device_information_pack(uint8_t system
  */
 static inline uint16_t mavlink_msg_gimbal_device_information_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint32_t time_boot_ms,const uint8_t *vendor_name,const uint8_t *model_name,const uint8_t *custom_name,uint32_t firmware_version,uint32_t hardware_version,uint64_t uid,uint16_t cap_flags,uint16_t custom_cap_flags,float tilt_max,float tilt_min,float tilt_rate_max,float pan_max,float pan_min,float pan_rate_max)
+                                   uint32_t time_boot_ms,const char *vendor_name,const char *model_name,const char *custom_name,uint32_t firmware_version,uint32_t hardware_version,uint64_t uid,uint16_t cap_flags,uint16_t custom_cap_flags,float tilt_max,float tilt_min,float tilt_rate_max,float pan_max,float pan_min,float pan_rate_max)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN];
@@ -188,9 +188,9 @@ static inline uint16_t mavlink_msg_gimbal_device_information_pack_chan(uint8_t s
     _mav_put_float(buf, 40, pan_rate_max);
     _mav_put_uint16_t(buf, 44, cap_flags);
     _mav_put_uint16_t(buf, 46, custom_cap_flags);
-    _mav_put_uint8_t_array(buf, 48, vendor_name, 32);
-    _mav_put_uint8_t_array(buf, 80, model_name, 32);
-    _mav_put_uint8_t_array(buf, 112, custom_name, 32);
+    _mav_put_char_array(buf, 48, vendor_name, 32);
+    _mav_put_char_array(buf, 80, model_name, 32);
+    _mav_put_char_array(buf, 112, custom_name, 32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN);
 #else
     mavlink_gimbal_device_information_t packet;
@@ -206,9 +206,9 @@ static inline uint16_t mavlink_msg_gimbal_device_information_pack_chan(uint8_t s
     packet.pan_rate_max = pan_rate_max;
     packet.cap_flags = cap_flags;
     packet.custom_cap_flags = custom_cap_flags;
-    mav_array_memcpy(packet.vendor_name, vendor_name, sizeof(uint8_t)*32);
-    mav_array_memcpy(packet.model_name, model_name, sizeof(uint8_t)*32);
-    mav_array_memcpy(packet.custom_name, custom_name, sizeof(uint8_t)*32);
+    mav_array_memcpy(packet.vendor_name, vendor_name, sizeof(char)*32);
+    mav_array_memcpy(packet.model_name, model_name, sizeof(char)*32);
+    mav_array_memcpy(packet.custom_name, custom_name, sizeof(char)*32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN);
 #endif
 
@@ -265,7 +265,7 @@ static inline uint16_t mavlink_msg_gimbal_device_information_encode_chan(uint8_t
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_gimbal_device_information_send(mavlink_channel_t chan, uint32_t time_boot_ms, const uint8_t *vendor_name, const uint8_t *model_name, const uint8_t *custom_name, uint32_t firmware_version, uint32_t hardware_version, uint64_t uid, uint16_t cap_flags, uint16_t custom_cap_flags, float tilt_max, float tilt_min, float tilt_rate_max, float pan_max, float pan_min, float pan_rate_max)
+static inline void mavlink_msg_gimbal_device_information_send(mavlink_channel_t chan, uint32_t time_boot_ms, const char *vendor_name, const char *model_name, const char *custom_name, uint32_t firmware_version, uint32_t hardware_version, uint64_t uid, uint16_t cap_flags, uint16_t custom_cap_flags, float tilt_max, float tilt_min, float tilt_rate_max, float pan_max, float pan_min, float pan_rate_max)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN];
@@ -281,9 +281,9 @@ static inline void mavlink_msg_gimbal_device_information_send(mavlink_channel_t 
     _mav_put_float(buf, 40, pan_rate_max);
     _mav_put_uint16_t(buf, 44, cap_flags);
     _mav_put_uint16_t(buf, 46, custom_cap_flags);
-    _mav_put_uint8_t_array(buf, 48, vendor_name, 32);
-    _mav_put_uint8_t_array(buf, 80, model_name, 32);
-    _mav_put_uint8_t_array(buf, 112, custom_name, 32);
+    _mav_put_char_array(buf, 48, vendor_name, 32);
+    _mav_put_char_array(buf, 80, model_name, 32);
+    _mav_put_char_array(buf, 112, custom_name, 32);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION, buf, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_CRC);
 #else
     mavlink_gimbal_device_information_t packet;
@@ -299,9 +299,9 @@ static inline void mavlink_msg_gimbal_device_information_send(mavlink_channel_t 
     packet.pan_rate_max = pan_rate_max;
     packet.cap_flags = cap_flags;
     packet.custom_cap_flags = custom_cap_flags;
-    mav_array_memcpy(packet.vendor_name, vendor_name, sizeof(uint8_t)*32);
-    mav_array_memcpy(packet.model_name, model_name, sizeof(uint8_t)*32);
-    mav_array_memcpy(packet.custom_name, custom_name, sizeof(uint8_t)*32);
+    mav_array_memcpy(packet.vendor_name, vendor_name, sizeof(char)*32);
+    mav_array_memcpy(packet.model_name, model_name, sizeof(char)*32);
+    mav_array_memcpy(packet.custom_name, custom_name, sizeof(char)*32);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION, (const char *)&packet, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_CRC);
 #endif
 }
@@ -328,7 +328,7 @@ static inline void mavlink_msg_gimbal_device_information_send_struct(mavlink_cha
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_gimbal_device_information_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, const uint8_t *vendor_name, const uint8_t *model_name, const uint8_t *custom_name, uint32_t firmware_version, uint32_t hardware_version, uint64_t uid, uint16_t cap_flags, uint16_t custom_cap_flags, float tilt_max, float tilt_min, float tilt_rate_max, float pan_max, float pan_min, float pan_rate_max)
+static inline void mavlink_msg_gimbal_device_information_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, const char *vendor_name, const char *model_name, const char *custom_name, uint32_t firmware_version, uint32_t hardware_version, uint64_t uid, uint16_t cap_flags, uint16_t custom_cap_flags, float tilt_max, float tilt_min, float tilt_rate_max, float pan_max, float pan_min, float pan_rate_max)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -344,9 +344,9 @@ static inline void mavlink_msg_gimbal_device_information_send_buf(mavlink_messag
     _mav_put_float(buf, 40, pan_rate_max);
     _mav_put_uint16_t(buf, 44, cap_flags);
     _mav_put_uint16_t(buf, 46, custom_cap_flags);
-    _mav_put_uint8_t_array(buf, 48, vendor_name, 32);
-    _mav_put_uint8_t_array(buf, 80, model_name, 32);
-    _mav_put_uint8_t_array(buf, 112, custom_name, 32);
+    _mav_put_char_array(buf, 48, vendor_name, 32);
+    _mav_put_char_array(buf, 80, model_name, 32);
+    _mav_put_char_array(buf, 112, custom_name, 32);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION, buf, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_CRC);
 #else
     mavlink_gimbal_device_information_t *packet = (mavlink_gimbal_device_information_t *)msgbuf;
@@ -362,9 +362,9 @@ static inline void mavlink_msg_gimbal_device_information_send_buf(mavlink_messag
     packet->pan_rate_max = pan_rate_max;
     packet->cap_flags = cap_flags;
     packet->custom_cap_flags = custom_cap_flags;
-    mav_array_memcpy(packet->vendor_name, vendor_name, sizeof(uint8_t)*32);
-    mav_array_memcpy(packet->model_name, model_name, sizeof(uint8_t)*32);
-    mav_array_memcpy(packet->custom_name, custom_name, sizeof(uint8_t)*32);
+    mav_array_memcpy(packet->vendor_name, vendor_name, sizeof(char)*32);
+    mav_array_memcpy(packet->model_name, model_name, sizeof(char)*32);
+    mav_array_memcpy(packet->custom_name, custom_name, sizeof(char)*32);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION, (const char *)packet, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_CRC);
 #endif
 }
@@ -390,9 +390,9 @@ static inline uint32_t mavlink_msg_gimbal_device_information_get_time_boot_ms(co
  *
  * @return  Name of the gimbal vendor.
  */
-static inline uint16_t mavlink_msg_gimbal_device_information_get_vendor_name(const mavlink_message_t* msg, uint8_t *vendor_name)
+static inline uint16_t mavlink_msg_gimbal_device_information_get_vendor_name(const mavlink_message_t* msg, char *vendor_name)
 {
-    return _MAV_RETURN_uint8_t_array(msg, vendor_name, 32,  48);
+    return _MAV_RETURN_char_array(msg, vendor_name, 32,  48);
 }
 
 /**
@@ -400,9 +400,9 @@ static inline uint16_t mavlink_msg_gimbal_device_information_get_vendor_name(con
  *
  * @return  Name of the gimbal model.
  */
-static inline uint16_t mavlink_msg_gimbal_device_information_get_model_name(const mavlink_message_t* msg, uint8_t *model_name)
+static inline uint16_t mavlink_msg_gimbal_device_information_get_model_name(const mavlink_message_t* msg, char *model_name)
 {
-    return _MAV_RETURN_uint8_t_array(msg, model_name, 32,  80);
+    return _MAV_RETURN_char_array(msg, model_name, 32,  80);
 }
 
 /**
@@ -410,9 +410,9 @@ static inline uint16_t mavlink_msg_gimbal_device_information_get_model_name(cons
  *
  * @return  Custom name of the gimbal given to it by the user.
  */
-static inline uint16_t mavlink_msg_gimbal_device_information_get_custom_name(const mavlink_message_t* msg, uint8_t *custom_name)
+static inline uint16_t mavlink_msg_gimbal_device_information_get_custom_name(const mavlink_message_t* msg, char *custom_name)
 {
-    return _MAV_RETURN_uint8_t_array(msg, custom_name, 32,  112);
+    return _MAV_RETURN_char_array(msg, custom_name, 32,  112);
 }
 
 /**
