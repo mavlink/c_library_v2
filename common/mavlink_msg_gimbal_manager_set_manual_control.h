@@ -6,10 +6,10 @@
 
 typedef struct __mavlink_gimbal_manager_set_manual_control_t {
  uint32_t flags; /*<  High level gimbal manager flags.*/
- float tilt; /*<  Tilt/pitch angle unitless (-1..1, positive: up, negative: down, NaN to be ignored).*/
- float pan; /*<  Pan/yaw angle unitless (-1..1, positive: to the right, negative: to the left, NaN to be ignored).*/
- float tilt_rate; /*<  Tilt/pitch angular rate unitless (-1..1, positive: up, negative: down, NaN to be ignored).*/
- float pan_rate; /*<  Pan/yaw angular rate unitless (-1..1, positive: to the right, negative: to the left, NaN to be ignored).*/
+ float pitch; /*<  Pitch angle unitless (-1..1, positive: up, negative: down, NaN to be ignored).*/
+ float yaw; /*<  Yaw angle unitless (-1..1, positive: to the right, negative: to the left, NaN to be ignored).*/
+ float pitch_rate; /*<  Pitch angular rate unitless (-1..1, positive: up, negative: down, NaN to be ignored).*/
+ float yaw_rate; /*<  Yaw angular rate unitless (-1..1, positive: to the right, negative: to the left, NaN to be ignored).*/
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
  uint8_t gimbal_device_id; /*<  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).*/
@@ -20,8 +20,8 @@ typedef struct __mavlink_gimbal_manager_set_manual_control_t {
 #define MAVLINK_MSG_ID_288_LEN 23
 #define MAVLINK_MSG_ID_288_MIN_LEN 23
 
-#define MAVLINK_MSG_ID_GIMBAL_MANAGER_SET_MANUAL_CONTROL_CRC 99
-#define MAVLINK_MSG_ID_288_CRC 99
+#define MAVLINK_MSG_ID_GIMBAL_MANAGER_SET_MANUAL_CONTROL_CRC 20
+#define MAVLINK_MSG_ID_288_CRC 20
 
 
 
@@ -34,10 +34,10 @@ typedef struct __mavlink_gimbal_manager_set_manual_control_t {
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 21, offsetof(mavlink_gimbal_manager_set_manual_control_t, target_component) }, \
          { "flags", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_gimbal_manager_set_manual_control_t, flags) }, \
          { "gimbal_device_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 22, offsetof(mavlink_gimbal_manager_set_manual_control_t, gimbal_device_id) }, \
-         { "tilt", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_gimbal_manager_set_manual_control_t, tilt) }, \
-         { "pan", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_gimbal_manager_set_manual_control_t, pan) }, \
-         { "tilt_rate", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_gimbal_manager_set_manual_control_t, tilt_rate) }, \
-         { "pan_rate", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_gimbal_manager_set_manual_control_t, pan_rate) }, \
+         { "pitch", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_gimbal_manager_set_manual_control_t, pitch) }, \
+         { "yaw", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_gimbal_manager_set_manual_control_t, yaw) }, \
+         { "pitch_rate", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_gimbal_manager_set_manual_control_t, pitch_rate) }, \
+         { "yaw_rate", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_gimbal_manager_set_manual_control_t, yaw_rate) }, \
          } \
 }
 #else
@@ -48,10 +48,10 @@ typedef struct __mavlink_gimbal_manager_set_manual_control_t {
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 21, offsetof(mavlink_gimbal_manager_set_manual_control_t, target_component) }, \
          { "flags", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_gimbal_manager_set_manual_control_t, flags) }, \
          { "gimbal_device_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 22, offsetof(mavlink_gimbal_manager_set_manual_control_t, gimbal_device_id) }, \
-         { "tilt", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_gimbal_manager_set_manual_control_t, tilt) }, \
-         { "pan", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_gimbal_manager_set_manual_control_t, pan) }, \
-         { "tilt_rate", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_gimbal_manager_set_manual_control_t, tilt_rate) }, \
-         { "pan_rate", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_gimbal_manager_set_manual_control_t, pan_rate) }, \
+         { "pitch", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_gimbal_manager_set_manual_control_t, pitch) }, \
+         { "yaw", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_gimbal_manager_set_manual_control_t, yaw) }, \
+         { "pitch_rate", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_gimbal_manager_set_manual_control_t, pitch_rate) }, \
+         { "yaw_rate", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_gimbal_manager_set_manual_control_t, yaw_rate) }, \
          } \
 }
 #endif
@@ -66,22 +66,22 @@ typedef struct __mavlink_gimbal_manager_set_manual_control_t {
  * @param target_component  Component ID
  * @param flags  High level gimbal manager flags.
  * @param gimbal_device_id  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).
- * @param tilt  Tilt/pitch angle unitless (-1..1, positive: up, negative: down, NaN to be ignored).
- * @param pan  Pan/yaw angle unitless (-1..1, positive: to the right, negative: to the left, NaN to be ignored).
- * @param tilt_rate  Tilt/pitch angular rate unitless (-1..1, positive: up, negative: down, NaN to be ignored).
- * @param pan_rate  Pan/yaw angular rate unitless (-1..1, positive: to the right, negative: to the left, NaN to be ignored).
+ * @param pitch  Pitch angle unitless (-1..1, positive: up, negative: down, NaN to be ignored).
+ * @param yaw  Yaw angle unitless (-1..1, positive: to the right, negative: to the left, NaN to be ignored).
+ * @param pitch_rate  Pitch angular rate unitless (-1..1, positive: up, negative: down, NaN to be ignored).
+ * @param yaw_rate  Yaw angular rate unitless (-1..1, positive: to the right, negative: to the left, NaN to be ignored).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_gimbal_manager_set_manual_control_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint32_t flags, uint8_t gimbal_device_id, float tilt, float pan, float tilt_rate, float pan_rate)
+                               uint8_t target_system, uint8_t target_component, uint32_t flags, uint8_t gimbal_device_id, float pitch, float yaw, float pitch_rate, float yaw_rate)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_GIMBAL_MANAGER_SET_MANUAL_CONTROL_LEN];
     _mav_put_uint32_t(buf, 0, flags);
-    _mav_put_float(buf, 4, tilt);
-    _mav_put_float(buf, 8, pan);
-    _mav_put_float(buf, 12, tilt_rate);
-    _mav_put_float(buf, 16, pan_rate);
+    _mav_put_float(buf, 4, pitch);
+    _mav_put_float(buf, 8, yaw);
+    _mav_put_float(buf, 12, pitch_rate);
+    _mav_put_float(buf, 16, yaw_rate);
     _mav_put_uint8_t(buf, 20, target_system);
     _mav_put_uint8_t(buf, 21, target_component);
     _mav_put_uint8_t(buf, 22, gimbal_device_id);
@@ -90,10 +90,10 @@ static inline uint16_t mavlink_msg_gimbal_manager_set_manual_control_pack(uint8_
 #else
     mavlink_gimbal_manager_set_manual_control_t packet;
     packet.flags = flags;
-    packet.tilt = tilt;
-    packet.pan = pan;
-    packet.tilt_rate = tilt_rate;
-    packet.pan_rate = pan_rate;
+    packet.pitch = pitch;
+    packet.yaw = yaw;
+    packet.pitch_rate = pitch_rate;
+    packet.yaw_rate = yaw_rate;
     packet.target_system = target_system;
     packet.target_component = target_component;
     packet.gimbal_device_id = gimbal_device_id;
@@ -115,23 +115,23 @@ static inline uint16_t mavlink_msg_gimbal_manager_set_manual_control_pack(uint8_
  * @param target_component  Component ID
  * @param flags  High level gimbal manager flags.
  * @param gimbal_device_id  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).
- * @param tilt  Tilt/pitch angle unitless (-1..1, positive: up, negative: down, NaN to be ignored).
- * @param pan  Pan/yaw angle unitless (-1..1, positive: to the right, negative: to the left, NaN to be ignored).
- * @param tilt_rate  Tilt/pitch angular rate unitless (-1..1, positive: up, negative: down, NaN to be ignored).
- * @param pan_rate  Pan/yaw angular rate unitless (-1..1, positive: to the right, negative: to the left, NaN to be ignored).
+ * @param pitch  Pitch angle unitless (-1..1, positive: up, negative: down, NaN to be ignored).
+ * @param yaw  Yaw angle unitless (-1..1, positive: to the right, negative: to the left, NaN to be ignored).
+ * @param pitch_rate  Pitch angular rate unitless (-1..1, positive: up, negative: down, NaN to be ignored).
+ * @param yaw_rate  Yaw angular rate unitless (-1..1, positive: to the right, negative: to the left, NaN to be ignored).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_gimbal_manager_set_manual_control_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t target_system,uint8_t target_component,uint32_t flags,uint8_t gimbal_device_id,float tilt,float pan,float tilt_rate,float pan_rate)
+                                   uint8_t target_system,uint8_t target_component,uint32_t flags,uint8_t gimbal_device_id,float pitch,float yaw,float pitch_rate,float yaw_rate)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_GIMBAL_MANAGER_SET_MANUAL_CONTROL_LEN];
     _mav_put_uint32_t(buf, 0, flags);
-    _mav_put_float(buf, 4, tilt);
-    _mav_put_float(buf, 8, pan);
-    _mav_put_float(buf, 12, tilt_rate);
-    _mav_put_float(buf, 16, pan_rate);
+    _mav_put_float(buf, 4, pitch);
+    _mav_put_float(buf, 8, yaw);
+    _mav_put_float(buf, 12, pitch_rate);
+    _mav_put_float(buf, 16, yaw_rate);
     _mav_put_uint8_t(buf, 20, target_system);
     _mav_put_uint8_t(buf, 21, target_component);
     _mav_put_uint8_t(buf, 22, gimbal_device_id);
@@ -140,10 +140,10 @@ static inline uint16_t mavlink_msg_gimbal_manager_set_manual_control_pack_chan(u
 #else
     mavlink_gimbal_manager_set_manual_control_t packet;
     packet.flags = flags;
-    packet.tilt = tilt;
-    packet.pan = pan;
-    packet.tilt_rate = tilt_rate;
-    packet.pan_rate = pan_rate;
+    packet.pitch = pitch;
+    packet.yaw = yaw;
+    packet.pitch_rate = pitch_rate;
+    packet.yaw_rate = yaw_rate;
     packet.target_system = target_system;
     packet.target_component = target_component;
     packet.gimbal_device_id = gimbal_device_id;
@@ -165,7 +165,7 @@ static inline uint16_t mavlink_msg_gimbal_manager_set_manual_control_pack_chan(u
  */
 static inline uint16_t mavlink_msg_gimbal_manager_set_manual_control_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_gimbal_manager_set_manual_control_t* gimbal_manager_set_manual_control)
 {
-    return mavlink_msg_gimbal_manager_set_manual_control_pack(system_id, component_id, msg, gimbal_manager_set_manual_control->target_system, gimbal_manager_set_manual_control->target_component, gimbal_manager_set_manual_control->flags, gimbal_manager_set_manual_control->gimbal_device_id, gimbal_manager_set_manual_control->tilt, gimbal_manager_set_manual_control->pan, gimbal_manager_set_manual_control->tilt_rate, gimbal_manager_set_manual_control->pan_rate);
+    return mavlink_msg_gimbal_manager_set_manual_control_pack(system_id, component_id, msg, gimbal_manager_set_manual_control->target_system, gimbal_manager_set_manual_control->target_component, gimbal_manager_set_manual_control->flags, gimbal_manager_set_manual_control->gimbal_device_id, gimbal_manager_set_manual_control->pitch, gimbal_manager_set_manual_control->yaw, gimbal_manager_set_manual_control->pitch_rate, gimbal_manager_set_manual_control->yaw_rate);
 }
 
 /**
@@ -179,7 +179,7 @@ static inline uint16_t mavlink_msg_gimbal_manager_set_manual_control_encode(uint
  */
 static inline uint16_t mavlink_msg_gimbal_manager_set_manual_control_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gimbal_manager_set_manual_control_t* gimbal_manager_set_manual_control)
 {
-    return mavlink_msg_gimbal_manager_set_manual_control_pack_chan(system_id, component_id, chan, msg, gimbal_manager_set_manual_control->target_system, gimbal_manager_set_manual_control->target_component, gimbal_manager_set_manual_control->flags, gimbal_manager_set_manual_control->gimbal_device_id, gimbal_manager_set_manual_control->tilt, gimbal_manager_set_manual_control->pan, gimbal_manager_set_manual_control->tilt_rate, gimbal_manager_set_manual_control->pan_rate);
+    return mavlink_msg_gimbal_manager_set_manual_control_pack_chan(system_id, component_id, chan, msg, gimbal_manager_set_manual_control->target_system, gimbal_manager_set_manual_control->target_component, gimbal_manager_set_manual_control->flags, gimbal_manager_set_manual_control->gimbal_device_id, gimbal_manager_set_manual_control->pitch, gimbal_manager_set_manual_control->yaw, gimbal_manager_set_manual_control->pitch_rate, gimbal_manager_set_manual_control->yaw_rate);
 }
 
 /**
@@ -190,22 +190,22 @@ static inline uint16_t mavlink_msg_gimbal_manager_set_manual_control_encode_chan
  * @param target_component  Component ID
  * @param flags  High level gimbal manager flags.
  * @param gimbal_device_id  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).
- * @param tilt  Tilt/pitch angle unitless (-1..1, positive: up, negative: down, NaN to be ignored).
- * @param pan  Pan/yaw angle unitless (-1..1, positive: to the right, negative: to the left, NaN to be ignored).
- * @param tilt_rate  Tilt/pitch angular rate unitless (-1..1, positive: up, negative: down, NaN to be ignored).
- * @param pan_rate  Pan/yaw angular rate unitless (-1..1, positive: to the right, negative: to the left, NaN to be ignored).
+ * @param pitch  Pitch angle unitless (-1..1, positive: up, negative: down, NaN to be ignored).
+ * @param yaw  Yaw angle unitless (-1..1, positive: to the right, negative: to the left, NaN to be ignored).
+ * @param pitch_rate  Pitch angular rate unitless (-1..1, positive: up, negative: down, NaN to be ignored).
+ * @param yaw_rate  Yaw angular rate unitless (-1..1, positive: to the right, negative: to the left, NaN to be ignored).
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_gimbal_manager_set_manual_control_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint32_t flags, uint8_t gimbal_device_id, float tilt, float pan, float tilt_rate, float pan_rate)
+static inline void mavlink_msg_gimbal_manager_set_manual_control_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint32_t flags, uint8_t gimbal_device_id, float pitch, float yaw, float pitch_rate, float yaw_rate)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_GIMBAL_MANAGER_SET_MANUAL_CONTROL_LEN];
     _mav_put_uint32_t(buf, 0, flags);
-    _mav_put_float(buf, 4, tilt);
-    _mav_put_float(buf, 8, pan);
-    _mav_put_float(buf, 12, tilt_rate);
-    _mav_put_float(buf, 16, pan_rate);
+    _mav_put_float(buf, 4, pitch);
+    _mav_put_float(buf, 8, yaw);
+    _mav_put_float(buf, 12, pitch_rate);
+    _mav_put_float(buf, 16, yaw_rate);
     _mav_put_uint8_t(buf, 20, target_system);
     _mav_put_uint8_t(buf, 21, target_component);
     _mav_put_uint8_t(buf, 22, gimbal_device_id);
@@ -214,10 +214,10 @@ static inline void mavlink_msg_gimbal_manager_set_manual_control_send(mavlink_ch
 #else
     mavlink_gimbal_manager_set_manual_control_t packet;
     packet.flags = flags;
-    packet.tilt = tilt;
-    packet.pan = pan;
-    packet.tilt_rate = tilt_rate;
-    packet.pan_rate = pan_rate;
+    packet.pitch = pitch;
+    packet.yaw = yaw;
+    packet.pitch_rate = pitch_rate;
+    packet.yaw_rate = yaw_rate;
     packet.target_system = target_system;
     packet.target_component = target_component;
     packet.gimbal_device_id = gimbal_device_id;
@@ -234,7 +234,7 @@ static inline void mavlink_msg_gimbal_manager_set_manual_control_send(mavlink_ch
 static inline void mavlink_msg_gimbal_manager_set_manual_control_send_struct(mavlink_channel_t chan, const mavlink_gimbal_manager_set_manual_control_t* gimbal_manager_set_manual_control)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_gimbal_manager_set_manual_control_send(chan, gimbal_manager_set_manual_control->target_system, gimbal_manager_set_manual_control->target_component, gimbal_manager_set_manual_control->flags, gimbal_manager_set_manual_control->gimbal_device_id, gimbal_manager_set_manual_control->tilt, gimbal_manager_set_manual_control->pan, gimbal_manager_set_manual_control->tilt_rate, gimbal_manager_set_manual_control->pan_rate);
+    mavlink_msg_gimbal_manager_set_manual_control_send(chan, gimbal_manager_set_manual_control->target_system, gimbal_manager_set_manual_control->target_component, gimbal_manager_set_manual_control->flags, gimbal_manager_set_manual_control->gimbal_device_id, gimbal_manager_set_manual_control->pitch, gimbal_manager_set_manual_control->yaw, gimbal_manager_set_manual_control->pitch_rate, gimbal_manager_set_manual_control->yaw_rate);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GIMBAL_MANAGER_SET_MANUAL_CONTROL, (const char *)gimbal_manager_set_manual_control, MAVLINK_MSG_ID_GIMBAL_MANAGER_SET_MANUAL_CONTROL_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_MANAGER_SET_MANUAL_CONTROL_LEN, MAVLINK_MSG_ID_GIMBAL_MANAGER_SET_MANUAL_CONTROL_CRC);
 #endif
@@ -248,15 +248,15 @@ static inline void mavlink_msg_gimbal_manager_set_manual_control_send_struct(mav
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_gimbal_manager_set_manual_control_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, uint32_t flags, uint8_t gimbal_device_id, float tilt, float pan, float tilt_rate, float pan_rate)
+static inline void mavlink_msg_gimbal_manager_set_manual_control_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, uint32_t flags, uint8_t gimbal_device_id, float pitch, float yaw, float pitch_rate, float yaw_rate)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_uint32_t(buf, 0, flags);
-    _mav_put_float(buf, 4, tilt);
-    _mav_put_float(buf, 8, pan);
-    _mav_put_float(buf, 12, tilt_rate);
-    _mav_put_float(buf, 16, pan_rate);
+    _mav_put_float(buf, 4, pitch);
+    _mav_put_float(buf, 8, yaw);
+    _mav_put_float(buf, 12, pitch_rate);
+    _mav_put_float(buf, 16, yaw_rate);
     _mav_put_uint8_t(buf, 20, target_system);
     _mav_put_uint8_t(buf, 21, target_component);
     _mav_put_uint8_t(buf, 22, gimbal_device_id);
@@ -265,10 +265,10 @@ static inline void mavlink_msg_gimbal_manager_set_manual_control_send_buf(mavlin
 #else
     mavlink_gimbal_manager_set_manual_control_t *packet = (mavlink_gimbal_manager_set_manual_control_t *)msgbuf;
     packet->flags = flags;
-    packet->tilt = tilt;
-    packet->pan = pan;
-    packet->tilt_rate = tilt_rate;
-    packet->pan_rate = pan_rate;
+    packet->pitch = pitch;
+    packet->yaw = yaw;
+    packet->pitch_rate = pitch_rate;
+    packet->yaw_rate = yaw_rate;
     packet->target_system = target_system;
     packet->target_component = target_component;
     packet->gimbal_device_id = gimbal_device_id;
@@ -324,41 +324,41 @@ static inline uint8_t mavlink_msg_gimbal_manager_set_manual_control_get_gimbal_d
 }
 
 /**
- * @brief Get field tilt from gimbal_manager_set_manual_control message
+ * @brief Get field pitch from gimbal_manager_set_manual_control message
  *
- * @return  Tilt/pitch angle unitless (-1..1, positive: up, negative: down, NaN to be ignored).
+ * @return  Pitch angle unitless (-1..1, positive: up, negative: down, NaN to be ignored).
  */
-static inline float mavlink_msg_gimbal_manager_set_manual_control_get_tilt(const mavlink_message_t* msg)
+static inline float mavlink_msg_gimbal_manager_set_manual_control_get_pitch(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  4);
 }
 
 /**
- * @brief Get field pan from gimbal_manager_set_manual_control message
+ * @brief Get field yaw from gimbal_manager_set_manual_control message
  *
- * @return  Pan/yaw angle unitless (-1..1, positive: to the right, negative: to the left, NaN to be ignored).
+ * @return  Yaw angle unitless (-1..1, positive: to the right, negative: to the left, NaN to be ignored).
  */
-static inline float mavlink_msg_gimbal_manager_set_manual_control_get_pan(const mavlink_message_t* msg)
+static inline float mavlink_msg_gimbal_manager_set_manual_control_get_yaw(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  8);
 }
 
 /**
- * @brief Get field tilt_rate from gimbal_manager_set_manual_control message
+ * @brief Get field pitch_rate from gimbal_manager_set_manual_control message
  *
- * @return  Tilt/pitch angular rate unitless (-1..1, positive: up, negative: down, NaN to be ignored).
+ * @return  Pitch angular rate unitless (-1..1, positive: up, negative: down, NaN to be ignored).
  */
-static inline float mavlink_msg_gimbal_manager_set_manual_control_get_tilt_rate(const mavlink_message_t* msg)
+static inline float mavlink_msg_gimbal_manager_set_manual_control_get_pitch_rate(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  12);
 }
 
 /**
- * @brief Get field pan_rate from gimbal_manager_set_manual_control message
+ * @brief Get field yaw_rate from gimbal_manager_set_manual_control message
  *
- * @return  Pan/yaw angular rate unitless (-1..1, positive: to the right, negative: to the left, NaN to be ignored).
+ * @return  Yaw angular rate unitless (-1..1, positive: to the right, negative: to the left, NaN to be ignored).
  */
-static inline float mavlink_msg_gimbal_manager_set_manual_control_get_pan_rate(const mavlink_message_t* msg)
+static inline float mavlink_msg_gimbal_manager_set_manual_control_get_yaw_rate(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  16);
 }
@@ -373,10 +373,10 @@ static inline void mavlink_msg_gimbal_manager_set_manual_control_decode(const ma
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     gimbal_manager_set_manual_control->flags = mavlink_msg_gimbal_manager_set_manual_control_get_flags(msg);
-    gimbal_manager_set_manual_control->tilt = mavlink_msg_gimbal_manager_set_manual_control_get_tilt(msg);
-    gimbal_manager_set_manual_control->pan = mavlink_msg_gimbal_manager_set_manual_control_get_pan(msg);
-    gimbal_manager_set_manual_control->tilt_rate = mavlink_msg_gimbal_manager_set_manual_control_get_tilt_rate(msg);
-    gimbal_manager_set_manual_control->pan_rate = mavlink_msg_gimbal_manager_set_manual_control_get_pan_rate(msg);
+    gimbal_manager_set_manual_control->pitch = mavlink_msg_gimbal_manager_set_manual_control_get_pitch(msg);
+    gimbal_manager_set_manual_control->yaw = mavlink_msg_gimbal_manager_set_manual_control_get_yaw(msg);
+    gimbal_manager_set_manual_control->pitch_rate = mavlink_msg_gimbal_manager_set_manual_control_get_pitch_rate(msg);
+    gimbal_manager_set_manual_control->yaw_rate = mavlink_msg_gimbal_manager_set_manual_control_get_yaw_rate(msg);
     gimbal_manager_set_manual_control->target_system = mavlink_msg_gimbal_manager_set_manual_control_get_target_system(msg);
     gimbal_manager_set_manual_control->target_component = mavlink_msg_gimbal_manager_set_manual_control_get_target_component(msg);
     gimbal_manager_set_manual_control->gimbal_device_id = mavlink_msg_gimbal_manager_set_manual_control_get_gimbal_device_id(msg);

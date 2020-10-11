@@ -9,12 +9,12 @@ typedef struct __mavlink_gimbal_device_information_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
  uint32_t firmware_version; /*<  Version of the gimbal firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff).*/
  uint32_t hardware_version; /*<  Version of the gimbal hardware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff).*/
- float tilt_max; /*< [rad] Maximum hardware tilt/pitch angle (positive: up, negative: down)*/
- float tilt_min; /*< [rad] Minimum hardware tilt/pitch angle (positive: up, negative: down)*/
- float tilt_rate_max; /*< [rad/s] Maximum hardware tilt/pitch angular rate (positive: up, negative: down)*/
- float pan_max; /*< [rad] Maximum hardware pan/yaw angle (positive: to the right, negative: to the left)*/
- float pan_min; /*< [rad] Minimum hardware pan/yaw angle (positive: to the right, negative: to the left)*/
- float pan_rate_max; /*< [rad/s] Maximum hardware pan/yaw angular rate (positive: to the right, negative: to the left)*/
+ float roll_min; /*< [rad] Minimum hardware roll angle (positive: rolling to the right, negative: rolling to the left)*/
+ float roll_max; /*< [rad] Maximum hardware roll angle (positive: rolling to the right, negative: rolling to the left)*/
+ float pitch_min; /*< [rad] Minimum hardware pitch angle (positive: up, negative: down)*/
+ float pitch_max; /*< [rad] Maximum hardware pitch angle (positive: up, negative: down)*/
+ float yaw_min; /*< [rad] Minimum hardware yaw angle (positive: to the right, negative: to the left)*/
+ float yaw_max; /*< [rad] Maximum hardware yaw angle (positive: to the right, negative: to the left)*/
  uint16_t cap_flags; /*<  Bitmap of gimbal capability flags.*/
  uint16_t custom_cap_flags; /*<  Bitmap for use for gimbal-specific capability flags.*/
  char vendor_name[32]; /*<  Name of the gimbal vendor.*/
@@ -27,8 +27,8 @@ typedef struct __mavlink_gimbal_device_information_t {
 #define MAVLINK_MSG_ID_283_LEN 144
 #define MAVLINK_MSG_ID_283_MIN_LEN 144
 
-#define MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_CRC 33
-#define MAVLINK_MSG_ID_283_CRC 33
+#define MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_CRC 74
+#define MAVLINK_MSG_ID_283_CRC 74
 
 #define MAVLINK_MSG_GIMBAL_DEVICE_INFORMATION_FIELD_VENDOR_NAME_LEN 32
 #define MAVLINK_MSG_GIMBAL_DEVICE_INFORMATION_FIELD_MODEL_NAME_LEN 32
@@ -48,12 +48,12 @@ typedef struct __mavlink_gimbal_device_information_t {
          { "uid", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_gimbal_device_information_t, uid) }, \
          { "cap_flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 44, offsetof(mavlink_gimbal_device_information_t, cap_flags) }, \
          { "custom_cap_flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 46, offsetof(mavlink_gimbal_device_information_t, custom_cap_flags) }, \
-         { "tilt_max", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_gimbal_device_information_t, tilt_max) }, \
-         { "tilt_min", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_gimbal_device_information_t, tilt_min) }, \
-         { "tilt_rate_max", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_gimbal_device_information_t, tilt_rate_max) }, \
-         { "pan_max", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_gimbal_device_information_t, pan_max) }, \
-         { "pan_min", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_gimbal_device_information_t, pan_min) }, \
-         { "pan_rate_max", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_gimbal_device_information_t, pan_rate_max) }, \
+         { "roll_min", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_gimbal_device_information_t, roll_min) }, \
+         { "roll_max", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_gimbal_device_information_t, roll_max) }, \
+         { "pitch_min", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_gimbal_device_information_t, pitch_min) }, \
+         { "pitch_max", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_gimbal_device_information_t, pitch_max) }, \
+         { "yaw_min", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_gimbal_device_information_t, yaw_min) }, \
+         { "yaw_max", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_gimbal_device_information_t, yaw_max) }, \
          } \
 }
 #else
@@ -69,12 +69,12 @@ typedef struct __mavlink_gimbal_device_information_t {
          { "uid", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_gimbal_device_information_t, uid) }, \
          { "cap_flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 44, offsetof(mavlink_gimbal_device_information_t, cap_flags) }, \
          { "custom_cap_flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 46, offsetof(mavlink_gimbal_device_information_t, custom_cap_flags) }, \
-         { "tilt_max", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_gimbal_device_information_t, tilt_max) }, \
-         { "tilt_min", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_gimbal_device_information_t, tilt_min) }, \
-         { "tilt_rate_max", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_gimbal_device_information_t, tilt_rate_max) }, \
-         { "pan_max", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_gimbal_device_information_t, pan_max) }, \
-         { "pan_min", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_gimbal_device_information_t, pan_min) }, \
-         { "pan_rate_max", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_gimbal_device_information_t, pan_rate_max) }, \
+         { "roll_min", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_gimbal_device_information_t, roll_min) }, \
+         { "roll_max", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_gimbal_device_information_t, roll_max) }, \
+         { "pitch_min", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_gimbal_device_information_t, pitch_min) }, \
+         { "pitch_max", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_gimbal_device_information_t, pitch_max) }, \
+         { "yaw_min", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_gimbal_device_information_t, yaw_min) }, \
+         { "yaw_max", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_gimbal_device_information_t, yaw_max) }, \
          } \
 }
 #endif
@@ -94,16 +94,16 @@ typedef struct __mavlink_gimbal_device_information_t {
  * @param uid  UID of gimbal hardware (0 if unknown).
  * @param cap_flags  Bitmap of gimbal capability flags.
  * @param custom_cap_flags  Bitmap for use for gimbal-specific capability flags.
- * @param tilt_max [rad] Maximum hardware tilt/pitch angle (positive: up, negative: down)
- * @param tilt_min [rad] Minimum hardware tilt/pitch angle (positive: up, negative: down)
- * @param tilt_rate_max [rad/s] Maximum hardware tilt/pitch angular rate (positive: up, negative: down)
- * @param pan_max [rad] Maximum hardware pan/yaw angle (positive: to the right, negative: to the left)
- * @param pan_min [rad] Minimum hardware pan/yaw angle (positive: to the right, negative: to the left)
- * @param pan_rate_max [rad/s] Maximum hardware pan/yaw angular rate (positive: to the right, negative: to the left)
+ * @param roll_min [rad] Minimum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
+ * @param roll_max [rad] Maximum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
+ * @param pitch_min [rad] Minimum hardware pitch angle (positive: up, negative: down)
+ * @param pitch_max [rad] Maximum hardware pitch angle (positive: up, negative: down)
+ * @param yaw_min [rad] Minimum hardware yaw angle (positive: to the right, negative: to the left)
+ * @param yaw_max [rad] Maximum hardware yaw angle (positive: to the right, negative: to the left)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_gimbal_device_information_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint32_t time_boot_ms, const char *vendor_name, const char *model_name, const char *custom_name, uint32_t firmware_version, uint32_t hardware_version, uint64_t uid, uint16_t cap_flags, uint16_t custom_cap_flags, float tilt_max, float tilt_min, float tilt_rate_max, float pan_max, float pan_min, float pan_rate_max)
+                               uint32_t time_boot_ms, const char *vendor_name, const char *model_name, const char *custom_name, uint32_t firmware_version, uint32_t hardware_version, uint64_t uid, uint16_t cap_flags, uint16_t custom_cap_flags, float roll_min, float roll_max, float pitch_min, float pitch_max, float yaw_min, float yaw_max)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN];
@@ -111,12 +111,12 @@ static inline uint16_t mavlink_msg_gimbal_device_information_pack(uint8_t system
     _mav_put_uint32_t(buf, 8, time_boot_ms);
     _mav_put_uint32_t(buf, 12, firmware_version);
     _mav_put_uint32_t(buf, 16, hardware_version);
-    _mav_put_float(buf, 20, tilt_max);
-    _mav_put_float(buf, 24, tilt_min);
-    _mav_put_float(buf, 28, tilt_rate_max);
-    _mav_put_float(buf, 32, pan_max);
-    _mav_put_float(buf, 36, pan_min);
-    _mav_put_float(buf, 40, pan_rate_max);
+    _mav_put_float(buf, 20, roll_min);
+    _mav_put_float(buf, 24, roll_max);
+    _mav_put_float(buf, 28, pitch_min);
+    _mav_put_float(buf, 32, pitch_max);
+    _mav_put_float(buf, 36, yaw_min);
+    _mav_put_float(buf, 40, yaw_max);
     _mav_put_uint16_t(buf, 44, cap_flags);
     _mav_put_uint16_t(buf, 46, custom_cap_flags);
     _mav_put_char_array(buf, 48, vendor_name, 32);
@@ -129,12 +129,12 @@ static inline uint16_t mavlink_msg_gimbal_device_information_pack(uint8_t system
     packet.time_boot_ms = time_boot_ms;
     packet.firmware_version = firmware_version;
     packet.hardware_version = hardware_version;
-    packet.tilt_max = tilt_max;
-    packet.tilt_min = tilt_min;
-    packet.tilt_rate_max = tilt_rate_max;
-    packet.pan_max = pan_max;
-    packet.pan_min = pan_min;
-    packet.pan_rate_max = pan_rate_max;
+    packet.roll_min = roll_min;
+    packet.roll_max = roll_max;
+    packet.pitch_min = pitch_min;
+    packet.pitch_max = pitch_max;
+    packet.yaw_min = yaw_min;
+    packet.yaw_max = yaw_max;
     packet.cap_flags = cap_flags;
     packet.custom_cap_flags = custom_cap_flags;
     mav_array_memcpy(packet.vendor_name, vendor_name, sizeof(char)*32);
@@ -162,17 +162,17 @@ static inline uint16_t mavlink_msg_gimbal_device_information_pack(uint8_t system
  * @param uid  UID of gimbal hardware (0 if unknown).
  * @param cap_flags  Bitmap of gimbal capability flags.
  * @param custom_cap_flags  Bitmap for use for gimbal-specific capability flags.
- * @param tilt_max [rad] Maximum hardware tilt/pitch angle (positive: up, negative: down)
- * @param tilt_min [rad] Minimum hardware tilt/pitch angle (positive: up, negative: down)
- * @param tilt_rate_max [rad/s] Maximum hardware tilt/pitch angular rate (positive: up, negative: down)
- * @param pan_max [rad] Maximum hardware pan/yaw angle (positive: to the right, negative: to the left)
- * @param pan_min [rad] Minimum hardware pan/yaw angle (positive: to the right, negative: to the left)
- * @param pan_rate_max [rad/s] Maximum hardware pan/yaw angular rate (positive: to the right, negative: to the left)
+ * @param roll_min [rad] Minimum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
+ * @param roll_max [rad] Maximum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
+ * @param pitch_min [rad] Minimum hardware pitch angle (positive: up, negative: down)
+ * @param pitch_max [rad] Maximum hardware pitch angle (positive: up, negative: down)
+ * @param yaw_min [rad] Minimum hardware yaw angle (positive: to the right, negative: to the left)
+ * @param yaw_max [rad] Maximum hardware yaw angle (positive: to the right, negative: to the left)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_gimbal_device_information_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint32_t time_boot_ms,const char *vendor_name,const char *model_name,const char *custom_name,uint32_t firmware_version,uint32_t hardware_version,uint64_t uid,uint16_t cap_flags,uint16_t custom_cap_flags,float tilt_max,float tilt_min,float tilt_rate_max,float pan_max,float pan_min,float pan_rate_max)
+                                   uint32_t time_boot_ms,const char *vendor_name,const char *model_name,const char *custom_name,uint32_t firmware_version,uint32_t hardware_version,uint64_t uid,uint16_t cap_flags,uint16_t custom_cap_flags,float roll_min,float roll_max,float pitch_min,float pitch_max,float yaw_min,float yaw_max)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN];
@@ -180,12 +180,12 @@ static inline uint16_t mavlink_msg_gimbal_device_information_pack_chan(uint8_t s
     _mav_put_uint32_t(buf, 8, time_boot_ms);
     _mav_put_uint32_t(buf, 12, firmware_version);
     _mav_put_uint32_t(buf, 16, hardware_version);
-    _mav_put_float(buf, 20, tilt_max);
-    _mav_put_float(buf, 24, tilt_min);
-    _mav_put_float(buf, 28, tilt_rate_max);
-    _mav_put_float(buf, 32, pan_max);
-    _mav_put_float(buf, 36, pan_min);
-    _mav_put_float(buf, 40, pan_rate_max);
+    _mav_put_float(buf, 20, roll_min);
+    _mav_put_float(buf, 24, roll_max);
+    _mav_put_float(buf, 28, pitch_min);
+    _mav_put_float(buf, 32, pitch_max);
+    _mav_put_float(buf, 36, yaw_min);
+    _mav_put_float(buf, 40, yaw_max);
     _mav_put_uint16_t(buf, 44, cap_flags);
     _mav_put_uint16_t(buf, 46, custom_cap_flags);
     _mav_put_char_array(buf, 48, vendor_name, 32);
@@ -198,12 +198,12 @@ static inline uint16_t mavlink_msg_gimbal_device_information_pack_chan(uint8_t s
     packet.time_boot_ms = time_boot_ms;
     packet.firmware_version = firmware_version;
     packet.hardware_version = hardware_version;
-    packet.tilt_max = tilt_max;
-    packet.tilt_min = tilt_min;
-    packet.tilt_rate_max = tilt_rate_max;
-    packet.pan_max = pan_max;
-    packet.pan_min = pan_min;
-    packet.pan_rate_max = pan_rate_max;
+    packet.roll_min = roll_min;
+    packet.roll_max = roll_max;
+    packet.pitch_min = pitch_min;
+    packet.pitch_max = pitch_max;
+    packet.yaw_min = yaw_min;
+    packet.yaw_max = yaw_max;
     packet.cap_flags = cap_flags;
     packet.custom_cap_flags = custom_cap_flags;
     mav_array_memcpy(packet.vendor_name, vendor_name, sizeof(char)*32);
@@ -226,7 +226,7 @@ static inline uint16_t mavlink_msg_gimbal_device_information_pack_chan(uint8_t s
  */
 static inline uint16_t mavlink_msg_gimbal_device_information_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_gimbal_device_information_t* gimbal_device_information)
 {
-    return mavlink_msg_gimbal_device_information_pack(system_id, component_id, msg, gimbal_device_information->time_boot_ms, gimbal_device_information->vendor_name, gimbal_device_information->model_name, gimbal_device_information->custom_name, gimbal_device_information->firmware_version, gimbal_device_information->hardware_version, gimbal_device_information->uid, gimbal_device_information->cap_flags, gimbal_device_information->custom_cap_flags, gimbal_device_information->tilt_max, gimbal_device_information->tilt_min, gimbal_device_information->tilt_rate_max, gimbal_device_information->pan_max, gimbal_device_information->pan_min, gimbal_device_information->pan_rate_max);
+    return mavlink_msg_gimbal_device_information_pack(system_id, component_id, msg, gimbal_device_information->time_boot_ms, gimbal_device_information->vendor_name, gimbal_device_information->model_name, gimbal_device_information->custom_name, gimbal_device_information->firmware_version, gimbal_device_information->hardware_version, gimbal_device_information->uid, gimbal_device_information->cap_flags, gimbal_device_information->custom_cap_flags, gimbal_device_information->roll_min, gimbal_device_information->roll_max, gimbal_device_information->pitch_min, gimbal_device_information->pitch_max, gimbal_device_information->yaw_min, gimbal_device_information->yaw_max);
 }
 
 /**
@@ -240,7 +240,7 @@ static inline uint16_t mavlink_msg_gimbal_device_information_encode(uint8_t syst
  */
 static inline uint16_t mavlink_msg_gimbal_device_information_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gimbal_device_information_t* gimbal_device_information)
 {
-    return mavlink_msg_gimbal_device_information_pack_chan(system_id, component_id, chan, msg, gimbal_device_information->time_boot_ms, gimbal_device_information->vendor_name, gimbal_device_information->model_name, gimbal_device_information->custom_name, gimbal_device_information->firmware_version, gimbal_device_information->hardware_version, gimbal_device_information->uid, gimbal_device_information->cap_flags, gimbal_device_information->custom_cap_flags, gimbal_device_information->tilt_max, gimbal_device_information->tilt_min, gimbal_device_information->tilt_rate_max, gimbal_device_information->pan_max, gimbal_device_information->pan_min, gimbal_device_information->pan_rate_max);
+    return mavlink_msg_gimbal_device_information_pack_chan(system_id, component_id, chan, msg, gimbal_device_information->time_boot_ms, gimbal_device_information->vendor_name, gimbal_device_information->model_name, gimbal_device_information->custom_name, gimbal_device_information->firmware_version, gimbal_device_information->hardware_version, gimbal_device_information->uid, gimbal_device_information->cap_flags, gimbal_device_information->custom_cap_flags, gimbal_device_information->roll_min, gimbal_device_information->roll_max, gimbal_device_information->pitch_min, gimbal_device_information->pitch_max, gimbal_device_information->yaw_min, gimbal_device_information->yaw_max);
 }
 
 /**
@@ -256,16 +256,16 @@ static inline uint16_t mavlink_msg_gimbal_device_information_encode_chan(uint8_t
  * @param uid  UID of gimbal hardware (0 if unknown).
  * @param cap_flags  Bitmap of gimbal capability flags.
  * @param custom_cap_flags  Bitmap for use for gimbal-specific capability flags.
- * @param tilt_max [rad] Maximum hardware tilt/pitch angle (positive: up, negative: down)
- * @param tilt_min [rad] Minimum hardware tilt/pitch angle (positive: up, negative: down)
- * @param tilt_rate_max [rad/s] Maximum hardware tilt/pitch angular rate (positive: up, negative: down)
- * @param pan_max [rad] Maximum hardware pan/yaw angle (positive: to the right, negative: to the left)
- * @param pan_min [rad] Minimum hardware pan/yaw angle (positive: to the right, negative: to the left)
- * @param pan_rate_max [rad/s] Maximum hardware pan/yaw angular rate (positive: to the right, negative: to the left)
+ * @param roll_min [rad] Minimum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
+ * @param roll_max [rad] Maximum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
+ * @param pitch_min [rad] Minimum hardware pitch angle (positive: up, negative: down)
+ * @param pitch_max [rad] Maximum hardware pitch angle (positive: up, negative: down)
+ * @param yaw_min [rad] Minimum hardware yaw angle (positive: to the right, negative: to the left)
+ * @param yaw_max [rad] Maximum hardware yaw angle (positive: to the right, negative: to the left)
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_gimbal_device_information_send(mavlink_channel_t chan, uint32_t time_boot_ms, const char *vendor_name, const char *model_name, const char *custom_name, uint32_t firmware_version, uint32_t hardware_version, uint64_t uid, uint16_t cap_flags, uint16_t custom_cap_flags, float tilt_max, float tilt_min, float tilt_rate_max, float pan_max, float pan_min, float pan_rate_max)
+static inline void mavlink_msg_gimbal_device_information_send(mavlink_channel_t chan, uint32_t time_boot_ms, const char *vendor_name, const char *model_name, const char *custom_name, uint32_t firmware_version, uint32_t hardware_version, uint64_t uid, uint16_t cap_flags, uint16_t custom_cap_flags, float roll_min, float roll_max, float pitch_min, float pitch_max, float yaw_min, float yaw_max)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN];
@@ -273,12 +273,12 @@ static inline void mavlink_msg_gimbal_device_information_send(mavlink_channel_t 
     _mav_put_uint32_t(buf, 8, time_boot_ms);
     _mav_put_uint32_t(buf, 12, firmware_version);
     _mav_put_uint32_t(buf, 16, hardware_version);
-    _mav_put_float(buf, 20, tilt_max);
-    _mav_put_float(buf, 24, tilt_min);
-    _mav_put_float(buf, 28, tilt_rate_max);
-    _mav_put_float(buf, 32, pan_max);
-    _mav_put_float(buf, 36, pan_min);
-    _mav_put_float(buf, 40, pan_rate_max);
+    _mav_put_float(buf, 20, roll_min);
+    _mav_put_float(buf, 24, roll_max);
+    _mav_put_float(buf, 28, pitch_min);
+    _mav_put_float(buf, 32, pitch_max);
+    _mav_put_float(buf, 36, yaw_min);
+    _mav_put_float(buf, 40, yaw_max);
     _mav_put_uint16_t(buf, 44, cap_flags);
     _mav_put_uint16_t(buf, 46, custom_cap_flags);
     _mav_put_char_array(buf, 48, vendor_name, 32);
@@ -291,12 +291,12 @@ static inline void mavlink_msg_gimbal_device_information_send(mavlink_channel_t 
     packet.time_boot_ms = time_boot_ms;
     packet.firmware_version = firmware_version;
     packet.hardware_version = hardware_version;
-    packet.tilt_max = tilt_max;
-    packet.tilt_min = tilt_min;
-    packet.tilt_rate_max = tilt_rate_max;
-    packet.pan_max = pan_max;
-    packet.pan_min = pan_min;
-    packet.pan_rate_max = pan_rate_max;
+    packet.roll_min = roll_min;
+    packet.roll_max = roll_max;
+    packet.pitch_min = pitch_min;
+    packet.pitch_max = pitch_max;
+    packet.yaw_min = yaw_min;
+    packet.yaw_max = yaw_max;
     packet.cap_flags = cap_flags;
     packet.custom_cap_flags = custom_cap_flags;
     mav_array_memcpy(packet.vendor_name, vendor_name, sizeof(char)*32);
@@ -314,7 +314,7 @@ static inline void mavlink_msg_gimbal_device_information_send(mavlink_channel_t 
 static inline void mavlink_msg_gimbal_device_information_send_struct(mavlink_channel_t chan, const mavlink_gimbal_device_information_t* gimbal_device_information)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_gimbal_device_information_send(chan, gimbal_device_information->time_boot_ms, gimbal_device_information->vendor_name, gimbal_device_information->model_name, gimbal_device_information->custom_name, gimbal_device_information->firmware_version, gimbal_device_information->hardware_version, gimbal_device_information->uid, gimbal_device_information->cap_flags, gimbal_device_information->custom_cap_flags, gimbal_device_information->tilt_max, gimbal_device_information->tilt_min, gimbal_device_information->tilt_rate_max, gimbal_device_information->pan_max, gimbal_device_information->pan_min, gimbal_device_information->pan_rate_max);
+    mavlink_msg_gimbal_device_information_send(chan, gimbal_device_information->time_boot_ms, gimbal_device_information->vendor_name, gimbal_device_information->model_name, gimbal_device_information->custom_name, gimbal_device_information->firmware_version, gimbal_device_information->hardware_version, gimbal_device_information->uid, gimbal_device_information->cap_flags, gimbal_device_information->custom_cap_flags, gimbal_device_information->roll_min, gimbal_device_information->roll_max, gimbal_device_information->pitch_min, gimbal_device_information->pitch_max, gimbal_device_information->yaw_min, gimbal_device_information->yaw_max);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION, (const char *)gimbal_device_information, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_CRC);
 #endif
@@ -328,7 +328,7 @@ static inline void mavlink_msg_gimbal_device_information_send_struct(mavlink_cha
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_gimbal_device_information_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, const char *vendor_name, const char *model_name, const char *custom_name, uint32_t firmware_version, uint32_t hardware_version, uint64_t uid, uint16_t cap_flags, uint16_t custom_cap_flags, float tilt_max, float tilt_min, float tilt_rate_max, float pan_max, float pan_min, float pan_rate_max)
+static inline void mavlink_msg_gimbal_device_information_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, const char *vendor_name, const char *model_name, const char *custom_name, uint32_t firmware_version, uint32_t hardware_version, uint64_t uid, uint16_t cap_flags, uint16_t custom_cap_flags, float roll_min, float roll_max, float pitch_min, float pitch_max, float yaw_min, float yaw_max)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -336,12 +336,12 @@ static inline void mavlink_msg_gimbal_device_information_send_buf(mavlink_messag
     _mav_put_uint32_t(buf, 8, time_boot_ms);
     _mav_put_uint32_t(buf, 12, firmware_version);
     _mav_put_uint32_t(buf, 16, hardware_version);
-    _mav_put_float(buf, 20, tilt_max);
-    _mav_put_float(buf, 24, tilt_min);
-    _mav_put_float(buf, 28, tilt_rate_max);
-    _mav_put_float(buf, 32, pan_max);
-    _mav_put_float(buf, 36, pan_min);
-    _mav_put_float(buf, 40, pan_rate_max);
+    _mav_put_float(buf, 20, roll_min);
+    _mav_put_float(buf, 24, roll_max);
+    _mav_put_float(buf, 28, pitch_min);
+    _mav_put_float(buf, 32, pitch_max);
+    _mav_put_float(buf, 36, yaw_min);
+    _mav_put_float(buf, 40, yaw_max);
     _mav_put_uint16_t(buf, 44, cap_flags);
     _mav_put_uint16_t(buf, 46, custom_cap_flags);
     _mav_put_char_array(buf, 48, vendor_name, 32);
@@ -354,12 +354,12 @@ static inline void mavlink_msg_gimbal_device_information_send_buf(mavlink_messag
     packet->time_boot_ms = time_boot_ms;
     packet->firmware_version = firmware_version;
     packet->hardware_version = hardware_version;
-    packet->tilt_max = tilt_max;
-    packet->tilt_min = tilt_min;
-    packet->tilt_rate_max = tilt_rate_max;
-    packet->pan_max = pan_max;
-    packet->pan_min = pan_min;
-    packet->pan_rate_max = pan_rate_max;
+    packet->roll_min = roll_min;
+    packet->roll_max = roll_max;
+    packet->pitch_min = pitch_min;
+    packet->pitch_max = pitch_max;
+    packet->yaw_min = yaw_min;
+    packet->yaw_max = yaw_max;
     packet->cap_flags = cap_flags;
     packet->custom_cap_flags = custom_cap_flags;
     mav_array_memcpy(packet->vendor_name, vendor_name, sizeof(char)*32);
@@ -466,61 +466,61 @@ static inline uint16_t mavlink_msg_gimbal_device_information_get_custom_cap_flag
 }
 
 /**
- * @brief Get field tilt_max from gimbal_device_information message
+ * @brief Get field roll_min from gimbal_device_information message
  *
- * @return [rad] Maximum hardware tilt/pitch angle (positive: up, negative: down)
+ * @return [rad] Minimum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
  */
-static inline float mavlink_msg_gimbal_device_information_get_tilt_max(const mavlink_message_t* msg)
+static inline float mavlink_msg_gimbal_device_information_get_roll_min(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  20);
 }
 
 /**
- * @brief Get field tilt_min from gimbal_device_information message
+ * @brief Get field roll_max from gimbal_device_information message
  *
- * @return [rad] Minimum hardware tilt/pitch angle (positive: up, negative: down)
+ * @return [rad] Maximum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
  */
-static inline float mavlink_msg_gimbal_device_information_get_tilt_min(const mavlink_message_t* msg)
+static inline float mavlink_msg_gimbal_device_information_get_roll_max(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  24);
 }
 
 /**
- * @brief Get field tilt_rate_max from gimbal_device_information message
+ * @brief Get field pitch_min from gimbal_device_information message
  *
- * @return [rad/s] Maximum hardware tilt/pitch angular rate (positive: up, negative: down)
+ * @return [rad] Minimum hardware pitch angle (positive: up, negative: down)
  */
-static inline float mavlink_msg_gimbal_device_information_get_tilt_rate_max(const mavlink_message_t* msg)
+static inline float mavlink_msg_gimbal_device_information_get_pitch_min(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  28);
 }
 
 /**
- * @brief Get field pan_max from gimbal_device_information message
+ * @brief Get field pitch_max from gimbal_device_information message
  *
- * @return [rad] Maximum hardware pan/yaw angle (positive: to the right, negative: to the left)
+ * @return [rad] Maximum hardware pitch angle (positive: up, negative: down)
  */
-static inline float mavlink_msg_gimbal_device_information_get_pan_max(const mavlink_message_t* msg)
+static inline float mavlink_msg_gimbal_device_information_get_pitch_max(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  32);
 }
 
 /**
- * @brief Get field pan_min from gimbal_device_information message
+ * @brief Get field yaw_min from gimbal_device_information message
  *
- * @return [rad] Minimum hardware pan/yaw angle (positive: to the right, negative: to the left)
+ * @return [rad] Minimum hardware yaw angle (positive: to the right, negative: to the left)
  */
-static inline float mavlink_msg_gimbal_device_information_get_pan_min(const mavlink_message_t* msg)
+static inline float mavlink_msg_gimbal_device_information_get_yaw_min(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  36);
 }
 
 /**
- * @brief Get field pan_rate_max from gimbal_device_information message
+ * @brief Get field yaw_max from gimbal_device_information message
  *
- * @return [rad/s] Maximum hardware pan/yaw angular rate (positive: to the right, negative: to the left)
+ * @return [rad] Maximum hardware yaw angle (positive: to the right, negative: to the left)
  */
-static inline float mavlink_msg_gimbal_device_information_get_pan_rate_max(const mavlink_message_t* msg)
+static inline float mavlink_msg_gimbal_device_information_get_yaw_max(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  40);
 }
@@ -538,12 +538,12 @@ static inline void mavlink_msg_gimbal_device_information_decode(const mavlink_me
     gimbal_device_information->time_boot_ms = mavlink_msg_gimbal_device_information_get_time_boot_ms(msg);
     gimbal_device_information->firmware_version = mavlink_msg_gimbal_device_information_get_firmware_version(msg);
     gimbal_device_information->hardware_version = mavlink_msg_gimbal_device_information_get_hardware_version(msg);
-    gimbal_device_information->tilt_max = mavlink_msg_gimbal_device_information_get_tilt_max(msg);
-    gimbal_device_information->tilt_min = mavlink_msg_gimbal_device_information_get_tilt_min(msg);
-    gimbal_device_information->tilt_rate_max = mavlink_msg_gimbal_device_information_get_tilt_rate_max(msg);
-    gimbal_device_information->pan_max = mavlink_msg_gimbal_device_information_get_pan_max(msg);
-    gimbal_device_information->pan_min = mavlink_msg_gimbal_device_information_get_pan_min(msg);
-    gimbal_device_information->pan_rate_max = mavlink_msg_gimbal_device_information_get_pan_rate_max(msg);
+    gimbal_device_information->roll_min = mavlink_msg_gimbal_device_information_get_roll_min(msg);
+    gimbal_device_information->roll_max = mavlink_msg_gimbal_device_information_get_roll_max(msg);
+    gimbal_device_information->pitch_min = mavlink_msg_gimbal_device_information_get_pitch_min(msg);
+    gimbal_device_information->pitch_max = mavlink_msg_gimbal_device_information_get_pitch_max(msg);
+    gimbal_device_information->yaw_min = mavlink_msg_gimbal_device_information_get_yaw_min(msg);
+    gimbal_device_information->yaw_max = mavlink_msg_gimbal_device_information_get_yaw_max(msg);
     gimbal_device_information->cap_flags = mavlink_msg_gimbal_device_information_get_cap_flags(msg);
     gimbal_device_information->custom_cap_flags = mavlink_msg_gimbal_device_information_get_custom_cap_flags(msg);
     mavlink_msg_gimbal_device_information_get_vendor_name(msg, gimbal_device_information->vendor_name);

@@ -7,9 +7,9 @@
 typedef struct __mavlink_gimbal_manager_set_attitude_t {
  uint32_t flags; /*<  High level gimbal manager flags to use.*/
  float q[4]; /*<  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation, the frame is depends on whether the flag GIMBAL_MANAGER_FLAGS_YAW_LOCK is set)*/
- float angular_velocity_x; /*< [rad/s] X component of angular velocity, positive is banking to the right, NaN to be ignored.*/
- float angular_velocity_y; /*< [rad/s] Y component of angular velocity, positive is tilting up, NaN to be ignored.*/
- float angular_velocity_z; /*< [rad/s] Z component of angular velocity, positive is panning to the right, NaN to be ignored.*/
+ float angular_velocity_x; /*< [rad/s] X component of angular velocity, positive is rolling to the right, NaN to be ignored.*/
+ float angular_velocity_y; /*< [rad/s] Y component of angular velocity, positive is pitching up, NaN to be ignored.*/
+ float angular_velocity_z; /*< [rad/s] Z component of angular velocity, positive is yawing to the right, NaN to be ignored.*/
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
  uint8_t gimbal_device_id; /*<  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).*/
@@ -67,9 +67,9 @@ typedef struct __mavlink_gimbal_manager_set_attitude_t {
  * @param flags  High level gimbal manager flags to use.
  * @param gimbal_device_id  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).
  * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation, the frame is depends on whether the flag GIMBAL_MANAGER_FLAGS_YAW_LOCK is set)
- * @param angular_velocity_x [rad/s] X component of angular velocity, positive is banking to the right, NaN to be ignored.
- * @param angular_velocity_y [rad/s] Y component of angular velocity, positive is tilting up, NaN to be ignored.
- * @param angular_velocity_z [rad/s] Z component of angular velocity, positive is panning to the right, NaN to be ignored.
+ * @param angular_velocity_x [rad/s] X component of angular velocity, positive is rolling to the right, NaN to be ignored.
+ * @param angular_velocity_y [rad/s] Y component of angular velocity, positive is pitching up, NaN to be ignored.
+ * @param angular_velocity_z [rad/s] Z component of angular velocity, positive is yawing to the right, NaN to be ignored.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_gimbal_manager_set_attitude_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -114,9 +114,9 @@ static inline uint16_t mavlink_msg_gimbal_manager_set_attitude_pack(uint8_t syst
  * @param flags  High level gimbal manager flags to use.
  * @param gimbal_device_id  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).
  * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation, the frame is depends on whether the flag GIMBAL_MANAGER_FLAGS_YAW_LOCK is set)
- * @param angular_velocity_x [rad/s] X component of angular velocity, positive is banking to the right, NaN to be ignored.
- * @param angular_velocity_y [rad/s] Y component of angular velocity, positive is tilting up, NaN to be ignored.
- * @param angular_velocity_z [rad/s] Z component of angular velocity, positive is panning to the right, NaN to be ignored.
+ * @param angular_velocity_x [rad/s] X component of angular velocity, positive is rolling to the right, NaN to be ignored.
+ * @param angular_velocity_y [rad/s] Y component of angular velocity, positive is pitching up, NaN to be ignored.
+ * @param angular_velocity_z [rad/s] Z component of angular velocity, positive is yawing to the right, NaN to be ignored.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_gimbal_manager_set_attitude_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -187,9 +187,9 @@ static inline uint16_t mavlink_msg_gimbal_manager_set_attitude_encode_chan(uint8
  * @param flags  High level gimbal manager flags to use.
  * @param gimbal_device_id  Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).
  * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation, the frame is depends on whether the flag GIMBAL_MANAGER_FLAGS_YAW_LOCK is set)
- * @param angular_velocity_x [rad/s] X component of angular velocity, positive is banking to the right, NaN to be ignored.
- * @param angular_velocity_y [rad/s] Y component of angular velocity, positive is tilting up, NaN to be ignored.
- * @param angular_velocity_z [rad/s] Z component of angular velocity, positive is panning to the right, NaN to be ignored.
+ * @param angular_velocity_x [rad/s] X component of angular velocity, positive is rolling to the right, NaN to be ignored.
+ * @param angular_velocity_y [rad/s] Y component of angular velocity, positive is pitching up, NaN to be ignored.
+ * @param angular_velocity_z [rad/s] Z component of angular velocity, positive is yawing to the right, NaN to be ignored.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -328,7 +328,7 @@ static inline uint16_t mavlink_msg_gimbal_manager_set_attitude_get_q(const mavli
 /**
  * @brief Get field angular_velocity_x from gimbal_manager_set_attitude message
  *
- * @return [rad/s] X component of angular velocity, positive is banking to the right, NaN to be ignored.
+ * @return [rad/s] X component of angular velocity, positive is rolling to the right, NaN to be ignored.
  */
 static inline float mavlink_msg_gimbal_manager_set_attitude_get_angular_velocity_x(const mavlink_message_t* msg)
 {
@@ -338,7 +338,7 @@ static inline float mavlink_msg_gimbal_manager_set_attitude_get_angular_velocity
 /**
  * @brief Get field angular_velocity_y from gimbal_manager_set_attitude message
  *
- * @return [rad/s] Y component of angular velocity, positive is tilting up, NaN to be ignored.
+ * @return [rad/s] Y component of angular velocity, positive is pitching up, NaN to be ignored.
  */
 static inline float mavlink_msg_gimbal_manager_set_attitude_get_angular_velocity_y(const mavlink_message_t* msg)
 {
@@ -348,7 +348,7 @@ static inline float mavlink_msg_gimbal_manager_set_attitude_get_angular_velocity
 /**
  * @brief Get field angular_velocity_z from gimbal_manager_set_attitude message
  *
- * @return [rad/s] Z component of angular velocity, positive is panning to the right, NaN to be ignored.
+ * @return [rad/s] Z component of angular velocity, positive is yawing to the right, NaN to be ignored.
  */
 static inline float mavlink_msg_gimbal_manager_set_attitude_get_angular_velocity_z(const mavlink_message_t* msg)
 {
