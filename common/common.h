@@ -312,7 +312,7 @@ typedef enum GIMBAL_MANAGER_FLAGS
    GIMBAL_MANAGER_FLAGS_ROLL_LOCK=4, /* Based on GIMBAL_DEVICE_FLAGS_ROLL_LOCK | */
    GIMBAL_MANAGER_FLAGS_PITCH_LOCK=8, /* Based on GIMBAL_DEVICE_FLAGS_PITCH_LOCK | */
    GIMBAL_MANAGER_FLAGS_YAW_LOCK=16, /* Based on GIMBAL_DEVICE_FLAGS_YAW_LOCK | */
-   GIMBAL_MANAGER_FLAGS_NONE=1048576, /* This flag can be set to give up control previously set using MAV_CMD_DO_GIMBAL_MANAGER_ATTITUDE. This flag must not be combined with other flags. | */
+   GIMBAL_MANAGER_FLAGS_NONE=1048576, /* This flag can be set to give up control previously set using MAV_CMD_DO_GIMBAL_MANAGER_PITCHYAW. This flag must not be combined with other flags. | */
    GIMBAL_MANAGER_FLAGS_ENUM_END=1048577, /*  | */
 } GIMBAL_MANAGER_FLAGS;
 #endif
