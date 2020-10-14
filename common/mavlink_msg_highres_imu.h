@@ -15,8 +15,8 @@ typedef struct __mavlink_highres_imu_t {
  float xmag; /*< [gauss] X Magnetic field*/
  float ymag; /*< [gauss] Y Magnetic field*/
  float zmag; /*< [gauss] Z Magnetic field*/
- float abs_pressure; /*< [mbar] Absolute pressure*/
- float diff_pressure; /*< [mbar] Differential pressure*/
+ float abs_pressure; /*< [hPa] Absolute pressure*/
+ float diff_pressure; /*< [hPa] Differential pressure*/
  float pressure_alt; /*<  Altitude calculated from pressure*/
  float temperature; /*< [degC] Temperature*/
  uint16_t fields_updated; /*<  Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature*/
@@ -96,8 +96,8 @@ typedef struct __mavlink_highres_imu_t {
  * @param xmag [gauss] X Magnetic field
  * @param ymag [gauss] Y Magnetic field
  * @param zmag [gauss] Z Magnetic field
- * @param abs_pressure [mbar] Absolute pressure
- * @param diff_pressure [mbar] Differential pressure
+ * @param abs_pressure [hPa] Absolute pressure
+ * @param diff_pressure [hPa] Differential pressure
  * @param pressure_alt  Altitude calculated from pressure
  * @param temperature [degC] Temperature
  * @param fields_updated  Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature
@@ -169,8 +169,8 @@ static inline uint16_t mavlink_msg_highres_imu_pack(uint8_t system_id, uint8_t c
  * @param xmag [gauss] X Magnetic field
  * @param ymag [gauss] Y Magnetic field
  * @param zmag [gauss] Z Magnetic field
- * @param abs_pressure [mbar] Absolute pressure
- * @param diff_pressure [mbar] Differential pressure
+ * @param abs_pressure [hPa] Absolute pressure
+ * @param diff_pressure [hPa] Differential pressure
  * @param pressure_alt  Altitude calculated from pressure
  * @param temperature [degC] Temperature
  * @param fields_updated  Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature
@@ -268,8 +268,8 @@ static inline uint16_t mavlink_msg_highres_imu_encode_chan(uint8_t system_id, ui
  * @param xmag [gauss] X Magnetic field
  * @param ymag [gauss] Y Magnetic field
  * @param zmag [gauss] Z Magnetic field
- * @param abs_pressure [mbar] Absolute pressure
- * @param diff_pressure [mbar] Differential pressure
+ * @param abs_pressure [hPa] Absolute pressure
+ * @param diff_pressure [hPa] Differential pressure
  * @param pressure_alt  Altitude calculated from pressure
  * @param temperature [degC] Temperature
  * @param fields_updated  Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature
@@ -498,7 +498,7 @@ static inline float mavlink_msg_highres_imu_get_zmag(const mavlink_message_t* ms
 /**
  * @brief Get field abs_pressure from highres_imu message
  *
- * @return [mbar] Absolute pressure
+ * @return [hPa] Absolute pressure
  */
 static inline float mavlink_msg_highres_imu_get_abs_pressure(const mavlink_message_t* msg)
 {
@@ -508,7 +508,7 @@ static inline float mavlink_msg_highres_imu_get_abs_pressure(const mavlink_messa
 /**
  * @brief Get field diff_pressure from highres_imu message
  *
- * @return [mbar] Differential pressure
+ * @return [hPa] Differential pressure
  */
 static inline float mavlink_msg_highres_imu_get_diff_pressure(const mavlink_message_t* msg)
 {

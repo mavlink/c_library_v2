@@ -15,8 +15,8 @@ typedef struct __mavlink_hil_sensor_t {
  float xmag; /*< [gauss] X Magnetic field*/
  float ymag; /*< [gauss] Y Magnetic field*/
  float zmag; /*< [gauss] Z Magnetic field*/
- float abs_pressure; /*< [mbar] Absolute pressure*/
- float diff_pressure; /*< [mbar] Differential pressure (airspeed)*/
+ float abs_pressure; /*< [hPa] Absolute pressure*/
+ float diff_pressure; /*< [hPa] Differential pressure (airspeed)*/
  float pressure_alt; /*<  Altitude calculated from pressure*/
  float temperature; /*< [degC] Temperature*/
  uint32_t fields_updated; /*<  Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.*/
@@ -96,8 +96,8 @@ typedef struct __mavlink_hil_sensor_t {
  * @param xmag [gauss] X Magnetic field
  * @param ymag [gauss] Y Magnetic field
  * @param zmag [gauss] Z Magnetic field
- * @param abs_pressure [mbar] Absolute pressure
- * @param diff_pressure [mbar] Differential pressure (airspeed)
+ * @param abs_pressure [hPa] Absolute pressure
+ * @param diff_pressure [hPa] Differential pressure (airspeed)
  * @param pressure_alt  Altitude calculated from pressure
  * @param temperature [degC] Temperature
  * @param fields_updated  Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.
@@ -169,8 +169,8 @@ static inline uint16_t mavlink_msg_hil_sensor_pack(uint8_t system_id, uint8_t co
  * @param xmag [gauss] X Magnetic field
  * @param ymag [gauss] Y Magnetic field
  * @param zmag [gauss] Z Magnetic field
- * @param abs_pressure [mbar] Absolute pressure
- * @param diff_pressure [mbar] Differential pressure (airspeed)
+ * @param abs_pressure [hPa] Absolute pressure
+ * @param diff_pressure [hPa] Differential pressure (airspeed)
  * @param pressure_alt  Altitude calculated from pressure
  * @param temperature [degC] Temperature
  * @param fields_updated  Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.
@@ -268,8 +268,8 @@ static inline uint16_t mavlink_msg_hil_sensor_encode_chan(uint8_t system_id, uin
  * @param xmag [gauss] X Magnetic field
  * @param ymag [gauss] Y Magnetic field
  * @param zmag [gauss] Z Magnetic field
- * @param abs_pressure [mbar] Absolute pressure
- * @param diff_pressure [mbar] Differential pressure (airspeed)
+ * @param abs_pressure [hPa] Absolute pressure
+ * @param diff_pressure [hPa] Differential pressure (airspeed)
  * @param pressure_alt  Altitude calculated from pressure
  * @param temperature [degC] Temperature
  * @param fields_updated  Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.
@@ -498,7 +498,7 @@ static inline float mavlink_msg_hil_sensor_get_zmag(const mavlink_message_t* msg
 /**
  * @brief Get field abs_pressure from hil_sensor message
  *
- * @return [mbar] Absolute pressure
+ * @return [hPa] Absolute pressure
  */
 static inline float mavlink_msg_hil_sensor_get_abs_pressure(const mavlink_message_t* msg)
 {
@@ -508,7 +508,7 @@ static inline float mavlink_msg_hil_sensor_get_abs_pressure(const mavlink_messag
 /**
  * @brief Get field diff_pressure from hil_sensor message
  *
- * @return [mbar] Differential pressure (airspeed)
+ * @return [hPa] Differential pressure (airspeed)
  */
 static inline float mavlink_msg_hil_sensor_get_diff_pressure(const mavlink_message_t* msg)
 {
