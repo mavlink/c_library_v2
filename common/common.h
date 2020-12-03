@@ -1578,6 +1578,20 @@ typedef enum POSITION_TARGET_TYPEMASK
 } POSITION_TARGET_TYPEMASK;
 #endif
 
+/** @brief Bitmap to indicate which dimensions should be ignored by the vehicle: a value of 0b00000000 indicates that none of the setpoint dimensions should be ignored. */
+#ifndef HAVE_ENUM_ATTITUDE_TARGET_TYPEMASK
+#define HAVE_ENUM_ATTITUDE_TARGET_TYPEMASK
+typedef enum ATTITUDE_TARGET_TYPEMASK
+{
+   ATTITUDE_TARGET_TYPEMASK_BODY_ROLL_RATE_IGNORE=1, /* Ignore body roll rate | */
+   ATTITUDE_TARGET_TYPEMASK_BODY_PITCH_RATE_IGNORE=2, /* Ignore body pitch rate | */
+   ATTITUDE_TARGET_TYPEMASK_BODY_YAW_RATE_IGNORE=4, /* Ignore body yaw rate | */
+   ATTITUDE_TARGET_TYPEMASK_THROTTLE_IGNORE=64, /* Ignore throttle | */
+   ATTITUDE_TARGET_TYPEMASK_ATTITUDE_IGNORE=128, /* Ignore attitude | */
+   ATTITUDE_TARGET_TYPEMASK_ENUM_END=129, /*  | */
+} ATTITUDE_TARGET_TYPEMASK;
+#endif
+
 /** @brief Airborne status of UAS. */
 #ifndef HAVE_ENUM_UTM_FLIGHT_STATE
 #define HAVE_ENUM_UTM_FLIGHT_STATE
