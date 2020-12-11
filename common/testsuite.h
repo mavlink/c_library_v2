@@ -11953,13 +11953,12 @@ static void mavlink_test_smart_battery_info(uint8_t system_id, uint8_t component
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_smart_battery_info_t packet_in = {
-        963497464,963497672,963497880,17859,17963,18067,18171,18275,199,10,77,"ZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUV"
+        963497464,963497672,17651,17755,17859,17963,18067,187,254,65,"VWXYZABCDEFGHIJ","LMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGH"
     };
     mavlink_smart_battery_info_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         packet1.capacity_full_specification = packet_in.capacity_full_specification;
         packet1.capacity_full = packet_in.capacity_full;
-        packet1.serial_number = packet_in.serial_number;
         packet1.cycle_count = packet_in.cycle_count;
         packet1.weight = packet_in.weight;
         packet1.discharge_minimum_voltage = packet_in.discharge_minimum_voltage;
@@ -11969,6 +11968,7 @@ static void mavlink_test_smart_battery_info(uint8_t system_id, uint8_t component
         packet1.battery_function = packet_in.battery_function;
         packet1.type = packet_in.type;
         
+        mav_array_memcpy(packet1.serial_number, packet_in.serial_number, sizeof(char)*16);
         mav_array_memcpy(packet1.device_name, packet_in.device_name, sizeof(char)*50);
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
