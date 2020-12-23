@@ -240,7 +240,8 @@ typedef enum MAV_MOUNT_MODE
    MAV_MOUNT_MODE_RC_TARGETING=3, /* Load neutral position and start RC Roll,Pitch,Yaw control with stabilization | */
    MAV_MOUNT_MODE_GPS_POINT=4, /* Load neutral position and start to point to Lat,Lon,Alt | */
    MAV_MOUNT_MODE_SYSID_TARGET=5, /* Gimbal tracks system with specified system ID | */
-   MAV_MOUNT_MODE_ENUM_END=6, /*  | */
+   MAV_MOUNT_MODE_HOME_LOCATION=6, /* Gimbal tracks home location | */
+   MAV_MOUNT_MODE_ENUM_END=7, /*  | */
 } MAV_MOUNT_MODE;
 #endif
 
