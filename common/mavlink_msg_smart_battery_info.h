@@ -7,7 +7,7 @@
 typedef struct __mavlink_smart_battery_info_t {
  int32_t capacity_full_specification; /*< [mAh] Capacity when full according to manufacturer, -1: field not provided.*/
  int32_t capacity_full; /*< [mAh] Capacity when full (accounting for battery degradation), -1: field not provided.*/
- uint16_t cycle_count; /*<  Charge/discharge cycle count. -1: field not provided.*/
+ uint16_t cycle_count; /*<  Charge/discharge cycle count. UINT16_MAX: field not provided.*/
  uint16_t weight; /*< [g] Battery weight. 0: field not provided.*/
  uint16_t discharge_minimum_voltage; /*< [mV] Minimum per-cell voltage when discharging. If not supplied set to UINT16_MAX value.*/
  uint16_t charging_minimum_voltage; /*< [mV] Minimum per-cell voltage when charging. If not supplied set to UINT16_MAX value.*/
@@ -80,7 +80,7 @@ typedef struct __mavlink_smart_battery_info_t {
  * @param type  Type (chemistry) of the battery
  * @param capacity_full_specification [mAh] Capacity when full according to manufacturer, -1: field not provided.
  * @param capacity_full [mAh] Capacity when full (accounting for battery degradation), -1: field not provided.
- * @param cycle_count  Charge/discharge cycle count. -1: field not provided.
+ * @param cycle_count  Charge/discharge cycle count. UINT16_MAX: field not provided.
  * @param serial_number  Serial number in ASCII characters, 0 terminated. All 0: field not provided.
  * @param device_name  Static device name. Encode as manufacturer and product names separated using an underscore.
  * @param weight [g] Battery weight. 0: field not provided.
@@ -139,7 +139,7 @@ static inline uint16_t mavlink_msg_smart_battery_info_pack(uint8_t system_id, ui
  * @param type  Type (chemistry) of the battery
  * @param capacity_full_specification [mAh] Capacity when full according to manufacturer, -1: field not provided.
  * @param capacity_full [mAh] Capacity when full (accounting for battery degradation), -1: field not provided.
- * @param cycle_count  Charge/discharge cycle count. -1: field not provided.
+ * @param cycle_count  Charge/discharge cycle count. UINT16_MAX: field not provided.
  * @param serial_number  Serial number in ASCII characters, 0 terminated. All 0: field not provided.
  * @param device_name  Static device name. Encode as manufacturer and product names separated using an underscore.
  * @param weight [g] Battery weight. 0: field not provided.
@@ -224,7 +224,7 @@ static inline uint16_t mavlink_msg_smart_battery_info_encode_chan(uint8_t system
  * @param type  Type (chemistry) of the battery
  * @param capacity_full_specification [mAh] Capacity when full according to manufacturer, -1: field not provided.
  * @param capacity_full [mAh] Capacity when full (accounting for battery degradation), -1: field not provided.
- * @param cycle_count  Charge/discharge cycle count. -1: field not provided.
+ * @param cycle_count  Charge/discharge cycle count. UINT16_MAX: field not provided.
  * @param serial_number  Serial number in ASCII characters, 0 terminated. All 0: field not provided.
  * @param device_name  Static device name. Encode as manufacturer and product names separated using an underscore.
  * @param weight [g] Battery weight. 0: field not provided.
@@ -385,7 +385,7 @@ static inline int32_t mavlink_msg_smart_battery_info_get_capacity_full(const mav
 /**
  * @brief Get field cycle_count from smart_battery_info message
  *
- * @return  Charge/discharge cycle count. -1: field not provided.
+ * @return  Charge/discharge cycle count. UINT16_MAX: field not provided.
  */
 static inline uint16_t mavlink_msg_smart_battery_info_get_cycle_count(const mavlink_message_t* msg)
 {

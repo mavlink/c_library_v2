@@ -990,6 +990,125 @@ static void mavlink_test_gsm_link_status(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
+static void mavlink_test_satcom_link_status(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_SATCOM_LINK_STATUS >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_satcom_link_status_t packet_in = {
+        93372036854775807ULL,93372036854776311ULL,18067,18171,65,132,199,10
+    };
+    mavlink_satcom_link_status_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.timestamp = packet_in.timestamp;
+        packet1.last_heartbeat = packet_in.last_heartbeat;
+        packet1.failed_sessions = packet_in.failed_sessions;
+        packet1.successful_sessions = packet_in.successful_sessions;
+        packet1.signal_quality = packet_in.signal_quality;
+        packet1.ring_pending = packet_in.ring_pending;
+        packet1.tx_session_pending = packet_in.tx_session_pending;
+        packet1.rx_session_pending = packet_in.rx_session_pending;
+        
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SATCOM_LINK_STATUS_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SATCOM_LINK_STATUS_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_satcom_link_status_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_satcom_link_status_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_satcom_link_status_pack(system_id, component_id, &msg , packet1.timestamp , packet1.last_heartbeat , packet1.failed_sessions , packet1.successful_sessions , packet1.signal_quality , packet1.ring_pending , packet1.tx_session_pending , packet1.rx_session_pending );
+    mavlink_msg_satcom_link_status_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_satcom_link_status_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.timestamp , packet1.last_heartbeat , packet1.failed_sessions , packet1.successful_sessions , packet1.signal_quality , packet1.ring_pending , packet1.tx_session_pending , packet1.rx_session_pending );
+    mavlink_msg_satcom_link_status_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_satcom_link_status_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_satcom_link_status_send(MAVLINK_COMM_1 , packet1.timestamp , packet1.last_heartbeat , packet1.failed_sessions , packet1.successful_sessions , packet1.signal_quality , packet1.ring_pending , packet1.tx_session_pending , packet1.rx_session_pending );
+    mavlink_msg_satcom_link_status_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
+static void mavlink_test_sensor_airflow_angles(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_SENSOR_AIRFLOW_ANGLES >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_sensor_airflow_angles_t packet_in = {
+        93372036854775807ULL,73.0,101.0,53,120
+    };
+    mavlink_sensor_airflow_angles_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.timestamp = packet_in.timestamp;
+        packet1.angleofattack = packet_in.angleofattack;
+        packet1.sideslip = packet_in.sideslip;
+        packet1.angleofattack_valid = packet_in.angleofattack_valid;
+        packet1.sideslip_valid = packet_in.sideslip_valid;
+        
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_SENSOR_AIRFLOW_ANGLES_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_SENSOR_AIRFLOW_ANGLES_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_sensor_airflow_angles_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_sensor_airflow_angles_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_sensor_airflow_angles_pack(system_id, component_id, &msg , packet1.timestamp , packet1.angleofattack , packet1.angleofattack_valid , packet1.sideslip , packet1.sideslip_valid );
+    mavlink_msg_sensor_airflow_angles_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_sensor_airflow_angles_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.timestamp , packet1.angleofattack , packet1.angleofattack_valid , packet1.sideslip , packet1.sideslip_valid );
+    mavlink_msg_sensor_airflow_angles_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_sensor_airflow_angles_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_sensor_airflow_angles_send(MAVLINK_COMM_1 , packet1.timestamp , packet1.angleofattack , packet1.angleofattack_valid , packet1.sideslip , packet1.sideslip_valid );
+    mavlink_msg_sensor_airflow_angles_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
 static void mavlink_test_ASLUAV(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
     mavlink_test_command_int_stamped(system_id, component_id, last_msg);
@@ -1007,6 +1126,8 @@ static void mavlink_test_ASLUAV(uint8_t system_id, uint8_t component_id, mavlink
     mavlink_test_sensorpod_status(system_id, component_id, last_msg);
     mavlink_test_sens_power_board(system_id, component_id, last_msg);
     mavlink_test_gsm_link_status(system_id, component_id, last_msg);
+    mavlink_test_satcom_link_status(system_id, component_id, last_msg);
+    mavlink_test_sensor_airflow_angles(system_id, component_id, last_msg);
 }
 
 #ifdef __cplusplus

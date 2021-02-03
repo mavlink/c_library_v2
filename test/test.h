@@ -24,7 +24,7 @@ extern "C" {
 #endif
 
 #ifndef MAVLINK_MESSAGE_CRCS
-#define MAVLINK_MESSAGE_CRCS {{0, 103, 179, 179, 0, 0, 0}}
+#define MAVLINK_MESSAGE_CRCS {{17000, 103, 179, 179, 0, 0, 0}}
 #endif
 
 #include "../protocol.h"
@@ -57,7 +57,7 @@ extern "C" {
 
 #if MAVLINK_THIS_XML_IDX == MAVLINK_PRIMARY_XML_IDX
 # define MAVLINK_MESSAGE_INFO {MAVLINK_MESSAGE_INFO_TEST_TYPES}
-# define MAVLINK_MESSAGE_NAMES {{ "TEST_TYPES", 0 }}
+# define MAVLINK_MESSAGE_NAMES {{ "TEST_TYPES", 17000 }}
 # if MAVLINK_COMMAND_24BIT
 #  include "../mavlink_get_info.h"
 # endif

@@ -7,8 +7,8 @@
 typedef struct __mavlink_efi_status_t {
  float ecu_index; /*<  ECU index*/
  float rpm; /*<  RPM*/
- float fuel_consumed; /*< [g] Fuel consumed*/
- float fuel_flow; /*< [g/min] Fuel flow rate*/
+ float fuel_consumed; /*< [cm^3] Fuel consumed*/
+ float fuel_flow; /*< [cm^3/min] Fuel flow rate*/
  float engine_load; /*< [%] Engine load*/
  float throttle_position; /*< [%] Throttle position*/
  float spark_dwell_time; /*< [ms] Spark dwell time*/
@@ -92,8 +92,8 @@ typedef struct __mavlink_efi_status_t {
  * @param health  EFI health status
  * @param ecu_index  ECU index
  * @param rpm  RPM
- * @param fuel_consumed [g] Fuel consumed
- * @param fuel_flow [g/min] Fuel flow rate
+ * @param fuel_consumed [cm^3] Fuel consumed
+ * @param fuel_flow [cm^3/min] Fuel flow rate
  * @param engine_load [%] Engine load
  * @param throttle_position [%] Throttle position
  * @param spark_dwell_time [ms] Spark dwell time
@@ -168,8 +168,8 @@ static inline uint16_t mavlink_msg_efi_status_pack(uint8_t system_id, uint8_t co
  * @param health  EFI health status
  * @param ecu_index  ECU index
  * @param rpm  RPM
- * @param fuel_consumed [g] Fuel consumed
- * @param fuel_flow [g/min] Fuel flow rate
+ * @param fuel_consumed [cm^3] Fuel consumed
+ * @param fuel_flow [cm^3/min] Fuel flow rate
  * @param engine_load [%] Engine load
  * @param throttle_position [%] Throttle position
  * @param spark_dwell_time [ms] Spark dwell time
@@ -270,8 +270,8 @@ static inline uint16_t mavlink_msg_efi_status_encode_chan(uint8_t system_id, uin
  * @param health  EFI health status
  * @param ecu_index  ECU index
  * @param rpm  RPM
- * @param fuel_consumed [g] Fuel consumed
- * @param fuel_flow [g/min] Fuel flow rate
+ * @param fuel_consumed [cm^3] Fuel consumed
+ * @param fuel_flow [cm^3/min] Fuel flow rate
  * @param engine_load [%] Engine load
  * @param throttle_position [%] Throttle position
  * @param spark_dwell_time [ms] Spark dwell time
@@ -442,7 +442,7 @@ static inline float mavlink_msg_efi_status_get_rpm(const mavlink_message_t* msg)
 /**
  * @brief Get field fuel_consumed from efi_status message
  *
- * @return [g] Fuel consumed
+ * @return [cm^3] Fuel consumed
  */
 static inline float mavlink_msg_efi_status_get_fuel_consumed(const mavlink_message_t* msg)
 {
@@ -452,7 +452,7 @@ static inline float mavlink_msg_efi_status_get_fuel_consumed(const mavlink_messa
 /**
  * @brief Get field fuel_flow from efi_status message
  *
- * @return [g/min] Fuel flow rate
+ * @return [cm^3/min] Fuel flow rate
  */
 static inline float mavlink_msg_efi_status_get_fuel_flow(const mavlink_message_t* msg)
 {
