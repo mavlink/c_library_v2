@@ -10,8 +10,8 @@ typedef struct __mavlink_gps2_raw_t {
  int32_t lon; /*< [degE7] Longitude (WGS84)*/
  int32_t alt; /*< [mm] Altitude (MSL). Positive for up.*/
  uint32_t dgps_age; /*< [ms] Age of DGPS info*/
- uint16_t eph; /*< [cm] GPS HDOP horizontal dilution of position. If unknown, set to: UINT16_MAX*/
- uint16_t epv; /*< [cm] GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX*/
+ uint16_t eph; /*<  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX*/
+ uint16_t epv; /*<  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX*/
  uint16_t vel; /*< [cm/s] GPS ground speed. If unknown, set to: UINT16_MAX*/
  uint16_t cog; /*< [cdeg] Course over ground (NOT heading, but direction of movement): 0.0..359.99 degrees. If unknown, set to: UINT16_MAX*/
  uint8_t fix_type; /*<  GPS fix type.*/
@@ -82,8 +82,8 @@ typedef struct __mavlink_gps2_raw_t {
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
  * @param alt [mm] Altitude (MSL). Positive for up.
- * @param eph [cm] GPS HDOP horizontal dilution of position. If unknown, set to: UINT16_MAX
- * @param epv [cm] GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX
+ * @param eph  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
+ * @param epv  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
  * @param vel [cm/s] GPS ground speed. If unknown, set to: UINT16_MAX
  * @param cog [cdeg] Course over ground (NOT heading, but direction of movement): 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
  * @param satellites_visible  Number of satellites visible. If unknown, set to 255
@@ -146,8 +146,8 @@ static inline uint16_t mavlink_msg_gps2_raw_pack(uint8_t system_id, uint8_t comp
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
  * @param alt [mm] Altitude (MSL). Positive for up.
- * @param eph [cm] GPS HDOP horizontal dilution of position. If unknown, set to: UINT16_MAX
- * @param epv [cm] GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX
+ * @param eph  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
+ * @param epv  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
  * @param vel [cm/s] GPS ground speed. If unknown, set to: UINT16_MAX
  * @param cog [cdeg] Course over ground (NOT heading, but direction of movement): 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
  * @param satellites_visible  Number of satellites visible. If unknown, set to 255
@@ -236,8 +236,8 @@ static inline uint16_t mavlink_msg_gps2_raw_encode_chan(uint8_t system_id, uint8
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
  * @param alt [mm] Altitude (MSL). Positive for up.
- * @param eph [cm] GPS HDOP horizontal dilution of position. If unknown, set to: UINT16_MAX
- * @param epv [cm] GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX
+ * @param eph  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
+ * @param epv  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
  * @param vel [cm/s] GPS ground speed. If unknown, set to: UINT16_MAX
  * @param cog [cdeg] Course over ground (NOT heading, but direction of movement): 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
  * @param satellites_visible  Number of satellites visible. If unknown, set to 255
@@ -406,7 +406,7 @@ static inline int32_t mavlink_msg_gps2_raw_get_alt(const mavlink_message_t* msg)
 /**
  * @brief Get field eph from gps2_raw message
  *
- * @return [cm] GPS HDOP horizontal dilution of position. If unknown, set to: UINT16_MAX
+ * @return  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
  */
 static inline uint16_t mavlink_msg_gps2_raw_get_eph(const mavlink_message_t* msg)
 {
@@ -416,7 +416,7 @@ static inline uint16_t mavlink_msg_gps2_raw_get_eph(const mavlink_message_t* msg
 /**
  * @brief Get field epv from gps2_raw message
  *
- * @return [cm] GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX
+ * @return  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
  */
 static inline uint16_t mavlink_msg_gps2_raw_get_epv(const mavlink_message_t* msg)
 {

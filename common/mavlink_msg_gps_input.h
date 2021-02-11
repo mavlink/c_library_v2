@@ -10,8 +10,8 @@ typedef struct __mavlink_gps_input_t {
  int32_t lat; /*< [degE7] Latitude (WGS84)*/
  int32_t lon; /*< [degE7] Longitude (WGS84)*/
  float alt; /*< [m] Altitude (MSL). Positive for up.*/
- float hdop; /*< [m] GPS HDOP horizontal dilution of position*/
- float vdop; /*< [m] GPS VDOP vertical dilution of position*/
+ float hdop; /*<  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX*/
+ float vdop; /*<  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX*/
  float vn; /*< [m/s] GPS velocity in north direction in earth-fixed NED frame*/
  float ve; /*< [m/s] GPS velocity in east direction in earth-fixed NED frame*/
  float vd; /*< [m/s] GPS velocity in down direction in earth-fixed NED frame*/
@@ -104,8 +104,8 @@ typedef struct __mavlink_gps_input_t {
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
  * @param alt [m] Altitude (MSL). Positive for up.
- * @param hdop [m] GPS HDOP horizontal dilution of position
- * @param vdop [m] GPS VDOP vertical dilution of position
+ * @param hdop  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
+ * @param vdop  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
  * @param vn [m/s] GPS velocity in north direction in earth-fixed NED frame
  * @param ve [m/s] GPS velocity in east direction in earth-fixed NED frame
  * @param vd [m/s] GPS velocity in down direction in earth-fixed NED frame
@@ -186,8 +186,8 @@ static inline uint16_t mavlink_msg_gps_input_pack(uint8_t system_id, uint8_t com
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
  * @param alt [m] Altitude (MSL). Positive for up.
- * @param hdop [m] GPS HDOP horizontal dilution of position
- * @param vdop [m] GPS VDOP vertical dilution of position
+ * @param hdop  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
+ * @param vdop  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
  * @param vn [m/s] GPS velocity in north direction in earth-fixed NED frame
  * @param ve [m/s] GPS velocity in east direction in earth-fixed NED frame
  * @param vd [m/s] GPS velocity in down direction in earth-fixed NED frame
@@ -294,8 +294,8 @@ static inline uint16_t mavlink_msg_gps_input_encode_chan(uint8_t system_id, uint
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
  * @param alt [m] Altitude (MSL). Positive for up.
- * @param hdop [m] GPS HDOP horizontal dilution of position
- * @param vdop [m] GPS VDOP vertical dilution of position
+ * @param hdop  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
+ * @param vdop  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
  * @param vn [m/s] GPS velocity in north direction in earth-fixed NED frame
  * @param ve [m/s] GPS velocity in east direction in earth-fixed NED frame
  * @param vd [m/s] GPS velocity in down direction in earth-fixed NED frame
@@ -530,7 +530,7 @@ static inline float mavlink_msg_gps_input_get_alt(const mavlink_message_t* msg)
 /**
  * @brief Get field hdop from gps_input message
  *
- * @return [m] GPS HDOP horizontal dilution of position
+ * @return  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
  */
 static inline float mavlink_msg_gps_input_get_hdop(const mavlink_message_t* msg)
 {
@@ -540,7 +540,7 @@ static inline float mavlink_msg_gps_input_get_hdop(const mavlink_message_t* msg)
 /**
  * @brief Get field vdop from gps_input message
  *
- * @return [m] GPS VDOP vertical dilution of position
+ * @return  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
  */
 static inline float mavlink_msg_gps_input_get_vdop(const mavlink_message_t* msg)
 {
