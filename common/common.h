@@ -1460,9 +1460,9 @@ typedef enum CAMERA_TRACKING_STATUS_FLAGS
 #define HAVE_ENUM_CAMERA_TRACKING_MODE
 typedef enum CAMERA_TRACKING_MODE
 {
-   CAMERA_TRACKING_NONE=0, /* Not tracking | */
-   CAMERA_TRACKING_POINT=1, /* Target is a point | */
-   CAMERA_TRACKING_RECTANGLE=2, /* Target is a rectangle | */
+   CAMERA_TRACKING_MODE_NONE=0, /* Not tracking | */
+   CAMERA_TRACKING_MODE_POINT=1, /* Target is a point | */
+   CAMERA_TRACKING_MODE_RECTANGLE=2, /* Target is a rectangle | */
    CAMERA_TRACKING_MODE_ENUM_END=3, /*  | */
 } CAMERA_TRACKING_MODE;
 #endif
