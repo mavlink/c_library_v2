@@ -140,7 +140,8 @@ typedef enum MAV_SYS_STATUS_SENSOR
    MAV_SYS_STATUS_SENSOR_SATCOM=134217728, /* 0x8000000 Satellite Communication  | */
    MAV_SYS_STATUS_PREARM_CHECK=268435456, /* 0x10000000 pre-arm check status. Always healthy when armed | */
    MAV_SYS_STATUS_OBSTACLE_AVOIDANCE=536870912, /* 0x20000000 Avoidance/collision prevention | */
-   MAV_SYS_STATUS_SENSOR_ENUM_END=536870913, /*  | */
+   MAV_SYS_STATUS_SENSOR_PROPULSION=1073741824, /* 0x40000000 propulsion (actuator, esc, motor or propellor) | */
+   MAV_SYS_STATUS_SENSOR_ENUM_END=1073741825, /*  | */
 } MAV_SYS_STATUS_SENSOR;
 #endif
 
