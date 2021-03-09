@@ -9,8 +9,8 @@ typedef struct __mavlink_gps_raw_int_t {
  int32_t lat; /*< [degE7] Latitude (WGS84, EGM96 ellipsoid)*/
  int32_t lon; /*< [degE7] Longitude (WGS84, EGM96 ellipsoid)*/
  int32_t alt; /*< [mm] Altitude (MSL). Positive for up. Note that virtually all GPS modules provide the MSL altitude in addition to the WGS84 altitude.*/
- uint16_t eph; /*<  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX*/
- uint16_t epv; /*<  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX*/
+ uint16_t eph; /*<  GPS HDOP horizontal dilution of position (unitless * 100). If unknown, set to: UINT16_MAX*/
+ uint16_t epv; /*<  GPS VDOP vertical dilution of position (unitless * 100). If unknown, set to: UINT16_MAX*/
  uint16_t vel; /*< [cm/s] GPS ground speed. If unknown, set to: UINT16_MAX*/
  uint16_t cog; /*< [cdeg] Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX*/
  uint8_t fix_type; /*<  GPS fix type.*/
@@ -91,8 +91,8 @@ typedef struct __mavlink_gps_raw_int_t {
  * @param lat [degE7] Latitude (WGS84, EGM96 ellipsoid)
  * @param lon [degE7] Longitude (WGS84, EGM96 ellipsoid)
  * @param alt [mm] Altitude (MSL). Positive for up. Note that virtually all GPS modules provide the MSL altitude in addition to the WGS84 altitude.
- * @param eph  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
- * @param epv  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
+ * @param eph  GPS HDOP horizontal dilution of position (unitless * 100). If unknown, set to: UINT16_MAX
+ * @param epv  GPS VDOP vertical dilution of position (unitless * 100). If unknown, set to: UINT16_MAX
  * @param vel [cm/s] GPS ground speed. If unknown, set to: UINT16_MAX
  * @param cog [cdeg] Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
  * @param satellites_visible  Number of satellites visible. If unknown, set to 255
@@ -164,8 +164,8 @@ static inline uint16_t mavlink_msg_gps_raw_int_pack(uint8_t system_id, uint8_t c
  * @param lat [degE7] Latitude (WGS84, EGM96 ellipsoid)
  * @param lon [degE7] Longitude (WGS84, EGM96 ellipsoid)
  * @param alt [mm] Altitude (MSL). Positive for up. Note that virtually all GPS modules provide the MSL altitude in addition to the WGS84 altitude.
- * @param eph  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
- * @param epv  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
+ * @param eph  GPS HDOP horizontal dilution of position (unitless * 100). If unknown, set to: UINT16_MAX
+ * @param epv  GPS VDOP vertical dilution of position (unitless * 100). If unknown, set to: UINT16_MAX
  * @param vel [cm/s] GPS ground speed. If unknown, set to: UINT16_MAX
  * @param cog [cdeg] Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
  * @param satellites_visible  Number of satellites visible. If unknown, set to 255
@@ -263,8 +263,8 @@ static inline uint16_t mavlink_msg_gps_raw_int_encode_chan(uint8_t system_id, ui
  * @param lat [degE7] Latitude (WGS84, EGM96 ellipsoid)
  * @param lon [degE7] Longitude (WGS84, EGM96 ellipsoid)
  * @param alt [mm] Altitude (MSL). Positive for up. Note that virtually all GPS modules provide the MSL altitude in addition to the WGS84 altitude.
- * @param eph  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
- * @param epv  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
+ * @param eph  GPS HDOP horizontal dilution of position (unitless * 100). If unknown, set to: UINT16_MAX
+ * @param epv  GPS VDOP vertical dilution of position (unitless * 100). If unknown, set to: UINT16_MAX
  * @param vel [cm/s] GPS ground speed. If unknown, set to: UINT16_MAX
  * @param cog [cdeg] Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
  * @param satellites_visible  Number of satellites visible. If unknown, set to 255
@@ -448,7 +448,7 @@ static inline int32_t mavlink_msg_gps_raw_int_get_alt(const mavlink_message_t* m
 /**
  * @brief Get field eph from gps_raw_int message
  *
- * @return  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
+ * @return  GPS HDOP horizontal dilution of position (unitless * 100). If unknown, set to: UINT16_MAX
  */
 static inline uint16_t mavlink_msg_gps_raw_int_get_eph(const mavlink_message_t* msg)
 {
@@ -458,7 +458,7 @@ static inline uint16_t mavlink_msg_gps_raw_int_get_eph(const mavlink_message_t* 
 /**
  * @brief Get field epv from gps_raw_int message
  *
- * @return  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
+ * @return  GPS VDOP vertical dilution of position (unitless * 100). If unknown, set to: UINT16_MAX
  */
 static inline uint16_t mavlink_msg_gps_raw_int_get_epv(const mavlink_message_t* msg)
 {
