@@ -1107,7 +1107,9 @@ typedef enum MAV_BATTERY_FAULT
    MAV_BATTERY_FAULT_OVER_TEMPERATURE=16, /* Over-temperature fault. | */
    MAV_BATTERY_FAULT_UNDER_TEMPERATURE=32, /* Under-temperature fault. | */
    MAV_BATTERY_FAULT_INCOMPATIBLE_VOLTAGE=64, /* Vehicle voltage is not compatible with this battery (batteries on same power rail should have similar voltage). | */
-   MAV_BATTERY_FAULT_ENUM_END=65, /*  | */
+   MAV_BATTERY_FAULT_INCOMPATIBLE_FIRMWARE=128, /* Battery firmware is not compatible with current autopilot firmware. | */
+   BATTERY_FAULT_INCOMPATIBLE_CELLS_CONFIGURATION=256, /* Battery is not compatible due to cell configuration (e.g. 5s1p when vehicle requires 6s). | */
+   MAV_BATTERY_FAULT_ENUM_END=257, /*  | */
 } MAV_BATTERY_FAULT;
 #endif
 
