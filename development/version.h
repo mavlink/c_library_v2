@@ -1,5 +1,5 @@
 /** @file
- *  @brief MAVLink comm protocol built from ASLUAV.xml
+ *  @brief MAVLink comm protocol built from development.xml
  *  @see http://mavlink.org
  */
 #pragma once
