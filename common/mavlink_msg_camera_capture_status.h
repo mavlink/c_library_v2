@@ -7,7 +7,7 @@ MAVPACKED(
 typedef struct __mavlink_camera_capture_status_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
  float image_interval; /*< [s] Image capture interval*/
- uint32_t recording_time_ms; /*< [ms] Time since recording started*/
+ uint32_t recording_time_ms; /*< [ms] Elapsed time since recording started (0: Not supported/available). A GCS should compute recording time and use non-zero values of this field to correct any discrepancy.*/
  float available_capacity; /*< [MiB] Available storage capacity.*/
  uint8_t image_status; /*<  Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)*/
  uint8_t video_status; /*<  Current status of video capturing (0: idle, 1: capture in progress)*/
@@ -63,7 +63,7 @@ typedef struct __mavlink_camera_capture_status_t {
  * @param image_status  Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)
  * @param video_status  Current status of video capturing (0: idle, 1: capture in progress)
  * @param image_interval [s] Image capture interval
- * @param recording_time_ms [ms] Time since recording started
+ * @param recording_time_ms [ms] Elapsed time since recording started (0: Not supported/available). A GCS should compute recording time and use non-zero values of this field to correct any discrepancy.
  * @param available_capacity [MiB] Available storage capacity.
  * @param image_count  Total number of images captured ('forever', or until reset using MAV_CMD_STORAGE_FORMAT).
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -109,7 +109,7 @@ static inline uint16_t mavlink_msg_camera_capture_status_pack(uint8_t system_id,
  * @param image_status  Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)
  * @param video_status  Current status of video capturing (0: idle, 1: capture in progress)
  * @param image_interval [s] Image capture interval
- * @param recording_time_ms [ms] Time since recording started
+ * @param recording_time_ms [ms] Elapsed time since recording started (0: Not supported/available). A GCS should compute recording time and use non-zero values of this field to correct any discrepancy.
  * @param available_capacity [MiB] Available storage capacity.
  * @param image_count  Total number of images captured ('forever', or until reset using MAV_CMD_STORAGE_FORMAT).
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -181,7 +181,7 @@ static inline uint16_t mavlink_msg_camera_capture_status_encode_chan(uint8_t sys
  * @param image_status  Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)
  * @param video_status  Current status of video capturing (0: idle, 1: capture in progress)
  * @param image_interval [s] Image capture interval
- * @param recording_time_ms [ms] Time since recording started
+ * @param recording_time_ms [ms] Elapsed time since recording started (0: Not supported/available). A GCS should compute recording time and use non-zero values of this field to correct any discrepancy.
  * @param available_capacity [MiB] Available storage capacity.
  * @param image_count  Total number of images captured ('forever', or until reset using MAV_CMD_STORAGE_FORMAT).
  */
@@ -312,7 +312,7 @@ static inline float mavlink_msg_camera_capture_status_get_image_interval(const m
 /**
  * @brief Get field recording_time_ms from camera_capture_status message
  *
- * @return [ms] Time since recording started
+ * @return [ms] Elapsed time since recording started (0: Not supported/available). A GCS should compute recording time and use non-zero values of this field to correct any discrepancy.
  */
 static inline uint32_t mavlink_msg_camera_capture_status_get_recording_time_ms(const mavlink_message_t* msg)
 {
