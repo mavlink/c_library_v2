@@ -5836,7 +5836,7 @@ static void mavlink_test_gps2_raw(uint8_t system_id, uint8_t component_id, mavli
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_gps2_raw_t packet_in = {
-        93372036854775807ULL,963497880,963498088,963498296,963498504,18483,18587,18691,18795,101,168,235,19055
+        93372036854775807ULL,963497880,963498088,963498296,963498504,18483,18587,18691,18795,101,168,235,19055,963499388,963499596,963499804,963500012,963500220
     };
     mavlink_gps2_raw_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -5853,6 +5853,11 @@ static void mavlink_test_gps2_raw(uint8_t system_id, uint8_t component_id, mavli
         packet1.satellites_visible = packet_in.satellites_visible;
         packet1.dgps_numch = packet_in.dgps_numch;
         packet1.yaw = packet_in.yaw;
+        packet1.alt_ellipsoid = packet_in.alt_ellipsoid;
+        packet1.h_acc = packet_in.h_acc;
+        packet1.v_acc = packet_in.v_acc;
+        packet1.vel_acc = packet_in.vel_acc;
+        packet1.hdg_acc = packet_in.hdg_acc;
         
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -5867,12 +5872,12 @@ static void mavlink_test_gps2_raw(uint8_t system_id, uint8_t component_id, mavli
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_gps2_raw_pack(system_id, component_id, &msg , packet1.time_usec , packet1.fix_type , packet1.lat , packet1.lon , packet1.alt , packet1.eph , packet1.epv , packet1.vel , packet1.cog , packet1.satellites_visible , packet1.dgps_numch , packet1.dgps_age , packet1.yaw );
+    mavlink_msg_gps2_raw_pack(system_id, component_id, &msg , packet1.time_usec , packet1.fix_type , packet1.lat , packet1.lon , packet1.alt , packet1.eph , packet1.epv , packet1.vel , packet1.cog , packet1.satellites_visible , packet1.dgps_numch , packet1.dgps_age , packet1.yaw , packet1.alt_ellipsoid , packet1.h_acc , packet1.v_acc , packet1.vel_acc , packet1.hdg_acc );
     mavlink_msg_gps2_raw_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_gps2_raw_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_usec , packet1.fix_type , packet1.lat , packet1.lon , packet1.alt , packet1.eph , packet1.epv , packet1.vel , packet1.cog , packet1.satellites_visible , packet1.dgps_numch , packet1.dgps_age , packet1.yaw );
+    mavlink_msg_gps2_raw_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_usec , packet1.fix_type , packet1.lat , packet1.lon , packet1.alt , packet1.eph , packet1.epv , packet1.vel , packet1.cog , packet1.satellites_visible , packet1.dgps_numch , packet1.dgps_age , packet1.yaw , packet1.alt_ellipsoid , packet1.h_acc , packet1.v_acc , packet1.vel_acc , packet1.hdg_acc );
     mavlink_msg_gps2_raw_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -5885,7 +5890,7 @@ static void mavlink_test_gps2_raw(uint8_t system_id, uint8_t component_id, mavli
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_gps2_raw_send(MAVLINK_COMM_1 , packet1.time_usec , packet1.fix_type , packet1.lat , packet1.lon , packet1.alt , packet1.eph , packet1.epv , packet1.vel , packet1.cog , packet1.satellites_visible , packet1.dgps_numch , packet1.dgps_age , packet1.yaw );
+    mavlink_msg_gps2_raw_send(MAVLINK_COMM_1 , packet1.time_usec , packet1.fix_type , packet1.lat , packet1.lon , packet1.alt , packet1.eph , packet1.epv , packet1.vel , packet1.cog , packet1.satellites_visible , packet1.dgps_numch , packet1.dgps_age , packet1.yaw , packet1.alt_ellipsoid , packet1.h_acc , packet1.v_acc , packet1.vel_acc , packet1.hdg_acc );
     mavlink_msg_gps2_raw_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
