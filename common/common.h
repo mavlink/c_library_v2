@@ -606,7 +606,7 @@ typedef enum MAV_CMD
    MAV_CMD_DO_SET_CAM_TRIGG_DIST=206, /* Mission command to set camera trigger distance for this flight. The camera is triggered each time this distance is exceeded. This command can also be used to set the shutter integration time for the camera. |Camera trigger distance. 0 to stop triggering.| Camera shutter integration time. -1 or 0 to ignore| Trigger camera once immediately. (0 = no trigger, 1 = trigger)| Empty| Empty| Empty| Empty|  */
    MAV_CMD_DO_FENCE_ENABLE=207, /* Mission command to enable the geofence |enable? (0=disable, 1=enable, 2=disable_floor_only)| Empty| Empty| Empty| Empty| Empty| Empty|  */
    MAV_CMD_DO_PARACHUTE=208, /* Mission item/command to release a parachute or enable/disable auto release. |Action| Empty| Empty| Empty| Empty| Empty| Empty|  */
-   MAV_CMD_DO_MOTOR_TEST=209, /* Mission command to perform motor test. |Motor instance number. (from 1 to max number of motors on the vehicle)| Throttle type.| Throttle.| Timeout.| Motor count. (number of motors to test to test in sequence, waiting for the timeout above between them; 0=1 motor, 1=1 motor, 2=2 motors...)| Motor test order.| Empty|  */
+   MAV_CMD_DO_MOTOR_TEST=209, /* Command to perform motor test. |Motor instance number (from 1 to max number of motors on the vehicle).| Throttle type (whether the Throttle Value in param3 is a percentage, PWM value, etc.)| Throttle value.| Timeout between tests that are run in sequence.| Motor count. Number of motors to test in sequence: 0/1=one motor, 2= two motors, etc. The Timeout (param4) is used between tests.| Motor test order.| Empty|  */
    MAV_CMD_DO_INVERTED_FLIGHT=210, /* Change to/from inverted flight. |Inverted flight. (0=normal, 1=inverted)| Empty| Empty| Empty| Empty| Empty| Empty|  */
    MAV_CMD_DO_GRIPPER=211, /* Mission command to operate a gripper. |Gripper instance number.| Gripper action to perform.| Empty| Empty| Empty| Empty| Empty|  */
    MAV_CMD_DO_AUTOTUNE_ENABLE=212, /* Enable/disable autotune. |Enable (1: enable, 0:disable).| Empty.| Empty.| Empty.| Empty.| Empty.| Empty.|  */
@@ -1264,27 +1264,27 @@ typedef enum ESTIMATOR_STATUS_FLAGS
 } ESTIMATOR_STATUS_FLAGS;
 #endif
 
-/** @brief  */
+/** @brief Sequence that motors are tested when using MAV_CMD_DO_MOTOR_TEST. */
 #ifndef HAVE_ENUM_MOTOR_TEST_ORDER
 #define HAVE_ENUM_MOTOR_TEST_ORDER
 typedef enum MOTOR_TEST_ORDER
 {
-   MOTOR_TEST_ORDER_DEFAULT=0, /* default autopilot motor test method | */
-   MOTOR_TEST_ORDER_SEQUENCE=1, /* motor numbers are specified as their index in a predefined vehicle-specific sequence | */
-   MOTOR_TEST_ORDER_BOARD=2, /* motor numbers are specified as the output as labeled on the board | */
+   MOTOR_TEST_ORDER_DEFAULT=0, /* Default autopilot motor test method. | */
+   MOTOR_TEST_ORDER_SEQUENCE=1, /* Motor numbers are specified as their index in a predefined vehicle-specific sequence. | */
+   MOTOR_TEST_ORDER_BOARD=2, /* Motor numbers are specified as the output as labeled on the board. | */
    MOTOR_TEST_ORDER_ENUM_END=3, /*  | */
 } MOTOR_TEST_ORDER;
 #endif
 
-/** @brief  */
+/** @brief Defines how throttle value is represented in MAV_CMD_DO_MOTOR_TEST. */
 #ifndef HAVE_ENUM_MOTOR_TEST_THROTTLE_TYPE
 #define HAVE_ENUM_MOTOR_TEST_THROTTLE_TYPE
 typedef enum MOTOR_TEST_THROTTLE_TYPE
 {
-   MOTOR_TEST_THROTTLE_PERCENT=0, /* throttle as a percentage from 0 ~ 100 | */
-   MOTOR_TEST_THROTTLE_PWM=1, /* throttle as an absolute PWM value (normally in range of 1000~2000) | */
-   MOTOR_TEST_THROTTLE_PILOT=2, /* throttle pass-through from pilot's transmitter | */
-   MOTOR_TEST_COMPASS_CAL=3, /* per-motor compass calibration test | */
+   MOTOR_TEST_THROTTLE_PERCENT=0, /* Throttle as a percentage (0 ~ 100) | */
+   MOTOR_TEST_THROTTLE_PWM=1, /* Throttle as an absolute PWM value (normally in range of 1000~2000). | */
+   MOTOR_TEST_THROTTLE_PILOT=2, /* Throttle pass-through from pilot's transmitter. | */
+   MOTOR_TEST_COMPASS_CAL=3, /* Per-motor compass calibration test. | */
    MOTOR_TEST_THROTTLE_TYPE_ENUM_END=4, /*  | */
 } MOTOR_TEST_THROTTLE_TYPE;
 #endif
