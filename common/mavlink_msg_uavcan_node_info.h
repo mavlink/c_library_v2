@@ -7,7 +7,7 @@
 typedef struct __mavlink_uavcan_node_info_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  uint32_t uptime_sec; /*< [s] Time since the start-up of the node.*/
- uint32_t sw_vcs_commit; /*<  Version control system (VCS) revision identifier (e.g. git short commit hash). Zero if unknown.*/
+ uint32_t sw_vcs_commit; /*<  Version control system (VCS) revision identifier (e.g. git short commit hash). 0 if unknown.*/
  char name[80]; /*<  Node name string. For example, "sapog.px4.io".*/
  uint8_t hw_version_major; /*<  Hardware major version number.*/
  uint8_t hw_version_minor; /*<  Hardware minor version number.*/
@@ -74,7 +74,7 @@ typedef struct __mavlink_uavcan_node_info_t {
  * @param hw_unique_id  Hardware unique 128-bit ID.
  * @param sw_version_major  Software major version number.
  * @param sw_version_minor  Software minor version number.
- * @param sw_vcs_commit  Version control system (VCS) revision identifier (e.g. git short commit hash). Zero if unknown.
+ * @param sw_vcs_commit  Version control system (VCS) revision identifier (e.g. git short commit hash). 0 if unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_uavcan_node_info_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -124,7 +124,7 @@ static inline uint16_t mavlink_msg_uavcan_node_info_pack(uint8_t system_id, uint
  * @param hw_unique_id  Hardware unique 128-bit ID.
  * @param sw_version_major  Software major version number.
  * @param sw_version_minor  Software minor version number.
- * @param sw_vcs_commit  Version control system (VCS) revision identifier (e.g. git short commit hash). Zero if unknown.
+ * @param sw_vcs_commit  Version control system (VCS) revision identifier (e.g. git short commit hash). 0 if unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_uavcan_node_info_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -200,7 +200,7 @@ static inline uint16_t mavlink_msg_uavcan_node_info_encode_chan(uint8_t system_i
  * @param hw_unique_id  Hardware unique 128-bit ID.
  * @param sw_version_major  Software major version number.
  * @param sw_version_minor  Software minor version number.
- * @param sw_vcs_commit  Version control system (VCS) revision identifier (e.g. git short commit hash). Zero if unknown.
+ * @param sw_vcs_commit  Version control system (VCS) revision identifier (e.g. git short commit hash). 0 if unknown.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -373,7 +373,7 @@ static inline uint8_t mavlink_msg_uavcan_node_info_get_sw_version_minor(const ma
 /**
  * @brief Get field sw_vcs_commit from uavcan_node_info message
  *
- * @return  Version control system (VCS) revision identifier (e.g. git short commit hash). Zero if unknown.
+ * @return  Version control system (VCS) revision identifier (e.g. git short commit hash). 0 if unknown.
  */
 static inline uint32_t mavlink_msg_uavcan_node_info_get_sw_vcs_commit(const mavlink_message_t* msg)
 {

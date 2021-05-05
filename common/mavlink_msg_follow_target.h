@@ -12,7 +12,7 @@ typedef struct __mavlink_follow_target_t {
  float alt; /*< [m] Altitude (MSL)*/
  float vel[3]; /*< [m/s] target velocity (0,0,0) for unknown*/
  float acc[3]; /*< [m/s/s] linear target acceleration (0,0,0) for unknown*/
- float attitude_q[4]; /*<  (1 0 0 0 for unknown)*/
+ float attitude_q[4]; /*<  (0 0 0 0 for unknown)*/
  float rates[3]; /*<  (0 0 0 for unknown)*/
  float position_cov[3]; /*<  eph epv*/
  uint8_t est_capabilities; /*<  bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3)*/
@@ -82,7 +82,7 @@ typedef struct __mavlink_follow_target_t {
  * @param alt [m] Altitude (MSL)
  * @param vel [m/s] target velocity (0,0,0) for unknown
  * @param acc [m/s/s] linear target acceleration (0,0,0) for unknown
- * @param attitude_q  (1 0 0 0 for unknown)
+ * @param attitude_q  (0 0 0 0 for unknown)
  * @param rates  (0 0 0 for unknown)
  * @param position_cov  eph epv
  * @param custom_state  button states or switches of a tracker device
@@ -138,7 +138,7 @@ static inline uint16_t mavlink_msg_follow_target_pack(uint8_t system_id, uint8_t
  * @param alt [m] Altitude (MSL)
  * @param vel [m/s] target velocity (0,0,0) for unknown
  * @param acc [m/s/s] linear target acceleration (0,0,0) for unknown
- * @param attitude_q  (1 0 0 0 for unknown)
+ * @param attitude_q  (0 0 0 0 for unknown)
  * @param rates  (0 0 0 for unknown)
  * @param position_cov  eph epv
  * @param custom_state  button states or switches of a tracker device
@@ -220,7 +220,7 @@ static inline uint16_t mavlink_msg_follow_target_encode_chan(uint8_t system_id, 
  * @param alt [m] Altitude (MSL)
  * @param vel [m/s] target velocity (0,0,0) for unknown
  * @param acc [m/s/s] linear target acceleration (0,0,0) for unknown
- * @param attitude_q  (1 0 0 0 for unknown)
+ * @param attitude_q  (0 0 0 0 for unknown)
  * @param rates  (0 0 0 for unknown)
  * @param position_cov  eph epv
  * @param custom_state  button states or switches of a tracker device
@@ -394,7 +394,7 @@ static inline uint16_t mavlink_msg_follow_target_get_acc(const mavlink_message_t
 /**
  * @brief Get field attitude_q from follow_target message
  *
- * @return  (1 0 0 0 for unknown)
+ * @return  (0 0 0 0 for unknown)
  */
 static inline uint16_t mavlink_msg_follow_target_get_attitude_q(const mavlink_message_t* msg, float *attitude_q)
 {

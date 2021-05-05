@@ -18,7 +18,7 @@ typedef struct __mavlink_hil_rc_inputs_raw_t {
  uint16_t chan10_raw; /*< [us] RC channel 10 value*/
  uint16_t chan11_raw; /*< [us] RC channel 11 value*/
  uint16_t chan12_raw; /*< [us] RC channel 12 value*/
- uint8_t rssi; /*<  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: invalid/unknown.*/
+ uint8_t rssi; /*<  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown.*/
 } mavlink_hil_rc_inputs_raw_t;
 
 #define MAVLINK_MSG_ID_HIL_RC_INPUTS_RAW_LEN 33
@@ -93,7 +93,7 @@ typedef struct __mavlink_hil_rc_inputs_raw_t {
  * @param chan10_raw [us] RC channel 10 value
  * @param chan11_raw [us] RC channel 11 value
  * @param chan12_raw [us] RC channel 12 value
- * @param rssi  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: invalid/unknown.
+ * @param rssi  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_hil_rc_inputs_raw_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -160,7 +160,7 @@ static inline uint16_t mavlink_msg_hil_rc_inputs_raw_pack(uint8_t system_id, uin
  * @param chan10_raw [us] RC channel 10 value
  * @param chan11_raw [us] RC channel 11 value
  * @param chan12_raw [us] RC channel 12 value
- * @param rssi  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: invalid/unknown.
+ * @param rssi  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_hil_rc_inputs_raw_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -253,7 +253,7 @@ static inline uint16_t mavlink_msg_hil_rc_inputs_raw_encode_chan(uint8_t system_
  * @param chan10_raw [us] RC channel 10 value
  * @param chan11_raw [us] RC channel 11 value
  * @param chan12_raw [us] RC channel 12 value
- * @param rssi  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: invalid/unknown.
+ * @param rssi  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -500,7 +500,7 @@ static inline uint16_t mavlink_msg_hil_rc_inputs_raw_get_chan12_raw(const mavlin
 /**
  * @brief Get field rssi from hil_rc_inputs_raw message
  *
- * @return  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: invalid/unknown.
+ * @return  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown.
  */
 static inline uint8_t mavlink_msg_hil_rc_inputs_raw_get_rssi(const mavlink_message_t* msg)
 {
