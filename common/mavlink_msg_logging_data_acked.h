@@ -9,7 +9,7 @@ typedef struct __mavlink_logging_data_acked_t {
  uint8_t target_system; /*<  system ID of the target*/
  uint8_t target_component; /*<  component ID of the target*/
  uint8_t length; /*< [bytes] data length*/
- uint8_t first_message_offset; /*< [bytes] offset into data where first message starts. This can be used for recovery, when a previous message got lost (set to 255 if no start exists).*/
+ uint8_t first_message_offset; /*< [bytes] offset into data where first message starts. This can be used for recovery, when a previous message got lost (set to UINT8_MAX if no start exists).*/
  uint8_t data[249]; /*<  logged data*/
 } mavlink_logging_data_acked_t;
 
@@ -60,7 +60,7 @@ typedef struct __mavlink_logging_data_acked_t {
  * @param target_component  component ID of the target
  * @param sequence  sequence number (can wrap)
  * @param length [bytes] data length
- * @param first_message_offset [bytes] offset into data where first message starts. This can be used for recovery, when a previous message got lost (set to 255 if no start exists).
+ * @param first_message_offset [bytes] offset into data where first message starts. This can be used for recovery, when a previous message got lost (set to UINT8_MAX if no start exists).
  * @param data  logged data
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -101,7 +101,7 @@ static inline uint16_t mavlink_msg_logging_data_acked_pack(uint8_t system_id, ui
  * @param target_component  component ID of the target
  * @param sequence  sequence number (can wrap)
  * @param length [bytes] data length
- * @param first_message_offset [bytes] offset into data where first message starts. This can be used for recovery, when a previous message got lost (set to 255 if no start exists).
+ * @param first_message_offset [bytes] offset into data where first message starts. This can be used for recovery, when a previous message got lost (set to UINT8_MAX if no start exists).
  * @param data  logged data
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -168,7 +168,7 @@ static inline uint16_t mavlink_msg_logging_data_acked_encode_chan(uint8_t system
  * @param target_component  component ID of the target
  * @param sequence  sequence number (can wrap)
  * @param length [bytes] data length
- * @param first_message_offset [bytes] offset into data where first message starts. This can be used for recovery, when a previous message got lost (set to 255 if no start exists).
+ * @param first_message_offset [bytes] offset into data where first message starts. This can be used for recovery, when a previous message got lost (set to UINT8_MAX if no start exists).
  * @param data  logged data
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -290,7 +290,7 @@ static inline uint8_t mavlink_msg_logging_data_acked_get_length(const mavlink_me
 /**
  * @brief Get field first_message_offset from logging_data_acked message
  *
- * @return [bytes] offset into data where first message starts. This can be used for recovery, when a previous message got lost (set to 255 if no start exists).
+ * @return [bytes] offset into data where first message starts. This can be used for recovery, when a previous message got lost (set to UINT8_MAX if no start exists).
  */
 static inline uint8_t mavlink_msg_logging_data_acked_get_first_message_offset(const mavlink_message_t* msg)
 {

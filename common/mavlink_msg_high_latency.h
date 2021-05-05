@@ -22,7 +22,7 @@ typedef struct __mavlink_high_latency_t {
  uint8_t airspeed_sp; /*< [m/s] airspeed setpoint*/
  uint8_t groundspeed; /*< [m/s] groundspeed*/
  int8_t climb_rate; /*< [m/s] climb rate*/
- uint8_t gps_nsat; /*<  Number of satellites visible. If unknown, set to 255*/
+ uint8_t gps_nsat; /*<  Number of satellites visible. If unknown, set to UINT8_MAX*/
  uint8_t gps_fix_type; /*<  GPS Fix type.*/
  uint8_t battery_remaining; /*< [%] Remaining battery (percentage)*/
  int8_t temperature; /*< [degC] Autopilot temperature (degrees C)*/
@@ -126,7 +126,7 @@ typedef struct __mavlink_high_latency_t {
  * @param airspeed_sp [m/s] airspeed setpoint
  * @param groundspeed [m/s] groundspeed
  * @param climb_rate [m/s] climb rate
- * @param gps_nsat  Number of satellites visible. If unknown, set to 255
+ * @param gps_nsat  Number of satellites visible. If unknown, set to UINT8_MAX
  * @param gps_fix_type  GPS Fix type.
  * @param battery_remaining [%] Remaining battery (percentage)
  * @param temperature [degC] Autopilot temperature (degrees C)
@@ -223,7 +223,7 @@ static inline uint16_t mavlink_msg_high_latency_pack(uint8_t system_id, uint8_t 
  * @param airspeed_sp [m/s] airspeed setpoint
  * @param groundspeed [m/s] groundspeed
  * @param climb_rate [m/s] climb rate
- * @param gps_nsat  Number of satellites visible. If unknown, set to 255
+ * @param gps_nsat  Number of satellites visible. If unknown, set to UINT8_MAX
  * @param gps_fix_type  GPS Fix type.
  * @param battery_remaining [%] Remaining battery (percentage)
  * @param temperature [degC] Autopilot temperature (degrees C)
@@ -346,7 +346,7 @@ static inline uint16_t mavlink_msg_high_latency_encode_chan(uint8_t system_id, u
  * @param airspeed_sp [m/s] airspeed setpoint
  * @param groundspeed [m/s] groundspeed
  * @param climb_rate [m/s] climb rate
- * @param gps_nsat  Number of satellites visible. If unknown, set to 255
+ * @param gps_nsat  Number of satellites visible. If unknown, set to UINT8_MAX
  * @param gps_fix_type  GPS Fix type.
  * @param battery_remaining [%] Remaining battery (percentage)
  * @param temperature [degC] Autopilot temperature (degrees C)
@@ -670,7 +670,7 @@ static inline int8_t mavlink_msg_high_latency_get_climb_rate(const mavlink_messa
 /**
  * @brief Get field gps_nsat from high_latency message
  *
- * @return  Number of satellites visible. If unknown, set to 255
+ * @return  Number of satellites visible. If unknown, set to UINT8_MAX
  */
 static inline uint8_t mavlink_msg_high_latency_get_gps_nsat(const mavlink_message_t* msg)
 {

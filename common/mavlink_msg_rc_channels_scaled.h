@@ -15,7 +15,7 @@ typedef struct __mavlink_rc_channels_scaled_t {
  int16_t chan7_scaled; /*<  RC channel 7 value scaled.*/
  int16_t chan8_scaled; /*<  RC channel 8 value scaled.*/
  uint8_t port; /*<  Servo output port (set of 8 outputs = 1 port). Flight stacks running on Pixhawk should use: 0 = MAIN, 1 = AUX.*/
- uint8_t rssi; /*<  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: invalid/unknown.*/
+ uint8_t rssi; /*<  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown.*/
 } mavlink_rc_channels_scaled_t;
 
 #define MAVLINK_MSG_ID_RC_CHANNELS_SCALED_LEN 22
@@ -81,7 +81,7 @@ typedef struct __mavlink_rc_channels_scaled_t {
  * @param chan6_scaled  RC channel 6 value scaled.
  * @param chan7_scaled  RC channel 7 value scaled.
  * @param chan8_scaled  RC channel 8 value scaled.
- * @param rssi  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: invalid/unknown.
+ * @param rssi  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_rc_channels_scaled_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -139,7 +139,7 @@ static inline uint16_t mavlink_msg_rc_channels_scaled_pack(uint8_t system_id, ui
  * @param chan6_scaled  RC channel 6 value scaled.
  * @param chan7_scaled  RC channel 7 value scaled.
  * @param chan8_scaled  RC channel 8 value scaled.
- * @param rssi  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: invalid/unknown.
+ * @param rssi  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_rc_channels_scaled_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -223,7 +223,7 @@ static inline uint16_t mavlink_msg_rc_channels_scaled_encode_chan(uint8_t system
  * @param chan6_scaled  RC channel 6 value scaled.
  * @param chan7_scaled  RC channel 7 value scaled.
  * @param chan8_scaled  RC channel 8 value scaled.
- * @param rssi  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: invalid/unknown.
+ * @param rssi  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -428,7 +428,7 @@ static inline int16_t mavlink_msg_rc_channels_scaled_get_chan8_scaled(const mavl
 /**
  * @brief Get field rssi from rc_channels_scaled message
  *
- * @return  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: invalid/unknown.
+ * @return  Receive signal strength indicator in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown.
  */
 static inline uint8_t mavlink_msg_rc_channels_scaled_get_rssi(const mavlink_message_t* msg)
 {
