@@ -11784,7 +11784,7 @@ static void mavlink_test_smart_battery_info(uint8_t system_id, uint8_t component
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_smart_battery_info_t packet_in = {
-        963497464,963497672,17651,17755,17859,17963,18067,187,254,65,"VWXYZABCDEFGHIJ","LMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGH"
+        963497464,963497672,17651,17755,17859,17963,18067,187,254,65,"VWXYZABCDEFGHIJ","LMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGH",21759,80,963502144,963502352,"UVWXYZABCD"
     };
     mavlink_smart_battery_info_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -11798,9 +11798,14 @@ static void mavlink_test_smart_battery_info(uint8_t system_id, uint8_t component
         packet1.id = packet_in.id;
         packet1.battery_function = packet_in.battery_function;
         packet1.type = packet_in.type;
+        packet1.charging_maximum_voltage = packet_in.charging_maximum_voltage;
+        packet1.cells_in_series = packet_in.cells_in_series;
+        packet1.discharge_maximum_current = packet_in.discharge_maximum_current;
+        packet1.discharge_maximum_burst_current = packet_in.discharge_maximum_burst_current;
         
         mav_array_memcpy(packet1.serial_number, packet_in.serial_number, sizeof(char)*16);
         mav_array_memcpy(packet1.device_name, packet_in.device_name, sizeof(char)*50);
+        mav_array_memcpy(packet1.manufacture_date, packet_in.manufacture_date, sizeof(char)*11);
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
         if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
@@ -11814,12 +11819,12 @@ static void mavlink_test_smart_battery_info(uint8_t system_id, uint8_t component
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_smart_battery_info_pack(system_id, component_id, &msg , packet1.id , packet1.battery_function , packet1.type , packet1.capacity_full_specification , packet1.capacity_full , packet1.cycle_count , packet1.serial_number , packet1.device_name , packet1.weight , packet1.discharge_minimum_voltage , packet1.charging_minimum_voltage , packet1.resting_minimum_voltage );
+    mavlink_msg_smart_battery_info_pack(system_id, component_id, &msg , packet1.id , packet1.battery_function , packet1.type , packet1.capacity_full_specification , packet1.capacity_full , packet1.cycle_count , packet1.serial_number , packet1.device_name , packet1.weight , packet1.discharge_minimum_voltage , packet1.charging_minimum_voltage , packet1.resting_minimum_voltage , packet1.charging_maximum_voltage , packet1.cells_in_series , packet1.discharge_maximum_current , packet1.discharge_maximum_burst_current , packet1.manufacture_date );
     mavlink_msg_smart_battery_info_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_smart_battery_info_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.id , packet1.battery_function , packet1.type , packet1.capacity_full_specification , packet1.capacity_full , packet1.cycle_count , packet1.serial_number , packet1.device_name , packet1.weight , packet1.discharge_minimum_voltage , packet1.charging_minimum_voltage , packet1.resting_minimum_voltage );
+    mavlink_msg_smart_battery_info_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.id , packet1.battery_function , packet1.type , packet1.capacity_full_specification , packet1.capacity_full , packet1.cycle_count , packet1.serial_number , packet1.device_name , packet1.weight , packet1.discharge_minimum_voltage , packet1.charging_minimum_voltage , packet1.resting_minimum_voltage , packet1.charging_maximum_voltage , packet1.cells_in_series , packet1.discharge_maximum_current , packet1.discharge_maximum_burst_current , packet1.manufacture_date );
     mavlink_msg_smart_battery_info_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -11832,7 +11837,7 @@ static void mavlink_test_smart_battery_info(uint8_t system_id, uint8_t component
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_smart_battery_info_send(MAVLINK_COMM_1 , packet1.id , packet1.battery_function , packet1.type , packet1.capacity_full_specification , packet1.capacity_full , packet1.cycle_count , packet1.serial_number , packet1.device_name , packet1.weight , packet1.discharge_minimum_voltage , packet1.charging_minimum_voltage , packet1.resting_minimum_voltage );
+    mavlink_msg_smart_battery_info_send(MAVLINK_COMM_1 , packet1.id , packet1.battery_function , packet1.type , packet1.capacity_full_specification , packet1.capacity_full , packet1.cycle_count , packet1.serial_number , packet1.device_name , packet1.weight , packet1.discharge_minimum_voltage , packet1.charging_minimum_voltage , packet1.resting_minimum_voltage , packet1.charging_maximum_voltage , packet1.cells_in_series , packet1.discharge_maximum_current , packet1.discharge_maximum_burst_current , packet1.manufacture_date );
     mavlink_msg_smart_battery_info_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
