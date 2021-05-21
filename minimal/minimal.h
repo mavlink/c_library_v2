@@ -105,7 +105,8 @@ typedef enum MAV_TYPE
    MAV_TYPE_ODID=34, /* Open Drone ID. See https://mavlink.io/en/services/opendroneid.html. | */
    MAV_TYPE_DECAROTOR=35, /* Decarotor | */
    MAV_TYPE_BATTERY=36, /* Battery | */
-   MAV_TYPE_ENUM_END=37, /*  | */
+   MAV_TYPE_PARACHUTE=37, /* Parachute | */
+   MAV_TYPE_ENUM_END=38, /*  | */
 } MAV_TYPE;
 #endif
 
@@ -272,6 +273,7 @@ typedef enum MAV_COMPONENT
    MAV_COMP_ID_PERIPHERAL=158, /* Generic autopilot peripheral component ID. Meant for devices that do not implement the parameter microservice. | */
    MAV_COMP_ID_QX1_GIMBAL=159, /* Gimbal ID for QX1. | */
    MAV_COMP_ID_FLARM=160, /* FLARM collision alert component. | */
+   MAV_COMP_ID_PARACHUTE=161, /* Parachute component. | */
    MAV_COMP_ID_GIMBAL2=171, /* Gimbal #2. | */
    MAV_COMP_ID_GIMBAL3=172, /* Gimbal #3. | */
    MAV_COMP_ID_GIMBAL4=173, /* Gimbal #4 | */
