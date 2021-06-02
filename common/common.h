@@ -508,16 +508,16 @@ typedef enum WIFI_CONFIG_AP_MODE
 } WIFI_CONFIG_AP_MODE;
 #endif
 
-/** @brief Possible values for COMPONENT_INFORMATION.comp_metadata_type. */
+/** @brief Supported component metadata types. These are used in the "general" metadata file returned by COMPONENT_INFORMATION to provide information about supported metadata types. The types are not used directly in MAVLink messages. */
 #ifndef HAVE_ENUM_COMP_METADATA_TYPE
 #define HAVE_ENUM_COMP_METADATA_TYPE
 typedef enum COMP_METADATA_TYPE
 {
-   COMP_METADATA_TYPE_GENERAL=0, /* General information which also includes information on other optional supported COMP_METADATA_TYPE's. Must be supported. Only downloadable from vehicle. | */
+   COMP_METADATA_TYPE_GENERAL=0, /* General information about the component. General metadata includes information about other COMP_METADATA_TYPEs supported by the component. This type must be supported and must be downloadable from vehicle. | */
    COMP_METADATA_TYPE_PARAMETER=1, /* Parameter meta data. | */
-   COMP_METADATA_TYPE_COMMANDS=2, /* Meta data which specifies the commands the vehicle supports. (WIP) | */
-   COMP_METADATA_TYPE_PERIPHERALS=3, /* Meta data which specifies potential external peripherals that do not talk MAVLink | */
-   COMP_METADATA_TYPE_EVENTS=4, /* Meta data for events interface | */
+   COMP_METADATA_TYPE_COMMANDS=2, /* Meta data that specifies which commands and command parameters the vehicle supports. (WIP) | */
+   COMP_METADATA_TYPE_PERIPHERALS=3, /* Meta data that specifies external non-MAVLink peripherals. | */
+   COMP_METADATA_TYPE_EVENTS=4, /* Meta data for the events interface. | */
    COMP_METADATA_TYPE_ENUM_END=5, /*  | */
 } COMP_METADATA_TYPE;
 #endif
