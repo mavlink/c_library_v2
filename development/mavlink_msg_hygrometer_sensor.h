@@ -5,8 +5,8 @@
 
 
 typedef struct __mavlink_hygrometer_sensor_t {
- int16_t temperature; /*< [cdegC] temperature*/
- uint16_t humidity; /*< [c%] humidity*/
+ int16_t temperature; /*< [cdegC] Temperature*/
+ uint16_t humidity; /*< [c%] Humidity*/
  uint8_t id; /*<  Hygrometer ID*/
 } mavlink_hygrometer_sensor_t;
 
@@ -48,8 +48,8 @@ typedef struct __mavlink_hygrometer_sensor_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param id  Hygrometer ID
- * @param temperature [cdegC] temperature
- * @param humidity [c%] humidity
+ * @param temperature [cdegC] Temperature
+ * @param humidity [c%] Humidity
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_hygrometer_sensor_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -82,8 +82,8 @@ static inline uint16_t mavlink_msg_hygrometer_sensor_pack(uint8_t system_id, uin
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param id  Hygrometer ID
- * @param temperature [cdegC] temperature
- * @param humidity [c%] humidity
+ * @param temperature [cdegC] Temperature
+ * @param humidity [c%] Humidity
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_hygrometer_sensor_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -142,8 +142,8 @@ static inline uint16_t mavlink_msg_hygrometer_sensor_encode_chan(uint8_t system_
  * @param chan MAVLink channel to send the message
  *
  * @param id  Hygrometer ID
- * @param temperature [cdegC] temperature
- * @param humidity [c%] humidity
+ * @param temperature [cdegC] Temperature
+ * @param humidity [c%] Humidity
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -226,7 +226,7 @@ static inline uint8_t mavlink_msg_hygrometer_sensor_get_id(const mavlink_message
 /**
  * @brief Get field temperature from hygrometer_sensor message
  *
- * @return [cdegC] temperature
+ * @return [cdegC] Temperature
  */
 static inline int16_t mavlink_msg_hygrometer_sensor_get_temperature(const mavlink_message_t* msg)
 {
@@ -236,7 +236,7 @@ static inline int16_t mavlink_msg_hygrometer_sensor_get_temperature(const mavlin
 /**
  * @brief Get field humidity from hygrometer_sensor message
  *
- * @return [c%] humidity
+ * @return [c%] Humidity
  */
 static inline uint16_t mavlink_msg_hygrometer_sensor_get_humidity(const mavlink_message_t* msg)
 {
