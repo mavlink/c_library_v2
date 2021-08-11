@@ -17,7 +17,7 @@ typedef struct __mavlink_trajectory_representation_waypoints_t {
  float acc_z[5]; /*< [m/s/s] Z-acceleration of waypoint, set to NaN if not being used*/
  float pos_yaw[5]; /*< [rad] Yaw angle, set to NaN if not being used*/
  float vel_yaw[5]; /*< [rad/s] Yaw rate, set to NaN if not being used*/
- uint16_t command[5]; /*<  Scheduled action for each waypoint, UINT16_MAX if not being used.*/
+ uint16_t command[5]; /*<  MAV_CMD command id of waypoint, set to UINT16_MAX if not being used.*/
  uint8_t valid_points; /*<  Number of valid points (up-to 5 waypoints are possible)*/
 } mavlink_trajectory_representation_waypoints_t;
 
@@ -104,7 +104,7 @@ typedef struct __mavlink_trajectory_representation_waypoints_t {
  * @param acc_z [m/s/s] Z-acceleration of waypoint, set to NaN if not being used
  * @param pos_yaw [rad] Yaw angle, set to NaN if not being used
  * @param vel_yaw [rad/s] Yaw rate, set to NaN if not being used
- * @param command  Scheduled action for each waypoint, UINT16_MAX if not being used.
+ * @param command  MAV_CMD command id of waypoint, set to UINT16_MAX if not being used.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -169,7 +169,7 @@ static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack(uint
  * @param acc_z [m/s/s] Z-acceleration of waypoint, set to NaN if not being used
  * @param pos_yaw [rad] Yaw angle, set to NaN if not being used
  * @param vel_yaw [rad/s] Yaw rate, set to NaN if not being used
- * @param command  Scheduled action for each waypoint, UINT16_MAX if not being used.
+ * @param command  MAV_CMD command id of waypoint, set to UINT16_MAX if not being used.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -260,7 +260,7 @@ static inline uint16_t mavlink_msg_trajectory_representation_waypoints_encode_ch
  * @param acc_z [m/s/s] Z-acceleration of waypoint, set to NaN if not being used
  * @param pos_yaw [rad] Yaw angle, set to NaN if not being used
  * @param vel_yaw [rad/s] Yaw rate, set to NaN if not being used
- * @param command  Scheduled action for each waypoint, UINT16_MAX if not being used.
+ * @param command  MAV_CMD command id of waypoint, set to UINT16_MAX if not being used.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -503,7 +503,7 @@ static inline uint16_t mavlink_msg_trajectory_representation_waypoints_get_vel_y
 /**
  * @brief Get field command from trajectory_representation_waypoints message
  *
- * @return  Scheduled action for each waypoint, UINT16_MAX if not being used.
+ * @return  MAV_CMD command id of waypoint, set to UINT16_MAX if not being used.
  */
 static inline uint16_t mavlink_msg_trajectory_representation_waypoints_get_command(const mavlink_message_t* msg, uint16_t *command)
 {
