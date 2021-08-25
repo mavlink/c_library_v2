@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE HYGROMETER_SENSOR PACKING
 
-#define MAVLINK_MSG_ID_HYGROMETER_SENSOR 420
+#define MAVLINK_MSG_ID_HYGROMETER_SENSOR 12920
 
 
 typedef struct __mavlink_hygrometer_sensor_t {
@@ -12,17 +12,17 @@ typedef struct __mavlink_hygrometer_sensor_t {
 
 #define MAVLINK_MSG_ID_HYGROMETER_SENSOR_LEN 5
 #define MAVLINK_MSG_ID_HYGROMETER_SENSOR_MIN_LEN 5
-#define MAVLINK_MSG_ID_420_LEN 5
-#define MAVLINK_MSG_ID_420_MIN_LEN 5
+#define MAVLINK_MSG_ID_12920_LEN 5
+#define MAVLINK_MSG_ID_12920_MIN_LEN 5
 
 #define MAVLINK_MSG_ID_HYGROMETER_SENSOR_CRC 20
-#define MAVLINK_MSG_ID_420_CRC 20
+#define MAVLINK_MSG_ID_12920_CRC 20
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_HYGROMETER_SENSOR { \
-    420, \
+    12920, \
     "HYGROMETER_SENSOR", \
     3, \
     {  { "id", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_hygrometer_sensor_t, id) }, \

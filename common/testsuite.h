@@ -10448,7 +10448,7 @@ static void mavlink_test_esc_info(uint8_t system_id, uint8_t component_id, mavli
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_esc_info_t packet_in = {
-        93372036854775807ULL,{ 963497880, 963497881, 963497882, 963497883 },18483,{ 18587, 18588, 18589, 18590 },235,46,113,180,{ 247, 248, 249, 250 }
+        93372036854775807ULL,{ 963497880, 963497881, 963497882, 963497883 },18483,{ 18587, 18588, 18589, 18590 },{ 19003, 19004, 19005, 19006 },3,70,137,204
     };
     mavlink_esc_info_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -10461,7 +10461,7 @@ static void mavlink_test_esc_info(uint8_t system_id, uint8_t component_id, mavli
         
         mav_array_memcpy(packet1.error_count, packet_in.error_count, sizeof(uint32_t)*4);
         mav_array_memcpy(packet1.failure_flags, packet_in.failure_flags, sizeof(uint16_t)*4);
-        mav_array_memcpy(packet1.temperature, packet_in.temperature, sizeof(uint8_t)*4);
+        mav_array_memcpy(packet1.temperature, packet_in.temperature, sizeof(int16_t)*4);
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
         if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
@@ -13102,6 +13102,62 @@ static void mavlink_test_open_drone_id_message_pack(uint8_t system_id, uint8_t c
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
+static void mavlink_test_hygrometer_sensor(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_HYGROMETER_SENSOR >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_hygrometer_sensor_t packet_in = {
+        17235,17339,17
+    };
+    mavlink_hygrometer_sensor_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.temperature = packet_in.temperature;
+        packet1.humidity = packet_in.humidity;
+        packet1.id = packet_in.id;
+        
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_HYGROMETER_SENSOR_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_HYGROMETER_SENSOR_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_hygrometer_sensor_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_hygrometer_sensor_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_hygrometer_sensor_pack(system_id, component_id, &msg , packet1.id , packet1.temperature , packet1.humidity );
+    mavlink_msg_hygrometer_sensor_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_hygrometer_sensor_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.id , packet1.temperature , packet1.humidity );
+    mavlink_msg_hygrometer_sensor_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_hygrometer_sensor_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_hygrometer_sensor_send(MAVLINK_COMM_1 , packet1.id , packet1.temperature , packet1.humidity );
+    mavlink_msg_hygrometer_sensor_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
 static void mavlink_test_common(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
     mavlink_test_sys_status(system_id, component_id, last_msg);
@@ -13318,6 +13374,7 @@ static void mavlink_test_common(uint8_t system_id, uint8_t component_id, mavlink
     mavlink_test_open_drone_id_system(system_id, component_id, last_msg);
     mavlink_test_open_drone_id_operator_id(system_id, component_id, last_msg);
     mavlink_test_open_drone_id_message_pack(system_id, component_id, last_msg);
+    mavlink_test_hygrometer_sensor(system_id, component_id, last_msg);
 }
 
 #ifdef __cplusplus
