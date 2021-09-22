@@ -10,7 +10,7 @@ typedef struct __mavlink_open_drone_id_location_t {
  float altitude_barometric; /*< [m] The altitude calculated from the barometric pressue. Reference is against 29.92inHg or 1013.2mb. If unknown: -1000 m.*/
  float altitude_geodetic; /*< [m] The geodetic altitude as defined by WGS84. If unknown: -1000 m.*/
  float height; /*< [m] The current height of the unmanned aircraft above the take-off location or the ground as indicated by height_reference. If unknown: -1000 m.*/
- float timestamp; /*< [s] Seconds after the full hour with reference to UTC time. Typically the GPS outputs a time-of-week value in milliseconds. First convert that to UTC and then convert for this field using ((float) (time_week_ms % (60*60*1000))) / 1000.*/
+ float timestamp; /*< [s] Seconds after the full hour with reference to UTC time. Typically the GPS outputs a time-of-week value in milliseconds. First convert that to UTC and then convert for this field using ((float) (time_week_ms % (60*60*1000))) / 1000. If unknown: 0xFFFF.*/
  uint16_t direction; /*< [cdeg] Direction over ground (not heading, but direction of movement) measured clockwise from true North: 0 - 35999 centi-degrees. If unknown: 36100 centi-degrees.*/
  uint16_t speed_horizontal; /*< [cm/s] Ground speed. Positive only. If unknown: 25500 cm/s. If speed is larger than 25425 cm/s, use 25425 cm/s.*/
  int16_t speed_vertical; /*< [cm/s] The vertical speed. Up is positive. If unknown: 6300 cm/s. If speed is larger than 6200 cm/s, use 6200 cm/s. If lower than -6200 cm/s, use -6200 cm/s.*/
@@ -112,7 +112,7 @@ typedef struct __mavlink_open_drone_id_location_t {
  * @param vertical_accuracy  The accuracy of the vertical position.
  * @param barometer_accuracy  The accuracy of the barometric altitude.
  * @param speed_accuracy  The accuracy of the horizontal and vertical speed.
- * @param timestamp [s] Seconds after the full hour with reference to UTC time. Typically the GPS outputs a time-of-week value in milliseconds. First convert that to UTC and then convert for this field using ((float) (time_week_ms % (60*60*1000))) / 1000.
+ * @param timestamp [s] Seconds after the full hour with reference to UTC time. Typically the GPS outputs a time-of-week value in milliseconds. First convert that to UTC and then convert for this field using ((float) (time_week_ms % (60*60*1000))) / 1000. If unknown: 0xFFFF.
  * @param timestamp_accuracy  The accuracy of the timestamps.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -192,7 +192,7 @@ static inline uint16_t mavlink_msg_open_drone_id_location_pack(uint8_t system_id
  * @param vertical_accuracy  The accuracy of the vertical position.
  * @param barometer_accuracy  The accuracy of the barometric altitude.
  * @param speed_accuracy  The accuracy of the horizontal and vertical speed.
- * @param timestamp [s] Seconds after the full hour with reference to UTC time. Typically the GPS outputs a time-of-week value in milliseconds. First convert that to UTC and then convert for this field using ((float) (time_week_ms % (60*60*1000))) / 1000.
+ * @param timestamp [s] Seconds after the full hour with reference to UTC time. Typically the GPS outputs a time-of-week value in milliseconds. First convert that to UTC and then convert for this field using ((float) (time_week_ms % (60*60*1000))) / 1000. If unknown: 0xFFFF.
  * @param timestamp_accuracy  The accuracy of the timestamps.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -298,7 +298,7 @@ static inline uint16_t mavlink_msg_open_drone_id_location_encode_chan(uint8_t sy
  * @param vertical_accuracy  The accuracy of the vertical position.
  * @param barometer_accuracy  The accuracy of the barometric altitude.
  * @param speed_accuracy  The accuracy of the horizontal and vertical speed.
- * @param timestamp [s] Seconds after the full hour with reference to UTC time. Typically the GPS outputs a time-of-week value in milliseconds. First convert that to UTC and then convert for this field using ((float) (time_week_ms % (60*60*1000))) / 1000.
+ * @param timestamp [s] Seconds after the full hour with reference to UTC time. Typically the GPS outputs a time-of-week value in milliseconds. First convert that to UTC and then convert for this field using ((float) (time_week_ms % (60*60*1000))) / 1000. If unknown: 0xFFFF.
  * @param timestamp_accuracy  The accuracy of the timestamps.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -602,7 +602,7 @@ static inline uint8_t mavlink_msg_open_drone_id_location_get_speed_accuracy(cons
 /**
  * @brief Get field timestamp from open_drone_id_location message
  *
- * @return [s] Seconds after the full hour with reference to UTC time. Typically the GPS outputs a time-of-week value in milliseconds. First convert that to UTC and then convert for this field using ((float) (time_week_ms % (60*60*1000))) / 1000.
+ * @return [s] Seconds after the full hour with reference to UTC time. Typically the GPS outputs a time-of-week value in milliseconds. First convert that to UTC and then convert for this field using ((float) (time_week_ms % (60*60*1000))) / 1000. If unknown: 0xFFFF.
  */
 static inline float mavlink_msg_open_drone_id_location_get_timestamp(const mavlink_message_t* msg)
 {
