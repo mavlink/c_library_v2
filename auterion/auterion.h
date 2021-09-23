@@ -50,7 +50,6 @@ extern "C" {
 #include "./mavlink_msg_radio_status_extensions.h"
 
 // base include
-#include "../common/common.h"
 #include "../development/development.h"
 
 #undef MAVLINK_THIS_XML_IDX
