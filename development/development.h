@@ -326,6 +326,8 @@ typedef enum CELLULAR_NETWORK_FAILED_REASON
 #include "./mavlink_msg_mission_checksum.h"
 #include "./mavlink_msg_airspeed.h"
 #include "./mavlink_msg_wifi_network_info.h"
+#include "./mavlink_msg_group_start.h"
+#include "./mavlink_msg_group_end.h"
 
 // base include
 #include "../standard/standard.h"
