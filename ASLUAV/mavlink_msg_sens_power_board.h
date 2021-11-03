@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE SENS_POWER_BOARD PACKING
 
-#define MAVLINK_MSG_ID_SENS_POWER_BOARD 212
+#define MAVLINK_MSG_ID_SENS_POWER_BOARD 8013
 
 
 typedef struct __mavlink_sens_power_board_t {
@@ -21,17 +21,17 @@ typedef struct __mavlink_sens_power_board_t {
 
 #define MAVLINK_MSG_ID_SENS_POWER_BOARD_LEN 46
 #define MAVLINK_MSG_ID_SENS_POWER_BOARD_MIN_LEN 46
-#define MAVLINK_MSG_ID_212_LEN 46
-#define MAVLINK_MSG_ID_212_MIN_LEN 46
+#define MAVLINK_MSG_ID_8013_LEN 46
+#define MAVLINK_MSG_ID_8013_MIN_LEN 46
 
 #define MAVLINK_MSG_ID_SENS_POWER_BOARD_CRC 222
-#define MAVLINK_MSG_ID_212_CRC 222
+#define MAVLINK_MSG_ID_8013_CRC 222
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_SENS_POWER_BOARD { \
-    212, \
+    8013, \
     "SENS_POWER_BOARD", \
     12, \
     {  { "timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_sens_power_board_t, timestamp) }, \

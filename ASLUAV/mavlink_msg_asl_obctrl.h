@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE ASL_OBCTRL PACKING
 
-#define MAVLINK_MSG_ID_ASL_OBCTRL 207
+#define MAVLINK_MSG_ID_ASL_OBCTRL 8008
 
 
 typedef struct __mavlink_asl_obctrl_t {
@@ -17,17 +17,17 @@ typedef struct __mavlink_asl_obctrl_t {
 
 #define MAVLINK_MSG_ID_ASL_OBCTRL_LEN 33
 #define MAVLINK_MSG_ID_ASL_OBCTRL_MIN_LEN 33
-#define MAVLINK_MSG_ID_207_LEN 33
-#define MAVLINK_MSG_ID_207_MIN_LEN 33
+#define MAVLINK_MSG_ID_8008_LEN 33
+#define MAVLINK_MSG_ID_8008_MIN_LEN 33
 
 #define MAVLINK_MSG_ID_ASL_OBCTRL_CRC 234
-#define MAVLINK_MSG_ID_207_CRC 234
+#define MAVLINK_MSG_ID_8008_CRC 234
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_ASL_OBCTRL { \
-    207, \
+    8008, \
     "ASL_OBCTRL", \
     8, \
     {  { "timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_asl_obctrl_t, timestamp) }, \
