@@ -285,7 +285,7 @@ typedef enum GIMBAL_DEVICE_CAP_FLAGS
 } GIMBAL_DEVICE_CAP_FLAGS;
 #endif
 
-/** @brief Gimbal manager high level capability flags (bitmap). The first 16 bits are identical to the GIMBAL_DEVICE_CAP_FLAGS which are identical with GIMBAL_DEVICE_FLAGS. However, the gimbal manager does not need to copy the flags from the gimbal but can also enhance the capabilities and thus add flags. */
+/** @brief Gimbal manager high level capability flags (bitmap). The first 16 bits are identical to the GIMBAL_DEVICE_CAP_FLAGS. However, the gimbal manager does not need to copy the flags from the gimbal but can also enhance the capabilities and thus add flags. */
 #ifndef HAVE_ENUM_GIMBAL_MANAGER_CAP_FLAGS
 #define HAVE_ENUM_GIMBAL_MANAGER_CAP_FLAGS
 typedef enum GIMBAL_MANAGER_CAP_FLAGS
@@ -322,7 +322,7 @@ typedef enum GIMBAL_DEVICE_FLAGS
 } GIMBAL_DEVICE_FLAGS;
 #endif
 
-/** @brief Flags for high level gimbal manager operation The first 16 bytes are identical to the GIMBAL_DEVICE_FLAGS. */
+/** @brief Flags for high level gimbal manager operation The first 16 bits are identical to the GIMBAL_DEVICE_FLAGS. */
 #ifndef HAVE_ENUM_GIMBAL_MANAGER_FLAGS
 #define HAVE_ENUM_GIMBAL_MANAGER_FLAGS
 typedef enum GIMBAL_MANAGER_FLAGS
