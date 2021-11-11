@@ -551,6 +551,63 @@ typedef enum COMP_METADATA_TYPE
 } COMP_METADATA_TYPE;
 #endif
 
+/** @brief Actuator configuration, used to change a setting on an actuator. Component information metadata can be used to know which outputs support which commands. */
+#ifndef HAVE_ENUM_ACTUATOR_CONFIGURATION
+#define HAVE_ENUM_ACTUATOR_CONFIGURATION
+typedef enum ACTUATOR_CONFIGURATION
+{
+   ACTUATOR_CONFIGURATION_NONE=0, /* Do nothing. | */
+   ACTUATOR_CONFIGURATION_BEEP=1, /* Command the actuator to beep now. | */
+   ACTUATOR_CONFIGURATION_3D_MODE_ON=2, /* Permanently set the actuator (ESC) to 3D mode (reversible thrust). | */
+   ACTUATOR_CONFIGURATION_3D_MODE_OFF=3, /* Permanently set the actuator (ESC) to non 3D mode (non-reversible thrust). | */
+   ACTUATOR_CONFIGURATION_SPIN_DIRECTION1=4, /* Permanently set the actuator (ESC) to spin direction 1 (which can be clockwise or counter-clockwise). | */
+   ACTUATOR_CONFIGURATION_SPIN_DIRECTION2=5, /* Permanently set the actuator (ESC) to spin direction 2 (opposite of direction 1). | */
+   ACTUATOR_CONFIGURATION_ENUM_END=6, /*  | */
+} ACTUATOR_CONFIGURATION;
+#endif
+
+/** @brief Actuator output function. Values greater or equal to 1000 are autopilot-specific. */
+#ifndef HAVE_ENUM_ACTUATOR_OUTPUT_FUNCTION
+#define HAVE_ENUM_ACTUATOR_OUTPUT_FUNCTION
+typedef enum ACTUATOR_OUTPUT_FUNCTION
+{
+   ACTUATOR_OUTPUT_FUNCTION_NONE=0, /* No function (disabled). | */
+   ACTUATOR_OUTPUT_FUNCTION_MOTOR1=1, /* Motor 1 | */
+   ACTUATOR_OUTPUT_FUNCTION_MOTOR2=2, /* Motor 2 | */
+   ACTUATOR_OUTPUT_FUNCTION_MOTOR3=3, /* Motor 3 | */
+   ACTUATOR_OUTPUT_FUNCTION_MOTOR4=4, /* Motor 4 | */
+   ACTUATOR_OUTPUT_FUNCTION_MOTOR5=5, /* Motor 5 | */
+   ACTUATOR_OUTPUT_FUNCTION_MOTOR6=6, /* Motor 6 | */
+   ACTUATOR_OUTPUT_FUNCTION_MOTOR7=7, /* Motor 7 | */
+   ACTUATOR_OUTPUT_FUNCTION_MOTOR8=8, /* Motor 8 | */
+   ACTUATOR_OUTPUT_FUNCTION_MOTOR9=9, /* Motor 9 | */
+   ACTUATOR_OUTPUT_FUNCTION_MOTOR10=10, /* Motor 10 | */
+   ACTUATOR_OUTPUT_FUNCTION_MOTOR11=11, /* Motor 11 | */
+   ACTUATOR_OUTPUT_FUNCTION_MOTOR12=12, /* Motor 12 | */
+   ACTUATOR_OUTPUT_FUNCTION_MOTOR13=13, /* Motor 13 | */
+   ACTUATOR_OUTPUT_FUNCTION_MOTOR14=14, /* Motor 14 | */
+   ACTUATOR_OUTPUT_FUNCTION_MOTOR15=15, /* Motor 15 | */
+   ACTUATOR_OUTPUT_FUNCTION_MOTOR16=16, /* Motor 16 | */
+   ACTUATOR_OUTPUT_FUNCTION_SERVO1=33, /* Servo 1 | */
+   ACTUATOR_OUTPUT_FUNCTION_SERVO2=34, /* Servo 2 | */
+   ACTUATOR_OUTPUT_FUNCTION_SERVO3=35, /* Servo 3 | */
+   ACTUATOR_OUTPUT_FUNCTION_SERVO4=36, /* Servo 4 | */
+   ACTUATOR_OUTPUT_FUNCTION_SERVO5=37, /* Servo 5 | */
+   ACTUATOR_OUTPUT_FUNCTION_SERVO6=38, /* Servo 6 | */
+   ACTUATOR_OUTPUT_FUNCTION_SERVO7=39, /* Servo 7 | */
+   ACTUATOR_OUTPUT_FUNCTION_SERVO8=40, /* Servo 8 | */
+   ACTUATOR_OUTPUT_FUNCTION_SERVO9=41, /* Servo 9 | */
+   ACTUATOR_OUTPUT_FUNCTION_SERVO10=42, /* Servo 10 | */
+   ACTUATOR_OUTPUT_FUNCTION_SERVO11=43, /* Servo 11 | */
+   ACTUATOR_OUTPUT_FUNCTION_SERVO12=44, /* Servo 12 | */
+   ACTUATOR_OUTPUT_FUNCTION_SERVO13=45, /* Servo 13 | */
+   ACTUATOR_OUTPUT_FUNCTION_SERVO14=46, /* Servo 14 | */
+   ACTUATOR_OUTPUT_FUNCTION_SERVO15=47, /* Servo 15 | */
+   ACTUATOR_OUTPUT_FUNCTION_SERVO16=48, /* Servo 16 | */
+   ACTUATOR_OUTPUT_FUNCTION_ENUM_END=49, /*  | */
+} ACTUATOR_OUTPUT_FUNCTION;
+#endif
+
 /** @brief Commands to be executed by the MAV. They can be executed on user request, or as part of a mission script. If the action is used in a mission, the parameter mapping to the waypoint/mission message is as follows: Param 1, Param 2, Param 3, Param 4, X: Param 5, Y:Param 6, Z:Param 7. This command list is similar what ARINC 424 is for commercial aircraft: A data format how to interpret waypoint/mission data. NaN and INT32_MAX may be used in float/integer params (respectively) to indicate optional/default values (e.g. to use the component's current yaw or latitude rather than a specific value). See https://mavlink.io/en/guide/xml_schema.html#MAV_CMD for information about the structure of the MAV_CMD entries */
 #ifndef HAVE_ENUM_MAV_CMD
 #define HAVE_ENUM_MAV_CMD
@@ -636,6 +693,8 @@ typedef enum MAV_CMD
    MAV_CMD_OVERRIDE_GOTO=252, /* Override current mission with command to pause mission, pause mission and move to position, continue/resume mission. When param 1 indicates that the mission is paused (MAV_GOTO_DO_HOLD), param 2 defines whether it holds in place or moves to another position. |MAV_GOTO_DO_HOLD: pause mission and either hold or move to specified position (depending on param2), MAV_GOTO_DO_CONTINUE: resume mission.| MAV_GOTO_HOLD_AT_CURRENT_POSITION: hold at current position, MAV_GOTO_HOLD_AT_SPECIFIED_POSITION: hold at specified position.| Coordinate frame of hold point.| Desired yaw angle.| Latitude/X position.| Longitude/Y position.| Altitude/Z position.|  */
    MAV_CMD_OBLIQUE_SURVEY=260, /* Mission command to set a Camera Auto Mount Pivoting Oblique Survey (Replaces CAM_TRIGG_DIST for this purpose). The camera is triggered each time this distance is exceeded, then the mount moves to the next position. Params 4~6 set-up the angle limits and number of positions for oblique survey, where mount-enabled vehicles automatically roll the camera between shots to emulate an oblique camera setup (providing an increased HFOV). This command can also be used to set the shutter integration time for the camera. |Camera trigger distance. 0 to stop triggering.| Camera shutter integration time. 0 to ignore| The minimum interval in which the camera is capable of taking subsequent pictures repeatedly. 0 to ignore.| Total number of roll positions at which the camera will capture photos (images captures spread evenly across the limits defined by param5).| Angle limits that the camera can be rolled to left and right of center.| Fixed pitch angle that the camera will hold in oblique mode if the mount is actuated in the pitch axis.| Empty|  */
    MAV_CMD_MISSION_START=300, /* start running a mission |first_item: the first mission item to run| last_item:  the last mission item to run (after this item is run, the mission ends)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
+   MAV_CMD_ACTUATOR_TEST=310, /* Actuator testing command. This is similar to MAV_CMD_DO_MOTOR_TEST but operates on the level of output functions, i.e. it is possible to test Motor1 independent from which output it is configured on. Autopilots typically refuse this command while armed. |Output value: 1 means maximum positive output, 0 to center servos or minimum motor thrust (expected to spin), -1 for maximum negative (if not supported by the motors, i.e. motor is not reversible, smaller than 0 maps to NaN). And NaN maps to disarmed (stop the motors).| Timeout after which the test command expires and the output is restored to the previous value. A timeout has to be set for safety reasons. A timeout of 0 means to restore the previous value immediately.| Reserved (default:0)| Reserved (default:0)| Actuator Output function| Reserved (default:0)| Reserved (default:0)|  */
+   MAV_CMD_CONFIGURE_ACTUATOR=311, /* Actuator configuration command. |Actuator configuration action| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Actuator Output function| Reserved (default:0)| Reserved (default:0)|  */
    MAV_CMD_COMPONENT_ARM_DISARM=400, /* Arms / Disarms a component |0: disarm, 1: arm| 0: arm-disarm unless prevented by safety checks (i.e. when landed), 21196: force arming/disarming (e.g. allow arming to override preflight checks and disarming in flight)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
    MAV_CMD_RUN_PREARM_CHECKS=401, /* Instructs system to run pre-arm checks. This command should return MAV_RESULT_TEMPORARILY_REJECTED in the case the system is armed, otherwise MAV_RESULT_ACCEPTED. Note that the return value from executing this command does not indicate whether the vehicle is armable or not, just whether the system has successfully run/is currently running the checks.  The result of the checks is reflected in the SYS_STATUS message. |Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
    MAV_CMD_ILLUMINATOR_ON_OFF=405, /* Turns illuminators ON/OFF. An illuminator is a light source that is used for lighting up dark areas external to the sytstem: e.g. a torch or searchlight (as opposed to a light source for illuminating the system itself, e.g. an indicator light). |0: Illuminators OFF, 1: Illuminators ON| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
