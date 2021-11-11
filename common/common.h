@@ -546,7 +546,8 @@ typedef enum COMP_METADATA_TYPE
    COMP_METADATA_TYPE_COMMANDS=2, /* Meta data that specifies which commands and command parameters the vehicle supports. (WIP) | */
    COMP_METADATA_TYPE_PERIPHERALS=3, /* Meta data that specifies external non-MAVLink peripherals. | */
    COMP_METADATA_TYPE_EVENTS=4, /* Meta data for the events interface. | */
-   COMP_METADATA_TYPE_ENUM_END=5, /*  | */
+   COMP_METADATA_TYPE_ACTUATORS=5, /* Meta data for actuator configuration (motors, servos and vehicle geometry) and testing. | */
+   COMP_METADATA_TYPE_ENUM_END=6, /*  | */
 } COMP_METADATA_TYPE;
 #endif
 
