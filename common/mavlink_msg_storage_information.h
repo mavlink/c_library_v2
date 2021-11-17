@@ -18,7 +18,7 @@ typedef struct __mavlink_storage_information_t {
  char name[32]; /*<  Textual storage name to be used in UI (microSD 1, Internal Memory, etc.) This is a NULL terminated string. If it is exactly 32 characters long, add a terminating NULL. If this string is empty, the generic type is shown to the user.*/
  uint8_t storage_usage; /*<  Flags indicating whether this instance is preferred storage for photos, videos, etc.
         Note: Implementations should initially set the flags on the system-default storage id used for saving media (if possible/supported).
-        This setting can then be overridden using `MAV_CMD_SET_STORAGE_USAGE`.
+        This setting can then be overridden using MAV_CMD_SET_STORAGE_USAGE.
         If the media usage flags are not set, a GCS may assume storage ID 1 is the default storage for all media types.*/
 } mavlink_storage_information_t;
 
@@ -90,7 +90,7 @@ typedef struct __mavlink_storage_information_t {
  * @param name  Textual storage name to be used in UI (microSD 1, Internal Memory, etc.) This is a NULL terminated string. If it is exactly 32 characters long, add a terminating NULL. If this string is empty, the generic type is shown to the user.
  * @param storage_usage  Flags indicating whether this instance is preferred storage for photos, videos, etc.
         Note: Implementations should initially set the flags on the system-default storage id used for saving media (if possible/supported).
-        This setting can then be overridden using `MAV_CMD_SET_STORAGE_USAGE`.
+        This setting can then be overridden using MAV_CMD_SET_STORAGE_USAGE.
         If the media usage flags are not set, a GCS may assume storage ID 1 is the default storage for all media types.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -152,7 +152,7 @@ static inline uint16_t mavlink_msg_storage_information_pack(uint8_t system_id, u
  * @param name  Textual storage name to be used in UI (microSD 1, Internal Memory, etc.) This is a NULL terminated string. If it is exactly 32 characters long, add a terminating NULL. If this string is empty, the generic type is shown to the user.
  * @param storage_usage  Flags indicating whether this instance is preferred storage for photos, videos, etc.
         Note: Implementations should initially set the flags on the system-default storage id used for saving media (if possible/supported).
-        This setting can then be overridden using `MAV_CMD_SET_STORAGE_USAGE`.
+        This setting can then be overridden using MAV_CMD_SET_STORAGE_USAGE.
         If the media usage flags are not set, a GCS may assume storage ID 1 is the default storage for all media types.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -240,7 +240,7 @@ static inline uint16_t mavlink_msg_storage_information_encode_chan(uint8_t syste
  * @param name  Textual storage name to be used in UI (microSD 1, Internal Memory, etc.) This is a NULL terminated string. If it is exactly 32 characters long, add a terminating NULL. If this string is empty, the generic type is shown to the user.
  * @param storage_usage  Flags indicating whether this instance is preferred storage for photos, videos, etc.
         Note: Implementations should initially set the flags on the system-default storage id used for saving media (if possible/supported).
-        This setting can then be overridden using `MAV_CMD_SET_STORAGE_USAGE`.
+        This setting can then be overridden using MAV_CMD_SET_STORAGE_USAGE.
         If the media usage flags are not set, a GCS may assume storage ID 1 is the default storage for all media types.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -458,7 +458,7 @@ static inline uint16_t mavlink_msg_storage_information_get_name(const mavlink_me
  *
  * @return  Flags indicating whether this instance is preferred storage for photos, videos, etc.
         Note: Implementations should initially set the flags on the system-default storage id used for saving media (if possible/supported).
-        This setting can then be overridden using `MAV_CMD_SET_STORAGE_USAGE`.
+        This setting can then be overridden using MAV_CMD_SET_STORAGE_USAGE.
         If the media usage flags are not set, a GCS may assume storage ID 1 is the default storage for all media types.
  */
 static inline uint8_t mavlink_msg_storage_information_get_storage_usage(const mavlink_message_t* msg)

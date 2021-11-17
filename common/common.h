@@ -148,16 +148,16 @@ typedef enum MAV_SYS_STATUS_SENSOR
 /** @brief Co-ordinate frames used by MAVLink. Not all frames are supported by all commands, messages, or vehicles.
       
       Global frames use the following naming conventions:
-      - `GLOBAL`: Global co-ordinate frame with WGS84 latitude/longitude and altitude positive over mean sea level (MSL) by default. 
-        The following modifiers may be used with `GLOBAL`:
-        - `RELATIVE_ALT`: Altitude is relative to the vehicle home position rather than MSL
-        - `TERRAIN_ALT`: Altitude is relative to ground level rather than MSL
-        - `INT`: Latitude/longitude (in degrees) are scaled by multiplying by 1E7  
+      - "GLOBAL": Global co-ordinate frame with WGS84 latitude/longitude and altitude positive over mean sea level (MSL) by default. 
+        The following modifiers may be used with "GLOBAL":
+        - "RELATIVE_ALT": Altitude is relative to the vehicle home position rather than MSL.
+        - "TERRAIN_ALT": Altitude is relative to ground level rather than MSL.
+        - "INT": Latitude/longitude (in degrees) are scaled by multiplying by 1E7.
 
       Local frames use the following naming conventions:
-      - `LOCAL`: Origin of local frame is fixed relative to earth. Unless otherwise specified this origin is the origin of the vehicle position-estimator ("EKF").
-      - `BODY`: Origin of local frame travels with the vehicle. NOTE, `BODY` does NOT indicate alignment of frame axis with vehicle attitude.
-      - `OFFSET`: Deprecated synonym for `BODY` (origin travels with the vehicle). Not to be used for new frames.
+      - "LOCAL": Origin of local frame is fixed relative to earth. Unless otherwise specified this origin is the origin of the vehicle position-estimator ("EKF").
+      - "BODY": Origin of local frame travels with the vehicle. NOTE, "BODY" does NOT indicate alignment of frame axis with vehicle attitude.
+      - "OFFSET": Deprecated synonym for "BODY" (origin travels with the vehicle). Not to be used for new frames.
 
       Some deprecated frames do not follow these conventions (e.g. MAV_FRAME_BODY_NED and MAV_FRAME_BODY_OFFSET_NED).
   */
@@ -467,12 +467,12 @@ typedef enum STORAGE_TYPE
 } STORAGE_TYPE;
 #endif
 
-/** @brief Flags to indicate usage for a particular storage (see `STORAGE_INFORMATION.storage_usage` and `MAV_CMD_SET_STORAGE_USAGE`). */
+/** @brief Flags to indicate usage for a particular storage (see STORAGE_INFORMATION.storage_usage and MAV_CMD_SET_STORAGE_USAGE). */
 #ifndef HAVE_ENUM_STORAGE_USAGE_FLAG
 #define HAVE_ENUM_STORAGE_USAGE_FLAG
 typedef enum STORAGE_USAGE_FLAG
 {
-   STORAGE_USAGE_FLAG_SET=1, /* Always set to 1 (indicates `STORAGE_INFORMATION.storage_usage` is supported). | */
+   STORAGE_USAGE_FLAG_SET=1, /* Always set to 1 (indicates STORAGE_INFORMATION.storage_usage is supported). | */
    STORAGE_USAGE_FLAG_PHOTO=2, /* Storage for saving photos. | */
    STORAGE_USAGE_FLAG_VIDEO=4, /* Storage for saving videos. | */
    STORAGE_USAGE_FLAG_LOGS=8, /* Storage for saving logs. | */
