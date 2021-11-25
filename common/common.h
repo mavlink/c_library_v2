@@ -2036,17 +2036,6 @@ typedef enum TUNE_FORMAT
 } TUNE_FORMAT;
 #endif
 
-/** @brief Component capability flags (Bitmap) */
-#ifndef HAVE_ENUM_COMPONENT_CAP_FLAGS
-#define HAVE_ENUM_COMPONENT_CAP_FLAGS
-typedef enum COMPONENT_CAP_FLAGS
-{
-   COMPONENT_CAP_FLAGS_PARAM=1, /* Component has parameters, and supports the parameter protocol (PARAM messages). | */
-   COMPONENT_CAP_FLAGS_PARAM_EXT=2, /* Component has parameters, and supports the extended parameter protocol (PARAM_EXT messages). | */
-   COMPONENT_CAP_FLAGS_ENUM_END=3, /*  | */
-} COMPONENT_CAP_FLAGS;
-#endif
-
 /** @brief Type of AIS vessel, enum duplicated from AIS standard, https://gpsd.gitlab.io/gpsd/AIVDM.html */
 #ifndef HAVE_ENUM_AIS_TYPE
 #define HAVE_ENUM_AIS_TYPE
