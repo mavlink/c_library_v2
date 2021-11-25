@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE SENSOR_AIRFLOW_ANGLES PACKING
 
-#define MAVLINK_MSG_ID_SENSOR_AIRFLOW_ANGLES 215
+#define MAVLINK_MSG_ID_SENSOR_AIRFLOW_ANGLES 8016
 
 
 typedef struct __mavlink_sensor_airflow_angles_t {
@@ -14,17 +14,17 @@ typedef struct __mavlink_sensor_airflow_angles_t {
 
 #define MAVLINK_MSG_ID_SENSOR_AIRFLOW_ANGLES_LEN 18
 #define MAVLINK_MSG_ID_SENSOR_AIRFLOW_ANGLES_MIN_LEN 18
-#define MAVLINK_MSG_ID_215_LEN 18
-#define MAVLINK_MSG_ID_215_MIN_LEN 18
+#define MAVLINK_MSG_ID_8016_LEN 18
+#define MAVLINK_MSG_ID_8016_MIN_LEN 18
 
 #define MAVLINK_MSG_ID_SENSOR_AIRFLOW_ANGLES_CRC 149
-#define MAVLINK_MSG_ID_215_CRC 149
+#define MAVLINK_MSG_ID_8016_CRC 149
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_SENSOR_AIRFLOW_ANGLES { \
-    215, \
+    8016, \
     "SENSOR_AIRFLOW_ANGLES", \
     5, \
     {  { "timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_sensor_airflow_angles_t, timestamp) }, \

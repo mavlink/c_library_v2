@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE SENS_POWER PACKING
 
-#define MAVLINK_MSG_ID_SENS_POWER 201
+#define MAVLINK_MSG_ID_SENS_POWER 8002
 
 
 typedef struct __mavlink_sens_power_t {
@@ -13,17 +13,17 @@ typedef struct __mavlink_sens_power_t {
 
 #define MAVLINK_MSG_ID_SENS_POWER_LEN 16
 #define MAVLINK_MSG_ID_SENS_POWER_MIN_LEN 16
-#define MAVLINK_MSG_ID_201_LEN 16
-#define MAVLINK_MSG_ID_201_MIN_LEN 16
+#define MAVLINK_MSG_ID_8002_LEN 16
+#define MAVLINK_MSG_ID_8002_MIN_LEN 16
 
 #define MAVLINK_MSG_ID_SENS_POWER_CRC 218
-#define MAVLINK_MSG_ID_201_CRC 218
+#define MAVLINK_MSG_ID_8002_CRC 218
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_SENS_POWER { \
-    201, \
+    8002, \
     "SENS_POWER", \
     4, \
     {  { "adc121_vspb_volt", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_sens_power_t, adc121_vspb_volt) }, \

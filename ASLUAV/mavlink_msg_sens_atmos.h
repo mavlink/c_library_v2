@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE SENS_ATMOS PACKING
 
-#define MAVLINK_MSG_ID_SENS_ATMOS 208
+#define MAVLINK_MSG_ID_SENS_ATMOS 8009
 
 
 typedef struct __mavlink_sens_atmos_t {
@@ -12,17 +12,17 @@ typedef struct __mavlink_sens_atmos_t {
 
 #define MAVLINK_MSG_ID_SENS_ATMOS_LEN 16
 #define MAVLINK_MSG_ID_SENS_ATMOS_MIN_LEN 16
-#define MAVLINK_MSG_ID_208_LEN 16
-#define MAVLINK_MSG_ID_208_MIN_LEN 16
+#define MAVLINK_MSG_ID_8009_LEN 16
+#define MAVLINK_MSG_ID_8009_MIN_LEN 16
 
 #define MAVLINK_MSG_ID_SENS_ATMOS_CRC 144
-#define MAVLINK_MSG_ID_208_CRC 144
+#define MAVLINK_MSG_ID_8009_CRC 144
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_SENS_ATMOS { \
-    208, \
+    8009, \
     "SENS_ATMOS", \
     3, \
     {  { "timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_sens_atmos_t, timestamp) }, \

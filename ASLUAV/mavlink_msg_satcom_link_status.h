@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE SATCOM_LINK_STATUS PACKING
 
-#define MAVLINK_MSG_ID_SATCOM_LINK_STATUS 214
+#define MAVLINK_MSG_ID_SATCOM_LINK_STATUS 8015
 
 
 typedef struct __mavlink_satcom_link_status_t {
@@ -17,17 +17,17 @@ typedef struct __mavlink_satcom_link_status_t {
 
 #define MAVLINK_MSG_ID_SATCOM_LINK_STATUS_LEN 24
 #define MAVLINK_MSG_ID_SATCOM_LINK_STATUS_MIN_LEN 24
-#define MAVLINK_MSG_ID_214_LEN 24
-#define MAVLINK_MSG_ID_214_MIN_LEN 24
+#define MAVLINK_MSG_ID_8015_LEN 24
+#define MAVLINK_MSG_ID_8015_MIN_LEN 24
 
 #define MAVLINK_MSG_ID_SATCOM_LINK_STATUS_CRC 23
-#define MAVLINK_MSG_ID_214_CRC 23
+#define MAVLINK_MSG_ID_8015_CRC 23
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_SATCOM_LINK_STATUS { \
-    214, \
+    8015, \
     "SATCOM_LINK_STATUS", \
     8, \
     {  { "timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_satcom_link_status_t, timestamp) }, \

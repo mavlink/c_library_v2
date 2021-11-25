@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE EKF_EXT PACKING
 
-#define MAVLINK_MSG_ID_EKF_EXT 206
+#define MAVLINK_MSG_ID_EKF_EXT 8007
 
 
 typedef struct __mavlink_ekf_ext_t {
@@ -16,17 +16,17 @@ typedef struct __mavlink_ekf_ext_t {
 
 #define MAVLINK_MSG_ID_EKF_EXT_LEN 32
 #define MAVLINK_MSG_ID_EKF_EXT_MIN_LEN 32
-#define MAVLINK_MSG_ID_206_LEN 32
-#define MAVLINK_MSG_ID_206_MIN_LEN 32
+#define MAVLINK_MSG_ID_8007_LEN 32
+#define MAVLINK_MSG_ID_8007_MIN_LEN 32
 
 #define MAVLINK_MSG_ID_EKF_EXT_CRC 64
-#define MAVLINK_MSG_ID_206_CRC 64
+#define MAVLINK_MSG_ID_8007_CRC 64
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_EKF_EXT { \
-    206, \
+    8007, \
     "EKF_EXT", \
     7, \
     {  { "timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_ekf_ext_t, timestamp) }, \

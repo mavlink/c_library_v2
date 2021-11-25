@@ -107,7 +107,11 @@ typedef enum MAV_TYPE
    MAV_TYPE_DECAROTOR=35, /* Decarotor | */
    MAV_TYPE_BATTERY=36, /* Battery | */
    MAV_TYPE_PARACHUTE=37, /* Parachute | */
-   MAV_TYPE_ENUM_END=38, /*  | */
+   MAV_TYPE_LOG=38, /* Log | */
+   MAV_TYPE_OSD=39, /* OSD | */
+   MAV_TYPE_IMU=40, /* IMU | */
+   MAV_TYPE_GPS=41, /* GPS | */
+   MAV_TYPE_ENUM_END=42, /*  | */
 } MAV_TYPE;
 #endif
 

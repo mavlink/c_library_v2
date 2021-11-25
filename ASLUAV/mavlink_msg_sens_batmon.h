@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE SENS_BATMON PACKING
 
-#define MAVLINK_MSG_ID_SENS_BATMON 209
+#define MAVLINK_MSG_ID_SENS_BATMON 8010
 
 
 typedef struct __mavlink_sens_batmon_t {
@@ -24,17 +24,17 @@ typedef struct __mavlink_sens_batmon_t {
 
 #define MAVLINK_MSG_ID_SENS_BATMON_LEN 41
 #define MAVLINK_MSG_ID_SENS_BATMON_MIN_LEN 41
-#define MAVLINK_MSG_ID_209_LEN 41
-#define MAVLINK_MSG_ID_209_MIN_LEN 41
+#define MAVLINK_MSG_ID_8010_LEN 41
+#define MAVLINK_MSG_ID_8010_MIN_LEN 41
 
 #define MAVLINK_MSG_ID_SENS_BATMON_CRC 155
-#define MAVLINK_MSG_ID_209_CRC 155
+#define MAVLINK_MSG_ID_8010_CRC 155
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_SENS_BATMON { \
-    209, \
+    8010, \
     "SENS_BATMON", \
     15, \
     {  { "batmon_timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_sens_batmon_t, batmon_timestamp) }, \

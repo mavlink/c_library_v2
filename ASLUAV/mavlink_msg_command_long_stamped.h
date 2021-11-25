@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE COMMAND_LONG_STAMPED PACKING
 
-#define MAVLINK_MSG_ID_COMMAND_LONG_STAMPED 79
+#define MAVLINK_MSG_ID_COMMAND_LONG_STAMPED 224
 
 
 typedef struct __mavlink_command_long_stamped_t {
@@ -22,17 +22,17 @@ typedef struct __mavlink_command_long_stamped_t {
 
 #define MAVLINK_MSG_ID_COMMAND_LONG_STAMPED_LEN 45
 #define MAVLINK_MSG_ID_COMMAND_LONG_STAMPED_MIN_LEN 45
-#define MAVLINK_MSG_ID_79_LEN 45
-#define MAVLINK_MSG_ID_79_MIN_LEN 45
+#define MAVLINK_MSG_ID_224_LEN 45
+#define MAVLINK_MSG_ID_224_MIN_LEN 45
 
 #define MAVLINK_MSG_ID_COMMAND_LONG_STAMPED_CRC 102
-#define MAVLINK_MSG_ID_79_CRC 102
+#define MAVLINK_MSG_ID_224_CRC 102
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_COMMAND_LONG_STAMPED { \
-    79, \
+    224, \
     "COMMAND_LONG_STAMPED", \
     13, \
     {  { "utc_time", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_command_long_stamped_t, utc_time) }, \
