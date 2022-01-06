@@ -2285,7 +2285,7 @@ typedef enum MAV_WINCH_STATUS_FLAG
    MAV_WINCH_STATUS_HEALTHY=1, /* Winch is healthy | */
    MAV_WINCH_STATUS_FULLY_RETRACTED=2, /* Winch line is fully retracted | */
    MAV_WINCH_STATUS_MOVING=4, /* Winch motor is moving | */
-   MAV_WINCH_STATUS_CLUTCH_ENGAGED=8, /* Winch clutch is engaged. Motor is active. | */
+   MAV_WINCH_STATUS_CLUTCH_ENGAGED=8, /* Winch clutch is engaged allowing motor to move freely. | */
    MAV_WINCH_STATUS_LOCKED=16, /* Winch is locked by locking mechanism. | */
    MAV_WINCH_STATUS_DROPPING=32, /* Winch is gravity dropping payload. | */
    MAV_WINCH_STATUS_ARRESTING=64, /* Winch is arresting payload descent. | */
