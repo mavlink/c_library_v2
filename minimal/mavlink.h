@@ -6,7 +6,7 @@
 #ifndef MAVLINK_H
 #define MAVLINK_H
 
-#define MAVLINK_PRIMARY_XML_IDX 2
+#define MAVLINK_PRIMARY_XML_IDX 4
 
 #ifndef MAVLINK_STX
 #define MAVLINK_STX 253
