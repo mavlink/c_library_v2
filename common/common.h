@@ -381,10 +381,16 @@ typedef enum GRIPPER_ACTIONS
 #define HAVE_ENUM_WINCH_ACTIONS
 typedef enum WINCH_ACTIONS
 {
-   WINCH_RELAXED=0, /* Relax winch. | */
-   WINCH_RELATIVE_LENGTH_CONTROL=1, /* Wind or unwind specified length of cable, optionally using specified rate. | */
-   WINCH_RATE_CONTROL=2, /* Wind or unwind cable at specified rate. | */
-   WINCH_ACTIONS_ENUM_END=3, /*  | */
+   WINCH_RELAXED=0, /* Allow motor to freewheel. | */
+   WINCH_RELATIVE_LENGTH_CONTROL=1, /* Wind or unwind specified length of line, optionally using specified rate. | */
+   WINCH_RATE_CONTROL=2, /* Wind or unwind line at specified rate. | */
+   WINCH_LOCK=3, /* Perform the locking sequence to relieve motor while in the fully retracted position. Only action and instance command parameters are used, others are ignored. | */
+   WINCH_DELIVER=4, /* Sequence of drop, slow down, touch down, reel up, lock. Only action and instance command parameters are used, others are ignored. | */
+   WINCH_HOLD=5, /* Engage motor and hold current position. Only action and instance command parameters are used, others are ignored. | */
+   WINCH_RETRACT=6, /* Return the reel to the fully retracted position. Only action and instance command parameters are used, others are ignored. | */
+   WINCH_LOAD_LINE=7, /* Load the reel with line. The winch will calculate the total loaded length and stop when the tension exceeds a threshold. Only action and instance command parameters are used, others are ignored. | */
+   WINCH_ABANDON_LINE=8, /* Spool out the entire length of the line. Only action and instance command parameters are used, others are ignored. | */
+   WINCH_ACTIONS_ENUM_END=9, /*  | */
 } WINCH_ACTIONS;
 #endif
 
@@ -2098,10 +2104,17 @@ typedef enum NAV_VTOL_LAND_OPTIONS
 typedef enum MAV_WINCH_STATUS_FLAG
 {
    MAV_WINCH_STATUS_HEALTHY=1, /* Winch is healthy | */
-   MAV_WINCH_STATUS_FULLY_RETRACTED=2, /* Winch thread is fully retracted | */
+   MAV_WINCH_STATUS_FULLY_RETRACTED=2, /* Winch line is fully retracted | */
    MAV_WINCH_STATUS_MOVING=4, /* Winch motor is moving | */
-   MAV_WINCH_STATUS_CLUTCH_ENGAGED=8, /* Winch clutch is engaged allowing motor to move freely | */
-   MAV_WINCH_STATUS_FLAG_ENUM_END=9, /*  | */
+   MAV_WINCH_STATUS_CLUTCH_ENGAGED=8, /* Winch clutch is engaged allowing motor to move freely. | */
+   MAV_WINCH_STATUS_LOCKED=16, /* Winch is locked by locking mechanism. | */
+   MAV_WINCH_STATUS_DROPPING=32, /* Winch is gravity dropping payload. | */
+   MAV_WINCH_STATUS_ARRESTING=64, /* Winch is arresting payload descent. | */
+   MAV_WINCH_STATUS_GROUND_SENSE=128, /* Winch is using torque measurements to sense the ground. | */
+   MAV_WINCH_STATUS_RETRACTING=256, /* Winch is returning to the fully retracted position. | */
+   MAV_WINCH_STATUS_REDELIVER=512, /* Winch is redelivering the payload. This is a failover state if the line tension goes above a threshold during RETRACTING. | */
+   MAV_WINCH_STATUS_ABANDON_LINE=1024, /* Winch is abandoning the line and possibly payload. Winch unspools the entire calculated line length. This is a failover state from REDELIVER if the number of attemps exceeds a threshold. | */
+   MAV_WINCH_STATUS_FLAG_ENUM_END=1025, /*  | */
 } MAV_WINCH_STATUS_FLAG;
 #endif
 
