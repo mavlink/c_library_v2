@@ -111,7 +111,8 @@ typedef enum MAV_TYPE
    MAV_TYPE_OSD=39, /* OSD | */
    MAV_TYPE_IMU=40, /* IMU | */
    MAV_TYPE_GPS=41, /* GPS | */
-   MAV_TYPE_ENUM_END=42, /*  | */
+   MAV_TYPE_WINCH=42, /* Winch | */
+   MAV_TYPE_ENUM_END=43, /*  | */
 } MAV_TYPE;
 #endif
 
