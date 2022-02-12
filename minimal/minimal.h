@@ -287,6 +287,7 @@ typedef enum MAV_COMPONENT
    MAV_COMP_ID_GIMBAL6=175, /* Gimbal #6. | */
    MAV_COMP_ID_BATTERY=180, /* Battery #1. | */
    MAV_COMP_ID_BATTERY2=181, /* Battery #2. | */
+   MAV_COMP_ID_MAVCAN=189, /* CAN over MAVLink client. | */
    MAV_COMP_ID_MISSIONPLANNER=190, /* Component that can generate/supply a mission flight plan (e.g. GCS or developer API). | */
    MAV_COMP_ID_ONBOARD_COMPUTER=191, /* Component that lives on the onboard computer (companion computer) and has some generic functionalities, such as settings system parameters and monitoring the status of some processes that don't directly speak mavlink and so on. | */
    MAV_COMP_ID_ONBOARD_COMPUTER2=192, /* Component that lives on the onboard computer (companion computer) and has some generic functionalities, such as settings system parameters and monitoring the status of some processes that don't directly speak mavlink and so on. | */
