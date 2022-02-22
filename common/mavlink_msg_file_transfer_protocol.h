@@ -8,7 +8,7 @@ typedef struct __mavlink_file_transfer_protocol_t {
  uint8_t target_network; /*<  Network ID (0 for broadcast)*/
  uint8_t target_system; /*<  System ID (0 for broadcast)*/
  uint8_t target_component; /*<  Component ID (0 for broadcast)*/
- uint8_t payload[251]; /*<  Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields.  The entire content of this block is opaque unless you understand any the encoding message_type.  The particular encoding used can be extension specific and might not always be documented as part of the mavlink specification.*/
+ uint8_t payload[251]; /*<  Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields. The content/format of this block is defined in https://mavlink.io/en/services/ftp.html.*/
 } mavlink_file_transfer_protocol_t;
 
 #define MAVLINK_MSG_ID_FILE_TRANSFER_PROTOCOL_LEN 254
@@ -53,7 +53,7 @@ typedef struct __mavlink_file_transfer_protocol_t {
  * @param target_network  Network ID (0 for broadcast)
  * @param target_system  System ID (0 for broadcast)
  * @param target_component  Component ID (0 for broadcast)
- * @param payload  Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields.  The entire content of this block is opaque unless you understand any the encoding message_type.  The particular encoding used can be extension specific and might not always be documented as part of the mavlink specification.
+ * @param payload  Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields. The content/format of this block is defined in https://mavlink.io/en/services/ftp.html.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_file_transfer_protocol_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -88,7 +88,7 @@ static inline uint16_t mavlink_msg_file_transfer_protocol_pack(uint8_t system_id
  * @param target_network  Network ID (0 for broadcast)
  * @param target_system  System ID (0 for broadcast)
  * @param target_component  Component ID (0 for broadcast)
- * @param payload  Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields.  The entire content of this block is opaque unless you understand any the encoding message_type.  The particular encoding used can be extension specific and might not always be documented as part of the mavlink specification.
+ * @param payload  Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields. The content/format of this block is defined in https://mavlink.io/en/services/ftp.html.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_file_transfer_protocol_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -149,7 +149,7 @@ static inline uint16_t mavlink_msg_file_transfer_protocol_encode_chan(uint8_t sy
  * @param target_network  Network ID (0 for broadcast)
  * @param target_system  System ID (0 for broadcast)
  * @param target_component  Component ID (0 for broadcast)
- * @param payload  Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields.  The entire content of this block is opaque unless you understand any the encoding message_type.  The particular encoding used can be extension specific and might not always be documented as part of the mavlink specification.
+ * @param payload  Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields. The content/format of this block is defined in https://mavlink.io/en/services/ftp.html.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -252,7 +252,7 @@ static inline uint8_t mavlink_msg_file_transfer_protocol_get_target_component(co
 /**
  * @brief Get field payload from file_transfer_protocol message
  *
- * @return  Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields.  The entire content of this block is opaque unless you understand any the encoding message_type.  The particular encoding used can be extension specific and might not always be documented as part of the mavlink specification.
+ * @return  Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields. The content/format of this block is defined in https://mavlink.io/en/services/ftp.html.
  */
 static inline uint16_t mavlink_msg_file_transfer_protocol_get_payload(const mavlink_message_t* msg, uint8_t *payload)
 {
