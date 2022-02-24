@@ -1,6 +1,6 @@
 /** @file
  *    @brief MAVLink comm protocol testsuite generated from uAvionix.xml
- *    @see http://qgroundcontrol.org/mavlink/
+ *    @see https://mavlink.io/en/
  */
 #pragma once
 #ifndef UAVIONIX_TESTSUITE_H
@@ -84,6 +84,11 @@ static void mavlink_test_uavionix_adsb_out_cfg(uint8_t system_id, uint8_t compon
     mavlink_msg_uavionix_adsb_out_cfg_send(MAVLINK_COMM_1 , packet1.ICAO , packet1.callsign , packet1.emitterType , packet1.aircraftSize , packet1.gpsOffsetLat , packet1.gpsOffsetLon , packet1.stallSpeed , packet1.rfSelect );
     mavlink_msg_uavionix_adsb_out_cfg_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+#ifdef MAVLINK_HAVE_GET_MESSAGE_INFO
+    MAVLINK_ASSERT(mavlink_get_message_info_by_name("UAVIONIX_ADSB_OUT_CFG") != NULL);
+    MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG) != NULL);
+#endif
 }
 
 static void mavlink_test_uavionix_adsb_out_dynamic(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
@@ -153,6 +158,11 @@ static void mavlink_test_uavionix_adsb_out_dynamic(uint8_t system_id, uint8_t co
     mavlink_msg_uavionix_adsb_out_dynamic_send(MAVLINK_COMM_1 , packet1.utcTime , packet1.gpsLat , packet1.gpsLon , packet1.gpsAlt , packet1.gpsFix , packet1.numSats , packet1.baroAltMSL , packet1.accuracyHor , packet1.accuracyVert , packet1.accuracyVel , packet1.velVert , packet1.velNS , packet1.VelEW , packet1.emergencyStatus , packet1.state , packet1.squawk );
     mavlink_msg_uavionix_adsb_out_dynamic_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+#ifdef MAVLINK_HAVE_GET_MESSAGE_INFO
+    MAVLINK_ASSERT(mavlink_get_message_info_by_name("UAVIONIX_ADSB_OUT_DYNAMIC") != NULL);
+    MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC) != NULL);
+#endif
 }
 
 static void mavlink_test_uavionix_adsb_transceiver_health_report(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
@@ -207,6 +217,11 @@ static void mavlink_test_uavionix_adsb_transceiver_health_report(uint8_t system_
     mavlink_msg_uavionix_adsb_transceiver_health_report_send(MAVLINK_COMM_1 , packet1.rfHealth );
     mavlink_msg_uavionix_adsb_transceiver_health_report_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+#ifdef MAVLINK_HAVE_GET_MESSAGE_INFO
+    MAVLINK_ASSERT(mavlink_get_message_info_by_name("UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT") != NULL);
+    MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT) != NULL);
+#endif
 }
 
 static void mavlink_test_uAvionix(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
