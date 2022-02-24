@@ -1,6 +1,6 @@
 /** @file
  *    @brief MAVLink comm protocol testsuite generated from auterion.xml
- *    @see http://qgroundcontrol.org/mavlink/
+ *    @see https://mavlink.io/en/
  */
 #pragma once
 #ifndef AUTERION_TESTSUITE_H
@@ -82,6 +82,11 @@ static void mavlink_test_radio_status_extensions(uint8_t system_id, uint8_t comp
     mavlink_msg_radio_status_extensions_send(MAVLINK_COMM_1 , packet1.rssi , packet1.snr , packet1.mcs_index , packet1.number_spatial_streams , packet1.queue_size , packet1.air_time );
     mavlink_msg_radio_status_extensions_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+#ifdef MAVLINK_HAVE_GET_MESSAGE_INFO
+    MAVLINK_ASSERT(mavlink_get_message_info_by_name("RADIO_STATUS_EXTENSIONS") != NULL);
+    MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS) != NULL);
+#endif
 }
 
 static void mavlink_test_auterion(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
