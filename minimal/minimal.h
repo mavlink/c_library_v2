@@ -11,7 +11,7 @@
 #endif
 
 #undef MAVLINK_THIS_XML_HASH
-#define MAVLINK_THIS_XML_HASH -7415141246075108093
+#define MAVLINK_THIS_XML_HASH 579884652505418380
 
 #ifdef __cplusplus
 extern "C" {
@@ -88,11 +88,11 @@ typedef enum MAV_TYPE
    MAV_TYPE_FLAPPING_WING=16, /* Flapping wing | */
    MAV_TYPE_KITE=17, /* Kite | */
    MAV_TYPE_ONBOARD_CONTROLLER=18, /* Onboard companion controller | */
-   MAV_TYPE_VTOL_DUOROTOR=19, /* Two-rotor VTOL using control surfaces in vertical operation in addition. Tailsitter. | */
-   MAV_TYPE_VTOL_QUADROTOR=20, /* Quad-rotor VTOL using a V-shaped quad config in vertical operation. Tailsitter. | */
-   MAV_TYPE_VTOL_TILTROTOR=21, /* Tiltrotor VTOL | */
-   MAV_TYPE_VTOL_RESERVED2=22, /* VTOL reserved 2 | */
-   MAV_TYPE_VTOL_RESERVED3=23, /* VTOL reserved 3 | */
+   MAV_TYPE_VTOL_DUOROTOR=19, /* Two-rotor Tailsitter VTOL that additionally uses control surfaces in vertical operation. Note: should be named MAV_TYPE_VTOL_TAILSITTER_DUOROTOR. | */
+   MAV_TYPE_VTOL_QUADROTOR=20, /* Quad-rotor Tailsitter VTOL using a V-shaped quad config in vertical operation. Note: should be named MAV_TYPE_VTOL_TAILSITTER_QUADROTOR. | */
+   MAV_TYPE_VTOL_TILTROTOR=21, /* Tiltrotor VTOL. Fuselage and wings stay (nominally) horizontal in all flight phases. It able to tilt (some) rotors to provide thrust in cruise flight. | */
+   MAV_TYPE_VTOL_FIXEDROTOR=22, /* VTOL with separate fixed rotors for hover and cruise flight. Fuselage and wings stay (nominally) horizontal in all flight phases. | */
+   MAV_TYPE_VTOL_TAILSITTER=23, /* Tailsitter VTOL. Fuselage and wings orientation changes depending on flight phase: vertical for hover, horizontal for cruise. Use more specific VTOL MAV_TYPE_VTOL_DUOROTOR or MAV_TYPE_VTOL_QUADROTOR if appropriate. | */
    MAV_TYPE_VTOL_RESERVED4=24, /* VTOL reserved 4 | */
    MAV_TYPE_VTOL_RESERVED5=25, /* VTOL reserved 5 | */
    MAV_TYPE_GIMBAL=26, /* Gimbal | */
@@ -332,7 +332,7 @@ typedef enum MAV_COMPONENT
 
 
 #undef MAVLINK_THIS_XML_HASH
-#define MAVLINK_THIS_XML_HASH -7415141246075108093
+#define MAVLINK_THIS_XML_HASH 579884652505418380
 
 #if MAVLINK_THIS_XML_HASH == MAVLINK_PRIMARY_XML_HASH
 # define MAVLINK_MESSAGE_INFO {MAVLINK_MESSAGE_INFO_HEARTBEAT, MAVLINK_MESSAGE_INFO_PROTOCOL_VERSION}
