@@ -286,82 +286,12 @@ static void mavlink_test_joystick_state(uint8_t system_id, uint8_t component_id,
 #endif
 }
 
-static void mavlink_test_joystick_information(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
-{
-#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
-    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
-        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_JOYSTICK_INFORMATION >= 256) {
-            return;
-        }
-#endif
-    mavlink_message_t msg;
-        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
-        uint16_t i;
-    mavlink_joystick_information_t packet_in = {
-        93372036854775807ULL,17651,17755,17859,{ 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206 },{ 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46 },111,178,245,56,"EFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLM"
-    };
-    mavlink_joystick_information_t packet1, packet2;
-        memset(&packet1, 0, sizeof(packet1));
-        packet1.time_usec = packet_in.time_usec;
-        packet1.axis_shift = packet_in.axis_shift;
-        packet1.axis_multiplier = packet_in.axis_multiplier;
-        packet1.joy_definition_version = packet_in.joy_definition_version;
-        packet1.number_of_axes = packet_in.number_of_axes;
-        packet1.number_of_buttons = packet_in.number_of_buttons;
-        packet1.button_trigger_value = packet_in.button_trigger_value;
-        packet1.button_release_value = packet_in.button_release_value;
-        
-        mav_array_memcpy(packet1.vendor_name, packet_in.vendor_name, sizeof(uint8_t)*32);
-        mav_array_memcpy(packet1.model_name, packet_in.model_name, sizeof(uint8_t)*32);
-        mav_array_memcpy(packet1.joy_definition_uri, packet_in.joy_definition_uri, sizeof(char)*140);
-        
-#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
-        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
-           // cope with extensions
-           memset(MAVLINK_MSG_ID_JOYSTICK_INFORMATION_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_JOYSTICK_INFORMATION_MIN_LEN);
-        }
-#endif
-        memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_joystick_information_encode(system_id, component_id, &msg, &packet1);
-    mavlink_msg_joystick_information_decode(&msg, &packet2);
-        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
-
-        memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_joystick_information_pack(system_id, component_id, &msg , packet1.time_usec , packet1.vendor_name , packet1.model_name , packet1.number_of_axes , packet1.number_of_buttons , packet1.button_trigger_value , packet1.button_release_value , packet1.axis_shift , packet1.axis_multiplier , packet1.joy_definition_version , packet1.joy_definition_uri );
-    mavlink_msg_joystick_information_decode(&msg, &packet2);
-        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
-
-        memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_joystick_information_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_usec , packet1.vendor_name , packet1.model_name , packet1.number_of_axes , packet1.number_of_buttons , packet1.button_trigger_value , packet1.button_release_value , packet1.axis_shift , packet1.axis_multiplier , packet1.joy_definition_version , packet1.joy_definition_uri );
-    mavlink_msg_joystick_information_decode(&msg, &packet2);
-        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
-
-        memset(&packet2, 0, sizeof(packet2));
-        mavlink_msg_to_send_buffer(buffer, &msg);
-        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
-            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
-        }
-    mavlink_msg_joystick_information_decode(last_msg, &packet2);
-        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
-        
-        memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_joystick_information_send(MAVLINK_COMM_1 , packet1.time_usec , packet1.vendor_name , packet1.model_name , packet1.number_of_axes , packet1.number_of_buttons , packet1.button_trigger_value , packet1.button_release_value , packet1.axis_shift , packet1.axis_multiplier , packet1.joy_definition_version , packet1.joy_definition_uri );
-    mavlink_msg_joystick_information_decode(last_msg, &packet2);
-        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
-
-#ifdef MAVLINK_HAVE_GET_MESSAGE_INFO
-    MAVLINK_ASSERT(mavlink_get_message_info_by_name("JOYSTICK_INFORMATION") != NULL);
-    MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_JOYSTICK_INFORMATION) != NULL);
-#endif
-}
-
 static void mavlink_test_auterion(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
     mavlink_test_radio_status_extensions(system_id, component_id, last_msg);
     mavlink_test_tracker_status(system_id, component_id, last_msg);
     mavlink_test_tracker_detection_2d(system_id, component_id, last_msg);
     mavlink_test_joystick_state(system_id, component_id, last_msg);
-    mavlink_test_joystick_information(system_id, component_id, last_msg);
 }
 
 #ifdef __cplusplus
