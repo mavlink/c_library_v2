@@ -9,7 +9,7 @@ typedef struct __mavlink_component_information_basic_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
  uint8_t vendor_name[32]; /*<  Name of the component vendor*/
  uint8_t model_name[32]; /*<  Name of the component model*/
- char software_version[24]; /*<  Sofware version. The version format can be custom, recommended is SEMVER 'major.minor.patch'.*/
+ char software_version[24]; /*<  Software version. The version format can be custom, recommended is SEMVER 'major.minor.patch'.*/
  char hardware_version[24]; /*<  Hardware version. The version format can be custom, recommended is SEMVER 'major.minor.patch'.*/
 } mavlink_component_information_basic_t;
 
@@ -62,7 +62,7 @@ typedef struct __mavlink_component_information_basic_t {
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param vendor_name  Name of the component vendor
  * @param model_name  Name of the component model
- * @param software_version  Sofware version. The version format can be custom, recommended is SEMVER 'major.minor.patch'.
+ * @param software_version  Software version. The version format can be custom, recommended is SEMVER 'major.minor.patch'.
  * @param hardware_version  Hardware version. The version format can be custom, recommended is SEMVER 'major.minor.patch'.
  * @param capabilities  Component capability flags
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -103,7 +103,7 @@ static inline uint16_t mavlink_msg_component_information_basic_pack(uint8_t syst
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param vendor_name  Name of the component vendor
  * @param model_name  Name of the component model
- * @param software_version  Sofware version. The version format can be custom, recommended is SEMVER 'major.minor.patch'.
+ * @param software_version  Software version. The version format can be custom, recommended is SEMVER 'major.minor.patch'.
  * @param hardware_version  Hardware version. The version format can be custom, recommended is SEMVER 'major.minor.patch'.
  * @param capabilities  Component capability flags
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -170,7 +170,7 @@ static inline uint16_t mavlink_msg_component_information_basic_encode_chan(uint8
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param vendor_name  Name of the component vendor
  * @param model_name  Name of the component model
- * @param software_version  Sofware version. The version format can be custom, recommended is SEMVER 'major.minor.patch'.
+ * @param software_version  Software version. The version format can be custom, recommended is SEMVER 'major.minor.patch'.
  * @param hardware_version  Hardware version. The version format can be custom, recommended is SEMVER 'major.minor.patch'.
  * @param capabilities  Component capability flags
  */
@@ -283,7 +283,7 @@ static inline uint16_t mavlink_msg_component_information_basic_get_model_name(co
 /**
  * @brief Get field software_version from component_information_basic message
  *
- * @return  Sofware version. The version format can be custom, recommended is SEMVER 'major.minor.patch'.
+ * @return  Software version. The version format can be custom, recommended is SEMVER 'major.minor.patch'.
  */
 static inline uint16_t mavlink_msg_component_information_basic_get_software_version(const mavlink_message_t* msg, char *software_version)
 {
