@@ -8,7 +8,7 @@ typedef struct __mavlink_mission_changed_t {
  int16_t start_index; /*<  Start index for partial mission change (-1 for all items).*/
  int16_t end_index; /*<  End index of a partial mission change. -1 is a synonym for the last mission item (i.e. selects all items from start_index). Ignore field if start_index=-1.*/
  uint8_t origin_sysid; /*<  System ID of the author of the new mission.*/
- uint8_t origin_compid; /*<  Compnent ID of the author of the new mission.*/
+ uint8_t origin_compid; /*<  Component ID of the author of the new mission.*/
  uint8_t mission_type; /*<  Mission type.*/
 } mavlink_mission_changed_t;
 
@@ -56,7 +56,7 @@ typedef struct __mavlink_mission_changed_t {
  * @param start_index  Start index for partial mission change (-1 for all items).
  * @param end_index  End index of a partial mission change. -1 is a synonym for the last mission item (i.e. selects all items from start_index). Ignore field if start_index=-1.
  * @param origin_sysid  System ID of the author of the new mission.
- * @param origin_compid  Compnent ID of the author of the new mission.
+ * @param origin_compid  Component ID of the author of the new mission.
  * @param mission_type  Mission type.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -96,7 +96,7 @@ static inline uint16_t mavlink_msg_mission_changed_pack(uint8_t system_id, uint8
  * @param start_index  Start index for partial mission change (-1 for all items).
  * @param end_index  End index of a partial mission change. -1 is a synonym for the last mission item (i.e. selects all items from start_index). Ignore field if start_index=-1.
  * @param origin_sysid  System ID of the author of the new mission.
- * @param origin_compid  Compnent ID of the author of the new mission.
+ * @param origin_compid  Component ID of the author of the new mission.
  * @param mission_type  Mission type.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -162,7 +162,7 @@ static inline uint16_t mavlink_msg_mission_changed_encode_chan(uint8_t system_id
  * @param start_index  Start index for partial mission change (-1 for all items).
  * @param end_index  End index of a partial mission change. -1 is a synonym for the last mission item (i.e. selects all items from start_index). Ignore field if start_index=-1.
  * @param origin_sysid  System ID of the author of the new mission.
- * @param origin_compid  Compnent ID of the author of the new mission.
+ * @param origin_compid  Component ID of the author of the new mission.
  * @param mission_type  Mission type.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -274,7 +274,7 @@ static inline uint8_t mavlink_msg_mission_changed_get_origin_sysid(const mavlink
 /**
  * @brief Get field origin_compid from mission_changed message
  *
- * @return  Compnent ID of the author of the new mission.
+ * @return  Component ID of the author of the new mission.
  */
 static inline uint8_t mavlink_msg_mission_changed_get_origin_compid(const mavlink_message_t* msg)
 {
