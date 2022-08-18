@@ -1996,11 +1996,14 @@ static void mavlink_test_mission_current(uint8_t system_id, uint8_t component_id
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_mission_current_t packet_in = {
-        17235
+        17235,17339,17,84
     };
     mavlink_mission_current_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         packet1.seq = packet_in.seq;
+        packet1.total = packet_in.total;
+        packet1.mission_state = packet_in.mission_state;
+        packet1.mission_mode = packet_in.mission_mode;
         
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -2015,12 +2018,12 @@ static void mavlink_test_mission_current(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_mission_current_pack(system_id, component_id, &msg , packet1.seq );
+    mavlink_msg_mission_current_pack(system_id, component_id, &msg , packet1.seq , packet1.total , packet1.mission_state , packet1.mission_mode );
     mavlink_msg_mission_current_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_mission_current_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.seq );
+    mavlink_msg_mission_current_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.seq , packet1.total , packet1.mission_state , packet1.mission_mode );
     mavlink_msg_mission_current_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -2033,7 +2036,7 @@ static void mavlink_test_mission_current(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_mission_current_send(MAVLINK_COMM_1 , packet1.seq );
+    mavlink_msg_mission_current_send(MAVLINK_COMM_1 , packet1.seq , packet1.total , packet1.mission_state , packet1.mission_mode );
     mavlink_msg_mission_current_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
