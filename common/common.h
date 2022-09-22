@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH -2733485960524945791
+#define MAVLINK_COMMON_XML_HASH -7443382772642302799
 
 #ifdef __cplusplus
 extern "C" {
@@ -156,9 +156,9 @@ typedef enum MAV_SYS_STATUS_SENSOR_EXTENDED
 #endif
 
 /** @brief Coordinate frames used by MAVLink. Not all frames are supported by all commands, messages, or vehicles.
-      
+
       Global frames use the following naming conventions:
-      - "GLOBAL": Global coordinate frame with WGS84 latitude/longitude and altitude positive over mean sea level (MSL) by default. 
+      - "GLOBAL": Global coordinate frame with WGS84 latitude/longitude and altitude positive over mean sea level (MSL) by default.
         The following modifiers may be used with "GLOBAL":
         - "RELATIVE_ALT": Altitude is relative to the vehicle home position rather than MSL.
         - "TERRAIN_ALT": Altitude is relative to ground level rather than MSL.
