@@ -1,12 +1,12 @@
 /** @file
- *  @brief MAVLink comm protocol built from test.xml
+ *  @brief MAVLink comm protocol built from cubepilot.xml
  *  @see http://mavlink.org
  */
 #pragma once
 #ifndef MAVLINK_H
 #define MAVLINK_H
 
-#define MAVLINK_PRIMARY_XML_HASH -1192066283809809135
+#define MAVLINK_PRIMARY_XML_HASH -7625512342474825843
 
 #ifndef MAVLINK_STX
 #define MAVLINK_STX 253
@@ -29,6 +29,6 @@
 #endif
 
 #include "version.h"
-#include "test.h"
+#include "cubepilot.h"
 
 #endif // MAVLINK_H
