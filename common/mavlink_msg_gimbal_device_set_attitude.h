@@ -5,10 +5,10 @@
 
 
 typedef struct __mavlink_gimbal_device_set_attitude_t {
- float q[4]; /*<  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation, the frame is depends on whether the flag GIMBAL_DEVICE_FLAGS_YAW_LOCK is set, set all fields to NaN if only angular velocity should be used)*/
- float angular_velocity_x; /*< [rad/s] X component of angular velocity, positive is rolling to the right, NaN to be ignored.*/
- float angular_velocity_y; /*< [rad/s] Y component of angular velocity, positive is pitching up, NaN to be ignored.*/
- float angular_velocity_z; /*< [rad/s] Z component of angular velocity, positive is yawing to the right, NaN to be ignored.*/
+ float q[4]; /*<  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation). The frame is described in the message description. Set fields to NaN to be ignored.*/
+ float angular_velocity_x; /*< [rad/s] X component of angular velocity (positive: rolling to the right). The frame is described in the message description. NaN to be ignored.*/
+ float angular_velocity_y; /*< [rad/s] Y component of angular velocity (positive: pitching up). The frame is described in the message description. NaN to be ignored.*/
+ float angular_velocity_z; /*< [rad/s] Z component of angular velocity (positive: yawing to the right). The frame is described in the message description. NaN to be ignored.*/
  uint16_t flags; /*<  Low level gimbal flags.*/
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
@@ -62,10 +62,10 @@ typedef struct __mavlink_gimbal_device_set_attitude_t {
  * @param target_system  System ID
  * @param target_component  Component ID
  * @param flags  Low level gimbal flags.
- * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation, the frame is depends on whether the flag GIMBAL_DEVICE_FLAGS_YAW_LOCK is set, set all fields to NaN if only angular velocity should be used)
- * @param angular_velocity_x [rad/s] X component of angular velocity, positive is rolling to the right, NaN to be ignored.
- * @param angular_velocity_y [rad/s] Y component of angular velocity, positive is pitching up, NaN to be ignored.
- * @param angular_velocity_z [rad/s] Z component of angular velocity, positive is yawing to the right, NaN to be ignored.
+ * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation). The frame is described in the message description. Set fields to NaN to be ignored.
+ * @param angular_velocity_x [rad/s] X component of angular velocity (positive: rolling to the right). The frame is described in the message description. NaN to be ignored.
+ * @param angular_velocity_y [rad/s] Y component of angular velocity (positive: pitching up). The frame is described in the message description. NaN to be ignored.
+ * @param angular_velocity_z [rad/s] Z component of angular velocity (positive: yawing to the right). The frame is described in the message description. NaN to be ignored.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_gimbal_device_set_attitude_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -106,10 +106,10 @@ static inline uint16_t mavlink_msg_gimbal_device_set_attitude_pack(uint8_t syste
  * @param target_system  System ID
  * @param target_component  Component ID
  * @param flags  Low level gimbal flags.
- * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation, the frame is depends on whether the flag GIMBAL_DEVICE_FLAGS_YAW_LOCK is set, set all fields to NaN if only angular velocity should be used)
- * @param angular_velocity_x [rad/s] X component of angular velocity, positive is rolling to the right, NaN to be ignored.
- * @param angular_velocity_y [rad/s] Y component of angular velocity, positive is pitching up, NaN to be ignored.
- * @param angular_velocity_z [rad/s] Z component of angular velocity, positive is yawing to the right, NaN to be ignored.
+ * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation). The frame is described in the message description. Set fields to NaN to be ignored.
+ * @param angular_velocity_x [rad/s] X component of angular velocity (positive: rolling to the right). The frame is described in the message description. NaN to be ignored.
+ * @param angular_velocity_y [rad/s] Y component of angular velocity (positive: pitching up). The frame is described in the message description. NaN to be ignored.
+ * @param angular_velocity_z [rad/s] Z component of angular velocity (positive: yawing to the right). The frame is described in the message description. NaN to be ignored.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_gimbal_device_set_attitude_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -176,10 +176,10 @@ static inline uint16_t mavlink_msg_gimbal_device_set_attitude_encode_chan(uint8_
  * @param target_system  System ID
  * @param target_component  Component ID
  * @param flags  Low level gimbal flags.
- * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation, the frame is depends on whether the flag GIMBAL_DEVICE_FLAGS_YAW_LOCK is set, set all fields to NaN if only angular velocity should be used)
- * @param angular_velocity_x [rad/s] X component of angular velocity, positive is rolling to the right, NaN to be ignored.
- * @param angular_velocity_y [rad/s] Y component of angular velocity, positive is pitching up, NaN to be ignored.
- * @param angular_velocity_z [rad/s] Z component of angular velocity, positive is yawing to the right, NaN to be ignored.
+ * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation). The frame is described in the message description. Set fields to NaN to be ignored.
+ * @param angular_velocity_x [rad/s] X component of angular velocity (positive: rolling to the right). The frame is described in the message description. NaN to be ignored.
+ * @param angular_velocity_y [rad/s] Y component of angular velocity (positive: pitching up). The frame is described in the message description. NaN to be ignored.
+ * @param angular_velocity_z [rad/s] Z component of angular velocity (positive: yawing to the right). The frame is described in the message description. NaN to be ignored.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -294,7 +294,7 @@ static inline uint16_t mavlink_msg_gimbal_device_set_attitude_get_flags(const ma
 /**
  * @brief Get field q from gimbal_device_set_attitude message
  *
- * @return  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation, the frame is depends on whether the flag GIMBAL_DEVICE_FLAGS_YAW_LOCK is set, set all fields to NaN if only angular velocity should be used)
+ * @return  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation). The frame is described in the message description. Set fields to NaN to be ignored.
  */
 static inline uint16_t mavlink_msg_gimbal_device_set_attitude_get_q(const mavlink_message_t* msg, float *q)
 {
@@ -304,7 +304,7 @@ static inline uint16_t mavlink_msg_gimbal_device_set_attitude_get_q(const mavlin
 /**
  * @brief Get field angular_velocity_x from gimbal_device_set_attitude message
  *
- * @return [rad/s] X component of angular velocity, positive is rolling to the right, NaN to be ignored.
+ * @return [rad/s] X component of angular velocity (positive: rolling to the right). The frame is described in the message description. NaN to be ignored.
  */
 static inline float mavlink_msg_gimbal_device_set_attitude_get_angular_velocity_x(const mavlink_message_t* msg)
 {
@@ -314,7 +314,7 @@ static inline float mavlink_msg_gimbal_device_set_attitude_get_angular_velocity_
 /**
  * @brief Get field angular_velocity_y from gimbal_device_set_attitude message
  *
- * @return [rad/s] Y component of angular velocity, positive is pitching up, NaN to be ignored.
+ * @return [rad/s] Y component of angular velocity (positive: pitching up). The frame is described in the message description. NaN to be ignored.
  */
 static inline float mavlink_msg_gimbal_device_set_attitude_get_angular_velocity_y(const mavlink_message_t* msg)
 {
@@ -324,7 +324,7 @@ static inline float mavlink_msg_gimbal_device_set_attitude_get_angular_velocity_
 /**
  * @brief Get field angular_velocity_z from gimbal_device_set_attitude message
  *
- * @return [rad/s] Z component of angular velocity, positive is yawing to the right, NaN to be ignored.
+ * @return [rad/s] Z component of angular velocity (positive: yawing to the right). The frame is described in the message description. NaN to be ignored.
  */
 static inline float mavlink_msg_gimbal_device_set_attitude_get_angular_velocity_z(const mavlink_message_t* msg)
 {

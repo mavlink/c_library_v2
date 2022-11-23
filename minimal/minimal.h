@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_MINIMAL.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_MINIMAL_XML_HASH -8011804631013056874
+#define MAVLINK_MINIMAL_XML_HASH -3604187773745971623
 
 #ifdef __cplusplus
 extern "C" {
@@ -279,6 +279,7 @@ typedef enum MAV_COMPONENT
    MAV_COMP_ID_QX1_GIMBAL=159, /* Gimbal ID for QX1. | */
    MAV_COMP_ID_FLARM=160, /* FLARM collision alert component. | */
    MAV_COMP_ID_PARACHUTE=161, /* Parachute component. | */
+   MAV_COMP_ID_WINCH=169, /* Winch component. | */
    MAV_COMP_ID_GIMBAL2=171, /* Gimbal #2. | */
    MAV_COMP_ID_GIMBAL3=172, /* Gimbal #3. | */
    MAV_COMP_ID_GIMBAL4=173, /* Gimbal #4 | */
