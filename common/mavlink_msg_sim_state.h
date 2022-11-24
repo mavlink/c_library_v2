@@ -18,19 +18,21 @@ typedef struct __mavlink_sim_state_t {
  float xgyro; /*< [rad/s] Angular speed around X axis*/
  float ygyro; /*< [rad/s] Angular speed around Y axis*/
  float zgyro; /*< [rad/s] Angular speed around Z axis*/
- float lat; /*< [deg] Latitude*/
- float lon; /*< [deg] Longitude*/
+ float lat; /*< [deg] Latitude (lower precision). Both this and the lat_int field should be set.*/
+ float lon; /*< [deg] Longitude (lower precision). Both this and the lon_int field should be set.*/
  float alt; /*< [m] Altitude*/
  float std_dev_horz; /*<  Horizontal position standard deviation*/
  float std_dev_vert; /*<  Vertical position standard deviation*/
  float vn; /*< [m/s] True velocity in north direction in earth-fixed NED frame*/
  float ve; /*< [m/s] True velocity in east direction in earth-fixed NED frame*/
  float vd; /*< [m/s] True velocity in down direction in earth-fixed NED frame*/
+ int32_t lat_int; /*< [degE7] Latitude (higher precision). If 0, recipients should use the lat field value (otherwise this field is preferred).*/
+ int32_t lon_int; /*< [degE7] Longitude (higher precision). If 0, recipients should use the lon field value (otherwise this field is preferred).*/
 } mavlink_sim_state_t;
 
-#define MAVLINK_MSG_ID_SIM_STATE_LEN 84
+#define MAVLINK_MSG_ID_SIM_STATE_LEN 92
 #define MAVLINK_MSG_ID_SIM_STATE_MIN_LEN 84
-#define MAVLINK_MSG_ID_108_LEN 84
+#define MAVLINK_MSG_ID_108_LEN 92
 #define MAVLINK_MSG_ID_108_MIN_LEN 84
 
 #define MAVLINK_MSG_ID_SIM_STATE_CRC 32
@@ -42,7 +44,7 @@ typedef struct __mavlink_sim_state_t {
 #define MAVLINK_MESSAGE_INFO_SIM_STATE { \
     108, \
     "SIM_STATE", \
-    21, \
+    23, \
     {  { "q1", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_sim_state_t, q1) }, \
          { "q2", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_sim_state_t, q2) }, \
          { "q3", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_sim_state_t, q3) }, \
@@ -64,12 +66,14 @@ typedef struct __mavlink_sim_state_t {
          { "vn", NULL, MAVLINK_TYPE_FLOAT, 0, 72, offsetof(mavlink_sim_state_t, vn) }, \
          { "ve", NULL, MAVLINK_TYPE_FLOAT, 0, 76, offsetof(mavlink_sim_state_t, ve) }, \
          { "vd", NULL, MAVLINK_TYPE_FLOAT, 0, 80, offsetof(mavlink_sim_state_t, vd) }, \
+         { "lat_int", NULL, MAVLINK_TYPE_INT32_T, 0, 84, offsetof(mavlink_sim_state_t, lat_int) }, \
+         { "lon_int", NULL, MAVLINK_TYPE_INT32_T, 0, 88, offsetof(mavlink_sim_state_t, lon_int) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_SIM_STATE { \
     "SIM_STATE", \
-    21, \
+    23, \
     {  { "q1", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_sim_state_t, q1) }, \
          { "q2", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_sim_state_t, q2) }, \
          { "q3", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_sim_state_t, q3) }, \
@@ -91,6 +95,8 @@ typedef struct __mavlink_sim_state_t {
          { "vn", NULL, MAVLINK_TYPE_FLOAT, 0, 72, offsetof(mavlink_sim_state_t, vn) }, \
          { "ve", NULL, MAVLINK_TYPE_FLOAT, 0, 76, offsetof(mavlink_sim_state_t, ve) }, \
          { "vd", NULL, MAVLINK_TYPE_FLOAT, 0, 80, offsetof(mavlink_sim_state_t, vd) }, \
+         { "lat_int", NULL, MAVLINK_TYPE_INT32_T, 0, 84, offsetof(mavlink_sim_state_t, lat_int) }, \
+         { "lon_int", NULL, MAVLINK_TYPE_INT32_T, 0, 88, offsetof(mavlink_sim_state_t, lon_int) }, \
          } \
 }
 #endif
@@ -114,18 +120,20 @@ typedef struct __mavlink_sim_state_t {
  * @param xgyro [rad/s] Angular speed around X axis
  * @param ygyro [rad/s] Angular speed around Y axis
  * @param zgyro [rad/s] Angular speed around Z axis
- * @param lat [deg] Latitude
- * @param lon [deg] Longitude
+ * @param lat [deg] Latitude (lower precision). Both this and the lat_int field should be set.
+ * @param lon [deg] Longitude (lower precision). Both this and the lon_int field should be set.
  * @param alt [m] Altitude
  * @param std_dev_horz  Horizontal position standard deviation
  * @param std_dev_vert  Vertical position standard deviation
  * @param vn [m/s] True velocity in north direction in earth-fixed NED frame
  * @param ve [m/s] True velocity in east direction in earth-fixed NED frame
  * @param vd [m/s] True velocity in down direction in earth-fixed NED frame
+ * @param lat_int [degE7] Latitude (higher precision). If 0, recipients should use the lat field value (otherwise this field is preferred).
+ * @param lon_int [degE7] Longitude (higher precision). If 0, recipients should use the lon field value (otherwise this field is preferred).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_sim_state_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               float q1, float q2, float q3, float q4, float roll, float pitch, float yaw, float xacc, float yacc, float zacc, float xgyro, float ygyro, float zgyro, float lat, float lon, float alt, float std_dev_horz, float std_dev_vert, float vn, float ve, float vd)
+                               float q1, float q2, float q3, float q4, float roll, float pitch, float yaw, float xacc, float yacc, float zacc, float xgyro, float ygyro, float zgyro, float lat, float lon, float alt, float std_dev_horz, float std_dev_vert, float vn, float ve, float vd, int32_t lat_int, int32_t lon_int)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SIM_STATE_LEN];
@@ -150,6 +158,8 @@ static inline uint16_t mavlink_msg_sim_state_pack(uint8_t system_id, uint8_t com
     _mav_put_float(buf, 72, vn);
     _mav_put_float(buf, 76, ve);
     _mav_put_float(buf, 80, vd);
+    _mav_put_int32_t(buf, 84, lat_int);
+    _mav_put_int32_t(buf, 88, lon_int);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SIM_STATE_LEN);
 #else
@@ -175,6 +185,8 @@ static inline uint16_t mavlink_msg_sim_state_pack(uint8_t system_id, uint8_t com
     packet.vn = vn;
     packet.ve = ve;
     packet.vd = vd;
+    packet.lat_int = lat_int;
+    packet.lon_int = lon_int;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SIM_STATE_LEN);
 #endif
@@ -202,19 +214,21 @@ static inline uint16_t mavlink_msg_sim_state_pack(uint8_t system_id, uint8_t com
  * @param xgyro [rad/s] Angular speed around X axis
  * @param ygyro [rad/s] Angular speed around Y axis
  * @param zgyro [rad/s] Angular speed around Z axis
- * @param lat [deg] Latitude
- * @param lon [deg] Longitude
+ * @param lat [deg] Latitude (lower precision). Both this and the lat_int field should be set.
+ * @param lon [deg] Longitude (lower precision). Both this and the lon_int field should be set.
  * @param alt [m] Altitude
  * @param std_dev_horz  Horizontal position standard deviation
  * @param std_dev_vert  Vertical position standard deviation
  * @param vn [m/s] True velocity in north direction in earth-fixed NED frame
  * @param ve [m/s] True velocity in east direction in earth-fixed NED frame
  * @param vd [m/s] True velocity in down direction in earth-fixed NED frame
+ * @param lat_int [degE7] Latitude (higher precision). If 0, recipients should use the lat field value (otherwise this field is preferred).
+ * @param lon_int [degE7] Longitude (higher precision). If 0, recipients should use the lon field value (otherwise this field is preferred).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_sim_state_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   float q1,float q2,float q3,float q4,float roll,float pitch,float yaw,float xacc,float yacc,float zacc,float xgyro,float ygyro,float zgyro,float lat,float lon,float alt,float std_dev_horz,float std_dev_vert,float vn,float ve,float vd)
+                                   float q1,float q2,float q3,float q4,float roll,float pitch,float yaw,float xacc,float yacc,float zacc,float xgyro,float ygyro,float zgyro,float lat,float lon,float alt,float std_dev_horz,float std_dev_vert,float vn,float ve,float vd,int32_t lat_int,int32_t lon_int)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SIM_STATE_LEN];
@@ -239,6 +253,8 @@ static inline uint16_t mavlink_msg_sim_state_pack_chan(uint8_t system_id, uint8_
     _mav_put_float(buf, 72, vn);
     _mav_put_float(buf, 76, ve);
     _mav_put_float(buf, 80, vd);
+    _mav_put_int32_t(buf, 84, lat_int);
+    _mav_put_int32_t(buf, 88, lon_int);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SIM_STATE_LEN);
 #else
@@ -264,6 +280,8 @@ static inline uint16_t mavlink_msg_sim_state_pack_chan(uint8_t system_id, uint8_
     packet.vn = vn;
     packet.ve = ve;
     packet.vd = vd;
+    packet.lat_int = lat_int;
+    packet.lon_int = lon_int;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SIM_STATE_LEN);
 #endif
@@ -282,7 +300,7 @@ static inline uint16_t mavlink_msg_sim_state_pack_chan(uint8_t system_id, uint8_
  */
 static inline uint16_t mavlink_msg_sim_state_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_sim_state_t* sim_state)
 {
-    return mavlink_msg_sim_state_pack(system_id, component_id, msg, sim_state->q1, sim_state->q2, sim_state->q3, sim_state->q4, sim_state->roll, sim_state->pitch, sim_state->yaw, sim_state->xacc, sim_state->yacc, sim_state->zacc, sim_state->xgyro, sim_state->ygyro, sim_state->zgyro, sim_state->lat, sim_state->lon, sim_state->alt, sim_state->std_dev_horz, sim_state->std_dev_vert, sim_state->vn, sim_state->ve, sim_state->vd);
+    return mavlink_msg_sim_state_pack(system_id, component_id, msg, sim_state->q1, sim_state->q2, sim_state->q3, sim_state->q4, sim_state->roll, sim_state->pitch, sim_state->yaw, sim_state->xacc, sim_state->yacc, sim_state->zacc, sim_state->xgyro, sim_state->ygyro, sim_state->zgyro, sim_state->lat, sim_state->lon, sim_state->alt, sim_state->std_dev_horz, sim_state->std_dev_vert, sim_state->vn, sim_state->ve, sim_state->vd, sim_state->lat_int, sim_state->lon_int);
 }
 
 /**
@@ -296,7 +314,7 @@ static inline uint16_t mavlink_msg_sim_state_encode(uint8_t system_id, uint8_t c
  */
 static inline uint16_t mavlink_msg_sim_state_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_sim_state_t* sim_state)
 {
-    return mavlink_msg_sim_state_pack_chan(system_id, component_id, chan, msg, sim_state->q1, sim_state->q2, sim_state->q3, sim_state->q4, sim_state->roll, sim_state->pitch, sim_state->yaw, sim_state->xacc, sim_state->yacc, sim_state->zacc, sim_state->xgyro, sim_state->ygyro, sim_state->zgyro, sim_state->lat, sim_state->lon, sim_state->alt, sim_state->std_dev_horz, sim_state->std_dev_vert, sim_state->vn, sim_state->ve, sim_state->vd);
+    return mavlink_msg_sim_state_pack_chan(system_id, component_id, chan, msg, sim_state->q1, sim_state->q2, sim_state->q3, sim_state->q4, sim_state->roll, sim_state->pitch, sim_state->yaw, sim_state->xacc, sim_state->yacc, sim_state->zacc, sim_state->xgyro, sim_state->ygyro, sim_state->zgyro, sim_state->lat, sim_state->lon, sim_state->alt, sim_state->std_dev_horz, sim_state->std_dev_vert, sim_state->vn, sim_state->ve, sim_state->vd, sim_state->lat_int, sim_state->lon_int);
 }
 
 /**
@@ -316,18 +334,20 @@ static inline uint16_t mavlink_msg_sim_state_encode_chan(uint8_t system_id, uint
  * @param xgyro [rad/s] Angular speed around X axis
  * @param ygyro [rad/s] Angular speed around Y axis
  * @param zgyro [rad/s] Angular speed around Z axis
- * @param lat [deg] Latitude
- * @param lon [deg] Longitude
+ * @param lat [deg] Latitude (lower precision). Both this and the lat_int field should be set.
+ * @param lon [deg] Longitude (lower precision). Both this and the lon_int field should be set.
  * @param alt [m] Altitude
  * @param std_dev_horz  Horizontal position standard deviation
  * @param std_dev_vert  Vertical position standard deviation
  * @param vn [m/s] True velocity in north direction in earth-fixed NED frame
  * @param ve [m/s] True velocity in east direction in earth-fixed NED frame
  * @param vd [m/s] True velocity in down direction in earth-fixed NED frame
+ * @param lat_int [degE7] Latitude (higher precision). If 0, recipients should use the lat field value (otherwise this field is preferred).
+ * @param lon_int [degE7] Longitude (higher precision). If 0, recipients should use the lon field value (otherwise this field is preferred).
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_sim_state_send(mavlink_channel_t chan, float q1, float q2, float q3, float q4, float roll, float pitch, float yaw, float xacc, float yacc, float zacc, float xgyro, float ygyro, float zgyro, float lat, float lon, float alt, float std_dev_horz, float std_dev_vert, float vn, float ve, float vd)
+static inline void mavlink_msg_sim_state_send(mavlink_channel_t chan, float q1, float q2, float q3, float q4, float roll, float pitch, float yaw, float xacc, float yacc, float zacc, float xgyro, float ygyro, float zgyro, float lat, float lon, float alt, float std_dev_horz, float std_dev_vert, float vn, float ve, float vd, int32_t lat_int, int32_t lon_int)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SIM_STATE_LEN];
@@ -352,6 +372,8 @@ static inline void mavlink_msg_sim_state_send(mavlink_channel_t chan, float q1, 
     _mav_put_float(buf, 72, vn);
     _mav_put_float(buf, 76, ve);
     _mav_put_float(buf, 80, vd);
+    _mav_put_int32_t(buf, 84, lat_int);
+    _mav_put_int32_t(buf, 88, lon_int);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SIM_STATE, buf, MAVLINK_MSG_ID_SIM_STATE_MIN_LEN, MAVLINK_MSG_ID_SIM_STATE_LEN, MAVLINK_MSG_ID_SIM_STATE_CRC);
 #else
@@ -377,6 +399,8 @@ static inline void mavlink_msg_sim_state_send(mavlink_channel_t chan, float q1, 
     packet.vn = vn;
     packet.ve = ve;
     packet.vd = vd;
+    packet.lat_int = lat_int;
+    packet.lon_int = lon_int;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SIM_STATE, (const char *)&packet, MAVLINK_MSG_ID_SIM_STATE_MIN_LEN, MAVLINK_MSG_ID_SIM_STATE_LEN, MAVLINK_MSG_ID_SIM_STATE_CRC);
 #endif
@@ -390,7 +414,7 @@ static inline void mavlink_msg_sim_state_send(mavlink_channel_t chan, float q1, 
 static inline void mavlink_msg_sim_state_send_struct(mavlink_channel_t chan, const mavlink_sim_state_t* sim_state)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_sim_state_send(chan, sim_state->q1, sim_state->q2, sim_state->q3, sim_state->q4, sim_state->roll, sim_state->pitch, sim_state->yaw, sim_state->xacc, sim_state->yacc, sim_state->zacc, sim_state->xgyro, sim_state->ygyro, sim_state->zgyro, sim_state->lat, sim_state->lon, sim_state->alt, sim_state->std_dev_horz, sim_state->std_dev_vert, sim_state->vn, sim_state->ve, sim_state->vd);
+    mavlink_msg_sim_state_send(chan, sim_state->q1, sim_state->q2, sim_state->q3, sim_state->q4, sim_state->roll, sim_state->pitch, sim_state->yaw, sim_state->xacc, sim_state->yacc, sim_state->zacc, sim_state->xgyro, sim_state->ygyro, sim_state->zgyro, sim_state->lat, sim_state->lon, sim_state->alt, sim_state->std_dev_horz, sim_state->std_dev_vert, sim_state->vn, sim_state->ve, sim_state->vd, sim_state->lat_int, sim_state->lon_int);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SIM_STATE, (const char *)sim_state, MAVLINK_MSG_ID_SIM_STATE_MIN_LEN, MAVLINK_MSG_ID_SIM_STATE_LEN, MAVLINK_MSG_ID_SIM_STATE_CRC);
 #endif
@@ -404,7 +428,7 @@ static inline void mavlink_msg_sim_state_send_struct(mavlink_channel_t chan, con
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_sim_state_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  float q1, float q2, float q3, float q4, float roll, float pitch, float yaw, float xacc, float yacc, float zacc, float xgyro, float ygyro, float zgyro, float lat, float lon, float alt, float std_dev_horz, float std_dev_vert, float vn, float ve, float vd)
+static inline void mavlink_msg_sim_state_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  float q1, float q2, float q3, float q4, float roll, float pitch, float yaw, float xacc, float yacc, float zacc, float xgyro, float ygyro, float zgyro, float lat, float lon, float alt, float std_dev_horz, float std_dev_vert, float vn, float ve, float vd, int32_t lat_int, int32_t lon_int)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -429,6 +453,8 @@ static inline void mavlink_msg_sim_state_send_buf(mavlink_message_t *msgbuf, mav
     _mav_put_float(buf, 72, vn);
     _mav_put_float(buf, 76, ve);
     _mav_put_float(buf, 80, vd);
+    _mav_put_int32_t(buf, 84, lat_int);
+    _mav_put_int32_t(buf, 88, lon_int);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SIM_STATE, buf, MAVLINK_MSG_ID_SIM_STATE_MIN_LEN, MAVLINK_MSG_ID_SIM_STATE_LEN, MAVLINK_MSG_ID_SIM_STATE_CRC);
 #else
@@ -454,6 +480,8 @@ static inline void mavlink_msg_sim_state_send_buf(mavlink_message_t *msgbuf, mav
     packet->vn = vn;
     packet->ve = ve;
     packet->vd = vd;
+    packet->lat_int = lat_int;
+    packet->lon_int = lon_int;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SIM_STATE, (const char *)packet, MAVLINK_MSG_ID_SIM_STATE_MIN_LEN, MAVLINK_MSG_ID_SIM_STATE_LEN, MAVLINK_MSG_ID_SIM_STATE_CRC);
 #endif
@@ -598,7 +626,7 @@ static inline float mavlink_msg_sim_state_get_zgyro(const mavlink_message_t* msg
 /**
  * @brief Get field lat from sim_state message
  *
- * @return [deg] Latitude
+ * @return [deg] Latitude (lower precision). Both this and the lat_int field should be set.
  */
 static inline float mavlink_msg_sim_state_get_lat(const mavlink_message_t* msg)
 {
@@ -608,7 +636,7 @@ static inline float mavlink_msg_sim_state_get_lat(const mavlink_message_t* msg)
 /**
  * @brief Get field lon from sim_state message
  *
- * @return [deg] Longitude
+ * @return [deg] Longitude (lower precision). Both this and the lon_int field should be set.
  */
 static inline float mavlink_msg_sim_state_get_lon(const mavlink_message_t* msg)
 {
@@ -676,6 +704,26 @@ static inline float mavlink_msg_sim_state_get_vd(const mavlink_message_t* msg)
 }
 
 /**
+ * @brief Get field lat_int from sim_state message
+ *
+ * @return [degE7] Latitude (higher precision). If 0, recipients should use the lat field value (otherwise this field is preferred).
+ */
+static inline int32_t mavlink_msg_sim_state_get_lat_int(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_int32_t(msg,  84);
+}
+
+/**
+ * @brief Get field lon_int from sim_state message
+ *
+ * @return [degE7] Longitude (higher precision). If 0, recipients should use the lon field value (otherwise this field is preferred).
+ */
+static inline int32_t mavlink_msg_sim_state_get_lon_int(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_int32_t(msg,  88);
+}
+
+/**
  * @brief Decode a sim_state message into a struct
  *
  * @param msg The message to decode
@@ -705,6 +753,8 @@ static inline void mavlink_msg_sim_state_decode(const mavlink_message_t* msg, ma
     sim_state->vn = mavlink_msg_sim_state_get_vn(msg);
     sim_state->ve = mavlink_msg_sim_state_get_ve(msg);
     sim_state->vd = mavlink_msg_sim_state_get_vd(msg);
+    sim_state->lat_int = mavlink_msg_sim_state_get_lat_int(msg);
+    sim_state->lon_int = mavlink_msg_sim_state_get_lon_int(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_SIM_STATE_LEN? msg->len : MAVLINK_MSG_ID_SIM_STATE_LEN;
         memset(sim_state, 0, MAVLINK_MSG_ID_SIM_STATE_LEN);
