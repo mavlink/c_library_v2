@@ -9,12 +9,12 @@ typedef struct __mavlink_gimbal_device_information_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
  uint32_t firmware_version; /*<  Version of the gimbal firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff).*/
  uint32_t hardware_version; /*<  Version of the gimbal hardware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff).*/
- float roll_min; /*< [rad] Minimum hardware roll angle (positive: rolling to the right, negative: rolling to the left)*/
- float roll_max; /*< [rad] Maximum hardware roll angle (positive: rolling to the right, negative: rolling to the left)*/
- float pitch_min; /*< [rad] Minimum hardware pitch angle (positive: up, negative: down)*/
- float pitch_max; /*< [rad] Maximum hardware pitch angle (positive: up, negative: down)*/
- float yaw_min; /*< [rad] Minimum hardware yaw angle (positive: to the right, negative: to the left)*/
- float yaw_max; /*< [rad] Maximum hardware yaw angle (positive: to the right, negative: to the left)*/
+ float roll_min; /*< [rad] Minimum hardware roll angle (positive: rolling to the right, negative: rolling to the left). NAN if unknown.*/
+ float roll_max; /*< [rad] Maximum hardware roll angle (positive: rolling to the right, negative: rolling to the left). NAN if unknown.*/
+ float pitch_min; /*< [rad] Minimum hardware pitch angle (positive: up, negative: down). NAN if unknown.*/
+ float pitch_max; /*< [rad] Maximum hardware pitch angle (positive: up, negative: down). NAN if unknown.*/
+ float yaw_min; /*< [rad] Minimum hardware yaw angle (positive: to the right, negative: to the left). NAN if unknown.*/
+ float yaw_max; /*< [rad] Maximum hardware yaw angle (positive: to the right, negative: to the left). NAN if unknown.*/
  uint16_t cap_flags; /*<  Bitmap of gimbal capability flags.*/
  uint16_t custom_cap_flags; /*<  Bitmap for use for gimbal-specific capability flags.*/
  char vendor_name[32]; /*<  Name of the gimbal vendor.*/
@@ -94,12 +94,12 @@ typedef struct __mavlink_gimbal_device_information_t {
  * @param uid  UID of gimbal hardware (0 if unknown).
  * @param cap_flags  Bitmap of gimbal capability flags.
  * @param custom_cap_flags  Bitmap for use for gimbal-specific capability flags.
- * @param roll_min [rad] Minimum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
- * @param roll_max [rad] Maximum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
- * @param pitch_min [rad] Minimum hardware pitch angle (positive: up, negative: down)
- * @param pitch_max [rad] Maximum hardware pitch angle (positive: up, negative: down)
- * @param yaw_min [rad] Minimum hardware yaw angle (positive: to the right, negative: to the left)
- * @param yaw_max [rad] Maximum hardware yaw angle (positive: to the right, negative: to the left)
+ * @param roll_min [rad] Minimum hardware roll angle (positive: rolling to the right, negative: rolling to the left). NAN if unknown.
+ * @param roll_max [rad] Maximum hardware roll angle (positive: rolling to the right, negative: rolling to the left). NAN if unknown.
+ * @param pitch_min [rad] Minimum hardware pitch angle (positive: up, negative: down). NAN if unknown.
+ * @param pitch_max [rad] Maximum hardware pitch angle (positive: up, negative: down). NAN if unknown.
+ * @param yaw_min [rad] Minimum hardware yaw angle (positive: to the right, negative: to the left). NAN if unknown.
+ * @param yaw_max [rad] Maximum hardware yaw angle (positive: to the right, negative: to the left). NAN if unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_gimbal_device_information_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -162,12 +162,12 @@ static inline uint16_t mavlink_msg_gimbal_device_information_pack(uint8_t system
  * @param uid  UID of gimbal hardware (0 if unknown).
  * @param cap_flags  Bitmap of gimbal capability flags.
  * @param custom_cap_flags  Bitmap for use for gimbal-specific capability flags.
- * @param roll_min [rad] Minimum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
- * @param roll_max [rad] Maximum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
- * @param pitch_min [rad] Minimum hardware pitch angle (positive: up, negative: down)
- * @param pitch_max [rad] Maximum hardware pitch angle (positive: up, negative: down)
- * @param yaw_min [rad] Minimum hardware yaw angle (positive: to the right, negative: to the left)
- * @param yaw_max [rad] Maximum hardware yaw angle (positive: to the right, negative: to the left)
+ * @param roll_min [rad] Minimum hardware roll angle (positive: rolling to the right, negative: rolling to the left). NAN if unknown.
+ * @param roll_max [rad] Maximum hardware roll angle (positive: rolling to the right, negative: rolling to the left). NAN if unknown.
+ * @param pitch_min [rad] Minimum hardware pitch angle (positive: up, negative: down). NAN if unknown.
+ * @param pitch_max [rad] Maximum hardware pitch angle (positive: up, negative: down). NAN if unknown.
+ * @param yaw_min [rad] Minimum hardware yaw angle (positive: to the right, negative: to the left). NAN if unknown.
+ * @param yaw_max [rad] Maximum hardware yaw angle (positive: to the right, negative: to the left). NAN if unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_gimbal_device_information_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -256,12 +256,12 @@ static inline uint16_t mavlink_msg_gimbal_device_information_encode_chan(uint8_t
  * @param uid  UID of gimbal hardware (0 if unknown).
  * @param cap_flags  Bitmap of gimbal capability flags.
  * @param custom_cap_flags  Bitmap for use for gimbal-specific capability flags.
- * @param roll_min [rad] Minimum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
- * @param roll_max [rad] Maximum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
- * @param pitch_min [rad] Minimum hardware pitch angle (positive: up, negative: down)
- * @param pitch_max [rad] Maximum hardware pitch angle (positive: up, negative: down)
- * @param yaw_min [rad] Minimum hardware yaw angle (positive: to the right, negative: to the left)
- * @param yaw_max [rad] Maximum hardware yaw angle (positive: to the right, negative: to the left)
+ * @param roll_min [rad] Minimum hardware roll angle (positive: rolling to the right, negative: rolling to the left). NAN if unknown.
+ * @param roll_max [rad] Maximum hardware roll angle (positive: rolling to the right, negative: rolling to the left). NAN if unknown.
+ * @param pitch_min [rad] Minimum hardware pitch angle (positive: up, negative: down). NAN if unknown.
+ * @param pitch_max [rad] Maximum hardware pitch angle (positive: up, negative: down). NAN if unknown.
+ * @param yaw_min [rad] Minimum hardware yaw angle (positive: to the right, negative: to the left). NAN if unknown.
+ * @param yaw_max [rad] Maximum hardware yaw angle (positive: to the right, negative: to the left). NAN if unknown.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -468,7 +468,7 @@ static inline uint16_t mavlink_msg_gimbal_device_information_get_custom_cap_flag
 /**
  * @brief Get field roll_min from gimbal_device_information message
  *
- * @return [rad] Minimum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
+ * @return [rad] Minimum hardware roll angle (positive: rolling to the right, negative: rolling to the left). NAN if unknown.
  */
 static inline float mavlink_msg_gimbal_device_information_get_roll_min(const mavlink_message_t* msg)
 {
@@ -478,7 +478,7 @@ static inline float mavlink_msg_gimbal_device_information_get_roll_min(const mav
 /**
  * @brief Get field roll_max from gimbal_device_information message
  *
- * @return [rad] Maximum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
+ * @return [rad] Maximum hardware roll angle (positive: rolling to the right, negative: rolling to the left). NAN if unknown.
  */
 static inline float mavlink_msg_gimbal_device_information_get_roll_max(const mavlink_message_t* msg)
 {
@@ -488,7 +488,7 @@ static inline float mavlink_msg_gimbal_device_information_get_roll_max(const mav
 /**
  * @brief Get field pitch_min from gimbal_device_information message
  *
- * @return [rad] Minimum hardware pitch angle (positive: up, negative: down)
+ * @return [rad] Minimum hardware pitch angle (positive: up, negative: down). NAN if unknown.
  */
 static inline float mavlink_msg_gimbal_device_information_get_pitch_min(const mavlink_message_t* msg)
 {
@@ -498,7 +498,7 @@ static inline float mavlink_msg_gimbal_device_information_get_pitch_min(const ma
 /**
  * @brief Get field pitch_max from gimbal_device_information message
  *
- * @return [rad] Maximum hardware pitch angle (positive: up, negative: down)
+ * @return [rad] Maximum hardware pitch angle (positive: up, negative: down). NAN if unknown.
  */
 static inline float mavlink_msg_gimbal_device_information_get_pitch_max(const mavlink_message_t* msg)
 {
@@ -508,7 +508,7 @@ static inline float mavlink_msg_gimbal_device_information_get_pitch_max(const ma
 /**
  * @brief Get field yaw_min from gimbal_device_information message
  *
- * @return [rad] Minimum hardware yaw angle (positive: to the right, negative: to the left)
+ * @return [rad] Minimum hardware yaw angle (positive: to the right, negative: to the left). NAN if unknown.
  */
 static inline float mavlink_msg_gimbal_device_information_get_yaw_min(const mavlink_message_t* msg)
 {
@@ -518,7 +518,7 @@ static inline float mavlink_msg_gimbal_device_information_get_yaw_min(const mavl
 /**
  * @brief Get field yaw_max from gimbal_device_information message
  *
- * @return [rad] Maximum hardware yaw angle (positive: to the right, negative: to the left)
+ * @return [rad] Maximum hardware yaw angle (positive: to the right, negative: to the left). NAN if unknown.
  */
 static inline float mavlink_msg_gimbal_device_information_get_yaw_max(const mavlink_message_t* msg)
 {
