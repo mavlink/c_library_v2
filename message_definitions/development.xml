@@ -47,22 +47,13 @@
         <description>WPA3.</description>
       </entry>
     </enum>
-    <enum name="AIRSPEED_SENSOR_TYPE">
-      <description>Types of airspeed sensor/data. May be be used in AIRSPEED message to estimate accuracy of indicated speed.</description>
-      <entry value="0" name="AIRSPEED_SENSOR_TYPE_UNKNOWN">
-        <description>Airspeed sensor type unknown/not supplied.</description>
+    <enum name="AIRSPEED_SENSOR_FLAGS" bitmask="true">
+      <description>Airspeed sensor flags</description>
+      <entry value="0" name="AIRSPEED_SENSOR_UNHEALTHY">
+        <description>Airspeed sensor is unhealthy</description>
       </entry>
-      <entry value="1" name="AIRSPEED_SENSOR_TYPE_DIFFERENTIAL">
-        <description>Differential airspeed sensor</description>
-      </entry>
-      <entry value="2" name="AIRSPEED_SENSOR_TYPE_MASS_FLOW">
-        <description>Mass-flow airspeed sensor.</description>
-      </entry>
-      <entry value="3" name="AIRSPEED_SENSOR_TYPE_WINDVANE">
-        <description>Windvane airspeed sensor.</description>
-      </entry>
-      <entry value="4" name="AIRSPEED_SENSOR_TYPE_SYNTHETIC">
-        <description>Synthetic/calculated airspeed.</description>
+      <entry value="1" name="AIRSPEED_SENSOR_USING">
+        <description>True if the data from this sensor is being actively used by the flight controller for guidance, navigation or control.</description>
       </entry>
     </enum>
     <!-- Transactions for parameter protocol -->
@@ -407,12 +398,10 @@
     <message id="295" name="AIRSPEED">
       <description>Airspeed information from a sensor.</description>
       <field type="uint8_t" name="id" instance="true">Sensor ID.</field>
-      <field type="float" name="airspeed" units="m/s">Calibrated airspeed (CAS) if available, otherwise indicated airspeed (IAS).</field>
+      <field type="float" name="airspeed" units="m/s">Calibrated airspeed (CAS).</field>
       <field type="int16_t" name="temperature" units="cdegC">Temperature. INT16_MAX for value unknown/not supplied.</field>
-      <field type="float" name="press_diff" units="hPa">Differential pressure. NaN for value unknown/not supplied.</field>
-      <field type="float" name="press_static" units="hPa">Static pressure. NaN for value unknown/not supplied.</field>
-      <field type="float" name="error" units="m/s">Error/accuracy. NaN for value unknown/not supplied.</field>
-      <field type="uint8_t" name="type" enum="AIRSPEED_SENSOR_TYPE">Airspeed sensor type. NaN for value unknown/not supplied. Used to estimate accuracy (i.e. as an alternative to using the error field).</field>
+      <field type="float" name="raw_press" units="hPa">Raw differential pressure. NaN for value unknown/not supplied.</field>
+      <field type="uint8_t" name="flags" enum="AIRSPEED_SENSOR_FLAGS">Airspeed sensor flags.</field>
     </message>
     <message id="298" name="WIFI_NETWORK_INFO">
       <description>Detected WiFi network status information. This message is sent per each WiFi network detected in range with known SSID and general status parameters.</description>
@@ -455,13 +444,14 @@
       <field type="uint32_t" name="status_flags" display="bitmask" enum="MAV_BATTERY_STATUS_FLAGS">Fault, health, readiness, and other status indications.</field>
     </message>
     <message id="396" name="COMPONENT_INFORMATION_BASIC">
-      <description>Basic component information data.</description>
+      <description>Basic component information data. Should be requested using MAV_CMD_REQUEST_MESSAGE on startup, or when required.</description>
       <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
-      <field type="uint8_t[32]" name="vendor_name">Name of the component vendor</field>
-      <field type="uint8_t[32]" name="model_name">Name of the component model</field>
-      <field type="char[24]" name="software_version">Software version. The version format can be custom, recommended is SEMVER 'major.minor.patch'.</field>
-      <field type="char[24]" name="hardware_version">Hardware version. The version format can be custom, recommended is SEMVER 'major.minor.patch'.</field>
       <field type="uint64_t" name="capabilities" enum="MAV_PROTOCOL_CAPABILITY" display="bitmask">Component capability flags</field>
+      <field type="char[32]" name="vendor_name">Name of the component vendor. Needs to be zero terminated. The field is optional and can be empty/all zeros.</field>
+      <field type="char[32]" name="model_name">Name of the component model. Needs to be zero terminated. The field is optional and can be empty/all zeros.</field>
+      <field type="char[24]" name="software_version">Software version. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="char[24]" name="hardware_version">Hardware version. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="char[32]" name="serial_number">Hardware serial number. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
     </message>
     <message id="414" name="GROUP_START">
       <description>Emitted during mission execution when control reaches MAV_CMD_GROUP_START.</description>
