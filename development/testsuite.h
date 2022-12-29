@@ -161,17 +161,15 @@ static void mavlink_test_airspeed(uint8_t system_id, uint8_t component_id, mavli
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_airspeed_t packet_in = {
-        17.0,45.0,73.0,101.0,18067,187,254
+        17.0,45.0,17651,163,230
     };
     mavlink_airspeed_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         packet1.airspeed = packet_in.airspeed;
-        packet1.press_diff = packet_in.press_diff;
-        packet1.press_static = packet_in.press_static;
-        packet1.error = packet_in.error;
+        packet1.raw_press = packet_in.raw_press;
         packet1.temperature = packet_in.temperature;
         packet1.id = packet_in.id;
-        packet1.type = packet_in.type;
+        packet1.flags = packet_in.flags;
         
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -186,12 +184,12 @@ static void mavlink_test_airspeed(uint8_t system_id, uint8_t component_id, mavli
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_airspeed_pack(system_id, component_id, &msg , packet1.id , packet1.airspeed , packet1.temperature , packet1.press_diff , packet1.press_static , packet1.error , packet1.type );
+    mavlink_msg_airspeed_pack(system_id, component_id, &msg , packet1.id , packet1.airspeed , packet1.temperature , packet1.raw_press , packet1.flags );
     mavlink_msg_airspeed_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_airspeed_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.id , packet1.airspeed , packet1.temperature , packet1.press_diff , packet1.press_static , packet1.error , packet1.type );
+    mavlink_msg_airspeed_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.id , packet1.airspeed , packet1.temperature , packet1.raw_press , packet1.flags );
     mavlink_msg_airspeed_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -204,7 +202,7 @@ static void mavlink_test_airspeed(uint8_t system_id, uint8_t component_id, mavli
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_airspeed_send(MAVLINK_COMM_1 , packet1.id , packet1.airspeed , packet1.temperature , packet1.press_diff , packet1.press_static , packet1.error , packet1.type );
+    mavlink_msg_airspeed_send(MAVLINK_COMM_1 , packet1.id , packet1.airspeed , packet1.temperature , packet1.raw_press , packet1.flags );
     mavlink_msg_airspeed_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
