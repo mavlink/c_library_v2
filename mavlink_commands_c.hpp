@@ -1,7 +1,7 @@
 #ifndef MAVLINK_COMMANDS_C_HPP
 #define MAVLINK_COMMNADS_C_HPP
 
-#include "mavlink.h"
+#include "common/mavlink.h"
 #include <HardwareSerial.h>
 
 extern uint8_t px_mode;

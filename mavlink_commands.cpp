@@ -14,6 +14,18 @@ uint8_t Mavlink::get_px_status(){
   return this->px_status;
 }
 
+uint16_t Mavlink::get_mis_prog(){
+  return this->mis_progress;
+}
+
+uint16_t Mavlink::get_mis_seq(){
+  return this->mis_seq;
+}
+
+bool Mavlink::get_mis_req_status(){
+  return this->req_mis;
+}
+
 void Mavlink::req_data_stream(){
   this->sys_id = 255;
   this->comp_id = 2;
@@ -68,6 +80,9 @@ void Mavlink::read_data(){
         case MAVLINK_MSG_ID_MISSION_ITEM_REACHED:
           check_mission_progress(&msg);
           break;
+        // case MAVLINK_MSG_ID_COMMAND_ACK:
+        //   command_ack(&msg);
+        //   break;
       }
     }
   }
@@ -78,30 +93,35 @@ void Mavlink::check_mode(mavlink_message_t* msg){
   mavlink_msg_heartbeat_decode(msg, &hb);
   this->px_mode = hb.base_mode;
   this->px_status = hb.system_status;
+  Serial.println("Heartbeat detected");
+}
+
+void Mavlink::command_ack(mavlink_message_t* msg){
+  mavlink_command_ack_t cmd_ack;
+  mavlink_msg_command_ack_decode(msg, &cmd_ack);
+  Serial.printf("Command %u result code %u\n");
 }
 
 void Mavlink::mission_request(mavlink_message_t* msg){
   mavlink_mission_request_int_t mis_req;
   mavlink_msg_mission_request_int_decode(msg, &mis_req);
-  // seq_prev = seq; //retain previous sequence number
   this->mis_seq = mis_req.seq;
   this->tgt_sys = mis_req.target_system;
   this->tgt_comp = mis_req.target_component;
   Serial.printf("Requesting for mission type %u sequence %u\n", mis_req.mission_type, this->mis_seq);
+  this->req_mis = true;
 }
 
 void Mavlink::check_mission_progress(mavlink_message_t* msg){
   mavlink_mission_item_reached_t it;
   mavlink_msg_mission_item_reached_decode(msg, &it);
   this->mis_progress = it.seq;
-  // seq_prev = it.seq; //using same variable to save memory
   Serial.printf("Mission sequence %u reached\n", this->mis_progress);
 }
 
 void Mavlink::uploaded_mission_status(mavlink_message_t* msg){
   mavlink_mission_ack_t mis_ack;
   mavlink_msg_mission_ack_decode(msg, &mis_ack);
-  // mis_up_status = mis_ack.type;
   if(mis_ack.type == MAV_MISSION_ACCEPTED){
     Serial.println("Mission accepted");
   }else{
@@ -242,6 +262,9 @@ void Mavlink::return_to_launch(){
 }
 
 void Mavlink::send_mission_count(const uint16_t& num_of_mission){
+  // this->mis_progress = 1000;
+  // this->mis_seq = 1000; // hardcoded for now, maybe there is a better solution
+
   Serial.printf("Sending mission count: %d\n", (num_of_mission));
   mavlink_message_t msg;
   uint8_t buf[MAVLINK_MSG_ID_MISSION_COUNT_LEN];
@@ -259,6 +282,7 @@ void Mavlink::send_mission_count(const uint16_t& num_of_mission){
   uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
 
   Serial2.write(buf, len);  
+  this->req_mis = false;
 }
 
 void Mavlink::send_mission_item(const float& lat, const float& lng, const float& height){
@@ -303,6 +327,7 @@ void Mavlink::send_mission_item(const float& lat, const float& lng, const float&
   Serial2.write(buf, len);
 
   Serial.printf("Mission sequence %u sent", this->mis_seq);
+  this->req_mis = false;
 }
 
 void Mavlink::start_mission(){

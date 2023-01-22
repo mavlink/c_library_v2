@@ -1,4 +1,4 @@
-#include "mavlink.h"
+#include "common/mavlink.h"
 #include <HardwareSerial.h>
 
 class Mavlink{
@@ -11,6 +11,12 @@ class Mavlink{
     uint8_t get_px_mode();
 
     uint8_t get_px_status();
+
+    uint16_t get_mis_prog();
+
+    uint16_t get_mis_seq();
+
+    bool get_mis_req_status();
 
     // Set data requests from pixhawk
     void req_data_stream();
@@ -35,6 +41,9 @@ class Mavlink{
 
     void start_mission();
 
+    // Sends 1 mission item
+    void send_mission_item(const float& lat, const float& lng, const float& height);
+
   private :
     uint8_t px_mode;
     uint8_t px_status;
@@ -44,6 +53,7 @@ class Mavlink{
     uint8_t tgt_comp; // 0 broadcast, 1 work juga
     uint16_t mis_seq;
     uint16_t mis_progress;
+    bool req_mis;
 
     // Check pixhawks current mode
     void check_mode(mavlink_message_t* msg);
@@ -57,9 +67,9 @@ class Mavlink{
     // Check whether uploaded mission is accepted
     void uploaded_mission_status(mavlink_message_t* msg);
 
+    // Check whether command was successfuly accepted
+    void command_ack(mavlink_message_t* msg);
+
     // Arms or disarms the drone (true == arm, false == disarm)
     void arm_disarm(bool arm);
-
-    // Sends 1 mission item
-    void send_mission_item(const float& lat, const float& lng, const float& height);
 };
