@@ -149,6 +149,8 @@ void sys_status(mavlink_message_t * msg){
 }
 
 void Mavlink::run_prearm_checks(){
+  Serial.println("Running prearm checks");
+
   mavlink_message_t msg;
   uint8_t buf[MAVLINK_MSG_ID_COMMAND_LONG_LEN];
 
@@ -171,6 +173,8 @@ void Mavlink::run_prearm_checks(){
 }
 
 void Mavlink::arm_disarm(bool arm){
+  this->run_prearm_checks();
+
   if(arm) Serial.println("Arming"); else Serial.println("Disarming");
   
   mavlink_message_t msg;
@@ -202,7 +206,7 @@ void Mavlink::takeoff(const float& height){
   }
 
   while(this->px_mode != MAV_MODE_FLAG_AUTO_ENABLED){
-    set_mode(MAV_MODE_AUTO_ARMED);
+    this->set_mode(MAV_MODE_AUTO_ARMED);
   }
 
   Serial.println("Taking off");
