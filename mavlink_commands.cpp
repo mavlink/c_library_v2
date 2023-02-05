@@ -69,20 +69,23 @@ void Mavlink::read_data(){
       switch(msg.msgid)
       {
         case MAVLINK_MSG_ID_HEARTBEAT:
-          check_mode(&msg);
+          this->check_mode(&msg);
           break;
         case MAVLINK_MSG_ID_MISSION_REQUEST_INT:
-          mission_request(&msg);
+          this->mission_request(&msg);
           break;
         case MAVLINK_MSG_ID_MISSION_ACK:
-          uploaded_mission_status(&msg);
+          this->uploaded_mission_status(&msg);
           break;
         case MAVLINK_MSG_ID_MISSION_ITEM_REACHED:
-          check_mission_progress(&msg);
+          this->check_mission_progress(&msg);
           break;
-        // case MAVLINK_MSG_ID_COMMAND_ACK:
-        //   command_ack(&msg);
-        //   break;
+        case MAVLINK_MSG_ID_COMMAND_ACK:
+          this->command_ack(&msg);
+          break;
+        case MAVLINK_MSG_ID_SYS_STATUS:
+          this->sys_status(&msg);
+          break;
       }
     }
   }
@@ -99,7 +102,7 @@ void Mavlink::check_mode(mavlink_message_t* msg){
 void Mavlink::command_ack(mavlink_message_t* msg){
   mavlink_command_ack_t cmd_ack;
   mavlink_msg_command_ack_decode(msg, &cmd_ack);
-  Serial.printf("Command %u result code %u\n");
+  Serial.printf("Command %u result code %u\n", cmd_ack.command, cmd_ack.result);
 }
 
 void Mavlink::mission_request(mavlink_message_t* msg){
@@ -129,7 +132,49 @@ void Mavlink::uploaded_mission_status(mavlink_message_t* msg){
   }
 }
 
+void sys_status(mavlink_message_t * msg){
+  mavlink_sys_status_t sys_status;
+  mavlink_msg_sys_status_decode(msg, &sys_status);
+  Serial.printf(
+    "Sensors Present : %u\n
+    Sensors Enabled : %u\n
+    Sensors Healthy : %u\n
+    Load (<1000%): %u %\n
+    Battery Voltage : %u V\n
+    Battery Current : %u cA\n
+    Battery Remaining : %u %\n
+    Comm Drop Rate : %u c%\n
+    Comm Errors : %u\n"
+  );
+}
+
+void Mavlink::run_prearm_checks(){
+  Serial.println("Running prearm checks");
+
+  mavlink_message_t msg;
+  uint8_t buf[MAVLINK_MSG_ID_COMMAND_LONG_LEN];
+
+  uint16_t command = 401;
+  uint8_t conf = 0;
+
+  mavlink_msg_command_long_pack(
+    this->sys_id, 
+    this->comp_id, 
+    &msg, 
+    this->tgt_sys, 
+    this->tgt_comp, 
+    command, 
+    conf, 
+    0, 0, 0, 0, 0, 0, 0
+  );
+  uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
+
+  Serial2.write(buf, len);
+}
+
 void Mavlink::arm_disarm(bool arm){
+  this->run_prearm_checks();
+
   if(arm) Serial.println("Arming"); else Serial.println("Disarming");
   
   mavlink_message_t msg;
@@ -148,7 +193,8 @@ void Mavlink::arm_disarm(bool arm){
     command, 
     conf, 
     param1, 
-    0, 0, 0, 0, 0, 0);
+    0, 0, 0, 0, 0, 0
+  );
   uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
 
   Serial2.write(buf, len);
@@ -160,7 +206,7 @@ void Mavlink::takeoff(const float& height){
   }
 
   while(this->px_mode != MAV_MODE_FLAG_AUTO_ENABLED){
-    set_mode(MAV_MODE_AUTO_ARMED);
+    this->set_mode(MAV_MODE_AUTO_ARMED);
   }
 
   Serial.println("Taking off");
@@ -344,9 +390,7 @@ void Mavlink::start_mission(){
   Supposedly, there is MISSON_STATE enum with MISSION_STATE_COMPLETE, but how do you request
   for it???? Or is it automatic?????????
   */
-  while(this->mis_progress != this->mis_seq){ 
-    read_data();
-  }
+  while(this->mis_progress != this->mis_seq);
 
   this->return_to_launch();
 }

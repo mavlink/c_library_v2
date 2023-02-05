@@ -44,6 +44,9 @@ class Mavlink{
     // Sends 1 mission item
     void send_mission_item(const float& lat, const float& lng, const float& height);
 
+    // Arms or disarms the drone (true == arm, false == disarm)
+    void arm_disarm(bool arm);
+
   private :
     uint8_t px_mode;
     uint8_t px_status;
@@ -70,6 +73,9 @@ class Mavlink{
     // Check whether command was successfuly accepted
     void command_ack(mavlink_message_t* msg);
 
-    // Arms or disarms the drone (true == arm, false == disarm)
-    void arm_disarm(bool arm);
+    // Results of prearm checks
+    void sys_status(mavlink_message_t* msg);
+
+    // Run pre-arm checks
+    void run_prearm_checks();
 };
