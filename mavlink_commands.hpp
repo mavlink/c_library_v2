@@ -1,18 +1,19 @@
 #include "common/mavlink.h"
 #include <HardwareSerial.h>
 
-class Mavlink{
+class MAVLink{
   public : 
-    // Setup serial communication
-    Mavlink(const int& baud_rate, const uint8_t& tx, const uint8_t& rx);
+    uint16_t mis_count;
+    std::vector<std::tuple<float, float, float>> waypoints;
 
-    ~Mavlink();
+    // Setup serial communication
+    MAVLink(const int& baud_rate, const uint8_t& tx, const uint8_t& rx, uint16_t mission_count);
+
+    ~MAVLink();
 
     uint8_t get_px_mode();
 
     uint8_t get_px_status();
-
-    uint16_t get_mis_prog();
 
     uint16_t get_mis_seq();
 
@@ -39,6 +40,7 @@ class Mavlink{
     // Send mission count (needed for pixhawk to start requesting mission)
     void send_mission_count(const uint16_t& num_of_mission);
 
+    // Starts mission
     void start_mission();
 
     // Sends 1 mission item
@@ -55,7 +57,6 @@ class Mavlink{
     uint8_t tgt_sys; // id of pxhawk = 1
     uint8_t tgt_comp; // 0 broadcast, 1 work juga
     uint16_t mis_seq;
-    uint16_t mis_progress;
     bool req_mis;
 
     // Check pixhawks current mode
@@ -76,6 +77,25 @@ class Mavlink{
     // Results of prearm checks
     void sys_status(mavlink_message_t* msg);
 
+    // Status of currently run mission
+    void current_mission_status(mavlink_message_t* msg);
+
+    // Get downloaded mission count
+    void recv_mission_count(mavlink_message_t* msg);
+
+    // Get downloaded missions
+    void recv_mission(mavlink_message_t* msg);
+
     // Run pre-arm checks
     void run_prearm_checks();
+
+    // Downloads mission from pixhawk
+    void req_mission_list();
+
+    // Requests a mission item
+    void req_mission_item();
+
+    // Sends mission download acknowledgement
+    void send_mission_ack();
+
 };

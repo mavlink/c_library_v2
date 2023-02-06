@@ -1,32 +1,29 @@
 #include "mavlink_commands.hpp"
 
-Mavlink::Mavlink(const int& baud_rate, const uint8_t& tx, const uint8_t& rx){
+MAVLink::MAVLink(const int& baud_rate, const uint8_t& tx, const uint8_t& rx, uint16_t mission_count){
   Serial2.begin(baud_rate, SERIAL_8N1, tx, rx);
+  this->mis_count = mission_count;
 }
 
-Mavlink::~Mavlink() {}
+MAVLink::~MAVLink() {}
 
-uint8_t Mavlink::get_px_mode(){
+uint8_t MAVLink::get_px_mode(){
   return this->px_mode;
 }
 
-uint8_t Mavlink::get_px_status(){
+uint8_t MAVLink::get_px_status(){
   return this->px_status;
 }
 
-uint16_t Mavlink::get_mis_prog(){
-  return this->mis_progress;
-}
-
-uint16_t Mavlink::get_mis_seq(){
+uint16_t MAVLink::get_mis_seq(){
   return this->mis_seq;
 }
 
-bool Mavlink::get_mis_req_status(){
+bool MAVLink::get_mis_req_status(){
   return this->req_mis;
 }
 
-void Mavlink::req_data_stream(){
+void MAVLink::req_data_stream(){
   this->sys_id = 255;
   this->comp_id = 2;
   this->tgt_sys = 1;
@@ -48,12 +45,12 @@ void Mavlink::req_data_stream(){
     req_msg_rate, 
     start_stop
   );
-  uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);  // Send the message (.write sends as bytes)
+  uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
   
   Serial2.write(buf, len);
 }
 
-void Mavlink::read_data(){
+void MAVLink::read_data(){
   mavlink_message_t msg;
   mavlink_status_t status;
 
@@ -86,12 +83,21 @@ void Mavlink::read_data(){
         case MAVLINK_MSG_ID_SYS_STATUS:
           this->sys_status(&msg);
           break;
+        case MAVLINK_MSG_ID_MISSION_CURRENT:
+          this->current_mission_status(&msg);
+          break;
+        case MAVLINK_MSG_ID_MISSION_COUNT:
+          this->recv_mission_count(&msg);
+          break;
+        case MAVLINK_MSG_ID_MISSION_ITEM_INT:
+          this->recv_mission(&msg);
+          break;
       }
     }
   }
 }
 
-void Mavlink::check_mode(mavlink_message_t* msg){
+void MAVLink::check_mode(mavlink_message_t* msg){
   mavlink_heartbeat_t hb;
   mavlink_msg_heartbeat_decode(msg, &hb);
   this->px_mode = hb.base_mode;
@@ -99,30 +105,29 @@ void Mavlink::check_mode(mavlink_message_t* msg){
   Serial.println("Heartbeat detected");
 }
 
-void Mavlink::command_ack(mavlink_message_t* msg){
+void MAVLink::command_ack(mavlink_message_t* msg){
   mavlink_command_ack_t cmd_ack;
   mavlink_msg_command_ack_decode(msg, &cmd_ack);
   Serial.printf("Command %u result code %u\n", cmd_ack.command, cmd_ack.result);
 }
 
-void Mavlink::mission_request(mavlink_message_t* msg){
+void MAVLink::mission_request(mavlink_message_t* msg){
   mavlink_mission_request_int_t mis_req;
   mavlink_msg_mission_request_int_decode(msg, &mis_req);
   this->mis_seq = mis_req.seq;
   this->tgt_sys = mis_req.target_system;
   this->tgt_comp = mis_req.target_component;
   Serial.printf("Requesting for mission type %u sequence %u\n", mis_req.mission_type, this->mis_seq);
-  this->req_mis = true;
+  this->send_mission_item();
 }
 
-void Mavlink::check_mission_progress(mavlink_message_t* msg){
+void MAVLink::check_mission_progress(mavlink_message_t* msg){
   mavlink_mission_item_reached_t it;
   mavlink_msg_mission_item_reached_decode(msg, &it);
-  this->mis_progress = it.seq;
-  Serial.printf("Mission sequence %u reached\n", this->mis_progress);
+  Serial.printf("Mission sequence %u reached\n", it.seq);
 }
 
-void Mavlink::uploaded_mission_status(mavlink_message_t* msg){
+void MAVLink::uploaded_mission_status(mavlink_message_t* msg){
   mavlink_mission_ack_t mis_ack;
   mavlink_msg_mission_ack_decode(msg, &mis_ack);
   if(mis_ack.type == MAV_MISSION_ACCEPTED){
@@ -132,7 +137,7 @@ void Mavlink::uploaded_mission_status(mavlink_message_t* msg){
   }
 }
 
-void sys_status(mavlink_message_t * msg){
+void MAVLink::sys_status(mavlink_message_t* msg){
   mavlink_sys_status_t sys_status;
   mavlink_msg_sys_status_decode(msg, &sys_status);
   Serial.printf(
@@ -148,7 +153,46 @@ void sys_status(mavlink_message_t * msg){
   );
 }
 
-void Mavlink::run_prearm_checks(){
+void MAVLink::current_mission_status(mavlink_message_t* msg){
+  mavlink_mission_current_t mis_stat;
+  mavlink_msg_mission_current_decode(msg, &mis_stat);
+  if(mis_stat.mission_state == MISSION_STATE_COMPLETE){
+    Serial.println("Mission completed. Returning to launch.");
+    this->return_to_launch();
+  }else if(mis_stat.mission_state == MISSION_STATE_NO_MISSION) 
+    Serial.println("No mission uploaded");
+  else if(mis_stat.mission_state == MISSION_STATE_NOT_STARTED) 
+    Serial.println("Mission uploaded but not started");
+  else if(mis_stat.mission_state == MISSION_STATE_PAUSED) 
+    Serial.printf("Mission paused at waypoint %u out of %u\n", mis_stat.seq, mis_stat.total);
+  else if(mis_stat.mission_state == MISSION_STATE_ACTIVE)
+    Serial.printf("Mission active on the way to waypoint %u out of %u\n", mis_stat.seq, mis_stat.total);
+  else
+    Serial.println("Unknown mission status");
+}
+
+void MAVLink::recv_mission_count(mavlink_message_t* msg){
+  mavlink_mission_count_t recv_mis_count;
+  mavlink_msg_mission_count_decode(msg, &recv_mis_count);
+  if(recv_mis_count.count != this->mis_count){
+    Serial.println("Downloaded mission count is not the same as sent");
+  }else{
+    Serial.printf("Downloading %u missions\n", recv_mis_count.count);
+    this->req_mission_item();
+  }
+}
+
+void MAVLink::recv_mission(mavlink_message_t* msg){
+  mavlink_mission_item_int_t recv_mis;
+  mavlink_msg_mission_item_int_decode(msg, &recv_mis);
+  Serial.printf("Downloaded waypoint %u with lat %f, long %f, and height %f\n", recv_mis.seq, recv_mis.x / 1e7, recv_mis.y / 1e7, recv_mis.z);
+  if(recv_mis.seq != this->mis_count - 1) this->req_mission_item();
+  else{
+    this->mis_seq = 0;
+  } 
+}
+
+void MAVLink::run_prearm_checks(){
   Serial.println("Running prearm checks");
 
   mavlink_message_t msg;
@@ -172,7 +216,7 @@ void Mavlink::run_prearm_checks(){
   Serial2.write(buf, len);
 }
 
-void Mavlink::arm_disarm(bool arm){
+void MAVLink::arm_disarm(bool arm){
   this->run_prearm_checks();
 
   if(arm) Serial.println("Arming"); else Serial.println("Disarming");
@@ -200,7 +244,7 @@ void Mavlink::arm_disarm(bool arm){
   Serial2.write(buf, len);
 }
 
-void Mavlink::takeoff(const float& height){
+void MAVLink::takeoff(const float& height){
   while(this->px_mode != MAV_MODE_FLAG_SAFETY_ARMED){
     this->arm_disarm(true);
   }
@@ -230,10 +274,10 @@ void Mavlink::takeoff(const float& height){
   );
   uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
 
-  Serial.write(buf, len);
+  Serial2.write(buf, len);
 }
 
-void Mavlink::land(){
+void MAVLink::land(){
   Serial.println("Landing");
   mavlink_message_t msg;
   uint8_t buf[MAVLINK_MSG_ID_COMMAND_LONG_LEN];
@@ -253,12 +297,12 @@ void Mavlink::land(){
   );
   uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
 
-  Serial.write(buf, len);
+  Serial2.write(buf, len);
 
   this->arm_disarm(false);
 }
 
-void Mavlink::set_mode(const uint16_t& mode){
+void MAVLink::set_mode(const uint16_t& mode){
   Serial.printf("Setting mode to %u", mode);
   mavlink_message_t msg;
   uint8_t buf[MAVLINK_MSG_ID_COMMAND_LONG_LEN];
@@ -283,7 +327,7 @@ void Mavlink::set_mode(const uint16_t& mode){
   Serial2.write(buf, len);
 }
 
-void Mavlink::return_to_launch(){
+void MAVLink::return_to_launch(){
   Serial.println("Returning to launch position");
 
   mavlink_message_t msg;
@@ -307,14 +351,13 @@ void Mavlink::return_to_launch(){
   Serial2.write(buf, len);
 }
 
-void Mavlink::send_mission_count(const uint16_t& num_of_mission){
-  // this->mis_progress = 1000;
-  // this->mis_seq = 1000; // hardcoded for now, maybe there is a better solution
-
-  Serial.printf("Sending mission count: %d\n", (num_of_mission));
+void MAVLink::send_mission_count(const uint16_t& num_of_mission){
+  Serial.printf("Sending mission count: %u\n", num_of_mission);
   mavlink_message_t msg;
   uint8_t buf[MAVLINK_MSG_ID_MISSION_COUNT_LEN];
-  uint8_t mission_type = MAV_MISSION_TYPE_MISSION;
+
+  this->mis_count = num_of_mission;
+  this->mis_seq = 0;
 
   mavlink_msg_mission_count_pack(
     this->sys_id, 
@@ -323,18 +366,20 @@ void Mavlink::send_mission_count(const uint16_t& num_of_mission){
     this->tgt_sys, 
     this->tgt_comp, 
     num_of_mission, 
-    mission_type
+    MAV_MISSION_TYPE_MISSION
   );
   uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
 
-  Serial2.write(buf, len);  
-  this->req_mis = false;
+  Serial2.write(buf, len);
 }
 
-void Mavlink::send_mission_item(const float& lat, const float& lng, const float& height){
-  Serial.printf("Setting waypoint lat : %f, lng : %f, height : %f\n", lat, lng, height);
+void MAVLink::send_mission_item(){
+  float lat = std::get<0>(this->waypoints.at(this->mis_seq));
+  float lng = std::get<1>(this->waypoints.at(this->mis_seq));
+  float hgt = std::get<2>(this->waypoints.at(this->mis_seq));
+  Serial.printf("Setting waypoint lat : %f, lng : %f, height : %f\n", lat, lng, hgt);
   mavlink_message_t msg;
-  uint8_t buf[MAVLINK_MSG_ID_MISSION_ITEM_LEN];
+  uint8_t buf[MAVLINK_MSG_ID_MISSION_ITEM_INT_LEN];
 
   uint8_t frame = MAV_FRAME_GLOBAL_RELATIVE_ALT; //lat, long, altitude is relative to home altitude in meters
   uint8_t command = 16; //waypoint
@@ -365,7 +410,7 @@ void Mavlink::send_mission_item(const float& lat, const float& lng, const float&
     param4, 
     lat_send, 
     lng_send, 
-    height, 
+    hgt, 
     mission_type
   );
   uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
@@ -373,24 +418,85 @@ void Mavlink::send_mission_item(const float& lat, const float& lng, const float&
   Serial2.write(buf, len);
 
   Serial.printf("Mission sequence %u sent", this->mis_seq);
-  this->req_mis = false;
 }
 
-void Mavlink::start_mission(){
+void MAVLink::req_mission_list(){
+  Serial.println("Downloading mission from pixhawk");
+  mavlink_message_t msg;
+  uint8_t buf[MAVLINK_MSG_ID_MISSION_REQUEST_LIST_LEN];
+
+  this->mis_seq = 0;
+
+  mavlink_msg_mission_request_list_pack(
+    this->sys_id,
+    this->comp_id,
+    &msg,
+    this->tgt_sys,
+    this->tgt_comp,
+    MAV_MISSION_TYPE_MISSION
+  );
+
+  uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
+
+  Serial2.write(buf, len);
+}
+
+void MAVLink::req_mission_item(){
+  Serial.println("Requesting mission item");
+  mavlink_message_t msg;
+  uint8_t buf[MAVLINK_MSG_ID_MISSION_REQUEST_INT_LEN];
+
+  mavlink_msg_mission_request_int_pack(
+    this->sys_id,
+    this->comp_id,
+    &msg,
+    this->tgt_sys,
+    this->tgt_comp,
+    this->mis_seq,
+    MAV_MISSION_TYPE_MISSION
+  );
+
+  uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
+
+  Serial2.write(buf, len);
+
+  this->mis_seq++;
+}
+
+void MAVLink::send_mission_ack(){
+  Serial.println("Mission downloading finished");
+  mavlink_message_t msg;
+  uint8_t buf[MAVLINK_MSG_ID_MISSION_ACK_LEN];
+
+  // TODO : Better error handling here
+  mavlink_msg_mission_ack_pack(
+    this->sys_id,
+    this->comp_id,
+    &msg,
+    this->tgt_sys,
+    this->tgt_comp,
+    MAV_MISSION_ACCEPTED,
+    MAV_MISSION_TYPE_MISSION
+  );
+
+  uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
+
+  Serial2.write(buf, len);
+
+  /*
+  if waypoints are correct -> takeoff
+  else cancel
+  */
+}
+
+void MAVLink::start_mission(){
   Serial.println("Starting mission");
+
+  this->req_mission_list();
   
   /*
   If it takes off correctly but doesn't start mission, may need MAV_CMD_COMMAND_START here.
   Documentation says that drone will automatically start mission when switched to auto mode,
   with condition that mission is accepted.
   */
-
-  /*
-  Loops while not all mission item is completed. 
-  Supposedly, there is MISSON_STATE enum with MISSION_STATE_COMPLETE, but how do you request
-  for it???? Or is it automatic?????????
-  */
-  while(this->mis_progress != this->mis_seq);
-
-  this->return_to_launch();
 }
