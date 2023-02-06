@@ -1,8 +1,7 @@
 #include "mavlink_commands.hpp"
 
-MAVLink::MAVLink(const int& baud_rate, const uint8_t& tx, const uint8_t& rx, uint16_t mission_count){
-  Serial2.begin(baud_rate, SERIAL_8N1, tx, rx);
-  this->mis_count = mission_count;
+MAVLink::MAVLink(const int& baud_rate, const uint8_t& rx, const uint8_t& tx){
+  Serial2.begin(baud_rate, SERIAL_8N1, rx, tx);
 }
 
 MAVLink::~MAVLink() {}
@@ -132,6 +131,7 @@ void MAVLink::uploaded_mission_status(mavlink_message_t* msg){
   mavlink_msg_mission_ack_decode(msg, &mis_ack);
   if(mis_ack.type == MAV_MISSION_ACCEPTED){
     Serial.println("Mission accepted");
+    this->start_mission();
   }else{
     Serial.printf("Mission unaccepted with enum %u\n", mis_ack.type);
   }
@@ -141,14 +141,14 @@ void MAVLink::sys_status(mavlink_message_t* msg){
   mavlink_sys_status_t sys_status;
   mavlink_msg_sys_status_decode(msg, &sys_status);
   Serial.printf(
-    "Sensors Present : %u\n
-    Sensors Enabled : %u\n
-    Sensors Healthy : %u\n
-    Load (<1000%): %u %\n
-    Battery Voltage : %u V\n
-    Battery Current : %u cA\n
-    Battery Remaining : %u %\n
-    Comm Drop Rate : %u c%\n
+    "Sensors Present : %u\n\
+    Sensors Enabled : %u\n\
+    Sensors Healthy : %u\n\
+    Load (<1000%): %u %\n\
+    Battery Voltage : %u V\n\
+    Battery Current : %u cA\n\
+    Battery Remaining : %u %\n\
+    Comm Drop Rate : %u c%\n\
     Comm Errors : %u\n"
   );
 }
@@ -489,6 +489,7 @@ void MAVLink::send_mission_ack(){
   */
 }
 
+// TODO : Implement a better way to start mission
 void MAVLink::start_mission(){
   Serial.println("Starting mission");
 

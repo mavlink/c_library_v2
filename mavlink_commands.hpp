@@ -1,5 +1,6 @@
 #include "common/mavlink.h"
 #include <HardwareSerial.h>
+#include <vector>
 
 class MAVLink{
   public : 
@@ -7,7 +8,7 @@ class MAVLink{
     std::vector<std::tuple<float, float, float>> waypoints;
 
     // Setup serial communication
-    MAVLink(const int& baud_rate, const uint8_t& tx, const uint8_t& rx, uint16_t mission_count);
+    MAVLink(const int& baud_rate, const uint8_t& rx, const uint8_t& tx);
 
     ~MAVLink();
 
@@ -44,7 +45,7 @@ class MAVLink{
     void start_mission();
 
     // Sends 1 mission item
-    void send_mission_item(const float& lat, const float& lng, const float& height);
+    void send_mission_item();
 
     // Arms or disarms the drone (true == arm, false == disarm)
     void arm_disarm(bool arm);
