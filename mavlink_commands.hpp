@@ -1,6 +1,7 @@
 #include "common/mavlink.h"
 #include <HardwareSerial.h>
 #include <vector>
+#include <array>
 
 class MAVLink{
   public : 
@@ -15,6 +16,14 @@ class MAVLink{
     uint8_t get_px_mode();
 
     uint8_t get_px_status();
+
+    std::array<float, 3> get_global_pos_curr;
+
+    std::array<float, 3> get_velocity_curr;
+
+    float get_time_boot();
+
+    uint16_t get_yaw_curr();
 
     uint16_t get_mis_seq();
 
@@ -58,6 +67,10 @@ class MAVLink{
     uint8_t tgt_sys; // id of pxhawk = 1
     uint8_t tgt_comp; // 0 broadcast, 1 work juga
     uint16_t mis_seq;
+    std::array<float, 3> global_pos_curr; //lat, long, relative alt
+    std::array<float, 3> velocity_curr; // velocity north, velocity east, velocity down
+    uint16_t yaw_curr;
+    float time_boot_sec;
     bool req_mis;
 
     // Check pixhawks current mode
@@ -77,6 +90,9 @@ class MAVLink{
 
     // Results of prearm checks
     void sys_status(mavlink_message_t* msg);
+
+    // Receive current global pos and velocity
+    void recv_global_pos(mavlink_message_t * msg);
 
     // Status of currently run mission
     void current_mission_status(mavlink_message_t* msg);

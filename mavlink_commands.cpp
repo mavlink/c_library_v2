@@ -22,6 +22,22 @@ bool MAVLink::get_mis_req_status(){
   return this->req_mis;
 }
 
+std::array<float,3> MAVLink::get_global_pos_curr(){
+  return this->global_pos_curr;
+}
+
+std::array<float, 3> MAVLink::get_velocity_curr(){
+  return this->velocity_curr;
+}
+
+float MAVLink::get_time_boot(){
+  return this->time_boot_sec;
+}
+
+uint16_t MAVLink::get_yaw_curr(){
+  return this->yaw_curr;
+}
+
 void MAVLink::req_data_stream(){
   this->sys_id = 255;
   this->comp_id = 2;
@@ -91,6 +107,9 @@ void MAVLink::read_data(){
         case MAVLINK_MSG_ID_MISSION_ITEM_INT:
           this->recv_mission(&msg);
           break;
+        case MAVLINK_MSG_ID_GLOBAL_POSITION_INT:
+          this->recv_global_pos(&msg);
+          break;
       }
     }
   }
@@ -151,6 +170,19 @@ void MAVLink::sys_status(mavlink_message_t* msg){
     Comm Drop Rate : %u c%\n\
     Comm Errors : %u\n"
   );
+}
+
+void MAVLink::recv_global_pos(mavlink_message_t* msg){
+  mavlink_global_position_int_t global_pos;
+  mavlink_msg_global_position_int_decode(msg, &global_pos);
+  this->global_pos_curr[0] = static_cast<float>(global_pos.lat / 1e7);
+  this->global_pos_curr[1] = static_cast<float>(global_pos.lon / 1e7);
+  this->global_pos_curr[2] = static_cast<float>(global_pos.relative_alt / 1000);
+  this->velocity_curr[0] = static_cast<float>(global_pos.vx / 100);
+  this->velocity_curr[1] = static_cast<float>(global_pos.vy / 100);
+  this->velocity_curr[2] = static_cast<float>(global_pos.vz / 100);
+  this->time_boot_sec = static_cast<float>(global_pos.time_boot_ms / 1000);
+  this->yaw = global_pos.hdg;
 }
 
 void MAVLink::current_mission_status(mavlink_message_t* msg){
@@ -226,7 +258,7 @@ void MAVLink::arm_disarm(bool arm){
 
   uint16_t command = 400; //arm disarm
   uint8_t conf = 0;
-  float param1 = float(arm);
+  float param1 = static_cast<float>(arm);
 
   mavlink_msg_command_long_pack(
     this->sys_id, 
