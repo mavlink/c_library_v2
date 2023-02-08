@@ -182,7 +182,7 @@ void MAVLink::recv_global_pos(mavlink_message_t* msg){
   this->velocity_curr[1] = static_cast<float>(global_pos.vy / 100);
   this->velocity_curr[2] = static_cast<float>(global_pos.vz / 100);
   this->time_boot_sec = static_cast<float>(global_pos.time_boot_ms / 1000);
-  this->yaw = global_pos.hdg;
+  this->yaw_curr = global_pos.hdg;
 }
 
 void MAVLink::current_mission_status(mavlink_message_t* msg){

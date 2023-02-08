@@ -17,9 +17,9 @@ class MAVLink{
 
     uint8_t get_px_status();
 
-    std::array<float, 3> get_global_pos_curr;
+    std::array<float, 3> get_global_pos_curr();
 
-    std::array<float, 3> get_velocity_curr;
+    std::array<float, 3> get_velocity_curr();
 
     float get_time_boot();
 
