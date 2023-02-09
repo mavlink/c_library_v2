@@ -188,19 +188,27 @@ void MAVLink::recv_global_pos(mavlink_message_t* msg){
 void MAVLink::current_mission_status(mavlink_message_t* msg){
   mavlink_mission_current_t mis_stat;
   mavlink_msg_mission_current_decode(msg, &mis_stat);
-  if(mis_stat.mission_state == MISSION_STATE_COMPLETE){
-    Serial.println("Mission completed. Returning to launch.");
-    this->return_to_launch();
-  }else if(mis_stat.mission_state == MISSION_STATE_NO_MISSION) 
-    Serial.println("No mission uploaded");
-  else if(mis_stat.mission_state == MISSION_STATE_NOT_STARTED) 
-    Serial.println("Mission uploaded but not started");
-  else if(mis_stat.mission_state == MISSION_STATE_PAUSED) 
-    Serial.printf("Mission paused at waypoint %u out of %u\n", mis_stat.seq, mis_stat.total);
-  else if(mis_stat.mission_state == MISSION_STATE_ACTIVE)
-    Serial.printf("Mission active on the way to waypoint %u out of %u\n", mis_stat.seq, mis_stat.total);
-  else
-    Serial.println("Unknown mission status");
+  switch (mis_stat.mission_state){
+    case MISSION_STATE_COMPLETE:
+      Serial.println("Mission completed. Returning to launch.");
+      this->return_to_launch();
+      break;
+    case MISSION_STATE_NO_MISSION:
+      Serial.println("No mission uploaded");
+      break;
+    case MISSION_STATE_NOT_STARTED:
+      Serial.println("Mission uploaded but not started");
+      break;
+    case MISSION_STATE_PAUSED:
+      Serial.printf("Mission paused at waypoint %u out of %u\n", mis_stat.seq, mis_stat.total);
+      break;
+    case MISSION_STATE_ACTIVE:
+      Serial.printf("Mission active on the way to waypoint %u out of %u\n", mis_stat.seq, mis_stat.total);
+      break;
+    default:
+      Serial.println("Unknown mission status");
+      break;
+  }
 }
 
 void MAVLink::recv_mission_count(mavlink_message_t* msg){
