@@ -472,6 +472,32 @@ void MAVLink::loiter_time(const uint16_t& time, const float& lat, const float& l
   Serial2.write(buf, len);
 }
 
+void MAVLink::set_servo(uint8_t port, uint16_t pwm){
+  Serial.printf("Setting mode to %u\n", mode);
+  mavlink_message_t msg;
+  uint8_t buf[MAVLINK_MAX_PACKET_LEN];
+
+  uint16_t command = 183; //do set mode
+  uint8_t conf = 0;
+  float param1 = 5; //auto disarmed
+  float param2 = 100000;
+
+  mavlink_msg_command_long_pack(
+    this->sys_id, 
+    this->comp_id, 
+    &msg, 
+    this->tgt_sys, 
+    this->tgt_comp, 
+    command, 
+    conf, 
+    param1, 
+    param2, 0, 0, 0, 0, 0
+  );
+  uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
+  
+  Serial2.write(buf, len);
+}
+
 void MAVLink::set_mode(const uint16_t& mode){
   Serial.printf("Setting mode to %u\n", mode);
   mavlink_message_t msg;
