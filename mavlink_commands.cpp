@@ -473,7 +473,7 @@ void MAVLink::loiter_time(const uint16_t& time, const float& lat, const float& l
 }
 
 void MAVLink::set_servo(uint8_t port, uint16_t pwm){
-  Serial.printf("Setting mode to %u\n", mode);
+  Serial.printf("Setting servo");
   mavlink_message_t msg;
   uint8_t buf[MAVLINK_MAX_PACKET_LEN];
 

@@ -75,7 +75,7 @@ class MAVLink{
 
     void timeout(uint32_t duration);
 
-    void set_servo();
+    void set_servo(uint8_t port, uint16_t pwm);
 
   private :
     uint8_t px_mode;
