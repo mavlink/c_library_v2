@@ -53,6 +53,29 @@ void MAVLink::add_waypoint(float lat, float lng, float hgt){
   this->waypoints.push_back(std::make_tuple(lat, lng, hgt));
 }
 
+void MAVLink::send_heartbeat(){
+  this->sys_id = 255;
+  this->comp_id = 2;
+  this->tgt_sys = 1;
+  this->tgt_comp = 0;
+  mavlink_message_t msg;
+  uint8_t buf[MAVLINK_MAX_PACKET_LEN];
+
+  mavlink_msg_heartbeat_pack(
+    this->sys_id,
+    this->comp_id,
+    &msg,
+    MAV_TYPE_GCS,
+    MAV_AUTOPILOT_INVALID,
+    MAV_MODE_MANUAL_ARMED,
+    0,
+    MAV_STATE_ACTIVE
+  );
+  uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
+  
+  Serial.write(buf, len);
+}
+
 void MAVLink::req_data_stream(){
   this->sys_id = 255;
   this->comp_id = 2;
@@ -307,7 +330,7 @@ void MAVLink::parse_mission_count(mavlink_message_t* msg){
 void MAVLink::parse_mission_item(mavlink_message_t* msg){
   mavlink_mission_item_int_t recv_mis;
   mavlink_msg_mission_item_int_decode(msg, &recv_mis);
-  Serial.printf("Downloaded waypoint %u with lat %f, long %f, and height %f\n", recv_mis.seq, recv_mis.x / 1e7, recv_mis.y / 1e7, recv_mis.z);
+  Serial.printf("Downloaded waypoint %u {\n\tlatitude  : %f\n\tlongitude : %f\n\theight    : %f\n}\n\n", recv_mis.seq, recv_mis.x / 1e7, recv_mis.y / 1e7, recv_mis.z);
   if(recv_mis.seq != this->mis_count - 1) this->req_mission_item();
   else{
     this->mis_seq = 0;
