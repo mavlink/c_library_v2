@@ -36,7 +36,7 @@ float MAVLink::get_time_boot(){
   return this->time_boot_sec;
 }
 
-uint16_t MAVLink::get_yaw_curr(){
+float MAVLink::get_yaw_curr(){
   return this->yaw_curr;
 }
 
@@ -161,11 +161,6 @@ void MAVLink::read_data(){
         case MAVLINK_MSG_ID_SYS_STATUS:
           this->parse_sys_status(&msg);
           break;
-        /* Not supported (i think)
-        case MAVLINK_MSG_ID_MISSION_CURRENT:
-          this->parse_mission_status(&msg);
-          break;
-        */
         case MAVLINK_MSG_ID_MISSION_COUNT:
           this->parse_mission_count(&msg);
           break;
@@ -280,14 +275,14 @@ void MAVLink::parse_sys_status(mavlink_message_t* msg){
 void MAVLink::parse_global_pos(mavlink_message_t* msg){
   mavlink_global_position_int_t global_pos;
   mavlink_msg_global_position_int_decode(msg, &global_pos);
-  this->global_pos_curr[0] = static_cast<float>(global_pos.lat / 1e7);
-  this->global_pos_curr[1] = static_cast<float>(global_pos.lon / 1e7);
-  this->global_pos_curr[2] = static_cast<float>(global_pos.relative_alt / 1000);
-  this->velocity_curr[0] = static_cast<float>(global_pos.vx / 100);
-  this->velocity_curr[1] = static_cast<float>(global_pos.vy / 100);
-  this->velocity_curr[2] = static_cast<float>(global_pos.vz / 100);
-  this->time_boot_sec = static_cast<float>(global_pos.time_boot_ms / 1000);
-  this->yaw_curr = global_pos.hdg;
+  this->global_pos_curr[0] = global_pos.lat / 1e7;
+  this->global_pos_curr[1] = global_pos.lon / 1e7;
+  this->global_pos_curr[2] = global_pos.relative_alt / 1e3;
+  this->velocity_curr[0] = global_pos.vx / 1e2;
+  this->velocity_curr[1] = global_pos.vy / 1e2;
+  this->velocity_curr[2] = global_pos.vz / 1e2;
+  this->time_boot_sec = global_pos.time_boot_ms / 1e3;
+  this->yaw_curr = global_pos.hdg / 1e2;
 }
 
 void MAVLink::parse_mission_status(mavlink_message_t* msg){

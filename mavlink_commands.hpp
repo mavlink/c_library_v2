@@ -27,7 +27,7 @@ class MAVLink{
 
     float get_time_boot();
 
-    uint16_t get_yaw_curr();
+    float get_yaw_curr();
 
     uint16_t get_mis_seq();
 
