@@ -394,6 +394,10 @@ void MAVLink::arm_disarm(bool arm){
   Serial2.write(buf, len);
 }
 
+void MAVLink::takeoff(){
+  this->takeoff(this->fly_alt);
+}
+
 void MAVLink::takeoff(const float& height){ 
   Serial.printf("Waypoint %d (takeoff) set as latitude : %d, longitude : %d, height : %f\n", this->mis_seq + 1, this->home_pos[0], this->home_pos[1], height);
   mavlink_message_t msg;
@@ -731,7 +735,7 @@ void MAVLink::start_mission(){
   this->req_mission_list();
 
   if(this->mission_valid){
-    printf("Mission is valid. Starting mission!\n")
+    printf("Mission is valid. Starting mission!\n");
   }else{
     printf("Cannot start mission. Mission is invalid\n");
   }
