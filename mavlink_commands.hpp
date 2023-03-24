@@ -1,21 +1,38 @@
+#ifndef MAVCPP_HPP_
+#define MAVCPP_HPP_
+
 #include "common/mavlink.h"
-#include <HardwareSerial.h>
-#include <Arduino.h>
+
+#include <Stream.h>
+#include <time.h>
 
 #include <vector>
 #include <array>
-#include <memory>
-#include <chrono>
+#include <tuple>
 
 class MAVLink{
   public :
-    uint8_t px_mode = 0;
-    uint8_t px_status = 0;
+    // should be changeable
+    uint8_t tgt_sys = 1; // id of pxhawk = 1
+    uint8_t tgt_comp = 0; // 0 broadcast, 1 work juga
 
     uint16_t mis_count;
 
     // Setup serial communication
-    MAVLink(const int& baud_rate, const uint8_t& rx, const uint8_t& tx);
+    /*
+    1st style:
+    #include "HardwareSerial.h" or "SoftwareSerial.h"
+
+    std::shared_ptr<MAVLink> mavlink;
+
+    void setup() {
+      Serial.begin(baudrate, serial type, rx, tx);
+      mavlink = std::make_shared<MAVLink> mavlink(Serial, Serial2);
+    }
+    */
+
+    // comm is serial for mavlink write and read data, and logger is serial for logging purposes
+    MAVLink(Stream *comm_, Stream *logger_ = nullptr);
 
     ~MAVLink();
 
@@ -82,17 +99,26 @@ class MAVLink{
     void send_mission_item();
 
     // Arms or disarms the drone (true == arm, false == disarm)
-    void arm_disarm(bool arm);
+    void arm_disarm(const bool& arm);
 
-    void timeout(uint32_t duration);
+    void timeout(const double& duration);
 
     void set_servo(uint8_t port, uint16_t pwm);
 
   private :
+    // buffer data for mavlink. no need to reinit every function
+    uint8_t buf[MAVLINK_MAX_PACKET_LEN]; // send data buffer
+    uint16_t len; // send data buffer length
+    uint8_t recv; // recieve data buffer
+
+    Stream *comm;
+    Stream *logger;
+
+    uint8_t px_mode = 0;
+    uint8_t px_status = 0;
+
     uint8_t sys_id = 255; // GCS id
     uint8_t comp_id = 2; // any?
-    uint8_t tgt_sys = 1; // id of pxhawk = 1
-    uint8_t tgt_comp = 0; // 0 broadcast, 1 work juga
     uint8_t mis_status;
     uint16_t reached;
     uint16_t mis_seq;
@@ -106,7 +132,7 @@ class MAVLink{
     bool mission_valid = false;
     std::vector<std::tuple<float, float, float>> waypoints;
 
-    // Check pixhawks current mode
+    // Check pixhawk current mode
     void parse_heartbeat(mavlink_message_t* msg);
 
     // Accept a mission request (int32) and send a mission item
@@ -153,4 +179,10 @@ class MAVLink{
     // Sends mission download acknowledgement
     void send_mission_ack();
 
+    // log serial purposes
+    void log_printf(const char *print, ...)  __attribute__ ((format (printf, 2, 3)));
+
+    double get_clock();
 };
+
+#endif // MAVCPP_HPP_
