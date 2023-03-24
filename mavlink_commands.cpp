@@ -1,6 +1,7 @@
 #include "mavlink_commands.hpp"
 
 MAVLink::MAVLink(const int& baud_rate, const uint8_t& rx, const uint8_t& tx) {
+  Serial.println("Initializing mavlink connection\n");
   Serial2.begin(baud_rate, SERIAL_8N1, rx, tx);
 
   this->req_data_stream();
@@ -45,6 +46,7 @@ void MAVLink::set_fly_alt(const float& hgt){
 }
 
 void MAVLink::add_waypoint(const float& lat, const float& lng){
+  Serial.printf("Added waypoint %f %f %f to list\n", lat, lng, this->fly_alt);
   this->waypoints.push_back(std::make_tuple(lat, lng, this->fly_alt));
 }
 
@@ -54,10 +56,6 @@ void MAVLink::add_waypoint(float lat, float lng, float hgt){
 }
 
 void MAVLink::send_heartbeat(){
-  this->sys_id = 255;
-  this->comp_id = 2;
-  this->tgt_sys = 1;
-  this->tgt_comp = 0;
   mavlink_message_t msg;
   uint8_t buf[MAVLINK_MAX_PACKET_LEN];
 
@@ -73,14 +71,10 @@ void MAVLink::send_heartbeat(){
   );
   uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
   
-  Serial.write(buf, len);
+  Serial2.write(buf, len);
 }
 
 void MAVLink::req_data_stream(){
-  this->sys_id = 255;
-  this->comp_id = 2;
-  this->tgt_sys = 1;
-  this->tgt_comp = 0;
   uint8_t req_stream_id = MAV_DATA_STREAM_ALL;
   uint16_t req_msg_rate = 0x01; // 1 times per second
   uint8_t start_stop = 1; // 1 start, 0 = stop
@@ -245,7 +239,6 @@ void MAVLink::parse_mission_ack(mavlink_message_t* msg){
     Serial.printf("Mission accepted\n");
     this->reached = NAN;
     this->mission_valid = true;
-    this->start_mission();
   }
   else if(mis_ack.type == MAV_MISSION_ACCEPTED && mis_ack.mission_type == 255){
     Serial.printf("Cleared all missions\n");
@@ -338,7 +331,7 @@ void MAVLink::parse_home_position(mavlink_message_t* msg){
   mavlink_home_position_t home_pos;
   mavlink_msg_home_position_decode(msg, &home_pos);
   if(home_pos.latitude != this->home_pos[0] || home_pos.longitude != this->home_pos[1]){
-    Serial.printf("Home position: %d %d\n", home_pos.latitude, home_pos.longitude);
+    Serial.printf("Home position: %f %f\n", home_pos.latitude, home_pos.longitude);
     this->home_pos[0] = home_pos.latitude;
     this->home_pos[1] = home_pos.longitude;
   }
@@ -399,7 +392,7 @@ void MAVLink::takeoff(){
 }
 
 void MAVLink::takeoff(const float& height){ 
-  Serial.printf("Waypoint %d (takeoff) set as latitude : %d, longitude : %d, height : %f\n", this->mis_seq + 1, this->home_pos[0], this->home_pos[1], height);
+  Serial.printf("Waypoint %d (takeoff) set as latitude : %f, longitude : %f, height : %f\n", this->mis_seq + 1, this->home_pos[0] / 1e7, this->home_pos[1] / 1e7, height);
   mavlink_message_t msg;
   uint8_t buf[MAVLINK_MAX_PACKET_LEN];
 
@@ -469,9 +462,6 @@ void MAVLink::loiter_time(const uint16_t& time, const float& lat, const float& l
   float param2 = 0;
   float param3 = 0;
   float param4 = 0;
-  int32_t lat_send = lat * 1e7;
-  int32_t longitude_send = longitude * 1e7;
-  float alt_send = alt;
 
   mavlink_msg_mission_item_int_pack(
     this->sys_id, 
@@ -487,8 +477,8 @@ void MAVLink::loiter_time(const uint16_t& time, const float& lat, const float& l
     param2,
     param3,
     param4,
-    lat_send,
-    longitude_send,
+    lat,
+    longitude,
     alt,
     MAV_MISSION_TYPE_MISSION
   );
@@ -576,7 +566,7 @@ void MAVLink::return_to_launch(){
 }
 
 void MAVLink::send_mission(const uint16_t& num_of_mission){
-  this->clear_all_mission();
+  // this->clear_all_mission();
 
   if(num_of_mission != 0){
     this->mis_count = num_of_mission;
@@ -608,17 +598,16 @@ void MAVLink::send_mission_item(){
   float lat = std::get<0>(this->waypoints.at(this->mis_seq - 1));
   float lng = std::get<1>(this->waypoints.at(this->mis_seq - 1));
   float hgt = std::get<2>(this->waypoints.at(this->mis_seq - 1));
+
+  Serial.printf("Setting waypoint lat : %f, lng : %f, height : %f\n", lat, lng, hgt);
+
+  int32_t lat_send = static_cast<int32_t>(lat * 1e7);
+  int32_t lng_send = static_cast<int32_t>(lng * 1e7);
+
   mavlink_message_t msg;
   uint8_t buf[MAVLINK_MAX_PACKET_LEN];
 
-  uint8_t frame = MAV_FRAME_GLOBAL_RELATIVE_ALT; //lat, long, altitude is relative to home altitude in meters
   uint8_t command = 16; //waypoint
-  float param1 = 1;
-  float param2 = 1;
-  float param3 = 0;
-  float param4 = NAN;
-  int32_t lat_send = lat * 1e7;
-  int32_t lng_send = lng * 1e7;
   uint8_t mission_type = MAV_MISSION_TYPE_MISSION;
 
   mavlink_msg_mission_item_int_pack(
@@ -628,14 +617,14 @@ void MAVLink::send_mission_item(){
     this->tgt_sys, 
     this->tgt_comp, 
     this->mis_seq,
-    frame, 
+    MAV_FRAME_GLOBAL_RELATIVE_ALT_INT, 
     command, 
     0, 
     1, 
-    param1, 
-    param2, 
-    param3, 
-    param4, 
+    0,
+    0,
+    0,
+    0, 
     lat_send, 
     lng_send, 
     hgt, 
@@ -645,7 +634,6 @@ void MAVLink::send_mission_item(){
 
   Serial2.write(buf, len);
 
-  Serial.printf("Setting waypoint lat : %d, lng : %d, height : %f\n", lat_send, lng_send, hgt);
 }
 
 void MAVLink::clear_all_mission(){
@@ -744,5 +732,5 @@ void MAVLink::start_mission(){
 void MAVLink::timeout(uint32_t duration){
   //time now millisecond
   unsigned long start = millis();
-  while(millis() - start < duration * 1000);
+  while(millis() < start + duration * 1000);
 }

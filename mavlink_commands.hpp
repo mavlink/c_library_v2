@@ -9,6 +9,8 @@
 
 class MAVLink{
   public :
+    uint8_t px_mode = 0;
+    uint8_t px_status = 0;
 
     uint16_t mis_count;
 
@@ -87,12 +89,10 @@ class MAVLink{
     void set_servo(uint8_t port, uint16_t pwm);
 
   private :
-    uint8_t px_mode;
-    uint8_t px_status;
-    uint8_t sys_id; // GCS id
-    uint8_t comp_id; // any?
-    uint8_t tgt_sys; // id of pxhawk = 1
-    uint8_t tgt_comp; // 0 broadcast, 1 work juga
+    uint8_t sys_id = 255; // GCS id
+    uint8_t comp_id = 2; // any?
+    uint8_t tgt_sys = 1; // id of pxhawk = 1
+    uint8_t tgt_comp = 0; // 0 broadcast, 1 work juga
     uint8_t mis_status;
     uint16_t reached;
     uint16_t mis_seq;
