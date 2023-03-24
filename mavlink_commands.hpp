@@ -89,14 +89,14 @@ class MAVLink{
     void set_servo(uint8_t port, uint16_t pwm);
 
   private :
-    uint8_t sys_id; // GCS id
-    uint8_t comp_id; // any?
-    uint8_t tgt_sys; // id of pxhawk = 1
-    uint8_t tgt_comp; // 0 broadcast, 1 work juga
+    uint8_t sys_id = 255; // GCS id
+    uint8_t comp_id = 2; // any?
+    uint8_t tgt_sys = 1; // id of pxhawk = 1
+    uint8_t tgt_comp = 0; // 0 broadcast, 1 work juga
     uint8_t mis_status;
     uint16_t reached;
     uint16_t mis_seq;
-    std::array<float, 2> home_pos;
+    std::array<int32_t, 2> home_pos;
     std::array<float, 3> global_pos_curr; //lat, long, relative alt
     std::array<float, 3> velocity_curr; // velocity north, velocity east, velocity down
     uint16_t yaw_curr;
