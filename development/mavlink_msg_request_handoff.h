@@ -6,20 +6,20 @@
 
 typedef struct __mavlink_request_handoff_t {
  uint8_t control_target; /*<  Control target to handoff control ownership.*/
- char requester_id[10]; /*<  Identification of the control entity requesting ownership.*/
- char reason[50]; /*<  Reason from the control entity requesting ownership.*/
+ char requester_id[40]; /*<  Identification of the control entity requesting ownership.*/
+ char reason[100]; /*<  Reason from the control entity requesting ownership.*/
 } mavlink_request_handoff_t;
 
-#define MAVLINK_MSG_ID_REQUEST_HANDOFF_LEN 61
-#define MAVLINK_MSG_ID_REQUEST_HANDOFF_MIN_LEN 61
-#define MAVLINK_MSG_ID_445_LEN 61
-#define MAVLINK_MSG_ID_445_MIN_LEN 61
+#define MAVLINK_MSG_ID_REQUEST_HANDOFF_LEN 141
+#define MAVLINK_MSG_ID_REQUEST_HANDOFF_MIN_LEN 141
+#define MAVLINK_MSG_ID_445_LEN 141
+#define MAVLINK_MSG_ID_445_MIN_LEN 141
 
-#define MAVLINK_MSG_ID_REQUEST_HANDOFF_CRC 116
-#define MAVLINK_MSG_ID_445_CRC 116
+#define MAVLINK_MSG_ID_REQUEST_HANDOFF_CRC 195
+#define MAVLINK_MSG_ID_445_CRC 195
 
-#define MAVLINK_MSG_REQUEST_HANDOFF_FIELD_REQUESTER_ID_LEN 10
-#define MAVLINK_MSG_REQUEST_HANDOFF_FIELD_REASON_LEN 50
+#define MAVLINK_MSG_REQUEST_HANDOFF_FIELD_REQUESTER_ID_LEN 40
+#define MAVLINK_MSG_REQUEST_HANDOFF_FIELD_REASON_LEN 100
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_REQUEST_HANDOFF { \
@@ -27,8 +27,8 @@ typedef struct __mavlink_request_handoff_t {
     "REQUEST_HANDOFF", \
     3, \
     {  { "control_target", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_request_handoff_t, control_target) }, \
-         { "requester_id", NULL, MAVLINK_TYPE_CHAR, 10, 1, offsetof(mavlink_request_handoff_t, requester_id) }, \
-         { "reason", NULL, MAVLINK_TYPE_CHAR, 50, 11, offsetof(mavlink_request_handoff_t, reason) }, \
+         { "requester_id", NULL, MAVLINK_TYPE_CHAR, 40, 1, offsetof(mavlink_request_handoff_t, requester_id) }, \
+         { "reason", NULL, MAVLINK_TYPE_CHAR, 100, 41, offsetof(mavlink_request_handoff_t, reason) }, \
          } \
 }
 #else
@@ -36,8 +36,8 @@ typedef struct __mavlink_request_handoff_t {
     "REQUEST_HANDOFF", \
     3, \
     {  { "control_target", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_request_handoff_t, control_target) }, \
-         { "requester_id", NULL, MAVLINK_TYPE_CHAR, 10, 1, offsetof(mavlink_request_handoff_t, requester_id) }, \
-         { "reason", NULL, MAVLINK_TYPE_CHAR, 50, 11, offsetof(mavlink_request_handoff_t, reason) }, \
+         { "requester_id", NULL, MAVLINK_TYPE_CHAR, 40, 1, offsetof(mavlink_request_handoff_t, requester_id) }, \
+         { "reason", NULL, MAVLINK_TYPE_CHAR, 100, 41, offsetof(mavlink_request_handoff_t, reason) }, \
          } \
 }
 #endif
@@ -59,14 +59,14 @@ static inline uint16_t mavlink_msg_request_handoff_pack(uint8_t system_id, uint8
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_REQUEST_HANDOFF_LEN];
     _mav_put_uint8_t(buf, 0, control_target);
-    _mav_put_char_array(buf, 1, requester_id, 10);
-    _mav_put_char_array(buf, 11, reason, 50);
+    _mav_put_char_array(buf, 1, requester_id, 40);
+    _mav_put_char_array(buf, 41, reason, 100);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_REQUEST_HANDOFF_LEN);
 #else
     mavlink_request_handoff_t packet;
     packet.control_target = control_target;
-    mav_array_memcpy(packet.requester_id, requester_id, sizeof(char)*10);
-    mav_array_memcpy(packet.reason, reason, sizeof(char)*50);
+    mav_array_memcpy(packet.requester_id, requester_id, sizeof(char)*40);
+    mav_array_memcpy(packet.reason, reason, sizeof(char)*100);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_REQUEST_HANDOFF_LEN);
 #endif
 
@@ -92,14 +92,14 @@ static inline uint16_t mavlink_msg_request_handoff_pack_chan(uint8_t system_id, 
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_REQUEST_HANDOFF_LEN];
     _mav_put_uint8_t(buf, 0, control_target);
-    _mav_put_char_array(buf, 1, requester_id, 10);
-    _mav_put_char_array(buf, 11, reason, 50);
+    _mav_put_char_array(buf, 1, requester_id, 40);
+    _mav_put_char_array(buf, 41, reason, 100);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_REQUEST_HANDOFF_LEN);
 #else
     mavlink_request_handoff_t packet;
     packet.control_target = control_target;
-    mav_array_memcpy(packet.requester_id, requester_id, sizeof(char)*10);
-    mav_array_memcpy(packet.reason, reason, sizeof(char)*50);
+    mav_array_memcpy(packet.requester_id, requester_id, sizeof(char)*40);
+    mav_array_memcpy(packet.reason, reason, sizeof(char)*100);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_REQUEST_HANDOFF_LEN);
 #endif
 
@@ -149,14 +149,14 @@ static inline void mavlink_msg_request_handoff_send(mavlink_channel_t chan, uint
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_REQUEST_HANDOFF_LEN];
     _mav_put_uint8_t(buf, 0, control_target);
-    _mav_put_char_array(buf, 1, requester_id, 10);
-    _mav_put_char_array(buf, 11, reason, 50);
+    _mav_put_char_array(buf, 1, requester_id, 40);
+    _mav_put_char_array(buf, 41, reason, 100);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_REQUEST_HANDOFF, buf, MAVLINK_MSG_ID_REQUEST_HANDOFF_MIN_LEN, MAVLINK_MSG_ID_REQUEST_HANDOFF_LEN, MAVLINK_MSG_ID_REQUEST_HANDOFF_CRC);
 #else
     mavlink_request_handoff_t packet;
     packet.control_target = control_target;
-    mav_array_memcpy(packet.requester_id, requester_id, sizeof(char)*10);
-    mav_array_memcpy(packet.reason, reason, sizeof(char)*50);
+    mav_array_memcpy(packet.requester_id, requester_id, sizeof(char)*40);
+    mav_array_memcpy(packet.reason, reason, sizeof(char)*100);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_REQUEST_HANDOFF, (const char *)&packet, MAVLINK_MSG_ID_REQUEST_HANDOFF_MIN_LEN, MAVLINK_MSG_ID_REQUEST_HANDOFF_LEN, MAVLINK_MSG_ID_REQUEST_HANDOFF_CRC);
 #endif
 }
@@ -188,14 +188,14 @@ static inline void mavlink_msg_request_handoff_send_buf(mavlink_message_t *msgbu
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_uint8_t(buf, 0, control_target);
-    _mav_put_char_array(buf, 1, requester_id, 10);
-    _mav_put_char_array(buf, 11, reason, 50);
+    _mav_put_char_array(buf, 1, requester_id, 40);
+    _mav_put_char_array(buf, 41, reason, 100);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_REQUEST_HANDOFF, buf, MAVLINK_MSG_ID_REQUEST_HANDOFF_MIN_LEN, MAVLINK_MSG_ID_REQUEST_HANDOFF_LEN, MAVLINK_MSG_ID_REQUEST_HANDOFF_CRC);
 #else
     mavlink_request_handoff_t *packet = (mavlink_request_handoff_t *)msgbuf;
     packet->control_target = control_target;
-    mav_array_memcpy(packet->requester_id, requester_id, sizeof(char)*10);
-    mav_array_memcpy(packet->reason, reason, sizeof(char)*50);
+    mav_array_memcpy(packet->requester_id, requester_id, sizeof(char)*40);
+    mav_array_memcpy(packet->reason, reason, sizeof(char)*100);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_REQUEST_HANDOFF, (const char *)packet, MAVLINK_MSG_ID_REQUEST_HANDOFF_MIN_LEN, MAVLINK_MSG_ID_REQUEST_HANDOFF_LEN, MAVLINK_MSG_ID_REQUEST_HANDOFF_CRC);
 #endif
 }
@@ -223,7 +223,7 @@ static inline uint8_t mavlink_msg_request_handoff_get_control_target(const mavli
  */
 static inline uint16_t mavlink_msg_request_handoff_get_requester_id(const mavlink_message_t* msg, char *requester_id)
 {
-    return _MAV_RETURN_char_array(msg, requester_id, 10,  1);
+    return _MAV_RETURN_char_array(msg, requester_id, 40,  1);
 }
 
 /**
@@ -233,7 +233,7 @@ static inline uint16_t mavlink_msg_request_handoff_get_requester_id(const mavlin
  */
 static inline uint16_t mavlink_msg_request_handoff_get_reason(const mavlink_message_t* msg, char *reason)
 {
-    return _MAV_RETURN_char_array(msg, reason, 50,  11);
+    return _MAV_RETURN_char_array(msg, reason, 100,  41);
 }
 
 /**

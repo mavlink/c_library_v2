@@ -856,15 +856,15 @@ static void mavlink_test_request_control(uint8_t system_id, uint8_t component_id
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_request_control_t packet_in = {
-        5,72,"CDEFGHIJK","MNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHI"
+        5,72,"CDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNO","QRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJK"
     };
     mavlink_request_control_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         packet1.control_target = packet_in.control_target;
         packet1.request_priority = packet_in.request_priority;
         
-        mav_array_memcpy(packet1.requester_id, packet_in.requester_id, sizeof(char)*10);
-        mav_array_memcpy(packet1.reason, packet_in.reason, sizeof(char)*50);
+        mav_array_memcpy(packet1.requester_id, packet_in.requester_id, sizeof(char)*40);
+        mav_array_memcpy(packet1.reason, packet_in.reason, sizeof(char)*100);
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
         if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
@@ -1037,14 +1037,14 @@ static void mavlink_test_request_handoff(uint8_t system_id, uint8_t component_id
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_request_handoff_t packet_in = {
-        5,"BCDEFGHIJ","LMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGH"
+        5,"BCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMN","PQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJ"
     };
     mavlink_request_handoff_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         packet1.control_target = packet_in.control_target;
         
-        mav_array_memcpy(packet1.requester_id, packet_in.requester_id, sizeof(char)*10);
-        mav_array_memcpy(packet1.reason, packet_in.reason, sizeof(char)*50);
+        mav_array_memcpy(packet1.requester_id, packet_in.requester_id, sizeof(char)*40);
+        mav_array_memcpy(packet1.reason, packet_in.reason, sizeof(char)*100);
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
         if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
