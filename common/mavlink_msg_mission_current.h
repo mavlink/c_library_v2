@@ -6,7 +6,7 @@
 
 typedef struct __mavlink_mission_current_t {
  uint16_t seq; /*<  Sequence*/
- uint16_t total; /*<  Total number of mission items. 0: Not supported, UINT16_MAX if no mission is present on the vehicle.*/
+ uint16_t total; /*<  Total number of mission items on vehicle (on last item, sequence == total). If the autopilot stores its home location as part of the mission this will be excluded from the total. 0: Not supported, UINT16_MAX if no mission is present on the vehicle.*/
  uint8_t mission_state; /*<  Mission state machine state. MISSION_STATE_UNKNOWN if state reporting not supported.*/
  uint8_t mission_mode; /*<  Vehicle is in a mode that can execute mission items or suspended. 0: Unknown, 1: In mission mode, 2: Suspended (not in mission mode).*/
 } mavlink_mission_current_t;
@@ -51,7 +51,7 @@ typedef struct __mavlink_mission_current_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param seq  Sequence
- * @param total  Total number of mission items. 0: Not supported, UINT16_MAX if no mission is present on the vehicle.
+ * @param total  Total number of mission items on vehicle (on last item, sequence == total). If the autopilot stores its home location as part of the mission this will be excluded from the total. 0: Not supported, UINT16_MAX if no mission is present on the vehicle.
  * @param mission_state  Mission state machine state. MISSION_STATE_UNKNOWN if state reporting not supported.
  * @param mission_mode  Vehicle is in a mode that can execute mission items or suspended. 0: Unknown, 1: In mission mode, 2: Suspended (not in mission mode).
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -88,7 +88,7 @@ static inline uint16_t mavlink_msg_mission_current_pack(uint8_t system_id, uint8
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param seq  Sequence
- * @param total  Total number of mission items. 0: Not supported, UINT16_MAX if no mission is present on the vehicle.
+ * @param total  Total number of mission items on vehicle (on last item, sequence == total). If the autopilot stores its home location as part of the mission this will be excluded from the total. 0: Not supported, UINT16_MAX if no mission is present on the vehicle.
  * @param mission_state  Mission state machine state. MISSION_STATE_UNKNOWN if state reporting not supported.
  * @param mission_mode  Vehicle is in a mode that can execute mission items or suspended. 0: Unknown, 1: In mission mode, 2: Suspended (not in mission mode).
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -151,7 +151,7 @@ static inline uint16_t mavlink_msg_mission_current_encode_chan(uint8_t system_id
  * @param chan MAVLink channel to send the message
  *
  * @param seq  Sequence
- * @param total  Total number of mission items. 0: Not supported, UINT16_MAX if no mission is present on the vehicle.
+ * @param total  Total number of mission items on vehicle (on last item, sequence == total). If the autopilot stores its home location as part of the mission this will be excluded from the total. 0: Not supported, UINT16_MAX if no mission is present on the vehicle.
  * @param mission_state  Mission state machine state. MISSION_STATE_UNKNOWN if state reporting not supported.
  * @param mission_mode  Vehicle is in a mode that can execute mission items or suspended. 0: Unknown, 1: In mission mode, 2: Suspended (not in mission mode).
  */
@@ -240,7 +240,7 @@ static inline uint16_t mavlink_msg_mission_current_get_seq(const mavlink_message
 /**
  * @brief Get field total from mission_current message
  *
- * @return  Total number of mission items. 0: Not supported, UINT16_MAX if no mission is present on the vehicle.
+ * @return  Total number of mission items on vehicle (on last item, sequence == total). If the autopilot stores its home location as part of the mission this will be excluded from the total. 0: Not supported, UINT16_MAX if no mission is present on the vehicle.
  */
 static inline uint16_t mavlink_msg_mission_current_get_total(const mavlink_message_t* msg)
 {
