@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH 5868560845381479384
+#define MAVLINK_COMMON_XML_HASH -3419460410948359516
 
 #ifdef __cplusplus
 extern "C" {
@@ -778,7 +778,9 @@ typedef enum MAV_RESULT
    MAV_RESULT_FAILED=4, /* Command is valid, but execution has failed. This is used to indicate any non-temporary or unexpected problem, i.e. any problem that must be fixed before the command can succeed/be retried. For example, attempting to write a file when out of memory, attempting to arm when sensors are not calibrated, etc. | */
    MAV_RESULT_IN_PROGRESS=5, /* Command is valid and is being executed. This will be followed by further progress updates, i.e. the component may send further COMMAND_ACK messages with result MAV_RESULT_IN_PROGRESS (at a rate decided by the implementation), and must terminate by sending a COMMAND_ACK message with final result of the operation. The COMMAND_ACK.progress field can be used to indicate the progress of the operation. | */
    MAV_RESULT_CANCELLED=6, /* Command has been cancelled (as a result of receiving a COMMAND_CANCEL message). | */
-   MAV_RESULT_ENUM_END=7, /*  | */
+   MAV_RESULT_COMMAND_LONG_ONLY=7, /* Command is valid, but it is only accepted when sent as a COMMAND_LONG (as it has float values for params 5 and 6). | */
+   MAV_RESULT_COMMAND_INT_ONLY=8, /* Command is valid, but it is only accepted when sent as a COMMAND_INT (as it encodes a location in params 5, 6 and 7, and hence requires a reference MAV_FRAME). | */
+   MAV_RESULT_ENUM_END=9, /*  | */
 } MAV_RESULT;
 #endif
 
