@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_MINIMAL.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_MINIMAL_XML_HASH -2548185875386342417
+#define MAVLINK_MINIMAL_XML_HASH 7112961958881327867
 
 #ifdef __cplusplus
 extern "C" {
@@ -111,8 +111,9 @@ typedef enum MAV_TYPE
    MAV_TYPE_IMU=40, /* IMU | */
    MAV_TYPE_GPS=41, /* GPS | */
    MAV_TYPE_WINCH=42, /* Winch | */
-   MAV_TYPE_JOYSTICK=43, /* Joystick | */
-   MAV_TYPE_ENUM_END=44, /*  | */
+   MAV_TYPE_GENERIC_MULTIROTOR=43, /* Generic multirotor that does not fit into a specific type or whose type is unknown | */
+   MAV_TYPE_JOYSTICK=44, /* Joystick | */
+   MAV_TYPE_ENUM_END=45, /*  | */
 } MAV_TYPE;
 #endif
 
