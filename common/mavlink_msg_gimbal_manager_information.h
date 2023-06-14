@@ -13,7 +13,7 @@ typedef struct __mavlink_gimbal_manager_information_t {
  float pitch_max; /*< [rad] Maximum pitch angle (positive: up, negative: down)*/
  float yaw_min; /*< [rad] Minimum yaw angle (positive: to the right, negative: to the left)*/
  float yaw_max; /*< [rad] Maximum yaw angle (positive: to the right, negative: to the left)*/
- uint8_t gimbal_device_id; /*<  Gimbal device ID that this gimbal manager is responsible for.*/
+ uint8_t gimbal_device_id; /*<  Gimbal device ID that this gimbal manager is responsible for. This should be a MAVLink component ID.*/
 } mavlink_gimbal_manager_information_t;
 
 #define MAVLINK_MSG_ID_GIMBAL_MANAGER_INFORMATION_LEN 33
@@ -67,7 +67,7 @@ typedef struct __mavlink_gimbal_manager_information_t {
  *
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param cap_flags  Bitmap of gimbal capability flags.
- * @param gimbal_device_id  Gimbal device ID that this gimbal manager is responsible for.
+ * @param gimbal_device_id  Gimbal device ID that this gimbal manager is responsible for. This should be a MAVLink component ID.
  * @param roll_min [rad] Minimum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
  * @param roll_max [rad] Maximum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
  * @param pitch_min [rad] Minimum pitch angle (positive: up, negative: down)
@@ -119,7 +119,7 @@ static inline uint16_t mavlink_msg_gimbal_manager_information_pack(uint8_t syste
  * @param msg The MAVLink message to compress the data into
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param cap_flags  Bitmap of gimbal capability flags.
- * @param gimbal_device_id  Gimbal device ID that this gimbal manager is responsible for.
+ * @param gimbal_device_id  Gimbal device ID that this gimbal manager is responsible for. This should be a MAVLink component ID.
  * @param roll_min [rad] Minimum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
  * @param roll_max [rad] Maximum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
  * @param pitch_min [rad] Minimum pitch angle (positive: up, negative: down)
@@ -197,7 +197,7 @@ static inline uint16_t mavlink_msg_gimbal_manager_information_encode_chan(uint8_
  *
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param cap_flags  Bitmap of gimbal capability flags.
- * @param gimbal_device_id  Gimbal device ID that this gimbal manager is responsible for.
+ * @param gimbal_device_id  Gimbal device ID that this gimbal manager is responsible for. This should be a MAVLink component ID.
  * @param roll_min [rad] Minimum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
  * @param roll_max [rad] Maximum hardware roll angle (positive: rolling to the right, negative: rolling to the left)
  * @param pitch_min [rad] Minimum pitch angle (positive: up, negative: down)
@@ -320,7 +320,7 @@ static inline uint32_t mavlink_msg_gimbal_manager_information_get_cap_flags(cons
 /**
  * @brief Get field gimbal_device_id from gimbal_manager_information message
  *
- * @return  Gimbal device ID that this gimbal manager is responsible for.
+ * @return  Gimbal device ID that this gimbal manager is responsible for. This should be a MAVLink component ID.
  */
 static inline uint8_t mavlink_msg_gimbal_manager_information_get_gimbal_device_id(const mavlink_message_t* msg)
 {
