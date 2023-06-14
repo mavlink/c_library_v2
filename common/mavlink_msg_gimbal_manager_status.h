@@ -7,7 +7,7 @@
 typedef struct __mavlink_gimbal_manager_status_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
  uint32_t flags; /*<  High level gimbal manager flags currently applied.*/
- uint8_t gimbal_device_id; /*<  Gimbal device ID that this gimbal manager is responsible for.*/
+ uint8_t gimbal_device_id; /*<  Gimbal device ID that this gimbal manager is responsible for. This should be a MAVLink component ID.*/
  uint8_t primary_control_sysid; /*<  System ID of MAVLink component with primary control, 0 for none.*/
  uint8_t primary_control_compid; /*<  Component ID of MAVLink component with primary control, 0 for none.*/
  uint8_t secondary_control_sysid; /*<  System ID of MAVLink component with secondary control, 0 for none.*/
@@ -61,7 +61,7 @@ typedef struct __mavlink_gimbal_manager_status_t {
  *
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param flags  High level gimbal manager flags currently applied.
- * @param gimbal_device_id  Gimbal device ID that this gimbal manager is responsible for.
+ * @param gimbal_device_id  Gimbal device ID that this gimbal manager is responsible for. This should be a MAVLink component ID.
  * @param primary_control_sysid  System ID of MAVLink component with primary control, 0 for none.
  * @param primary_control_compid  Component ID of MAVLink component with primary control, 0 for none.
  * @param secondary_control_sysid  System ID of MAVLink component with secondary control, 0 for none.
@@ -107,7 +107,7 @@ static inline uint16_t mavlink_msg_gimbal_manager_status_pack(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param flags  High level gimbal manager flags currently applied.
- * @param gimbal_device_id  Gimbal device ID that this gimbal manager is responsible for.
+ * @param gimbal_device_id  Gimbal device ID that this gimbal manager is responsible for. This should be a MAVLink component ID.
  * @param primary_control_sysid  System ID of MAVLink component with primary control, 0 for none.
  * @param primary_control_compid  Component ID of MAVLink component with primary control, 0 for none.
  * @param secondary_control_sysid  System ID of MAVLink component with secondary control, 0 for none.
@@ -179,7 +179,7 @@ static inline uint16_t mavlink_msg_gimbal_manager_status_encode_chan(uint8_t sys
  *
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param flags  High level gimbal manager flags currently applied.
- * @param gimbal_device_id  Gimbal device ID that this gimbal manager is responsible for.
+ * @param gimbal_device_id  Gimbal device ID that this gimbal manager is responsible for. This should be a MAVLink component ID.
  * @param primary_control_sysid  System ID of MAVLink component with primary control, 0 for none.
  * @param primary_control_compid  Component ID of MAVLink component with primary control, 0 for none.
  * @param secondary_control_sysid  System ID of MAVLink component with secondary control, 0 for none.
@@ -292,7 +292,7 @@ static inline uint32_t mavlink_msg_gimbal_manager_status_get_flags(const mavlink
 /**
  * @brief Get field gimbal_device_id from gimbal_manager_status message
  *
- * @return  Gimbal device ID that this gimbal manager is responsible for.
+ * @return  Gimbal device ID that this gimbal manager is responsible for. This should be a MAVLink component ID.
  */
 static inline uint8_t mavlink_msg_gimbal_manager_status_get_gimbal_device_id(const mavlink_message_t* msg)
 {

@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_MINIMAL.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_MINIMAL_XML_HASH 2455424750411190735
+#define MAVLINK_MINIMAL_XML_HASH 3929499717107402833
 
 #ifdef __cplusplus
 extern "C" {
@@ -161,10 +161,10 @@ typedef enum MAV_STATE
    MAV_STATE_CALIBRATING=2, /* System is calibrating and not flight-ready. | */
    MAV_STATE_STANDBY=3, /* System is grounded and on standby. It can be launched any time. | */
    MAV_STATE_ACTIVE=4, /* System is active and might be already airborne. Motors are engaged. | */
-   MAV_STATE_CRITICAL=5, /* System is in a non-normal flight mode. It can however still navigate. | */
-   MAV_STATE_EMERGENCY=6, /* System is in a non-normal flight mode. It lost control over parts or over the whole airframe. It is in mayday and going down. | */
+   MAV_STATE_CRITICAL=5, /* System is in a non-normal flight mode (failsafe). It can however still navigate. | */
+   MAV_STATE_EMERGENCY=6, /* System is in a non-normal flight mode (failsafe). It lost control over parts or over the whole airframe. It is in mayday and going down. | */
    MAV_STATE_POWEROFF=7, /* System just initialized its power-down sequence, will shut down now. | */
-   MAV_STATE_FLIGHT_TERMINATION=8, /* System is terminating itself. | */
+   MAV_STATE_FLIGHT_TERMINATION=8, /* System is terminating itself (failsafe or commanded). | */
    MAV_STATE_ENUM_END=9, /*  | */
 } MAV_STATE;
 #endif
