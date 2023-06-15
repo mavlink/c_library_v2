@@ -6,18 +6,18 @@
 
 typedef struct __mavlink_camera_information_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
- uint32_t firmware_version; /*<  Version of the camera firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff)*/
- float focal_length; /*< [mm] Focal length*/
- float sensor_size_h; /*< [mm] Image sensor size horizontal*/
- float sensor_size_v; /*< [mm] Image sensor size vertical*/
+ uint32_t firmware_version; /*<  Version of the camera firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff). Use 0 if not known.*/
+ float focal_length; /*< [mm] Focal length. Use NaN if not known.*/
+ float sensor_size_h; /*< [mm] Image sensor size horizontal. Use NaN if not known.*/
+ float sensor_size_v; /*< [mm] Image sensor size vertical. Use NaN if not known.*/
  uint32_t flags; /*<  Bitmap of camera capability flags.*/
- uint16_t resolution_h; /*< [pix] Horizontal image resolution*/
- uint16_t resolution_v; /*< [pix] Vertical image resolution*/
- uint16_t cam_definition_version; /*<  Camera definition version (iteration)*/
+ uint16_t resolution_h; /*< [pix] Horizontal image resolution. Use 0 if not known.*/
+ uint16_t resolution_v; /*< [pix] Vertical image resolution. Use 0 if not known.*/
+ uint16_t cam_definition_version; /*<  Camera definition version (iteration).  Use 0 if not known.*/
  uint8_t vendor_name[32]; /*<  Name of the camera vendor*/
  uint8_t model_name[32]; /*<  Name of the camera model*/
- uint8_t lens_id; /*<  Reserved for a lens ID*/
- char cam_definition_uri[140]; /*<  Camera definition URI (if any, otherwise only basic functions will be available). HTTP- (http://) and MAVLink FTP- (mavlinkftp://) formatted URIs are allowed (and both must be supported by any GCS that implements the Camera Protocol). The definition file may be xz compressed, which will be indicated by the file extension .xml.xz (a GCS that implements the protocol must support decompressing the file). The string needs to be zero terminated.*/
+ uint8_t lens_id; /*<  Reserved for a lens ID.  Use 0 if not known.*/
+ char cam_definition_uri[140]; /*<  Camera definition URI (if any, otherwise only basic functions will be available). HTTP- (http://) and MAVLink FTP- (mavlinkftp://) formatted URIs are allowed (and both must be supported by any GCS that implements the Camera Protocol). The definition file may be xz compressed, which will be indicated by the file extension .xml.xz (a GCS that implements the protocol must support decompressing the file). The string needs to be zero terminated.  Use a zero-length string if not known.*/
 } mavlink_camera_information_t;
 
 #define MAVLINK_MSG_ID_CAMERA_INFORMATION_LEN 235
@@ -82,16 +82,16 @@ typedef struct __mavlink_camera_information_t {
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param vendor_name  Name of the camera vendor
  * @param model_name  Name of the camera model
- * @param firmware_version  Version of the camera firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff)
- * @param focal_length [mm] Focal length
- * @param sensor_size_h [mm] Image sensor size horizontal
- * @param sensor_size_v [mm] Image sensor size vertical
- * @param resolution_h [pix] Horizontal image resolution
- * @param resolution_v [pix] Vertical image resolution
- * @param lens_id  Reserved for a lens ID
+ * @param firmware_version  Version of the camera firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff). Use 0 if not known.
+ * @param focal_length [mm] Focal length. Use NaN if not known.
+ * @param sensor_size_h [mm] Image sensor size horizontal. Use NaN if not known.
+ * @param sensor_size_v [mm] Image sensor size vertical. Use NaN if not known.
+ * @param resolution_h [pix] Horizontal image resolution. Use 0 if not known.
+ * @param resolution_v [pix] Vertical image resolution. Use 0 if not known.
+ * @param lens_id  Reserved for a lens ID.  Use 0 if not known.
  * @param flags  Bitmap of camera capability flags.
- * @param cam_definition_version  Camera definition version (iteration)
- * @param cam_definition_uri  Camera definition URI (if any, otherwise only basic functions will be available). HTTP- (http://) and MAVLink FTP- (mavlinkftp://) formatted URIs are allowed (and both must be supported by any GCS that implements the Camera Protocol). The definition file may be xz compressed, which will be indicated by the file extension .xml.xz (a GCS that implements the protocol must support decompressing the file). The string needs to be zero terminated.
+ * @param cam_definition_version  Camera definition version (iteration).  Use 0 if not known.
+ * @param cam_definition_uri  Camera definition URI (if any, otherwise only basic functions will be available). HTTP- (http://) and MAVLink FTP- (mavlinkftp://) formatted URIs are allowed (and both must be supported by any GCS that implements the Camera Protocol). The definition file may be xz compressed, which will be indicated by the file extension .xml.xz (a GCS that implements the protocol must support decompressing the file). The string needs to be zero terminated.  Use a zero-length string if not known.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_camera_information_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -144,16 +144,16 @@ static inline uint16_t mavlink_msg_camera_information_pack(uint8_t system_id, ui
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param vendor_name  Name of the camera vendor
  * @param model_name  Name of the camera model
- * @param firmware_version  Version of the camera firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff)
- * @param focal_length [mm] Focal length
- * @param sensor_size_h [mm] Image sensor size horizontal
- * @param sensor_size_v [mm] Image sensor size vertical
- * @param resolution_h [pix] Horizontal image resolution
- * @param resolution_v [pix] Vertical image resolution
- * @param lens_id  Reserved for a lens ID
+ * @param firmware_version  Version of the camera firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff). Use 0 if not known.
+ * @param focal_length [mm] Focal length. Use NaN if not known.
+ * @param sensor_size_h [mm] Image sensor size horizontal. Use NaN if not known.
+ * @param sensor_size_v [mm] Image sensor size vertical. Use NaN if not known.
+ * @param resolution_h [pix] Horizontal image resolution. Use 0 if not known.
+ * @param resolution_v [pix] Vertical image resolution. Use 0 if not known.
+ * @param lens_id  Reserved for a lens ID.  Use 0 if not known.
  * @param flags  Bitmap of camera capability flags.
- * @param cam_definition_version  Camera definition version (iteration)
- * @param cam_definition_uri  Camera definition URI (if any, otherwise only basic functions will be available). HTTP- (http://) and MAVLink FTP- (mavlinkftp://) formatted URIs are allowed (and both must be supported by any GCS that implements the Camera Protocol). The definition file may be xz compressed, which will be indicated by the file extension .xml.xz (a GCS that implements the protocol must support decompressing the file). The string needs to be zero terminated.
+ * @param cam_definition_version  Camera definition version (iteration).  Use 0 if not known.
+ * @param cam_definition_uri  Camera definition URI (if any, otherwise only basic functions will be available). HTTP- (http://) and MAVLink FTP- (mavlinkftp://) formatted URIs are allowed (and both must be supported by any GCS that implements the Camera Protocol). The definition file may be xz compressed, which will be indicated by the file extension .xml.xz (a GCS that implements the protocol must support decompressing the file). The string needs to be zero terminated.  Use a zero-length string if not known.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_camera_information_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -232,16 +232,16 @@ static inline uint16_t mavlink_msg_camera_information_encode_chan(uint8_t system
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param vendor_name  Name of the camera vendor
  * @param model_name  Name of the camera model
- * @param firmware_version  Version of the camera firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff)
- * @param focal_length [mm] Focal length
- * @param sensor_size_h [mm] Image sensor size horizontal
- * @param sensor_size_v [mm] Image sensor size vertical
- * @param resolution_h [pix] Horizontal image resolution
- * @param resolution_v [pix] Vertical image resolution
- * @param lens_id  Reserved for a lens ID
+ * @param firmware_version  Version of the camera firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff). Use 0 if not known.
+ * @param focal_length [mm] Focal length. Use NaN if not known.
+ * @param sensor_size_h [mm] Image sensor size horizontal. Use NaN if not known.
+ * @param sensor_size_v [mm] Image sensor size vertical. Use NaN if not known.
+ * @param resolution_h [pix] Horizontal image resolution. Use 0 if not known.
+ * @param resolution_v [pix] Vertical image resolution. Use 0 if not known.
+ * @param lens_id  Reserved for a lens ID.  Use 0 if not known.
  * @param flags  Bitmap of camera capability flags.
- * @param cam_definition_version  Camera definition version (iteration)
- * @param cam_definition_uri  Camera definition URI (if any, otherwise only basic functions will be available). HTTP- (http://) and MAVLink FTP- (mavlinkftp://) formatted URIs are allowed (and both must be supported by any GCS that implements the Camera Protocol). The definition file may be xz compressed, which will be indicated by the file extension .xml.xz (a GCS that implements the protocol must support decompressing the file). The string needs to be zero terminated.
+ * @param cam_definition_version  Camera definition version (iteration).  Use 0 if not known.
+ * @param cam_definition_uri  Camera definition URI (if any, otherwise only basic functions will be available). HTTP- (http://) and MAVLink FTP- (mavlinkftp://) formatted URIs are allowed (and both must be supported by any GCS that implements the Camera Protocol). The definition file may be xz compressed, which will be indicated by the file extension .xml.xz (a GCS that implements the protocol must support decompressing the file). The string needs to be zero terminated.  Use a zero-length string if not known.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -380,7 +380,7 @@ static inline uint16_t mavlink_msg_camera_information_get_model_name(const mavli
 /**
  * @brief Get field firmware_version from camera_information message
  *
- * @return  Version of the camera firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff)
+ * @return  Version of the camera firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff). Use 0 if not known.
  */
 static inline uint32_t mavlink_msg_camera_information_get_firmware_version(const mavlink_message_t* msg)
 {
@@ -390,7 +390,7 @@ static inline uint32_t mavlink_msg_camera_information_get_firmware_version(const
 /**
  * @brief Get field focal_length from camera_information message
  *
- * @return [mm] Focal length
+ * @return [mm] Focal length. Use NaN if not known.
  */
 static inline float mavlink_msg_camera_information_get_focal_length(const mavlink_message_t* msg)
 {
@@ -400,7 +400,7 @@ static inline float mavlink_msg_camera_information_get_focal_length(const mavlin
 /**
  * @brief Get field sensor_size_h from camera_information message
  *
- * @return [mm] Image sensor size horizontal
+ * @return [mm] Image sensor size horizontal. Use NaN if not known.
  */
 static inline float mavlink_msg_camera_information_get_sensor_size_h(const mavlink_message_t* msg)
 {
@@ -410,7 +410,7 @@ static inline float mavlink_msg_camera_information_get_sensor_size_h(const mavli
 /**
  * @brief Get field sensor_size_v from camera_information message
  *
- * @return [mm] Image sensor size vertical
+ * @return [mm] Image sensor size vertical. Use NaN if not known.
  */
 static inline float mavlink_msg_camera_information_get_sensor_size_v(const mavlink_message_t* msg)
 {
@@ -420,7 +420,7 @@ static inline float mavlink_msg_camera_information_get_sensor_size_v(const mavli
 /**
  * @brief Get field resolution_h from camera_information message
  *
- * @return [pix] Horizontal image resolution
+ * @return [pix] Horizontal image resolution. Use 0 if not known.
  */
 static inline uint16_t mavlink_msg_camera_information_get_resolution_h(const mavlink_message_t* msg)
 {
@@ -430,7 +430,7 @@ static inline uint16_t mavlink_msg_camera_information_get_resolution_h(const mav
 /**
  * @brief Get field resolution_v from camera_information message
  *
- * @return [pix] Vertical image resolution
+ * @return [pix] Vertical image resolution. Use 0 if not known.
  */
 static inline uint16_t mavlink_msg_camera_information_get_resolution_v(const mavlink_message_t* msg)
 {
@@ -440,7 +440,7 @@ static inline uint16_t mavlink_msg_camera_information_get_resolution_v(const mav
 /**
  * @brief Get field lens_id from camera_information message
  *
- * @return  Reserved for a lens ID
+ * @return  Reserved for a lens ID.  Use 0 if not known.
  */
 static inline uint8_t mavlink_msg_camera_information_get_lens_id(const mavlink_message_t* msg)
 {
@@ -460,7 +460,7 @@ static inline uint32_t mavlink_msg_camera_information_get_flags(const mavlink_me
 /**
  * @brief Get field cam_definition_version from camera_information message
  *
- * @return  Camera definition version (iteration)
+ * @return  Camera definition version (iteration).  Use 0 if not known.
  */
 static inline uint16_t mavlink_msg_camera_information_get_cam_definition_version(const mavlink_message_t* msg)
 {
@@ -470,7 +470,7 @@ static inline uint16_t mavlink_msg_camera_information_get_cam_definition_version
 /**
  * @brief Get field cam_definition_uri from camera_information message
  *
- * @return  Camera definition URI (if any, otherwise only basic functions will be available). HTTP- (http://) and MAVLink FTP- (mavlinkftp://) formatted URIs are allowed (and both must be supported by any GCS that implements the Camera Protocol). The definition file may be xz compressed, which will be indicated by the file extension .xml.xz (a GCS that implements the protocol must support decompressing the file). The string needs to be zero terminated.
+ * @return  Camera definition URI (if any, otherwise only basic functions will be available). HTTP- (http://) and MAVLink FTP- (mavlinkftp://) formatted URIs are allowed (and both must be supported by any GCS that implements the Camera Protocol). The definition file may be xz compressed, which will be indicated by the file extension .xml.xz (a GCS that implements the protocol must support decompressing the file). The string needs to be zero terminated.  Use a zero-length string if not known.
  */
 static inline uint16_t mavlink_msg_camera_information_get_cam_definition_uri(const mavlink_message_t* msg, char *cam_definition_uri)
 {
