@@ -37,7 +37,7 @@ static void mavlink_test_radio_status_extensions(uint8_t system_id, uint8_t comp
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_radio_status_extensions_t packet_in = {
-        5,72,139,206,17,84
+        5,72,139,206,17,84,17547
     };
     mavlink_radio_status_extensions_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -47,6 +47,7 @@ static void mavlink_test_radio_status_extensions(uint8_t system_id, uint8_t comp
         packet1.number_spatial_streams = packet_in.number_spatial_streams;
         packet1.queue_size = packet_in.queue_size;
         packet1.air_time = packet_in.air_time;
+        packet1.temperature = packet_in.temperature;
         
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -61,12 +62,12 @@ static void mavlink_test_radio_status_extensions(uint8_t system_id, uint8_t comp
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_radio_status_extensions_pack(system_id, component_id, &msg , packet1.rssi , packet1.snr , packet1.mcs_index , packet1.number_spatial_streams , packet1.queue_size , packet1.air_time );
+    mavlink_msg_radio_status_extensions_pack(system_id, component_id, &msg , packet1.rssi , packet1.snr , packet1.mcs_index , packet1.number_spatial_streams , packet1.queue_size , packet1.air_time , packet1.temperature );
     mavlink_msg_radio_status_extensions_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_radio_status_extensions_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.rssi , packet1.snr , packet1.mcs_index , packet1.number_spatial_streams , packet1.queue_size , packet1.air_time );
+    mavlink_msg_radio_status_extensions_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.rssi , packet1.snr , packet1.mcs_index , packet1.number_spatial_streams , packet1.queue_size , packet1.air_time , packet1.temperature );
     mavlink_msg_radio_status_extensions_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -79,7 +80,7 @@ static void mavlink_test_radio_status_extensions(uint8_t system_id, uint8_t comp
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_radio_status_extensions_send(MAVLINK_COMM_1 , packet1.rssi , packet1.snr , packet1.mcs_index , packet1.number_spatial_streams , packet1.queue_size , packet1.air_time );
+    mavlink_msg_radio_status_extensions_send(MAVLINK_COMM_1 , packet1.rssi , packet1.snr , packet1.mcs_index , packet1.number_spatial_streams , packet1.queue_size , packet1.air_time , packet1.temperature );
     mavlink_msg_radio_status_extensions_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 

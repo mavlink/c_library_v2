@@ -11,11 +11,12 @@ typedef struct __mavlink_radio_status_extensions_t {
  uint8_t number_spatial_streams; /*<   Local (message sender) number of spatial streams.*/
  uint8_t queue_size; /*<   Local (message sender) number of packets in buffer.*/
  uint8_t air_time; /*< [%] Local (message sender) percentage of time the radio is transmitting.*/
+ int16_t temperature; /*< [degC] Local (message senser) radio temperature in degrees Celsius.*/
 } mavlink_radio_status_extensions_t;
 
-#define MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_LEN 6
+#define MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_LEN 8
 #define MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_MIN_LEN 6
-#define MAVLINK_MSG_ID_420_LEN 6
+#define MAVLINK_MSG_ID_420_LEN 8
 #define MAVLINK_MSG_ID_420_MIN_LEN 6
 
 #define MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_CRC 135
@@ -27,25 +28,27 @@ typedef struct __mavlink_radio_status_extensions_t {
 #define MAVLINK_MESSAGE_INFO_RADIO_STATUS_EXTENSIONS { \
     420, \
     "RADIO_STATUS_EXTENSIONS", \
-    6, \
+    7, \
     {  { "rssi", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_radio_status_extensions_t, rssi) }, \
          { "snr", NULL, MAVLINK_TYPE_UINT8_T, 0, 1, offsetof(mavlink_radio_status_extensions_t, snr) }, \
          { "mcs_index", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_radio_status_extensions_t, mcs_index) }, \
          { "number_spatial_streams", NULL, MAVLINK_TYPE_UINT8_T, 0, 3, offsetof(mavlink_radio_status_extensions_t, number_spatial_streams) }, \
          { "queue_size", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_radio_status_extensions_t, queue_size) }, \
          { "air_time", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_radio_status_extensions_t, air_time) }, \
+         { "temperature", NULL, MAVLINK_TYPE_INT16_T, 0, 6, offsetof(mavlink_radio_status_extensions_t, temperature) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_RADIO_STATUS_EXTENSIONS { \
     "RADIO_STATUS_EXTENSIONS", \
-    6, \
+    7, \
     {  { "rssi", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_radio_status_extensions_t, rssi) }, \
          { "snr", NULL, MAVLINK_TYPE_UINT8_T, 0, 1, offsetof(mavlink_radio_status_extensions_t, snr) }, \
          { "mcs_index", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_radio_status_extensions_t, mcs_index) }, \
          { "number_spatial_streams", NULL, MAVLINK_TYPE_UINT8_T, 0, 3, offsetof(mavlink_radio_status_extensions_t, number_spatial_streams) }, \
          { "queue_size", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_radio_status_extensions_t, queue_size) }, \
          { "air_time", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_radio_status_extensions_t, air_time) }, \
+         { "temperature", NULL, MAVLINK_TYPE_INT16_T, 0, 6, offsetof(mavlink_radio_status_extensions_t, temperature) }, \
          } \
 }
 #endif
@@ -62,10 +65,11 @@ typedef struct __mavlink_radio_status_extensions_t {
  * @param number_spatial_streams   Local (message sender) number of spatial streams.
  * @param queue_size   Local (message sender) number of packets in buffer.
  * @param air_time [%] Local (message sender) percentage of time the radio is transmitting.
+ * @param temperature [degC] Local (message senser) radio temperature in degrees Celsius.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_radio_status_extensions_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t rssi, uint8_t snr, uint8_t mcs_index, uint8_t number_spatial_streams, uint8_t queue_size, uint8_t air_time)
+                               uint8_t rssi, uint8_t snr, uint8_t mcs_index, uint8_t number_spatial_streams, uint8_t queue_size, uint8_t air_time, int16_t temperature)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_LEN];
@@ -75,6 +79,7 @@ static inline uint16_t mavlink_msg_radio_status_extensions_pack(uint8_t system_i
     _mav_put_uint8_t(buf, 3, number_spatial_streams);
     _mav_put_uint8_t(buf, 4, queue_size);
     _mav_put_uint8_t(buf, 5, air_time);
+    _mav_put_int16_t(buf, 6, temperature);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_LEN);
 #else
@@ -85,6 +90,7 @@ static inline uint16_t mavlink_msg_radio_status_extensions_pack(uint8_t system_i
     packet.number_spatial_streams = number_spatial_streams;
     packet.queue_size = queue_size;
     packet.air_time = air_time;
+    packet.temperature = temperature;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_LEN);
 #endif
@@ -105,11 +111,12 @@ static inline uint16_t mavlink_msg_radio_status_extensions_pack(uint8_t system_i
  * @param number_spatial_streams   Local (message sender) number of spatial streams.
  * @param queue_size   Local (message sender) number of packets in buffer.
  * @param air_time [%] Local (message sender) percentage of time the radio is transmitting.
+ * @param temperature [degC] Local (message senser) radio temperature in degrees Celsius.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_radio_status_extensions_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t rssi,uint8_t snr,uint8_t mcs_index,uint8_t number_spatial_streams,uint8_t queue_size,uint8_t air_time)
+                                   uint8_t rssi,uint8_t snr,uint8_t mcs_index,uint8_t number_spatial_streams,uint8_t queue_size,uint8_t air_time,int16_t temperature)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_LEN];
@@ -119,6 +126,7 @@ static inline uint16_t mavlink_msg_radio_status_extensions_pack_chan(uint8_t sys
     _mav_put_uint8_t(buf, 3, number_spatial_streams);
     _mav_put_uint8_t(buf, 4, queue_size);
     _mav_put_uint8_t(buf, 5, air_time);
+    _mav_put_int16_t(buf, 6, temperature);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_LEN);
 #else
@@ -129,6 +137,7 @@ static inline uint16_t mavlink_msg_radio_status_extensions_pack_chan(uint8_t sys
     packet.number_spatial_streams = number_spatial_streams;
     packet.queue_size = queue_size;
     packet.air_time = air_time;
+    packet.temperature = temperature;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_LEN);
 #endif
@@ -147,7 +156,7 @@ static inline uint16_t mavlink_msg_radio_status_extensions_pack_chan(uint8_t sys
  */
 static inline uint16_t mavlink_msg_radio_status_extensions_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_radio_status_extensions_t* radio_status_extensions)
 {
-    return mavlink_msg_radio_status_extensions_pack(system_id, component_id, msg, radio_status_extensions->rssi, radio_status_extensions->snr, radio_status_extensions->mcs_index, radio_status_extensions->number_spatial_streams, radio_status_extensions->queue_size, radio_status_extensions->air_time);
+    return mavlink_msg_radio_status_extensions_pack(system_id, component_id, msg, radio_status_extensions->rssi, radio_status_extensions->snr, radio_status_extensions->mcs_index, radio_status_extensions->number_spatial_streams, radio_status_extensions->queue_size, radio_status_extensions->air_time, radio_status_extensions->temperature);
 }
 
 /**
@@ -161,7 +170,7 @@ static inline uint16_t mavlink_msg_radio_status_extensions_encode(uint8_t system
  */
 static inline uint16_t mavlink_msg_radio_status_extensions_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_radio_status_extensions_t* radio_status_extensions)
 {
-    return mavlink_msg_radio_status_extensions_pack_chan(system_id, component_id, chan, msg, radio_status_extensions->rssi, radio_status_extensions->snr, radio_status_extensions->mcs_index, radio_status_extensions->number_spatial_streams, radio_status_extensions->queue_size, radio_status_extensions->air_time);
+    return mavlink_msg_radio_status_extensions_pack_chan(system_id, component_id, chan, msg, radio_status_extensions->rssi, radio_status_extensions->snr, radio_status_extensions->mcs_index, radio_status_extensions->number_spatial_streams, radio_status_extensions->queue_size, radio_status_extensions->air_time, radio_status_extensions->temperature);
 }
 
 /**
@@ -174,10 +183,11 @@ static inline uint16_t mavlink_msg_radio_status_extensions_encode_chan(uint8_t s
  * @param number_spatial_streams   Local (message sender) number of spatial streams.
  * @param queue_size   Local (message sender) number of packets in buffer.
  * @param air_time [%] Local (message sender) percentage of time the radio is transmitting.
+ * @param temperature [degC] Local (message senser) radio temperature in degrees Celsius.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_radio_status_extensions_send(mavlink_channel_t chan, uint8_t rssi, uint8_t snr, uint8_t mcs_index, uint8_t number_spatial_streams, uint8_t queue_size, uint8_t air_time)
+static inline void mavlink_msg_radio_status_extensions_send(mavlink_channel_t chan, uint8_t rssi, uint8_t snr, uint8_t mcs_index, uint8_t number_spatial_streams, uint8_t queue_size, uint8_t air_time, int16_t temperature)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_LEN];
@@ -187,6 +197,7 @@ static inline void mavlink_msg_radio_status_extensions_send(mavlink_channel_t ch
     _mav_put_uint8_t(buf, 3, number_spatial_streams);
     _mav_put_uint8_t(buf, 4, queue_size);
     _mav_put_uint8_t(buf, 5, air_time);
+    _mav_put_int16_t(buf, 6, temperature);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS, buf, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_MIN_LEN, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_LEN, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_CRC);
 #else
@@ -197,6 +208,7 @@ static inline void mavlink_msg_radio_status_extensions_send(mavlink_channel_t ch
     packet.number_spatial_streams = number_spatial_streams;
     packet.queue_size = queue_size;
     packet.air_time = air_time;
+    packet.temperature = temperature;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS, (const char *)&packet, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_MIN_LEN, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_LEN, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_CRC);
 #endif
@@ -210,7 +222,7 @@ static inline void mavlink_msg_radio_status_extensions_send(mavlink_channel_t ch
 static inline void mavlink_msg_radio_status_extensions_send_struct(mavlink_channel_t chan, const mavlink_radio_status_extensions_t* radio_status_extensions)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_radio_status_extensions_send(chan, radio_status_extensions->rssi, radio_status_extensions->snr, radio_status_extensions->mcs_index, radio_status_extensions->number_spatial_streams, radio_status_extensions->queue_size, radio_status_extensions->air_time);
+    mavlink_msg_radio_status_extensions_send(chan, radio_status_extensions->rssi, radio_status_extensions->snr, radio_status_extensions->mcs_index, radio_status_extensions->number_spatial_streams, radio_status_extensions->queue_size, radio_status_extensions->air_time, radio_status_extensions->temperature);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS, (const char *)radio_status_extensions, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_MIN_LEN, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_LEN, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_CRC);
 #endif
@@ -224,7 +236,7 @@ static inline void mavlink_msg_radio_status_extensions_send_struct(mavlink_chann
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_radio_status_extensions_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t rssi, uint8_t snr, uint8_t mcs_index, uint8_t number_spatial_streams, uint8_t queue_size, uint8_t air_time)
+static inline void mavlink_msg_radio_status_extensions_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t rssi, uint8_t snr, uint8_t mcs_index, uint8_t number_spatial_streams, uint8_t queue_size, uint8_t air_time, int16_t temperature)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -234,6 +246,7 @@ static inline void mavlink_msg_radio_status_extensions_send_buf(mavlink_message_
     _mav_put_uint8_t(buf, 3, number_spatial_streams);
     _mav_put_uint8_t(buf, 4, queue_size);
     _mav_put_uint8_t(buf, 5, air_time);
+    _mav_put_int16_t(buf, 6, temperature);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS, buf, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_MIN_LEN, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_LEN, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_CRC);
 #else
@@ -244,6 +257,7 @@ static inline void mavlink_msg_radio_status_extensions_send_buf(mavlink_message_
     packet->number_spatial_streams = number_spatial_streams;
     packet->queue_size = queue_size;
     packet->air_time = air_time;
+    packet->temperature = temperature;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS, (const char *)packet, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_MIN_LEN, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_LEN, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_CRC);
 #endif
@@ -316,6 +330,16 @@ static inline uint8_t mavlink_msg_radio_status_extensions_get_air_time(const mav
 }
 
 /**
+ * @brief Get field temperature from radio_status_extensions message
+ *
+ * @return [degC] Local (message senser) radio temperature in degrees Celsius.
+ */
+static inline int16_t mavlink_msg_radio_status_extensions_get_temperature(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_int16_t(msg,  6);
+}
+
+/**
  * @brief Decode a radio_status_extensions message into a struct
  *
  * @param msg The message to decode
@@ -330,6 +354,7 @@ static inline void mavlink_msg_radio_status_extensions_decode(const mavlink_mess
     radio_status_extensions->number_spatial_streams = mavlink_msg_radio_status_extensions_get_number_spatial_streams(msg);
     radio_status_extensions->queue_size = mavlink_msg_radio_status_extensions_get_queue_size(msg);
     radio_status_extensions->air_time = mavlink_msg_radio_status_extensions_get_air_time(msg);
+    radio_status_extensions->temperature = mavlink_msg_radio_status_extensions_get_temperature(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_LEN? msg->len : MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_LEN;
         memset(radio_status_extensions, 0, MAVLINK_MSG_ID_RADIO_STATUS_EXTENSIONS_LEN);
