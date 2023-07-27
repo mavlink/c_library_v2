@@ -6,7 +6,7 @@
 MAVPACKED(
 typedef struct __mavlink_set_attitude_target_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
- float q[4]; /*<  Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)*/
+ float q[4]; /*<  Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0) from MAV_FRAME_LOCAL_NED to MAV_FRAME_BODY_FRD*/
  float body_roll_rate; /*< [rad/s] Body roll rate*/
  float body_pitch_rate; /*< [rad/s] Body pitch rate*/
  float body_yaw_rate; /*< [rad/s] Body yaw rate*/
@@ -73,7 +73,7 @@ typedef struct __mavlink_set_attitude_target_t {
  * @param target_system  System ID
  * @param target_component  Component ID
  * @param type_mask  Bitmap to indicate which dimensions should be ignored by the vehicle.
- * @param q  Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
+ * @param q  Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0) from MAV_FRAME_LOCAL_NED to MAV_FRAME_BODY_FRD
  * @param body_roll_rate [rad/s] Body roll rate
  * @param body_pitch_rate [rad/s] Body pitch rate
  * @param body_yaw_rate [rad/s] Body yaw rate
@@ -126,7 +126,7 @@ static inline uint16_t mavlink_msg_set_attitude_target_pack(uint8_t system_id, u
  * @param target_system  System ID
  * @param target_component  Component ID
  * @param type_mask  Bitmap to indicate which dimensions should be ignored by the vehicle.
- * @param q  Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
+ * @param q  Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0) from MAV_FRAME_LOCAL_NED to MAV_FRAME_BODY_FRD
  * @param body_roll_rate [rad/s] Body roll rate
  * @param body_pitch_rate [rad/s] Body pitch rate
  * @param body_yaw_rate [rad/s] Body yaw rate
@@ -205,7 +205,7 @@ static inline uint16_t mavlink_msg_set_attitude_target_encode_chan(uint8_t syste
  * @param target_system  System ID
  * @param target_component  Component ID
  * @param type_mask  Bitmap to indicate which dimensions should be ignored by the vehicle.
- * @param q  Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
+ * @param q  Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0) from MAV_FRAME_LOCAL_NED to MAV_FRAME_BODY_FRD
  * @param body_roll_rate [rad/s] Body roll rate
  * @param body_pitch_rate [rad/s] Body pitch rate
  * @param body_yaw_rate [rad/s] Body yaw rate
@@ -347,7 +347,7 @@ static inline uint8_t mavlink_msg_set_attitude_target_get_type_mask(const mavlin
 /**
  * @brief Get field q from set_attitude_target message
  *
- * @return  Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
+ * @return  Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0) from MAV_FRAME_LOCAL_NED to MAV_FRAME_BODY_FRD
  */
 static inline uint16_t mavlink_msg_set_attitude_target_get_q(const mavlink_message_t* msg, float *q)
 {
