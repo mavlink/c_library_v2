@@ -11,7 +11,7 @@ typedef struct __mavlink_cellular_status_t {
  uint8_t status; /*<  Cellular modem status*/
  uint8_t failure_reason; /*<  Failure reason when status in in CELLULAR_STATUS_FLAG_FAILED*/
  uint8_t type; /*<  Cellular network radio type: gsm, cdma, lte...*/
- uint8_t quality; /*<  Signal quality in percent. May be used for Received Signal Strength Indicator (RSSI). If unknown, set to UINT8_MAX*/
+ uint8_t quality; /*<  Signal quality in percent. If unknown, set to UINT8_MAX*/
 } mavlink_cellular_status_t;
 
 #define MAVLINK_MSG_ID_CELLULAR_STATUS_LEN 10
@@ -62,7 +62,7 @@ typedef struct __mavlink_cellular_status_t {
  * @param status  Cellular modem status
  * @param failure_reason  Failure reason when status in in CELLULAR_STATUS_FLAG_FAILED
  * @param type  Cellular network radio type: gsm, cdma, lte...
- * @param quality  Signal quality in percent. May be used for Received Signal Strength Indicator (RSSI). If unknown, set to UINT8_MAX
+ * @param quality  Signal quality in percent. If unknown, set to UINT8_MAX
  * @param mcc  Mobile country code. If unknown, set to UINT16_MAX
  * @param mnc  Mobile network code. If unknown, set to UINT16_MAX
  * @param lac  Location area code. If unknown, set to 0
@@ -108,7 +108,7 @@ static inline uint16_t mavlink_msg_cellular_status_pack(uint8_t system_id, uint8
  * @param status  Cellular modem status
  * @param failure_reason  Failure reason when status in in CELLULAR_STATUS_FLAG_FAILED
  * @param type  Cellular network radio type: gsm, cdma, lte...
- * @param quality  Signal quality in percent. May be used for Received Signal Strength Indicator (RSSI). If unknown, set to UINT8_MAX
+ * @param quality  Signal quality in percent. If unknown, set to UINT8_MAX
  * @param mcc  Mobile country code. If unknown, set to UINT16_MAX
  * @param mnc  Mobile network code. If unknown, set to UINT16_MAX
  * @param lac  Location area code. If unknown, set to 0
@@ -180,7 +180,7 @@ static inline uint16_t mavlink_msg_cellular_status_encode_chan(uint8_t system_id
  * @param status  Cellular modem status
  * @param failure_reason  Failure reason when status in in CELLULAR_STATUS_FLAG_FAILED
  * @param type  Cellular network radio type: gsm, cdma, lte...
- * @param quality  Signal quality in percent. May be used for Received Signal Strength Indicator (RSSI). If unknown, set to UINT8_MAX
+ * @param quality  Signal quality in percent. If unknown, set to UINT8_MAX
  * @param mcc  Mobile country code. If unknown, set to UINT16_MAX
  * @param mnc  Mobile network code. If unknown, set to UINT16_MAX
  * @param lac  Location area code. If unknown, set to 0
@@ -302,7 +302,7 @@ static inline uint8_t mavlink_msg_cellular_status_get_type(const mavlink_message
 /**
  * @brief Get field quality from cellular_status message
  *
- * @return  Signal quality in percent. May be used for Received Signal Strength Indicator (RSSI). If unknown, set to UINT8_MAX
+ * @return  Signal quality in percent. If unknown, set to UINT8_MAX
  */
 static inline uint8_t mavlink_msg_cellular_status_get_quality(const mavlink_message_t* msg)
 {
