@@ -12184,7 +12184,7 @@ static void mavlink_test_cellular_status(uint8_t system_id, uint8_t component_id
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_cellular_status_t packet_in = {
-        17235,17339,17443,151,218,29,96,163,94.0,18015,136.0,164.0,192.0,963498972,963499180,19159,58,"OPQRSTUV"
+        17235,17339,17443,151,218,29,96
     };
     mavlink_cellular_status_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -12195,18 +12195,7 @@ static void mavlink_test_cellular_status(uint8_t system_id, uint8_t component_id
         packet1.failure_reason = packet_in.failure_reason;
         packet1.type = packet_in.type;
         packet1.quality = packet_in.quality;
-        packet1.band_number = packet_in.band_number;
-        packet1.band_frequency = packet_in.band_frequency;
-        packet1.channel_number = packet_in.channel_number;
-        packet1.rx_level = packet_in.rx_level;
-        packet1.tx_level = packet_in.tx_level;
-        packet1.rx_quality = packet_in.rx_quality;
-        packet1.link_tx_rate = packet_in.link_tx_rate;
-        packet1.link_rx_rate = packet_in.link_rx_rate;
-        packet1.ber = packet_in.ber;
-        packet1.id = packet_in.id;
         
-        mav_array_memcpy(packet1.cell_tower_id, packet_in.cell_tower_id, sizeof(char)*9);
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
         if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
@@ -12220,12 +12209,12 @@ static void mavlink_test_cellular_status(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_cellular_status_pack(system_id, component_id, &msg , packet1.status , packet1.failure_reason , packet1.type , packet1.quality , packet1.mcc , packet1.mnc , packet1.lac , packet1.band_number , packet1.band_frequency , packet1.channel_number , packet1.rx_level , packet1.tx_level , packet1.rx_quality , packet1.link_tx_rate , packet1.link_rx_rate , packet1.ber , packet1.id , packet1.cell_tower_id );
+    mavlink_msg_cellular_status_pack(system_id, component_id, &msg , packet1.status , packet1.failure_reason , packet1.type , packet1.quality , packet1.mcc , packet1.mnc , packet1.lac );
     mavlink_msg_cellular_status_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_cellular_status_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.status , packet1.failure_reason , packet1.type , packet1.quality , packet1.mcc , packet1.mnc , packet1.lac , packet1.band_number , packet1.band_frequency , packet1.channel_number , packet1.rx_level , packet1.tx_level , packet1.rx_quality , packet1.link_tx_rate , packet1.link_rx_rate , packet1.ber , packet1.id , packet1.cell_tower_id );
+    mavlink_msg_cellular_status_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.status , packet1.failure_reason , packet1.type , packet1.quality , packet1.mcc , packet1.mnc , packet1.lac );
     mavlink_msg_cellular_status_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -12238,7 +12227,7 @@ static void mavlink_test_cellular_status(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_cellular_status_send(MAVLINK_COMM_1 , packet1.status , packet1.failure_reason , packet1.type , packet1.quality , packet1.mcc , packet1.mnc , packet1.lac , packet1.band_number , packet1.band_frequency , packet1.channel_number , packet1.rx_level , packet1.tx_level , packet1.rx_quality , packet1.link_tx_rate , packet1.link_rx_rate , packet1.ber , packet1.id , packet1.cell_tower_id );
+    mavlink_msg_cellular_status_send(MAVLINK_COMM_1 , packet1.status , packet1.failure_reason , packet1.type , packet1.quality , packet1.mcc , packet1.mnc , packet1.lac );
     mavlink_msg_cellular_status_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 

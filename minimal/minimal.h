@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_MINIMAL.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_MINIMAL_XML_HASH -8051377974766453868
+#define MAVLINK_MINIMAL_XML_HASH 6750713302117895551
 
 #ifdef __cplusplus
 extern "C" {
@@ -112,8 +112,7 @@ typedef enum MAV_TYPE
    MAV_TYPE_GPS=41, /* GPS | */
    MAV_TYPE_WINCH=42, /* Winch | */
    MAV_TYPE_GENERIC_MULTIROTOR=43, /* Generic multirotor that does not fit into a specific type or whose type is unknown | */
-   MAV_TYPE_JOYSTICK=44, /* Joystick | */
-   MAV_TYPE_ENUM_END=45, /*  | */
+   MAV_TYPE_ENUM_END=44, /*  | */
 } MAV_TYPE;
 #endif
 
@@ -259,12 +258,6 @@ typedef enum MAV_COMPONENT
    MAV_COMP_ID_CAMERA4=103, /* Camera #4. | */
    MAV_COMP_ID_CAMERA5=104, /* Camera #5. | */
    MAV_COMP_ID_CAMERA6=105, /* Camera #6. | */
-   MAV_COMP_ID_TRACKER=110, /* Tracker #1. | */
-   MAV_COMP_ID_TRACKER2=111, /* Tracker #2. | */
-   MAV_COMP_ID_TRACKER3=112, /* Tracker #3. | */
-   MAV_COMP_ID_TRACKER4=113, /* Tracker #4. | */
-   MAV_COMP_ID_TRACKER5=114, /* Tracker #5. | */
-   MAV_COMP_ID_TRACKER6=115, /* Tracker #6. | */
    MAV_COMP_ID_SERVO1=140, /* Servo #1. | */
    MAV_COMP_ID_SERVO2=141, /* Servo #2. | */
    MAV_COMP_ID_SERVO3=142, /* Servo #3. | */
