@@ -3220,7 +3220,7 @@ static void mavlink_test_manual_control(uint8_t system_id, uint8_t component_id,
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_manual_control_t packet_in = {
-        17235,17339,17443,17547,17651,163,17807,108,17963,18067
+        17235,17339,17443,17547,17651,163,17807,108,17963,18067,18171,18275,18379,18483,18587,18691
     };
     mavlink_manual_control_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -3234,6 +3234,12 @@ static void mavlink_test_manual_control(uint8_t system_id, uint8_t component_id,
         packet1.enabled_extensions = packet_in.enabled_extensions;
         packet1.s = packet_in.s;
         packet1.t = packet_in.t;
+        packet1.aux1 = packet_in.aux1;
+        packet1.aux2 = packet_in.aux2;
+        packet1.aux3 = packet_in.aux3;
+        packet1.aux4 = packet_in.aux4;
+        packet1.aux5 = packet_in.aux5;
+        packet1.aux6 = packet_in.aux6;
         
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -3248,12 +3254,12 @@ static void mavlink_test_manual_control(uint8_t system_id, uint8_t component_id,
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_manual_control_pack(system_id, component_id, &msg , packet1.target , packet1.x , packet1.y , packet1.z , packet1.r , packet1.buttons , packet1.buttons2 , packet1.enabled_extensions , packet1.s , packet1.t );
+    mavlink_msg_manual_control_pack(system_id, component_id, &msg , packet1.target , packet1.x , packet1.y , packet1.z , packet1.r , packet1.buttons , packet1.buttons2 , packet1.enabled_extensions , packet1.s , packet1.t , packet1.aux1 , packet1.aux2 , packet1.aux3 , packet1.aux4 , packet1.aux5 , packet1.aux6 );
     mavlink_msg_manual_control_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_manual_control_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.target , packet1.x , packet1.y , packet1.z , packet1.r , packet1.buttons , packet1.buttons2 , packet1.enabled_extensions , packet1.s , packet1.t );
+    mavlink_msg_manual_control_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.target , packet1.x , packet1.y , packet1.z , packet1.r , packet1.buttons , packet1.buttons2 , packet1.enabled_extensions , packet1.s , packet1.t , packet1.aux1 , packet1.aux2 , packet1.aux3 , packet1.aux4 , packet1.aux5 , packet1.aux6 );
     mavlink_msg_manual_control_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -3266,7 +3272,7 @@ static void mavlink_test_manual_control(uint8_t system_id, uint8_t component_id,
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_manual_control_send(MAVLINK_COMM_1 , packet1.target , packet1.x , packet1.y , packet1.z , packet1.r , packet1.buttons , packet1.buttons2 , packet1.enabled_extensions , packet1.s , packet1.t );
+    mavlink_msg_manual_control_send(MAVLINK_COMM_1 , packet1.target , packet1.x , packet1.y , packet1.z , packet1.r , packet1.buttons , packet1.buttons2 , packet1.enabled_extensions , packet1.s , packet1.t , packet1.aux1 , packet1.aux2 , packet1.aux3 , packet1.aux4 , packet1.aux5 , packet1.aux6 );
     mavlink_msg_manual_control_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
