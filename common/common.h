@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH 4656516197372140470
+#define MAVLINK_COMMON_XML_HASH -6759646009706171956
 
 #ifdef __cplusplus
 extern "C" {
@@ -47,7 +47,7 @@ typedef enum FIRMWARE_VERSION_TYPE
 } FIRMWARE_VERSION_TYPE;
 #endif
 
-/** @brief Flags to report failure cases over the high latency telemtry. */
+/** @brief Flags to report failure cases over the high latency telemetry. */
 #ifndef HAVE_ENUM_HL_FAILURE_FLAG
 #define HAVE_ENUM_HL_FAILURE_FLAG
 typedef enum HL_FAILURE_FLAG
@@ -60,7 +60,7 @@ typedef enum HL_FAILURE_FLAG
    HL_FAILURE_FLAG_3D_MAG=32, /* Magnetometer sensor failure. | */
    HL_FAILURE_FLAG_TERRAIN=64, /* Terrain subsystem failure. | */
    HL_FAILURE_FLAG_BATTERY=128, /* Battery failure/critical low battery. | */
-   HL_FAILURE_FLAG_RC_RECEIVER=256, /* RC receiver failure/no rc connection. | */
+   HL_FAILURE_FLAG_RC_RECEIVER=256, /* RC receiver failure/no RC connection. | */
    HL_FAILURE_FLAG_OFFBOARD_LINK=512, /* Offboard link failure. | */
    HL_FAILURE_FLAG_ENGINE=1024, /* Engine failure. | */
    HL_FAILURE_FLAG_GEOFENCE=2048, /* Geofence violation. | */
@@ -125,7 +125,7 @@ typedef enum MAV_SYS_STATUS_SENSOR
    MAV_SYS_STATUS_SENSOR_Z_ALTITUDE_CONTROL=8192, /* 0x2000 z/altitude control | */
    MAV_SYS_STATUS_SENSOR_XY_POSITION_CONTROL=16384, /* 0x4000 x/y position control | */
    MAV_SYS_STATUS_SENSOR_MOTOR_OUTPUTS=32768, /* 0x8000 motor outputs / control | */
-   MAV_SYS_STATUS_SENSOR_RC_RECEIVER=65536, /* 0x10000 rc receiver | */
+   MAV_SYS_STATUS_SENSOR_RC_RECEIVER=65536, /* 0x10000 RC receiver | */
    MAV_SYS_STATUS_SENSOR_3D_GYRO2=131072, /* 0x20000 2nd 3D gyro | */
    MAV_SYS_STATUS_SENSOR_3D_ACCEL2=262144, /* 0x40000 2nd 3D accelerometer | */
    MAV_SYS_STATUS_SENSOR_3D_MAG2=524288, /* 0x80000 2nd 3D magnetometer | */
@@ -269,7 +269,7 @@ typedef enum FENCE_MITIGATE
 #define HAVE_ENUM_MAV_MOUNT_MODE
 typedef enum MAV_MOUNT_MODE
 {
-   MAV_MOUNT_MODE_RETRACT=0, /* Load and keep safe position (Roll,Pitch,Yaw) from permant memory and stop stabilization | */
+   MAV_MOUNT_MODE_RETRACT=0, /* Load and keep safe position (Roll,Pitch,Yaw) from permanent memory and stop stabilization | */
    MAV_MOUNT_MODE_NEUTRAL=1, /* Load and keep neutral position (Roll,Pitch,Yaw) from permanent memory. | */
    MAV_MOUNT_MODE_MAVLINK_TARGETING=2, /* Load neutral position and start MAVLink Roll,Pitch,Yaw control with stabilization | */
    MAV_MOUNT_MODE_RC_TARGETING=3, /* Load neutral position and start RC Roll,Pitch,Yaw control with stabilization | */
@@ -296,7 +296,7 @@ typedef enum GIMBAL_DEVICE_CAP_FLAGS
    GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_AXIS=256, /* Gimbal device supports rotating around yaw axis. | */
    GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_FOLLOW=512, /* Gimbal device supports to follow a yaw angle relative to the vehicle (generally that's the default). | */
    GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_LOCK=1024, /* Gimbal device supports locking to an absolute heading, i.e., yaw angle relative to North (earth frame, often this is an option available). | */
-   GIMBAL_DEVICE_CAP_FLAGS_SUPPORTS_INFINITE_YAW=2048, /* Gimbal device supports yawing/panning infinetely (e.g. using slip disk). | */
+   GIMBAL_DEVICE_CAP_FLAGS_SUPPORTS_INFINITE_YAW=2048, /* Gimbal device supports yawing/panning infinitely (e.g. using slip disk). | */
    GIMBAL_DEVICE_CAP_FLAGS_SUPPORTS_YAW_IN_EARTH_FRAME=4096, /* Gimbal device supports yaw angles and angular velocities relative to North (earth frame). This usually requires support by an autopilot via AUTOPILOT_STATE_FOR_GIMBAL_DEVICE. Support can go on and off during runtime, which is reported by the flag GIMBAL_DEVICE_FLAGS_CAN_ACCEPT_YAW_IN_EARTH_FRAME. | */
    GIMBAL_DEVICE_CAP_FLAGS_HAS_RC_INPUTS=8192, /* Gimbal device supports radio control inputs as an alternative input for controlling the gimbal orientation. | */
    GIMBAL_DEVICE_CAP_FLAGS_ENUM_END=8193, /*  | */
@@ -333,7 +333,7 @@ typedef enum GIMBAL_MANAGER_CAP_FLAGS
 #define HAVE_ENUM_GIMBAL_DEVICE_FLAGS
 typedef enum GIMBAL_DEVICE_FLAGS
 {
-   GIMBAL_DEVICE_FLAGS_RETRACT=1, /* Set to retracted safe position (no stabilization), takes presedence over all other flags. | */
+   GIMBAL_DEVICE_FLAGS_RETRACT=1, /* Set to retracted safe position (no stabilization), takes precedence over all other flags. | */
    GIMBAL_DEVICE_FLAGS_NEUTRAL=2, /* Set to neutral/default position, taking precedence over all other flags except RETRACT. Neutral is commonly forward-facing and horizontal (roll=pitch=yaw=0) but may be any orientation. | */
    GIMBAL_DEVICE_FLAGS_ROLL_LOCK=4, /* Lock roll angle to absolute angle relative to horizon (not relative to vehicle). This is generally the default with a stabilizing gimbal. | */
    GIMBAL_DEVICE_FLAGS_PITCH_LOCK=8, /* Lock pitch angle to absolute angle relative to horizon (not relative to vehicle). This is generally the default with a stabilizing gimbal. | */
@@ -1178,6 +1178,19 @@ typedef enum MAV_DO_REPOSITION_FLAGS
    MAV_DO_REPOSITION_FLAGS_CHANGE_MODE=1, /* The aircraft should immediately transition into guided. This should not be set for follow me applications | */
    MAV_DO_REPOSITION_FLAGS_ENUM_END=2, /*  | */
 } MAV_DO_REPOSITION_FLAGS;
+#endif
+
+/** @brief Speed setpoint types used in MAV_CMD_DO_CHANGE_SPEED */
+#ifndef HAVE_ENUM_SPEED_TYPE
+#define HAVE_ENUM_SPEED_TYPE
+typedef enum SPEED_TYPE
+{
+   SPEED_TYPE_AIRSPEED=0, /* Airspeed | */
+   SPEED_TYPE_GROUNDSPEED=1, /* Groundspeed | */
+   SPEED_TYPE_CLIMB_SPEED=2, /* Climb speed | */
+   SPEED_TYPE_DESCENT_SPEED=3, /* Descent speed | */
+   SPEED_TYPE_ENUM_END=4, /*  | */
+} SPEED_TYPE;
 #endif
 
 /** @brief Flags in ESTIMATOR_STATUS message */
