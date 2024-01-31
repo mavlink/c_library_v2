@@ -9940,7 +9940,7 @@ static void mavlink_test_flight_information(uint8_t system_id, uint8_t component
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_flight_information_t packet_in = {
-        93372036854775807ULL,93372036854776311ULL,93372036854776815ULL,963498712
+        93372036854775807ULL,93372036854776311ULL,93372036854776815ULL,963498712,963498920
     };
     mavlink_flight_information_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -9948,6 +9948,7 @@ static void mavlink_test_flight_information(uint8_t system_id, uint8_t component
         packet1.takeoff_time_utc = packet_in.takeoff_time_utc;
         packet1.flight_uuid = packet_in.flight_uuid;
         packet1.time_boot_ms = packet_in.time_boot_ms;
+        packet1.landing_time = packet_in.landing_time;
         
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -9962,12 +9963,12 @@ static void mavlink_test_flight_information(uint8_t system_id, uint8_t component
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_flight_information_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.arming_time_utc , packet1.takeoff_time_utc , packet1.flight_uuid );
+    mavlink_msg_flight_information_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.arming_time_utc , packet1.takeoff_time_utc , packet1.flight_uuid , packet1.landing_time );
     mavlink_msg_flight_information_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_flight_information_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.arming_time_utc , packet1.takeoff_time_utc , packet1.flight_uuid );
+    mavlink_msg_flight_information_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.arming_time_utc , packet1.takeoff_time_utc , packet1.flight_uuid , packet1.landing_time );
     mavlink_msg_flight_information_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -9980,7 +9981,7 @@ static void mavlink_test_flight_information(uint8_t system_id, uint8_t component
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_flight_information_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.arming_time_utc , packet1.takeoff_time_utc , packet1.flight_uuid );
+    mavlink_msg_flight_information_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.arming_time_utc , packet1.takeoff_time_utc , packet1.flight_uuid , packet1.landing_time );
     mavlink_msg_flight_information_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
