@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_DEVELOPMENT.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_DEVELOPMENT_XML_HASH 2439552879179069598
+#define MAVLINK_DEVELOPMENT_XML_HASH -6579403689226151491
 
 #ifdef __cplusplus
 extern "C" {
@@ -168,6 +168,78 @@ typedef enum MAV_MODE_PROPERTY
          | */
    MAV_MODE_PROPERTY_ENUM_END=3, /*  | */
 } MAV_MODE_PROPERTY;
+#endif
+
+/** @brief Battery status flags for fault, health and state indication. */
+#ifndef HAVE_ENUM_MAV_BATTERY_STATUS_FLAGS
+#define HAVE_ENUM_MAV_BATTERY_STATUS_FLAGS
+typedef enum MAV_BATTERY_STATUS_FLAGS
+{
+   MAV_BATTERY_STATUS_FLAGS_NOT_READY_TO_USE=1, /* 
+          The battery is not ready to use (fly).
+          Set if the battery has faults or other conditions that make it unsafe to fly with.
+          Note: It will be the logical OR of other status bits (chosen by the manufacturer/integrator).
+         | */
+   MAV_BATTERY_STATUS_FLAGS_CHARGING=2, /* 
+          Battery is charging.
+         | */
+   MAV_BATTERY_STATUS_FLAGS_CELL_BALANCING=4, /* 
+          Battery is cell balancing (during charging).
+          Not ready to use (MAV_BATTERY_STATUS_FLAGS_NOT_READY_TO_USE may be set).
+         | */
+   MAV_BATTERY_STATUS_FLAGS_FAULT_CELL_IMBALANCE=8, /* 
+          Battery cells are not balanced.
+          Not ready to use.
+         | */
+   MAV_BATTERY_STATUS_FLAGS_AUTO_DISCHARGING=16, /* 
+          Battery is auto discharging (towards storage level).
+          Not ready to use (MAV_BATTERY_STATUS_FLAGS_NOT_READY_TO_USE would be set).
+         | */
+   MAV_BATTERY_STATUS_FLAGS_REQUIRES_SERVICE=32, /* 
+          Battery requires service (not safe to fly).
+          This is set at vendor discretion.
+          It is likely to be set for most faults, and may also be set according to a maintenance schedule (such as age, or number of recharge cycles, etc.).
+         | */
+   MAV_BATTERY_STATUS_FLAGS_BAD_BATTERY=64, /* 
+          Battery is faulty and cannot be repaired (not safe to fly).
+          This is set at vendor discretion.
+          The battery should be disposed of safely.
+         | */
+   MAV_BATTERY_STATUS_FLAGS_PROTECTIONS_ENABLED=128, /* 
+          Automatic battery protection monitoring is enabled.
+          When enabled, the system will monitor for certain kinds of faults, such as cells being over-voltage.
+          If a fault is triggered then and protections are enabled then a safety fault (MAV_BATTERY_STATUS_FLAGS_FAULT_PROTECTION_SYSTEM) will be set and power from the battery will be stopped.
+          Note that battery protection monitoring should only be enabled when the vehicle is landed. Once the vehicle is armed, or starts moving, the protections should be disabled to prevent false positives from disabling the output.
+         | */
+   MAV_BATTERY_STATUS_FLAGS_FAULT_PROTECTION_SYSTEM=256, /* 
+          The battery fault protection system had detected a fault and cut all power from the battery.
+          This will only trigger if MAV_BATTERY_STATUS_FLAGS_PROTECTIONS_ENABLED is set.
+          Other faults like MAV_BATTERY_STATUS_FLAGS_FAULT_OVER_VOLT may also be set, indicating the cause of the protection fault.
+         | */
+   MAV_BATTERY_STATUS_FLAGS_FAULT_OVER_VOLT=512, /* One or more cells are above their maximum voltage rating. | */
+   MAV_BATTERY_STATUS_FLAGS_FAULT_UNDER_VOLT=1024, /* 
+          One or more cells are below their minimum voltage rating.
+          A battery that had deep-discharged might be irrepairably damaged, and set both MAV_BATTERY_STATUS_FLAGS_FAULT_UNDER_VOLT and MAV_BATTERY_STATUS_FLAGS_BAD_BATTERY.
+         | */
+   MAV_BATTERY_STATUS_FLAGS_FAULT_OVER_TEMPERATURE=2048, /* Over-temperature fault. | */
+   MAV_BATTERY_STATUS_FLAGS_FAULT_UNDER_TEMPERATURE=4096, /* Under-temperature fault. | */
+   MAV_BATTERY_STATUS_FLAGS_FAULT_OVER_CURRENT=8192, /* Over-current fault. | */
+   MAV_BATTERY_STATUS_FLAGS_FAULT_SHORT_CIRCUIT=16384, /* 
+          Short circuit event detected.
+          The battery may or may not be safe to use (check other flags).
+         | */
+   MAV_BATTERY_STATUS_FLAGS_FAULT_INCOMPATIBLE_VOLTAGE=32768, /* Voltage not compatible with power rail voltage (batteries on same power rail should have similar voltage). | */
+   MAV_BATTERY_STATUS_FLAGS_FAULT_INCOMPATIBLE_FIRMWARE=65536, /* Battery firmware is not compatible with current autopilot firmware. | */
+   MAV_BATTERY_STATUS_FLAGS_FAULT_INCOMPATIBLE_CELLS_CONFIGURATION=131072, /* Battery is not compatible due to cell configuration (e.g. 5s1p when vehicle requires 6s). | */
+   MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL=262144, /* 
+          Battery capacity_consumed and capacity_remaining values are relative to a full battery (they sum to the total capacity of the battery).
+          This flag would be set for a smart battery that can accurately determine its remaining charge across vehicle reboots and discharge/recharge cycles.
+          If unset the capacity_consumed indicates the consumption since vehicle power-on, as measured using a power monitor. The capacity_remaining, if provided, indicates the estimated remaining capacity on the assumption that the battery was full on vehicle boot.
+          If unset a GCS is recommended to advise that users fully charge the battery on power on.
+         | */
+   MAV_BATTERY_STATUS_FLAGS_EXTENDED=4294967295, /* Reserved (not used). If set, this will indicate that an additional status field exists for higher status values. | */
+   MAV_BATTERY_STATUS_FLAGS_ENUM_END=4294967296, /*  | */
+} MAV_BATTERY_STATUS_FLAGS;
 #endif
 
 /** @brief Commands to be executed by the MAV. They can be executed on user request, or as part of a mission script. If the action is used in a mission, the parameter mapping to the waypoint/mission message is as follows: Param 1, Param 2, Param 3, Param 4, X: Param 5, Y:Param 6, Z:Param 7. This command list is similar what ARINC 424 is for commercial aircraft: A data format how to interpret waypoint/mission data. NaN and INT32_MAX may be used in float/integer params (respectively) to indicate optional/default values (e.g. to use the component's current yaw or latitude rather than a specific value). See https://mavlink.io/en/guide/xml_schema.html#MAV_CMD for information about the structure of the MAV_CMD entries */
@@ -447,78 +519,6 @@ typedef enum MAV_CMD
    MAV_CMD_EXTERNAL_POSITION_ESTIMATE=43003, /* Provide an external position estimate for use when dead-reckoning. This is meant to be used for occasional position resets that may be provided by a external system such as a remote pilot using landmarks over a video link. |Timestamp that this message was sent as a time in the transmitters time domain. The sender should wrap this time back to zero based on required timing accuracy for the application and the limitations of a 32 bit float. For example, wrapping at 10 hours would give approximately 1ms accuracy. Recipient must handle time wrap in any timing jitter correction applied to this field. Wrap rollover time should not be at not more than 250 seconds, which would give approximately 10 microsecond accuracy.| The time spent in processing the sensor data that is the basis for this position. The recipient can use this to improve time alignment of the data. Set to zero if not known.| estimated one standard deviation accuracy of the measurement. Set to NaN if not known.| Empty| Latitude| Longitude| Altitude, not used. Should be sent as NaN. May be supported in a future version of this message.|  */
    MAV_CMD_ENUM_END=43004, /*  | */
 } MAV_CMD;
-#endif
-
-/** @brief Battery status flags for fault, health and state indication. */
-#ifndef HAVE_ENUM_MAV_BATTERY_STATUS_FLAGS
-#define HAVE_ENUM_MAV_BATTERY_STATUS_FLAGS
-typedef enum MAV_BATTERY_STATUS_FLAGS
-{
-   MAV_BATTERY_STATUS_FLAGS_NOT_READY_TO_USE=1, /* 
-          The battery is not ready to use (fly).
-          Set if the battery has faults or other conditions that make it unsafe to fly with.
-          Note: It will be the logical OR of other status bits (chosen by the manufacturer/integrator).
-         | */
-   MAV_BATTERY_STATUS_FLAGS_CHARGING=2, /* 
-          Battery is charging.
-         | */
-   MAV_BATTERY_STATUS_FLAGS_CELL_BALANCING=4, /* 
-          Battery is cell balancing (during charging).
-          Not ready to use (MAV_BATTERY_STATUS_FLAGS_NOT_READY_TO_USE may be set).
-         | */
-   MAV_BATTERY_STATUS_FLAGS_FAULT_CELL_IMBALANCE=8, /* 
-          Battery cells are not balanced.
-          Not ready to use.
-         | */
-   MAV_BATTERY_STATUS_FLAGS_AUTO_DISCHARGING=16, /* 
-          Battery is auto discharging (towards storage level).
-          Not ready to use (MAV_BATTERY_STATUS_FLAGS_NOT_READY_TO_USE would be set).
-         | */
-   MAV_BATTERY_STATUS_FLAGS_REQUIRES_SERVICE=32, /* 
-          Battery requires service (not safe to fly).
-          This is set at vendor discretion.
-          It is likely to be set for most faults, and may also be set according to a maintenance schedule (such as age, or number of recharge cycles, etc.).
-         | */
-   MAV_BATTERY_STATUS_FLAGS_BAD_BATTERY=64, /* 
-          Battery is faulty and cannot be repaired (not safe to fly).
-          This is set at vendor discretion.
-          The battery should be disposed of safely.
-         | */
-   MAV_BATTERY_STATUS_FLAGS_PROTECTIONS_ENABLED=128, /* 
-          Automatic battery protection monitoring is enabled.
-          When enabled, the system will monitor for certain kinds of faults, such as cells being over-voltage.
-          If a fault is triggered then and protections are enabled then a safety fault (MAV_BATTERY_STATUS_FLAGS_FAULT_PROTECTION_SYSTEM) will be set and power from the battery will be stopped.
-          Note that battery protection monitoring should only be enabled when the vehicle is landed. Once the vehicle is armed, or starts moving, the protections should be disabled to prevent false positives from disabling the output.
-         | */
-   MAV_BATTERY_STATUS_FLAGS_FAULT_PROTECTION_SYSTEM=256, /* 
-          The battery fault protection system had detected a fault and cut all power from the battery.
-          This will only trigger if MAV_BATTERY_STATUS_FLAGS_PROTECTIONS_ENABLED is set.
-          Other faults like MAV_BATTERY_STATUS_FLAGS_FAULT_OVER_VOLT may also be set, indicating the cause of the protection fault.
-         | */
-   MAV_BATTERY_STATUS_FLAGS_FAULT_OVER_VOLT=512, /* One or more cells are above their maximum voltage rating. | */
-   MAV_BATTERY_STATUS_FLAGS_FAULT_UNDER_VOLT=1024, /* 
-          One or more cells are below their minimum voltage rating.
-          A battery that had deep-discharged might be irrepairably damaged, and set both MAV_BATTERY_STATUS_FLAGS_FAULT_UNDER_VOLT and MAV_BATTERY_STATUS_FLAGS_BAD_BATTERY.
-         | */
-   MAV_BATTERY_STATUS_FLAGS_FAULT_OVER_TEMPERATURE=2048, /* Over-temperature fault. | */
-   MAV_BATTERY_STATUS_FLAGS_FAULT_UNDER_TEMPERATURE=4096, /* Under-temperature fault. | */
-   MAV_BATTERY_STATUS_FLAGS_FAULT_OVER_CURRENT=8192, /* Over-current fault. | */
-   MAV_BATTERY_STATUS_FLAGS_FAULT_SHORT_CIRCUIT=16384, /* 
-          Short circuit event detected.
-          The battery may or may not be safe to use (check other flags).
-         | */
-   MAV_BATTERY_STATUS_FLAGS_FAULT_INCOMPATIBLE_VOLTAGE=32768, /* Voltage not compatible with power rail voltage (batteries on same power rail should have similar voltage). | */
-   MAV_BATTERY_STATUS_FLAGS_FAULT_INCOMPATIBLE_FIRMWARE=65536, /* Battery firmware is not compatible with current autopilot firmware. | */
-   MAV_BATTERY_STATUS_FLAGS_FAULT_INCOMPATIBLE_CELLS_CONFIGURATION=131072, /* Battery is not compatible due to cell configuration (e.g. 5s1p when vehicle requires 6s). | */
-   MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL=262144, /* 
-          Battery capacity_consumed and capacity_remaining values are relative to a full battery (they sum to the total capacity of the battery).
-          This flag would be set for a smart battery that can accurately determine its remaining charge across vehicle reboots and discharge/recharge cycles.
-          If unset the capacity_consumed indicates the consumption since vehicle power-on, as measured using a power monitor. The capacity_remaining, if provided, indicates the estimated remaining capacity on the assumption that the battery was full on vehicle boot.
-          If unset a GCS is recommended to advise that users fully charge the battery on power on.
-         | */
-   MAV_BATTERY_STATUS_FLAGS_EXTENDED=4294967295, /* Reserved (not used). If set, this will indicate that an additional status field exists for higher status values. | */
-   MAV_BATTERY_STATUS_FLAGS_ENUM_END=4294967296, /*  | */
-} MAV_BATTERY_STATUS_FLAGS;
 #endif
 
 /** @brief These flags indicate the sensor reporting capabilities for TARGET_ABSOLUTE. */
