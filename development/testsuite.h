@@ -483,12 +483,13 @@ static void mavlink_test_component_information_basic(uint8_t system_id, uint8_t 
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_component_information_basic_t packet_in = {
-        93372036854775807ULL,963497880,"MNOPQRSTUVWXYZABCDEFGHIJKLMNOPQ","STUVWXYZABCDEFGHIJKLMNOPQRSTUVW","YZABCDEFGHIJKLMNOPQRSTU","WXYZABCDEFGHIJKLMNOPQRS","UVWXYZABCDEFGHIJKLMNOPQRSTUVWXY"
+        93372036854775807ULL,963497880,963498088,"QRSTUVWXYZABCDEFGHIJKLMNOPQRSTU","WXYZABCDEFGHIJKLMNOPQRSTUVWXYZA","CDEFGHIJKLMNOPQRSTUVWXY","ABCDEFGHIJKLMNOPQRSTUVW","YZABCDEFGHIJKLMNOPQRSTUVWXYZABC"
     };
     mavlink_component_information_basic_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         packet1.capabilities = packet_in.capabilities;
         packet1.time_boot_ms = packet_in.time_boot_ms;
+        packet1.time_manufacture_s = packet_in.time_manufacture_s;
         
         mav_array_memcpy(packet1.vendor_name, packet_in.vendor_name, sizeof(char)*32);
         mav_array_memcpy(packet1.model_name, packet_in.model_name, sizeof(char)*32);
@@ -508,12 +509,12 @@ static void mavlink_test_component_information_basic(uint8_t system_id, uint8_t 
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_component_information_basic_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.capabilities , packet1.vendor_name , packet1.model_name , packet1.software_version , packet1.hardware_version , packet1.serial_number );
+    mavlink_msg_component_information_basic_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.capabilities , packet1.time_manufacture_s , packet1.vendor_name , packet1.model_name , packet1.software_version , packet1.hardware_version , packet1.serial_number );
     mavlink_msg_component_information_basic_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_component_information_basic_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.capabilities , packet1.vendor_name , packet1.model_name , packet1.software_version , packet1.hardware_version , packet1.serial_number );
+    mavlink_msg_component_information_basic_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.capabilities , packet1.time_manufacture_s , packet1.vendor_name , packet1.model_name , packet1.software_version , packet1.hardware_version , packet1.serial_number );
     mavlink_msg_component_information_basic_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -526,7 +527,7 @@ static void mavlink_test_component_information_basic(uint8_t system_id, uint8_t 
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_component_information_basic_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.capabilities , packet1.vendor_name , packet1.model_name , packet1.software_version , packet1.hardware_version , packet1.serial_number );
+    mavlink_msg_component_information_basic_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.capabilities , packet1.time_manufacture_s , packet1.vendor_name , packet1.model_name , packet1.software_version , packet1.hardware_version , packet1.serial_number );
     mavlink_msg_component_information_basic_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
