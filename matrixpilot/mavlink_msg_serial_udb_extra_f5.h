@@ -82,6 +82,48 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f5_pack(uint8_t system_id, u
 }
 
 /**
+ * @brief Pack a serial_udb_extra_f5 message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param sue_YAWKP_AILERON  Serial UDB YAWKP_AILERON Gain for Proporional control of navigation
+ * @param sue_YAWKD_AILERON  Serial UDB YAWKD_AILERON Gain for Rate control of navigation
+ * @param sue_ROLLKP  Serial UDB Extra ROLLKP Gain for Proportional control of roll stabilization
+ * @param sue_ROLLKD  Serial UDB Extra ROLLKD Gain for Rate control of roll stabilization
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f5_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               float sue_YAWKP_AILERON, float sue_YAWKD_AILERON, float sue_ROLLKP, float sue_ROLLKD)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F5_LEN];
+    _mav_put_float(buf, 0, sue_YAWKP_AILERON);
+    _mav_put_float(buf, 4, sue_YAWKD_AILERON);
+    _mav_put_float(buf, 8, sue_ROLLKP);
+    _mav_put_float(buf, 12, sue_ROLLKD);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F5_LEN);
+#else
+    mavlink_serial_udb_extra_f5_t packet;
+    packet.sue_YAWKP_AILERON = sue_YAWKP_AILERON;
+    packet.sue_YAWKD_AILERON = sue_YAWKD_AILERON;
+    packet.sue_ROLLKP = sue_ROLLKP;
+    packet.sue_ROLLKD = sue_ROLLKD;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F5_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F5;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F5_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F5_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F5_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F5_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F5_LEN);
+#endif
+}
+
+/**
  * @brief Pack a serial_udb_extra_f5 message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -144,6 +186,20 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f5_encode(uint8_t system_id,
 static inline uint16_t mavlink_msg_serial_udb_extra_f5_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_serial_udb_extra_f5_t* serial_udb_extra_f5)
 {
     return mavlink_msg_serial_udb_extra_f5_pack_chan(system_id, component_id, chan, msg, serial_udb_extra_f5->sue_YAWKP_AILERON, serial_udb_extra_f5->sue_YAWKD_AILERON, serial_udb_extra_f5->sue_ROLLKP, serial_udb_extra_f5->sue_ROLLKD);
+}
+
+/**
+ * @brief Encode a serial_udb_extra_f5 struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param serial_udb_extra_f5 C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f5_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_serial_udb_extra_f5_t* serial_udb_extra_f5)
+{
+    return mavlink_msg_serial_udb_extra_f5_pack_status(system_id, component_id, _status, msg,  serial_udb_extra_f5->sue_YAWKP_AILERON, serial_udb_extra_f5->sue_YAWKD_AILERON, serial_udb_extra_f5->sue_ROLLKP, serial_udb_extra_f5->sue_ROLLKD);
 }
 
 /**

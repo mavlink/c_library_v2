@@ -130,6 +130,72 @@ static inline uint16_t mavlink_msg_gimbal_report_pack(uint8_t system_id, uint8_t
 }
 
 /**
+ * @brief Pack a gimbal_report message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  System ID.
+ * @param target_component  Component ID.
+ * @param delta_time [s] Time since last update.
+ * @param delta_angle_x [rad] Delta angle X.
+ * @param delta_angle_y [rad] Delta angle Y.
+ * @param delta_angle_z [rad] Delta angle X.
+ * @param delta_velocity_x [m/s] Delta velocity X.
+ * @param delta_velocity_y [m/s] Delta velocity Y.
+ * @param delta_velocity_z [m/s] Delta velocity Z.
+ * @param joint_roll [rad] Joint ROLL.
+ * @param joint_el [rad] Joint EL.
+ * @param joint_az [rad] Joint AZ.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_gimbal_report_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, float delta_time, float delta_angle_x, float delta_angle_y, float delta_angle_z, float delta_velocity_x, float delta_velocity_y, float delta_velocity_z, float joint_roll, float joint_el, float joint_az)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_GIMBAL_REPORT_LEN];
+    _mav_put_float(buf, 0, delta_time);
+    _mav_put_float(buf, 4, delta_angle_x);
+    _mav_put_float(buf, 8, delta_angle_y);
+    _mav_put_float(buf, 12, delta_angle_z);
+    _mav_put_float(buf, 16, delta_velocity_x);
+    _mav_put_float(buf, 20, delta_velocity_y);
+    _mav_put_float(buf, 24, delta_velocity_z);
+    _mav_put_float(buf, 28, joint_roll);
+    _mav_put_float(buf, 32, joint_el);
+    _mav_put_float(buf, 36, joint_az);
+    _mav_put_uint8_t(buf, 40, target_system);
+    _mav_put_uint8_t(buf, 41, target_component);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_GIMBAL_REPORT_LEN);
+#else
+    mavlink_gimbal_report_t packet;
+    packet.delta_time = delta_time;
+    packet.delta_angle_x = delta_angle_x;
+    packet.delta_angle_y = delta_angle_y;
+    packet.delta_angle_z = delta_angle_z;
+    packet.delta_velocity_x = delta_velocity_x;
+    packet.delta_velocity_y = delta_velocity_y;
+    packet.delta_velocity_z = delta_velocity_z;
+    packet.joint_roll = joint_roll;
+    packet.joint_el = joint_el;
+    packet.joint_az = joint_az;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_GIMBAL_REPORT_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_GIMBAL_REPORT;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GIMBAL_REPORT_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_REPORT_LEN, MAVLINK_MSG_ID_GIMBAL_REPORT_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GIMBAL_REPORT_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_REPORT_LEN);
+#endif
+}
+
+/**
  * @brief Pack a gimbal_report message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -216,6 +282,20 @@ static inline uint16_t mavlink_msg_gimbal_report_encode(uint8_t system_id, uint8
 static inline uint16_t mavlink_msg_gimbal_report_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gimbal_report_t* gimbal_report)
 {
     return mavlink_msg_gimbal_report_pack_chan(system_id, component_id, chan, msg, gimbal_report->target_system, gimbal_report->target_component, gimbal_report->delta_time, gimbal_report->delta_angle_x, gimbal_report->delta_angle_y, gimbal_report->delta_angle_z, gimbal_report->delta_velocity_x, gimbal_report->delta_velocity_y, gimbal_report->delta_velocity_z, gimbal_report->joint_roll, gimbal_report->joint_el, gimbal_report->joint_az);
+}
+
+/**
+ * @brief Encode a gimbal_report struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param gimbal_report C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_gimbal_report_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_gimbal_report_t* gimbal_report)
+{
+    return mavlink_msg_gimbal_report_pack_status(system_id, component_id, _status, msg,  gimbal_report->target_system, gimbal_report->target_component, gimbal_report->delta_time, gimbal_report->delta_angle_x, gimbal_report->delta_angle_y, gimbal_report->delta_angle_z, gimbal_report->delta_velocity_x, gimbal_report->delta_velocity_y, gimbal_report->delta_velocity_z, gimbal_report->joint_roll, gimbal_report->joint_el, gimbal_report->joint_az);
 }
 
 /**

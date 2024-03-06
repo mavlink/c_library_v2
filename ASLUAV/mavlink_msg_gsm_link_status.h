@@ -100,6 +100,57 @@ static inline uint16_t mavlink_msg_gsm_link_status_pack(uint8_t system_id, uint8
 }
 
 /**
+ * @brief Pack a gsm_link_status message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param timestamp [us] Timestamp (of OBC)
+ * @param gsm_modem_type  GSM modem used
+ * @param gsm_link_type  GSM link type
+ * @param rssi  RSSI as reported by modem (unconverted)
+ * @param rsrp_rscp  RSRP (LTE) or RSCP (WCDMA) as reported by modem (unconverted)
+ * @param sinr_ecio  SINR (LTE) or ECIO (WCDMA) as reported by modem (unconverted)
+ * @param rsrq  RSRQ (LTE only) as reported by modem (unconverted)
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_gsm_link_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint64_t timestamp, uint8_t gsm_modem_type, uint8_t gsm_link_type, uint8_t rssi, uint8_t rsrp_rscp, uint8_t sinr_ecio, uint8_t rsrq)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_GSM_LINK_STATUS_LEN];
+    _mav_put_uint64_t(buf, 0, timestamp);
+    _mav_put_uint8_t(buf, 8, gsm_modem_type);
+    _mav_put_uint8_t(buf, 9, gsm_link_type);
+    _mav_put_uint8_t(buf, 10, rssi);
+    _mav_put_uint8_t(buf, 11, rsrp_rscp);
+    _mav_put_uint8_t(buf, 12, sinr_ecio);
+    _mav_put_uint8_t(buf, 13, rsrq);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_GSM_LINK_STATUS_LEN);
+#else
+    mavlink_gsm_link_status_t packet;
+    packet.timestamp = timestamp;
+    packet.gsm_modem_type = gsm_modem_type;
+    packet.gsm_link_type = gsm_link_type;
+    packet.rssi = rssi;
+    packet.rsrp_rscp = rsrp_rscp;
+    packet.sinr_ecio = sinr_ecio;
+    packet.rsrq = rsrq;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_GSM_LINK_STATUS_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_GSM_LINK_STATUS;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GSM_LINK_STATUS_MIN_LEN, MAVLINK_MSG_ID_GSM_LINK_STATUS_LEN, MAVLINK_MSG_ID_GSM_LINK_STATUS_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GSM_LINK_STATUS_MIN_LEN, MAVLINK_MSG_ID_GSM_LINK_STATUS_LEN);
+#endif
+}
+
+/**
  * @brief Pack a gsm_link_status message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -171,6 +222,20 @@ static inline uint16_t mavlink_msg_gsm_link_status_encode(uint8_t system_id, uin
 static inline uint16_t mavlink_msg_gsm_link_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gsm_link_status_t* gsm_link_status)
 {
     return mavlink_msg_gsm_link_status_pack_chan(system_id, component_id, chan, msg, gsm_link_status->timestamp, gsm_link_status->gsm_modem_type, gsm_link_status->gsm_link_type, gsm_link_status->rssi, gsm_link_status->rsrp_rscp, gsm_link_status->sinr_ecio, gsm_link_status->rsrq);
+}
+
+/**
+ * @brief Encode a gsm_link_status struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param gsm_link_status C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_gsm_link_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_gsm_link_status_t* gsm_link_status)
+{
+    return mavlink_msg_gsm_link_status_pack_status(system_id, component_id, _status, msg,  gsm_link_status->timestamp, gsm_link_status->gsm_modem_type, gsm_link_status->gsm_link_type, gsm_link_status->rssi, gsm_link_status->rsrp_rscp, gsm_link_status->sinr_ecio, gsm_link_status->rsrq);
 }
 
 /**

@@ -99,6 +99,54 @@ static inline uint16_t mavlink_msg_esc_telemetry_9_to_12_pack(uint8_t system_id,
 }
 
 /**
+ * @brief Pack a esc_telemetry_9_to_12 message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param temperature [degC] Temperature.
+ * @param voltage [cV] Voltage.
+ * @param current [cA] Current.
+ * @param totalcurrent [mAh] Total current.
+ * @param rpm [rpm] RPM (eRPM).
+ * @param count  count of telemetry packets received (wraps at 65535).
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_esc_telemetry_9_to_12_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               const uint8_t *temperature, const uint16_t *voltage, const uint16_t *current, const uint16_t *totalcurrent, const uint16_t *rpm, const uint16_t *count)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_ESC_TELEMETRY_9_TO_12_LEN];
+
+    _mav_put_uint16_t_array(buf, 0, voltage, 4);
+    _mav_put_uint16_t_array(buf, 8, current, 4);
+    _mav_put_uint16_t_array(buf, 16, totalcurrent, 4);
+    _mav_put_uint16_t_array(buf, 24, rpm, 4);
+    _mav_put_uint16_t_array(buf, 32, count, 4);
+    _mav_put_uint8_t_array(buf, 40, temperature, 4);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ESC_TELEMETRY_9_TO_12_LEN);
+#else
+    mavlink_esc_telemetry_9_to_12_t packet;
+
+    mav_array_memcpy(packet.voltage, voltage, sizeof(uint16_t)*4);
+    mav_array_memcpy(packet.current, current, sizeof(uint16_t)*4);
+    mav_array_memcpy(packet.totalcurrent, totalcurrent, sizeof(uint16_t)*4);
+    mav_array_memcpy(packet.rpm, rpm, sizeof(uint16_t)*4);
+    mav_array_memcpy(packet.count, count, sizeof(uint16_t)*4);
+    mav_array_memcpy(packet.temperature, temperature, sizeof(uint8_t)*4);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ESC_TELEMETRY_9_TO_12_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_ESC_TELEMETRY_9_TO_12;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ESC_TELEMETRY_9_TO_12_MIN_LEN, MAVLINK_MSG_ID_ESC_TELEMETRY_9_TO_12_LEN, MAVLINK_MSG_ID_ESC_TELEMETRY_9_TO_12_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ESC_TELEMETRY_9_TO_12_MIN_LEN, MAVLINK_MSG_ID_ESC_TELEMETRY_9_TO_12_LEN);
+#endif
+}
+
+/**
  * @brief Pack a esc_telemetry_9_to_12 message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -167,6 +215,20 @@ static inline uint16_t mavlink_msg_esc_telemetry_9_to_12_encode(uint8_t system_i
 static inline uint16_t mavlink_msg_esc_telemetry_9_to_12_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_esc_telemetry_9_to_12_t* esc_telemetry_9_to_12)
 {
     return mavlink_msg_esc_telemetry_9_to_12_pack_chan(system_id, component_id, chan, msg, esc_telemetry_9_to_12->temperature, esc_telemetry_9_to_12->voltage, esc_telemetry_9_to_12->current, esc_telemetry_9_to_12->totalcurrent, esc_telemetry_9_to_12->rpm, esc_telemetry_9_to_12->count);
+}
+
+/**
+ * @brief Encode a esc_telemetry_9_to_12 struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param esc_telemetry_9_to_12 C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_esc_telemetry_9_to_12_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_esc_telemetry_9_to_12_t* esc_telemetry_9_to_12)
+{
+    return mavlink_msg_esc_telemetry_9_to_12_pack_status(system_id, component_id, _status, msg,  esc_telemetry_9_to_12->temperature, esc_telemetry_9_to_12->voltage, esc_telemetry_9_to_12->current, esc_telemetry_9_to_12->totalcurrent, esc_telemetry_9_to_12->rpm, esc_telemetry_9_to_12->count);
 }
 
 /**

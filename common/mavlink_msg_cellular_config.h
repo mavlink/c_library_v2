@@ -107,6 +107,58 @@ static inline uint16_t mavlink_msg_cellular_config_pack(uint8_t system_id, uint8
 }
 
 /**
+ * @brief Pack a cellular_config message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param enable_lte  Enable/disable LTE. 0: setting unchanged, 1: disabled, 2: enabled. Current setting when sent back as a response.
+ * @param enable_pin  Enable/disable PIN on the SIM card. 0: setting unchanged, 1: disabled, 2: enabled. Current setting when sent back as a response.
+ * @param pin  PIN sent to the SIM card. Blank when PIN is disabled. Empty when message is sent back as a response.
+ * @param new_pin  New PIN when changing the PIN. Blank to leave it unchanged. Empty when message is sent back as a response.
+ * @param apn  Name of the cellular APN. Blank to leave it unchanged. Current APN when sent back as a response.
+ * @param puk  Required PUK code in case the user failed to authenticate 3 times with the PIN. Empty when message is sent back as a response.
+ * @param roaming  Enable/disable roaming. 0: setting unchanged, 1: disabled, 2: enabled. Current setting when sent back as a response.
+ * @param response  Message acceptance response (sent back to GS).
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_cellular_config_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t enable_lte, uint8_t enable_pin, const char *pin, const char *new_pin, const char *apn, const char *puk, uint8_t roaming, uint8_t response)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_CELLULAR_CONFIG_LEN];
+    _mav_put_uint8_t(buf, 0, enable_lte);
+    _mav_put_uint8_t(buf, 1, enable_pin);
+    _mav_put_uint8_t(buf, 82, roaming);
+    _mav_put_uint8_t(buf, 83, response);
+    _mav_put_char_array(buf, 2, pin, 16);
+    _mav_put_char_array(buf, 18, new_pin, 16);
+    _mav_put_char_array(buf, 34, apn, 32);
+    _mav_put_char_array(buf, 66, puk, 16);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CELLULAR_CONFIG_LEN);
+#else
+    mavlink_cellular_config_t packet;
+    packet.enable_lte = enable_lte;
+    packet.enable_pin = enable_pin;
+    packet.roaming = roaming;
+    packet.response = response;
+    mav_array_memcpy(packet.pin, pin, sizeof(char)*16);
+    mav_array_memcpy(packet.new_pin, new_pin, sizeof(char)*16);
+    mav_array_memcpy(packet.apn, apn, sizeof(char)*32);
+    mav_array_memcpy(packet.puk, puk, sizeof(char)*16);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CELLULAR_CONFIG_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_CELLULAR_CONFIG;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CELLULAR_CONFIG_MIN_LEN, MAVLINK_MSG_ID_CELLULAR_CONFIG_LEN, MAVLINK_MSG_ID_CELLULAR_CONFIG_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CELLULAR_CONFIG_MIN_LEN, MAVLINK_MSG_ID_CELLULAR_CONFIG_LEN);
+#endif
+}
+
+/**
  * @brief Pack a cellular_config message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -179,6 +231,20 @@ static inline uint16_t mavlink_msg_cellular_config_encode(uint8_t system_id, uin
 static inline uint16_t mavlink_msg_cellular_config_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_cellular_config_t* cellular_config)
 {
     return mavlink_msg_cellular_config_pack_chan(system_id, component_id, chan, msg, cellular_config->enable_lte, cellular_config->enable_pin, cellular_config->pin, cellular_config->new_pin, cellular_config->apn, cellular_config->puk, cellular_config->roaming, cellular_config->response);
+}
+
+/**
+ * @brief Encode a cellular_config struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param cellular_config C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_cellular_config_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_cellular_config_t* cellular_config)
+{
+    return mavlink_msg_cellular_config_pack_status(system_id, component_id, _status, msg,  cellular_config->enable_lte, cellular_config->enable_pin, cellular_config->pin, cellular_config->new_pin, cellular_config->apn, cellular_config->puk, cellular_config->roaming, cellular_config->response);
 }
 
 /**

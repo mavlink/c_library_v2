@@ -100,6 +100,57 @@ static inline uint16_t mavlink_msg_altitudes_pack(uint8_t system_id, uint8_t com
 }
 
 /**
+ * @brief Pack a altitudes message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param time_boot_ms  Timestamp (milliseconds since system boot)
+ * @param alt_gps  GPS altitude (MSL) in meters, expressed as * 1000 (millimeters)
+ * @param alt_imu  IMU altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @param alt_barometric  barometeric altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @param alt_optical_flow  Optical flow altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @param alt_range_finder  Rangefinder Altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @param alt_extra  Extra altitude above ground in meters, expressed as * 1000 (millimeters)
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_altitudes_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t time_boot_ms, int32_t alt_gps, int32_t alt_imu, int32_t alt_barometric, int32_t alt_optical_flow, int32_t alt_range_finder, int32_t alt_extra)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_ALTITUDES_LEN];
+    _mav_put_uint32_t(buf, 0, time_boot_ms);
+    _mav_put_int32_t(buf, 4, alt_gps);
+    _mav_put_int32_t(buf, 8, alt_imu);
+    _mav_put_int32_t(buf, 12, alt_barometric);
+    _mav_put_int32_t(buf, 16, alt_optical_flow);
+    _mav_put_int32_t(buf, 20, alt_range_finder);
+    _mav_put_int32_t(buf, 24, alt_extra);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ALTITUDES_LEN);
+#else
+    mavlink_altitudes_t packet;
+    packet.time_boot_ms = time_boot_ms;
+    packet.alt_gps = alt_gps;
+    packet.alt_imu = alt_imu;
+    packet.alt_barometric = alt_barometric;
+    packet.alt_optical_flow = alt_optical_flow;
+    packet.alt_range_finder = alt_range_finder;
+    packet.alt_extra = alt_extra;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ALTITUDES_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_ALTITUDES;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ALTITUDES_MIN_LEN, MAVLINK_MSG_ID_ALTITUDES_LEN, MAVLINK_MSG_ID_ALTITUDES_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ALTITUDES_MIN_LEN, MAVLINK_MSG_ID_ALTITUDES_LEN);
+#endif
+}
+
+/**
  * @brief Pack a altitudes message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -171,6 +222,20 @@ static inline uint16_t mavlink_msg_altitudes_encode(uint8_t system_id, uint8_t c
 static inline uint16_t mavlink_msg_altitudes_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_altitudes_t* altitudes)
 {
     return mavlink_msg_altitudes_pack_chan(system_id, component_id, chan, msg, altitudes->time_boot_ms, altitudes->alt_gps, altitudes->alt_imu, altitudes->alt_barometric, altitudes->alt_optical_flow, altitudes->alt_range_finder, altitudes->alt_extra);
+}
+
+/**
+ * @brief Encode a altitudes struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param altitudes C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_altitudes_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_altitudes_t* altitudes)
+{
+    return mavlink_msg_altitudes_pack_status(system_id, component_id, _status, msg,  altitudes->time_boot_ms, altitudes->alt_gps, altitudes->alt_imu, altitudes->alt_barometric, altitudes->alt_optical_flow, altitudes->alt_range_finder, altitudes->alt_extra);
 }
 
 /**

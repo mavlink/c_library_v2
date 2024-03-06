@@ -100,6 +100,57 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f8_pack(uint8_t system_id, u
 }
 
 /**
+ * @brief Pack a serial_udb_extra_f8 message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param sue_HEIGHT_TARGET_MAX  Serial UDB Extra HEIGHT_TARGET_MAX
+ * @param sue_HEIGHT_TARGET_MIN  Serial UDB Extra HEIGHT_TARGET_MIN
+ * @param sue_ALT_HOLD_THROTTLE_MIN  Serial UDB Extra ALT_HOLD_THROTTLE_MIN
+ * @param sue_ALT_HOLD_THROTTLE_MAX  Serial UDB Extra ALT_HOLD_THROTTLE_MAX
+ * @param sue_ALT_HOLD_PITCH_MIN  Serial UDB Extra ALT_HOLD_PITCH_MIN
+ * @param sue_ALT_HOLD_PITCH_MAX  Serial UDB Extra ALT_HOLD_PITCH_MAX
+ * @param sue_ALT_HOLD_PITCH_HIGH  Serial UDB Extra ALT_HOLD_PITCH_HIGH
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f8_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               float sue_HEIGHT_TARGET_MAX, float sue_HEIGHT_TARGET_MIN, float sue_ALT_HOLD_THROTTLE_MIN, float sue_ALT_HOLD_THROTTLE_MAX, float sue_ALT_HOLD_PITCH_MIN, float sue_ALT_HOLD_PITCH_MAX, float sue_ALT_HOLD_PITCH_HIGH)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F8_LEN];
+    _mav_put_float(buf, 0, sue_HEIGHT_TARGET_MAX);
+    _mav_put_float(buf, 4, sue_HEIGHT_TARGET_MIN);
+    _mav_put_float(buf, 8, sue_ALT_HOLD_THROTTLE_MIN);
+    _mav_put_float(buf, 12, sue_ALT_HOLD_THROTTLE_MAX);
+    _mav_put_float(buf, 16, sue_ALT_HOLD_PITCH_MIN);
+    _mav_put_float(buf, 20, sue_ALT_HOLD_PITCH_MAX);
+    _mav_put_float(buf, 24, sue_ALT_HOLD_PITCH_HIGH);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F8_LEN);
+#else
+    mavlink_serial_udb_extra_f8_t packet;
+    packet.sue_HEIGHT_TARGET_MAX = sue_HEIGHT_TARGET_MAX;
+    packet.sue_HEIGHT_TARGET_MIN = sue_HEIGHT_TARGET_MIN;
+    packet.sue_ALT_HOLD_THROTTLE_MIN = sue_ALT_HOLD_THROTTLE_MIN;
+    packet.sue_ALT_HOLD_THROTTLE_MAX = sue_ALT_HOLD_THROTTLE_MAX;
+    packet.sue_ALT_HOLD_PITCH_MIN = sue_ALT_HOLD_PITCH_MIN;
+    packet.sue_ALT_HOLD_PITCH_MAX = sue_ALT_HOLD_PITCH_MAX;
+    packet.sue_ALT_HOLD_PITCH_HIGH = sue_ALT_HOLD_PITCH_HIGH;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F8_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F8;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F8_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F8_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F8_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F8_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F8_LEN);
+#endif
+}
+
+/**
  * @brief Pack a serial_udb_extra_f8 message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -171,6 +222,20 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f8_encode(uint8_t system_id,
 static inline uint16_t mavlink_msg_serial_udb_extra_f8_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_serial_udb_extra_f8_t* serial_udb_extra_f8)
 {
     return mavlink_msg_serial_udb_extra_f8_pack_chan(system_id, component_id, chan, msg, serial_udb_extra_f8->sue_HEIGHT_TARGET_MAX, serial_udb_extra_f8->sue_HEIGHT_TARGET_MIN, serial_udb_extra_f8->sue_ALT_HOLD_THROTTLE_MIN, serial_udb_extra_f8->sue_ALT_HOLD_THROTTLE_MAX, serial_udb_extra_f8->sue_ALT_HOLD_PITCH_MIN, serial_udb_extra_f8->sue_ALT_HOLD_PITCH_MAX, serial_udb_extra_f8->sue_ALT_HOLD_PITCH_HIGH);
+}
+
+/**
+ * @brief Encode a serial_udb_extra_f8 struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param serial_udb_extra_f8 C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f8_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_serial_udb_extra_f8_t* serial_udb_extra_f8)
+{
+    return mavlink_msg_serial_udb_extra_f8_pack_status(system_id, component_id, _status, msg,  serial_udb_extra_f8->sue_HEIGHT_TARGET_MAX, serial_udb_extra_f8->sue_HEIGHT_TARGET_MIN, serial_udb_extra_f8->sue_ALT_HOLD_THROTTLE_MIN, serial_udb_extra_f8->sue_ALT_HOLD_THROTTLE_MAX, serial_udb_extra_f8->sue_ALT_HOLD_PITCH_MIN, serial_udb_extra_f8->sue_ALT_HOLD_PITCH_MAX, serial_udb_extra_f8->sue_ALT_HOLD_PITCH_HIGH);
 }
 
 /**

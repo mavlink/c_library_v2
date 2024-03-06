@@ -100,6 +100,57 @@ static inline uint16_t mavlink_msg_nav_filter_bias_pack(uint8_t system_id, uint8
 }
 
 /**
+ * @brief Pack a nav_filter_bias message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param usec  Timestamp (microseconds)
+ * @param accel_0  b_f[0]
+ * @param accel_1  b_f[1]
+ * @param accel_2  b_f[2]
+ * @param gyro_0  b_f[0]
+ * @param gyro_1  b_f[1]
+ * @param gyro_2  b_f[2]
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_nav_filter_bias_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint64_t usec, float accel_0, float accel_1, float accel_2, float gyro_0, float gyro_1, float gyro_2)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN];
+    _mav_put_uint64_t(buf, 0, usec);
+    _mav_put_float(buf, 8, accel_0);
+    _mav_put_float(buf, 12, accel_1);
+    _mav_put_float(buf, 16, accel_2);
+    _mav_put_float(buf, 20, gyro_0);
+    _mav_put_float(buf, 24, gyro_1);
+    _mav_put_float(buf, 28, gyro_2);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN);
+#else
+    mavlink_nav_filter_bias_t packet;
+    packet.usec = usec;
+    packet.accel_0 = accel_0;
+    packet.accel_1 = accel_1;
+    packet.accel_2 = accel_2;
+    packet.gyro_0 = gyro_0;
+    packet.gyro_1 = gyro_1;
+    packet.gyro_2 = gyro_2;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_NAV_FILTER_BIAS;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_NAV_FILTER_BIAS_MIN_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_NAV_FILTER_BIAS_MIN_LEN, MAVLINK_MSG_ID_NAV_FILTER_BIAS_LEN);
+#endif
+}
+
+/**
  * @brief Pack a nav_filter_bias message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -171,6 +222,20 @@ static inline uint16_t mavlink_msg_nav_filter_bias_encode(uint8_t system_id, uin
 static inline uint16_t mavlink_msg_nav_filter_bias_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_nav_filter_bias_t* nav_filter_bias)
 {
     return mavlink_msg_nav_filter_bias_pack_chan(system_id, component_id, chan, msg, nav_filter_bias->usec, nav_filter_bias->accel_0, nav_filter_bias->accel_1, nav_filter_bias->accel_2, nav_filter_bias->gyro_0, nav_filter_bias->gyro_1, nav_filter_bias->gyro_2);
+}
+
+/**
+ * @brief Encode a nav_filter_bias struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param nav_filter_bias C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_nav_filter_bias_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_nav_filter_bias_t* nav_filter_bias)
+{
+    return mavlink_msg_nav_filter_bias_pack_status(system_id, component_id, _status, msg,  nav_filter_bias->usec, nav_filter_bias->accel_0, nav_filter_bias->accel_1, nav_filter_bias->accel_2, nav_filter_bias->gyro_0, nav_filter_bias->gyro_1, nav_filter_bias->gyro_2);
 }
 
 /**

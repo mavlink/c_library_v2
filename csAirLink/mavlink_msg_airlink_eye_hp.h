@@ -64,6 +64,39 @@ static inline uint16_t mavlink_msg_airlink_eye_hp_pack(uint8_t system_id, uint8_
 }
 
 /**
+ * @brief Pack a airlink_eye_hp message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param resp_type  Hole push response type
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_airlink_eye_hp_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t resp_type)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_AIRLINK_EYE_HP_LEN];
+    _mav_put_uint8_t(buf, 0, resp_type);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_AIRLINK_EYE_HP_LEN);
+#else
+    mavlink_airlink_eye_hp_t packet;
+    packet.resp_type = resp_type;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_AIRLINK_EYE_HP_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_AIRLINK_EYE_HP;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AIRLINK_EYE_HP_MIN_LEN, MAVLINK_MSG_ID_AIRLINK_EYE_HP_LEN, MAVLINK_MSG_ID_AIRLINK_EYE_HP_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AIRLINK_EYE_HP_MIN_LEN, MAVLINK_MSG_ID_AIRLINK_EYE_HP_LEN);
+#endif
+}
+
+/**
  * @brief Pack a airlink_eye_hp message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -117,6 +150,20 @@ static inline uint16_t mavlink_msg_airlink_eye_hp_encode(uint8_t system_id, uint
 static inline uint16_t mavlink_msg_airlink_eye_hp_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_airlink_eye_hp_t* airlink_eye_hp)
 {
     return mavlink_msg_airlink_eye_hp_pack_chan(system_id, component_id, chan, msg, airlink_eye_hp->resp_type);
+}
+
+/**
+ * @brief Encode a airlink_eye_hp struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param airlink_eye_hp C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_airlink_eye_hp_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_airlink_eye_hp_t* airlink_eye_hp)
+{
+    return mavlink_msg_airlink_eye_hp_pack_status(system_id, component_id, _status, msg,  airlink_eye_hp->resp_type);
 }
 
 /**

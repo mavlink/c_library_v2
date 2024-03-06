@@ -76,6 +76,45 @@ static inline uint16_t mavlink_msg_cubepilot_firmware_update_resp_pack(uint8_t s
 }
 
 /**
+ * @brief Pack a cubepilot_firmware_update_resp message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  System ID.
+ * @param target_component  Component ID.
+ * @param offset [bytes] FW Offset.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_cubepilot_firmware_update_resp_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, uint32_t offset)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_CUBEPILOT_FIRMWARE_UPDATE_RESP_LEN];
+    _mav_put_uint32_t(buf, 0, offset);
+    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 5, target_component);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CUBEPILOT_FIRMWARE_UPDATE_RESP_LEN);
+#else
+    mavlink_cubepilot_firmware_update_resp_t packet;
+    packet.offset = offset;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CUBEPILOT_FIRMWARE_UPDATE_RESP_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_CUBEPILOT_FIRMWARE_UPDATE_RESP;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CUBEPILOT_FIRMWARE_UPDATE_RESP_MIN_LEN, MAVLINK_MSG_ID_CUBEPILOT_FIRMWARE_UPDATE_RESP_LEN, MAVLINK_MSG_ID_CUBEPILOT_FIRMWARE_UPDATE_RESP_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CUBEPILOT_FIRMWARE_UPDATE_RESP_MIN_LEN, MAVLINK_MSG_ID_CUBEPILOT_FIRMWARE_UPDATE_RESP_LEN);
+#endif
+}
+
+/**
  * @brief Pack a cubepilot_firmware_update_resp message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -135,6 +174,20 @@ static inline uint16_t mavlink_msg_cubepilot_firmware_update_resp_encode(uint8_t
 static inline uint16_t mavlink_msg_cubepilot_firmware_update_resp_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_cubepilot_firmware_update_resp_t* cubepilot_firmware_update_resp)
 {
     return mavlink_msg_cubepilot_firmware_update_resp_pack_chan(system_id, component_id, chan, msg, cubepilot_firmware_update_resp->target_system, cubepilot_firmware_update_resp->target_component, cubepilot_firmware_update_resp->offset);
+}
+
+/**
+ * @brief Encode a cubepilot_firmware_update_resp struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param cubepilot_firmware_update_resp C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_cubepilot_firmware_update_resp_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_cubepilot_firmware_update_resp_t* cubepilot_firmware_update_resp)
+{
+    return mavlink_msg_cubepilot_firmware_update_resp_pack_status(system_id, component_id, _status, msg,  cubepilot_firmware_update_resp->target_system, cubepilot_firmware_update_resp->target_component, cubepilot_firmware_update_resp->offset);
 }
 
 /**

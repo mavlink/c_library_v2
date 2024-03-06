@@ -98,6 +98,55 @@ static inline uint16_t mavlink_msg_gimbal_device_set_attitude_pack(uint8_t syste
 }
 
 /**
+ * @brief Pack a gimbal_device_set_attitude message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param flags  Low level gimbal flags.
+ * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation). The frame is described in the message description. Set fields to NaN to be ignored.
+ * @param angular_velocity_x [rad/s] X component of angular velocity (positive: rolling to the right). The frame is described in the message description. NaN to be ignored.
+ * @param angular_velocity_y [rad/s] Y component of angular velocity (positive: pitching up). The frame is described in the message description. NaN to be ignored.
+ * @param angular_velocity_z [rad/s] Z component of angular velocity (positive: yawing to the right). The frame is described in the message description. NaN to be ignored.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_gimbal_device_set_attitude_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, uint16_t flags, const float *q, float angular_velocity_x, float angular_velocity_y, float angular_velocity_z)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_GIMBAL_DEVICE_SET_ATTITUDE_LEN];
+    _mav_put_float(buf, 16, angular_velocity_x);
+    _mav_put_float(buf, 20, angular_velocity_y);
+    _mav_put_float(buf, 24, angular_velocity_z);
+    _mav_put_uint16_t(buf, 28, flags);
+    _mav_put_uint8_t(buf, 30, target_system);
+    _mav_put_uint8_t(buf, 31, target_component);
+    _mav_put_float_array(buf, 0, q, 4);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_GIMBAL_DEVICE_SET_ATTITUDE_LEN);
+#else
+    mavlink_gimbal_device_set_attitude_t packet;
+    packet.angular_velocity_x = angular_velocity_x;
+    packet.angular_velocity_y = angular_velocity_y;
+    packet.angular_velocity_z = angular_velocity_z;
+    packet.flags = flags;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+    mav_array_memcpy(packet.q, q, sizeof(float)*4);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_GIMBAL_DEVICE_SET_ATTITUDE_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_GIMBAL_DEVICE_SET_ATTITUDE;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GIMBAL_DEVICE_SET_ATTITUDE_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_SET_ATTITUDE_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_SET_ATTITUDE_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GIMBAL_DEVICE_SET_ATTITUDE_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_SET_ATTITUDE_LEN);
+#endif
+}
+
+/**
  * @brief Pack a gimbal_device_set_attitude message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -167,6 +216,20 @@ static inline uint16_t mavlink_msg_gimbal_device_set_attitude_encode(uint8_t sys
 static inline uint16_t mavlink_msg_gimbal_device_set_attitude_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gimbal_device_set_attitude_t* gimbal_device_set_attitude)
 {
     return mavlink_msg_gimbal_device_set_attitude_pack_chan(system_id, component_id, chan, msg, gimbal_device_set_attitude->target_system, gimbal_device_set_attitude->target_component, gimbal_device_set_attitude->flags, gimbal_device_set_attitude->q, gimbal_device_set_attitude->angular_velocity_x, gimbal_device_set_attitude->angular_velocity_y, gimbal_device_set_attitude->angular_velocity_z);
+}
+
+/**
+ * @brief Encode a gimbal_device_set_attitude struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param gimbal_device_set_attitude C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_gimbal_device_set_attitude_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_gimbal_device_set_attitude_t* gimbal_device_set_attitude)
+{
+    return mavlink_msg_gimbal_device_set_attitude_pack_status(system_id, component_id, _status, msg,  gimbal_device_set_attitude->target_system, gimbal_device_set_attitude->target_component, gimbal_device_set_attitude->flags, gimbal_device_set_attitude->q, gimbal_device_set_attitude->angular_velocity_x, gimbal_device_set_attitude->angular_velocity_y, gimbal_device_set_attitude->angular_velocity_z);
 }
 
 /**

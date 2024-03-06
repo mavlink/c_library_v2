@@ -118,6 +118,66 @@ static inline uint16_t mavlink_msg_storm32_gimbal_manager_control_pitchyaw_pack(
 }
 
 /**
+ * @brief Pack a storm32_gimbal_manager_control_pitchyaw message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param gimbal_id  Gimbal ID of the gimbal manager to address (component ID or 1-6 for non-MAVLink gimbal, 0 for all gimbals). Send command multiple times for more than one but not all gimbals.
+ * @param client  Client which is contacting the gimbal manager (must be set).
+ * @param device_flags  Gimbal device flags to be applied (UINT16_MAX to be ignored). Same flags as used in GIMBAL_DEVICE_SET_ATTITUDE.
+ * @param manager_flags  Gimbal manager flags to be applied (0 to be ignored).
+ * @param pitch [rad] Pitch/tilt angle (positive: tilt up). NaN to be ignored.
+ * @param yaw [rad] Yaw/pan angle (positive: pan the right). NaN to be ignored. The frame is determined by the GIMBAL_DEVICE_FLAGS_YAW_IN_xxx_FRAME flags.
+ * @param pitch_rate [rad/s] Pitch/tilt angular rate (positive: tilt up). NaN to be ignored.
+ * @param yaw_rate [rad/s] Yaw/pan angular rate (positive: pan to the right). NaN to be ignored. The frame is determined by the GIMBAL_DEVICE_FLAGS_YAW_IN_xxx_FRAME flags.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_storm32_gimbal_manager_control_pitchyaw_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, uint8_t gimbal_id, uint8_t client, uint16_t device_flags, uint16_t manager_flags, float pitch, float yaw, float pitch_rate, float yaw_rate)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL_PITCHYAW_LEN];
+    _mav_put_float(buf, 0, pitch);
+    _mav_put_float(buf, 4, yaw);
+    _mav_put_float(buf, 8, pitch_rate);
+    _mav_put_float(buf, 12, yaw_rate);
+    _mav_put_uint16_t(buf, 16, device_flags);
+    _mav_put_uint16_t(buf, 18, manager_flags);
+    _mav_put_uint8_t(buf, 20, target_system);
+    _mav_put_uint8_t(buf, 21, target_component);
+    _mav_put_uint8_t(buf, 22, gimbal_id);
+    _mav_put_uint8_t(buf, 23, client);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL_PITCHYAW_LEN);
+#else
+    mavlink_storm32_gimbal_manager_control_pitchyaw_t packet;
+    packet.pitch = pitch;
+    packet.yaw = yaw;
+    packet.pitch_rate = pitch_rate;
+    packet.yaw_rate = yaw_rate;
+    packet.device_flags = device_flags;
+    packet.manager_flags = manager_flags;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+    packet.gimbal_id = gimbal_id;
+    packet.client = client;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL_PITCHYAW_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL_PITCHYAW;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL_PITCHYAW_MIN_LEN, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL_PITCHYAW_LEN, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL_PITCHYAW_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL_PITCHYAW_MIN_LEN, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL_PITCHYAW_LEN);
+#endif
+}
+
+/**
  * @brief Pack a storm32_gimbal_manager_control_pitchyaw message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -198,6 +258,20 @@ static inline uint16_t mavlink_msg_storm32_gimbal_manager_control_pitchyaw_encod
 static inline uint16_t mavlink_msg_storm32_gimbal_manager_control_pitchyaw_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_storm32_gimbal_manager_control_pitchyaw_t* storm32_gimbal_manager_control_pitchyaw)
 {
     return mavlink_msg_storm32_gimbal_manager_control_pitchyaw_pack_chan(system_id, component_id, chan, msg, storm32_gimbal_manager_control_pitchyaw->target_system, storm32_gimbal_manager_control_pitchyaw->target_component, storm32_gimbal_manager_control_pitchyaw->gimbal_id, storm32_gimbal_manager_control_pitchyaw->client, storm32_gimbal_manager_control_pitchyaw->device_flags, storm32_gimbal_manager_control_pitchyaw->manager_flags, storm32_gimbal_manager_control_pitchyaw->pitch, storm32_gimbal_manager_control_pitchyaw->yaw, storm32_gimbal_manager_control_pitchyaw->pitch_rate, storm32_gimbal_manager_control_pitchyaw->yaw_rate);
+}
+
+/**
+ * @brief Encode a storm32_gimbal_manager_control_pitchyaw struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param storm32_gimbal_manager_control_pitchyaw C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_storm32_gimbal_manager_control_pitchyaw_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_storm32_gimbal_manager_control_pitchyaw_t* storm32_gimbal_manager_control_pitchyaw)
+{
+    return mavlink_msg_storm32_gimbal_manager_control_pitchyaw_pack_status(system_id, component_id, _status, msg,  storm32_gimbal_manager_control_pitchyaw->target_system, storm32_gimbal_manager_control_pitchyaw->target_component, storm32_gimbal_manager_control_pitchyaw->gimbal_id, storm32_gimbal_manager_control_pitchyaw->client, storm32_gimbal_manager_control_pitchyaw->device_flags, storm32_gimbal_manager_control_pitchyaw->manager_flags, storm32_gimbal_manager_control_pitchyaw->pitch, storm32_gimbal_manager_control_pitchyaw->yaw, storm32_gimbal_manager_control_pitchyaw->pitch_rate, storm32_gimbal_manager_control_pitchyaw->yaw_rate);
 }
 
 /**

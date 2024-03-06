@@ -136,6 +136,75 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f20_pack(uint8_t system_id, 
 }
 
 /**
+ * @brief Pack a serial_udb_extra_f20 message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param sue_number_of_inputs  SUE Number of Input Channels
+ * @param sue_trim_value_input_1  SUE UDB PWM Trim Value on Input 1
+ * @param sue_trim_value_input_2  SUE UDB PWM Trim Value on Input 2
+ * @param sue_trim_value_input_3  SUE UDB PWM Trim Value on Input 3
+ * @param sue_trim_value_input_4  SUE UDB PWM Trim Value on Input 4
+ * @param sue_trim_value_input_5  SUE UDB PWM Trim Value on Input 5
+ * @param sue_trim_value_input_6  SUE UDB PWM Trim Value on Input 6
+ * @param sue_trim_value_input_7  SUE UDB PWM Trim Value on Input 7
+ * @param sue_trim_value_input_8  SUE UDB PWM Trim Value on Input 8
+ * @param sue_trim_value_input_9  SUE UDB PWM Trim Value on Input 9
+ * @param sue_trim_value_input_10  SUE UDB PWM Trim Value on Input 10
+ * @param sue_trim_value_input_11  SUE UDB PWM Trim Value on Input 11
+ * @param sue_trim_value_input_12  SUE UDB PWM Trim Value on Input 12
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f20_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t sue_number_of_inputs, int16_t sue_trim_value_input_1, int16_t sue_trim_value_input_2, int16_t sue_trim_value_input_3, int16_t sue_trim_value_input_4, int16_t sue_trim_value_input_5, int16_t sue_trim_value_input_6, int16_t sue_trim_value_input_7, int16_t sue_trim_value_input_8, int16_t sue_trim_value_input_9, int16_t sue_trim_value_input_10, int16_t sue_trim_value_input_11, int16_t sue_trim_value_input_12)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F20_LEN];
+    _mav_put_int16_t(buf, 0, sue_trim_value_input_1);
+    _mav_put_int16_t(buf, 2, sue_trim_value_input_2);
+    _mav_put_int16_t(buf, 4, sue_trim_value_input_3);
+    _mav_put_int16_t(buf, 6, sue_trim_value_input_4);
+    _mav_put_int16_t(buf, 8, sue_trim_value_input_5);
+    _mav_put_int16_t(buf, 10, sue_trim_value_input_6);
+    _mav_put_int16_t(buf, 12, sue_trim_value_input_7);
+    _mav_put_int16_t(buf, 14, sue_trim_value_input_8);
+    _mav_put_int16_t(buf, 16, sue_trim_value_input_9);
+    _mav_put_int16_t(buf, 18, sue_trim_value_input_10);
+    _mav_put_int16_t(buf, 20, sue_trim_value_input_11);
+    _mav_put_int16_t(buf, 22, sue_trim_value_input_12);
+    _mav_put_uint8_t(buf, 24, sue_number_of_inputs);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F20_LEN);
+#else
+    mavlink_serial_udb_extra_f20_t packet;
+    packet.sue_trim_value_input_1 = sue_trim_value_input_1;
+    packet.sue_trim_value_input_2 = sue_trim_value_input_2;
+    packet.sue_trim_value_input_3 = sue_trim_value_input_3;
+    packet.sue_trim_value_input_4 = sue_trim_value_input_4;
+    packet.sue_trim_value_input_5 = sue_trim_value_input_5;
+    packet.sue_trim_value_input_6 = sue_trim_value_input_6;
+    packet.sue_trim_value_input_7 = sue_trim_value_input_7;
+    packet.sue_trim_value_input_8 = sue_trim_value_input_8;
+    packet.sue_trim_value_input_9 = sue_trim_value_input_9;
+    packet.sue_trim_value_input_10 = sue_trim_value_input_10;
+    packet.sue_trim_value_input_11 = sue_trim_value_input_11;
+    packet.sue_trim_value_input_12 = sue_trim_value_input_12;
+    packet.sue_number_of_inputs = sue_number_of_inputs;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F20_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F20;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F20_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F20_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F20_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F20_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F20_LEN);
+#endif
+}
+
+/**
  * @brief Pack a serial_udb_extra_f20 message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -225,6 +294,20 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f20_encode(uint8_t system_id
 static inline uint16_t mavlink_msg_serial_udb_extra_f20_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_serial_udb_extra_f20_t* serial_udb_extra_f20)
 {
     return mavlink_msg_serial_udb_extra_f20_pack_chan(system_id, component_id, chan, msg, serial_udb_extra_f20->sue_number_of_inputs, serial_udb_extra_f20->sue_trim_value_input_1, serial_udb_extra_f20->sue_trim_value_input_2, serial_udb_extra_f20->sue_trim_value_input_3, serial_udb_extra_f20->sue_trim_value_input_4, serial_udb_extra_f20->sue_trim_value_input_5, serial_udb_extra_f20->sue_trim_value_input_6, serial_udb_extra_f20->sue_trim_value_input_7, serial_udb_extra_f20->sue_trim_value_input_8, serial_udb_extra_f20->sue_trim_value_input_9, serial_udb_extra_f20->sue_trim_value_input_10, serial_udb_extra_f20->sue_trim_value_input_11, serial_udb_extra_f20->sue_trim_value_input_12);
+}
+
+/**
+ * @brief Encode a serial_udb_extra_f20 struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param serial_udb_extra_f20 C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f20_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_serial_udb_extra_f20_t* serial_udb_extra_f20)
+{
+    return mavlink_msg_serial_udb_extra_f20_pack_status(system_id, component_id, _status, msg,  serial_udb_extra_f20->sue_number_of_inputs, serial_udb_extra_f20->sue_trim_value_input_1, serial_udb_extra_f20->sue_trim_value_input_2, serial_udb_extra_f20->sue_trim_value_input_3, serial_udb_extra_f20->sue_trim_value_input_4, serial_udb_extra_f20->sue_trim_value_input_5, serial_udb_extra_f20->sue_trim_value_input_6, serial_udb_extra_f20->sue_trim_value_input_7, serial_udb_extra_f20->sue_trim_value_input_8, serial_udb_extra_f20->sue_trim_value_input_9, serial_udb_extra_f20->sue_trim_value_input_10, serial_udb_extra_f20->sue_trim_value_input_11, serial_udb_extra_f20->sue_trim_value_input_12);
 }
 
 /**

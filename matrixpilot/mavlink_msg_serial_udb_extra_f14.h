@@ -124,6 +124,69 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f14_pack(uint8_t system_id, 
 }
 
 /**
+ * @brief Pack a serial_udb_extra_f14 message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param sue_WIND_ESTIMATION  Serial UDB Extra Wind Estimation Enabled
+ * @param sue_GPS_TYPE  Serial UDB Extra Type of GPS Unit
+ * @param sue_DR  Serial UDB Extra Dead Reckoning Enabled
+ * @param sue_BOARD_TYPE  Serial UDB Extra Type of UDB Hardware
+ * @param sue_AIRFRAME  Serial UDB Extra Type of Airframe
+ * @param sue_RCON  Serial UDB Extra Reboot Register of DSPIC
+ * @param sue_TRAP_FLAGS  Serial UDB Extra  Last dspic Trap Flags
+ * @param sue_TRAP_SOURCE  Serial UDB Extra Type Program Address of Last Trap
+ * @param sue_osc_fail_count  Serial UDB Extra Number of Ocillator Failures
+ * @param sue_CLOCK_CONFIG  Serial UDB Extra UDB Internal Clock Configuration
+ * @param sue_FLIGHT_PLAN_TYPE  Serial UDB Extra Type of Flight Plan
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f14_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t sue_WIND_ESTIMATION, uint8_t sue_GPS_TYPE, uint8_t sue_DR, uint8_t sue_BOARD_TYPE, uint8_t sue_AIRFRAME, int16_t sue_RCON, int16_t sue_TRAP_FLAGS, uint32_t sue_TRAP_SOURCE, int16_t sue_osc_fail_count, uint8_t sue_CLOCK_CONFIG, uint8_t sue_FLIGHT_PLAN_TYPE)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F14_LEN];
+    _mav_put_uint32_t(buf, 0, sue_TRAP_SOURCE);
+    _mav_put_int16_t(buf, 4, sue_RCON);
+    _mav_put_int16_t(buf, 6, sue_TRAP_FLAGS);
+    _mav_put_int16_t(buf, 8, sue_osc_fail_count);
+    _mav_put_uint8_t(buf, 10, sue_WIND_ESTIMATION);
+    _mav_put_uint8_t(buf, 11, sue_GPS_TYPE);
+    _mav_put_uint8_t(buf, 12, sue_DR);
+    _mav_put_uint8_t(buf, 13, sue_BOARD_TYPE);
+    _mav_put_uint8_t(buf, 14, sue_AIRFRAME);
+    _mav_put_uint8_t(buf, 15, sue_CLOCK_CONFIG);
+    _mav_put_uint8_t(buf, 16, sue_FLIGHT_PLAN_TYPE);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F14_LEN);
+#else
+    mavlink_serial_udb_extra_f14_t packet;
+    packet.sue_TRAP_SOURCE = sue_TRAP_SOURCE;
+    packet.sue_RCON = sue_RCON;
+    packet.sue_TRAP_FLAGS = sue_TRAP_FLAGS;
+    packet.sue_osc_fail_count = sue_osc_fail_count;
+    packet.sue_WIND_ESTIMATION = sue_WIND_ESTIMATION;
+    packet.sue_GPS_TYPE = sue_GPS_TYPE;
+    packet.sue_DR = sue_DR;
+    packet.sue_BOARD_TYPE = sue_BOARD_TYPE;
+    packet.sue_AIRFRAME = sue_AIRFRAME;
+    packet.sue_CLOCK_CONFIG = sue_CLOCK_CONFIG;
+    packet.sue_FLIGHT_PLAN_TYPE = sue_FLIGHT_PLAN_TYPE;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F14_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F14;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F14_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F14_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F14_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F14_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F14_LEN);
+#endif
+}
+
+/**
  * @brief Pack a serial_udb_extra_f14 message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -207,6 +270,20 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f14_encode(uint8_t system_id
 static inline uint16_t mavlink_msg_serial_udb_extra_f14_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_serial_udb_extra_f14_t* serial_udb_extra_f14)
 {
     return mavlink_msg_serial_udb_extra_f14_pack_chan(system_id, component_id, chan, msg, serial_udb_extra_f14->sue_WIND_ESTIMATION, serial_udb_extra_f14->sue_GPS_TYPE, serial_udb_extra_f14->sue_DR, serial_udb_extra_f14->sue_BOARD_TYPE, serial_udb_extra_f14->sue_AIRFRAME, serial_udb_extra_f14->sue_RCON, serial_udb_extra_f14->sue_TRAP_FLAGS, serial_udb_extra_f14->sue_TRAP_SOURCE, serial_udb_extra_f14->sue_osc_fail_count, serial_udb_extra_f14->sue_CLOCK_CONFIG, serial_udb_extra_f14->sue_FLIGHT_PLAN_TYPE);
+}
+
+/**
+ * @brief Encode a serial_udb_extra_f14 struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param serial_udb_extra_f14 C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f14_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_serial_udb_extra_f14_t* serial_udb_extra_f14)
+{
+    return mavlink_msg_serial_udb_extra_f14_pack_status(system_id, component_id, _status, msg,  serial_udb_extra_f14->sue_WIND_ESTIMATION, serial_udb_extra_f14->sue_GPS_TYPE, serial_udb_extra_f14->sue_DR, serial_udb_extra_f14->sue_BOARD_TYPE, serial_udb_extra_f14->sue_AIRFRAME, serial_udb_extra_f14->sue_RCON, serial_udb_extra_f14->sue_TRAP_FLAGS, serial_udb_extra_f14->sue_TRAP_SOURCE, serial_udb_extra_f14->sue_osc_fail_count, serial_udb_extra_f14->sue_CLOCK_CONFIG, serial_udb_extra_f14->sue_FLIGHT_PLAN_TYPE);
 }
 
 /**

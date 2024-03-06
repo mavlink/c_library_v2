@@ -76,6 +76,45 @@ static inline uint16_t mavlink_msg_avss_drone_operation_mode_pack(uint8_t system
 }
 
 /**
+ * @brief Pack a avss_drone_operation_mode message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param time_boot_ms [ms] Timestamp (time since FC boot).
+ * @param M300_operation_mode  DJI M300 operation mode
+ * @param horsefly_operation_mode  horsefly operation mode
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_avss_drone_operation_mode_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t time_boot_ms, uint8_t M300_operation_mode, uint8_t horsefly_operation_mode)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_AVSS_DRONE_OPERATION_MODE_LEN];
+    _mav_put_uint32_t(buf, 0, time_boot_ms);
+    _mav_put_uint8_t(buf, 4, M300_operation_mode);
+    _mav_put_uint8_t(buf, 5, horsefly_operation_mode);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_AVSS_DRONE_OPERATION_MODE_LEN);
+#else
+    mavlink_avss_drone_operation_mode_t packet;
+    packet.time_boot_ms = time_boot_ms;
+    packet.M300_operation_mode = M300_operation_mode;
+    packet.horsefly_operation_mode = horsefly_operation_mode;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_AVSS_DRONE_OPERATION_MODE_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_AVSS_DRONE_OPERATION_MODE;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AVSS_DRONE_OPERATION_MODE_MIN_LEN, MAVLINK_MSG_ID_AVSS_DRONE_OPERATION_MODE_LEN, MAVLINK_MSG_ID_AVSS_DRONE_OPERATION_MODE_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AVSS_DRONE_OPERATION_MODE_MIN_LEN, MAVLINK_MSG_ID_AVSS_DRONE_OPERATION_MODE_LEN);
+#endif
+}
+
+/**
  * @brief Pack a avss_drone_operation_mode message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -135,6 +174,20 @@ static inline uint16_t mavlink_msg_avss_drone_operation_mode_encode(uint8_t syst
 static inline uint16_t mavlink_msg_avss_drone_operation_mode_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_avss_drone_operation_mode_t* avss_drone_operation_mode)
 {
     return mavlink_msg_avss_drone_operation_mode_pack_chan(system_id, component_id, chan, msg, avss_drone_operation_mode->time_boot_ms, avss_drone_operation_mode->M300_operation_mode, avss_drone_operation_mode->horsefly_operation_mode);
+}
+
+/**
+ * @brief Encode a avss_drone_operation_mode struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param avss_drone_operation_mode C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_avss_drone_operation_mode_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_avss_drone_operation_mode_t* avss_drone_operation_mode)
+{
+    return mavlink_msg_avss_drone_operation_mode_pack_status(system_id, component_id, _status, msg,  avss_drone_operation_mode->time_boot_ms, avss_drone_operation_mode->M300_operation_mode, avss_drone_operation_mode->horsefly_operation_mode);
 }
 
 /**

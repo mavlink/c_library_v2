@@ -76,6 +76,45 @@ static inline uint16_t mavlink_msg_hygrometer_sensor_pack(uint8_t system_id, uin
 }
 
 /**
+ * @brief Pack a hygrometer_sensor message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param id  Hygrometer ID
+ * @param temperature [cdegC] Temperature
+ * @param humidity [c%] Humidity
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_hygrometer_sensor_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t id, int16_t temperature, uint16_t humidity)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_HYGROMETER_SENSOR_LEN];
+    _mav_put_int16_t(buf, 0, temperature);
+    _mav_put_uint16_t(buf, 2, humidity);
+    _mav_put_uint8_t(buf, 4, id);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_HYGROMETER_SENSOR_LEN);
+#else
+    mavlink_hygrometer_sensor_t packet;
+    packet.temperature = temperature;
+    packet.humidity = humidity;
+    packet.id = id;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_HYGROMETER_SENSOR_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_HYGROMETER_SENSOR;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_HYGROMETER_SENSOR_MIN_LEN, MAVLINK_MSG_ID_HYGROMETER_SENSOR_LEN, MAVLINK_MSG_ID_HYGROMETER_SENSOR_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_HYGROMETER_SENSOR_MIN_LEN, MAVLINK_MSG_ID_HYGROMETER_SENSOR_LEN);
+#endif
+}
+
+/**
  * @brief Pack a hygrometer_sensor message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -135,6 +174,20 @@ static inline uint16_t mavlink_msg_hygrometer_sensor_encode(uint8_t system_id, u
 static inline uint16_t mavlink_msg_hygrometer_sensor_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_hygrometer_sensor_t* hygrometer_sensor)
 {
     return mavlink_msg_hygrometer_sensor_pack_chan(system_id, component_id, chan, msg, hygrometer_sensor->id, hygrometer_sensor->temperature, hygrometer_sensor->humidity);
+}
+
+/**
+ * @brief Encode a hygrometer_sensor struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param hygrometer_sensor C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_hygrometer_sensor_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_hygrometer_sensor_t* hygrometer_sensor)
+{
+    return mavlink_msg_hygrometer_sensor_pack_status(system_id, component_id, _status, msg,  hygrometer_sensor->id, hygrometer_sensor->temperature, hygrometer_sensor->humidity);
 }
 
 /**

@@ -87,6 +87,49 @@ static inline uint16_t mavlink_msg_param_ext_set_pack(uint8_t system_id, uint8_t
 }
 
 /**
+ * @brief Pack a param_ext_set message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param param_id  Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
+ * @param param_value  Parameter value
+ * @param param_type  Parameter type.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_param_ext_set_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, const char *param_id, const char *param_value, uint8_t param_type)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_PARAM_EXT_SET_LEN];
+    _mav_put_uint8_t(buf, 0, target_system);
+    _mav_put_uint8_t(buf, 1, target_component);
+    _mav_put_uint8_t(buf, 146, param_type);
+    _mav_put_char_array(buf, 2, param_id, 16);
+    _mav_put_char_array(buf, 18, param_value, 128);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_PARAM_EXT_SET_LEN);
+#else
+    mavlink_param_ext_set_t packet;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+    packet.param_type = param_type;
+    mav_array_memcpy(packet.param_id, param_id, sizeof(char)*16);
+    mav_array_memcpy(packet.param_value, param_value, sizeof(char)*128);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PARAM_EXT_SET_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_PARAM_EXT_SET;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_PARAM_EXT_SET_MIN_LEN, MAVLINK_MSG_ID_PARAM_EXT_SET_LEN, MAVLINK_MSG_ID_PARAM_EXT_SET_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_PARAM_EXT_SET_MIN_LEN, MAVLINK_MSG_ID_PARAM_EXT_SET_LEN);
+#endif
+}
+
+/**
  * @brief Pack a param_ext_set message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -150,6 +193,20 @@ static inline uint16_t mavlink_msg_param_ext_set_encode(uint8_t system_id, uint8
 static inline uint16_t mavlink_msg_param_ext_set_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_param_ext_set_t* param_ext_set)
 {
     return mavlink_msg_param_ext_set_pack_chan(system_id, component_id, chan, msg, param_ext_set->target_system, param_ext_set->target_component, param_ext_set->param_id, param_ext_set->param_value, param_ext_set->param_type);
+}
+
+/**
+ * @brief Encode a param_ext_set struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param param_ext_set C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_param_ext_set_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_param_ext_set_t* param_ext_set)
+{
+    return mavlink_msg_param_ext_set_pack_status(system_id, component_id, _status, msg,  param_ext_set->target_system, param_ext_set->target_component, param_ext_set->param_id, param_ext_set->param_value, param_ext_set->param_type);
 }
 
 /**

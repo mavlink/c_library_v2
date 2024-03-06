@@ -100,6 +100,57 @@ static inline uint16_t mavlink_msg_ekf_ext_pack(uint8_t system_id, uint8_t compo
 }
 
 /**
+ * @brief Pack a ekf_ext message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param timestamp [us]  Time since system start
+ * @param Windspeed [m/s]  Magnitude of wind velocity (in lateral inertial plane)
+ * @param WindDir [rad]  Wind heading angle from North
+ * @param WindZ [m/s]  Z (Down) component of inertial wind velocity
+ * @param Airspeed [m/s]  Magnitude of air velocity
+ * @param beta [rad]  Sideslip angle
+ * @param alpha [rad]  Angle of attack
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_ekf_ext_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint64_t timestamp, float Windspeed, float WindDir, float WindZ, float Airspeed, float beta, float alpha)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_EKF_EXT_LEN];
+    _mav_put_uint64_t(buf, 0, timestamp);
+    _mav_put_float(buf, 8, Windspeed);
+    _mav_put_float(buf, 12, WindDir);
+    _mav_put_float(buf, 16, WindZ);
+    _mav_put_float(buf, 20, Airspeed);
+    _mav_put_float(buf, 24, beta);
+    _mav_put_float(buf, 28, alpha);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_EKF_EXT_LEN);
+#else
+    mavlink_ekf_ext_t packet;
+    packet.timestamp = timestamp;
+    packet.Windspeed = Windspeed;
+    packet.WindDir = WindDir;
+    packet.WindZ = WindZ;
+    packet.Airspeed = Airspeed;
+    packet.beta = beta;
+    packet.alpha = alpha;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_EKF_EXT_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_EKF_EXT;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_EKF_EXT_MIN_LEN, MAVLINK_MSG_ID_EKF_EXT_LEN, MAVLINK_MSG_ID_EKF_EXT_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_EKF_EXT_MIN_LEN, MAVLINK_MSG_ID_EKF_EXT_LEN);
+#endif
+}
+
+/**
  * @brief Pack a ekf_ext message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -171,6 +222,20 @@ static inline uint16_t mavlink_msg_ekf_ext_encode(uint8_t system_id, uint8_t com
 static inline uint16_t mavlink_msg_ekf_ext_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_ekf_ext_t* ekf_ext)
 {
     return mavlink_msg_ekf_ext_pack_chan(system_id, component_id, chan, msg, ekf_ext->timestamp, ekf_ext->Windspeed, ekf_ext->WindDir, ekf_ext->WindZ, ekf_ext->Airspeed, ekf_ext->beta, ekf_ext->alpha);
+}
+
+/**
+ * @brief Encode a ekf_ext struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param ekf_ext C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_ekf_ext_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_ekf_ext_t* ekf_ext)
+{
+    return mavlink_msg_ekf_ext_pack_status(system_id, component_id, _status, msg,  ekf_ext->timestamp, ekf_ext->Windspeed, ekf_ext->WindDir, ekf_ext->WindZ, ekf_ext->Airspeed, ekf_ext->beta, ekf_ext->alpha);
 }
 
 /**

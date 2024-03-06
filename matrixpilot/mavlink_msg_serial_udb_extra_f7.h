@@ -94,6 +94,54 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f7_pack(uint8_t system_id, u
 }
 
 /**
+ * @brief Pack a serial_udb_extra_f7 message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param sue_YAWKP_RUDDER  Serial UDB YAWKP_RUDDER Gain for Proporional control of navigation
+ * @param sue_YAWKD_RUDDER  Serial UDB YAWKD_RUDDER Gain for Rate control of navigation
+ * @param sue_ROLLKP_RUDDER  Serial UDB Extra ROLLKP_RUDDER Gain for Proportional control of roll stabilization
+ * @param sue_ROLLKD_RUDDER  Serial UDB Extra ROLLKD_RUDDER Gain for Rate control of roll stabilization
+ * @param sue_RUDDER_BOOST  SERIAL UDB EXTRA Rudder Boost Gain to Manual Control when stabilized
+ * @param sue_RTL_PITCH_DOWN  Serial UDB Extra Return To Landing - Angle to Pitch Plane Down
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f7_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               float sue_YAWKP_RUDDER, float sue_YAWKD_RUDDER, float sue_ROLLKP_RUDDER, float sue_ROLLKD_RUDDER, float sue_RUDDER_BOOST, float sue_RTL_PITCH_DOWN)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F7_LEN];
+    _mav_put_float(buf, 0, sue_YAWKP_RUDDER);
+    _mav_put_float(buf, 4, sue_YAWKD_RUDDER);
+    _mav_put_float(buf, 8, sue_ROLLKP_RUDDER);
+    _mav_put_float(buf, 12, sue_ROLLKD_RUDDER);
+    _mav_put_float(buf, 16, sue_RUDDER_BOOST);
+    _mav_put_float(buf, 20, sue_RTL_PITCH_DOWN);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F7_LEN);
+#else
+    mavlink_serial_udb_extra_f7_t packet;
+    packet.sue_YAWKP_RUDDER = sue_YAWKP_RUDDER;
+    packet.sue_YAWKD_RUDDER = sue_YAWKD_RUDDER;
+    packet.sue_ROLLKP_RUDDER = sue_ROLLKP_RUDDER;
+    packet.sue_ROLLKD_RUDDER = sue_ROLLKD_RUDDER;
+    packet.sue_RUDDER_BOOST = sue_RUDDER_BOOST;
+    packet.sue_RTL_PITCH_DOWN = sue_RTL_PITCH_DOWN;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F7_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F7;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F7_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F7_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F7_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F7_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F7_LEN);
+#endif
+}
+
+/**
  * @brief Pack a serial_udb_extra_f7 message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -162,6 +210,20 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f7_encode(uint8_t system_id,
 static inline uint16_t mavlink_msg_serial_udb_extra_f7_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_serial_udb_extra_f7_t* serial_udb_extra_f7)
 {
     return mavlink_msg_serial_udb_extra_f7_pack_chan(system_id, component_id, chan, msg, serial_udb_extra_f7->sue_YAWKP_RUDDER, serial_udb_extra_f7->sue_YAWKD_RUDDER, serial_udb_extra_f7->sue_ROLLKP_RUDDER, serial_udb_extra_f7->sue_ROLLKD_RUDDER, serial_udb_extra_f7->sue_RUDDER_BOOST, serial_udb_extra_f7->sue_RTL_PITCH_DOWN);
+}
+
+/**
+ * @brief Encode a serial_udb_extra_f7 struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param serial_udb_extra_f7 C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f7_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_serial_udb_extra_f7_t* serial_udb_extra_f7)
+{
+    return mavlink_msg_serial_udb_extra_f7_pack_status(system_id, component_id, _status, msg,  serial_udb_extra_f7->sue_YAWKP_RUDDER, serial_udb_extra_f7->sue_YAWKD_RUDDER, serial_udb_extra_f7->sue_ROLLKP_RUDDER, serial_udb_extra_f7->sue_ROLLKD_RUDDER, serial_udb_extra_f7->sue_RUDDER_BOOST, serial_udb_extra_f7->sue_RTL_PITCH_DOWN);
 }
 
 /**

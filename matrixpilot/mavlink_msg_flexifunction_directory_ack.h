@@ -94,6 +94,54 @@ static inline uint16_t mavlink_msg_flexifunction_directory_ack_pack(uint8_t syst
 }
 
 /**
+ * @brief Pack a flexifunction_directory_ack message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param directory_type  0=inputs, 1=outputs
+ * @param start_index  index of first directory entry to write
+ * @param count  count of directory entries to write
+ * @param result  result of acknowledge, 0=fail, 1=good
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_flexifunction_directory_ack_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, uint8_t directory_type, uint8_t start_index, uint8_t count, uint16_t result)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_ACK_LEN];
+    _mav_put_uint16_t(buf, 0, result);
+    _mav_put_uint8_t(buf, 2, target_system);
+    _mav_put_uint8_t(buf, 3, target_component);
+    _mav_put_uint8_t(buf, 4, directory_type);
+    _mav_put_uint8_t(buf, 5, start_index);
+    _mav_put_uint8_t(buf, 6, count);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_ACK_LEN);
+#else
+    mavlink_flexifunction_directory_ack_t packet;
+    packet.result = result;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+    packet.directory_type = directory_type;
+    packet.start_index = start_index;
+    packet.count = count;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_ACK_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_ACK;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_ACK_MIN_LEN, MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_ACK_LEN, MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_ACK_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_ACK_MIN_LEN, MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_ACK_LEN);
+#endif
+}
+
+/**
  * @brief Pack a flexifunction_directory_ack message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -162,6 +210,20 @@ static inline uint16_t mavlink_msg_flexifunction_directory_ack_encode(uint8_t sy
 static inline uint16_t mavlink_msg_flexifunction_directory_ack_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_flexifunction_directory_ack_t* flexifunction_directory_ack)
 {
     return mavlink_msg_flexifunction_directory_ack_pack_chan(system_id, component_id, chan, msg, flexifunction_directory_ack->target_system, flexifunction_directory_ack->target_component, flexifunction_directory_ack->directory_type, flexifunction_directory_ack->start_index, flexifunction_directory_ack->count, flexifunction_directory_ack->result);
+}
+
+/**
+ * @brief Encode a flexifunction_directory_ack struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param flexifunction_directory_ack C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_flexifunction_directory_ack_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_flexifunction_directory_ack_t* flexifunction_directory_ack)
+{
+    return mavlink_msg_flexifunction_directory_ack_pack_status(system_id, component_id, _status, msg,  flexifunction_directory_ack->target_system, flexifunction_directory_ack->target_component, flexifunction_directory_ack->directory_type, flexifunction_directory_ack->start_index, flexifunction_directory_ack->count, flexifunction_directory_ack->result);
 }
 
 /**

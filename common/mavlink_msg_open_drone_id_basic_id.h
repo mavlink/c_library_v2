@@ -93,6 +93,52 @@ static inline uint16_t mavlink_msg_open_drone_id_basic_id_pack(uint8_t system_id
 }
 
 /**
+ * @brief Pack a open_drone_id_basic_id message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  System ID (0 for broadcast).
+ * @param target_component  Component ID (0 for broadcast).
+ * @param id_or_mac  Only used for drone ID data received from other UAs. See detailed description at https://mavlink.io/en/services/opendroneid.html. 
+ * @param id_type  Indicates the format for the uas_id field of this message.
+ * @param ua_type  Indicates the type of UA (Unmanned Aircraft).
+ * @param uas_id  UAS (Unmanned Aircraft System) ID following the format specified by id_type. Shall be filled with nulls in the unused portion of the field.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_open_drone_id_basic_id_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, const uint8_t *id_or_mac, uint8_t id_type, uint8_t ua_type, const uint8_t *uas_id)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_OPEN_DRONE_ID_BASIC_ID_LEN];
+    _mav_put_uint8_t(buf, 0, target_system);
+    _mav_put_uint8_t(buf, 1, target_component);
+    _mav_put_uint8_t(buf, 22, id_type);
+    _mav_put_uint8_t(buf, 23, ua_type);
+    _mav_put_uint8_t_array(buf, 2, id_or_mac, 20);
+    _mav_put_uint8_t_array(buf, 24, uas_id, 20);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_OPEN_DRONE_ID_BASIC_ID_LEN);
+#else
+    mavlink_open_drone_id_basic_id_t packet;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+    packet.id_type = id_type;
+    packet.ua_type = ua_type;
+    mav_array_memcpy(packet.id_or_mac, id_or_mac, sizeof(uint8_t)*20);
+    mav_array_memcpy(packet.uas_id, uas_id, sizeof(uint8_t)*20);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_OPEN_DRONE_ID_BASIC_ID_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_OPEN_DRONE_ID_BASIC_ID;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_OPEN_DRONE_ID_BASIC_ID_MIN_LEN, MAVLINK_MSG_ID_OPEN_DRONE_ID_BASIC_ID_LEN, MAVLINK_MSG_ID_OPEN_DRONE_ID_BASIC_ID_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_OPEN_DRONE_ID_BASIC_ID_MIN_LEN, MAVLINK_MSG_ID_OPEN_DRONE_ID_BASIC_ID_LEN);
+#endif
+}
+
+/**
  * @brief Pack a open_drone_id_basic_id message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -159,6 +205,20 @@ static inline uint16_t mavlink_msg_open_drone_id_basic_id_encode(uint8_t system_
 static inline uint16_t mavlink_msg_open_drone_id_basic_id_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_open_drone_id_basic_id_t* open_drone_id_basic_id)
 {
     return mavlink_msg_open_drone_id_basic_id_pack_chan(system_id, component_id, chan, msg, open_drone_id_basic_id->target_system, open_drone_id_basic_id->target_component, open_drone_id_basic_id->id_or_mac, open_drone_id_basic_id->id_type, open_drone_id_basic_id->ua_type, open_drone_id_basic_id->uas_id);
+}
+
+/**
+ * @brief Encode a open_drone_id_basic_id struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param open_drone_id_basic_id C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_open_drone_id_basic_id_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_open_drone_id_basic_id_t* open_drone_id_basic_id)
+{
+    return mavlink_msg_open_drone_id_basic_id_pack_status(system_id, component_id, _status, msg,  open_drone_id_basic_id->target_system, open_drone_id_basic_id->target_component, open_drone_id_basic_id->id_or_mac, open_drone_id_basic_id->id_type, open_drone_id_basic_id->ua_type, open_drone_id_basic_id->uas_id);
 }
 
 /**

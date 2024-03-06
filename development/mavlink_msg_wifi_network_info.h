@@ -86,6 +86,49 @@ static inline uint16_t mavlink_msg_wifi_network_info_pack(uint8_t system_id, uin
 }
 
 /**
+ * @brief Pack a wifi_network_info message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param ssid  Name of Wi-Fi network (SSID).
+ * @param channel_id  WiFi network operating channel ID. Set to 0 if unknown or unidentified.
+ * @param signal_quality [%] WiFi network signal quality.
+ * @param data_rate [MiB/s] WiFi network data rate. Set to UINT16_MAX if data_rate information is not supplied.
+ * @param security  WiFi network security type.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_wifi_network_info_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               const char *ssid, uint8_t channel_id, uint8_t signal_quality, uint16_t data_rate, uint8_t security)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_WIFI_NETWORK_INFO_LEN];
+    _mav_put_uint16_t(buf, 0, data_rate);
+    _mav_put_uint8_t(buf, 34, channel_id);
+    _mav_put_uint8_t(buf, 35, signal_quality);
+    _mav_put_uint8_t(buf, 36, security);
+    _mav_put_char_array(buf, 2, ssid, 32);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_WIFI_NETWORK_INFO_LEN);
+#else
+    mavlink_wifi_network_info_t packet;
+    packet.data_rate = data_rate;
+    packet.channel_id = channel_id;
+    packet.signal_quality = signal_quality;
+    packet.security = security;
+    mav_array_memcpy(packet.ssid, ssid, sizeof(char)*32);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_WIFI_NETWORK_INFO_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_WIFI_NETWORK_INFO;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_WIFI_NETWORK_INFO_MIN_LEN, MAVLINK_MSG_ID_WIFI_NETWORK_INFO_LEN, MAVLINK_MSG_ID_WIFI_NETWORK_INFO_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_WIFI_NETWORK_INFO_MIN_LEN, MAVLINK_MSG_ID_WIFI_NETWORK_INFO_LEN);
+#endif
+}
+
+/**
  * @brief Pack a wifi_network_info message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -149,6 +192,20 @@ static inline uint16_t mavlink_msg_wifi_network_info_encode(uint8_t system_id, u
 static inline uint16_t mavlink_msg_wifi_network_info_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_wifi_network_info_t* wifi_network_info)
 {
     return mavlink_msg_wifi_network_info_pack_chan(system_id, component_id, chan, msg, wifi_network_info->ssid, wifi_network_info->channel_id, wifi_network_info->signal_quality, wifi_network_info->data_rate, wifi_network_info->security);
+}
+
+/**
+ * @brief Encode a wifi_network_info struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param wifi_network_info C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_wifi_network_info_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_wifi_network_info_t* wifi_network_info)
+{
+    return mavlink_msg_wifi_network_info_pack_status(system_id, component_id, _status, msg,  wifi_network_info->ssid, wifi_network_info->channel_id, wifi_network_info->signal_quality, wifi_network_info->data_rate, wifi_network_info->security);
 }
 
 /**

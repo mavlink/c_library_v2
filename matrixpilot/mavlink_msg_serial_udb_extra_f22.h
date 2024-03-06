@@ -94,6 +94,54 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f22_pack(uint8_t system_id, 
 }
 
 /**
+ * @brief Pack a serial_udb_extra_f22 message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param sue_accel_x_at_calibration  SUE X accelerometer at calibration time
+ * @param sue_accel_y_at_calibration  SUE Y accelerometer at calibration time
+ * @param sue_accel_z_at_calibration  SUE Z accelerometer at calibration time
+ * @param sue_gyro_x_at_calibration  SUE X gyro at calibration time
+ * @param sue_gyro_y_at_calibration  SUE Y gyro at calibration time
+ * @param sue_gyro_z_at_calibration  SUE Z gyro at calibration time
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f22_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               int16_t sue_accel_x_at_calibration, int16_t sue_accel_y_at_calibration, int16_t sue_accel_z_at_calibration, int16_t sue_gyro_x_at_calibration, int16_t sue_gyro_y_at_calibration, int16_t sue_gyro_z_at_calibration)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F22_LEN];
+    _mav_put_int16_t(buf, 0, sue_accel_x_at_calibration);
+    _mav_put_int16_t(buf, 2, sue_accel_y_at_calibration);
+    _mav_put_int16_t(buf, 4, sue_accel_z_at_calibration);
+    _mav_put_int16_t(buf, 6, sue_gyro_x_at_calibration);
+    _mav_put_int16_t(buf, 8, sue_gyro_y_at_calibration);
+    _mav_put_int16_t(buf, 10, sue_gyro_z_at_calibration);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F22_LEN);
+#else
+    mavlink_serial_udb_extra_f22_t packet;
+    packet.sue_accel_x_at_calibration = sue_accel_x_at_calibration;
+    packet.sue_accel_y_at_calibration = sue_accel_y_at_calibration;
+    packet.sue_accel_z_at_calibration = sue_accel_z_at_calibration;
+    packet.sue_gyro_x_at_calibration = sue_gyro_x_at_calibration;
+    packet.sue_gyro_y_at_calibration = sue_gyro_y_at_calibration;
+    packet.sue_gyro_z_at_calibration = sue_gyro_z_at_calibration;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F22_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F22;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F22_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F22_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F22_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F22_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F22_LEN);
+#endif
+}
+
+/**
  * @brief Pack a serial_udb_extra_f22 message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -162,6 +210,20 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f22_encode(uint8_t system_id
 static inline uint16_t mavlink_msg_serial_udb_extra_f22_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_serial_udb_extra_f22_t* serial_udb_extra_f22)
 {
     return mavlink_msg_serial_udb_extra_f22_pack_chan(system_id, component_id, chan, msg, serial_udb_extra_f22->sue_accel_x_at_calibration, serial_udb_extra_f22->sue_accel_y_at_calibration, serial_udb_extra_f22->sue_accel_z_at_calibration, serial_udb_extra_f22->sue_gyro_x_at_calibration, serial_udb_extra_f22->sue_gyro_y_at_calibration, serial_udb_extra_f22->sue_gyro_z_at_calibration);
+}
+
+/**
+ * @brief Encode a serial_udb_extra_f22 struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param serial_udb_extra_f22 C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f22_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_serial_udb_extra_f22_t* serial_udb_extra_f22)
+{
+    return mavlink_msg_serial_udb_extra_f22_pack_status(system_id, component_id, _status, msg,  serial_udb_extra_f22->sue_accel_x_at_calibration, serial_udb_extra_f22->sue_accel_y_at_calibration, serial_udb_extra_f22->sue_accel_z_at_calibration, serial_udb_extra_f22->sue_gyro_x_at_calibration, serial_udb_extra_f22->sue_gyro_y_at_calibration, serial_udb_extra_f22->sue_gyro_z_at_calibration);
 }
 
 /**

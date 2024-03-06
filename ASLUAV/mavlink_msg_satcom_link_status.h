@@ -106,6 +106,60 @@ static inline uint16_t mavlink_msg_satcom_link_status_pack(uint8_t system_id, ui
 }
 
 /**
+ * @brief Pack a satcom_link_status message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param timestamp [us] Timestamp
+ * @param last_heartbeat [us] Timestamp of the last successful sbd session
+ * @param failed_sessions  Number of failed sessions
+ * @param successful_sessions  Number of successful sessions
+ * @param signal_quality  Signal quality
+ * @param ring_pending  Ring call pending
+ * @param tx_session_pending  Transmission session pending
+ * @param rx_session_pending  Receiving session pending
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_satcom_link_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint64_t timestamp, uint64_t last_heartbeat, uint16_t failed_sessions, uint16_t successful_sessions, uint8_t signal_quality, uint8_t ring_pending, uint8_t tx_session_pending, uint8_t rx_session_pending)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_SATCOM_LINK_STATUS_LEN];
+    _mav_put_uint64_t(buf, 0, timestamp);
+    _mav_put_uint64_t(buf, 8, last_heartbeat);
+    _mav_put_uint16_t(buf, 16, failed_sessions);
+    _mav_put_uint16_t(buf, 18, successful_sessions);
+    _mav_put_uint8_t(buf, 20, signal_quality);
+    _mav_put_uint8_t(buf, 21, ring_pending);
+    _mav_put_uint8_t(buf, 22, tx_session_pending);
+    _mav_put_uint8_t(buf, 23, rx_session_pending);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SATCOM_LINK_STATUS_LEN);
+#else
+    mavlink_satcom_link_status_t packet;
+    packet.timestamp = timestamp;
+    packet.last_heartbeat = last_heartbeat;
+    packet.failed_sessions = failed_sessions;
+    packet.successful_sessions = successful_sessions;
+    packet.signal_quality = signal_quality;
+    packet.ring_pending = ring_pending;
+    packet.tx_session_pending = tx_session_pending;
+    packet.rx_session_pending = rx_session_pending;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SATCOM_LINK_STATUS_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_SATCOM_LINK_STATUS;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SATCOM_LINK_STATUS_MIN_LEN, MAVLINK_MSG_ID_SATCOM_LINK_STATUS_LEN, MAVLINK_MSG_ID_SATCOM_LINK_STATUS_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SATCOM_LINK_STATUS_MIN_LEN, MAVLINK_MSG_ID_SATCOM_LINK_STATUS_LEN);
+#endif
+}
+
+/**
  * @brief Pack a satcom_link_status message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -180,6 +234,20 @@ static inline uint16_t mavlink_msg_satcom_link_status_encode(uint8_t system_id, 
 static inline uint16_t mavlink_msg_satcom_link_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_satcom_link_status_t* satcom_link_status)
 {
     return mavlink_msg_satcom_link_status_pack_chan(system_id, component_id, chan, msg, satcom_link_status->timestamp, satcom_link_status->last_heartbeat, satcom_link_status->failed_sessions, satcom_link_status->successful_sessions, satcom_link_status->signal_quality, satcom_link_status->ring_pending, satcom_link_status->tx_session_pending, satcom_link_status->rx_session_pending);
+}
+
+/**
+ * @brief Encode a satcom_link_status struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param satcom_link_status C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_satcom_link_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_satcom_link_status_t* satcom_link_status)
+{
+    return mavlink_msg_satcom_link_status_pack_status(system_id, component_id, _status, msg,  satcom_link_status->timestamp, satcom_link_status->last_heartbeat, satcom_link_status->failed_sessions, satcom_link_status->successful_sessions, satcom_link_status->signal_quality, satcom_link_status->ring_pending, satcom_link_status->tx_session_pending, satcom_link_status->rx_session_pending);
 }
 
 /**

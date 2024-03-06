@@ -104,6 +104,58 @@ static inline uint16_t mavlink_msg_herelink_video_stream_information_pack(uint8_
 }
 
 /**
+ * @brief Pack a herelink_video_stream_information message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param camera_id  Video Stream ID (1 for first, 2 for second, etc.)
+ * @param status  Number of streams available.
+ * @param framerate [Hz] Frame rate.
+ * @param resolution_h [pix] Horizontal resolution.
+ * @param resolution_v [pix] Vertical resolution.
+ * @param bitrate [bits/s] Bit rate.
+ * @param rotation [deg] Video image rotation clockwise.
+ * @param uri  Video stream URI (TCP or RTSP URI ground station should connect to) or port number (UDP port ground station should listen to).
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_herelink_video_stream_information_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t camera_id, uint8_t status, float framerate, uint16_t resolution_h, uint16_t resolution_v, uint32_t bitrate, uint16_t rotation, const char *uri)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_LEN];
+    _mav_put_float(buf, 0, framerate);
+    _mav_put_uint32_t(buf, 4, bitrate);
+    _mav_put_uint16_t(buf, 8, resolution_h);
+    _mav_put_uint16_t(buf, 10, resolution_v);
+    _mav_put_uint16_t(buf, 12, rotation);
+    _mav_put_uint8_t(buf, 14, camera_id);
+    _mav_put_uint8_t(buf, 15, status);
+    _mav_put_char_array(buf, 16, uri, 230);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_LEN);
+#else
+    mavlink_herelink_video_stream_information_t packet;
+    packet.framerate = framerate;
+    packet.bitrate = bitrate;
+    packet.resolution_h = resolution_h;
+    packet.resolution_v = resolution_v;
+    packet.rotation = rotation;
+    packet.camera_id = camera_id;
+    packet.status = status;
+    mav_array_memcpy(packet.uri, uri, sizeof(char)*230);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_LEN, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_LEN);
+#endif
+}
+
+/**
  * @brief Pack a herelink_video_stream_information message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -176,6 +228,20 @@ static inline uint16_t mavlink_msg_herelink_video_stream_information_encode(uint
 static inline uint16_t mavlink_msg_herelink_video_stream_information_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_herelink_video_stream_information_t* herelink_video_stream_information)
 {
     return mavlink_msg_herelink_video_stream_information_pack_chan(system_id, component_id, chan, msg, herelink_video_stream_information->camera_id, herelink_video_stream_information->status, herelink_video_stream_information->framerate, herelink_video_stream_information->resolution_h, herelink_video_stream_information->resolution_v, herelink_video_stream_information->bitrate, herelink_video_stream_information->rotation, herelink_video_stream_information->uri);
+}
+
+/**
+ * @brief Encode a herelink_video_stream_information struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param herelink_video_stream_information C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_herelink_video_stream_information_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_herelink_video_stream_information_t* herelink_video_stream_information)
+{
+    return mavlink_msg_herelink_video_stream_information_pack_status(system_id, component_id, _status, msg,  herelink_video_stream_information->camera_id, herelink_video_stream_information->status, herelink_video_stream_information->framerate, herelink_video_stream_information->resolution_h, herelink_video_stream_information->resolution_v, herelink_video_stream_information->bitrate, herelink_video_stream_information->rotation, herelink_video_stream_information->uri);
 }
 
 /**

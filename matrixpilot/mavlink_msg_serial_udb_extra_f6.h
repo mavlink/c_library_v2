@@ -88,6 +88,51 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f6_pack(uint8_t system_id, u
 }
 
 /**
+ * @brief Pack a serial_udb_extra_f6 message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param sue_PITCHGAIN  Serial UDB Extra PITCHGAIN Proportional Control
+ * @param sue_PITCHKD  Serial UDB Extra Pitch Rate Control
+ * @param sue_RUDDER_ELEV_MIX  Serial UDB Extra Rudder to Elevator Mix
+ * @param sue_ROLL_ELEV_MIX  Serial UDB Extra Roll to Elevator Mix
+ * @param sue_ELEVATOR_BOOST  Gain For Boosting Manual Elevator control When Plane Stabilized
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f6_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               float sue_PITCHGAIN, float sue_PITCHKD, float sue_RUDDER_ELEV_MIX, float sue_ROLL_ELEV_MIX, float sue_ELEVATOR_BOOST)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F6_LEN];
+    _mav_put_float(buf, 0, sue_PITCHGAIN);
+    _mav_put_float(buf, 4, sue_PITCHKD);
+    _mav_put_float(buf, 8, sue_RUDDER_ELEV_MIX);
+    _mav_put_float(buf, 12, sue_ROLL_ELEV_MIX);
+    _mav_put_float(buf, 16, sue_ELEVATOR_BOOST);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F6_LEN);
+#else
+    mavlink_serial_udb_extra_f6_t packet;
+    packet.sue_PITCHGAIN = sue_PITCHGAIN;
+    packet.sue_PITCHKD = sue_PITCHKD;
+    packet.sue_RUDDER_ELEV_MIX = sue_RUDDER_ELEV_MIX;
+    packet.sue_ROLL_ELEV_MIX = sue_ROLL_ELEV_MIX;
+    packet.sue_ELEVATOR_BOOST = sue_ELEVATOR_BOOST;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F6_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F6;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F6_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F6_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F6_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F6_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F6_LEN);
+#endif
+}
+
+/**
  * @brief Pack a serial_udb_extra_f6 message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -153,6 +198,20 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f6_encode(uint8_t system_id,
 static inline uint16_t mavlink_msg_serial_udb_extra_f6_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_serial_udb_extra_f6_t* serial_udb_extra_f6)
 {
     return mavlink_msg_serial_udb_extra_f6_pack_chan(system_id, component_id, chan, msg, serial_udb_extra_f6->sue_PITCHGAIN, serial_udb_extra_f6->sue_PITCHKD, serial_udb_extra_f6->sue_RUDDER_ELEV_MIX, serial_udb_extra_f6->sue_ROLL_ELEV_MIX, serial_udb_extra_f6->sue_ELEVATOR_BOOST);
+}
+
+/**
+ * @brief Encode a serial_udb_extra_f6 struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param serial_udb_extra_f6 C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f6_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_serial_udb_extra_f6_t* serial_udb_extra_f6)
+{
+    return mavlink_msg_serial_udb_extra_f6_pack_status(system_id, component_id, _status, msg,  serial_udb_extra_f6->sue_PITCHGAIN, serial_udb_extra_f6->sue_PITCHKD, serial_udb_extra_f6->sue_RUDDER_ELEV_MIX, serial_udb_extra_f6->sue_ROLL_ELEV_MIX, serial_udb_extra_f6->sue_ELEVATOR_BOOST);
 }
 
 /**

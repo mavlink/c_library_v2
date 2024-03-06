@@ -358,6 +358,186 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_b_pack(uint8_t system_id,
 }
 
 /**
+ * @brief Pack a serial_udb_extra_f2_b message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param sue_time  Serial UDB Extra Time
+ * @param sue_pwm_input_1  Serial UDB Extra PWM Input Channel 1
+ * @param sue_pwm_input_2  Serial UDB Extra PWM Input Channel 2
+ * @param sue_pwm_input_3  Serial UDB Extra PWM Input Channel 3
+ * @param sue_pwm_input_4  Serial UDB Extra PWM Input Channel 4
+ * @param sue_pwm_input_5  Serial UDB Extra PWM Input Channel 5
+ * @param sue_pwm_input_6  Serial UDB Extra PWM Input Channel 6
+ * @param sue_pwm_input_7  Serial UDB Extra PWM Input Channel 7
+ * @param sue_pwm_input_8  Serial UDB Extra PWM Input Channel 8
+ * @param sue_pwm_input_9  Serial UDB Extra PWM Input Channel 9
+ * @param sue_pwm_input_10  Serial UDB Extra PWM Input Channel 10
+ * @param sue_pwm_input_11  Serial UDB Extra PWM Input Channel 11
+ * @param sue_pwm_input_12  Serial UDB Extra PWM Input Channel 12
+ * @param sue_pwm_output_1  Serial UDB Extra PWM Output Channel 1
+ * @param sue_pwm_output_2  Serial UDB Extra PWM Output Channel 2
+ * @param sue_pwm_output_3  Serial UDB Extra PWM Output Channel 3
+ * @param sue_pwm_output_4  Serial UDB Extra PWM Output Channel 4
+ * @param sue_pwm_output_5  Serial UDB Extra PWM Output Channel 5
+ * @param sue_pwm_output_6  Serial UDB Extra PWM Output Channel 6
+ * @param sue_pwm_output_7  Serial UDB Extra PWM Output Channel 7
+ * @param sue_pwm_output_8  Serial UDB Extra PWM Output Channel 8
+ * @param sue_pwm_output_9  Serial UDB Extra PWM Output Channel 9
+ * @param sue_pwm_output_10  Serial UDB Extra PWM Output Channel 10
+ * @param sue_pwm_output_11  Serial UDB Extra PWM Output Channel 11
+ * @param sue_pwm_output_12  Serial UDB Extra PWM Output Channel 12
+ * @param sue_imu_location_x  Serial UDB Extra IMU Location X
+ * @param sue_imu_location_y  Serial UDB Extra IMU Location Y
+ * @param sue_imu_location_z  Serial UDB Extra IMU Location Z
+ * @param sue_location_error_earth_x  Serial UDB Location Error Earth X
+ * @param sue_location_error_earth_y  Serial UDB Location Error Earth Y
+ * @param sue_location_error_earth_z  Serial UDB Location Error Earth Z
+ * @param sue_flags  Serial UDB Extra Status Flags
+ * @param sue_osc_fails  Serial UDB Extra Oscillator Failure Count
+ * @param sue_imu_velocity_x  Serial UDB Extra IMU Velocity X
+ * @param sue_imu_velocity_y  Serial UDB Extra IMU Velocity Y
+ * @param sue_imu_velocity_z  Serial UDB Extra IMU Velocity Z
+ * @param sue_waypoint_goal_x  Serial UDB Extra Current Waypoint Goal X
+ * @param sue_waypoint_goal_y  Serial UDB Extra Current Waypoint Goal Y
+ * @param sue_waypoint_goal_z  Serial UDB Extra Current Waypoint Goal Z
+ * @param sue_aero_x  Aeroforce in UDB X Axis
+ * @param sue_aero_y  Aeroforce in UDB Y Axis
+ * @param sue_aero_z  Aeroforce in UDB Z axis
+ * @param sue_barom_temp  SUE barometer temperature
+ * @param sue_barom_press  SUE barometer pressure
+ * @param sue_barom_alt  SUE barometer altitude
+ * @param sue_bat_volt  SUE battery voltage
+ * @param sue_bat_amp  SUE battery current
+ * @param sue_bat_amp_hours  SUE battery milli amp hours used
+ * @param sue_desired_height  Sue autopilot desired height
+ * @param sue_memory_stack_free  Serial UDB Extra Stack Memory Free
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f2_b_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t sue_time, int16_t sue_pwm_input_1, int16_t sue_pwm_input_2, int16_t sue_pwm_input_3, int16_t sue_pwm_input_4, int16_t sue_pwm_input_5, int16_t sue_pwm_input_6, int16_t sue_pwm_input_7, int16_t sue_pwm_input_8, int16_t sue_pwm_input_9, int16_t sue_pwm_input_10, int16_t sue_pwm_input_11, int16_t sue_pwm_input_12, int16_t sue_pwm_output_1, int16_t sue_pwm_output_2, int16_t sue_pwm_output_3, int16_t sue_pwm_output_4, int16_t sue_pwm_output_5, int16_t sue_pwm_output_6, int16_t sue_pwm_output_7, int16_t sue_pwm_output_8, int16_t sue_pwm_output_9, int16_t sue_pwm_output_10, int16_t sue_pwm_output_11, int16_t sue_pwm_output_12, int16_t sue_imu_location_x, int16_t sue_imu_location_y, int16_t sue_imu_location_z, int16_t sue_location_error_earth_x, int16_t sue_location_error_earth_y, int16_t sue_location_error_earth_z, uint32_t sue_flags, int16_t sue_osc_fails, int16_t sue_imu_velocity_x, int16_t sue_imu_velocity_y, int16_t sue_imu_velocity_z, int16_t sue_waypoint_goal_x, int16_t sue_waypoint_goal_y, int16_t sue_waypoint_goal_z, int16_t sue_aero_x, int16_t sue_aero_y, int16_t sue_aero_z, int16_t sue_barom_temp, int32_t sue_barom_press, int32_t sue_barom_alt, int16_t sue_bat_volt, int16_t sue_bat_amp, int16_t sue_bat_amp_hours, int16_t sue_desired_height, int16_t sue_memory_stack_free)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_B_LEN];
+    _mav_put_uint32_t(buf, 0, sue_time);
+    _mav_put_uint32_t(buf, 4, sue_flags);
+    _mav_put_int32_t(buf, 8, sue_barom_press);
+    _mav_put_int32_t(buf, 12, sue_barom_alt);
+    _mav_put_int16_t(buf, 16, sue_pwm_input_1);
+    _mav_put_int16_t(buf, 18, sue_pwm_input_2);
+    _mav_put_int16_t(buf, 20, sue_pwm_input_3);
+    _mav_put_int16_t(buf, 22, sue_pwm_input_4);
+    _mav_put_int16_t(buf, 24, sue_pwm_input_5);
+    _mav_put_int16_t(buf, 26, sue_pwm_input_6);
+    _mav_put_int16_t(buf, 28, sue_pwm_input_7);
+    _mav_put_int16_t(buf, 30, sue_pwm_input_8);
+    _mav_put_int16_t(buf, 32, sue_pwm_input_9);
+    _mav_put_int16_t(buf, 34, sue_pwm_input_10);
+    _mav_put_int16_t(buf, 36, sue_pwm_input_11);
+    _mav_put_int16_t(buf, 38, sue_pwm_input_12);
+    _mav_put_int16_t(buf, 40, sue_pwm_output_1);
+    _mav_put_int16_t(buf, 42, sue_pwm_output_2);
+    _mav_put_int16_t(buf, 44, sue_pwm_output_3);
+    _mav_put_int16_t(buf, 46, sue_pwm_output_4);
+    _mav_put_int16_t(buf, 48, sue_pwm_output_5);
+    _mav_put_int16_t(buf, 50, sue_pwm_output_6);
+    _mav_put_int16_t(buf, 52, sue_pwm_output_7);
+    _mav_put_int16_t(buf, 54, sue_pwm_output_8);
+    _mav_put_int16_t(buf, 56, sue_pwm_output_9);
+    _mav_put_int16_t(buf, 58, sue_pwm_output_10);
+    _mav_put_int16_t(buf, 60, sue_pwm_output_11);
+    _mav_put_int16_t(buf, 62, sue_pwm_output_12);
+    _mav_put_int16_t(buf, 64, sue_imu_location_x);
+    _mav_put_int16_t(buf, 66, sue_imu_location_y);
+    _mav_put_int16_t(buf, 68, sue_imu_location_z);
+    _mav_put_int16_t(buf, 70, sue_location_error_earth_x);
+    _mav_put_int16_t(buf, 72, sue_location_error_earth_y);
+    _mav_put_int16_t(buf, 74, sue_location_error_earth_z);
+    _mav_put_int16_t(buf, 76, sue_osc_fails);
+    _mav_put_int16_t(buf, 78, sue_imu_velocity_x);
+    _mav_put_int16_t(buf, 80, sue_imu_velocity_y);
+    _mav_put_int16_t(buf, 82, sue_imu_velocity_z);
+    _mav_put_int16_t(buf, 84, sue_waypoint_goal_x);
+    _mav_put_int16_t(buf, 86, sue_waypoint_goal_y);
+    _mav_put_int16_t(buf, 88, sue_waypoint_goal_z);
+    _mav_put_int16_t(buf, 90, sue_aero_x);
+    _mav_put_int16_t(buf, 92, sue_aero_y);
+    _mav_put_int16_t(buf, 94, sue_aero_z);
+    _mav_put_int16_t(buf, 96, sue_barom_temp);
+    _mav_put_int16_t(buf, 98, sue_bat_volt);
+    _mav_put_int16_t(buf, 100, sue_bat_amp);
+    _mav_put_int16_t(buf, 102, sue_bat_amp_hours);
+    _mav_put_int16_t(buf, 104, sue_desired_height);
+    _mav_put_int16_t(buf, 106, sue_memory_stack_free);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_B_LEN);
+#else
+    mavlink_serial_udb_extra_f2_b_t packet;
+    packet.sue_time = sue_time;
+    packet.sue_flags = sue_flags;
+    packet.sue_barom_press = sue_barom_press;
+    packet.sue_barom_alt = sue_barom_alt;
+    packet.sue_pwm_input_1 = sue_pwm_input_1;
+    packet.sue_pwm_input_2 = sue_pwm_input_2;
+    packet.sue_pwm_input_3 = sue_pwm_input_3;
+    packet.sue_pwm_input_4 = sue_pwm_input_4;
+    packet.sue_pwm_input_5 = sue_pwm_input_5;
+    packet.sue_pwm_input_6 = sue_pwm_input_6;
+    packet.sue_pwm_input_7 = sue_pwm_input_7;
+    packet.sue_pwm_input_8 = sue_pwm_input_8;
+    packet.sue_pwm_input_9 = sue_pwm_input_9;
+    packet.sue_pwm_input_10 = sue_pwm_input_10;
+    packet.sue_pwm_input_11 = sue_pwm_input_11;
+    packet.sue_pwm_input_12 = sue_pwm_input_12;
+    packet.sue_pwm_output_1 = sue_pwm_output_1;
+    packet.sue_pwm_output_2 = sue_pwm_output_2;
+    packet.sue_pwm_output_3 = sue_pwm_output_3;
+    packet.sue_pwm_output_4 = sue_pwm_output_4;
+    packet.sue_pwm_output_5 = sue_pwm_output_5;
+    packet.sue_pwm_output_6 = sue_pwm_output_6;
+    packet.sue_pwm_output_7 = sue_pwm_output_7;
+    packet.sue_pwm_output_8 = sue_pwm_output_8;
+    packet.sue_pwm_output_9 = sue_pwm_output_9;
+    packet.sue_pwm_output_10 = sue_pwm_output_10;
+    packet.sue_pwm_output_11 = sue_pwm_output_11;
+    packet.sue_pwm_output_12 = sue_pwm_output_12;
+    packet.sue_imu_location_x = sue_imu_location_x;
+    packet.sue_imu_location_y = sue_imu_location_y;
+    packet.sue_imu_location_z = sue_imu_location_z;
+    packet.sue_location_error_earth_x = sue_location_error_earth_x;
+    packet.sue_location_error_earth_y = sue_location_error_earth_y;
+    packet.sue_location_error_earth_z = sue_location_error_earth_z;
+    packet.sue_osc_fails = sue_osc_fails;
+    packet.sue_imu_velocity_x = sue_imu_velocity_x;
+    packet.sue_imu_velocity_y = sue_imu_velocity_y;
+    packet.sue_imu_velocity_z = sue_imu_velocity_z;
+    packet.sue_waypoint_goal_x = sue_waypoint_goal_x;
+    packet.sue_waypoint_goal_y = sue_waypoint_goal_y;
+    packet.sue_waypoint_goal_z = sue_waypoint_goal_z;
+    packet.sue_aero_x = sue_aero_x;
+    packet.sue_aero_y = sue_aero_y;
+    packet.sue_aero_z = sue_aero_z;
+    packet.sue_barom_temp = sue_barom_temp;
+    packet.sue_bat_volt = sue_bat_volt;
+    packet.sue_bat_amp = sue_bat_amp;
+    packet.sue_bat_amp_hours = sue_bat_amp_hours;
+    packet.sue_desired_height = sue_desired_height;
+    packet.sue_memory_stack_free = sue_memory_stack_free;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_B_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_B;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_B_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_B_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_B_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_B_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_B_LEN);
+#endif
+}
+
+/**
  * @brief Pack a serial_udb_extra_f2_b message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -558,6 +738,20 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_b_encode(uint8_t system_i
 static inline uint16_t mavlink_msg_serial_udb_extra_f2_b_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_serial_udb_extra_f2_b_t* serial_udb_extra_f2_b)
 {
     return mavlink_msg_serial_udb_extra_f2_b_pack_chan(system_id, component_id, chan, msg, serial_udb_extra_f2_b->sue_time, serial_udb_extra_f2_b->sue_pwm_input_1, serial_udb_extra_f2_b->sue_pwm_input_2, serial_udb_extra_f2_b->sue_pwm_input_3, serial_udb_extra_f2_b->sue_pwm_input_4, serial_udb_extra_f2_b->sue_pwm_input_5, serial_udb_extra_f2_b->sue_pwm_input_6, serial_udb_extra_f2_b->sue_pwm_input_7, serial_udb_extra_f2_b->sue_pwm_input_8, serial_udb_extra_f2_b->sue_pwm_input_9, serial_udb_extra_f2_b->sue_pwm_input_10, serial_udb_extra_f2_b->sue_pwm_input_11, serial_udb_extra_f2_b->sue_pwm_input_12, serial_udb_extra_f2_b->sue_pwm_output_1, serial_udb_extra_f2_b->sue_pwm_output_2, serial_udb_extra_f2_b->sue_pwm_output_3, serial_udb_extra_f2_b->sue_pwm_output_4, serial_udb_extra_f2_b->sue_pwm_output_5, serial_udb_extra_f2_b->sue_pwm_output_6, serial_udb_extra_f2_b->sue_pwm_output_7, serial_udb_extra_f2_b->sue_pwm_output_8, serial_udb_extra_f2_b->sue_pwm_output_9, serial_udb_extra_f2_b->sue_pwm_output_10, serial_udb_extra_f2_b->sue_pwm_output_11, serial_udb_extra_f2_b->sue_pwm_output_12, serial_udb_extra_f2_b->sue_imu_location_x, serial_udb_extra_f2_b->sue_imu_location_y, serial_udb_extra_f2_b->sue_imu_location_z, serial_udb_extra_f2_b->sue_location_error_earth_x, serial_udb_extra_f2_b->sue_location_error_earth_y, serial_udb_extra_f2_b->sue_location_error_earth_z, serial_udb_extra_f2_b->sue_flags, serial_udb_extra_f2_b->sue_osc_fails, serial_udb_extra_f2_b->sue_imu_velocity_x, serial_udb_extra_f2_b->sue_imu_velocity_y, serial_udb_extra_f2_b->sue_imu_velocity_z, serial_udb_extra_f2_b->sue_waypoint_goal_x, serial_udb_extra_f2_b->sue_waypoint_goal_y, serial_udb_extra_f2_b->sue_waypoint_goal_z, serial_udb_extra_f2_b->sue_aero_x, serial_udb_extra_f2_b->sue_aero_y, serial_udb_extra_f2_b->sue_aero_z, serial_udb_extra_f2_b->sue_barom_temp, serial_udb_extra_f2_b->sue_barom_press, serial_udb_extra_f2_b->sue_barom_alt, serial_udb_extra_f2_b->sue_bat_volt, serial_udb_extra_f2_b->sue_bat_amp, serial_udb_extra_f2_b->sue_bat_amp_hours, serial_udb_extra_f2_b->sue_desired_height, serial_udb_extra_f2_b->sue_memory_stack_free);
+}
+
+/**
+ * @brief Encode a serial_udb_extra_f2_b struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param serial_udb_extra_f2_b C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f2_b_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_serial_udb_extra_f2_b_t* serial_udb_extra_f2_b)
+{
+    return mavlink_msg_serial_udb_extra_f2_b_pack_status(system_id, component_id, _status, msg,  serial_udb_extra_f2_b->sue_time, serial_udb_extra_f2_b->sue_pwm_input_1, serial_udb_extra_f2_b->sue_pwm_input_2, serial_udb_extra_f2_b->sue_pwm_input_3, serial_udb_extra_f2_b->sue_pwm_input_4, serial_udb_extra_f2_b->sue_pwm_input_5, serial_udb_extra_f2_b->sue_pwm_input_6, serial_udb_extra_f2_b->sue_pwm_input_7, serial_udb_extra_f2_b->sue_pwm_input_8, serial_udb_extra_f2_b->sue_pwm_input_9, serial_udb_extra_f2_b->sue_pwm_input_10, serial_udb_extra_f2_b->sue_pwm_input_11, serial_udb_extra_f2_b->sue_pwm_input_12, serial_udb_extra_f2_b->sue_pwm_output_1, serial_udb_extra_f2_b->sue_pwm_output_2, serial_udb_extra_f2_b->sue_pwm_output_3, serial_udb_extra_f2_b->sue_pwm_output_4, serial_udb_extra_f2_b->sue_pwm_output_5, serial_udb_extra_f2_b->sue_pwm_output_6, serial_udb_extra_f2_b->sue_pwm_output_7, serial_udb_extra_f2_b->sue_pwm_output_8, serial_udb_extra_f2_b->sue_pwm_output_9, serial_udb_extra_f2_b->sue_pwm_output_10, serial_udb_extra_f2_b->sue_pwm_output_11, serial_udb_extra_f2_b->sue_pwm_output_12, serial_udb_extra_f2_b->sue_imu_location_x, serial_udb_extra_f2_b->sue_imu_location_y, serial_udb_extra_f2_b->sue_imu_location_z, serial_udb_extra_f2_b->sue_location_error_earth_x, serial_udb_extra_f2_b->sue_location_error_earth_y, serial_udb_extra_f2_b->sue_location_error_earth_z, serial_udb_extra_f2_b->sue_flags, serial_udb_extra_f2_b->sue_osc_fails, serial_udb_extra_f2_b->sue_imu_velocity_x, serial_udb_extra_f2_b->sue_imu_velocity_y, serial_udb_extra_f2_b->sue_imu_velocity_z, serial_udb_extra_f2_b->sue_waypoint_goal_x, serial_udb_extra_f2_b->sue_waypoint_goal_y, serial_udb_extra_f2_b->sue_waypoint_goal_z, serial_udb_extra_f2_b->sue_aero_x, serial_udb_extra_f2_b->sue_aero_y, serial_udb_extra_f2_b->sue_aero_z, serial_udb_extra_f2_b->sue_barom_temp, serial_udb_extra_f2_b->sue_barom_press, serial_udb_extra_f2_b->sue_barom_alt, serial_udb_extra_f2_b->sue_bat_volt, serial_udb_extra_f2_b->sue_bat_amp, serial_udb_extra_f2_b->sue_bat_amp_hours, serial_udb_extra_f2_b->sue_desired_height, serial_udb_extra_f2_b->sue_memory_stack_free);
 }
 
 /**

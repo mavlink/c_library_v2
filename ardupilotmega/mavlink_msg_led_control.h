@@ -92,6 +92,52 @@ static inline uint16_t mavlink_msg_led_control_pack(uint8_t system_id, uint8_t c
 }
 
 /**
+ * @brief Pack a led_control message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  System ID.
+ * @param target_component  Component ID.
+ * @param instance  Instance (LED instance to control or 255 for all LEDs).
+ * @param pattern  Pattern (see LED_PATTERN_ENUM).
+ * @param custom_len  Custom Byte Length.
+ * @param custom_bytes  Custom Bytes.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_led_control_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, uint8_t instance, uint8_t pattern, uint8_t custom_len, const uint8_t *custom_bytes)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_LED_CONTROL_LEN];
+    _mav_put_uint8_t(buf, 0, target_system);
+    _mav_put_uint8_t(buf, 1, target_component);
+    _mav_put_uint8_t(buf, 2, instance);
+    _mav_put_uint8_t(buf, 3, pattern);
+    _mav_put_uint8_t(buf, 4, custom_len);
+    _mav_put_uint8_t_array(buf, 5, custom_bytes, 24);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_LED_CONTROL_LEN);
+#else
+    mavlink_led_control_t packet;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+    packet.instance = instance;
+    packet.pattern = pattern;
+    packet.custom_len = custom_len;
+    mav_array_memcpy(packet.custom_bytes, custom_bytes, sizeof(uint8_t)*24);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_LED_CONTROL_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_LED_CONTROL;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_LED_CONTROL_MIN_LEN, MAVLINK_MSG_ID_LED_CONTROL_LEN, MAVLINK_MSG_ID_LED_CONTROL_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_LED_CONTROL_MIN_LEN, MAVLINK_MSG_ID_LED_CONTROL_LEN);
+#endif
+}
+
+/**
  * @brief Pack a led_control message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -158,6 +204,20 @@ static inline uint16_t mavlink_msg_led_control_encode(uint8_t system_id, uint8_t
 static inline uint16_t mavlink_msg_led_control_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_led_control_t* led_control)
 {
     return mavlink_msg_led_control_pack_chan(system_id, component_id, chan, msg, led_control->target_system, led_control->target_component, led_control->instance, led_control->pattern, led_control->custom_len, led_control->custom_bytes);
+}
+
+/**
+ * @brief Encode a led_control struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param led_control C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_led_control_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_led_control_t* led_control)
+{
+    return mavlink_msg_led_control_pack_status(system_id, component_id, _status, msg,  led_control->target_system, led_control->target_component, led_control->instance, led_control->pattern, led_control->custom_len, led_control->custom_bytes);
 }
 
 /**

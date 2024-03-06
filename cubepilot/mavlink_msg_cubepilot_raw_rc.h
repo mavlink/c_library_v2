@@ -64,6 +64,39 @@ static inline uint16_t mavlink_msg_cubepilot_raw_rc_pack(uint8_t system_id, uint
 }
 
 /**
+ * @brief Pack a cubepilot_raw_rc message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param rc_raw  
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_cubepilot_raw_rc_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               const uint8_t *rc_raw)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_LEN];
+
+    _mav_put_uint8_t_array(buf, 0, rc_raw, 32);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_LEN);
+#else
+    mavlink_cubepilot_raw_rc_t packet;
+
+    mav_array_memcpy(packet.rc_raw, rc_raw, sizeof(uint8_t)*32);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_CUBEPILOT_RAW_RC;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_MIN_LEN, MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_LEN, MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_MIN_LEN, MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_LEN);
+#endif
+}
+
+/**
  * @brief Pack a cubepilot_raw_rc message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -117,6 +150,20 @@ static inline uint16_t mavlink_msg_cubepilot_raw_rc_encode(uint8_t system_id, ui
 static inline uint16_t mavlink_msg_cubepilot_raw_rc_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_cubepilot_raw_rc_t* cubepilot_raw_rc)
 {
     return mavlink_msg_cubepilot_raw_rc_pack_chan(system_id, component_id, chan, msg, cubepilot_raw_rc->rc_raw);
+}
+
+/**
+ * @brief Encode a cubepilot_raw_rc struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param cubepilot_raw_rc C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_cubepilot_raw_rc_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_cubepilot_raw_rc_t* cubepilot_raw_rc)
+{
+    return mavlink_msg_cubepilot_raw_rc_pack_status(system_id, component_id, _status, msg,  cubepilot_raw_rc->rc_raw);
 }
 
 /**

@@ -71,6 +71,42 @@ static inline uint16_t mavlink_msg_array_test_5_pack(uint8_t system_id, uint8_t 
 }
 
 /**
+ * @brief Pack a array_test_5 message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param c1  Value array
+ * @param c2  Value array
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_array_test_5_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               const char *c1, const char *c2)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_ARRAY_TEST_5_LEN];
+
+    _mav_put_char_array(buf, 0, c1, 5);
+    _mav_put_char_array(buf, 5, c2, 5);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ARRAY_TEST_5_LEN);
+#else
+    mavlink_array_test_5_t packet;
+
+    mav_array_memcpy(packet.c1, c1, sizeof(char)*5);
+    mav_array_memcpy(packet.c2, c2, sizeof(char)*5);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ARRAY_TEST_5_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_ARRAY_TEST_5;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ARRAY_TEST_5_MIN_LEN, MAVLINK_MSG_ID_ARRAY_TEST_5_LEN, MAVLINK_MSG_ID_ARRAY_TEST_5_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ARRAY_TEST_5_MIN_LEN, MAVLINK_MSG_ID_ARRAY_TEST_5_LEN);
+#endif
+}
+
+/**
  * @brief Pack a array_test_5 message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -127,6 +163,20 @@ static inline uint16_t mavlink_msg_array_test_5_encode(uint8_t system_id, uint8_
 static inline uint16_t mavlink_msg_array_test_5_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_array_test_5_t* array_test_5)
 {
     return mavlink_msg_array_test_5_pack_chan(system_id, component_id, chan, msg, array_test_5->c1, array_test_5->c2);
+}
+
+/**
+ * @brief Encode a array_test_5 struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param array_test_5 C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_array_test_5_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_array_test_5_t* array_test_5)
+{
+    return mavlink_msg_array_test_5_pack_status(system_id, component_id, _status, msg,  array_test_5->c1, array_test_5->c2);
 }
 
 /**

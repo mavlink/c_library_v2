@@ -124,6 +124,69 @@ static inline uint16_t mavlink_msg_simstate_pack(uint8_t system_id, uint8_t comp
 }
 
 /**
+ * @brief Pack a simstate message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param roll [rad] Roll angle.
+ * @param pitch [rad] Pitch angle.
+ * @param yaw [rad] Yaw angle.
+ * @param xacc [m/s/s] X acceleration.
+ * @param yacc [m/s/s] Y acceleration.
+ * @param zacc [m/s/s] Z acceleration.
+ * @param xgyro [rad/s] Angular speed around X axis.
+ * @param ygyro [rad/s] Angular speed around Y axis.
+ * @param zgyro [rad/s] Angular speed around Z axis.
+ * @param lat [degE7] Latitude.
+ * @param lng [degE7] Longitude.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_simstate_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               float roll, float pitch, float yaw, float xacc, float yacc, float zacc, float xgyro, float ygyro, float zgyro, int32_t lat, int32_t lng)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_SIMSTATE_LEN];
+    _mav_put_float(buf, 0, roll);
+    _mav_put_float(buf, 4, pitch);
+    _mav_put_float(buf, 8, yaw);
+    _mav_put_float(buf, 12, xacc);
+    _mav_put_float(buf, 16, yacc);
+    _mav_put_float(buf, 20, zacc);
+    _mav_put_float(buf, 24, xgyro);
+    _mav_put_float(buf, 28, ygyro);
+    _mav_put_float(buf, 32, zgyro);
+    _mav_put_int32_t(buf, 36, lat);
+    _mav_put_int32_t(buf, 40, lng);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SIMSTATE_LEN);
+#else
+    mavlink_simstate_t packet;
+    packet.roll = roll;
+    packet.pitch = pitch;
+    packet.yaw = yaw;
+    packet.xacc = xacc;
+    packet.yacc = yacc;
+    packet.zacc = zacc;
+    packet.xgyro = xgyro;
+    packet.ygyro = ygyro;
+    packet.zgyro = zgyro;
+    packet.lat = lat;
+    packet.lng = lng;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SIMSTATE_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_SIMSTATE;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SIMSTATE_MIN_LEN, MAVLINK_MSG_ID_SIMSTATE_LEN, MAVLINK_MSG_ID_SIMSTATE_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SIMSTATE_MIN_LEN, MAVLINK_MSG_ID_SIMSTATE_LEN);
+#endif
+}
+
+/**
  * @brief Pack a simstate message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -207,6 +270,20 @@ static inline uint16_t mavlink_msg_simstate_encode(uint8_t system_id, uint8_t co
 static inline uint16_t mavlink_msg_simstate_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_simstate_t* simstate)
 {
     return mavlink_msg_simstate_pack_chan(system_id, component_id, chan, msg, simstate->roll, simstate->pitch, simstate->yaw, simstate->xacc, simstate->yacc, simstate->zacc, simstate->xgyro, simstate->ygyro, simstate->zgyro, simstate->lat, simstate->lng);
+}
+
+/**
+ * @brief Encode a simstate struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param simstate C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_simstate_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_simstate_t* simstate)
+{
+    return mavlink_msg_simstate_pack_status(system_id, component_id, _status, msg,  simstate->roll, simstate->pitch, simstate->yaw, simstate->xacc, simstate->yacc, simstate->zacc, simstate->xgyro, simstate->ygyro, simstate->zgyro, simstate->lat, simstate->lng);
 }
 
 /**

@@ -108,6 +108,58 @@ static inline uint16_t mavlink_msg_component_information_basic_pack(uint8_t syst
 }
 
 /**
+ * @brief Pack a component_information_basic message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param time_boot_ms [ms] Timestamp (time since system boot).
+ * @param capabilities  Component capability flags
+ * @param time_manufacture_s [s] Date of manufacture as a UNIX Epoch time (since 1.1.1970) in seconds.
+ * @param vendor_name  Name of the component vendor. Needs to be zero terminated. The field is optional and can be empty/all zeros.
+ * @param model_name  Name of the component model. Needs to be zero terminated. The field is optional and can be empty/all zeros.
+ * @param software_version  Software version. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.
+ * @param hardware_version  Hardware version. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.
+ * @param serial_number  Hardware serial number. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_component_information_basic_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t time_boot_ms, uint64_t capabilities, uint32_t time_manufacture_s, const char *vendor_name, const char *model_name, const char *software_version, const char *hardware_version, const char *serial_number)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_LEN];
+    _mav_put_uint64_t(buf, 0, capabilities);
+    _mav_put_uint32_t(buf, 8, time_boot_ms);
+    _mav_put_uint32_t(buf, 12, time_manufacture_s);
+    _mav_put_char_array(buf, 16, vendor_name, 32);
+    _mav_put_char_array(buf, 48, model_name, 32);
+    _mav_put_char_array(buf, 80, software_version, 24);
+    _mav_put_char_array(buf, 104, hardware_version, 24);
+    _mav_put_char_array(buf, 128, serial_number, 32);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_LEN);
+#else
+    mavlink_component_information_basic_t packet;
+    packet.capabilities = capabilities;
+    packet.time_boot_ms = time_boot_ms;
+    packet.time_manufacture_s = time_manufacture_s;
+    mav_array_memcpy(packet.vendor_name, vendor_name, sizeof(char)*32);
+    mav_array_memcpy(packet.model_name, model_name, sizeof(char)*32);
+    mav_array_memcpy(packet.software_version, software_version, sizeof(char)*24);
+    mav_array_memcpy(packet.hardware_version, hardware_version, sizeof(char)*24);
+    mav_array_memcpy(packet.serial_number, serial_number, sizeof(char)*32);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_MIN_LEN, MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_LEN, MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_MIN_LEN, MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_LEN);
+#endif
+}
+
+/**
  * @brief Pack a component_information_basic message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -180,6 +232,20 @@ static inline uint16_t mavlink_msg_component_information_basic_encode(uint8_t sy
 static inline uint16_t mavlink_msg_component_information_basic_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_component_information_basic_t* component_information_basic)
 {
     return mavlink_msg_component_information_basic_pack_chan(system_id, component_id, chan, msg, component_information_basic->time_boot_ms, component_information_basic->capabilities, component_information_basic->time_manufacture_s, component_information_basic->vendor_name, component_information_basic->model_name, component_information_basic->software_version, component_information_basic->hardware_version, component_information_basic->serial_number);
+}
+
+/**
+ * @brief Encode a component_information_basic struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param component_information_basic C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_component_information_basic_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_component_information_basic_t* component_information_basic)
+{
+    return mavlink_msg_component_information_basic_pack_status(system_id, component_id, _status, msg,  component_information_basic->time_boot_ms, component_information_basic->capabilities, component_information_basic->time_manufacture_s, component_information_basic->vendor_name, component_information_basic->model_name, component_information_basic->software_version, component_information_basic->hardware_version, component_information_basic->serial_number);
 }
 
 /**

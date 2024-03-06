@@ -198,6 +198,100 @@ static inline uint16_t mavlink_msg_test_types_pack(uint8_t system_id, uint8_t co
 }
 
 /**
+ * @brief Pack a test_types message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param c  char
+ * @param s  string
+ * @param u8  uint8_t
+ * @param u16  uint16_t
+ * @param u32  uint32_t
+ * @param u64  uint64_t
+ * @param s8  int8_t
+ * @param s16  int16_t
+ * @param s32  int32_t
+ * @param s64  int64_t
+ * @param f  float
+ * @param d  double
+ * @param u8_array  uint8_t_array
+ * @param u16_array  uint16_t_array
+ * @param u32_array  uint32_t_array
+ * @param u64_array  uint64_t_array
+ * @param s8_array  int8_t_array
+ * @param s16_array  int16_t_array
+ * @param s32_array  int32_t_array
+ * @param s64_array  int64_t_array
+ * @param f_array  float_array
+ * @param d_array  double_array
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_test_types_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               char c, const char *s, uint8_t u8, uint16_t u16, uint32_t u32, uint64_t u64, int8_t s8, int16_t s16, int32_t s32, int64_t s64, float f, double d, const uint8_t *u8_array, const uint16_t *u16_array, const uint32_t *u32_array, const uint64_t *u64_array, const int8_t *s8_array, const int16_t *s16_array, const int32_t *s32_array, const int64_t *s64_array, const float *f_array, const double *d_array)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_TEST_TYPES_LEN];
+    _mav_put_uint64_t(buf, 0, u64);
+    _mav_put_int64_t(buf, 8, s64);
+    _mav_put_double(buf, 16, d);
+    _mav_put_uint32_t(buf, 96, u32);
+    _mav_put_int32_t(buf, 100, s32);
+    _mav_put_float(buf, 104, f);
+    _mav_put_uint16_t(buf, 144, u16);
+    _mav_put_int16_t(buf, 146, s16);
+    _mav_put_char(buf, 160, c);
+    _mav_put_uint8_t(buf, 171, u8);
+    _mav_put_int8_t(buf, 172, s8);
+    _mav_put_uint64_t_array(buf, 24, u64_array, 3);
+    _mav_put_int64_t_array(buf, 48, s64_array, 3);
+    _mav_put_double_array(buf, 72, d_array, 3);
+    _mav_put_uint32_t_array(buf, 108, u32_array, 3);
+    _mav_put_int32_t_array(buf, 120, s32_array, 3);
+    _mav_put_float_array(buf, 132, f_array, 3);
+    _mav_put_uint16_t_array(buf, 148, u16_array, 3);
+    _mav_put_int16_t_array(buf, 154, s16_array, 3);
+    _mav_put_char_array(buf, 161, s, 10);
+    _mav_put_uint8_t_array(buf, 173, u8_array, 3);
+    _mav_put_int8_t_array(buf, 176, s8_array, 3);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_TEST_TYPES_LEN);
+#else
+    mavlink_test_types_t packet;
+    packet.u64 = u64;
+    packet.s64 = s64;
+    packet.d = d;
+    packet.u32 = u32;
+    packet.s32 = s32;
+    packet.f = f;
+    packet.u16 = u16;
+    packet.s16 = s16;
+    packet.c = c;
+    packet.u8 = u8;
+    packet.s8 = s8;
+    mav_array_memcpy(packet.u64_array, u64_array, sizeof(uint64_t)*3);
+    mav_array_memcpy(packet.s64_array, s64_array, sizeof(int64_t)*3);
+    mav_array_memcpy(packet.d_array, d_array, sizeof(double)*3);
+    mav_array_memcpy(packet.u32_array, u32_array, sizeof(uint32_t)*3);
+    mav_array_memcpy(packet.s32_array, s32_array, sizeof(int32_t)*3);
+    mav_array_memcpy(packet.f_array, f_array, sizeof(float)*3);
+    mav_array_memcpy(packet.u16_array, u16_array, sizeof(uint16_t)*3);
+    mav_array_memcpy(packet.s16_array, s16_array, sizeof(int16_t)*3);
+    mav_array_memcpy(packet.s, s, sizeof(char)*10);
+    mav_array_memcpy(packet.u8_array, u8_array, sizeof(uint8_t)*3);
+    mav_array_memcpy(packet.s8_array, s8_array, sizeof(int8_t)*3);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_TEST_TYPES_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_TEST_TYPES;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_TEST_TYPES_MIN_LEN, MAVLINK_MSG_ID_TEST_TYPES_LEN, MAVLINK_MSG_ID_TEST_TYPES_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_TEST_TYPES_MIN_LEN, MAVLINK_MSG_ID_TEST_TYPES_LEN);
+#endif
+}
+
+/**
  * @brief Pack a test_types message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -312,6 +406,20 @@ static inline uint16_t mavlink_msg_test_types_encode(uint8_t system_id, uint8_t 
 static inline uint16_t mavlink_msg_test_types_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_test_types_t* test_types)
 {
     return mavlink_msg_test_types_pack_chan(system_id, component_id, chan, msg, test_types->c, test_types->s, test_types->u8, test_types->u16, test_types->u32, test_types->u64, test_types->s8, test_types->s16, test_types->s32, test_types->s64, test_types->f, test_types->d, test_types->u8_array, test_types->u16_array, test_types->u32_array, test_types->u64_array, test_types->s8_array, test_types->s16_array, test_types->s32_array, test_types->s64_array, test_types->f_array, test_types->d_array);
+}
+
+/**
+ * @brief Encode a test_types struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param test_types C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_test_types_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_test_types_t* test_types)
+{
+    return mavlink_msg_test_types_pack_status(system_id, component_id, _status, msg,  test_types->c, test_types->s, test_types->u8, test_types->u16, test_types->u32, test_types->u64, test_types->s8, test_types->s16, test_types->s32, test_types->s64, test_types->f, test_types->d, test_types->u8_array, test_types->u16_array, test_types->u32_array, test_types->u64_array, test_types->s8_array, test_types->s16_array, test_types->s32_array, test_types->s64_array, test_types->f_array, test_types->d_array);
 }
 
 /**

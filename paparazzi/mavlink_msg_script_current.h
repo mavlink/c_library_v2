@@ -64,6 +64,39 @@ static inline uint16_t mavlink_msg_script_current_pack(uint8_t system_id, uint8_
 }
 
 /**
+ * @brief Pack a script_current message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param seq  Active Sequence
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_script_current_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint16_t seq)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_SCRIPT_CURRENT_LEN];
+    _mav_put_uint16_t(buf, 0, seq);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SCRIPT_CURRENT_LEN);
+#else
+    mavlink_script_current_t packet;
+    packet.seq = seq;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SCRIPT_CURRENT_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_SCRIPT_CURRENT;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SCRIPT_CURRENT_MIN_LEN, MAVLINK_MSG_ID_SCRIPT_CURRENT_LEN, MAVLINK_MSG_ID_SCRIPT_CURRENT_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SCRIPT_CURRENT_MIN_LEN, MAVLINK_MSG_ID_SCRIPT_CURRENT_LEN);
+#endif
+}
+
+/**
  * @brief Pack a script_current message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -117,6 +150,20 @@ static inline uint16_t mavlink_msg_script_current_encode(uint8_t system_id, uint
 static inline uint16_t mavlink_msg_script_current_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_script_current_t* script_current)
 {
     return mavlink_msg_script_current_pack_chan(system_id, component_id, chan, msg, script_current->seq);
+}
+
+/**
+ * @brief Encode a script_current struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param script_current C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_script_current_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_script_current_t* script_current)
+{
+    return mavlink_msg_script_current_pack_status(system_id, component_id, _status, msg,  script_current->seq);
 }
 
 /**

@@ -94,6 +94,54 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f21_pack(uint8_t system_id, 
 }
 
 /**
+ * @brief Pack a serial_udb_extra_f21 message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param sue_accel_x_offset  SUE X accelerometer offset
+ * @param sue_accel_y_offset  SUE Y accelerometer offset
+ * @param sue_accel_z_offset  SUE Z accelerometer offset
+ * @param sue_gyro_x_offset  SUE X gyro offset
+ * @param sue_gyro_y_offset  SUE Y gyro offset
+ * @param sue_gyro_z_offset  SUE Z gyro offset
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f21_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               int16_t sue_accel_x_offset, int16_t sue_accel_y_offset, int16_t sue_accel_z_offset, int16_t sue_gyro_x_offset, int16_t sue_gyro_y_offset, int16_t sue_gyro_z_offset)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F21_LEN];
+    _mav_put_int16_t(buf, 0, sue_accel_x_offset);
+    _mav_put_int16_t(buf, 2, sue_accel_y_offset);
+    _mav_put_int16_t(buf, 4, sue_accel_z_offset);
+    _mav_put_int16_t(buf, 6, sue_gyro_x_offset);
+    _mav_put_int16_t(buf, 8, sue_gyro_y_offset);
+    _mav_put_int16_t(buf, 10, sue_gyro_z_offset);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F21_LEN);
+#else
+    mavlink_serial_udb_extra_f21_t packet;
+    packet.sue_accel_x_offset = sue_accel_x_offset;
+    packet.sue_accel_y_offset = sue_accel_y_offset;
+    packet.sue_accel_z_offset = sue_accel_z_offset;
+    packet.sue_gyro_x_offset = sue_gyro_x_offset;
+    packet.sue_gyro_y_offset = sue_gyro_y_offset;
+    packet.sue_gyro_z_offset = sue_gyro_z_offset;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F21_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F21;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F21_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F21_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F21_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F21_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F21_LEN);
+#endif
+}
+
+/**
  * @brief Pack a serial_udb_extra_f21 message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -162,6 +210,20 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f21_encode(uint8_t system_id
 static inline uint16_t mavlink_msg_serial_udb_extra_f21_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_serial_udb_extra_f21_t* serial_udb_extra_f21)
 {
     return mavlink_msg_serial_udb_extra_f21_pack_chan(system_id, component_id, chan, msg, serial_udb_extra_f21->sue_accel_x_offset, serial_udb_extra_f21->sue_accel_y_offset, serial_udb_extra_f21->sue_accel_z_offset, serial_udb_extra_f21->sue_gyro_x_offset, serial_udb_extra_f21->sue_gyro_y_offset, serial_udb_extra_f21->sue_gyro_z_offset);
+}
+
+/**
+ * @brief Encode a serial_udb_extra_f21 struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param serial_udb_extra_f21 C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f21_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_serial_udb_extra_f21_t* serial_udb_extra_f21)
+{
+    return mavlink_msg_serial_udb_extra_f21_pack_status(system_id, component_id, _status, msg,  serial_udb_extra_f21->sue_accel_x_offset, serial_udb_extra_f21->sue_accel_y_offset, serial_udb_extra_f21->sue_accel_z_offset, serial_udb_extra_f21->sue_gyro_x_offset, serial_udb_extra_f21->sue_gyro_y_offset, serial_udb_extra_f21->sue_gyro_z_offset);
 }
 
 /**

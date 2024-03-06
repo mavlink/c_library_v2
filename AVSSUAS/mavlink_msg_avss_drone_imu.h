@@ -124,6 +124,69 @@ static inline uint16_t mavlink_msg_avss_drone_imu_pack(uint8_t system_id, uint8_
 }
 
 /**
+ * @brief Pack a avss_drone_imu message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param time_boot_ms [ms] Timestamp (time since FC boot).
+ * @param q1  Quaternion component 1, w (1 in null-rotation)
+ * @param q2  Quaternion component 2, x (0 in null-rotation)
+ * @param q3  Quaternion component 3, y (0 in null-rotation)
+ * @param q4  Quaternion component 4, z (0 in null-rotation)
+ * @param xacc [m/s/s] X acceleration
+ * @param yacc [m/s/s] Y acceleration
+ * @param zacc [m/s/s] Z acceleration
+ * @param xgyro [rad/s] Angular speed around X axis
+ * @param ygyro [rad/s] Angular speed around Y axis
+ * @param zgyro [rad/s] Angular speed around Z axis
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_avss_drone_imu_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t time_boot_ms, float q1, float q2, float q3, float q4, float xacc, float yacc, float zacc, float xgyro, float ygyro, float zgyro)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_AVSS_DRONE_IMU_LEN];
+    _mav_put_uint32_t(buf, 0, time_boot_ms);
+    _mav_put_float(buf, 4, q1);
+    _mav_put_float(buf, 8, q2);
+    _mav_put_float(buf, 12, q3);
+    _mav_put_float(buf, 16, q4);
+    _mav_put_float(buf, 20, xacc);
+    _mav_put_float(buf, 24, yacc);
+    _mav_put_float(buf, 28, zacc);
+    _mav_put_float(buf, 32, xgyro);
+    _mav_put_float(buf, 36, ygyro);
+    _mav_put_float(buf, 40, zgyro);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_AVSS_DRONE_IMU_LEN);
+#else
+    mavlink_avss_drone_imu_t packet;
+    packet.time_boot_ms = time_boot_ms;
+    packet.q1 = q1;
+    packet.q2 = q2;
+    packet.q3 = q3;
+    packet.q4 = q4;
+    packet.xacc = xacc;
+    packet.yacc = yacc;
+    packet.zacc = zacc;
+    packet.xgyro = xgyro;
+    packet.ygyro = ygyro;
+    packet.zgyro = zgyro;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_AVSS_DRONE_IMU_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_AVSS_DRONE_IMU;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AVSS_DRONE_IMU_MIN_LEN, MAVLINK_MSG_ID_AVSS_DRONE_IMU_LEN, MAVLINK_MSG_ID_AVSS_DRONE_IMU_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AVSS_DRONE_IMU_MIN_LEN, MAVLINK_MSG_ID_AVSS_DRONE_IMU_LEN);
+#endif
+}
+
+/**
  * @brief Pack a avss_drone_imu message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -207,6 +270,20 @@ static inline uint16_t mavlink_msg_avss_drone_imu_encode(uint8_t system_id, uint
 static inline uint16_t mavlink_msg_avss_drone_imu_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_avss_drone_imu_t* avss_drone_imu)
 {
     return mavlink_msg_avss_drone_imu_pack_chan(system_id, component_id, chan, msg, avss_drone_imu->time_boot_ms, avss_drone_imu->q1, avss_drone_imu->q2, avss_drone_imu->q3, avss_drone_imu->q4, avss_drone_imu->xacc, avss_drone_imu->yacc, avss_drone_imu->zacc, avss_drone_imu->xgyro, avss_drone_imu->ygyro, avss_drone_imu->zgyro);
+}
+
+/**
+ * @brief Encode a avss_drone_imu struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param avss_drone_imu C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_avss_drone_imu_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_avss_drone_imu_t* avss_drone_imu)
+{
+    return mavlink_msg_avss_drone_imu_pack_status(system_id, component_id, _status, msg,  avss_drone_imu->time_boot_ms, avss_drone_imu->q1, avss_drone_imu->q2, avss_drone_imu->q3, avss_drone_imu->q4, avss_drone_imu->xacc, avss_drone_imu->yacc, avss_drone_imu->zacc, avss_drone_imu->xgyro, avss_drone_imu->ygyro, avss_drone_imu->zgyro);
 }
 
 /**

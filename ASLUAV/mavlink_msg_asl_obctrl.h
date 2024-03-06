@@ -106,6 +106,60 @@ static inline uint16_t mavlink_msg_asl_obctrl_pack(uint8_t system_id, uint8_t co
 }
 
 /**
+ * @brief Pack a asl_obctrl message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param timestamp [us]  Time since system start
+ * @param uElev   Elevator command [~]
+ * @param uThrot   Throttle command [~]
+ * @param uThrot2   Throttle 2 command [~]
+ * @param uAilL   Left aileron command [~]
+ * @param uAilR   Right aileron command [~]
+ * @param uRud   Rudder command [~]
+ * @param obctrl_status   Off-board computer status
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_asl_obctrl_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint64_t timestamp, float uElev, float uThrot, float uThrot2, float uAilL, float uAilR, float uRud, uint8_t obctrl_status)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_ASL_OBCTRL_LEN];
+    _mav_put_uint64_t(buf, 0, timestamp);
+    _mav_put_float(buf, 8, uElev);
+    _mav_put_float(buf, 12, uThrot);
+    _mav_put_float(buf, 16, uThrot2);
+    _mav_put_float(buf, 20, uAilL);
+    _mav_put_float(buf, 24, uAilR);
+    _mav_put_float(buf, 28, uRud);
+    _mav_put_uint8_t(buf, 32, obctrl_status);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ASL_OBCTRL_LEN);
+#else
+    mavlink_asl_obctrl_t packet;
+    packet.timestamp = timestamp;
+    packet.uElev = uElev;
+    packet.uThrot = uThrot;
+    packet.uThrot2 = uThrot2;
+    packet.uAilL = uAilL;
+    packet.uAilR = uAilR;
+    packet.uRud = uRud;
+    packet.obctrl_status = obctrl_status;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ASL_OBCTRL_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_ASL_OBCTRL;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ASL_OBCTRL_MIN_LEN, MAVLINK_MSG_ID_ASL_OBCTRL_LEN, MAVLINK_MSG_ID_ASL_OBCTRL_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ASL_OBCTRL_MIN_LEN, MAVLINK_MSG_ID_ASL_OBCTRL_LEN);
+#endif
+}
+
+/**
  * @brief Pack a asl_obctrl message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -180,6 +234,20 @@ static inline uint16_t mavlink_msg_asl_obctrl_encode(uint8_t system_id, uint8_t 
 static inline uint16_t mavlink_msg_asl_obctrl_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_asl_obctrl_t* asl_obctrl)
 {
     return mavlink_msg_asl_obctrl_pack_chan(system_id, component_id, chan, msg, asl_obctrl->timestamp, asl_obctrl->uElev, asl_obctrl->uThrot, asl_obctrl->uThrot2, asl_obctrl->uAilL, asl_obctrl->uAilR, asl_obctrl->uRud, asl_obctrl->obctrl_status);
+}
+
+/**
+ * @brief Encode a asl_obctrl struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param asl_obctrl C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_asl_obctrl_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_asl_obctrl_t* asl_obctrl)
+{
+    return mavlink_msg_asl_obctrl_pack_status(system_id, component_id, _status, msg,  asl_obctrl->timestamp, asl_obctrl->uElev, asl_obctrl->uThrot, asl_obctrl->uThrot2, asl_obctrl->uAilL, asl_obctrl->uAilR, asl_obctrl->uRud, asl_obctrl->obctrl_status);
 }
 
 /**

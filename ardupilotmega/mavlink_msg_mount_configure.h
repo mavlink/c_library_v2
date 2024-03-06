@@ -94,6 +94,54 @@ static inline uint16_t mavlink_msg_mount_configure_pack(uint8_t system_id, uint8
 }
 
 /**
+ * @brief Pack a mount_configure message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  System ID.
+ * @param target_component  Component ID.
+ * @param mount_mode  Mount operating mode.
+ * @param stab_roll  (1 = yes, 0 = no).
+ * @param stab_pitch  (1 = yes, 0 = no).
+ * @param stab_yaw  (1 = yes, 0 = no).
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_mount_configure_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, uint8_t mount_mode, uint8_t stab_roll, uint8_t stab_pitch, uint8_t stab_yaw)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_MOUNT_CONFIGURE_LEN];
+    _mav_put_uint8_t(buf, 0, target_system);
+    _mav_put_uint8_t(buf, 1, target_component);
+    _mav_put_uint8_t(buf, 2, mount_mode);
+    _mav_put_uint8_t(buf, 3, stab_roll);
+    _mav_put_uint8_t(buf, 4, stab_pitch);
+    _mav_put_uint8_t(buf, 5, stab_yaw);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_MOUNT_CONFIGURE_LEN);
+#else
+    mavlink_mount_configure_t packet;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+    packet.mount_mode = mount_mode;
+    packet.stab_roll = stab_roll;
+    packet.stab_pitch = stab_pitch;
+    packet.stab_yaw = stab_yaw;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_MOUNT_CONFIGURE_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_MOUNT_CONFIGURE;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MOUNT_CONFIGURE_MIN_LEN, MAVLINK_MSG_ID_MOUNT_CONFIGURE_LEN, MAVLINK_MSG_ID_MOUNT_CONFIGURE_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MOUNT_CONFIGURE_MIN_LEN, MAVLINK_MSG_ID_MOUNT_CONFIGURE_LEN);
+#endif
+}
+
+/**
  * @brief Pack a mount_configure message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -162,6 +210,20 @@ static inline uint16_t mavlink_msg_mount_configure_encode(uint8_t system_id, uin
 static inline uint16_t mavlink_msg_mount_configure_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mount_configure_t* mount_configure)
 {
     return mavlink_msg_mount_configure_pack_chan(system_id, component_id, chan, msg, mount_configure->target_system, mount_configure->target_component, mount_configure->mount_mode, mount_configure->stab_roll, mount_configure->stab_pitch, mount_configure->stab_yaw);
+}
+
+/**
+ * @brief Encode a mount_configure struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param mount_configure C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_mount_configure_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_mount_configure_t* mount_configure)
+{
+    return mavlink_msg_mount_configure_pack_status(system_id, component_id, _status, msg,  mount_configure->target_system, mount_configure->target_component, mount_configure->mount_mode, mount_configure->stab_roll, mount_configure->stab_pitch, mount_configure->stab_yaw);
 }
 
 /**

@@ -80,6 +80,46 @@ static inline uint16_t mavlink_msg_gopro_set_request_pack(uint8_t system_id, uin
 }
 
 /**
+ * @brief Pack a gopro_set_request message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  System ID.
+ * @param target_component  Component ID.
+ * @param cmd_id  Command ID.
+ * @param value  Value.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_gopro_set_request_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, uint8_t cmd_id, const uint8_t *value)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_GOPRO_SET_REQUEST_LEN];
+    _mav_put_uint8_t(buf, 0, target_system);
+    _mav_put_uint8_t(buf, 1, target_component);
+    _mav_put_uint8_t(buf, 2, cmd_id);
+    _mav_put_uint8_t_array(buf, 3, value, 4);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_GOPRO_SET_REQUEST_LEN);
+#else
+    mavlink_gopro_set_request_t packet;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+    packet.cmd_id = cmd_id;
+    mav_array_memcpy(packet.value, value, sizeof(uint8_t)*4);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_GOPRO_SET_REQUEST_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_GOPRO_SET_REQUEST;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GOPRO_SET_REQUEST_MIN_LEN, MAVLINK_MSG_ID_GOPRO_SET_REQUEST_LEN, MAVLINK_MSG_ID_GOPRO_SET_REQUEST_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GOPRO_SET_REQUEST_MIN_LEN, MAVLINK_MSG_ID_GOPRO_SET_REQUEST_LEN);
+#endif
+}
+
+/**
  * @brief Pack a gopro_set_request message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -140,6 +180,20 @@ static inline uint16_t mavlink_msg_gopro_set_request_encode(uint8_t system_id, u
 static inline uint16_t mavlink_msg_gopro_set_request_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gopro_set_request_t* gopro_set_request)
 {
     return mavlink_msg_gopro_set_request_pack_chan(system_id, component_id, chan, msg, gopro_set_request->target_system, gopro_set_request->target_component, gopro_set_request->cmd_id, gopro_set_request->value);
+}
+
+/**
+ * @brief Encode a gopro_set_request struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param gopro_set_request C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_gopro_set_request_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_gopro_set_request_t* gopro_set_request)
+{
+    return mavlink_msg_gopro_set_request_pack_status(system_id, component_id, _status, msg,  gopro_set_request->target_system, gopro_set_request->target_component, gopro_set_request->cmd_id, gopro_set_request->value);
 }
 
 /**

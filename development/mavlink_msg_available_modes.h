@@ -92,6 +92,52 @@ static inline uint16_t mavlink_msg_available_modes_pack(uint8_t system_id, uint8
 }
 
 /**
+ * @brief Pack a available_modes message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param number_modes  The total number of available modes for the current vehicle type.
+ * @param mode_index  The current mode index within number_modes, indexed from 1.
+ * @param standard_mode  Standard mode.
+ * @param custom_mode  A bitfield for use for autopilot-specific flags
+ * @param properties  Mode properties.
+ * @param mode_name  Name of custom mode, with null termination character. Should be omitted for standard modes.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_available_modes_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t number_modes, uint8_t mode_index, uint8_t standard_mode, uint32_t custom_mode, uint32_t properties, const char *mode_name)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_AVAILABLE_MODES_LEN];
+    _mav_put_uint32_t(buf, 0, custom_mode);
+    _mav_put_uint32_t(buf, 4, properties);
+    _mav_put_uint8_t(buf, 8, number_modes);
+    _mav_put_uint8_t(buf, 9, mode_index);
+    _mav_put_uint8_t(buf, 10, standard_mode);
+    _mav_put_char_array(buf, 11, mode_name, 35);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_AVAILABLE_MODES_LEN);
+#else
+    mavlink_available_modes_t packet;
+    packet.custom_mode = custom_mode;
+    packet.properties = properties;
+    packet.number_modes = number_modes;
+    packet.mode_index = mode_index;
+    packet.standard_mode = standard_mode;
+    mav_array_memcpy(packet.mode_name, mode_name, sizeof(char)*35);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_AVAILABLE_MODES_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_AVAILABLE_MODES;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AVAILABLE_MODES_MIN_LEN, MAVLINK_MSG_ID_AVAILABLE_MODES_LEN, MAVLINK_MSG_ID_AVAILABLE_MODES_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AVAILABLE_MODES_MIN_LEN, MAVLINK_MSG_ID_AVAILABLE_MODES_LEN);
+#endif
+}
+
+/**
  * @brief Pack a available_modes message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -158,6 +204,20 @@ static inline uint16_t mavlink_msg_available_modes_encode(uint8_t system_id, uin
 static inline uint16_t mavlink_msg_available_modes_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_available_modes_t* available_modes)
 {
     return mavlink_msg_available_modes_pack_chan(system_id, component_id, chan, msg, available_modes->number_modes, available_modes->mode_index, available_modes->standard_mode, available_modes->custom_mode, available_modes->properties, available_modes->mode_name);
+}
+
+/**
+ * @brief Encode a available_modes struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param available_modes C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_available_modes_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_available_modes_t* available_modes)
+{
+    return mavlink_msg_available_modes_pack_status(system_id, component_id, _status, msg,  available_modes->number_modes, available_modes->mode_index, available_modes->standard_mode, available_modes->custom_mode, available_modes->properties, available_modes->mode_name);
 }
 
 /**

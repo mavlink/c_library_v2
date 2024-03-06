@@ -94,6 +94,54 @@ static inline uint16_t mavlink_msg_avss_drone_position_pack(uint8_t system_id, u
 }
 
 /**
+ * @brief Pack a avss_drone_position message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param time_boot_ms [ms] Timestamp (time since FC boot).
+ * @param lat [degE7] Latitude, expressed
+ * @param lon [degE7] Longitude, expressed
+ * @param alt [mm] Altitude (MSL). Note that virtually all GPS modules provide both WGS84 and MSL.
+ * @param ground_alt [m] Altitude above ground, This altitude is measured by a ultrasound, Laser rangefinder or millimeter-wave radar
+ * @param barometer_alt [m] This altitude is measured by a barometer
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_avss_drone_position_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t time_boot_ms, int32_t lat, int32_t lon, int32_t alt, float ground_alt, float barometer_alt)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_AVSS_DRONE_POSITION_LEN];
+    _mav_put_uint32_t(buf, 0, time_boot_ms);
+    _mav_put_int32_t(buf, 4, lat);
+    _mav_put_int32_t(buf, 8, lon);
+    _mav_put_int32_t(buf, 12, alt);
+    _mav_put_float(buf, 16, ground_alt);
+    _mav_put_float(buf, 20, barometer_alt);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_AVSS_DRONE_POSITION_LEN);
+#else
+    mavlink_avss_drone_position_t packet;
+    packet.time_boot_ms = time_boot_ms;
+    packet.lat = lat;
+    packet.lon = lon;
+    packet.alt = alt;
+    packet.ground_alt = ground_alt;
+    packet.barometer_alt = barometer_alt;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_AVSS_DRONE_POSITION_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_AVSS_DRONE_POSITION;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AVSS_DRONE_POSITION_MIN_LEN, MAVLINK_MSG_ID_AVSS_DRONE_POSITION_LEN, MAVLINK_MSG_ID_AVSS_DRONE_POSITION_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AVSS_DRONE_POSITION_MIN_LEN, MAVLINK_MSG_ID_AVSS_DRONE_POSITION_LEN);
+#endif
+}
+
+/**
  * @brief Pack a avss_drone_position message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -162,6 +210,20 @@ static inline uint16_t mavlink_msg_avss_drone_position_encode(uint8_t system_id,
 static inline uint16_t mavlink_msg_avss_drone_position_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_avss_drone_position_t* avss_drone_position)
 {
     return mavlink_msg_avss_drone_position_pack_chan(system_id, component_id, chan, msg, avss_drone_position->time_boot_ms, avss_drone_position->lat, avss_drone_position->lon, avss_drone_position->alt, avss_drone_position->ground_alt, avss_drone_position->barometer_alt);
+}
+
+/**
+ * @brief Encode a avss_drone_position struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param avss_drone_position C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_avss_drone_position_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_avss_drone_position_t* avss_drone_position)
+{
+    return mavlink_msg_avss_drone_position_pack_status(system_id, component_id, _status, msg,  avss_drone_position->time_boot_ms, avss_drone_position->lat, avss_drone_position->lon, avss_drone_position->alt, avss_drone_position->ground_alt, avss_drone_position->barometer_alt);
 }
 
 /**

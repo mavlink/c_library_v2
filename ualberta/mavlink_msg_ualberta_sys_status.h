@@ -76,6 +76,45 @@ static inline uint16_t mavlink_msg_ualberta_sys_status_pack(uint8_t system_id, u
 }
 
 /**
+ * @brief Pack a ualberta_sys_status message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param mode  System mode, see UALBERTA_AUTOPILOT_MODE ENUM
+ * @param nav_mode  Navigation mode, see UALBERTA_NAV_MODE ENUM
+ * @param pilot  Pilot mode, see UALBERTA_PILOT_MODE
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_ualberta_sys_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t mode, uint8_t nav_mode, uint8_t pilot)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN];
+    _mav_put_uint8_t(buf, 0, mode);
+    _mav_put_uint8_t(buf, 1, nav_mode);
+    _mav_put_uint8_t(buf, 2, pilot);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN);
+#else
+    mavlink_ualberta_sys_status_t packet;
+    packet.mode = mode;
+    packet.nav_mode = nav_mode;
+    packet.pilot = pilot;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_UALBERTA_SYS_STATUS;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_MIN_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_MIN_LEN, MAVLINK_MSG_ID_UALBERTA_SYS_STATUS_LEN);
+#endif
+}
+
+/**
  * @brief Pack a ualberta_sys_status message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -135,6 +174,20 @@ static inline uint16_t mavlink_msg_ualberta_sys_status_encode(uint8_t system_id,
 static inline uint16_t mavlink_msg_ualberta_sys_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_ualberta_sys_status_t* ualberta_sys_status)
 {
     return mavlink_msg_ualberta_sys_status_pack_chan(system_id, component_id, chan, msg, ualberta_sys_status->mode, ualberta_sys_status->nav_mode, ualberta_sys_status->pilot);
+}
+
+/**
+ * @brief Encode a ualberta_sys_status struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param ualberta_sys_status C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_ualberta_sys_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_ualberta_sys_status_t* ualberta_sys_status)
+{
+    return mavlink_msg_ualberta_sys_status_pack_status(system_id, component_id, _status, msg,  ualberta_sys_status->mode, ualberta_sys_status->nav_mode, ualberta_sys_status->pilot);
 }
 
 /**

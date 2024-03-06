@@ -124,6 +124,69 @@ static inline uint16_t mavlink_msg_water_depth_pack(uint8_t system_id, uint8_t c
 }
 
 /**
+ * @brief Pack a water_depth message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param time_boot_ms [ms] Timestamp (time since system boot)
+ * @param id  Onboard ID of the sensor
+ * @param healthy  Sensor data healthy (0=unhealthy, 1=healthy)
+ * @param lat [degE7] Latitude
+ * @param lng [degE7] Longitude
+ * @param alt [m] Altitude (MSL) of vehicle
+ * @param roll [rad] Roll angle
+ * @param pitch [rad] Pitch angle
+ * @param yaw [rad] Yaw angle
+ * @param distance [m] Distance (uncorrected)
+ * @param temperature [degC] Water temperature
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_water_depth_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t time_boot_ms, uint8_t id, uint8_t healthy, int32_t lat, int32_t lng, float alt, float roll, float pitch, float yaw, float distance, float temperature)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_WATER_DEPTH_LEN];
+    _mav_put_uint32_t(buf, 0, time_boot_ms);
+    _mav_put_int32_t(buf, 4, lat);
+    _mav_put_int32_t(buf, 8, lng);
+    _mav_put_float(buf, 12, alt);
+    _mav_put_float(buf, 16, roll);
+    _mav_put_float(buf, 20, pitch);
+    _mav_put_float(buf, 24, yaw);
+    _mav_put_float(buf, 28, distance);
+    _mav_put_float(buf, 32, temperature);
+    _mav_put_uint8_t(buf, 36, id);
+    _mav_put_uint8_t(buf, 37, healthy);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_WATER_DEPTH_LEN);
+#else
+    mavlink_water_depth_t packet;
+    packet.time_boot_ms = time_boot_ms;
+    packet.lat = lat;
+    packet.lng = lng;
+    packet.alt = alt;
+    packet.roll = roll;
+    packet.pitch = pitch;
+    packet.yaw = yaw;
+    packet.distance = distance;
+    packet.temperature = temperature;
+    packet.id = id;
+    packet.healthy = healthy;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_WATER_DEPTH_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_WATER_DEPTH;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_WATER_DEPTH_MIN_LEN, MAVLINK_MSG_ID_WATER_DEPTH_LEN, MAVLINK_MSG_ID_WATER_DEPTH_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_WATER_DEPTH_MIN_LEN, MAVLINK_MSG_ID_WATER_DEPTH_LEN);
+#endif
+}
+
+/**
  * @brief Pack a water_depth message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -207,6 +270,20 @@ static inline uint16_t mavlink_msg_water_depth_encode(uint8_t system_id, uint8_t
 static inline uint16_t mavlink_msg_water_depth_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_water_depth_t* water_depth)
 {
     return mavlink_msg_water_depth_pack_chan(system_id, component_id, chan, msg, water_depth->time_boot_ms, water_depth->id, water_depth->healthy, water_depth->lat, water_depth->lng, water_depth->alt, water_depth->roll, water_depth->pitch, water_depth->yaw, water_depth->distance, water_depth->temperature);
+}
+
+/**
+ * @brief Encode a water_depth struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param water_depth C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_water_depth_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_water_depth_t* water_depth)
+{
+    return mavlink_msg_water_depth_pack_status(system_id, component_id, _status, msg,  water_depth->time_boot_ms, water_depth->id, water_depth->healthy, water_depth->lat, water_depth->lng, water_depth->alt, water_depth->roll, water_depth->pitch, water_depth->yaw, water_depth->distance, water_depth->temperature);
 }
 
 /**

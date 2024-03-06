@@ -82,6 +82,48 @@ static inline uint16_t mavlink_msg_flexifunction_read_req_pack(uint8_t system_id
 }
 
 /**
+ * @brief Pack a flexifunction_read_req message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param read_req_type  Type of flexifunction data requested
+ * @param data_index  index into data where needed
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_flexifunction_read_req_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, int16_t read_req_type, int16_t data_index)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_FLEXIFUNCTION_READ_REQ_LEN];
+    _mav_put_int16_t(buf, 0, read_req_type);
+    _mav_put_int16_t(buf, 2, data_index);
+    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 5, target_component);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_FLEXIFUNCTION_READ_REQ_LEN);
+#else
+    mavlink_flexifunction_read_req_t packet;
+    packet.read_req_type = read_req_type;
+    packet.data_index = data_index;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_FLEXIFUNCTION_READ_REQ_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_FLEXIFUNCTION_READ_REQ;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_FLEXIFUNCTION_READ_REQ_MIN_LEN, MAVLINK_MSG_ID_FLEXIFUNCTION_READ_REQ_LEN, MAVLINK_MSG_ID_FLEXIFUNCTION_READ_REQ_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_FLEXIFUNCTION_READ_REQ_MIN_LEN, MAVLINK_MSG_ID_FLEXIFUNCTION_READ_REQ_LEN);
+#endif
+}
+
+/**
  * @brief Pack a flexifunction_read_req message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -144,6 +186,20 @@ static inline uint16_t mavlink_msg_flexifunction_read_req_encode(uint8_t system_
 static inline uint16_t mavlink_msg_flexifunction_read_req_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_flexifunction_read_req_t* flexifunction_read_req)
 {
     return mavlink_msg_flexifunction_read_req_pack_chan(system_id, component_id, chan, msg, flexifunction_read_req->target_system, flexifunction_read_req->target_component, flexifunction_read_req->read_req_type, flexifunction_read_req->data_index);
+}
+
+/**
+ * @brief Encode a flexifunction_read_req struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param flexifunction_read_req C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_flexifunction_read_req_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_flexifunction_read_req_t* flexifunction_read_req)
+{
+    return mavlink_msg_flexifunction_read_req_pack_status(system_id, component_id, _status, msg,  flexifunction_read_req->target_system, flexifunction_read_req->target_component, flexifunction_read_req->read_req_type, flexifunction_read_req->data_index);
 }
 
 /**

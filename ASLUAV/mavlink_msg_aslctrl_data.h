@@ -208,6 +208,111 @@ static inline uint16_t mavlink_msg_aslctrl_data_pack(uint8_t system_id, uint8_t 
 }
 
 /**
+ * @brief Pack a aslctrl_data message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param timestamp [us]  Timestamp
+ * @param aslctrl_mode   ASLCTRL control-mode (manual, stabilized, auto, etc...)
+ * @param h   See sourcecode for a description of these values... 
+ * @param hRef   
+ * @param hRef_t   
+ * @param PitchAngle [deg] Pitch angle
+ * @param PitchAngleRef [deg] Pitch angle reference
+ * @param q   
+ * @param qRef   
+ * @param uElev   
+ * @param uThrot   
+ * @param uThrot2   
+ * @param nZ   
+ * @param AirspeedRef [m/s] Airspeed reference
+ * @param SpoilersEngaged   
+ * @param YawAngle [deg] Yaw angle
+ * @param YawAngleRef [deg] Yaw angle reference
+ * @param RollAngle [deg] Roll angle
+ * @param RollAngleRef [deg] Roll angle reference
+ * @param p   
+ * @param pRef   
+ * @param r   
+ * @param rRef   
+ * @param uAil   
+ * @param uRud   
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_aslctrl_data_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint64_t timestamp, uint8_t aslctrl_mode, float h, float hRef, float hRef_t, float PitchAngle, float PitchAngleRef, float q, float qRef, float uElev, float uThrot, float uThrot2, float nZ, float AirspeedRef, uint8_t SpoilersEngaged, float YawAngle, float YawAngleRef, float RollAngle, float RollAngleRef, float p, float pRef, float r, float rRef, float uAil, float uRud)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_ASLCTRL_DATA_LEN];
+    _mav_put_uint64_t(buf, 0, timestamp);
+    _mav_put_float(buf, 8, h);
+    _mav_put_float(buf, 12, hRef);
+    _mav_put_float(buf, 16, hRef_t);
+    _mav_put_float(buf, 20, PitchAngle);
+    _mav_put_float(buf, 24, PitchAngleRef);
+    _mav_put_float(buf, 28, q);
+    _mav_put_float(buf, 32, qRef);
+    _mav_put_float(buf, 36, uElev);
+    _mav_put_float(buf, 40, uThrot);
+    _mav_put_float(buf, 44, uThrot2);
+    _mav_put_float(buf, 48, nZ);
+    _mav_put_float(buf, 52, AirspeedRef);
+    _mav_put_float(buf, 56, YawAngle);
+    _mav_put_float(buf, 60, YawAngleRef);
+    _mav_put_float(buf, 64, RollAngle);
+    _mav_put_float(buf, 68, RollAngleRef);
+    _mav_put_float(buf, 72, p);
+    _mav_put_float(buf, 76, pRef);
+    _mav_put_float(buf, 80, r);
+    _mav_put_float(buf, 84, rRef);
+    _mav_put_float(buf, 88, uAil);
+    _mav_put_float(buf, 92, uRud);
+    _mav_put_uint8_t(buf, 96, aslctrl_mode);
+    _mav_put_uint8_t(buf, 97, SpoilersEngaged);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ASLCTRL_DATA_LEN);
+#else
+    mavlink_aslctrl_data_t packet;
+    packet.timestamp = timestamp;
+    packet.h = h;
+    packet.hRef = hRef;
+    packet.hRef_t = hRef_t;
+    packet.PitchAngle = PitchAngle;
+    packet.PitchAngleRef = PitchAngleRef;
+    packet.q = q;
+    packet.qRef = qRef;
+    packet.uElev = uElev;
+    packet.uThrot = uThrot;
+    packet.uThrot2 = uThrot2;
+    packet.nZ = nZ;
+    packet.AirspeedRef = AirspeedRef;
+    packet.YawAngle = YawAngle;
+    packet.YawAngleRef = YawAngleRef;
+    packet.RollAngle = RollAngle;
+    packet.RollAngleRef = RollAngleRef;
+    packet.p = p;
+    packet.pRef = pRef;
+    packet.r = r;
+    packet.rRef = rRef;
+    packet.uAil = uAil;
+    packet.uRud = uRud;
+    packet.aslctrl_mode = aslctrl_mode;
+    packet.SpoilersEngaged = SpoilersEngaged;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ASLCTRL_DATA_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_ASLCTRL_DATA;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ASLCTRL_DATA_MIN_LEN, MAVLINK_MSG_ID_ASLCTRL_DATA_LEN, MAVLINK_MSG_ID_ASLCTRL_DATA_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ASLCTRL_DATA_MIN_LEN, MAVLINK_MSG_ID_ASLCTRL_DATA_LEN);
+#endif
+}
+
+/**
  * @brief Pack a aslctrl_data message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -333,6 +438,20 @@ static inline uint16_t mavlink_msg_aslctrl_data_encode(uint8_t system_id, uint8_
 static inline uint16_t mavlink_msg_aslctrl_data_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_aslctrl_data_t* aslctrl_data)
 {
     return mavlink_msg_aslctrl_data_pack_chan(system_id, component_id, chan, msg, aslctrl_data->timestamp, aslctrl_data->aslctrl_mode, aslctrl_data->h, aslctrl_data->hRef, aslctrl_data->hRef_t, aslctrl_data->PitchAngle, aslctrl_data->PitchAngleRef, aslctrl_data->q, aslctrl_data->qRef, aslctrl_data->uElev, aslctrl_data->uThrot, aslctrl_data->uThrot2, aslctrl_data->nZ, aslctrl_data->AirspeedRef, aslctrl_data->SpoilersEngaged, aslctrl_data->YawAngle, aslctrl_data->YawAngleRef, aslctrl_data->RollAngle, aslctrl_data->RollAngleRef, aslctrl_data->p, aslctrl_data->pRef, aslctrl_data->r, aslctrl_data->rRef, aslctrl_data->uAil, aslctrl_data->uRud);
+}
+
+/**
+ * @brief Encode a aslctrl_data struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param aslctrl_data C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_aslctrl_data_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_aslctrl_data_t* aslctrl_data)
+{
+    return mavlink_msg_aslctrl_data_pack_status(system_id, component_id, _status, msg,  aslctrl_data->timestamp, aslctrl_data->aslctrl_mode, aslctrl_data->h, aslctrl_data->hRef, aslctrl_data->hRef_t, aslctrl_data->PitchAngle, aslctrl_data->PitchAngleRef, aslctrl_data->q, aslctrl_data->qRef, aslctrl_data->uElev, aslctrl_data->uThrot, aslctrl_data->uThrot2, aslctrl_data->nZ, aslctrl_data->AirspeedRef, aslctrl_data->SpoilersEngaged, aslctrl_data->YawAngle, aslctrl_data->YawAngleRef, aslctrl_data->RollAngle, aslctrl_data->RollAngleRef, aslctrl_data->p, aslctrl_data->pRef, aslctrl_data->r, aslctrl_data->rRef, aslctrl_data->uAil, aslctrl_data->uRud);
 }
 
 /**

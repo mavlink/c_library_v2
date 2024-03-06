@@ -70,6 +70,42 @@ static inline uint16_t mavlink_msg_gopro_set_response_pack(uint8_t system_id, ui
 }
 
 /**
+ * @brief Pack a gopro_set_response message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param cmd_id  Command ID.
+ * @param status  Status.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_gopro_set_response_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t cmd_id, uint8_t status)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_GOPRO_SET_RESPONSE_LEN];
+    _mav_put_uint8_t(buf, 0, cmd_id);
+    _mav_put_uint8_t(buf, 1, status);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_GOPRO_SET_RESPONSE_LEN);
+#else
+    mavlink_gopro_set_response_t packet;
+    packet.cmd_id = cmd_id;
+    packet.status = status;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_GOPRO_SET_RESPONSE_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_GOPRO_SET_RESPONSE;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GOPRO_SET_RESPONSE_MIN_LEN, MAVLINK_MSG_ID_GOPRO_SET_RESPONSE_LEN, MAVLINK_MSG_ID_GOPRO_SET_RESPONSE_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GOPRO_SET_RESPONSE_MIN_LEN, MAVLINK_MSG_ID_GOPRO_SET_RESPONSE_LEN);
+#endif
+}
+
+/**
  * @brief Pack a gopro_set_response message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -126,6 +162,20 @@ static inline uint16_t mavlink_msg_gopro_set_response_encode(uint8_t system_id, 
 static inline uint16_t mavlink_msg_gopro_set_response_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gopro_set_response_t* gopro_set_response)
 {
     return mavlink_msg_gopro_set_response_pack_chan(system_id, component_id, chan, msg, gopro_set_response->cmd_id, gopro_set_response->status);
+}
+
+/**
+ * @brief Encode a gopro_set_response struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param gopro_set_response C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_gopro_set_response_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_gopro_set_response_t* gopro_set_response)
+{
+    return mavlink_msg_gopro_set_response_pack_status(system_id, component_id, _status, msg,  gopro_set_response->cmd_id, gopro_set_response->status);
 }
 
 /**

@@ -136,6 +136,75 @@ static inline uint16_t mavlink_msg_camera_tracking_geo_status_pack(uint8_t syste
 }
 
 /**
+ * @brief Pack a camera_tracking_geo_status message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param tracking_status  Current tracking status
+ * @param lat [degE7] Latitude of tracked object
+ * @param lon [degE7] Longitude of tracked object
+ * @param alt [m] Altitude of tracked object(AMSL, WGS84)
+ * @param h_acc [m] Horizontal accuracy. NAN if unknown
+ * @param v_acc [m] Vertical accuracy. NAN if unknown
+ * @param vel_n [m/s] North velocity of tracked object. NAN if unknown
+ * @param vel_e [m/s] East velocity of tracked object. NAN if unknown
+ * @param vel_d [m/s] Down velocity of tracked object. NAN if unknown
+ * @param vel_acc [m/s] Velocity accuracy. NAN if unknown
+ * @param dist [m] Distance between camera and tracked object. NAN if unknown
+ * @param hdg [rad] Heading in radians, in NED. NAN if unknown
+ * @param hdg_acc [rad] Accuracy of heading, in NED. NAN if unknown
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_camera_tracking_geo_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t tracking_status, int32_t lat, int32_t lon, float alt, float h_acc, float v_acc, float vel_n, float vel_e, float vel_d, float vel_acc, float dist, float hdg, float hdg_acc)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_CAMERA_TRACKING_GEO_STATUS_LEN];
+    _mav_put_int32_t(buf, 0, lat);
+    _mav_put_int32_t(buf, 4, lon);
+    _mav_put_float(buf, 8, alt);
+    _mav_put_float(buf, 12, h_acc);
+    _mav_put_float(buf, 16, v_acc);
+    _mav_put_float(buf, 20, vel_n);
+    _mav_put_float(buf, 24, vel_e);
+    _mav_put_float(buf, 28, vel_d);
+    _mav_put_float(buf, 32, vel_acc);
+    _mav_put_float(buf, 36, dist);
+    _mav_put_float(buf, 40, hdg);
+    _mav_put_float(buf, 44, hdg_acc);
+    _mav_put_uint8_t(buf, 48, tracking_status);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CAMERA_TRACKING_GEO_STATUS_LEN);
+#else
+    mavlink_camera_tracking_geo_status_t packet;
+    packet.lat = lat;
+    packet.lon = lon;
+    packet.alt = alt;
+    packet.h_acc = h_acc;
+    packet.v_acc = v_acc;
+    packet.vel_n = vel_n;
+    packet.vel_e = vel_e;
+    packet.vel_d = vel_d;
+    packet.vel_acc = vel_acc;
+    packet.dist = dist;
+    packet.hdg = hdg;
+    packet.hdg_acc = hdg_acc;
+    packet.tracking_status = tracking_status;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CAMERA_TRACKING_GEO_STATUS_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_CAMERA_TRACKING_GEO_STATUS;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CAMERA_TRACKING_GEO_STATUS_MIN_LEN, MAVLINK_MSG_ID_CAMERA_TRACKING_GEO_STATUS_LEN, MAVLINK_MSG_ID_CAMERA_TRACKING_GEO_STATUS_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CAMERA_TRACKING_GEO_STATUS_MIN_LEN, MAVLINK_MSG_ID_CAMERA_TRACKING_GEO_STATUS_LEN);
+#endif
+}
+
+/**
  * @brief Pack a camera_tracking_geo_status message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -225,6 +294,20 @@ static inline uint16_t mavlink_msg_camera_tracking_geo_status_encode(uint8_t sys
 static inline uint16_t mavlink_msg_camera_tracking_geo_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_camera_tracking_geo_status_t* camera_tracking_geo_status)
 {
     return mavlink_msg_camera_tracking_geo_status_pack_chan(system_id, component_id, chan, msg, camera_tracking_geo_status->tracking_status, camera_tracking_geo_status->lat, camera_tracking_geo_status->lon, camera_tracking_geo_status->alt, camera_tracking_geo_status->h_acc, camera_tracking_geo_status->v_acc, camera_tracking_geo_status->vel_n, camera_tracking_geo_status->vel_e, camera_tracking_geo_status->vel_d, camera_tracking_geo_status->vel_acc, camera_tracking_geo_status->dist, camera_tracking_geo_status->hdg, camera_tracking_geo_status->hdg_acc);
+}
+
+/**
+ * @brief Encode a camera_tracking_geo_status struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param camera_tracking_geo_status C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_camera_tracking_geo_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_camera_tracking_geo_status_t* camera_tracking_geo_status)
+{
+    return mavlink_msg_camera_tracking_geo_status_pack_status(system_id, component_id, _status, msg,  camera_tracking_geo_status->tracking_status, camera_tracking_geo_status->lat, camera_tracking_geo_status->lon, camera_tracking_geo_status->alt, camera_tracking_geo_status->h_acc, camera_tracking_geo_status->v_acc, camera_tracking_geo_status->vel_n, camera_tracking_geo_status->vel_e, camera_tracking_geo_status->vel_d, camera_tracking_geo_status->vel_acc, camera_tracking_geo_status->dist, camera_tracking_geo_status->hdg, camera_tracking_geo_status->hdg_acc);
 }
 
 /**

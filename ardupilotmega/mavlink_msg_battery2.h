@@ -70,6 +70,42 @@ static inline uint16_t mavlink_msg_battery2_pack(uint8_t system_id, uint8_t comp
 }
 
 /**
+ * @brief Pack a battery2 message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param voltage [mV] Voltage.
+ * @param current_battery [cA] Battery current, -1: autopilot does not measure the current.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_battery2_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint16_t voltage, int16_t current_battery)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_BATTERY2_LEN];
+    _mav_put_uint16_t(buf, 0, voltage);
+    _mav_put_int16_t(buf, 2, current_battery);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_BATTERY2_LEN);
+#else
+    mavlink_battery2_t packet;
+    packet.voltage = voltage;
+    packet.current_battery = current_battery;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_BATTERY2_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_BATTERY2;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_BATTERY2_MIN_LEN, MAVLINK_MSG_ID_BATTERY2_LEN, MAVLINK_MSG_ID_BATTERY2_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_BATTERY2_MIN_LEN, MAVLINK_MSG_ID_BATTERY2_LEN);
+#endif
+}
+
+/**
  * @brief Pack a battery2 message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -126,6 +162,20 @@ static inline uint16_t mavlink_msg_battery2_encode(uint8_t system_id, uint8_t co
 static inline uint16_t mavlink_msg_battery2_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_battery2_t* battery2)
 {
     return mavlink_msg_battery2_pack_chan(system_id, component_id, chan, msg, battery2->voltage, battery2->current_battery);
+}
+
+/**
+ * @brief Encode a battery2 struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param battery2 C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_battery2_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_battery2_t* battery2)
+{
+    return mavlink_msg_battery2_pack_status(system_id, component_id, _status, msg,  battery2->voltage, battery2->current_battery);
 }
 
 /**

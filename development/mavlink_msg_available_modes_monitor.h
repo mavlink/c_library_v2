@@ -64,6 +64,39 @@ static inline uint16_t mavlink_msg_available_modes_monitor_pack(uint8_t system_i
 }
 
 /**
+ * @brief Pack a available_modes_monitor message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param seq  Sequence number. The value iterates sequentially whenever AVAILABLE_MODES changes (e.g. support for a new mode is added/removed dynamically).
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_available_modes_monitor_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t seq)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_LEN];
+    _mav_put_uint8_t(buf, 0, seq);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_LEN);
+#else
+    mavlink_available_modes_monitor_t packet;
+    packet.seq = seq;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_MIN_LEN, MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_LEN, MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_MIN_LEN, MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_LEN);
+#endif
+}
+
+/**
  * @brief Pack a available_modes_monitor message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -117,6 +150,20 @@ static inline uint16_t mavlink_msg_available_modes_monitor_encode(uint8_t system
 static inline uint16_t mavlink_msg_available_modes_monitor_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_available_modes_monitor_t* available_modes_monitor)
 {
     return mavlink_msg_available_modes_monitor_pack_chan(system_id, component_id, chan, msg, available_modes_monitor->seq);
+}
+
+/**
+ * @brief Encode a available_modes_monitor struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param available_modes_monitor C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_available_modes_monitor_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_available_modes_monitor_t* available_modes_monitor)
+{
+    return mavlink_msg_available_modes_monitor_pack_status(system_id, component_id, _status, msg,  available_modes_monitor->seq);
 }
 
 /**

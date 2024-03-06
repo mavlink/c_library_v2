@@ -123,6 +123,67 @@ static inline uint16_t mavlink_msg_device_op_write_pack(uint8_t system_id, uint8
 }
 
 /**
+ * @brief Pack a device_op_write message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  System ID.
+ * @param target_component  Component ID.
+ * @param request_id  Request ID - copied to reply.
+ * @param bustype  The bus type.
+ * @param bus  Bus number.
+ * @param address  Bus address.
+ * @param busname  Name of device on bus (for SPI).
+ * @param regstart  First register to write.
+ * @param count  Count of registers to write.
+ * @param data  Write data.
+ * @param bank  Bank number.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_device_op_write_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, uint32_t request_id, uint8_t bustype, uint8_t bus, uint8_t address, const char *busname, uint8_t regstart, uint8_t count, const uint8_t *data, uint8_t bank)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_DEVICE_OP_WRITE_LEN];
+    _mav_put_uint32_t(buf, 0, request_id);
+    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 5, target_component);
+    _mav_put_uint8_t(buf, 6, bustype);
+    _mav_put_uint8_t(buf, 7, bus);
+    _mav_put_uint8_t(buf, 8, address);
+    _mav_put_uint8_t(buf, 49, regstart);
+    _mav_put_uint8_t(buf, 50, count);
+    _mav_put_uint8_t(buf, 179, bank);
+    _mav_put_char_array(buf, 9, busname, 40);
+    _mav_put_uint8_t_array(buf, 51, data, 128);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_DEVICE_OP_WRITE_LEN);
+#else
+    mavlink_device_op_write_t packet;
+    packet.request_id = request_id;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+    packet.bustype = bustype;
+    packet.bus = bus;
+    packet.address = address;
+    packet.regstart = regstart;
+    packet.count = count;
+    packet.bank = bank;
+    mav_array_memcpy(packet.busname, busname, sizeof(char)*40);
+    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*128);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_DEVICE_OP_WRITE_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_DEVICE_OP_WRITE;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_DEVICE_OP_WRITE_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_WRITE_LEN, MAVLINK_MSG_ID_DEVICE_OP_WRITE_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_DEVICE_OP_WRITE_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_WRITE_LEN);
+#endif
+}
+
+/**
  * @brief Pack a device_op_write message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -204,6 +265,20 @@ static inline uint16_t mavlink_msg_device_op_write_encode(uint8_t system_id, uin
 static inline uint16_t mavlink_msg_device_op_write_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_device_op_write_t* device_op_write)
 {
     return mavlink_msg_device_op_write_pack_chan(system_id, component_id, chan, msg, device_op_write->target_system, device_op_write->target_component, device_op_write->request_id, device_op_write->bustype, device_op_write->bus, device_op_write->address, device_op_write->busname, device_op_write->regstart, device_op_write->count, device_op_write->data, device_op_write->bank);
+}
+
+/**
+ * @brief Encode a device_op_write struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param device_op_write C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_device_op_write_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_device_op_write_t* device_op_write)
+{
+    return mavlink_msg_device_op_write_pack_status(system_id, component_id, _status, msg,  device_op_write->target_system, device_op_write->target_component, device_op_write->request_id, device_op_write->bustype, device_op_write->bus, device_op_write->address, device_op_write->busname, device_op_write->regstart, device_op_write->count, device_op_write->data, device_op_write->bank);
 }
 
 /**

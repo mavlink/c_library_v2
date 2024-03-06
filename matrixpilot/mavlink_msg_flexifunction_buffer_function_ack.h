@@ -82,6 +82,48 @@ static inline uint16_t mavlink_msg_flexifunction_buffer_function_ack_pack(uint8_
 }
 
 /**
+ * @brief Pack a flexifunction_buffer_function_ack message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param func_index  Function index
+ * @param result  result of acknowledge, 0=fail, 1=good
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_flexifunction_buffer_function_ack_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, uint16_t func_index, uint16_t result)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_ACK_LEN];
+    _mav_put_uint16_t(buf, 0, func_index);
+    _mav_put_uint16_t(buf, 2, result);
+    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 5, target_component);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_ACK_LEN);
+#else
+    mavlink_flexifunction_buffer_function_ack_t packet;
+    packet.func_index = func_index;
+    packet.result = result;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_ACK_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_ACK;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_ACK_MIN_LEN, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_ACK_LEN, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_ACK_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_ACK_MIN_LEN, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_ACK_LEN);
+#endif
+}
+
+/**
  * @brief Pack a flexifunction_buffer_function_ack message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -144,6 +186,20 @@ static inline uint16_t mavlink_msg_flexifunction_buffer_function_ack_encode(uint
 static inline uint16_t mavlink_msg_flexifunction_buffer_function_ack_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_flexifunction_buffer_function_ack_t* flexifunction_buffer_function_ack)
 {
     return mavlink_msg_flexifunction_buffer_function_ack_pack_chan(system_id, component_id, chan, msg, flexifunction_buffer_function_ack->target_system, flexifunction_buffer_function_ack->target_component, flexifunction_buffer_function_ack->func_index, flexifunction_buffer_function_ack->result);
+}
+
+/**
+ * @brief Encode a flexifunction_buffer_function_ack struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param flexifunction_buffer_function_ack C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_flexifunction_buffer_function_ack_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_flexifunction_buffer_function_ack_t* flexifunction_buffer_function_ack)
+{
+    return mavlink_msg_flexifunction_buffer_function_ack_pack_status(system_id, component_id, _status, msg,  flexifunction_buffer_function_ack->target_system, flexifunction_buffer_function_ack->target_component, flexifunction_buffer_function_ack->func_index, flexifunction_buffer_function_ack->result);
 }
 
 /**

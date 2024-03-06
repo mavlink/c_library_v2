@@ -80,6 +80,46 @@ static inline uint16_t mavlink_msg_statustext_pack(uint8_t system_id, uint8_t co
 }
 
 /**
+ * @brief Pack a statustext message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param severity  Severity of status. Relies on the definitions within RFC-5424.
+ * @param text  Status text message, without null termination character
+ * @param id  Unique (opaque) identifier for this statustext message.  May be used to reassemble a logical long-statustext message from a sequence of chunks.  A value of zero indicates this is the only chunk in the sequence and the message can be emitted immediately.
+ * @param chunk_seq  This chunk's sequence number; indexing is from zero.  Any null character in the text field is taken to mean this was the last chunk.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_statustext_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t severity, const char *text, uint16_t id, uint8_t chunk_seq)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_STATUSTEXT_LEN];
+    _mav_put_uint8_t(buf, 0, severity);
+    _mav_put_uint16_t(buf, 51, id);
+    _mav_put_uint8_t(buf, 53, chunk_seq);
+    _mav_put_char_array(buf, 1, text, 50);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_STATUSTEXT_LEN);
+#else
+    mavlink_statustext_t packet;
+    packet.severity = severity;
+    packet.id = id;
+    packet.chunk_seq = chunk_seq;
+    mav_array_memcpy(packet.text, text, sizeof(char)*50);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_STATUSTEXT_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_STATUSTEXT;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_STATUSTEXT_MIN_LEN, MAVLINK_MSG_ID_STATUSTEXT_LEN, MAVLINK_MSG_ID_STATUSTEXT_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_STATUSTEXT_MIN_LEN, MAVLINK_MSG_ID_STATUSTEXT_LEN);
+#endif
+}
+
+/**
  * @brief Pack a statustext message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -140,6 +180,20 @@ static inline uint16_t mavlink_msg_statustext_encode(uint8_t system_id, uint8_t 
 static inline uint16_t mavlink_msg_statustext_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_statustext_t* statustext)
 {
     return mavlink_msg_statustext_pack_chan(system_id, component_id, chan, msg, statustext->severity, statustext->text, statustext->id, statustext->chunk_seq);
+}
+
+/**
+ * @brief Encode a statustext struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param statustext C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_statustext_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_statustext_t* statustext)
+{
+    return mavlink_msg_statustext_pack_status(system_id, component_id, _status, msg,  statustext->severity, statustext->text, statustext->id, statustext->chunk_seq);
 }
 
 /**

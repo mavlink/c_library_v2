@@ -98,6 +98,55 @@ static inline uint16_t mavlink_msg_flexifunction_buffer_function_pack(uint8_t sy
 }
 
 /**
+ * @brief Pack a flexifunction_buffer_function message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param func_index  Function index
+ * @param func_count  Total count of functions
+ * @param data_address  Address in the flexifunction data, Set to 0xFFFF to use address in target memory
+ * @param data_size  Size of the 
+ * @param data  Settings data
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_flexifunction_buffer_function_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, uint16_t func_index, uint16_t func_count, uint16_t data_address, uint16_t data_size, const int8_t *data)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_LEN];
+    _mav_put_uint16_t(buf, 0, func_index);
+    _mav_put_uint16_t(buf, 2, func_count);
+    _mav_put_uint16_t(buf, 4, data_address);
+    _mav_put_uint16_t(buf, 6, data_size);
+    _mav_put_uint8_t(buf, 8, target_system);
+    _mav_put_uint8_t(buf, 9, target_component);
+    _mav_put_int8_t_array(buf, 10, data, 48);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_LEN);
+#else
+    mavlink_flexifunction_buffer_function_t packet;
+    packet.func_index = func_index;
+    packet.func_count = func_count;
+    packet.data_address = data_address;
+    packet.data_size = data_size;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+    mav_array_memcpy(packet.data, data, sizeof(int8_t)*48);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_MIN_LEN, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_LEN, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_MIN_LEN, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_LEN);
+#endif
+}
+
+/**
  * @brief Pack a flexifunction_buffer_function message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -167,6 +216,20 @@ static inline uint16_t mavlink_msg_flexifunction_buffer_function_encode(uint8_t 
 static inline uint16_t mavlink_msg_flexifunction_buffer_function_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_flexifunction_buffer_function_t* flexifunction_buffer_function)
 {
     return mavlink_msg_flexifunction_buffer_function_pack_chan(system_id, component_id, chan, msg, flexifunction_buffer_function->target_system, flexifunction_buffer_function->target_component, flexifunction_buffer_function->func_index, flexifunction_buffer_function->func_count, flexifunction_buffer_function->data_address, flexifunction_buffer_function->data_size, flexifunction_buffer_function->data);
+}
+
+/**
+ * @brief Encode a flexifunction_buffer_function struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param flexifunction_buffer_function C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_flexifunction_buffer_function_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_flexifunction_buffer_function_t* flexifunction_buffer_function)
+{
+    return mavlink_msg_flexifunction_buffer_function_pack_status(system_id, component_id, _status, msg,  flexifunction_buffer_function->target_system, flexifunction_buffer_function->target_component, flexifunction_buffer_function->func_index, flexifunction_buffer_function->func_count, flexifunction_buffer_function->data_address, flexifunction_buffer_function->data_size, flexifunction_buffer_function->data);
 }
 
 /**

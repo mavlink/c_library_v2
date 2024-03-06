@@ -112,6 +112,63 @@ static inline uint16_t mavlink_msg_global_position_int_pack(uint8_t system_id, u
 }
 
 /**
+ * @brief Pack a global_position_int message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param time_boot_ms [ms] Timestamp (time since system boot).
+ * @param lat [degE7] Latitude, expressed
+ * @param lon [degE7] Longitude, expressed
+ * @param alt [mm] Altitude (MSL). Note that virtually all GPS modules provide both WGS84 and MSL.
+ * @param relative_alt [mm] Altitude above ground
+ * @param vx [cm/s] Ground X Speed (Latitude, positive north)
+ * @param vy [cm/s] Ground Y Speed (Longitude, positive east)
+ * @param vz [cm/s] Ground Z Speed (Altitude, positive down)
+ * @param hdg [cdeg] Vehicle heading (yaw angle), 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_global_position_int_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t time_boot_ms, int32_t lat, int32_t lon, int32_t alt, int32_t relative_alt, int16_t vx, int16_t vy, int16_t vz, uint16_t hdg)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_GLOBAL_POSITION_INT_LEN];
+    _mav_put_uint32_t(buf, 0, time_boot_ms);
+    _mav_put_int32_t(buf, 4, lat);
+    _mav_put_int32_t(buf, 8, lon);
+    _mav_put_int32_t(buf, 12, alt);
+    _mav_put_int32_t(buf, 16, relative_alt);
+    _mav_put_int16_t(buf, 20, vx);
+    _mav_put_int16_t(buf, 22, vy);
+    _mav_put_int16_t(buf, 24, vz);
+    _mav_put_uint16_t(buf, 26, hdg);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_GLOBAL_POSITION_INT_LEN);
+#else
+    mavlink_global_position_int_t packet;
+    packet.time_boot_ms = time_boot_ms;
+    packet.lat = lat;
+    packet.lon = lon;
+    packet.alt = alt;
+    packet.relative_alt = relative_alt;
+    packet.vx = vx;
+    packet.vy = vy;
+    packet.vz = vz;
+    packet.hdg = hdg;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_GLOBAL_POSITION_INT_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_GLOBAL_POSITION_INT;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GLOBAL_POSITION_INT_MIN_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_INT_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_INT_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GLOBAL_POSITION_INT_MIN_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_INT_LEN);
+#endif
+}
+
+/**
  * @brief Pack a global_position_int message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -189,6 +246,20 @@ static inline uint16_t mavlink_msg_global_position_int_encode(uint8_t system_id,
 static inline uint16_t mavlink_msg_global_position_int_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_global_position_int_t* global_position_int)
 {
     return mavlink_msg_global_position_int_pack_chan(system_id, component_id, chan, msg, global_position_int->time_boot_ms, global_position_int->lat, global_position_int->lon, global_position_int->alt, global_position_int->relative_alt, global_position_int->vx, global_position_int->vy, global_position_int->vz, global_position_int->hdg);
+}
+
+/**
+ * @brief Encode a global_position_int struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param global_position_int C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_global_position_int_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_global_position_int_t* global_position_int)
+{
+    return mavlink_msg_global_position_int_pack_status(system_id, component_id, _status, msg,  global_position_int->time_boot_ms, global_position_int->lat, global_position_int->lon, global_position_int->alt, global_position_int->relative_alt, global_position_int->vx, global_position_int->vy, global_position_int->vz, global_position_int->hdg);
 }
 
 /**

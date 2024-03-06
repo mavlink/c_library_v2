@@ -98,6 +98,55 @@ static inline uint16_t mavlink_msg_osd_param_show_config_reply_pack(uint8_t syst
 }
 
 /**
+ * @brief Pack a osd_param_show_config_reply message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param request_id  Request ID - copied from request.
+ * @param result  Config error type.
+ * @param param_id  Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
+ * @param config_type  Config type.
+ * @param min_value  OSD parameter minimum value.
+ * @param max_value  OSD parameter maximum value.
+ * @param increment  OSD parameter increment.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_osd_param_show_config_reply_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t request_id, uint8_t result, const char *param_id, uint8_t config_type, float min_value, float max_value, float increment)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_LEN];
+    _mav_put_uint32_t(buf, 0, request_id);
+    _mav_put_float(buf, 4, min_value);
+    _mav_put_float(buf, 8, max_value);
+    _mav_put_float(buf, 12, increment);
+    _mav_put_uint8_t(buf, 16, result);
+    _mav_put_uint8_t(buf, 33, config_type);
+    _mav_put_char_array(buf, 17, param_id, 16);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_LEN);
+#else
+    mavlink_osd_param_show_config_reply_t packet;
+    packet.request_id = request_id;
+    packet.min_value = min_value;
+    packet.max_value = max_value;
+    packet.increment = increment;
+    packet.result = result;
+    packet.config_type = config_type;
+    mav_array_memcpy(packet.param_id, param_id, sizeof(char)*16);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_LEN);
+#endif
+}
+
+/**
  * @brief Pack a osd_param_show_config_reply message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -167,6 +216,20 @@ static inline uint16_t mavlink_msg_osd_param_show_config_reply_encode(uint8_t sy
 static inline uint16_t mavlink_msg_osd_param_show_config_reply_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_osd_param_show_config_reply_t* osd_param_show_config_reply)
 {
     return mavlink_msg_osd_param_show_config_reply_pack_chan(system_id, component_id, chan, msg, osd_param_show_config_reply->request_id, osd_param_show_config_reply->result, osd_param_show_config_reply->param_id, osd_param_show_config_reply->config_type, osd_param_show_config_reply->min_value, osd_param_show_config_reply->max_value, osd_param_show_config_reply->increment);
+}
+
+/**
+ * @brief Encode a osd_param_show_config_reply struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param osd_param_show_config_reply C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_osd_param_show_config_reply_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_osd_param_show_config_reply_t* osd_param_show_config_reply)
+{
+    return mavlink_msg_osd_param_show_config_reply_pack_status(system_id, component_id, _status, msg,  osd_param_show_config_reply->request_id, osd_param_show_config_reply->result, osd_param_show_config_reply->param_id, osd_param_show_config_reply->config_type, osd_param_show_config_reply->min_value, osd_param_show_config_reply->max_value, osd_param_show_config_reply->increment);
 }
 
 /**

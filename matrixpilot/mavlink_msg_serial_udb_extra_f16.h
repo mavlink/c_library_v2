@@ -71,6 +71,42 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f16_pack(uint8_t system_id, 
 }
 
 /**
+ * @brief Pack a serial_udb_extra_f16 message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param sue_ID_LEAD_PILOT  Serial UDB Extra Name of Expected Lead Pilot
+ * @param sue_ID_DIY_DRONES_URL  Serial UDB Extra URL of Lead Pilot or Team
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f16_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               const uint8_t *sue_ID_LEAD_PILOT, const uint8_t *sue_ID_DIY_DRONES_URL)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_LEN];
+
+    _mav_put_uint8_t_array(buf, 0, sue_ID_LEAD_PILOT, 40);
+    _mav_put_uint8_t_array(buf, 40, sue_ID_DIY_DRONES_URL, 70);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_LEN);
+#else
+    mavlink_serial_udb_extra_f16_t packet;
+
+    mav_array_memcpy(packet.sue_ID_LEAD_PILOT, sue_ID_LEAD_PILOT, sizeof(uint8_t)*40);
+    mav_array_memcpy(packet.sue_ID_DIY_DRONES_URL, sue_ID_DIY_DRONES_URL, sizeof(uint8_t)*70);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_LEN);
+#endif
+}
+
+/**
  * @brief Pack a serial_udb_extra_f16 message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -127,6 +163,20 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f16_encode(uint8_t system_id
 static inline uint16_t mavlink_msg_serial_udb_extra_f16_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_serial_udb_extra_f16_t* serial_udb_extra_f16)
 {
     return mavlink_msg_serial_udb_extra_f16_pack_chan(system_id, component_id, chan, msg, serial_udb_extra_f16->sue_ID_LEAD_PILOT, serial_udb_extra_f16->sue_ID_DIY_DRONES_URL);
+}
+
+/**
+ * @brief Encode a serial_udb_extra_f16 struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param serial_udb_extra_f16 C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f16_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_serial_udb_extra_f16_t* serial_udb_extra_f16)
+{
+    return mavlink_msg_serial_udb_extra_f16_pack_status(system_id, component_id, _status, msg,  serial_udb_extra_f16->sue_ID_LEAD_PILOT, serial_udb_extra_f16->sue_ID_DIY_DRONES_URL);
 }
 
 /**

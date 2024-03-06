@@ -80,6 +80,46 @@ static inline uint16_t mavlink_msg_memory_vect_pack(uint8_t system_id, uint8_t c
 }
 
 /**
+ * @brief Pack a memory_vect message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param address  Starting address of the debug variables
+ * @param ver  Version code of the type variable. 0=unknown, type ignored and assumed int16_t. 1=as below
+ * @param type  Type code of the memory variables. for ver = 1: 0=16 x int16_t, 1=16 x uint16_t, 2=16 x Q15, 3=16 x 1Q14
+ * @param value  Memory contents at specified address
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_memory_vect_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint16_t address, uint8_t ver, uint8_t type, const int8_t *value)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_MEMORY_VECT_LEN];
+    _mav_put_uint16_t(buf, 0, address);
+    _mav_put_uint8_t(buf, 2, ver);
+    _mav_put_uint8_t(buf, 3, type);
+    _mav_put_int8_t_array(buf, 4, value, 32);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_MEMORY_VECT_LEN);
+#else
+    mavlink_memory_vect_t packet;
+    packet.address = address;
+    packet.ver = ver;
+    packet.type = type;
+    mav_array_memcpy(packet.value, value, sizeof(int8_t)*32);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_MEMORY_VECT_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_MEMORY_VECT;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MEMORY_VECT_MIN_LEN, MAVLINK_MSG_ID_MEMORY_VECT_LEN, MAVLINK_MSG_ID_MEMORY_VECT_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MEMORY_VECT_MIN_LEN, MAVLINK_MSG_ID_MEMORY_VECT_LEN);
+#endif
+}
+
+/**
  * @brief Pack a memory_vect message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -140,6 +180,20 @@ static inline uint16_t mavlink_msg_memory_vect_encode(uint8_t system_id, uint8_t
 static inline uint16_t mavlink_msg_memory_vect_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_memory_vect_t* memory_vect)
 {
     return mavlink_msg_memory_vect_pack_chan(system_id, component_id, chan, msg, memory_vect->address, memory_vect->ver, memory_vect->type, memory_vect->value);
+}
+
+/**
+ * @brief Encode a memory_vect struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param memory_vect C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_memory_vect_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_memory_vect_t* memory_vect)
+{
+    return mavlink_msg_memory_vect_pack_status(system_id, component_id, _status, msg,  memory_vect->address, memory_vect->ver, memory_vect->type, memory_vect->value);
 }
 
 /**

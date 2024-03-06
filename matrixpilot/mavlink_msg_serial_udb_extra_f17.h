@@ -76,6 +76,45 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f17_pack(uint8_t system_id, 
 }
 
 /**
+ * @brief Pack a serial_udb_extra_f17 message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param sue_feed_forward  SUE Feed Forward Gain
+ * @param sue_turn_rate_nav  SUE Max Turn Rate when Navigating
+ * @param sue_turn_rate_fbw  SUE Max Turn Rate in Fly By Wire Mode
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f17_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               float sue_feed_forward, float sue_turn_rate_nav, float sue_turn_rate_fbw)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F17_LEN];
+    _mav_put_float(buf, 0, sue_feed_forward);
+    _mav_put_float(buf, 4, sue_turn_rate_nav);
+    _mav_put_float(buf, 8, sue_turn_rate_fbw);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F17_LEN);
+#else
+    mavlink_serial_udb_extra_f17_t packet;
+    packet.sue_feed_forward = sue_feed_forward;
+    packet.sue_turn_rate_nav = sue_turn_rate_nav;
+    packet.sue_turn_rate_fbw = sue_turn_rate_fbw;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F17_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F17;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F17_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F17_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F17_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F17_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F17_LEN);
+#endif
+}
+
+/**
  * @brief Pack a serial_udb_extra_f17 message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -135,6 +174,20 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f17_encode(uint8_t system_id
 static inline uint16_t mavlink_msg_serial_udb_extra_f17_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_serial_udb_extra_f17_t* serial_udb_extra_f17)
 {
     return mavlink_msg_serial_udb_extra_f17_pack_chan(system_id, component_id, chan, msg, serial_udb_extra_f17->sue_feed_forward, serial_udb_extra_f17->sue_turn_rate_nav, serial_udb_extra_f17->sue_turn_rate_fbw);
+}
+
+/**
+ * @brief Encode a serial_udb_extra_f17 struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param serial_udb_extra_f17 C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f17_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_serial_udb_extra_f17_t* serial_udb_extra_f17)
+{
+    return mavlink_msg_serial_udb_extra_f17_pack_status(system_id, component_id, _status, msg,  serial_udb_extra_f17->sue_feed_forward, serial_udb_extra_f17->sue_turn_rate_nav, serial_udb_extra_f17->sue_turn_rate_fbw);
 }
 
 /**

@@ -208,6 +208,111 @@ static inline uint16_t mavlink_msg_fw_soaring_data_pack(uint8_t system_id, uint8
 }
 
 /**
+ * @brief Pack a fw_soaring_data message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param timestamp [ms] Timestamp
+ * @param timestampModeChanged [ms] Timestamp since last mode change
+ * @param xW [m/s] Thermal core updraft strength
+ * @param xR [m] Thermal radius
+ * @param xLat [deg] Thermal center latitude
+ * @param xLon [deg] Thermal center longitude
+ * @param VarW  Variance W
+ * @param VarR  Variance R
+ * @param VarLat  Variance Lat
+ * @param VarLon  Variance Lon 
+ * @param LoiterRadius [m] Suggested loiter radius
+ * @param LoiterDirection  Suggested loiter direction
+ * @param DistToSoarPoint [m] Distance to soar point
+ * @param vSinkExp [m/s] Expected sink rate at current airspeed, roll and throttle
+ * @param z1_LocalUpdraftSpeed [m/s] Measurement / updraft speed at current/local airplane position
+ * @param z2_DeltaRoll [deg] Measurement / roll angle tracking error
+ * @param z1_exp  Expected measurement 1
+ * @param z2_exp  Expected measurement 2
+ * @param ThermalGSNorth [m/s] Thermal drift (from estimator prediction step only)
+ * @param ThermalGSEast [m/s] Thermal drift (from estimator prediction step only)
+ * @param TSE_dot [m/s]  Total specific energy change (filtered)
+ * @param DebugVar1   Debug variable 1
+ * @param DebugVar2   Debug variable 2
+ * @param ControlMode  Control Mode [-]
+ * @param valid  Data valid [-]
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_fw_soaring_data_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint64_t timestamp, uint64_t timestampModeChanged, float xW, float xR, float xLat, float xLon, float VarW, float VarR, float VarLat, float VarLon, float LoiterRadius, float LoiterDirection, float DistToSoarPoint, float vSinkExp, float z1_LocalUpdraftSpeed, float z2_DeltaRoll, float z1_exp, float z2_exp, float ThermalGSNorth, float ThermalGSEast, float TSE_dot, float DebugVar1, float DebugVar2, uint8_t ControlMode, uint8_t valid)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_FW_SOARING_DATA_LEN];
+    _mav_put_uint64_t(buf, 0, timestamp);
+    _mav_put_uint64_t(buf, 8, timestampModeChanged);
+    _mav_put_float(buf, 16, xW);
+    _mav_put_float(buf, 20, xR);
+    _mav_put_float(buf, 24, xLat);
+    _mav_put_float(buf, 28, xLon);
+    _mav_put_float(buf, 32, VarW);
+    _mav_put_float(buf, 36, VarR);
+    _mav_put_float(buf, 40, VarLat);
+    _mav_put_float(buf, 44, VarLon);
+    _mav_put_float(buf, 48, LoiterRadius);
+    _mav_put_float(buf, 52, LoiterDirection);
+    _mav_put_float(buf, 56, DistToSoarPoint);
+    _mav_put_float(buf, 60, vSinkExp);
+    _mav_put_float(buf, 64, z1_LocalUpdraftSpeed);
+    _mav_put_float(buf, 68, z2_DeltaRoll);
+    _mav_put_float(buf, 72, z1_exp);
+    _mav_put_float(buf, 76, z2_exp);
+    _mav_put_float(buf, 80, ThermalGSNorth);
+    _mav_put_float(buf, 84, ThermalGSEast);
+    _mav_put_float(buf, 88, TSE_dot);
+    _mav_put_float(buf, 92, DebugVar1);
+    _mav_put_float(buf, 96, DebugVar2);
+    _mav_put_uint8_t(buf, 100, ControlMode);
+    _mav_put_uint8_t(buf, 101, valid);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN);
+#else
+    mavlink_fw_soaring_data_t packet;
+    packet.timestamp = timestamp;
+    packet.timestampModeChanged = timestampModeChanged;
+    packet.xW = xW;
+    packet.xR = xR;
+    packet.xLat = xLat;
+    packet.xLon = xLon;
+    packet.VarW = VarW;
+    packet.VarR = VarR;
+    packet.VarLat = VarLat;
+    packet.VarLon = VarLon;
+    packet.LoiterRadius = LoiterRadius;
+    packet.LoiterDirection = LoiterDirection;
+    packet.DistToSoarPoint = DistToSoarPoint;
+    packet.vSinkExp = vSinkExp;
+    packet.z1_LocalUpdraftSpeed = z1_LocalUpdraftSpeed;
+    packet.z2_DeltaRoll = z2_DeltaRoll;
+    packet.z1_exp = z1_exp;
+    packet.z2_exp = z2_exp;
+    packet.ThermalGSNorth = ThermalGSNorth;
+    packet.ThermalGSEast = ThermalGSEast;
+    packet.TSE_dot = TSE_dot;
+    packet.DebugVar1 = DebugVar1;
+    packet.DebugVar2 = DebugVar2;
+    packet.ControlMode = ControlMode;
+    packet.valid = valid;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_FW_SOARING_DATA;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_FW_SOARING_DATA_MIN_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_FW_SOARING_DATA_MIN_LEN, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN);
+#endif
+}
+
+/**
  * @brief Pack a fw_soaring_data message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -333,6 +438,20 @@ static inline uint16_t mavlink_msg_fw_soaring_data_encode(uint8_t system_id, uin
 static inline uint16_t mavlink_msg_fw_soaring_data_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_fw_soaring_data_t* fw_soaring_data)
 {
     return mavlink_msg_fw_soaring_data_pack_chan(system_id, component_id, chan, msg, fw_soaring_data->timestamp, fw_soaring_data->timestampModeChanged, fw_soaring_data->xW, fw_soaring_data->xR, fw_soaring_data->xLat, fw_soaring_data->xLon, fw_soaring_data->VarW, fw_soaring_data->VarR, fw_soaring_data->VarLat, fw_soaring_data->VarLon, fw_soaring_data->LoiterRadius, fw_soaring_data->LoiterDirection, fw_soaring_data->DistToSoarPoint, fw_soaring_data->vSinkExp, fw_soaring_data->z1_LocalUpdraftSpeed, fw_soaring_data->z2_DeltaRoll, fw_soaring_data->z1_exp, fw_soaring_data->z2_exp, fw_soaring_data->ThermalGSNorth, fw_soaring_data->ThermalGSEast, fw_soaring_data->TSE_dot, fw_soaring_data->DebugVar1, fw_soaring_data->DebugVar2, fw_soaring_data->ControlMode, fw_soaring_data->valid);
+}
+
+/**
+ * @brief Encode a fw_soaring_data struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param fw_soaring_data C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_fw_soaring_data_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_fw_soaring_data_t* fw_soaring_data)
+{
+    return mavlink_msg_fw_soaring_data_pack_status(system_id, component_id, _status, msg,  fw_soaring_data->timestamp, fw_soaring_data->timestampModeChanged, fw_soaring_data->xW, fw_soaring_data->xR, fw_soaring_data->xLat, fw_soaring_data->xLon, fw_soaring_data->VarW, fw_soaring_data->VarR, fw_soaring_data->VarLat, fw_soaring_data->VarLon, fw_soaring_data->LoiterRadius, fw_soaring_data->LoiterDirection, fw_soaring_data->DistToSoarPoint, fw_soaring_data->vSinkExp, fw_soaring_data->z1_LocalUpdraftSpeed, fw_soaring_data->z2_DeltaRoll, fw_soaring_data->z1_exp, fw_soaring_data->z2_exp, fw_soaring_data->ThermalGSNorth, fw_soaring_data->ThermalGSEast, fw_soaring_data->TSE_dot, fw_soaring_data->DebugVar1, fw_soaring_data->DebugVar2, fw_soaring_data->ControlMode, fw_soaring_data->valid);
 }
 
 /**

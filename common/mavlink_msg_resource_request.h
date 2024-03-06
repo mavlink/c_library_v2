@@ -87,6 +87,49 @@ static inline uint16_t mavlink_msg_resource_request_pack(uint8_t system_id, uint
 }
 
 /**
+ * @brief Pack a resource_request message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param request_id  Request ID. This ID should be re-used when sending back URI contents
+ * @param uri_type  The type of requested URI. 0 = a file via URL. 1 = a UAVCAN binary
+ * @param uri  The requested unique resource identifier (URI). It is not necessarily a straight domain name (depends on the URI type enum)
+ * @param transfer_type  The way the autopilot wants to receive the URI. 0 = MAVLink FTP. 1 = binary stream.
+ * @param storage  The storage path the autopilot wants the URI to be stored in. Will only be valid if the transfer_type has a storage associated (e.g. MAVLink FTP).
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_resource_request_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t request_id, uint8_t uri_type, const uint8_t *uri, uint8_t transfer_type, const uint8_t *storage)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_RESOURCE_REQUEST_LEN];
+    _mav_put_uint8_t(buf, 0, request_id);
+    _mav_put_uint8_t(buf, 1, uri_type);
+    _mav_put_uint8_t(buf, 122, transfer_type);
+    _mav_put_uint8_t_array(buf, 2, uri, 120);
+    _mav_put_uint8_t_array(buf, 123, storage, 120);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_RESOURCE_REQUEST_LEN);
+#else
+    mavlink_resource_request_t packet;
+    packet.request_id = request_id;
+    packet.uri_type = uri_type;
+    packet.transfer_type = transfer_type;
+    mav_array_memcpy(packet.uri, uri, sizeof(uint8_t)*120);
+    mav_array_memcpy(packet.storage, storage, sizeof(uint8_t)*120);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_RESOURCE_REQUEST_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_RESOURCE_REQUEST;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_RESOURCE_REQUEST_MIN_LEN, MAVLINK_MSG_ID_RESOURCE_REQUEST_LEN, MAVLINK_MSG_ID_RESOURCE_REQUEST_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_RESOURCE_REQUEST_MIN_LEN, MAVLINK_MSG_ID_RESOURCE_REQUEST_LEN);
+#endif
+}
+
+/**
  * @brief Pack a resource_request message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -150,6 +193,20 @@ static inline uint16_t mavlink_msg_resource_request_encode(uint8_t system_id, ui
 static inline uint16_t mavlink_msg_resource_request_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_resource_request_t* resource_request)
 {
     return mavlink_msg_resource_request_pack_chan(system_id, component_id, chan, msg, resource_request->request_id, resource_request->uri_type, resource_request->uri, resource_request->transfer_type, resource_request->storage);
+}
+
+/**
+ * @brief Encode a resource_request struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param resource_request C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_resource_request_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_resource_request_t* resource_request)
+{
+    return mavlink_msg_resource_request_pack_status(system_id, component_id, _status, msg,  resource_request->request_id, resource_request->uri_type, resource_request->uri, resource_request->transfer_type, resource_request->storage);
 }
 
 /**

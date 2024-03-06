@@ -100,6 +100,57 @@ static inline uint16_t mavlink_msg_airspeeds_pack(uint8_t system_id, uint8_t com
 }
 
 /**
+ * @brief Pack a airspeeds message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param time_boot_ms  Timestamp (milliseconds since system boot)
+ * @param airspeed_imu  Airspeed estimate from IMU, cm/s
+ * @param airspeed_pitot  Pitot measured forward airpseed, cm/s
+ * @param airspeed_hot_wire  Hot wire anenometer measured airspeed, cm/s
+ * @param airspeed_ultrasonic  Ultrasonic measured airspeed, cm/s
+ * @param aoa  Angle of attack sensor, degrees * 10
+ * @param aoy  Yaw angle sensor, degrees * 10
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_airspeeds_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t time_boot_ms, int16_t airspeed_imu, int16_t airspeed_pitot, int16_t airspeed_hot_wire, int16_t airspeed_ultrasonic, int16_t aoa, int16_t aoy)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_AIRSPEEDS_LEN];
+    _mav_put_uint32_t(buf, 0, time_boot_ms);
+    _mav_put_int16_t(buf, 4, airspeed_imu);
+    _mav_put_int16_t(buf, 6, airspeed_pitot);
+    _mav_put_int16_t(buf, 8, airspeed_hot_wire);
+    _mav_put_int16_t(buf, 10, airspeed_ultrasonic);
+    _mav_put_int16_t(buf, 12, aoa);
+    _mav_put_int16_t(buf, 14, aoy);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_AIRSPEEDS_LEN);
+#else
+    mavlink_airspeeds_t packet;
+    packet.time_boot_ms = time_boot_ms;
+    packet.airspeed_imu = airspeed_imu;
+    packet.airspeed_pitot = airspeed_pitot;
+    packet.airspeed_hot_wire = airspeed_hot_wire;
+    packet.airspeed_ultrasonic = airspeed_ultrasonic;
+    packet.aoa = aoa;
+    packet.aoy = aoy;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_AIRSPEEDS_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_AIRSPEEDS;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AIRSPEEDS_MIN_LEN, MAVLINK_MSG_ID_AIRSPEEDS_LEN, MAVLINK_MSG_ID_AIRSPEEDS_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AIRSPEEDS_MIN_LEN, MAVLINK_MSG_ID_AIRSPEEDS_LEN);
+#endif
+}
+
+/**
  * @brief Pack a airspeeds message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -171,6 +222,20 @@ static inline uint16_t mavlink_msg_airspeeds_encode(uint8_t system_id, uint8_t c
 static inline uint16_t mavlink_msg_airspeeds_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_airspeeds_t* airspeeds)
 {
     return mavlink_msg_airspeeds_pack_chan(system_id, component_id, chan, msg, airspeeds->time_boot_ms, airspeeds->airspeed_imu, airspeeds->airspeed_pitot, airspeeds->airspeed_hot_wire, airspeeds->airspeed_ultrasonic, airspeeds->aoa, airspeeds->aoy);
+}
+
+/**
+ * @brief Encode a airspeeds struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param airspeeds C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_airspeeds_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_airspeeds_t* airspeeds)
+{
+    return mavlink_msg_airspeeds_pack_status(system_id, component_id, _status, msg,  airspeeds->time_boot_ms, airspeeds->airspeed_imu, airspeeds->airspeed_pitot, airspeeds->airspeed_hot_wire, airspeeds->airspeed_ultrasonic, airspeeds->aoa, airspeeds->aoy);
 }
 
 /**

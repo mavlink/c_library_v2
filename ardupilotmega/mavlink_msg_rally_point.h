@@ -118,6 +118,66 @@ static inline uint16_t mavlink_msg_rally_point_pack(uint8_t system_id, uint8_t c
 }
 
 /**
+ * @brief Pack a rally_point message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  System ID.
+ * @param target_component  Component ID.
+ * @param idx  Point index (first point is 0).
+ * @param count  Total number of points (for sanity checking).
+ * @param lat [degE7] Latitude of point.
+ * @param lng [degE7] Longitude of point.
+ * @param alt [m] Transit / loiter altitude relative to home.
+ * @param break_alt [m] Break altitude relative to home.
+ * @param land_dir [cdeg] Heading to aim for when landing.
+ * @param flags  Configuration flags.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_rally_point_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, uint8_t idx, uint8_t count, int32_t lat, int32_t lng, int16_t alt, int16_t break_alt, uint16_t land_dir, uint8_t flags)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_RALLY_POINT_LEN];
+    _mav_put_int32_t(buf, 0, lat);
+    _mav_put_int32_t(buf, 4, lng);
+    _mav_put_int16_t(buf, 8, alt);
+    _mav_put_int16_t(buf, 10, break_alt);
+    _mav_put_uint16_t(buf, 12, land_dir);
+    _mav_put_uint8_t(buf, 14, target_system);
+    _mav_put_uint8_t(buf, 15, target_component);
+    _mav_put_uint8_t(buf, 16, idx);
+    _mav_put_uint8_t(buf, 17, count);
+    _mav_put_uint8_t(buf, 18, flags);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_RALLY_POINT_LEN);
+#else
+    mavlink_rally_point_t packet;
+    packet.lat = lat;
+    packet.lng = lng;
+    packet.alt = alt;
+    packet.break_alt = break_alt;
+    packet.land_dir = land_dir;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+    packet.idx = idx;
+    packet.count = count;
+    packet.flags = flags;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_RALLY_POINT_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_RALLY_POINT;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_RALLY_POINT_MIN_LEN, MAVLINK_MSG_ID_RALLY_POINT_LEN, MAVLINK_MSG_ID_RALLY_POINT_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_RALLY_POINT_MIN_LEN, MAVLINK_MSG_ID_RALLY_POINT_LEN);
+#endif
+}
+
+/**
  * @brief Pack a rally_point message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -198,6 +258,20 @@ static inline uint16_t mavlink_msg_rally_point_encode(uint8_t system_id, uint8_t
 static inline uint16_t mavlink_msg_rally_point_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_rally_point_t* rally_point)
 {
     return mavlink_msg_rally_point_pack_chan(system_id, component_id, chan, msg, rally_point->target_system, rally_point->target_component, rally_point->idx, rally_point->count, rally_point->lat, rally_point->lng, rally_point->alt, rally_point->break_alt, rally_point->land_dir, rally_point->flags);
+}
+
+/**
+ * @brief Encode a rally_point struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param rally_point C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_rally_point_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_rally_point_t* rally_point)
+{
+    return mavlink_msg_rally_point_pack_status(system_id, component_id, _status, msg,  rally_point->target_system, rally_point->target_component, rally_point->idx, rally_point->count, rally_point->lat, rally_point->lng, rally_point->alt, rally_point->break_alt, rally_point->land_dir, rally_point->flags);
 }
 
 /**

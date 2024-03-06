@@ -76,6 +76,45 @@ static inline uint16_t mavlink_msg_current_mode_pack(uint8_t system_id, uint8_t 
 }
 
 /**
+ * @brief Pack a current_mode message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param standard_mode  Standard mode.
+ * @param custom_mode  A bitfield for use for autopilot-specific flags
+ * @param intended_custom_mode  The custom_mode of the mode that was last commanded by the user (for example, with MAV_CMD_DO_SET_STANDARD_MODE, MAV_CMD_DO_SET_MODE or via RC). This should usually be the same as custom_mode. It will be different if the vehicle is unable to enter the intended mode, or has left that mode due to a failsafe condition. 0 indicates the intended custom mode is unknown/not supplied
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_current_mode_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t standard_mode, uint32_t custom_mode, uint32_t intended_custom_mode)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_CURRENT_MODE_LEN];
+    _mav_put_uint32_t(buf, 0, custom_mode);
+    _mav_put_uint32_t(buf, 4, intended_custom_mode);
+    _mav_put_uint8_t(buf, 8, standard_mode);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CURRENT_MODE_LEN);
+#else
+    mavlink_current_mode_t packet;
+    packet.custom_mode = custom_mode;
+    packet.intended_custom_mode = intended_custom_mode;
+    packet.standard_mode = standard_mode;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CURRENT_MODE_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_CURRENT_MODE;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CURRENT_MODE_MIN_LEN, MAVLINK_MSG_ID_CURRENT_MODE_LEN, MAVLINK_MSG_ID_CURRENT_MODE_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CURRENT_MODE_MIN_LEN, MAVLINK_MSG_ID_CURRENT_MODE_LEN);
+#endif
+}
+
+/**
  * @brief Pack a current_mode message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -135,6 +174,20 @@ static inline uint16_t mavlink_msg_current_mode_encode(uint8_t system_id, uint8_
 static inline uint16_t mavlink_msg_current_mode_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_current_mode_t* current_mode)
 {
     return mavlink_msg_current_mode_pack_chan(system_id, component_id, chan, msg, current_mode->standard_mode, current_mode->custom_mode, current_mode->intended_custom_mode);
+}
+
+/**
+ * @brief Encode a current_mode struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param current_mode C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_current_mode_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_current_mode_t* current_mode)
+{
+    return mavlink_msg_current_mode_pack_status(system_id, component_id, _status, msg,  current_mode->standard_mode, current_mode->custom_mode, current_mode->intended_custom_mode);
 }
 
 /**

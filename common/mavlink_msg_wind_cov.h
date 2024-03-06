@@ -112,6 +112,63 @@ static inline uint16_t mavlink_msg_wind_cov_pack(uint8_t system_id, uint8_t comp
 }
 
 /**
+ * @brief Pack a wind_cov message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+ * @param wind_x [m/s] Wind in North (NED) direction (NAN if unknown)
+ * @param wind_y [m/s] Wind in East (NED) direction (NAN if unknown)
+ * @param wind_z [m/s] Wind in down (NED) direction (NAN if unknown)
+ * @param var_horiz [m/s] Variability of wind in XY, 1-STD estimated from a 1 Hz lowpassed wind estimate (NAN if unknown)
+ * @param var_vert [m/s] Variability of wind in Z, 1-STD estimated from a 1 Hz lowpassed wind estimate (NAN if unknown)
+ * @param wind_alt [m] Altitude (MSL) that this measurement was taken at (NAN if unknown)
+ * @param horiz_accuracy [m/s] Horizontal speed 1-STD accuracy (0 if unknown)
+ * @param vert_accuracy [m/s] Vertical speed 1-STD accuracy (0 if unknown)
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_wind_cov_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint64_t time_usec, float wind_x, float wind_y, float wind_z, float var_horiz, float var_vert, float wind_alt, float horiz_accuracy, float vert_accuracy)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_WIND_COV_LEN];
+    _mav_put_uint64_t(buf, 0, time_usec);
+    _mav_put_float(buf, 8, wind_x);
+    _mav_put_float(buf, 12, wind_y);
+    _mav_put_float(buf, 16, wind_z);
+    _mav_put_float(buf, 20, var_horiz);
+    _mav_put_float(buf, 24, var_vert);
+    _mav_put_float(buf, 28, wind_alt);
+    _mav_put_float(buf, 32, horiz_accuracy);
+    _mav_put_float(buf, 36, vert_accuracy);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_WIND_COV_LEN);
+#else
+    mavlink_wind_cov_t packet;
+    packet.time_usec = time_usec;
+    packet.wind_x = wind_x;
+    packet.wind_y = wind_y;
+    packet.wind_z = wind_z;
+    packet.var_horiz = var_horiz;
+    packet.var_vert = var_vert;
+    packet.wind_alt = wind_alt;
+    packet.horiz_accuracy = horiz_accuracy;
+    packet.vert_accuracy = vert_accuracy;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_WIND_COV_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_WIND_COV;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_WIND_COV_MIN_LEN, MAVLINK_MSG_ID_WIND_COV_LEN, MAVLINK_MSG_ID_WIND_COV_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_WIND_COV_MIN_LEN, MAVLINK_MSG_ID_WIND_COV_LEN);
+#endif
+}
+
+/**
  * @brief Pack a wind_cov message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -189,6 +246,20 @@ static inline uint16_t mavlink_msg_wind_cov_encode(uint8_t system_id, uint8_t co
 static inline uint16_t mavlink_msg_wind_cov_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_wind_cov_t* wind_cov)
 {
     return mavlink_msg_wind_cov_pack_chan(system_id, component_id, chan, msg, wind_cov->time_usec, wind_cov->wind_x, wind_cov->wind_y, wind_cov->wind_z, wind_cov->var_horiz, wind_cov->var_vert, wind_cov->wind_alt, wind_cov->horiz_accuracy, wind_cov->vert_accuracy);
+}
+
+/**
+ * @brief Encode a wind_cov struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param wind_cov C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_wind_cov_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_wind_cov_t* wind_cov)
+{
+    return mavlink_msg_wind_cov_pack_status(system_id, component_id, _status, msg,  wind_cov->time_usec, wind_cov->wind_x, wind_cov->wind_y, wind_cov->wind_z, wind_cov->var_horiz, wind_cov->var_vert, wind_cov->wind_alt, wind_cov->horiz_accuracy, wind_cov->vert_accuracy);
 }
 
 /**

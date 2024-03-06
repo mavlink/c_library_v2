@@ -106,6 +106,60 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f19_pack(uint8_t system_id, 
 }
 
 /**
+ * @brief Pack a serial_udb_extra_f19 message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param sue_aileron_output_channel  SUE aileron output channel
+ * @param sue_aileron_reversed  SUE aileron reversed
+ * @param sue_elevator_output_channel  SUE elevator output channel
+ * @param sue_elevator_reversed  SUE elevator reversed
+ * @param sue_throttle_output_channel  SUE throttle output channel
+ * @param sue_throttle_reversed  SUE throttle reversed
+ * @param sue_rudder_output_channel  SUE rudder output channel
+ * @param sue_rudder_reversed  SUE rudder reversed
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f19_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t sue_aileron_output_channel, uint8_t sue_aileron_reversed, uint8_t sue_elevator_output_channel, uint8_t sue_elevator_reversed, uint8_t sue_throttle_output_channel, uint8_t sue_throttle_reversed, uint8_t sue_rudder_output_channel, uint8_t sue_rudder_reversed)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F19_LEN];
+    _mav_put_uint8_t(buf, 0, sue_aileron_output_channel);
+    _mav_put_uint8_t(buf, 1, sue_aileron_reversed);
+    _mav_put_uint8_t(buf, 2, sue_elevator_output_channel);
+    _mav_put_uint8_t(buf, 3, sue_elevator_reversed);
+    _mav_put_uint8_t(buf, 4, sue_throttle_output_channel);
+    _mav_put_uint8_t(buf, 5, sue_throttle_reversed);
+    _mav_put_uint8_t(buf, 6, sue_rudder_output_channel);
+    _mav_put_uint8_t(buf, 7, sue_rudder_reversed);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F19_LEN);
+#else
+    mavlink_serial_udb_extra_f19_t packet;
+    packet.sue_aileron_output_channel = sue_aileron_output_channel;
+    packet.sue_aileron_reversed = sue_aileron_reversed;
+    packet.sue_elevator_output_channel = sue_elevator_output_channel;
+    packet.sue_elevator_reversed = sue_elevator_reversed;
+    packet.sue_throttle_output_channel = sue_throttle_output_channel;
+    packet.sue_throttle_reversed = sue_throttle_reversed;
+    packet.sue_rudder_output_channel = sue_rudder_output_channel;
+    packet.sue_rudder_reversed = sue_rudder_reversed;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F19_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F19;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F19_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F19_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F19_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F19_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F19_LEN);
+#endif
+}
+
+/**
  * @brief Pack a serial_udb_extra_f19 message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -180,6 +234,20 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f19_encode(uint8_t system_id
 static inline uint16_t mavlink_msg_serial_udb_extra_f19_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_serial_udb_extra_f19_t* serial_udb_extra_f19)
 {
     return mavlink_msg_serial_udb_extra_f19_pack_chan(system_id, component_id, chan, msg, serial_udb_extra_f19->sue_aileron_output_channel, serial_udb_extra_f19->sue_aileron_reversed, serial_udb_extra_f19->sue_elevator_output_channel, serial_udb_extra_f19->sue_elevator_reversed, serial_udb_extra_f19->sue_throttle_output_channel, serial_udb_extra_f19->sue_throttle_reversed, serial_udb_extra_f19->sue_rudder_output_channel, serial_udb_extra_f19->sue_rudder_reversed);
+}
+
+/**
+ * @brief Encode a serial_udb_extra_f19 struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param serial_udb_extra_f19 C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_serial_udb_extra_f19_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_serial_udb_extra_f19_t* serial_udb_extra_f19)
+{
+    return mavlink_msg_serial_udb_extra_f19_pack_status(system_id, component_id, _status, msg,  serial_udb_extra_f19->sue_aileron_output_channel, serial_udb_extra_f19->sue_aileron_reversed, serial_udb_extra_f19->sue_elevator_output_channel, serial_udb_extra_f19->sue_elevator_reversed, serial_udb_extra_f19->sue_throttle_output_channel, serial_udb_extra_f19->sue_throttle_reversed, serial_udb_extra_f19->sue_rudder_output_channel, serial_udb_extra_f19->sue_rudder_reversed);
 }
 
 /**

@@ -88,6 +88,51 @@ static inline uint16_t mavlink_msg_osd_param_show_config_pack(uint8_t system_id,
 }
 
 /**
+ * @brief Pack a osd_param_show_config message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  System ID.
+ * @param target_component  Component ID.
+ * @param request_id  Request ID - copied to reply.
+ * @param osd_screen  OSD parameter screen index.
+ * @param osd_index  OSD parameter display index.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_osd_param_show_config_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, uint32_t request_id, uint8_t osd_screen, uint8_t osd_index)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN];
+    _mav_put_uint32_t(buf, 0, request_id);
+    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 5, target_component);
+    _mav_put_uint8_t(buf, 6, osd_screen);
+    _mav_put_uint8_t(buf, 7, osd_index);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN);
+#else
+    mavlink_osd_param_show_config_t packet;
+    packet.request_id = request_id;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+    packet.osd_screen = osd_screen;
+    packet.osd_index = osd_index;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN);
+#endif
+}
+
+/**
  * @brief Pack a osd_param_show_config message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -153,6 +198,20 @@ static inline uint16_t mavlink_msg_osd_param_show_config_encode(uint8_t system_i
 static inline uint16_t mavlink_msg_osd_param_show_config_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_osd_param_show_config_t* osd_param_show_config)
 {
     return mavlink_msg_osd_param_show_config_pack_chan(system_id, component_id, chan, msg, osd_param_show_config->target_system, osd_param_show_config->target_component, osd_param_show_config->request_id, osd_param_show_config->osd_screen, osd_param_show_config->osd_index);
+}
+
+/**
+ * @brief Encode a osd_param_show_config struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param osd_param_show_config C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_osd_param_show_config_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_osd_param_show_config_t* osd_param_show_config)
+{
+    return mavlink_msg_osd_param_show_config_pack_status(system_id, component_id, _status, msg,  osd_param_show_config->target_system, osd_param_show_config->target_component, osd_param_show_config->request_id, osd_param_show_config->osd_screen, osd_param_show_config->osd_index);
 }
 
 /**

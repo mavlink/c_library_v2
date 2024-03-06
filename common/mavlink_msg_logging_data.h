@@ -92,6 +92,52 @@ static inline uint16_t mavlink_msg_logging_data_pack(uint8_t system_id, uint8_t 
 }
 
 /**
+ * @brief Pack a logging_data message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  system ID of the target
+ * @param target_component  component ID of the target
+ * @param sequence  sequence number (can wrap)
+ * @param length [bytes] data length
+ * @param first_message_offset [bytes] offset into data where first message starts. This can be used for recovery, when a previous message got lost (set to UINT8_MAX if no start exists).
+ * @param data  logged data
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_logging_data_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, uint16_t sequence, uint8_t length, uint8_t first_message_offset, const uint8_t *data)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_LOGGING_DATA_LEN];
+    _mav_put_uint16_t(buf, 0, sequence);
+    _mav_put_uint8_t(buf, 2, target_system);
+    _mav_put_uint8_t(buf, 3, target_component);
+    _mav_put_uint8_t(buf, 4, length);
+    _mav_put_uint8_t(buf, 5, first_message_offset);
+    _mav_put_uint8_t_array(buf, 6, data, 249);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_LOGGING_DATA_LEN);
+#else
+    mavlink_logging_data_t packet;
+    packet.sequence = sequence;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+    packet.length = length;
+    packet.first_message_offset = first_message_offset;
+    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*249);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_LOGGING_DATA_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_LOGGING_DATA;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_LOGGING_DATA_MIN_LEN, MAVLINK_MSG_ID_LOGGING_DATA_LEN, MAVLINK_MSG_ID_LOGGING_DATA_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_LOGGING_DATA_MIN_LEN, MAVLINK_MSG_ID_LOGGING_DATA_LEN);
+#endif
+}
+
+/**
  * @brief Pack a logging_data message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -158,6 +204,20 @@ static inline uint16_t mavlink_msg_logging_data_encode(uint8_t system_id, uint8_
 static inline uint16_t mavlink_msg_logging_data_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_logging_data_t* logging_data)
 {
     return mavlink_msg_logging_data_pack_chan(system_id, component_id, chan, msg, logging_data->target_system, logging_data->target_component, logging_data->sequence, logging_data->length, logging_data->first_message_offset, logging_data->data);
+}
+
+/**
+ * @brief Encode a logging_data struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param logging_data C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_logging_data_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_logging_data_t* logging_data)
+{
+    return mavlink_msg_logging_data_pack_status(system_id, component_id, _status, msg,  logging_data->target_system, logging_data->target_component, logging_data->sequence, logging_data->length, logging_data->first_message_offset, logging_data->data);
 }
 
 /**

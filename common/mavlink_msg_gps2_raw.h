@@ -166,6 +166,90 @@ static inline uint16_t mavlink_msg_gps2_raw_pack(uint8_t system_id, uint8_t comp
 }
 
 /**
+ * @brief Pack a gps2_raw message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+ * @param fix_type  GPS fix type.
+ * @param lat [degE7] Latitude (WGS84)
+ * @param lon [degE7] Longitude (WGS84)
+ * @param alt [mm] Altitude (MSL). Positive for up.
+ * @param eph  GPS HDOP horizontal dilution of position (unitless * 100). If unknown, set to: UINT16_MAX
+ * @param epv  GPS VDOP vertical dilution of position (unitless * 100). If unknown, set to: UINT16_MAX
+ * @param vel [cm/s] GPS ground speed. If unknown, set to: UINT16_MAX
+ * @param cog [cdeg] Course over ground (NOT heading, but direction of movement): 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
+ * @param satellites_visible  Number of satellites visible. If unknown, set to UINT8_MAX
+ * @param dgps_numch  Number of DGPS satellites
+ * @param dgps_age [ms] Age of DGPS info
+ * @param yaw [cdeg] Yaw in earth frame from north. Use 0 if this GPS does not provide yaw. Use UINT16_MAX if this GPS is configured to provide yaw and is currently unable to provide it. Use 36000 for north.
+ * @param alt_ellipsoid [mm] Altitude (above WGS84, EGM96 ellipsoid). Positive for up.
+ * @param h_acc [mm] Position uncertainty.
+ * @param v_acc [mm] Altitude uncertainty.
+ * @param vel_acc [mm] Speed uncertainty.
+ * @param hdg_acc [degE5] Heading / track uncertainty
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_gps2_raw_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint64_t time_usec, uint8_t fix_type, int32_t lat, int32_t lon, int32_t alt, uint16_t eph, uint16_t epv, uint16_t vel, uint16_t cog, uint8_t satellites_visible, uint8_t dgps_numch, uint32_t dgps_age, uint16_t yaw, int32_t alt_ellipsoid, uint32_t h_acc, uint32_t v_acc, uint32_t vel_acc, uint32_t hdg_acc)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_GPS2_RAW_LEN];
+    _mav_put_uint64_t(buf, 0, time_usec);
+    _mav_put_int32_t(buf, 8, lat);
+    _mav_put_int32_t(buf, 12, lon);
+    _mav_put_int32_t(buf, 16, alt);
+    _mav_put_uint32_t(buf, 20, dgps_age);
+    _mav_put_uint16_t(buf, 24, eph);
+    _mav_put_uint16_t(buf, 26, epv);
+    _mav_put_uint16_t(buf, 28, vel);
+    _mav_put_uint16_t(buf, 30, cog);
+    _mav_put_uint8_t(buf, 32, fix_type);
+    _mav_put_uint8_t(buf, 33, satellites_visible);
+    _mav_put_uint8_t(buf, 34, dgps_numch);
+    _mav_put_uint16_t(buf, 35, yaw);
+    _mav_put_int32_t(buf, 37, alt_ellipsoid);
+    _mav_put_uint32_t(buf, 41, h_acc);
+    _mav_put_uint32_t(buf, 45, v_acc);
+    _mav_put_uint32_t(buf, 49, vel_acc);
+    _mav_put_uint32_t(buf, 53, hdg_acc);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_GPS2_RAW_LEN);
+#else
+    mavlink_gps2_raw_t packet;
+    packet.time_usec = time_usec;
+    packet.lat = lat;
+    packet.lon = lon;
+    packet.alt = alt;
+    packet.dgps_age = dgps_age;
+    packet.eph = eph;
+    packet.epv = epv;
+    packet.vel = vel;
+    packet.cog = cog;
+    packet.fix_type = fix_type;
+    packet.satellites_visible = satellites_visible;
+    packet.dgps_numch = dgps_numch;
+    packet.yaw = yaw;
+    packet.alt_ellipsoid = alt_ellipsoid;
+    packet.h_acc = h_acc;
+    packet.v_acc = v_acc;
+    packet.vel_acc = vel_acc;
+    packet.hdg_acc = hdg_acc;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_GPS2_RAW_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_GPS2_RAW;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GPS2_RAW_MIN_LEN, MAVLINK_MSG_ID_GPS2_RAW_LEN, MAVLINK_MSG_ID_GPS2_RAW_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GPS2_RAW_MIN_LEN, MAVLINK_MSG_ID_GPS2_RAW_LEN);
+#endif
+}
+
+/**
  * @brief Pack a gps2_raw message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -270,6 +354,20 @@ static inline uint16_t mavlink_msg_gps2_raw_encode(uint8_t system_id, uint8_t co
 static inline uint16_t mavlink_msg_gps2_raw_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gps2_raw_t* gps2_raw)
 {
     return mavlink_msg_gps2_raw_pack_chan(system_id, component_id, chan, msg, gps2_raw->time_usec, gps2_raw->fix_type, gps2_raw->lat, gps2_raw->lon, gps2_raw->alt, gps2_raw->eph, gps2_raw->epv, gps2_raw->vel, gps2_raw->cog, gps2_raw->satellites_visible, gps2_raw->dgps_numch, gps2_raw->dgps_age, gps2_raw->yaw, gps2_raw->alt_ellipsoid, gps2_raw->h_acc, gps2_raw->v_acc, gps2_raw->vel_acc, gps2_raw->hdg_acc);
+}
+
+/**
+ * @brief Encode a gps2_raw struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param gps2_raw C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_gps2_raw_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_gps2_raw_t* gps2_raw)
+{
+    return mavlink_msg_gps2_raw_pack_status(system_id, component_id, _status, msg,  gps2_raw->time_usec, gps2_raw->fix_type, gps2_raw->lat, gps2_raw->lon, gps2_raw->alt, gps2_raw->eph, gps2_raw->epv, gps2_raw->vel, gps2_raw->cog, gps2_raw->satellites_visible, gps2_raw->dgps_numch, gps2_raw->dgps_age, gps2_raw->yaw, gps2_raw->alt_ellipsoid, gps2_raw->h_acc, gps2_raw->v_acc, gps2_raw->vel_acc, gps2_raw->hdg_acc);
 }
 
 /**

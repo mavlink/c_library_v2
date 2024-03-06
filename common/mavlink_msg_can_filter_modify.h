@@ -92,6 +92,52 @@ static inline uint16_t mavlink_msg_can_filter_modify_pack(uint8_t system_id, uin
 }
 
 /**
+ * @brief Pack a can_filter_modify message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  System ID.
+ * @param target_component  Component ID.
+ * @param bus  bus number
+ * @param operation  what operation to perform on the filter list. See CAN_FILTER_OP enum.
+ * @param num_ids  number of IDs in filter list
+ * @param ids  filter IDs, length num_ids
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_can_filter_modify_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, uint8_t bus, uint8_t operation, uint8_t num_ids, const uint16_t *ids)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_CAN_FILTER_MODIFY_LEN];
+    _mav_put_uint8_t(buf, 32, target_system);
+    _mav_put_uint8_t(buf, 33, target_component);
+    _mav_put_uint8_t(buf, 34, bus);
+    _mav_put_uint8_t(buf, 35, operation);
+    _mav_put_uint8_t(buf, 36, num_ids);
+    _mav_put_uint16_t_array(buf, 0, ids, 16);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CAN_FILTER_MODIFY_LEN);
+#else
+    mavlink_can_filter_modify_t packet;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+    packet.bus = bus;
+    packet.operation = operation;
+    packet.num_ids = num_ids;
+    mav_array_memcpy(packet.ids, ids, sizeof(uint16_t)*16);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CAN_FILTER_MODIFY_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_CAN_FILTER_MODIFY;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CAN_FILTER_MODIFY_MIN_LEN, MAVLINK_MSG_ID_CAN_FILTER_MODIFY_LEN, MAVLINK_MSG_ID_CAN_FILTER_MODIFY_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CAN_FILTER_MODIFY_MIN_LEN, MAVLINK_MSG_ID_CAN_FILTER_MODIFY_LEN);
+#endif
+}
+
+/**
  * @brief Pack a can_filter_modify message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -158,6 +204,20 @@ static inline uint16_t mavlink_msg_can_filter_modify_encode(uint8_t system_id, u
 static inline uint16_t mavlink_msg_can_filter_modify_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_can_filter_modify_t* can_filter_modify)
 {
     return mavlink_msg_can_filter_modify_pack_chan(system_id, component_id, chan, msg, can_filter_modify->target_system, can_filter_modify->target_component, can_filter_modify->bus, can_filter_modify->operation, can_filter_modify->num_ids, can_filter_modify->ids);
+}
+
+/**
+ * @brief Encode a can_filter_modify struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param can_filter_modify C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_can_filter_modify_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_can_filter_modify_t* can_filter_modify)
+{
+    return mavlink_msg_can_filter_modify_pack_status(system_id, component_id, _status, msg,  can_filter_modify->target_system, can_filter_modify->target_component, can_filter_modify->bus, can_filter_modify->operation, can_filter_modify->num_ids, can_filter_modify->ids);
 }
 
 /**

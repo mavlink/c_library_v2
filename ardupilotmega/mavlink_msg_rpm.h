@@ -70,6 +70,42 @@ static inline uint16_t mavlink_msg_rpm_pack(uint8_t system_id, uint8_t component
 }
 
 /**
+ * @brief Pack a rpm message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param rpm1  RPM Sensor1.
+ * @param rpm2  RPM Sensor2.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_rpm_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               float rpm1, float rpm2)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_RPM_LEN];
+    _mav_put_float(buf, 0, rpm1);
+    _mav_put_float(buf, 4, rpm2);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_RPM_LEN);
+#else
+    mavlink_rpm_t packet;
+    packet.rpm1 = rpm1;
+    packet.rpm2 = rpm2;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_RPM_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_RPM;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_RPM_MIN_LEN, MAVLINK_MSG_ID_RPM_LEN, MAVLINK_MSG_ID_RPM_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_RPM_MIN_LEN, MAVLINK_MSG_ID_RPM_LEN);
+#endif
+}
+
+/**
  * @brief Pack a rpm message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -126,6 +162,20 @@ static inline uint16_t mavlink_msg_rpm_encode(uint8_t system_id, uint8_t compone
 static inline uint16_t mavlink_msg_rpm_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_rpm_t* rpm)
 {
     return mavlink_msg_rpm_pack_chan(system_id, component_id, chan, msg, rpm->rpm1, rpm->rpm2);
+}
+
+/**
+ * @brief Encode a rpm struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param rpm C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_rpm_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_rpm_t* rpm)
+{
+    return mavlink_msg_rpm_pack_status(system_id, component_id, _status, msg,  rpm->rpm1, rpm->rpm2);
 }
 
 /**

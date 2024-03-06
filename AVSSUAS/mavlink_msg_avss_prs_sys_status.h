@@ -88,6 +88,51 @@ static inline uint16_t mavlink_msg_avss_prs_sys_status_pack(uint8_t system_id, u
 }
 
 /**
+ * @brief Pack a avss_prs_sys_status message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param time_boot_ms [ms] Timestamp (time since PRS boot).
+ * @param error_status  PRS error statuses
+ * @param battery_status  Estimated battery run-time without a remote connection and PRS battery voltage
+ * @param arm_status  PRS arm statuses
+ * @param charge_status  PRS battery charge statuses
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_avss_prs_sys_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t time_boot_ms, uint32_t error_status, uint32_t battery_status, uint8_t arm_status, uint8_t charge_status)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_AVSS_PRS_SYS_STATUS_LEN];
+    _mav_put_uint32_t(buf, 0, time_boot_ms);
+    _mav_put_uint32_t(buf, 4, error_status);
+    _mav_put_uint32_t(buf, 8, battery_status);
+    _mav_put_uint8_t(buf, 12, arm_status);
+    _mav_put_uint8_t(buf, 13, charge_status);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_AVSS_PRS_SYS_STATUS_LEN);
+#else
+    mavlink_avss_prs_sys_status_t packet;
+    packet.time_boot_ms = time_boot_ms;
+    packet.error_status = error_status;
+    packet.battery_status = battery_status;
+    packet.arm_status = arm_status;
+    packet.charge_status = charge_status;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_AVSS_PRS_SYS_STATUS_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_AVSS_PRS_SYS_STATUS;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AVSS_PRS_SYS_STATUS_MIN_LEN, MAVLINK_MSG_ID_AVSS_PRS_SYS_STATUS_LEN, MAVLINK_MSG_ID_AVSS_PRS_SYS_STATUS_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AVSS_PRS_SYS_STATUS_MIN_LEN, MAVLINK_MSG_ID_AVSS_PRS_SYS_STATUS_LEN);
+#endif
+}
+
+/**
  * @brief Pack a avss_prs_sys_status message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -153,6 +198,20 @@ static inline uint16_t mavlink_msg_avss_prs_sys_status_encode(uint8_t system_id,
 static inline uint16_t mavlink_msg_avss_prs_sys_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_avss_prs_sys_status_t* avss_prs_sys_status)
 {
     return mavlink_msg_avss_prs_sys_status_pack_chan(system_id, component_id, chan, msg, avss_prs_sys_status->time_boot_ms, avss_prs_sys_status->error_status, avss_prs_sys_status->battery_status, avss_prs_sys_status->arm_status, avss_prs_sys_status->charge_status);
+}
+
+/**
+ * @brief Encode a avss_prs_sys_status struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param avss_prs_sys_status C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_avss_prs_sys_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_avss_prs_sys_status_t* avss_prs_sys_status)
+{
+    return mavlink_msg_avss_prs_sys_status_pack_status(system_id, component_id, _status, msg,  avss_prs_sys_status->time_boot_ms, avss_prs_sys_status->error_status, avss_prs_sys_status->battery_status, avss_prs_sys_status->arm_status, avss_prs_sys_status->charge_status);
 }
 
 /**

@@ -100,6 +100,57 @@ static inline uint16_t mavlink_msg_herelink_telem_pack(uint8_t system_id, uint8_
 }
 
 /**
+ * @brief Pack a herelink_telem message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param rssi  
+ * @param snr  
+ * @param rf_freq  
+ * @param link_bw  
+ * @param link_rate  
+ * @param cpu_temp  
+ * @param board_temp  
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_herelink_telem_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t rssi, int16_t snr, uint32_t rf_freq, uint32_t link_bw, uint32_t link_rate, int16_t cpu_temp, int16_t board_temp)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_HERELINK_TELEM_LEN];
+    _mav_put_uint32_t(buf, 0, rf_freq);
+    _mav_put_uint32_t(buf, 4, link_bw);
+    _mav_put_uint32_t(buf, 8, link_rate);
+    _mav_put_int16_t(buf, 12, snr);
+    _mav_put_int16_t(buf, 14, cpu_temp);
+    _mav_put_int16_t(buf, 16, board_temp);
+    _mav_put_uint8_t(buf, 18, rssi);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_HERELINK_TELEM_LEN);
+#else
+    mavlink_herelink_telem_t packet;
+    packet.rf_freq = rf_freq;
+    packet.link_bw = link_bw;
+    packet.link_rate = link_rate;
+    packet.snr = snr;
+    packet.cpu_temp = cpu_temp;
+    packet.board_temp = board_temp;
+    packet.rssi = rssi;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_HERELINK_TELEM_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_HERELINK_TELEM;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_HERELINK_TELEM_MIN_LEN, MAVLINK_MSG_ID_HERELINK_TELEM_LEN, MAVLINK_MSG_ID_HERELINK_TELEM_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_HERELINK_TELEM_MIN_LEN, MAVLINK_MSG_ID_HERELINK_TELEM_LEN);
+#endif
+}
+
+/**
  * @brief Pack a herelink_telem message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -171,6 +222,20 @@ static inline uint16_t mavlink_msg_herelink_telem_encode(uint8_t system_id, uint
 static inline uint16_t mavlink_msg_herelink_telem_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_herelink_telem_t* herelink_telem)
 {
     return mavlink_msg_herelink_telem_pack_chan(system_id, component_id, chan, msg, herelink_telem->rssi, herelink_telem->snr, herelink_telem->rf_freq, herelink_telem->link_bw, herelink_telem->link_rate, herelink_telem->cpu_temp, herelink_telem->board_temp);
+}
+
+/**
+ * @brief Encode a herelink_telem struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param herelink_telem C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_herelink_telem_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_herelink_telem_t* herelink_telem)
+{
+    return mavlink_msg_herelink_telem_pack_status(system_id, component_id, _status, msg,  herelink_telem->rssi, herelink_telem->snr, herelink_telem->rf_freq, herelink_telem->link_bw, herelink_telem->link_rate, herelink_telem->cpu_temp, herelink_telem->board_temp);
 }
 
 /**
