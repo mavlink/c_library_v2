@@ -9,9 +9,9 @@ typedef struct __mavlink_sim_state_t {
  float q2; /*<  True attitude quaternion component 2, x (0 in null-rotation)*/
  float q3; /*<  True attitude quaternion component 3, y (0 in null-rotation)*/
  float q4; /*<  True attitude quaternion component 4, z (0 in null-rotation)*/
- float roll; /*<  Attitude roll expressed as Euler angles, not recommended except for human-readable outputs*/
- float pitch; /*<  Attitude pitch expressed as Euler angles, not recommended except for human-readable outputs*/
- float yaw; /*<  Attitude yaw expressed as Euler angles, not recommended except for human-readable outputs*/
+ float roll; /*< [rad] Attitude roll expressed as Euler angles, not recommended except for human-readable outputs*/
+ float pitch; /*< [rad] Attitude pitch expressed as Euler angles, not recommended except for human-readable outputs*/
+ float yaw; /*< [rad] Attitude yaw expressed as Euler angles, not recommended except for human-readable outputs*/
  float xacc; /*< [m/s/s] X acceleration*/
  float yacc; /*< [m/s/s] Y acceleration*/
  float zacc; /*< [m/s/s] Z acceleration*/
@@ -111,9 +111,9 @@ typedef struct __mavlink_sim_state_t {
  * @param q2  True attitude quaternion component 2, x (0 in null-rotation)
  * @param q3  True attitude quaternion component 3, y (0 in null-rotation)
  * @param q4  True attitude quaternion component 4, z (0 in null-rotation)
- * @param roll  Attitude roll expressed as Euler angles, not recommended except for human-readable outputs
- * @param pitch  Attitude pitch expressed as Euler angles, not recommended except for human-readable outputs
- * @param yaw  Attitude yaw expressed as Euler angles, not recommended except for human-readable outputs
+ * @param roll [rad] Attitude roll expressed as Euler angles, not recommended except for human-readable outputs
+ * @param pitch [rad] Attitude pitch expressed as Euler angles, not recommended except for human-readable outputs
+ * @param yaw [rad] Attitude yaw expressed as Euler angles, not recommended except for human-readable outputs
  * @param xacc [m/s/s] X acceleration
  * @param yacc [m/s/s] Y acceleration
  * @param zacc [m/s/s] Z acceleration
@@ -206,9 +206,9 @@ static inline uint16_t mavlink_msg_sim_state_pack(uint8_t system_id, uint8_t com
  * @param q2  True attitude quaternion component 2, x (0 in null-rotation)
  * @param q3  True attitude quaternion component 3, y (0 in null-rotation)
  * @param q4  True attitude quaternion component 4, z (0 in null-rotation)
- * @param roll  Attitude roll expressed as Euler angles, not recommended except for human-readable outputs
- * @param pitch  Attitude pitch expressed as Euler angles, not recommended except for human-readable outputs
- * @param yaw  Attitude yaw expressed as Euler angles, not recommended except for human-readable outputs
+ * @param roll [rad] Attitude roll expressed as Euler angles, not recommended except for human-readable outputs
+ * @param pitch [rad] Attitude pitch expressed as Euler angles, not recommended except for human-readable outputs
+ * @param yaw [rad] Attitude yaw expressed as Euler angles, not recommended except for human-readable outputs
  * @param xacc [m/s/s] X acceleration
  * @param yacc [m/s/s] Y acceleration
  * @param zacc [m/s/s] Z acceleration
@@ -304,9 +304,9 @@ static inline uint16_t mavlink_msg_sim_state_pack_status(uint8_t system_id, uint
  * @param q2  True attitude quaternion component 2, x (0 in null-rotation)
  * @param q3  True attitude quaternion component 3, y (0 in null-rotation)
  * @param q4  True attitude quaternion component 4, z (0 in null-rotation)
- * @param roll  Attitude roll expressed as Euler angles, not recommended except for human-readable outputs
- * @param pitch  Attitude pitch expressed as Euler angles, not recommended except for human-readable outputs
- * @param yaw  Attitude yaw expressed as Euler angles, not recommended except for human-readable outputs
+ * @param roll [rad] Attitude roll expressed as Euler angles, not recommended except for human-readable outputs
+ * @param pitch [rad] Attitude pitch expressed as Euler angles, not recommended except for human-readable outputs
+ * @param yaw [rad] Attitude yaw expressed as Euler angles, not recommended except for human-readable outputs
  * @param xacc [m/s/s] X acceleration
  * @param yacc [m/s/s] Y acceleration
  * @param zacc [m/s/s] Z acceleration
@@ -438,9 +438,9 @@ static inline uint16_t mavlink_msg_sim_state_encode_status(uint8_t system_id, ui
  * @param q2  True attitude quaternion component 2, x (0 in null-rotation)
  * @param q3  True attitude quaternion component 3, y (0 in null-rotation)
  * @param q4  True attitude quaternion component 4, z (0 in null-rotation)
- * @param roll  Attitude roll expressed as Euler angles, not recommended except for human-readable outputs
- * @param pitch  Attitude pitch expressed as Euler angles, not recommended except for human-readable outputs
- * @param yaw  Attitude yaw expressed as Euler angles, not recommended except for human-readable outputs
+ * @param roll [rad] Attitude roll expressed as Euler angles, not recommended except for human-readable outputs
+ * @param pitch [rad] Attitude pitch expressed as Euler angles, not recommended except for human-readable outputs
+ * @param yaw [rad] Attitude yaw expressed as Euler angles, not recommended except for human-readable outputs
  * @param xacc [m/s/s] X acceleration
  * @param yacc [m/s/s] Y acceleration
  * @param zacc [m/s/s] Z acceleration
@@ -649,7 +649,7 @@ static inline float mavlink_msg_sim_state_get_q4(const mavlink_message_t* msg)
 /**
  * @brief Get field roll from sim_state message
  *
- * @return  Attitude roll expressed as Euler angles, not recommended except for human-readable outputs
+ * @return [rad] Attitude roll expressed as Euler angles, not recommended except for human-readable outputs
  */
 static inline float mavlink_msg_sim_state_get_roll(const mavlink_message_t* msg)
 {
@@ -659,7 +659,7 @@ static inline float mavlink_msg_sim_state_get_roll(const mavlink_message_t* msg)
 /**
  * @brief Get field pitch from sim_state message
  *
- * @return  Attitude pitch expressed as Euler angles, not recommended except for human-readable outputs
+ * @return [rad] Attitude pitch expressed as Euler angles, not recommended except for human-readable outputs
  */
 static inline float mavlink_msg_sim_state_get_pitch(const mavlink_message_t* msg)
 {
@@ -669,7 +669,7 @@ static inline float mavlink_msg_sim_state_get_pitch(const mavlink_message_t* msg
 /**
  * @brief Get field yaw from sim_state message
  *
- * @return  Attitude yaw expressed as Euler angles, not recommended except for human-readable outputs
+ * @return [rad] Attitude yaw expressed as Euler angles, not recommended except for human-readable outputs
  */
 static inline float mavlink_msg_sim_state_get_yaw(const mavlink_message_t* msg)
 {
