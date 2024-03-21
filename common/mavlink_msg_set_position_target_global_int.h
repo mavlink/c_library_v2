@@ -6,8 +6,8 @@
 
 typedef struct __mavlink_set_position_target_global_int_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot). The rationale for the timestamp in the setpoint is to allow the system to compensate for the transport delay of the setpoint. This allows the system to compensate processing latency.*/
- int32_t lat_int; /*< [degE7] X Position in WGS84 frame*/
- int32_t lon_int; /*< [degE7] Y Position in WGS84 frame*/
+ int32_t lat_int; /*< [degE7] Latitude in WGS84 frame*/
+ int32_t lon_int; /*< [degE7] Longitude in WGS84 frame*/
  float alt; /*< [m] Altitude (MSL, Relative to home, or AGL - depending on frame)*/
  float vx; /*< [m/s] X velocity in NED frame*/
  float vy; /*< [m/s] Y velocity in NED frame*/
@@ -20,7 +20,7 @@ typedef struct __mavlink_set_position_target_global_int_t {
  uint16_t type_mask; /*<  Bitmap to indicate which dimensions should be ignored by the vehicle.*/
  uint8_t target_system; /*<  System ID*/
  uint8_t target_component; /*<  Component ID*/
- uint8_t coordinate_frame; /*<  Valid options are: MAV_FRAME_GLOBAL_INT = 5, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT = 6, MAV_FRAME_GLOBAL_TERRAIN_ALT_INT = 11*/
+ uint8_t coordinate_frame; /*<  Valid options are: MAV_FRAME_GLOBAL = 0, MAV_FRAME_GLOBAL_RELATIVE_ALT = 3, MAV_FRAME_GLOBAL_TERRAIN_ALT = 10 (MAV_FRAME_GLOBAL_INT, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT, MAV_FRAME_GLOBAL_TERRAIN_ALT_INT are allowed synonyms, but have been deprecated)*/
 } mavlink_set_position_target_global_int_t;
 
 #define MAVLINK_MSG_ID_SET_POSITION_TARGET_GLOBAL_INT_LEN 53
@@ -89,10 +89,10 @@ typedef struct __mavlink_set_position_target_global_int_t {
  * @param time_boot_ms [ms] Timestamp (time since system boot). The rationale for the timestamp in the setpoint is to allow the system to compensate for the transport delay of the setpoint. This allows the system to compensate processing latency.
  * @param target_system  System ID
  * @param target_component  Component ID
- * @param coordinate_frame  Valid options are: MAV_FRAME_GLOBAL_INT = 5, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT = 6, MAV_FRAME_GLOBAL_TERRAIN_ALT_INT = 11
+ * @param coordinate_frame  Valid options are: MAV_FRAME_GLOBAL = 0, MAV_FRAME_GLOBAL_RELATIVE_ALT = 3, MAV_FRAME_GLOBAL_TERRAIN_ALT = 10 (MAV_FRAME_GLOBAL_INT, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT, MAV_FRAME_GLOBAL_TERRAIN_ALT_INT are allowed synonyms, but have been deprecated)
  * @param type_mask  Bitmap to indicate which dimensions should be ignored by the vehicle.
- * @param lat_int [degE7] X Position in WGS84 frame
- * @param lon_int [degE7] Y Position in WGS84 frame
+ * @param lat_int [degE7] Latitude in WGS84 frame
+ * @param lon_int [degE7] Longitude in WGS84 frame
  * @param alt [m] Altitude (MSL, Relative to home, or AGL - depending on frame)
  * @param vx [m/s] X velocity in NED frame
  * @param vy [m/s] Y velocity in NED frame
@@ -163,10 +163,10 @@ static inline uint16_t mavlink_msg_set_position_target_global_int_pack(uint8_t s
  * @param time_boot_ms [ms] Timestamp (time since system boot). The rationale for the timestamp in the setpoint is to allow the system to compensate for the transport delay of the setpoint. This allows the system to compensate processing latency.
  * @param target_system  System ID
  * @param target_component  Component ID
- * @param coordinate_frame  Valid options are: MAV_FRAME_GLOBAL_INT = 5, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT = 6, MAV_FRAME_GLOBAL_TERRAIN_ALT_INT = 11
+ * @param coordinate_frame  Valid options are: MAV_FRAME_GLOBAL = 0, MAV_FRAME_GLOBAL_RELATIVE_ALT = 3, MAV_FRAME_GLOBAL_TERRAIN_ALT = 10 (MAV_FRAME_GLOBAL_INT, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT, MAV_FRAME_GLOBAL_TERRAIN_ALT_INT are allowed synonyms, but have been deprecated)
  * @param type_mask  Bitmap to indicate which dimensions should be ignored by the vehicle.
- * @param lat_int [degE7] X Position in WGS84 frame
- * @param lon_int [degE7] Y Position in WGS84 frame
+ * @param lat_int [degE7] Latitude in WGS84 frame
+ * @param lon_int [degE7] Longitude in WGS84 frame
  * @param alt [m] Altitude (MSL, Relative to home, or AGL - depending on frame)
  * @param vx [m/s] X velocity in NED frame
  * @param vy [m/s] Y velocity in NED frame
@@ -240,10 +240,10 @@ static inline uint16_t mavlink_msg_set_position_target_global_int_pack_status(ui
  * @param time_boot_ms [ms] Timestamp (time since system boot). The rationale for the timestamp in the setpoint is to allow the system to compensate for the transport delay of the setpoint. This allows the system to compensate processing latency.
  * @param target_system  System ID
  * @param target_component  Component ID
- * @param coordinate_frame  Valid options are: MAV_FRAME_GLOBAL_INT = 5, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT = 6, MAV_FRAME_GLOBAL_TERRAIN_ALT_INT = 11
+ * @param coordinate_frame  Valid options are: MAV_FRAME_GLOBAL = 0, MAV_FRAME_GLOBAL_RELATIVE_ALT = 3, MAV_FRAME_GLOBAL_TERRAIN_ALT = 10 (MAV_FRAME_GLOBAL_INT, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT, MAV_FRAME_GLOBAL_TERRAIN_ALT_INT are allowed synonyms, but have been deprecated)
  * @param type_mask  Bitmap to indicate which dimensions should be ignored by the vehicle.
- * @param lat_int [degE7] X Position in WGS84 frame
- * @param lon_int [degE7] Y Position in WGS84 frame
+ * @param lat_int [degE7] Latitude in WGS84 frame
+ * @param lon_int [degE7] Longitude in WGS84 frame
  * @param alt [m] Altitude (MSL, Relative to home, or AGL - depending on frame)
  * @param vx [m/s] X velocity in NED frame
  * @param vy [m/s] Y velocity in NED frame
@@ -353,10 +353,10 @@ static inline uint16_t mavlink_msg_set_position_target_global_int_encode_status(
  * @param time_boot_ms [ms] Timestamp (time since system boot). The rationale for the timestamp in the setpoint is to allow the system to compensate for the transport delay of the setpoint. This allows the system to compensate processing latency.
  * @param target_system  System ID
  * @param target_component  Component ID
- * @param coordinate_frame  Valid options are: MAV_FRAME_GLOBAL_INT = 5, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT = 6, MAV_FRAME_GLOBAL_TERRAIN_ALT_INT = 11
+ * @param coordinate_frame  Valid options are: MAV_FRAME_GLOBAL = 0, MAV_FRAME_GLOBAL_RELATIVE_ALT = 3, MAV_FRAME_GLOBAL_TERRAIN_ALT = 10 (MAV_FRAME_GLOBAL_INT, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT, MAV_FRAME_GLOBAL_TERRAIN_ALT_INT are allowed synonyms, but have been deprecated)
  * @param type_mask  Bitmap to indicate which dimensions should be ignored by the vehicle.
- * @param lat_int [degE7] X Position in WGS84 frame
- * @param lon_int [degE7] Y Position in WGS84 frame
+ * @param lat_int [degE7] Latitude in WGS84 frame
+ * @param lon_int [degE7] Longitude in WGS84 frame
  * @param alt [m] Altitude (MSL, Relative to home, or AGL - depending on frame)
  * @param vx [m/s] X velocity in NED frame
  * @param vy [m/s] Y velocity in NED frame
@@ -520,7 +520,7 @@ static inline uint8_t mavlink_msg_set_position_target_global_int_get_target_comp
 /**
  * @brief Get field coordinate_frame from set_position_target_global_int message
  *
- * @return  Valid options are: MAV_FRAME_GLOBAL_INT = 5, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT = 6, MAV_FRAME_GLOBAL_TERRAIN_ALT_INT = 11
+ * @return  Valid options are: MAV_FRAME_GLOBAL = 0, MAV_FRAME_GLOBAL_RELATIVE_ALT = 3, MAV_FRAME_GLOBAL_TERRAIN_ALT = 10 (MAV_FRAME_GLOBAL_INT, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT, MAV_FRAME_GLOBAL_TERRAIN_ALT_INT are allowed synonyms, but have been deprecated)
  */
 static inline uint8_t mavlink_msg_set_position_target_global_int_get_coordinate_frame(const mavlink_message_t* msg)
 {
@@ -540,7 +540,7 @@ static inline uint16_t mavlink_msg_set_position_target_global_int_get_type_mask(
 /**
  * @brief Get field lat_int from set_position_target_global_int message
  *
- * @return [degE7] X Position in WGS84 frame
+ * @return [degE7] Latitude in WGS84 frame
  */
 static inline int32_t mavlink_msg_set_position_target_global_int_get_lat_int(const mavlink_message_t* msg)
 {
@@ -550,7 +550,7 @@ static inline int32_t mavlink_msg_set_position_target_global_int_get_lat_int(con
 /**
  * @brief Get field lon_int from set_position_target_global_int message
  *
- * @return [degE7] Y Position in WGS84 frame
+ * @return [degE7] Longitude in WGS84 frame
  */
 static inline int32_t mavlink_msg_set_position_target_global_int_get_lon_int(const mavlink_message_t* msg)
 {
