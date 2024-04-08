@@ -100,6 +100,57 @@ static inline uint16_t mavlink_msg_radio_status_pack(uint8_t system_id, uint8_t 
 }
 
 /**
+ * @brief Pack a radio_status message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param rssi  Local (message sender) received signal strength indication in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown.
+ * @param remrssi  Remote (message receiver) signal strength indication in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown.
+ * @param txbuf [%] Remaining free transmitter buffer space.
+ * @param noise  Local background noise level. These are device dependent RSSI values (scale as approx 2x dB on SiK radios). Values: [0-254], UINT8_MAX: invalid/unknown.
+ * @param remnoise  Remote background noise level. These are device dependent RSSI values (scale as approx 2x dB on SiK radios). Values: [0-254], UINT8_MAX: invalid/unknown.
+ * @param rxerrors  Count of radio packet receive errors (since boot).
+ * @param fixed  Count of error corrected radio packets (since boot).
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_radio_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t rssi, uint8_t remrssi, uint8_t txbuf, uint8_t noise, uint8_t remnoise, uint16_t rxerrors, uint16_t fixed)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_RADIO_STATUS_LEN];
+    _mav_put_uint16_t(buf, 0, rxerrors);
+    _mav_put_uint16_t(buf, 2, fixed);
+    _mav_put_uint8_t(buf, 4, rssi);
+    _mav_put_uint8_t(buf, 5, remrssi);
+    _mav_put_uint8_t(buf, 6, txbuf);
+    _mav_put_uint8_t(buf, 7, noise);
+    _mav_put_uint8_t(buf, 8, remnoise);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_RADIO_STATUS_LEN);
+#else
+    mavlink_radio_status_t packet;
+    packet.rxerrors = rxerrors;
+    packet.fixed = fixed;
+    packet.rssi = rssi;
+    packet.remrssi = remrssi;
+    packet.txbuf = txbuf;
+    packet.noise = noise;
+    packet.remnoise = remnoise;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_RADIO_STATUS_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_RADIO_STATUS;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_RADIO_STATUS_MIN_LEN, MAVLINK_MSG_ID_RADIO_STATUS_LEN, MAVLINK_MSG_ID_RADIO_STATUS_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_RADIO_STATUS_MIN_LEN, MAVLINK_MSG_ID_RADIO_STATUS_LEN);
+#endif
+}
+
+/**
  * @brief Pack a radio_status message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -171,6 +222,20 @@ static inline uint16_t mavlink_msg_radio_status_encode(uint8_t system_id, uint8_
 static inline uint16_t mavlink_msg_radio_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_radio_status_t* radio_status)
 {
     return mavlink_msg_radio_status_pack_chan(system_id, component_id, chan, msg, radio_status->rssi, radio_status->remrssi, radio_status->txbuf, radio_status->noise, radio_status->remnoise, radio_status->rxerrors, radio_status->fixed);
+}
+
+/**
+ * @brief Encode a radio_status struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param radio_status C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_radio_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_radio_status_t* radio_status)
+{
+    return mavlink_msg_radio_status_pack_status(system_id, component_id, _status, msg,  radio_status->rssi, radio_status->remrssi, radio_status->txbuf, radio_status->noise, radio_status->remnoise, radio_status->rxerrors, radio_status->fixed);
 }
 
 /**

@@ -104,6 +104,58 @@ static inline uint16_t mavlink_msg_serial_control_pack(uint8_t system_id, uint8_
 }
 
 /**
+ * @brief Pack a serial_control message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param device  Serial control device type.
+ * @param flags  Bitmap of serial control flags.
+ * @param timeout [ms] Timeout for reply data
+ * @param baudrate [bits/s] Baudrate of transfer. Zero means no change.
+ * @param count [bytes] how many bytes in this transfer
+ * @param data  serial data
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_serial_control_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t device, uint8_t flags, uint16_t timeout, uint32_t baudrate, uint8_t count, const uint8_t *data, uint8_t target_system, uint8_t target_component)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_SERIAL_CONTROL_LEN];
+    _mav_put_uint32_t(buf, 0, baudrate);
+    _mav_put_uint16_t(buf, 4, timeout);
+    _mav_put_uint8_t(buf, 6, device);
+    _mav_put_uint8_t(buf, 7, flags);
+    _mav_put_uint8_t(buf, 8, count);
+    _mav_put_uint8_t(buf, 79, target_system);
+    _mav_put_uint8_t(buf, 80, target_component);
+    _mav_put_uint8_t_array(buf, 9, data, 70);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SERIAL_CONTROL_LEN);
+#else
+    mavlink_serial_control_t packet;
+    packet.baudrate = baudrate;
+    packet.timeout = timeout;
+    packet.device = device;
+    packet.flags = flags;
+    packet.count = count;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*70);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SERIAL_CONTROL_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_SERIAL_CONTROL;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_CONTROL_MIN_LEN, MAVLINK_MSG_ID_SERIAL_CONTROL_LEN, MAVLINK_MSG_ID_SERIAL_CONTROL_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SERIAL_CONTROL_MIN_LEN, MAVLINK_MSG_ID_SERIAL_CONTROL_LEN);
+#endif
+}
+
+/**
  * @brief Pack a serial_control message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -176,6 +228,20 @@ static inline uint16_t mavlink_msg_serial_control_encode(uint8_t system_id, uint
 static inline uint16_t mavlink_msg_serial_control_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_serial_control_t* serial_control)
 {
     return mavlink_msg_serial_control_pack_chan(system_id, component_id, chan, msg, serial_control->device, serial_control->flags, serial_control->timeout, serial_control->baudrate, serial_control->count, serial_control->data, serial_control->target_system, serial_control->target_component);
+}
+
+/**
+ * @brief Encode a serial_control struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param serial_control C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_serial_control_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_serial_control_t* serial_control)
+{
+    return mavlink_msg_serial_control_pack_status(system_id, component_id, _status, msg,  serial_control->device, serial_control->flags, serial_control->timeout, serial_control->baudrate, serial_control->count, serial_control->data, serial_control->target_system, serial_control->target_component);
 }
 
 /**

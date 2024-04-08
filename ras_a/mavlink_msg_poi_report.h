@@ -206,6 +206,109 @@ static inline uint16_t mavlink_msg_poi_report_pack(uint8_t system_id, uint8_t co
 }
 
 /**
+ * @brief Pack a poi_report message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param uid  Unique ID for a given POI. Updates to a POIs information should use the same uid. Maximum integer to use is 2,147,483,647 (for the purposes of type-safety when converting back and forth to floating-point fields). 0 means unknown.
+ * @param time_boot_ms [ms] Timestamp (time since system boot).
+ * @param time_utc_detected [ms] Timestamp (time since UNIX epoch) of the POI detection, in UTC. 0 for unknown.
+ * @param time_utc_updated [ms] Timestamp (time since UNIX epoch) of the last POI update, in UTC. 0 for unknown.
+ * @param confidence_overall [%] Generic confidence level. Can be used for an implementation specific confidence level. 0..100, UINT8_MAX when unknown.
+ * @param confidence_detection [%] Confidence level of the POI detection. 0..100, UINT8_MAX when unknown.
+ * @param confidence_classification [%] Confidence level of the POI classification. 0..100, UINT8_MAX when unknown.
+ * @param confidence_localization [%] Confidence level of the POI localization. 0..100, UINT8_MAX when unknown.
+ * @param ttl [s] Time to live: If this time has elapsed since last update, the POI should be deleted on the receiver side. A value of 0 should indicate no timeout.
+ * @param status_flags  Bitmask for POI status. Bit 1: POI is in focus on camera, Bit 8: POI has been cleared and should be deleted.
+ * @param latitude [degE7] Latitude (WGS84) of the POI. If unknown: INT32_MAX (both Lat/Lon).
+ * @param longitude [degE7] Longitude (WGS84) of the POI. If unknown: INT32_MAX (both Lat/Lon).
+ * @param alt_msl [m] Altitude of the POI with respect to the MSL. Positive for up. NaN if unknown.
+ * @param alt_ellip [m] Altitude of the POI with respect to the EGM96 ellipsoid. Positive for up. NaN if unknown.
+ * @param alt_ground [m] Altitude of the POI with respect to the ground level. Positive for up. NaN if unknown.
+ * @param classification  Classification of the POI. Can either used the POI_CLASSIFICATION enumeration (0x0 - 0x7FFFFFFF reserved), or use the reserved range for implementation specific classifications (0x80000000 - UINT32_MAX).
+ * @param x [m] X position of the POI in the local NED frame. The local frame might either be the vehicle navigation frame or a common reference frame to multiple systems. NAN if unknown.
+ * @param y [m] Y position of the POI in the local NED frame. The local frame might either be the vehicle navigation frame or a common reference frame to multiple systems. NAN if unknown.
+ * @param z [m] Z position of the POI in the local NED frame. The local frame might either be the vehicle navigation frame or a common reference frame to multiple systems. NAN if unknown.
+ * @param q  Orientation quaternion (w, x, y, z order) of the POI in the NED frame. Zero-rotation is 1, 0, 0, 0. Unknown is NAN, NAN, NAN, NAN.
+ * @param dist [m] Distance from the aircraft sensor/camera focal point to the POI. NAN if unknown.
+ * @param vel_n [m/s] North velocity of the POI. NAN if unknown.
+ * @param vel_e [m/s] East velocity of the POI. NAN if unknown.
+ * @param vel_d [m/s] Down velocity of the POI. NAN if unknown.
+ * @param hdg [rad] Heading of the POI in the NED frame. NAN if unknown.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_poi_report_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t uid, uint32_t time_boot_ms, uint64_t time_utc_detected, uint64_t time_utc_updated, uint8_t confidence_overall, uint8_t confidence_detection, uint8_t confidence_classification, uint8_t confidence_localization, uint16_t ttl, uint8_t status_flags, int32_t latitude, int32_t longitude, float alt_msl, float alt_ellip, float alt_ground, uint32_t classification, float x, float y, float z, const float *q, float dist, float vel_n, float vel_e, float vel_d, float hdg)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_POI_REPORT_LEN];
+    _mav_put_uint64_t(buf, 0, time_utc_detected);
+    _mav_put_uint64_t(buf, 8, time_utc_updated);
+    _mav_put_uint32_t(buf, 16, uid);
+    _mav_put_uint32_t(buf, 20, time_boot_ms);
+    _mav_put_int32_t(buf, 24, latitude);
+    _mav_put_int32_t(buf, 28, longitude);
+    _mav_put_float(buf, 32, alt_msl);
+    _mav_put_float(buf, 36, alt_ellip);
+    _mav_put_float(buf, 40, alt_ground);
+    _mav_put_uint32_t(buf, 44, classification);
+    _mav_put_float(buf, 48, x);
+    _mav_put_float(buf, 52, y);
+    _mav_put_float(buf, 56, z);
+    _mav_put_float(buf, 76, dist);
+    _mav_put_float(buf, 80, vel_n);
+    _mav_put_float(buf, 84, vel_e);
+    _mav_put_float(buf, 88, vel_d);
+    _mav_put_float(buf, 92, hdg);
+    _mav_put_uint16_t(buf, 96, ttl);
+    _mav_put_uint8_t(buf, 98, confidence_overall);
+    _mav_put_uint8_t(buf, 99, confidence_detection);
+    _mav_put_uint8_t(buf, 100, confidence_classification);
+    _mav_put_uint8_t(buf, 101, confidence_localization);
+    _mav_put_uint8_t(buf, 102, status_flags);
+    _mav_put_float_array(buf, 60, q, 4);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_POI_REPORT_LEN);
+#else
+    mavlink_poi_report_t packet;
+    packet.time_utc_detected = time_utc_detected;
+    packet.time_utc_updated = time_utc_updated;
+    packet.uid = uid;
+    packet.time_boot_ms = time_boot_ms;
+    packet.latitude = latitude;
+    packet.longitude = longitude;
+    packet.alt_msl = alt_msl;
+    packet.alt_ellip = alt_ellip;
+    packet.alt_ground = alt_ground;
+    packet.classification = classification;
+    packet.x = x;
+    packet.y = y;
+    packet.z = z;
+    packet.dist = dist;
+    packet.vel_n = vel_n;
+    packet.vel_e = vel_e;
+    packet.vel_d = vel_d;
+    packet.hdg = hdg;
+    packet.ttl = ttl;
+    packet.confidence_overall = confidence_overall;
+    packet.confidence_detection = confidence_detection;
+    packet.confidence_classification = confidence_classification;
+    packet.confidence_localization = confidence_localization;
+    packet.status_flags = status_flags;
+    mav_array_memcpy(packet.q, q, sizeof(float)*4);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_POI_REPORT_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_POI_REPORT;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_POI_REPORT_MIN_LEN, MAVLINK_MSG_ID_POI_REPORT_LEN, MAVLINK_MSG_ID_POI_REPORT_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_POI_REPORT_MIN_LEN, MAVLINK_MSG_ID_POI_REPORT_LEN);
+#endif
+}
+
+/**
  * @brief Pack a poi_report message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -329,6 +432,20 @@ static inline uint16_t mavlink_msg_poi_report_encode(uint8_t system_id, uint8_t 
 static inline uint16_t mavlink_msg_poi_report_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_poi_report_t* poi_report)
 {
     return mavlink_msg_poi_report_pack_chan(system_id, component_id, chan, msg, poi_report->uid, poi_report->time_boot_ms, poi_report->time_utc_detected, poi_report->time_utc_updated, poi_report->confidence_overall, poi_report->confidence_detection, poi_report->confidence_classification, poi_report->confidence_localization, poi_report->ttl, poi_report->status_flags, poi_report->latitude, poi_report->longitude, poi_report->alt_msl, poi_report->alt_ellip, poi_report->alt_ground, poi_report->classification, poi_report->x, poi_report->y, poi_report->z, poi_report->q, poi_report->dist, poi_report->vel_n, poi_report->vel_e, poi_report->vel_d, poi_report->hdg);
+}
+
+/**
+ * @brief Encode a poi_report struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param poi_report C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_poi_report_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_poi_report_t* poi_report)
+{
+    return mavlink_msg_poi_report_pack_status(system_id, component_id, _status, msg,  poi_report->uid, poi_report->time_boot_ms, poi_report->time_utc_detected, poi_report->time_utc_updated, poi_report->confidence_overall, poi_report->confidence_detection, poi_report->confidence_classification, poi_report->confidence_localization, poi_report->ttl, poi_report->status_flags, poi_report->latitude, poi_report->longitude, poi_report->alt_msl, poi_report->alt_ellip, poi_report->alt_ground, poi_report->classification, poi_report->x, poi_report->y, poi_report->z, poi_report->q, poi_report->dist, poi_report->vel_n, poi_report->vel_e, poi_report->vel_d, poi_report->hdg);
 }
 
 /**

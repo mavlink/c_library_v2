@@ -81,6 +81,46 @@ static inline uint16_t mavlink_msg_joystick_state_pack(uint8_t system_id, uint8_
 }
 
 /**
+ * @brief Pack a joystick_state message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+ * @param type  Type of the MAV (quadrotor, helicopter, etc.), MAV_TYPE_JOYSTICK = 43
+ * @param axis_value  Value of each joystick axis
+ * @param button_value  Value of each joystick button
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_joystick_state_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint64_t time_usec, uint8_t type, const uint16_t *axis_value, const uint8_t *button_value)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_JOYSTICK_STATE_LEN];
+    _mav_put_uint64_t(buf, 0, time_usec);
+    _mav_put_uint8_t(buf, 28, type);
+    _mav_put_uint16_t_array(buf, 8, axis_value, 10);
+    _mav_put_uint8_t_array(buf, 29, button_value, 20);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_JOYSTICK_STATE_LEN);
+#else
+    mavlink_joystick_state_t packet;
+    packet.time_usec = time_usec;
+    packet.type = type;
+    mav_array_memcpy(packet.axis_value, axis_value, sizeof(uint16_t)*10);
+    mav_array_memcpy(packet.button_value, button_value, sizeof(uint8_t)*20);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_JOYSTICK_STATE_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_JOYSTICK_STATE;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_JOYSTICK_STATE_MIN_LEN, MAVLINK_MSG_ID_JOYSTICK_STATE_LEN, MAVLINK_MSG_ID_JOYSTICK_STATE_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_JOYSTICK_STATE_MIN_LEN, MAVLINK_MSG_ID_JOYSTICK_STATE_LEN);
+#endif
+}
+
+/**
  * @brief Pack a joystick_state message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -141,6 +181,20 @@ static inline uint16_t mavlink_msg_joystick_state_encode(uint8_t system_id, uint
 static inline uint16_t mavlink_msg_joystick_state_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_joystick_state_t* joystick_state)
 {
     return mavlink_msg_joystick_state_pack_chan(system_id, component_id, chan, msg, joystick_state->time_usec, joystick_state->type, joystick_state->axis_value, joystick_state->button_value);
+}
+
+/**
+ * @brief Encode a joystick_state struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param joystick_state C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_joystick_state_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_joystick_state_t* joystick_state)
+{
+    return mavlink_msg_joystick_state_pack_status(system_id, component_id, _status, msg,  joystick_state->time_usec, joystick_state->type, joystick_state->axis_value, joystick_state->button_value);
 }
 
 /**

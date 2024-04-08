@@ -100,6 +100,57 @@ static inline uint16_t mavlink_msg_exploration_status_pack(uint8_t system_id, ui
 }
 
 /**
+ * @brief Pack a exploration_status message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+ * @param time_to_timeout [us] Remaining time for the vehicle to execute the exploration task, after which another predefined behavior is triggered. UINT64_MAX when unknown or not applicable.
+ * @param exploration_id  ID of the exploration task. 255 if not applicable or unknown.
+ * @param progress  Progress measurement of the exploration task. Specific meaning may vary by implementation, but in general, increasing values mean more has been explored. UINT16_MAX when unknown or not applicable.
+ * @param denominator  Measurement of the known size of the exploration task. Specific meaning may vary, but when progress == denominator, this should imply that exploration is complete. This value may increase as more need to explore is discovered, or may be fixed (100 recommended) if the end state is known (e.g., exploration in a known mapped environment). 0 when no meaningful size can be communicated.
+ * @param flags  Bitmap of the exploration task status flags.
+ * @param level  In an indoor exploration task, it indicates the floor/level of the structure that is currently being explored. The level where the vehicle started the exploration is considered the level 0. INT8_MAX when unknown, not capable to provide or not applicable.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_exploration_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint64_t time_usec, uint64_t time_to_timeout, uint8_t exploration_id, uint16_t progress, uint16_t denominator, uint16_t flags, int8_t level)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_EXPLORATION_STATUS_LEN];
+    _mav_put_uint64_t(buf, 0, time_usec);
+    _mav_put_uint64_t(buf, 8, time_to_timeout);
+    _mav_put_uint16_t(buf, 16, progress);
+    _mav_put_uint16_t(buf, 18, denominator);
+    _mav_put_uint16_t(buf, 20, flags);
+    _mav_put_uint8_t(buf, 22, exploration_id);
+    _mav_put_int8_t(buf, 23, level);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_EXPLORATION_STATUS_LEN);
+#else
+    mavlink_exploration_status_t packet;
+    packet.time_usec = time_usec;
+    packet.time_to_timeout = time_to_timeout;
+    packet.progress = progress;
+    packet.denominator = denominator;
+    packet.flags = flags;
+    packet.exploration_id = exploration_id;
+    packet.level = level;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_EXPLORATION_STATUS_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_EXPLORATION_STATUS;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_EXPLORATION_STATUS_MIN_LEN, MAVLINK_MSG_ID_EXPLORATION_STATUS_LEN, MAVLINK_MSG_ID_EXPLORATION_STATUS_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_EXPLORATION_STATUS_MIN_LEN, MAVLINK_MSG_ID_EXPLORATION_STATUS_LEN);
+#endif
+}
+
+/**
  * @brief Pack a exploration_status message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -171,6 +222,20 @@ static inline uint16_t mavlink_msg_exploration_status_encode(uint8_t system_id, 
 static inline uint16_t mavlink_msg_exploration_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_exploration_status_t* exploration_status)
 {
     return mavlink_msg_exploration_status_pack_chan(system_id, component_id, chan, msg, exploration_status->time_usec, exploration_status->time_to_timeout, exploration_status->exploration_id, exploration_status->progress, exploration_status->denominator, exploration_status->flags, exploration_status->level);
+}
+
+/**
+ * @brief Encode a exploration_status struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param exploration_status C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_exploration_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_exploration_status_t* exploration_status)
+{
+    return mavlink_msg_exploration_status_pack_status(system_id, component_id, _status, msg,  exploration_status->time_usec, exploration_status->time_to_timeout, exploration_status->exploration_id, exploration_status->progress, exploration_status->denominator, exploration_status->flags, exploration_status->level);
 }
 
 /**

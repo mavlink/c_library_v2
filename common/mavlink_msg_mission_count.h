@@ -100,6 +100,57 @@ static inline uint16_t mavlink_msg_mission_count_pack(uint8_t system_id, uint8_t
 }
 
 /**
+ * @brief Pack a mission_count message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param count  Number of mission items in the sequence
+ * @param mission_type  Mission type.
+ * @param opaque_id  Id of current on-vehicle mission, fence, or rally point plan (on download from vehicle).
+        This field is used when downloading a plan from a vehicle to a GCS.
+        0 on upload to the vehicle from GCS.
+        0 if plan ids are not supported.
+        The current on-vehicle plan ids are streamed in `MISSION_CURRENT`, allowing a GCS to determine if any part of the plan has changed and needs to be re-uploaded.
+        The ids are recalculated by the vehicle when any part of the on-vehicle plan changes (when a new plan is uploaded, the vehicle returns the new id to the GCS in MISSION_ACK).
+      
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_mission_count_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, uint16_t count, uint8_t mission_type, uint32_t opaque_id)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_MISSION_COUNT_LEN];
+    _mav_put_uint16_t(buf, 0, count);
+    _mav_put_uint8_t(buf, 2, target_system);
+    _mav_put_uint8_t(buf, 3, target_component);
+    _mav_put_uint8_t(buf, 4, mission_type);
+    _mav_put_uint32_t(buf, 5, opaque_id);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_MISSION_COUNT_LEN);
+#else
+    mavlink_mission_count_t packet;
+    packet.count = count;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+    packet.mission_type = mission_type;
+    packet.opaque_id = opaque_id;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_MISSION_COUNT_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_MISSION_COUNT;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MISSION_COUNT_MIN_LEN, MAVLINK_MSG_ID_MISSION_COUNT_LEN, MAVLINK_MSG_ID_MISSION_COUNT_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MISSION_COUNT_MIN_LEN, MAVLINK_MSG_ID_MISSION_COUNT_LEN);
+#endif
+}
+
+/**
  * @brief Pack a mission_count message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -171,6 +222,20 @@ static inline uint16_t mavlink_msg_mission_count_encode(uint8_t system_id, uint8
 static inline uint16_t mavlink_msg_mission_count_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mission_count_t* mission_count)
 {
     return mavlink_msg_mission_count_pack_chan(system_id, component_id, chan, msg, mission_count->target_system, mission_count->target_component, mission_count->count, mission_count->mission_type, mission_count->opaque_id);
+}
+
+/**
+ * @brief Encode a mission_count struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param mission_count C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_mission_count_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_mission_count_t* mission_count)
+{
+    return mavlink_msg_mission_count_pack_status(system_id, component_id, _status, msg,  mission_count->target_system, mission_count->target_component, mission_count->count, mission_count->mission_type, mission_count->opaque_id);
 }
 
 /**

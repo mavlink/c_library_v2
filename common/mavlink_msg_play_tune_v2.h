@@ -80,6 +80,46 @@ static inline uint16_t mavlink_msg_play_tune_v2_pack(uint8_t system_id, uint8_t 
 }
 
 /**
+ * @brief Pack a play_tune_v2 message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param format  Tune format
+ * @param tune  Tune definition as a NULL-terminated string.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_play_tune_v2_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, uint32_t format, const char *tune)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN];
+    _mav_put_uint32_t(buf, 0, format);
+    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 5, target_component);
+    _mav_put_char_array(buf, 6, tune, 248);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN);
+#else
+    mavlink_play_tune_v2_t packet;
+    packet.format = format;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+    mav_array_memcpy(packet.tune, tune, sizeof(char)*248);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_PLAY_TUNE_V2;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_PLAY_TUNE_V2_MIN_LEN, MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN, MAVLINK_MSG_ID_PLAY_TUNE_V2_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_PLAY_TUNE_V2_MIN_LEN, MAVLINK_MSG_ID_PLAY_TUNE_V2_LEN);
+#endif
+}
+
+/**
  * @brief Pack a play_tune_v2 message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -140,6 +180,20 @@ static inline uint16_t mavlink_msg_play_tune_v2_encode(uint8_t system_id, uint8_
 static inline uint16_t mavlink_msg_play_tune_v2_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_play_tune_v2_t* play_tune_v2)
 {
     return mavlink_msg_play_tune_v2_pack_chan(system_id, component_id, chan, msg, play_tune_v2->target_system, play_tune_v2->target_component, play_tune_v2->format, play_tune_v2->tune);
+}
+
+/**
+ * @brief Encode a play_tune_v2 struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param play_tune_v2 C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_play_tune_v2_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_play_tune_v2_t* play_tune_v2)
+{
+    return mavlink_msg_play_tune_v2_pack_status(system_id, component_id, _status, msg,  play_tune_v2->target_system, play_tune_v2->target_component, play_tune_v2->format, play_tune_v2->tune);
 }
 
 /**

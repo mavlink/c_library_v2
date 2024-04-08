@@ -101,6 +101,55 @@ static inline uint16_t mavlink_msg_cellular_modem_information_pack(uint8_t syste
 }
 
 /**
+ * @brief Pack a cellular_modem_information message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param id  Modem instance number. Indexed from 1. Matches index in corresponding CELLULAR_STATUS message.
+ * @param imei  Unique Modem International Mobile Equipment Identity Number.
+ * @param imsi  Current SIM International mobile subscriber identity.
+ * @param modem_id  Unique id for modem. This must be NULL terminated if the length is less than 10 human-readable chars, and without the null termination (NULL) byte if the length is exactly 10 chars.
+ * @param iccid  Integrated Circuit Card Identification Number of SIM Card.  This must be NULL terminated if the length is less than 20 human-readable chars, and without the null termination (NULL) byte if the length is exactly 20 chars.
+ * @param firmware  The firmware version installed on the modem. This must be NULL terminated if the length is less than 24 human-readable chars, and without the null termination (NULL) byte if the length is exactly 24 chars. The format is not intended for display.
+ * @param modem_model  Modem model name.  This must be NULL terminated if the length is less than 50 human-readable chars, and without the null termination (NULL) byte if the length is exactly 50 chars.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_cellular_modem_information_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t id, uint64_t imei, uint64_t imsi, const char *modem_id, const char *iccid, const char *firmware, const char *modem_model)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_CELLULAR_MODEM_INFORMATION_LEN];
+    _mav_put_uint64_t(buf, 0, imei);
+    _mav_put_uint64_t(buf, 8, imsi);
+    _mav_put_uint8_t(buf, 16, id);
+    _mav_put_char_array(buf, 17, modem_id, 10);
+    _mav_put_char_array(buf, 27, iccid, 20);
+    _mav_put_char_array(buf, 47, firmware, 24);
+    _mav_put_char_array(buf, 71, modem_model, 50);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CELLULAR_MODEM_INFORMATION_LEN);
+#else
+    mavlink_cellular_modem_information_t packet;
+    packet.imei = imei;
+    packet.imsi = imsi;
+    packet.id = id;
+    mav_array_memcpy(packet.modem_id, modem_id, sizeof(char)*10);
+    mav_array_memcpy(packet.iccid, iccid, sizeof(char)*20);
+    mav_array_memcpy(packet.firmware, firmware, sizeof(char)*24);
+    mav_array_memcpy(packet.modem_model, modem_model, sizeof(char)*50);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CELLULAR_MODEM_INFORMATION_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_CELLULAR_MODEM_INFORMATION;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CELLULAR_MODEM_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_CELLULAR_MODEM_INFORMATION_LEN, MAVLINK_MSG_ID_CELLULAR_MODEM_INFORMATION_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CELLULAR_MODEM_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_CELLULAR_MODEM_INFORMATION_LEN);
+#endif
+}
+
+/**
  * @brief Pack a cellular_modem_information message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -170,6 +219,20 @@ static inline uint16_t mavlink_msg_cellular_modem_information_encode(uint8_t sys
 static inline uint16_t mavlink_msg_cellular_modem_information_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_cellular_modem_information_t* cellular_modem_information)
 {
     return mavlink_msg_cellular_modem_information_pack_chan(system_id, component_id, chan, msg, cellular_modem_information->id, cellular_modem_information->imei, cellular_modem_information->imsi, cellular_modem_information->modem_id, cellular_modem_information->iccid, cellular_modem_information->firmware, cellular_modem_information->modem_model);
+}
+
+/**
+ * @brief Encode a cellular_modem_information struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param cellular_modem_information C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_cellular_modem_information_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_cellular_modem_information_t* cellular_modem_information)
+{
+    return mavlink_msg_cellular_modem_information_pack_status(system_id, component_id, _status, msg,  cellular_modem_information->id, cellular_modem_information->imei, cellular_modem_information->imsi, cellular_modem_information->modem_id, cellular_modem_information->iccid, cellular_modem_information->firmware, cellular_modem_information->modem_model);
 }
 
 /**

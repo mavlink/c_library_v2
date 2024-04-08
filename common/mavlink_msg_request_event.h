@@ -82,6 +82,48 @@ static inline uint16_t mavlink_msg_request_event_pack(uint8_t system_id, uint8_t
 }
 
 /**
+ * @brief Pack a request_event message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  System ID
+ * @param target_component  Component ID
+ * @param first_sequence  First sequence number of the requested event.
+ * @param last_sequence  Last sequence number of the requested event.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_request_event_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, uint16_t first_sequence, uint16_t last_sequence)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_REQUEST_EVENT_LEN];
+    _mav_put_uint16_t(buf, 0, first_sequence);
+    _mav_put_uint16_t(buf, 2, last_sequence);
+    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 5, target_component);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_REQUEST_EVENT_LEN);
+#else
+    mavlink_request_event_t packet;
+    packet.first_sequence = first_sequence;
+    packet.last_sequence = last_sequence;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_REQUEST_EVENT_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_REQUEST_EVENT;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_REQUEST_EVENT_MIN_LEN, MAVLINK_MSG_ID_REQUEST_EVENT_LEN, MAVLINK_MSG_ID_REQUEST_EVENT_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_REQUEST_EVENT_MIN_LEN, MAVLINK_MSG_ID_REQUEST_EVENT_LEN);
+#endif
+}
+
+/**
  * @brief Pack a request_event message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -144,6 +186,20 @@ static inline uint16_t mavlink_msg_request_event_encode(uint8_t system_id, uint8
 static inline uint16_t mavlink_msg_request_event_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_request_event_t* request_event)
 {
     return mavlink_msg_request_event_pack_chan(system_id, component_id, chan, msg, request_event->target_system, request_event->target_component, request_event->first_sequence, request_event->last_sequence);
+}
+
+/**
+ * @brief Encode a request_event struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param request_event C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_request_event_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_request_event_t* request_event)
+{
+    return mavlink_msg_request_event_pack_status(system_id, component_id, _status, msg,  request_event->target_system, request_event->target_component, request_event->first_sequence, request_event->last_sequence);
 }
 
 /**

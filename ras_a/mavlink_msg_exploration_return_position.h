@@ -118,6 +118,66 @@ static inline uint16_t mavlink_msg_exploration_return_position_pack(uint8_t syst
 }
 
 /**
+ * @brief Pack a exploration_return_position message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+ * @param latitude [degE7] Latitude (WGS84). INT32_MAX when unknown.
+ * @param longitude [degE7] Longitude (WGS84). INT32_MAX when unknown.
+ * @param altitude [mm] Altitude (MSL). Positive for up. Note that virtually all GPS modules provide both WGS84 and MSL. INT32_MAX when unknown.
+ * @param relative_alt [mm] Altitude above ground. INT32_MAX when unknown.
+ * @param geoid_alt [mm] Altitude relative to WGS84 geoid. INT32_MAX when unknown.
+ * @param x [m] Local X position of this position in the local coordinate NED frame. NaN when unknown.
+ * @param y [m] Local Y position of this position in the local coordinate NED frame. NaN when unknown.
+ * @param z [m] Local Z position of this position in the local coordinate NED frame. NaN when unknown.
+ * @param yaw [rad] World to surface heading transformation of the return-from-exploration position. Used to indicate the heading with respect to the ground. NaN when unknown.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_exploration_return_position_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint64_t time_usec, int32_t latitude, int32_t longitude, int32_t altitude, int32_t relative_alt, int32_t geoid_alt, float x, float y, float z, float yaw)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_EXPLORATION_RETURN_POSITION_LEN];
+    _mav_put_uint64_t(buf, 0, time_usec);
+    _mav_put_int32_t(buf, 8, latitude);
+    _mav_put_int32_t(buf, 12, longitude);
+    _mav_put_int32_t(buf, 16, altitude);
+    _mav_put_int32_t(buf, 20, relative_alt);
+    _mav_put_int32_t(buf, 24, geoid_alt);
+    _mav_put_float(buf, 28, x);
+    _mav_put_float(buf, 32, y);
+    _mav_put_float(buf, 36, z);
+    _mav_put_float(buf, 40, yaw);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_EXPLORATION_RETURN_POSITION_LEN);
+#else
+    mavlink_exploration_return_position_t packet;
+    packet.time_usec = time_usec;
+    packet.latitude = latitude;
+    packet.longitude = longitude;
+    packet.altitude = altitude;
+    packet.relative_alt = relative_alt;
+    packet.geoid_alt = geoid_alt;
+    packet.x = x;
+    packet.y = y;
+    packet.z = z;
+    packet.yaw = yaw;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_EXPLORATION_RETURN_POSITION_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_EXPLORATION_RETURN_POSITION;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_EXPLORATION_RETURN_POSITION_MIN_LEN, MAVLINK_MSG_ID_EXPLORATION_RETURN_POSITION_LEN, MAVLINK_MSG_ID_EXPLORATION_RETURN_POSITION_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_EXPLORATION_RETURN_POSITION_MIN_LEN, MAVLINK_MSG_ID_EXPLORATION_RETURN_POSITION_LEN);
+#endif
+}
+
+/**
  * @brief Pack a exploration_return_position message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -198,6 +258,20 @@ static inline uint16_t mavlink_msg_exploration_return_position_encode(uint8_t sy
 static inline uint16_t mavlink_msg_exploration_return_position_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_exploration_return_position_t* exploration_return_position)
 {
     return mavlink_msg_exploration_return_position_pack_chan(system_id, component_id, chan, msg, exploration_return_position->time_usec, exploration_return_position->latitude, exploration_return_position->longitude, exploration_return_position->altitude, exploration_return_position->relative_alt, exploration_return_position->geoid_alt, exploration_return_position->x, exploration_return_position->y, exploration_return_position->z, exploration_return_position->yaw);
+}
+
+/**
+ * @brief Encode a exploration_return_position struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param exploration_return_position C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_exploration_return_position_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_exploration_return_position_t* exploration_return_position)
+{
+    return mavlink_msg_exploration_return_position_pack_status(system_id, component_id, _status, msg,  exploration_return_position->time_usec, exploration_return_position->latitude, exploration_return_position->longitude, exploration_return_position->altitude, exploration_return_position->relative_alt, exploration_return_position->geoid_alt, exploration_return_position->x, exploration_return_position->y, exploration_return_position->z, exploration_return_position->yaw);
 }
 
 /**

@@ -74,6 +74,43 @@ static inline uint16_t mavlink_msg_actuator_output_status_pack(uint8_t system_id
 }
 
 /**
+ * @brief Pack a actuator_output_status message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param time_usec [us] Timestamp (since system boot).
+ * @param active  Active outputs
+ * @param actuator  Servo / motor output array values. Zero values indicate unused channels.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_actuator_output_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint64_t time_usec, uint32_t active, const float *actuator)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_ACTUATOR_OUTPUT_STATUS_LEN];
+    _mav_put_uint64_t(buf, 0, time_usec);
+    _mav_put_uint32_t(buf, 8, active);
+    _mav_put_float_array(buf, 12, actuator, 32);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ACTUATOR_OUTPUT_STATUS_LEN);
+#else
+    mavlink_actuator_output_status_t packet;
+    packet.time_usec = time_usec;
+    packet.active = active;
+    mav_array_memcpy(packet.actuator, actuator, sizeof(float)*32);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ACTUATOR_OUTPUT_STATUS_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_ACTUATOR_OUTPUT_STATUS;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ACTUATOR_OUTPUT_STATUS_MIN_LEN, MAVLINK_MSG_ID_ACTUATOR_OUTPUT_STATUS_LEN, MAVLINK_MSG_ID_ACTUATOR_OUTPUT_STATUS_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ACTUATOR_OUTPUT_STATUS_MIN_LEN, MAVLINK_MSG_ID_ACTUATOR_OUTPUT_STATUS_LEN);
+#endif
+}
+
+/**
  * @brief Pack a actuator_output_status message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -131,6 +168,20 @@ static inline uint16_t mavlink_msg_actuator_output_status_encode(uint8_t system_
 static inline uint16_t mavlink_msg_actuator_output_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_actuator_output_status_t* actuator_output_status)
 {
     return mavlink_msg_actuator_output_status_pack_chan(system_id, component_id, chan, msg, actuator_output_status->time_usec, actuator_output_status->active, actuator_output_status->actuator);
+}
+
+/**
+ * @brief Encode a actuator_output_status struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param actuator_output_status C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_actuator_output_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_actuator_output_status_t* actuator_output_status)
+{
+    return mavlink_msg_actuator_output_status_pack_status(system_id, component_id, _status, msg,  actuator_output_status->time_usec, actuator_output_status->active, actuator_output_status->actuator);
 }
 
 /**

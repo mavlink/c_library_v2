@@ -154,6 +154,84 @@ static inline uint16_t mavlink_msg_tracker_detection_2d_pack(uint8_t system_id, 
 }
 
 /**
+ * @brief Pack a tracker_detection_2d message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param img_ts [us]  Time stamp of the image.
+ * @param img_id   Unique ID specifiying the video frame (image) in the message sender video stream.
+ * @param object_id   Unique ID representing the object. 
+ * @param class_id   Unique ID specifiying the class of the object.
+ * @param tracking_status   0: not tracked, 1: tracked.
+ * @param confidence [%]  Confidence score in the range of [0, 100] for the classifcation.
+ * @param bbox_top_left_x [c%]  Relative image x coordinate (left to right axis) in the range of [0.00, 100.00] describing the top left corner of the bounding box .
+ * @param bbox_top_left_y [c%]  Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the top left corner of the bounding box.
+ * @param bbox_bot_right_x [c%]  Relative image x coordinate (left to right axis) in the range of [0.00, 100.00] describing the bottom right corner of the bounding box.
+ * @param bbox_bot_right_y [c%]  Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the bottom left corner of the bounding box.
+ * @param lat [degE7]  Latitude in WGS84 coordinate frame of the detected object. NAN if unknown.
+ * @param lon [degE7]  Longitude in WGS84 coordinate frame of the detected object. NAN if unknown.
+ * @param alt [m]  Altitude in EGM96 coordiante frame of the detected object. NAN if unknown.
+ * @param vel_n [m/s]  North velocity of the object in global frame. NAN if unknown.
+ * @param vel_e [m/s]  East velocity of the object in global frame. NAN if unknown.
+ * @param vel_up [m/s]  Up velocity of the object in global frame. NAN if unknown.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_tracker_detection_2d_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint64_t img_ts, uint64_t img_id, uint32_t object_id, uint32_t class_id, uint8_t tracking_status, uint8_t confidence, uint16_t bbox_top_left_x, uint16_t bbox_top_left_y, uint16_t bbox_bot_right_x, uint16_t bbox_bot_right_y, int32_t lat, int32_t lon, float alt, float vel_n, float vel_e, float vel_up)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_TRACKER_DETECTION_2D_LEN];
+    _mav_put_uint64_t(buf, 0, img_ts);
+    _mav_put_uint64_t(buf, 8, img_id);
+    _mav_put_uint32_t(buf, 16, object_id);
+    _mav_put_uint32_t(buf, 20, class_id);
+    _mav_put_int32_t(buf, 24, lat);
+    _mav_put_int32_t(buf, 28, lon);
+    _mav_put_float(buf, 32, alt);
+    _mav_put_float(buf, 36, vel_n);
+    _mav_put_float(buf, 40, vel_e);
+    _mav_put_float(buf, 44, vel_up);
+    _mav_put_uint16_t(buf, 48, bbox_top_left_x);
+    _mav_put_uint16_t(buf, 50, bbox_top_left_y);
+    _mav_put_uint16_t(buf, 52, bbox_bot_right_x);
+    _mav_put_uint16_t(buf, 54, bbox_bot_right_y);
+    _mav_put_uint8_t(buf, 56, tracking_status);
+    _mav_put_uint8_t(buf, 57, confidence);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_TRACKER_DETECTION_2D_LEN);
+#else
+    mavlink_tracker_detection_2d_t packet;
+    packet.img_ts = img_ts;
+    packet.img_id = img_id;
+    packet.object_id = object_id;
+    packet.class_id = class_id;
+    packet.lat = lat;
+    packet.lon = lon;
+    packet.alt = alt;
+    packet.vel_n = vel_n;
+    packet.vel_e = vel_e;
+    packet.vel_up = vel_up;
+    packet.bbox_top_left_x = bbox_top_left_x;
+    packet.bbox_top_left_y = bbox_top_left_y;
+    packet.bbox_bot_right_x = bbox_bot_right_x;
+    packet.bbox_bot_right_y = bbox_bot_right_y;
+    packet.tracking_status = tracking_status;
+    packet.confidence = confidence;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_TRACKER_DETECTION_2D_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_TRACKER_DETECTION_2D;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_TRACKER_DETECTION_2D_MIN_LEN, MAVLINK_MSG_ID_TRACKER_DETECTION_2D_LEN, MAVLINK_MSG_ID_TRACKER_DETECTION_2D_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_TRACKER_DETECTION_2D_MIN_LEN, MAVLINK_MSG_ID_TRACKER_DETECTION_2D_LEN);
+#endif
+}
+
+/**
  * @brief Pack a tracker_detection_2d message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -252,6 +330,20 @@ static inline uint16_t mavlink_msg_tracker_detection_2d_encode(uint8_t system_id
 static inline uint16_t mavlink_msg_tracker_detection_2d_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_tracker_detection_2d_t* tracker_detection_2d)
 {
     return mavlink_msg_tracker_detection_2d_pack_chan(system_id, component_id, chan, msg, tracker_detection_2d->img_ts, tracker_detection_2d->img_id, tracker_detection_2d->object_id, tracker_detection_2d->class_id, tracker_detection_2d->tracking_status, tracker_detection_2d->confidence, tracker_detection_2d->bbox_top_left_x, tracker_detection_2d->bbox_top_left_y, tracker_detection_2d->bbox_bot_right_x, tracker_detection_2d->bbox_bot_right_y, tracker_detection_2d->lat, tracker_detection_2d->lon, tracker_detection_2d->alt, tracker_detection_2d->vel_n, tracker_detection_2d->vel_e, tracker_detection_2d->vel_up);
+}
+
+/**
+ * @brief Encode a tracker_detection_2d struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param tracker_detection_2d C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_tracker_detection_2d_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_tracker_detection_2d_t* tracker_detection_2d)
+{
+    return mavlink_msg_tracker_detection_2d_pack_status(system_id, component_id, _status, msg,  tracker_detection_2d->img_ts, tracker_detection_2d->img_id, tracker_detection_2d->object_id, tracker_detection_2d->class_id, tracker_detection_2d->tracking_status, tracker_detection_2d->confidence, tracker_detection_2d->bbox_top_left_x, tracker_detection_2d->bbox_top_left_y, tracker_detection_2d->bbox_bot_right_x, tracker_detection_2d->bbox_bot_right_y, tracker_detection_2d->lat, tracker_detection_2d->lon, tracker_detection_2d->alt, tracker_detection_2d->vel_n, tracker_detection_2d->vel_e, tracker_detection_2d->vel_up);
 }
 
 /**

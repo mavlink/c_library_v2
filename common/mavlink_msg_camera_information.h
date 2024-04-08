@@ -142,6 +142,76 @@ static inline uint16_t mavlink_msg_camera_information_pack(uint8_t system_id, ui
 }
 
 /**
+ * @brief Pack a camera_information message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param time_boot_ms [ms] Timestamp (time since system boot).
+ * @param vendor_name  Name of the camera vendor
+ * @param model_name  Name of the camera model
+ * @param firmware_version  Version of the camera firmware, encoded as: (Dev & 0xff) << 24 | (Patch & 0xff) << 16 | (Minor & 0xff) << 8 | (Major & 0xff). Use 0 if not known.
+ * @param focal_length [mm] Focal length. Use NaN if not known.
+ * @param sensor_size_h [mm] Image sensor size horizontal. Use NaN if not known.
+ * @param sensor_size_v [mm] Image sensor size vertical. Use NaN if not known.
+ * @param resolution_h [pix] Horizontal image resolution. Use 0 if not known.
+ * @param resolution_v [pix] Vertical image resolution. Use 0 if not known.
+ * @param lens_id  Reserved for a lens ID.  Use 0 if not known.
+ * @param flags  Bitmap of camera capability flags.
+ * @param cam_definition_version  Camera definition version (iteration).  Use 0 if not known.
+ * @param cam_definition_uri  Camera definition URI (if any, otherwise only basic functions will be available). HTTP- (http://) and MAVLink FTP- (mavlinkftp://) formatted URIs are allowed (and both must be supported by any GCS that implements the Camera Protocol). The definition file may be xz compressed, which will be indicated by the file extension .xml.xz (a GCS that implements the protocol must support decompressing the file). The string needs to be zero terminated.  Use a zero-length string if not known.
+ * @param gimbal_device_id  Gimbal id of a gimbal associated with this camera. This is the component id of the gimbal device, or 1-6 for non mavlink gimbals. Use 0 if no gimbal is associated with the camera.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_camera_information_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t time_boot_ms, const uint8_t *vendor_name, const uint8_t *model_name, uint32_t firmware_version, float focal_length, float sensor_size_h, float sensor_size_v, uint16_t resolution_h, uint16_t resolution_v, uint8_t lens_id, uint32_t flags, uint16_t cam_definition_version, const char *cam_definition_uri, uint8_t gimbal_device_id)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_CAMERA_INFORMATION_LEN];
+    _mav_put_uint32_t(buf, 0, time_boot_ms);
+    _mav_put_uint32_t(buf, 4, firmware_version);
+    _mav_put_float(buf, 8, focal_length);
+    _mav_put_float(buf, 12, sensor_size_h);
+    _mav_put_float(buf, 16, sensor_size_v);
+    _mav_put_uint32_t(buf, 20, flags);
+    _mav_put_uint16_t(buf, 24, resolution_h);
+    _mav_put_uint16_t(buf, 26, resolution_v);
+    _mav_put_uint16_t(buf, 28, cam_definition_version);
+    _mav_put_uint8_t(buf, 94, lens_id);
+    _mav_put_uint8_t(buf, 235, gimbal_device_id);
+    _mav_put_uint8_t_array(buf, 30, vendor_name, 32);
+    _mav_put_uint8_t_array(buf, 62, model_name, 32);
+    _mav_put_char_array(buf, 95, cam_definition_uri, 140);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CAMERA_INFORMATION_LEN);
+#else
+    mavlink_camera_information_t packet;
+    packet.time_boot_ms = time_boot_ms;
+    packet.firmware_version = firmware_version;
+    packet.focal_length = focal_length;
+    packet.sensor_size_h = sensor_size_h;
+    packet.sensor_size_v = sensor_size_v;
+    packet.flags = flags;
+    packet.resolution_h = resolution_h;
+    packet.resolution_v = resolution_v;
+    packet.cam_definition_version = cam_definition_version;
+    packet.lens_id = lens_id;
+    packet.gimbal_device_id = gimbal_device_id;
+    mav_array_memcpy(packet.vendor_name, vendor_name, sizeof(uint8_t)*32);
+    mav_array_memcpy(packet.model_name, model_name, sizeof(uint8_t)*32);
+    mav_array_memcpy(packet.cam_definition_uri, cam_definition_uri, sizeof(char)*140);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CAMERA_INFORMATION_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_CAMERA_INFORMATION;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CAMERA_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_CAMERA_INFORMATION_LEN, MAVLINK_MSG_ID_CAMERA_INFORMATION_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CAMERA_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_CAMERA_INFORMATION_LEN);
+#endif
+}
+
+/**
  * @brief Pack a camera_information message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -232,6 +302,20 @@ static inline uint16_t mavlink_msg_camera_information_encode(uint8_t system_id, 
 static inline uint16_t mavlink_msg_camera_information_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_camera_information_t* camera_information)
 {
     return mavlink_msg_camera_information_pack_chan(system_id, component_id, chan, msg, camera_information->time_boot_ms, camera_information->vendor_name, camera_information->model_name, camera_information->firmware_version, camera_information->focal_length, camera_information->sensor_size_h, camera_information->sensor_size_v, camera_information->resolution_h, camera_information->resolution_v, camera_information->lens_id, camera_information->flags, camera_information->cam_definition_version, camera_information->cam_definition_uri, camera_information->gimbal_device_id);
+}
+
+/**
+ * @brief Encode a camera_information struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param camera_information C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_camera_information_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_camera_information_t* camera_information)
+{
+    return mavlink_msg_camera_information_pack_status(system_id, component_id, _status, msg,  camera_information->time_boot_ms, camera_information->vendor_name, camera_information->model_name, camera_information->firmware_version, camera_information->focal_length, camera_information->sensor_size_h, camera_information->sensor_size_v, camera_information->resolution_h, camera_information->resolution_v, camera_information->lens_id, camera_information->flags, camera_information->cam_definition_version, camera_information->cam_definition_uri, camera_information->gimbal_device_id);
 }
 
 /**

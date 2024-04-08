@@ -82,6 +82,48 @@ static inline uint16_t mavlink_msg_timesync_pack(uint8_t system_id, uint8_t comp
 }
 
 /**
+ * @brief Pack a timesync message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param tc1 [ns] Time sync timestamp 1. Syncing: 0. Responding: Timestamp of responding component.
+ * @param ts1 [ns] Time sync timestamp 2. Timestamp of syncing component (mirrored in response).
+ * @param target_system  Target system id. Request: 0 (broadcast) or id of specific system. Response must contain system id of the requesting component.
+ * @param target_component  Target component id. Request: 0 (broadcast) or id of specific component. Response must contain component id of the requesting component.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_timesync_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               int64_t tc1, int64_t ts1, uint8_t target_system, uint8_t target_component)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_TIMESYNC_LEN];
+    _mav_put_int64_t(buf, 0, tc1);
+    _mav_put_int64_t(buf, 8, ts1);
+    _mav_put_uint8_t(buf, 16, target_system);
+    _mav_put_uint8_t(buf, 17, target_component);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_TIMESYNC_LEN);
+#else
+    mavlink_timesync_t packet;
+    packet.tc1 = tc1;
+    packet.ts1 = ts1;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_TIMESYNC_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_TIMESYNC;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_TIMESYNC_MIN_LEN, MAVLINK_MSG_ID_TIMESYNC_LEN, MAVLINK_MSG_ID_TIMESYNC_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_TIMESYNC_MIN_LEN, MAVLINK_MSG_ID_TIMESYNC_LEN);
+#endif
+}
+
+/**
  * @brief Pack a timesync message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -144,6 +186,20 @@ static inline uint16_t mavlink_msg_timesync_encode(uint8_t system_id, uint8_t co
 static inline uint16_t mavlink_msg_timesync_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_timesync_t* timesync)
 {
     return mavlink_msg_timesync_pack_chan(system_id, component_id, chan, msg, timesync->tc1, timesync->ts1, timesync->target_system, timesync->target_component);
+}
+
+/**
+ * @brief Encode a timesync struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param timesync C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_timesync_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_timesync_t* timesync)
+{
+    return mavlink_msg_timesync_pack_status(system_id, component_id, _status, msg,  timesync->tc1, timesync->ts1, timesync->target_system, timesync->target_component);
 }
 
 /**

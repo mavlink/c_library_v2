@@ -70,6 +70,42 @@ static inline uint16_t mavlink_msg_control_status_pack(uint8_t system_id, uint8_
 }
 
 /**
+ * @brief Pack a control_status message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param current_flight_controller  Current flight control entity.
+ * @param current_payload_controller  Current payload control entity.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_control_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t current_flight_controller, uint8_t current_payload_controller)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_CONTROL_STATUS_LEN];
+    _mav_put_uint8_t(buf, 0, current_flight_controller);
+    _mav_put_uint8_t(buf, 1, current_payload_controller);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CONTROL_STATUS_LEN);
+#else
+    mavlink_control_status_t packet;
+    packet.current_flight_controller = current_flight_controller;
+    packet.current_payload_controller = current_payload_controller;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CONTROL_STATUS_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_CONTROL_STATUS;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CONTROL_STATUS_MIN_LEN, MAVLINK_MSG_ID_CONTROL_STATUS_LEN, MAVLINK_MSG_ID_CONTROL_STATUS_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CONTROL_STATUS_MIN_LEN, MAVLINK_MSG_ID_CONTROL_STATUS_LEN);
+#endif
+}
+
+/**
  * @brief Pack a control_status message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -126,6 +162,20 @@ static inline uint16_t mavlink_msg_control_status_encode(uint8_t system_id, uint
 static inline uint16_t mavlink_msg_control_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_control_status_t* control_status)
 {
     return mavlink_msg_control_status_pack_chan(system_id, component_id, chan, msg, control_status->current_flight_controller, control_status->current_payload_controller);
+}
+
+/**
+ * @brief Encode a control_status struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param control_status C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_control_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_control_status_t* control_status)
+{
+    return mavlink_msg_control_status_pack_status(system_id, component_id, _status, msg,  control_status->current_flight_controller, control_status->current_payload_controller);
 }
 
 /**

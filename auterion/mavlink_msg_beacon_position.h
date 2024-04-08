@@ -106,6 +106,60 @@ static inline uint16_t mavlink_msg_beacon_position_pack(uint8_t system_id, uint8
 }
 
 /**
+ * @brief Pack a beacon_position message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param beacon_id  Unique Beacon ID
+ * @param latitude [degE7] Latitude (WGS84), in degrees * 1E7
+ * @param longitude [degE7] Longitude (WGS84), in degrees * 1E7
+ * @param altitude [m] Altitude (MSL), in meters
+ * @param distance [m] Distance to the Beacon, in meters
+ * @param delay [ms] Time between generating the value and request, in milliseconds
+ * @param gps_status  Status indicating the quality of the GPS Data. 0=invalid 1=lat long valid, alt invalid 2=valid
+ * @param link_quality  Value indicating the Signal to noise ratio (in units of dB)
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_beacon_position_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t beacon_id, int32_t latitude, int32_t longitude, float altitude, float distance, int32_t delay, uint8_t gps_status, int32_t link_quality)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_BEACON_POSITION_LEN];
+    _mav_put_uint32_t(buf, 0, beacon_id);
+    _mav_put_int32_t(buf, 4, latitude);
+    _mav_put_int32_t(buf, 8, longitude);
+    _mav_put_float(buf, 12, altitude);
+    _mav_put_float(buf, 16, distance);
+    _mav_put_int32_t(buf, 20, delay);
+    _mav_put_int32_t(buf, 24, link_quality);
+    _mav_put_uint8_t(buf, 28, gps_status);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_BEACON_POSITION_LEN);
+#else
+    mavlink_beacon_position_t packet;
+    packet.beacon_id = beacon_id;
+    packet.latitude = latitude;
+    packet.longitude = longitude;
+    packet.altitude = altitude;
+    packet.distance = distance;
+    packet.delay = delay;
+    packet.link_quality = link_quality;
+    packet.gps_status = gps_status;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_BEACON_POSITION_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_BEACON_POSITION;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_BEACON_POSITION_MIN_LEN, MAVLINK_MSG_ID_BEACON_POSITION_LEN, MAVLINK_MSG_ID_BEACON_POSITION_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_BEACON_POSITION_MIN_LEN, MAVLINK_MSG_ID_BEACON_POSITION_LEN);
+#endif
+}
+
+/**
  * @brief Pack a beacon_position message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -180,6 +234,20 @@ static inline uint16_t mavlink_msg_beacon_position_encode(uint8_t system_id, uin
 static inline uint16_t mavlink_msg_beacon_position_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_beacon_position_t* beacon_position)
 {
     return mavlink_msg_beacon_position_pack_chan(system_id, component_id, chan, msg, beacon_position->beacon_id, beacon_position->latitude, beacon_position->longitude, beacon_position->altitude, beacon_position->distance, beacon_position->delay, beacon_position->gps_status, beacon_position->link_quality);
+}
+
+/**
+ * @brief Encode a beacon_position struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param beacon_position C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_beacon_position_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_beacon_position_t* beacon_position)
+{
+    return mavlink_msg_beacon_position_pack_status(system_id, component_id, _status, msg,  beacon_position->beacon_id, beacon_position->latitude, beacon_position->longitude, beacon_position->altitude, beacon_position->distance, beacon_position->delay, beacon_position->gps_status, beacon_position->link_quality);
 }
 
 /**

@@ -106,6 +106,60 @@ static inline uint16_t mavlink_msg_battery_status_v2_pack(uint8_t system_id, uin
 }
 
 /**
+ * @brief Pack a battery_status_v2 message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param id  Battery ID
+ * @param temperature [cdegC] Temperature of the whole battery pack (not internal electronics). INT16_MAX field not provided.
+ * @param voltage [V] Battery voltage (total). NaN: field not provided.
+ * @param current [A] Battery current (through all cells/loads). Positive value when discharging and negative if charging. NaN: field not provided.
+ * @param capacity_consumed [Ah] Consumed charge. NaN: field not provided. This is either the consumption since power-on or since the battery was full, depending on the value of MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL.
+ * @param capacity_remaining [Ah] Remaining charge (until empty). UINT32_MAX: field not provided. Note: If MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL is unset, this value is based on the assumption the battery was full when the system was powered.
+ * @param percent_remaining [%] Remaining battery energy. Values: [0-100], UINT8_MAX: field not provided.
+ * @param status_flags  Fault, health, readiness, and other status indications.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_battery_status_v2_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t id, int16_t temperature, float voltage, float current, float capacity_consumed, float capacity_remaining, uint8_t percent_remaining, uint32_t status_flags)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_BATTERY_STATUS_V2_LEN];
+    _mav_put_float(buf, 0, voltage);
+    _mav_put_float(buf, 4, current);
+    _mav_put_float(buf, 8, capacity_consumed);
+    _mav_put_float(buf, 12, capacity_remaining);
+    _mav_put_uint32_t(buf, 16, status_flags);
+    _mav_put_int16_t(buf, 20, temperature);
+    _mav_put_uint8_t(buf, 22, id);
+    _mav_put_uint8_t(buf, 23, percent_remaining);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_BATTERY_STATUS_V2_LEN);
+#else
+    mavlink_battery_status_v2_t packet;
+    packet.voltage = voltage;
+    packet.current = current;
+    packet.capacity_consumed = capacity_consumed;
+    packet.capacity_remaining = capacity_remaining;
+    packet.status_flags = status_flags;
+    packet.temperature = temperature;
+    packet.id = id;
+    packet.percent_remaining = percent_remaining;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_BATTERY_STATUS_V2_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_BATTERY_STATUS_V2;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_BATTERY_STATUS_V2_MIN_LEN, MAVLINK_MSG_ID_BATTERY_STATUS_V2_LEN, MAVLINK_MSG_ID_BATTERY_STATUS_V2_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_BATTERY_STATUS_V2_MIN_LEN, MAVLINK_MSG_ID_BATTERY_STATUS_V2_LEN);
+#endif
+}
+
+/**
  * @brief Pack a battery_status_v2 message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -180,6 +234,20 @@ static inline uint16_t mavlink_msg_battery_status_v2_encode(uint8_t system_id, u
 static inline uint16_t mavlink_msg_battery_status_v2_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_battery_status_v2_t* battery_status_v2)
 {
     return mavlink_msg_battery_status_v2_pack_chan(system_id, component_id, chan, msg, battery_status_v2->id, battery_status_v2->temperature, battery_status_v2->voltage, battery_status_v2->current, battery_status_v2->capacity_consumed, battery_status_v2->capacity_remaining, battery_status_v2->percent_remaining, battery_status_v2->status_flags);
+}
+
+/**
+ * @brief Encode a battery_status_v2 struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param battery_status_v2 C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_battery_status_v2_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_battery_status_v2_t* battery_status_v2)
+{
+    return mavlink_msg_battery_status_v2_pack_status(system_id, component_id, _status, msg,  battery_status_v2->id, battery_status_v2->temperature, battery_status_v2->voltage, battery_status_v2->current, battery_status_v2->capacity_consumed, battery_status_v2->capacity_remaining, battery_status_v2->percent_remaining, battery_status_v2->status_flags);
 }
 
 /**

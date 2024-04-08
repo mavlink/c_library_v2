@@ -128,6 +128,70 @@ static inline uint16_t mavlink_msg_local_position_ned_cov_pack(uint8_t system_id
 }
 
 /**
+ * @brief Pack a local_position_ned_cov message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+ * @param estimator_type  Class id of the estimator this estimate originated from.
+ * @param x [m] X Position
+ * @param y [m] Y Position
+ * @param z [m] Z Position
+ * @param vx [m/s] X Speed
+ * @param vy [m/s] Y Speed
+ * @param vz [m/s] Z Speed
+ * @param ax [m/s/s] X Acceleration
+ * @param ay [m/s/s] Y Acceleration
+ * @param az [m/s/s] Z Acceleration
+ * @param covariance  Row-major representation of position, velocity and acceleration 9x9 cross-covariance matrix upper right triangle (states: x, y, z, vx, vy, vz, ax, ay, az; first nine entries are the first ROW, next eight entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_local_position_ned_cov_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint64_t time_usec, uint8_t estimator_type, float x, float y, float z, float vx, float vy, float vz, float ax, float ay, float az, const float *covariance)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_LOCAL_POSITION_NED_COV_LEN];
+    _mav_put_uint64_t(buf, 0, time_usec);
+    _mav_put_float(buf, 8, x);
+    _mav_put_float(buf, 12, y);
+    _mav_put_float(buf, 16, z);
+    _mav_put_float(buf, 20, vx);
+    _mav_put_float(buf, 24, vy);
+    _mav_put_float(buf, 28, vz);
+    _mav_put_float(buf, 32, ax);
+    _mav_put_float(buf, 36, ay);
+    _mav_put_float(buf, 40, az);
+    _mav_put_uint8_t(buf, 224, estimator_type);
+    _mav_put_float_array(buf, 44, covariance, 45);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_LOCAL_POSITION_NED_COV_LEN);
+#else
+    mavlink_local_position_ned_cov_t packet;
+    packet.time_usec = time_usec;
+    packet.x = x;
+    packet.y = y;
+    packet.z = z;
+    packet.vx = vx;
+    packet.vy = vy;
+    packet.vz = vz;
+    packet.ax = ax;
+    packet.ay = ay;
+    packet.az = az;
+    packet.estimator_type = estimator_type;
+    mav_array_memcpy(packet.covariance, covariance, sizeof(float)*45);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_LOCAL_POSITION_NED_COV_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_LOCAL_POSITION_NED_COV;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_LOCAL_POSITION_NED_COV_MIN_LEN, MAVLINK_MSG_ID_LOCAL_POSITION_NED_COV_LEN, MAVLINK_MSG_ID_LOCAL_POSITION_NED_COV_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_LOCAL_POSITION_NED_COV_MIN_LEN, MAVLINK_MSG_ID_LOCAL_POSITION_NED_COV_LEN);
+#endif
+}
+
+/**
  * @brief Pack a local_position_ned_cov message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -212,6 +276,20 @@ static inline uint16_t mavlink_msg_local_position_ned_cov_encode(uint8_t system_
 static inline uint16_t mavlink_msg_local_position_ned_cov_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_local_position_ned_cov_t* local_position_ned_cov)
 {
     return mavlink_msg_local_position_ned_cov_pack_chan(system_id, component_id, chan, msg, local_position_ned_cov->time_usec, local_position_ned_cov->estimator_type, local_position_ned_cov->x, local_position_ned_cov->y, local_position_ned_cov->z, local_position_ned_cov->vx, local_position_ned_cov->vy, local_position_ned_cov->vz, local_position_ned_cov->ax, local_position_ned_cov->ay, local_position_ned_cov->az, local_position_ned_cov->covariance);
+}
+
+/**
+ * @brief Encode a local_position_ned_cov struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param local_position_ned_cov C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_local_position_ned_cov_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_local_position_ned_cov_t* local_position_ned_cov)
+{
+    return mavlink_msg_local_position_ned_cov_pack_status(system_id, component_id, _status, msg,  local_position_ned_cov->time_usec, local_position_ned_cov->estimator_type, local_position_ned_cov->x, local_position_ned_cov->y, local_position_ned_cov->z, local_position_ned_cov->vx, local_position_ned_cov->vy, local_position_ned_cov->vz, local_position_ned_cov->ax, local_position_ned_cov->ay, local_position_ned_cov->az, local_position_ned_cov->covariance);
 }
 
 /**

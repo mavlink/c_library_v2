@@ -82,6 +82,48 @@ static inline uint16_t mavlink_msg_motor_info_pack(uint8_t system_id, uint8_t co
 }
 
 /**
+ * @brief Pack a motor_info message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param index   Motor index number starting with index 1. 0 if unknown. 
+ * @param type   The type of motor, TODO: define an enum 
+ * @param total_time [s]  Total accumulated usage time
+ * @param temperature [cdegC] Temperature of motor. INT16_MAX if unknown.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_motor_info_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t index, uint8_t type, uint64_t total_time, int16_t temperature)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_MOTOR_INFO_LEN];
+    _mav_put_uint64_t(buf, 0, total_time);
+    _mav_put_int16_t(buf, 8, temperature);
+    _mav_put_uint8_t(buf, 10, index);
+    _mav_put_uint8_t(buf, 11, type);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_MOTOR_INFO_LEN);
+#else
+    mavlink_motor_info_t packet;
+    packet.total_time = total_time;
+    packet.temperature = temperature;
+    packet.index = index;
+    packet.type = type;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_MOTOR_INFO_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_MOTOR_INFO;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MOTOR_INFO_MIN_LEN, MAVLINK_MSG_ID_MOTOR_INFO_LEN, MAVLINK_MSG_ID_MOTOR_INFO_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MOTOR_INFO_MIN_LEN, MAVLINK_MSG_ID_MOTOR_INFO_LEN);
+#endif
+}
+
+/**
  * @brief Pack a motor_info message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -144,6 +186,20 @@ static inline uint16_t mavlink_msg_motor_info_encode(uint8_t system_id, uint8_t 
 static inline uint16_t mavlink_msg_motor_info_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_motor_info_t* motor_info)
 {
     return mavlink_msg_motor_info_pack_chan(system_id, component_id, chan, msg, motor_info->index, motor_info->type, motor_info->total_time, motor_info->temperature);
+}
+
+/**
+ * @brief Encode a motor_info struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param motor_info C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_motor_info_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_motor_info_t* motor_info)
+{
+    return mavlink_msg_motor_info_pack_status(system_id, component_id, _status, msg,  motor_info->index, motor_info->type, motor_info->total_time, motor_info->temperature);
 }
 
 /**

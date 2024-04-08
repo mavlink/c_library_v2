@@ -64,6 +64,39 @@ static inline uint16_t mavlink_msg_mission_item_reached_pack(uint8_t system_id, 
 }
 
 /**
+ * @brief Pack a mission_item_reached message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param seq  Sequence
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_mission_item_reached_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint16_t seq)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_MISSION_ITEM_REACHED_LEN];
+    _mav_put_uint16_t(buf, 0, seq);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_MISSION_ITEM_REACHED_LEN);
+#else
+    mavlink_mission_item_reached_t packet;
+    packet.seq = seq;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_MISSION_ITEM_REACHED_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_MISSION_ITEM_REACHED;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MISSION_ITEM_REACHED_MIN_LEN, MAVLINK_MSG_ID_MISSION_ITEM_REACHED_LEN, MAVLINK_MSG_ID_MISSION_ITEM_REACHED_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MISSION_ITEM_REACHED_MIN_LEN, MAVLINK_MSG_ID_MISSION_ITEM_REACHED_LEN);
+#endif
+}
+
+/**
  * @brief Pack a mission_item_reached message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -117,6 +150,20 @@ static inline uint16_t mavlink_msg_mission_item_reached_encode(uint8_t system_id
 static inline uint16_t mavlink_msg_mission_item_reached_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mission_item_reached_t* mission_item_reached)
 {
     return mavlink_msg_mission_item_reached_pack_chan(system_id, component_id, chan, msg, mission_item_reached->seq);
+}
+
+/**
+ * @brief Encode a mission_item_reached struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param mission_item_reached C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_mission_item_reached_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_mission_item_reached_t* mission_item_reached)
+{
+    return mavlink_msg_mission_item_reached_pack_status(system_id, component_id, _status, msg,  mission_item_reached->seq);
 }
 
 /**

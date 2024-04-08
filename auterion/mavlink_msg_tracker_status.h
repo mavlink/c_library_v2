@@ -76,6 +76,45 @@ static inline uint16_t mavlink_msg_tracker_status_pack(uint8_t system_id, uint8_
 }
 
 /**
+ * @brief Pack a tracker_status message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param tracker_status   
+ * @param number_objects_detected   Number of objects currently detected.
+ * @param tracked_object_id   The UID of the object currently being tracked.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_tracker_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t tracker_status, uint16_t number_objects_detected, uint32_t tracked_object_id)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_TRACKER_STATUS_LEN];
+    _mav_put_uint32_t(buf, 0, tracked_object_id);
+    _mav_put_uint16_t(buf, 4, number_objects_detected);
+    _mav_put_uint8_t(buf, 6, tracker_status);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_TRACKER_STATUS_LEN);
+#else
+    mavlink_tracker_status_t packet;
+    packet.tracked_object_id = tracked_object_id;
+    packet.number_objects_detected = number_objects_detected;
+    packet.tracker_status = tracker_status;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_TRACKER_STATUS_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_TRACKER_STATUS;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_TRACKER_STATUS_MIN_LEN, MAVLINK_MSG_ID_TRACKER_STATUS_LEN, MAVLINK_MSG_ID_TRACKER_STATUS_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_TRACKER_STATUS_MIN_LEN, MAVLINK_MSG_ID_TRACKER_STATUS_LEN);
+#endif
+}
+
+/**
  * @brief Pack a tracker_status message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -135,6 +174,20 @@ static inline uint16_t mavlink_msg_tracker_status_encode(uint8_t system_id, uint
 static inline uint16_t mavlink_msg_tracker_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_tracker_status_t* tracker_status)
 {
     return mavlink_msg_tracker_status_pack_chan(system_id, component_id, chan, msg, tracker_status->tracker_status, tracker_status->number_objects_detected, tracker_status->tracked_object_id);
+}
+
+/**
+ * @brief Encode a tracker_status struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param tracker_status C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_tracker_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_tracker_status_t* tracker_status)
+{
+    return mavlink_msg_tracker_status_pack_status(system_id, component_id, _status, msg,  tracker_status->tracker_status, tracker_status->number_objects_detected, tracker_status->tracked_object_id);
 }
 
 /**

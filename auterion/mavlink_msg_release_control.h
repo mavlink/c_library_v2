@@ -64,6 +64,39 @@ static inline uint16_t mavlink_msg_release_control_pack(uint8_t system_id, uint8
 }
 
 /**
+ * @brief Pack a release_control message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param control_target  Control target to release own ownership.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_release_control_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t control_target)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_RELEASE_CONTROL_LEN];
+    _mav_put_uint8_t(buf, 0, control_target);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_RELEASE_CONTROL_LEN);
+#else
+    mavlink_release_control_t packet;
+    packet.control_target = control_target;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_RELEASE_CONTROL_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_RELEASE_CONTROL;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_RELEASE_CONTROL_MIN_LEN, MAVLINK_MSG_ID_RELEASE_CONTROL_LEN, MAVLINK_MSG_ID_RELEASE_CONTROL_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_RELEASE_CONTROL_MIN_LEN, MAVLINK_MSG_ID_RELEASE_CONTROL_LEN);
+#endif
+}
+
+/**
  * @brief Pack a release_control message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -117,6 +150,20 @@ static inline uint16_t mavlink_msg_release_control_encode(uint8_t system_id, uin
 static inline uint16_t mavlink_msg_release_control_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_release_control_t* release_control)
 {
     return mavlink_msg_release_control_pack_chan(system_id, component_id, chan, msg, release_control->control_target);
+}
+
+/**
+ * @brief Encode a release_control struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param release_control C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_release_control_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_release_control_t* release_control)
+{
+    return mavlink_msg_release_control_pack_status(system_id, component_id, _status, msg,  release_control->control_target);
 }
 
 /**

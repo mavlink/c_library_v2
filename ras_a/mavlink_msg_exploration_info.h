@@ -196,6 +196,105 @@ static inline uint16_t mavlink_msg_exploration_info_pack(uint8_t system_id, uint
 }
 
 /**
+ * @brief Pack a exploration_info message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param exploration_id  ID of the exploration task. 255 to get the information of the current running exploration task.
+ * @param time_limit [s] Time limit to execute the exploration. Reaching this time triggers the behavior defined in the behaviour_after_stopping field. Set to 0 when the exploration time is not limited.
+ * @param behaviour_after_stopping  The behavior after stopping the exploration task. 0: Hold, 1: Land, 2: Return (to exploration return position).
+ * @param boundaries_p1_lat [degE7] Exploration cuboid boundaries point 1 Latitude (WGS84). INT32_MAX if unknown. p1_lat == p3_lat.
+ * @param boundaries_p1_lon [degE7] Exploration cuboid boundaries point 1 Longitude (WGS84). INT32_MAX if unknown. p1_lat == p3_lat.
+ * @param boundaries_p1_alt [m] Exploration cuboid boundaries point 1 Altitude (MSL). NaN if unknown. p1_alt == p2_alt.
+ * @param boundaries_p1_x [m] Exploration cuboid boundaries point 1 local NED X coordinate. NaN if unknown. p1_x == p3_x.
+ * @param boundaries_p1_y [m] Exploration cuboid boundaries point 1 local NED Y coordinate. NaN if unknown. p1_y == p3_y.
+ * @param boundaries_p1_z [m] Exploration cuboid boundaries point 1 local NED Z coordinate. NaN if unknown. p1_z == p2_z.
+ * @param boundaries_p2_lat [degE7] Exploration cuboid boundaries point 2 Latitude (WGS84). INT32_MAX if unknown.
+ * @param boundaries_p2_lon [degE7] Exploration cuboid boundaries point 2 Longitude (WGS84). INT32_MAX if unknown.
+ * @param boundaries_p2_x [m] Exploration cuboid boundaries point 2 local NED X coordinate. NaN if unknown.
+ * @param boundaries_p2_y [m] Exploration cuboid boundaries point 2 local NED Y coordinate. NaN if unknown.
+ * @param boundaries_p3_alt [m] Exploration cuboid boundaries point 3 Altitude (MSL). NaN if unknown.
+ * @param boundaries_p3_z [m] Exploration cuboid boundaries point 3 local NED Z coordinate. NaN if unknown.
+ * @param ingress_portal_id  Currently defined ingress portal ID. This portal ID can either be set by the system autonomy engine or by an offboard controller or operator using MAV_CMD_SET_INGRESS_PORTAL. When unknown, not applicable or not deterministic, set to UINT32_MAX.
+ * @param ingress_portal_lat [degE7] Currently defined ingress portal Latitude (WGS84). INT32_MAX if unknown, not applicable or when ingress_portal_id is set and different from UINT32_MAX.
+ * @param ingress_portal_lon [degE7] Currently defined ingress portal Longitude (WGS84). INT32_MAX if unknown, not applicable or when ingress_portal_id is set and different from UINT32_MAX.
+ * @param ingress_portal_alt [m] Currently defined ingress portal Altitude (MSL). NaN if unknown, not applicable or when ingress_portal_id is set and different from UINT32_MAX.
+ * @param egress_portal_id  Currently defined egress portal ID. This portal ID can either be set by the system autonomy engine or by an offboard controller or operator using MAV_CMD_SET_EGRESS_PORTAL. When unknown, not applicable or not deterministic, set to UINT32_MAX.
+ * @param egress_portal_lat [degE7] Currently defined egress portal Latitude (WGS84). INT32_MAX if unknown, not applicable or when egress_portal_id is set and different from UINT32_MAX.
+ * @param egress_portal_lon [degE7] Currently defined egress portal Longitude (WGS84). INT32_MAX if unknown, not applicable or when egress_portal_id is set and different from UINT32_MAX.
+ * @param egress_portal_alt [m] Currently defined egress portal Altitude (MSL). NaN if unknown, not applicable or when egress_portal_id is set and different from UINT32_MAX.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_exploration_info_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t exploration_id, uint32_t time_limit, uint8_t behaviour_after_stopping, int32_t boundaries_p1_lat, int32_t boundaries_p1_lon, float boundaries_p1_alt, float boundaries_p1_x, float boundaries_p1_y, float boundaries_p1_z, int32_t boundaries_p2_lat, int32_t boundaries_p2_lon, float boundaries_p2_x, float boundaries_p2_y, float boundaries_p3_alt, float boundaries_p3_z, uint32_t ingress_portal_id, int32_t ingress_portal_lat, int32_t ingress_portal_lon, float ingress_portal_alt, uint32_t egress_portal_id, int32_t egress_portal_lat, int32_t egress_portal_lon, float egress_portal_alt)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_EXPLORATION_INFO_LEN];
+    _mav_put_uint32_t(buf, 0, time_limit);
+    _mav_put_int32_t(buf, 4, boundaries_p1_lat);
+    _mav_put_int32_t(buf, 8, boundaries_p1_lon);
+    _mav_put_float(buf, 12, boundaries_p1_alt);
+    _mav_put_float(buf, 16, boundaries_p1_x);
+    _mav_put_float(buf, 20, boundaries_p1_y);
+    _mav_put_float(buf, 24, boundaries_p1_z);
+    _mav_put_int32_t(buf, 28, boundaries_p2_lat);
+    _mav_put_int32_t(buf, 32, boundaries_p2_lon);
+    _mav_put_float(buf, 36, boundaries_p2_x);
+    _mav_put_float(buf, 40, boundaries_p2_y);
+    _mav_put_float(buf, 44, boundaries_p3_alt);
+    _mav_put_float(buf, 48, boundaries_p3_z);
+    _mav_put_uint32_t(buf, 52, ingress_portal_id);
+    _mav_put_int32_t(buf, 56, ingress_portal_lat);
+    _mav_put_int32_t(buf, 60, ingress_portal_lon);
+    _mav_put_float(buf, 64, ingress_portal_alt);
+    _mav_put_uint32_t(buf, 68, egress_portal_id);
+    _mav_put_int32_t(buf, 72, egress_portal_lat);
+    _mav_put_int32_t(buf, 76, egress_portal_lon);
+    _mav_put_float(buf, 80, egress_portal_alt);
+    _mav_put_uint8_t(buf, 84, exploration_id);
+    _mav_put_uint8_t(buf, 85, behaviour_after_stopping);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_EXPLORATION_INFO_LEN);
+#else
+    mavlink_exploration_info_t packet;
+    packet.time_limit = time_limit;
+    packet.boundaries_p1_lat = boundaries_p1_lat;
+    packet.boundaries_p1_lon = boundaries_p1_lon;
+    packet.boundaries_p1_alt = boundaries_p1_alt;
+    packet.boundaries_p1_x = boundaries_p1_x;
+    packet.boundaries_p1_y = boundaries_p1_y;
+    packet.boundaries_p1_z = boundaries_p1_z;
+    packet.boundaries_p2_lat = boundaries_p2_lat;
+    packet.boundaries_p2_lon = boundaries_p2_lon;
+    packet.boundaries_p2_x = boundaries_p2_x;
+    packet.boundaries_p2_y = boundaries_p2_y;
+    packet.boundaries_p3_alt = boundaries_p3_alt;
+    packet.boundaries_p3_z = boundaries_p3_z;
+    packet.ingress_portal_id = ingress_portal_id;
+    packet.ingress_portal_lat = ingress_portal_lat;
+    packet.ingress_portal_lon = ingress_portal_lon;
+    packet.ingress_portal_alt = ingress_portal_alt;
+    packet.egress_portal_id = egress_portal_id;
+    packet.egress_portal_lat = egress_portal_lat;
+    packet.egress_portal_lon = egress_portal_lon;
+    packet.egress_portal_alt = egress_portal_alt;
+    packet.exploration_id = exploration_id;
+    packet.behaviour_after_stopping = behaviour_after_stopping;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_EXPLORATION_INFO_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_EXPLORATION_INFO;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_EXPLORATION_INFO_MIN_LEN, MAVLINK_MSG_ID_EXPLORATION_INFO_LEN, MAVLINK_MSG_ID_EXPLORATION_INFO_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_EXPLORATION_INFO_MIN_LEN, MAVLINK_MSG_ID_EXPLORATION_INFO_LEN);
+#endif
+}
+
+/**
  * @brief Pack a exploration_info message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -315,6 +414,20 @@ static inline uint16_t mavlink_msg_exploration_info_encode(uint8_t system_id, ui
 static inline uint16_t mavlink_msg_exploration_info_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_exploration_info_t* exploration_info)
 {
     return mavlink_msg_exploration_info_pack_chan(system_id, component_id, chan, msg, exploration_info->exploration_id, exploration_info->time_limit, exploration_info->behaviour_after_stopping, exploration_info->boundaries_p1_lat, exploration_info->boundaries_p1_lon, exploration_info->boundaries_p1_alt, exploration_info->boundaries_p1_x, exploration_info->boundaries_p1_y, exploration_info->boundaries_p1_z, exploration_info->boundaries_p2_lat, exploration_info->boundaries_p2_lon, exploration_info->boundaries_p2_x, exploration_info->boundaries_p2_y, exploration_info->boundaries_p3_alt, exploration_info->boundaries_p3_z, exploration_info->ingress_portal_id, exploration_info->ingress_portal_lat, exploration_info->ingress_portal_lon, exploration_info->ingress_portal_alt, exploration_info->egress_portal_id, exploration_info->egress_portal_lat, exploration_info->egress_portal_lon, exploration_info->egress_portal_alt);
+}
+
+/**
+ * @brief Encode a exploration_info struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param exploration_info C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_exploration_info_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_exploration_info_t* exploration_info)
+{
+    return mavlink_msg_exploration_info_pack_status(system_id, component_id, _status, msg,  exploration_info->exploration_id, exploration_info->time_limit, exploration_info->behaviour_after_stopping, exploration_info->boundaries_p1_lat, exploration_info->boundaries_p1_lon, exploration_info->boundaries_p1_alt, exploration_info->boundaries_p1_x, exploration_info->boundaries_p1_y, exploration_info->boundaries_p1_z, exploration_info->boundaries_p2_lat, exploration_info->boundaries_p2_lon, exploration_info->boundaries_p2_x, exploration_info->boundaries_p2_y, exploration_info->boundaries_p3_alt, exploration_info->boundaries_p3_z, exploration_info->ingress_portal_id, exploration_info->ingress_portal_lat, exploration_info->ingress_portal_lon, exploration_info->ingress_portal_alt, exploration_info->egress_portal_id, exploration_info->egress_portal_lat, exploration_info->egress_portal_lon, exploration_info->egress_portal_alt);
 }
 
 /**

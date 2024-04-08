@@ -92,6 +92,52 @@ static inline uint16_t mavlink_msg_can_frame_pack(uint8_t system_id, uint8_t com
 }
 
 /**
+ * @brief Pack a can_frame message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param target_system  System ID.
+ * @param target_component  Component ID.
+ * @param bus  Bus number
+ * @param len  Frame length
+ * @param id  Frame ID
+ * @param data  Frame data
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_can_frame_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_system, uint8_t target_component, uint8_t bus, uint8_t len, uint32_t id, const uint8_t *data)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_CAN_FRAME_LEN];
+    _mav_put_uint32_t(buf, 0, id);
+    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 5, target_component);
+    _mav_put_uint8_t(buf, 6, bus);
+    _mav_put_uint8_t(buf, 7, len);
+    _mav_put_uint8_t_array(buf, 8, data, 8);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CAN_FRAME_LEN);
+#else
+    mavlink_can_frame_t packet;
+    packet.id = id;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+    packet.bus = bus;
+    packet.len = len;
+    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*8);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CAN_FRAME_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_CAN_FRAME;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CAN_FRAME_MIN_LEN, MAVLINK_MSG_ID_CAN_FRAME_LEN, MAVLINK_MSG_ID_CAN_FRAME_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CAN_FRAME_MIN_LEN, MAVLINK_MSG_ID_CAN_FRAME_LEN);
+#endif
+}
+
+/**
  * @brief Pack a can_frame message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -158,6 +204,20 @@ static inline uint16_t mavlink_msg_can_frame_encode(uint8_t system_id, uint8_t c
 static inline uint16_t mavlink_msg_can_frame_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_can_frame_t* can_frame)
 {
     return mavlink_msg_can_frame_pack_chan(system_id, component_id, chan, msg, can_frame->target_system, can_frame->target_component, can_frame->bus, can_frame->len, can_frame->id, can_frame->data);
+}
+
+/**
+ * @brief Encode a can_frame struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param can_frame C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_can_frame_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_can_frame_t* can_frame)
+{
+    return mavlink_msg_can_frame_pack_status(system_id, component_id, _status, msg,  can_frame->target_system, can_frame->target_component, can_frame->bus, can_frame->len, can_frame->id, can_frame->data);
 }
 
 /**

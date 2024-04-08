@@ -70,6 +70,42 @@ static inline uint16_t mavlink_msg_handoff_respond_pack(uint8_t system_id, uint8
 }
 
 /**
+ * @brief Pack a handoff_respond message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param control_target  Control target to handoff.
+ * @param handoff_decision  Control target decision.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_handoff_respond_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t control_target, uint8_t handoff_decision)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_HANDOFF_RESPOND_LEN];
+    _mav_put_uint8_t(buf, 0, control_target);
+    _mav_put_uint8_t(buf, 1, handoff_decision);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_HANDOFF_RESPOND_LEN);
+#else
+    mavlink_handoff_respond_t packet;
+    packet.control_target = control_target;
+    packet.handoff_decision = handoff_decision;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_HANDOFF_RESPOND_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_HANDOFF_RESPOND;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_HANDOFF_RESPOND_MIN_LEN, MAVLINK_MSG_ID_HANDOFF_RESPOND_LEN, MAVLINK_MSG_ID_HANDOFF_RESPOND_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_HANDOFF_RESPOND_MIN_LEN, MAVLINK_MSG_ID_HANDOFF_RESPOND_LEN);
+#endif
+}
+
+/**
  * @brief Pack a handoff_respond message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -126,6 +162,20 @@ static inline uint16_t mavlink_msg_handoff_respond_encode(uint8_t system_id, uin
 static inline uint16_t mavlink_msg_handoff_respond_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_handoff_respond_t* handoff_respond)
 {
     return mavlink_msg_handoff_respond_pack_chan(system_id, component_id, chan, msg, handoff_respond->control_target, handoff_respond->handoff_decision);
+}
+
+/**
+ * @brief Encode a handoff_respond struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param handoff_respond C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_handoff_respond_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_handoff_respond_t* handoff_respond)
+{
+    return mavlink_msg_handoff_respond_pack_status(system_id, component_id, _status, msg,  handoff_respond->control_target, handoff_respond->handoff_decision);
 }
 
 /**

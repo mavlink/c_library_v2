@@ -85,6 +85,48 @@ static inline uint16_t mavlink_msg_request_control_pack(uint8_t system_id, uint8
 }
 
 /**
+ * @brief Pack a request_control message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param control_target  Control target to change to own ownership.
+ * @param request_priority  Priority of the control request. If the priority is higher than the priority
+        of the current control entity, control is given without handoff request. 
+        The priority request should be authenticated on the target system before granting this privilegs. Default value of 0.
+ * @param requester_id  Identification of the control entity requesting ownership.
+ * @param reason  Reason for taking ownership.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_request_control_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t control_target, uint8_t request_priority, const char *requester_id, const char *reason)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_REQUEST_CONTROL_LEN];
+    _mav_put_uint8_t(buf, 0, control_target);
+    _mav_put_uint8_t(buf, 1, request_priority);
+    _mav_put_char_array(buf, 2, requester_id, 40);
+    _mav_put_char_array(buf, 42, reason, 100);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_REQUEST_CONTROL_LEN);
+#else
+    mavlink_request_control_t packet;
+    packet.control_target = control_target;
+    packet.request_priority = request_priority;
+    mav_array_memcpy(packet.requester_id, requester_id, sizeof(char)*40);
+    mav_array_memcpy(packet.reason, reason, sizeof(char)*100);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_REQUEST_CONTROL_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_REQUEST_CONTROL;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_REQUEST_CONTROL_MIN_LEN, MAVLINK_MSG_ID_REQUEST_CONTROL_LEN, MAVLINK_MSG_ID_REQUEST_CONTROL_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_REQUEST_CONTROL_MIN_LEN, MAVLINK_MSG_ID_REQUEST_CONTROL_LEN);
+#endif
+}
+
+/**
  * @brief Pack a request_control message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -147,6 +189,20 @@ static inline uint16_t mavlink_msg_request_control_encode(uint8_t system_id, uin
 static inline uint16_t mavlink_msg_request_control_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_request_control_t* request_control)
 {
     return mavlink_msg_request_control_pack_chan(system_id, component_id, chan, msg, request_control->control_target, request_control->request_priority, request_control->requester_id, request_control->reason);
+}
+
+/**
+ * @brief Encode a request_control struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param request_control C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_request_control_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_request_control_t* request_control)
+{
+    return mavlink_msg_request_control_pack_status(system_id, component_id, _status, msg,  request_control->control_target, request_control->request_priority, request_control->requester_id, request_control->reason);
 }
 
 /**

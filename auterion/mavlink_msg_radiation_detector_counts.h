@@ -88,6 +88,51 @@ static inline uint16_t mavlink_msg_radiation_detector_counts_pack(uint8_t system
 }
 
 /**
+ * @brief Pack a radiation_detector_counts message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param serial_no  Detector serial number
+ * @param timestamp [s] Timestamp of measurement(UNIX Epoch time or time since detector boot)
+ * @param counts  Accumulated detector counts
+ * @param rate   Detector count in the current dt integration period.
+ * @param integration_time_usec [us] Integration period
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_radiation_detector_counts_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t serial_no, double timestamp, uint64_t counts, uint32_t rate, uint64_t integration_time_usec)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_RADIATION_DETECTOR_COUNTS_LEN];
+    _mav_put_double(buf, 0, timestamp);
+    _mav_put_uint64_t(buf, 8, counts);
+    _mav_put_uint64_t(buf, 16, integration_time_usec);
+    _mav_put_uint32_t(buf, 24, serial_no);
+    _mav_put_uint32_t(buf, 28, rate);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_RADIATION_DETECTOR_COUNTS_LEN);
+#else
+    mavlink_radiation_detector_counts_t packet;
+    packet.timestamp = timestamp;
+    packet.counts = counts;
+    packet.integration_time_usec = integration_time_usec;
+    packet.serial_no = serial_no;
+    packet.rate = rate;
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_RADIATION_DETECTOR_COUNTS_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_RADIATION_DETECTOR_COUNTS;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_RADIATION_DETECTOR_COUNTS_MIN_LEN, MAVLINK_MSG_ID_RADIATION_DETECTOR_COUNTS_LEN, MAVLINK_MSG_ID_RADIATION_DETECTOR_COUNTS_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_RADIATION_DETECTOR_COUNTS_MIN_LEN, MAVLINK_MSG_ID_RADIATION_DETECTOR_COUNTS_LEN);
+#endif
+}
+
+/**
  * @brief Pack a radiation_detector_counts message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -153,6 +198,20 @@ static inline uint16_t mavlink_msg_radiation_detector_counts_encode(uint8_t syst
 static inline uint16_t mavlink_msg_radiation_detector_counts_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_radiation_detector_counts_t* radiation_detector_counts)
 {
     return mavlink_msg_radiation_detector_counts_pack_chan(system_id, component_id, chan, msg, radiation_detector_counts->serial_no, radiation_detector_counts->timestamp, radiation_detector_counts->counts, radiation_detector_counts->rate, radiation_detector_counts->integration_time_usec);
+}
+
+/**
+ * @brief Encode a radiation_detector_counts struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param radiation_detector_counts C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_radiation_detector_counts_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_radiation_detector_counts_t* radiation_detector_counts)
+{
+    return mavlink_msg_radiation_detector_counts_pack_status(system_id, component_id, _status, msg,  radiation_detector_counts->serial_no, radiation_detector_counts->timestamp, radiation_detector_counts->counts, radiation_detector_counts->rate, radiation_detector_counts->integration_time_usec);
 }
 
 /**

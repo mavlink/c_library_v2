@@ -164,6 +164,88 @@ static inline uint16_t mavlink_msg_cellular_status_pack(uint8_t system_id, uint8
 }
 
 /**
+ * @brief Pack a cellular_status message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param status  Cellular modem status
+ * @param failure_reason  Failure reason when status in in CELLULAR_STATUS_FLAG_FAILED
+ * @param type  Cellular network radio type: gsm, cdma, lte...
+ * @param quality  Signal quality in percent. May be used for Received Signal Strength Indicator (RSSI). If unknown, set to UINT8_MAX
+ * @param mcc  Mobile country code. If unknown, set to UINT16_MAX
+ * @param mnc  Mobile network code. If unknown, set to UINT16_MAX
+ * @param lac  Location area code. If unknown, set to 0
+ * @param band_number  (WIP) LTE frequency band number.
+ * @param band_frequency [MHz] (WIP) LTE radio frequency.
+ * @param channel_number  (WIP) The channel number (CN). Absolute radio-frequency (ARFCN) / E-UTRA (EARFCN) / UTRA (UARFCN) / New radio (NR_CH).
+ * @param rx_level [dBm] (WIP) On 3G is Received Signal Code Power (RSCP). On LTE Reference Signal Received Power (RSRP). On 5G  is New Radio Reference Signal Received Power (NR_RSRQ).
+ * @param tx_level [dBm] (WIP) Transmitter (modem) signal absolute power level.
+ * @param rx_quality [dBm] (WIP) On 3G is Receiver Quality (RxQual). On LTE is Reference Signal Received Quality (RSRQ). On 5G is New radio Reference Signal Received Quality (NR_RSRQ).
+ * @param link_tx_rate [KiB/s] (WIP) Download rate.
+ * @param link_rx_rate [KiB/s] (WIP) Upload rate.
+ * @param ber  (WIP) The bit error rate (BER) is determined by comparing the erroneous bits received with the total number of bits received. It is a ratio.
+ * @param id  (WIP) Cellular instance number. Indexed from 1. Matches index in corresponding CELLULAR_MODEM_INFORMATION message.
+ * @param cell_tower_id  (WIP) ID of the currently connected cell tower. This must be NULL terminated if the length is less than 9 human-readable chars, and without the null termination (NULL) byte if the length is exactly 9 chars.
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_cellular_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t status, uint8_t failure_reason, uint8_t type, uint8_t quality, uint16_t mcc, uint16_t mnc, uint16_t lac, uint8_t band_number, float band_frequency, uint16_t channel_number, float rx_level, float tx_level, float rx_quality, uint32_t link_tx_rate, uint32_t link_rx_rate, uint16_t ber, uint8_t id, const char *cell_tower_id)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_CELLULAR_STATUS_LEN];
+    _mav_put_uint16_t(buf, 0, mcc);
+    _mav_put_uint16_t(buf, 2, mnc);
+    _mav_put_uint16_t(buf, 4, lac);
+    _mav_put_uint8_t(buf, 6, status);
+    _mav_put_uint8_t(buf, 7, failure_reason);
+    _mav_put_uint8_t(buf, 8, type);
+    _mav_put_uint8_t(buf, 9, quality);
+    _mav_put_uint8_t(buf, 10, band_number);
+    _mav_put_float(buf, 11, band_frequency);
+    _mav_put_uint16_t(buf, 15, channel_number);
+    _mav_put_float(buf, 17, rx_level);
+    _mav_put_float(buf, 21, tx_level);
+    _mav_put_float(buf, 25, rx_quality);
+    _mav_put_uint32_t(buf, 29, link_tx_rate);
+    _mav_put_uint32_t(buf, 33, link_rx_rate);
+    _mav_put_uint16_t(buf, 37, ber);
+    _mav_put_uint8_t(buf, 39, id);
+    _mav_put_char_array(buf, 40, cell_tower_id, 9);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CELLULAR_STATUS_LEN);
+#else
+    mavlink_cellular_status_t packet;
+    packet.mcc = mcc;
+    packet.mnc = mnc;
+    packet.lac = lac;
+    packet.status = status;
+    packet.failure_reason = failure_reason;
+    packet.type = type;
+    packet.quality = quality;
+    packet.band_number = band_number;
+    packet.band_frequency = band_frequency;
+    packet.channel_number = channel_number;
+    packet.rx_level = rx_level;
+    packet.tx_level = tx_level;
+    packet.rx_quality = rx_quality;
+    packet.link_tx_rate = link_tx_rate;
+    packet.link_rx_rate = link_rx_rate;
+    packet.ber = ber;
+    packet.id = id;
+    mav_array_memcpy(packet.cell_tower_id, cell_tower_id, sizeof(char)*9);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CELLULAR_STATUS_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_CELLULAR_STATUS;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CELLULAR_STATUS_MIN_LEN, MAVLINK_MSG_ID_CELLULAR_STATUS_LEN, MAVLINK_MSG_ID_CELLULAR_STATUS_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CELLULAR_STATUS_MIN_LEN, MAVLINK_MSG_ID_CELLULAR_STATUS_LEN);
+#endif
+}
+
+/**
  * @brief Pack a cellular_status message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -266,6 +348,20 @@ static inline uint16_t mavlink_msg_cellular_status_encode(uint8_t system_id, uin
 static inline uint16_t mavlink_msg_cellular_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_cellular_status_t* cellular_status)
 {
     return mavlink_msg_cellular_status_pack_chan(system_id, component_id, chan, msg, cellular_status->status, cellular_status->failure_reason, cellular_status->type, cellular_status->quality, cellular_status->mcc, cellular_status->mnc, cellular_status->lac, cellular_status->band_number, cellular_status->band_frequency, cellular_status->channel_number, cellular_status->rx_level, cellular_status->tx_level, cellular_status->rx_quality, cellular_status->link_tx_rate, cellular_status->link_rx_rate, cellular_status->ber, cellular_status->id, cellular_status->cell_tower_id);
+}
+
+/**
+ * @brief Encode a cellular_status struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param cellular_status C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_cellular_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_cellular_status_t* cellular_status)
+{
+    return mavlink_msg_cellular_status_pack_status(system_id, component_id, _status, msg,  cellular_status->status, cellular_status->failure_reason, cellular_status->type, cellular_status->quality, cellular_status->mcc, cellular_status->mnc, cellular_status->lac, cellular_status->band_number, cellular_status->band_frequency, cellular_status->channel_number, cellular_status->rx_level, cellular_status->tx_level, cellular_status->rx_quality, cellular_status->link_tx_rate, cellular_status->link_rx_rate, cellular_status->ber, cellular_status->id, cellular_status->cell_tower_id);
 }
 
 /**

@@ -74,6 +74,43 @@ static inline uint16_t mavlink_msg_named_value_float_pack(uint8_t system_id, uin
 }
 
 /**
+ * @brief Pack a named_value_float message
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ *
+ * @param time_boot_ms [ms] Timestamp (time since system boot).
+ * @param name  Name of the debug variable
+ * @param value  Floating point value
+ * @return length of the message in bytes (excluding serial stream start sign)
+ */
+static inline uint16_t mavlink_msg_named_value_float_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t time_boot_ms, const char *name, float value)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN];
+    _mav_put_uint32_t(buf, 0, time_boot_ms);
+    _mav_put_float(buf, 4, value);
+    _mav_put_char_array(buf, 8, name, 10);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN);
+#else
+    mavlink_named_value_float_t packet;
+    packet.time_boot_ms = time_boot_ms;
+    packet.value = value;
+    mav_array_memcpy(packet.name, name, sizeof(char)*10);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_NAMED_VALUE_FLOAT;
+#if MAVLINK_CRC_EXTRA
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_MIN_LEN, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_CRC);
+#else
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_MIN_LEN, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN);
+#endif
+}
+
+/**
  * @brief Pack a named_value_float message on a channel
  * @param system_id ID of this system
  * @param component_id ID of this component (e.g. 200 for IMU)
@@ -131,6 +168,20 @@ static inline uint16_t mavlink_msg_named_value_float_encode(uint8_t system_id, u
 static inline uint16_t mavlink_msg_named_value_float_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_named_value_float_t* named_value_float)
 {
     return mavlink_msg_named_value_float_pack_chan(system_id, component_id, chan, msg, named_value_float->time_boot_ms, named_value_float->name, named_value_float->value);
+}
+
+/**
+ * @brief Encode a named_value_float struct with provided status structure
+ *
+ * @param system_id ID of this system
+ * @param component_id ID of this component (e.g. 200 for IMU)
+ * @param status MAVLink status structure
+ * @param msg The MAVLink message to compress the data into
+ * @param named_value_float C-struct to read the message contents from
+ */
+static inline uint16_t mavlink_msg_named_value_float_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_named_value_float_t* named_value_float)
+{
+    return mavlink_msg_named_value_float_pack_status(system_id, component_id, _status, msg,  named_value_float->time_boot_ms, named_value_float->name, named_value_float->value);
 }
 
 /**
