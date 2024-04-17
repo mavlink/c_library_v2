@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH -3216587062685052869
+#define MAVLINK_COMMON_XML_HASH 1877097744979944847
 
 #ifdef __cplusplus
 extern "C" {
@@ -2681,8 +2681,8 @@ typedef enum ILLUMINATOR_ERROR_FLAGS
 {
    ILLUMINATOR_ERROR_FLAGS_THERMAL_THROTTLING=1, /* Illuminator thermal throttling error. | */
    ILLUMINATOR_ERROR_FLAGS_OVER_TEMPERATURE_SHUTDOWN=2, /* Illuminator over temperature shutdown error. | */
-   ILLUMINATOR_ERROR_FLAGS_THERMISTOR_FAILURE=3, /* Illuminator thermistor failure. | */
-   ILLUMINATOR_ERROR_FLAGS_ENUM_END=4, /*  | */
+   ILLUMINATOR_ERROR_FLAGS_THERMISTOR_FAILURE=4, /* Illuminator thermistor failure. | */
+   ILLUMINATOR_ERROR_FLAGS_ENUM_END=5, /*  | */
 } ILLUMINATOR_ERROR_FLAGS;
 #endif
 
