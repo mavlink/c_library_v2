@@ -8,7 +8,7 @@ typedef struct __mavlink_battery_status_v2_t {
  float voltage; /*< [V] Battery voltage (total). NaN: field not provided.*/
  float current; /*< [A] Battery current (through all cells/loads). Positive value when discharging and negative if charging. NaN: field not provided.*/
  float capacity_consumed; /*< [Ah] Consumed charge. NaN: field not provided. This is either the consumption since power-on or since the battery was full, depending on the value of MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL.*/
- float capacity_remaining; /*< [Ah] Remaining charge (until empty). UINT32_MAX: field not provided. Note: If MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL is unset, this value is based on the assumption the battery was full when the system was powered.*/
+ float capacity_remaining; /*< [Ah] Remaining charge (until empty). NaN: field not provided. Note: If MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL is unset, this value is based on the assumption the battery was full when the system was powered.*/
  uint32_t status_flags; /*<  Fault, health, readiness, and other status indications.*/
  int16_t temperature; /*< [cdegC] Temperature of the whole battery pack (not internal electronics). INT16_MAX field not provided.*/
  uint8_t id; /*<  Battery ID*/
@@ -67,7 +67,7 @@ typedef struct __mavlink_battery_status_v2_t {
  * @param voltage [V] Battery voltage (total). NaN: field not provided.
  * @param current [A] Battery current (through all cells/loads). Positive value when discharging and negative if charging. NaN: field not provided.
  * @param capacity_consumed [Ah] Consumed charge. NaN: field not provided. This is either the consumption since power-on or since the battery was full, depending on the value of MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL.
- * @param capacity_remaining [Ah] Remaining charge (until empty). UINT32_MAX: field not provided. Note: If MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL is unset, this value is based on the assumption the battery was full when the system was powered.
+ * @param capacity_remaining [Ah] Remaining charge (until empty). NaN: field not provided. Note: If MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL is unset, this value is based on the assumption the battery was full when the system was powered.
  * @param percent_remaining [%] Remaining battery energy. Values: [0-100], UINT8_MAX: field not provided.
  * @param status_flags  Fault, health, readiness, and other status indications.
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -117,7 +117,7 @@ static inline uint16_t mavlink_msg_battery_status_v2_pack(uint8_t system_id, uin
  * @param voltage [V] Battery voltage (total). NaN: field not provided.
  * @param current [A] Battery current (through all cells/loads). Positive value when discharging and negative if charging. NaN: field not provided.
  * @param capacity_consumed [Ah] Consumed charge. NaN: field not provided. This is either the consumption since power-on or since the battery was full, depending on the value of MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL.
- * @param capacity_remaining [Ah] Remaining charge (until empty). UINT32_MAX: field not provided. Note: If MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL is unset, this value is based on the assumption the battery was full when the system was powered.
+ * @param capacity_remaining [Ah] Remaining charge (until empty). NaN: field not provided. Note: If MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL is unset, this value is based on the assumption the battery was full when the system was powered.
  * @param percent_remaining [%] Remaining battery energy. Values: [0-100], UINT8_MAX: field not provided.
  * @param status_flags  Fault, health, readiness, and other status indications.
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -170,7 +170,7 @@ static inline uint16_t mavlink_msg_battery_status_v2_pack_status(uint8_t system_
  * @param voltage [V] Battery voltage (total). NaN: field not provided.
  * @param current [A] Battery current (through all cells/loads). Positive value when discharging and negative if charging. NaN: field not provided.
  * @param capacity_consumed [Ah] Consumed charge. NaN: field not provided. This is either the consumption since power-on or since the battery was full, depending on the value of MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL.
- * @param capacity_remaining [Ah] Remaining charge (until empty). UINT32_MAX: field not provided. Note: If MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL is unset, this value is based on the assumption the battery was full when the system was powered.
+ * @param capacity_remaining [Ah] Remaining charge (until empty). NaN: field not provided. Note: If MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL is unset, this value is based on the assumption the battery was full when the system was powered.
  * @param percent_remaining [%] Remaining battery energy. Values: [0-100], UINT8_MAX: field not provided.
  * @param status_flags  Fault, health, readiness, and other status indications.
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -259,7 +259,7 @@ static inline uint16_t mavlink_msg_battery_status_v2_encode_status(uint8_t syste
  * @param voltage [V] Battery voltage (total). NaN: field not provided.
  * @param current [A] Battery current (through all cells/loads). Positive value when discharging and negative if charging. NaN: field not provided.
  * @param capacity_consumed [Ah] Consumed charge. NaN: field not provided. This is either the consumption since power-on or since the battery was full, depending on the value of MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL.
- * @param capacity_remaining [Ah] Remaining charge (until empty). UINT32_MAX: field not provided. Note: If MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL is unset, this value is based on the assumption the battery was full when the system was powered.
+ * @param capacity_remaining [Ah] Remaining charge (until empty). NaN: field not provided. Note: If MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL is unset, this value is based on the assumption the battery was full when the system was powered.
  * @param percent_remaining [%] Remaining battery energy. Values: [0-100], UINT8_MAX: field not provided.
  * @param status_flags  Fault, health, readiness, and other status indications.
  */
@@ -404,7 +404,7 @@ static inline float mavlink_msg_battery_status_v2_get_capacity_consumed(const ma
 /**
  * @brief Get field capacity_remaining from battery_status_v2 message
  *
- * @return [Ah] Remaining charge (until empty). UINT32_MAX: field not provided. Note: If MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL is unset, this value is based on the assumption the battery was full when the system was powered.
+ * @return [Ah] Remaining charge (until empty). NaN: field not provided. Note: If MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL is unset, this value is based on the assumption the battery was full when the system was powered.
  */
 static inline float mavlink_msg_battery_status_v2_get_capacity_remaining(const mavlink_message_t* msg)
 {
