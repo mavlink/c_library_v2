@@ -114,6 +114,7 @@ typedef enum MAV_TYPE
    MAV_TYPE_GENERIC_MULTIROTOR=43, /* Generic multirotor that does not fit into a specific type or whose type is unknown | */
    MAV_TYPE_ILLUMINATOR=44, /* Illuminator. An illuminator is a light source that is used for lighting up dark areas external to the sytstem: e.g. a torch or searchlight (as opposed to a light source for illuminating the system itself, e.g. an indicator light). | */
    MAV_TYPE_ENUM_END=45, /*  | */
+   MAV_TYPE_SPACECRAFT=99,
 } MAV_TYPE;
 #endif
 
