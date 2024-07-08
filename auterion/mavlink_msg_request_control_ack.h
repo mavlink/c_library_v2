@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE REQUEST_CONTROL_ACK PACKING
 
-#define MAVLINK_MSG_ID_REQUEST_CONTROL_ACK 443
+#define MAVLINK_MSG_ID_REQUEST_CONTROL_ACK 13443
 
 
 typedef struct __mavlink_request_control_ack_t {
@@ -11,17 +11,17 @@ typedef struct __mavlink_request_control_ack_t {
 
 #define MAVLINK_MSG_ID_REQUEST_CONTROL_ACK_LEN 2
 #define MAVLINK_MSG_ID_REQUEST_CONTROL_ACK_MIN_LEN 2
-#define MAVLINK_MSG_ID_443_LEN 2
-#define MAVLINK_MSG_ID_443_MIN_LEN 2
+#define MAVLINK_MSG_ID_13443_LEN 2
+#define MAVLINK_MSG_ID_13443_MIN_LEN 2
 
 #define MAVLINK_MSG_ID_REQUEST_CONTROL_ACK_CRC 131
-#define MAVLINK_MSG_ID_443_CRC 131
+#define MAVLINK_MSG_ID_13443_CRC 131
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_REQUEST_CONTROL_ACK { \
-    443, \
+    13443, \
     "REQUEST_CONTROL_ACK", \
     2, \
     {  { "control_target", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_request_control_ack_t, control_target) }, \

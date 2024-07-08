@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE RELEASE_CONTROL PACKING
 
-#define MAVLINK_MSG_ID_RELEASE_CONTROL 444
+#define MAVLINK_MSG_ID_RELEASE_CONTROL 13444
 
 
 typedef struct __mavlink_release_control_t {
@@ -10,17 +10,17 @@ typedef struct __mavlink_release_control_t {
 
 #define MAVLINK_MSG_ID_RELEASE_CONTROL_LEN 1
 #define MAVLINK_MSG_ID_RELEASE_CONTROL_MIN_LEN 1
-#define MAVLINK_MSG_ID_444_LEN 1
-#define MAVLINK_MSG_ID_444_MIN_LEN 1
+#define MAVLINK_MSG_ID_13444_LEN 1
+#define MAVLINK_MSG_ID_13444_MIN_LEN 1
 
 #define MAVLINK_MSG_ID_RELEASE_CONTROL_CRC 235
-#define MAVLINK_MSG_ID_444_CRC 235
+#define MAVLINK_MSG_ID_13444_CRC 235
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_RELEASE_CONTROL { \
-    444, \
+    13444, \
     "RELEASE_CONTROL", \
     1, \
     {  { "control_target", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_release_control_t, control_target) }, \

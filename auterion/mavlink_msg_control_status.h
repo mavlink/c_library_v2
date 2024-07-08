@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE CONTROL_STATUS PACKING
 
-#define MAVLINK_MSG_ID_CONTROL_STATUS 441
+#define MAVLINK_MSG_ID_CONTROL_STATUS 13441
 
 
 typedef struct __mavlink_control_status_t {
@@ -11,17 +11,17 @@ typedef struct __mavlink_control_status_t {
 
 #define MAVLINK_MSG_ID_CONTROL_STATUS_LEN 2
 #define MAVLINK_MSG_ID_CONTROL_STATUS_MIN_LEN 2
-#define MAVLINK_MSG_ID_441_LEN 2
-#define MAVLINK_MSG_ID_441_MIN_LEN 2
+#define MAVLINK_MSG_ID_13441_LEN 2
+#define MAVLINK_MSG_ID_13441_MIN_LEN 2
 
 #define MAVLINK_MSG_ID_CONTROL_STATUS_CRC 184
-#define MAVLINK_MSG_ID_441_CRC 184
+#define MAVLINK_MSG_ID_13441_CRC 184
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_CONTROL_STATUS { \
-    441, \
+    13441, \
     "CONTROL_STATUS", \
     2, \
     {  { "current_flight_controller", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_control_status_t, current_flight_controller) }, \

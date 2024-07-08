@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE HANDOFF_RESPOND PACKING
 
-#define MAVLINK_MSG_ID_HANDOFF_RESPOND 446
+#define MAVLINK_MSG_ID_HANDOFF_RESPOND 13446
 
 
 typedef struct __mavlink_handoff_respond_t {
@@ -11,17 +11,17 @@ typedef struct __mavlink_handoff_respond_t {
 
 #define MAVLINK_MSG_ID_HANDOFF_RESPOND_LEN 2
 #define MAVLINK_MSG_ID_HANDOFF_RESPOND_MIN_LEN 2
-#define MAVLINK_MSG_ID_446_LEN 2
-#define MAVLINK_MSG_ID_446_MIN_LEN 2
+#define MAVLINK_MSG_ID_13446_LEN 2
+#define MAVLINK_MSG_ID_13446_MIN_LEN 2
 
 #define MAVLINK_MSG_ID_HANDOFF_RESPOND_CRC 47
-#define MAVLINK_MSG_ID_446_CRC 47
+#define MAVLINK_MSG_ID_13446_CRC 47
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_HANDOFF_RESPOND { \
-    446, \
+    13446, \
     "HANDOFF_RESPOND", \
     2, \
     {  { "control_target", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_handoff_respond_t, control_target) }, \

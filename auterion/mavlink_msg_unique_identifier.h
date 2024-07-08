@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE UNIQUE_IDENTIFIER PACKING
 
-#define MAVLINK_MSG_ID_UNIQUE_IDENTIFIER 470
+#define MAVLINK_MSG_ID_UNIQUE_IDENTIFIER 13470
 
 
 typedef struct __mavlink_unique_identifier_t {
@@ -10,17 +10,17 @@ typedef struct __mavlink_unique_identifier_t {
 
 #define MAVLINK_MSG_ID_UNIQUE_IDENTIFIER_LEN 32
 #define MAVLINK_MSG_ID_UNIQUE_IDENTIFIER_MIN_LEN 32
-#define MAVLINK_MSG_ID_470_LEN 32
-#define MAVLINK_MSG_ID_470_MIN_LEN 32
+#define MAVLINK_MSG_ID_13470_LEN 32
+#define MAVLINK_MSG_ID_13470_MIN_LEN 32
 
 #define MAVLINK_MSG_ID_UNIQUE_IDENTIFIER_CRC 113
-#define MAVLINK_MSG_ID_470_CRC 113
+#define MAVLINK_MSG_ID_13470_CRC 113
 
 #define MAVLINK_MSG_UNIQUE_IDENTIFIER_FIELD_UUID_LEN 32
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_UNIQUE_IDENTIFIER { \
-    470, \
+    13470, \
     "UNIQUE_IDENTIFIER", \
     1, \
     {  { "uuid", NULL, MAVLINK_TYPE_CHAR, 32, 0, offsetof(mavlink_unique_identifier_t, uuid) }, \
