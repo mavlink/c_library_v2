@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH 2838438101891321954
+#define MAVLINK_COMMON_XML_HASH -6353233921526536836
 
 #ifdef __cplusplus
 extern "C" {
@@ -538,7 +538,8 @@ typedef enum ORBIT_YAW_BEHAVIOUR
    ORBIT_YAW_BEHAVIOUR_UNCONTROLLED=2, /* Yaw uncontrolled. | */
    ORBIT_YAW_BEHAVIOUR_HOLD_FRONT_TANGENT_TO_CIRCLE=3, /* Vehicle front follows flight path (tangential to circle). | */
    ORBIT_YAW_BEHAVIOUR_RC_CONTROLLED=4, /* Yaw controlled by RC input. | */
-   ORBIT_YAW_BEHAVIOUR_ENUM_END=5, /*  | */
+   ORBIT_YAW_BEHAVIOUR_UNCHANGED=5, /* Vehicle uses current yaw behaviour (unchanged). The vehicle-default yaw behaviour is used if this value is specified when orbit is first commanded. | */
+   ORBIT_YAW_BEHAVIOUR_ENUM_END=6, /*  | */
 } ORBIT_YAW_BEHAVIOUR;
 #endif
 
