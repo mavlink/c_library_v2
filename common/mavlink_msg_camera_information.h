@@ -19,7 +19,7 @@ typedef struct __mavlink_camera_information_t {
  uint8_t lens_id; /*<  Reserved for a lens ID.  Use 0 if not known.*/
  char cam_definition_uri[140]; /*<  Camera definition URI (if any, otherwise only basic functions will be available). HTTP- (http://) and MAVLink FTP- (mavlinkftp://) formatted URIs are allowed (and both must be supported by any GCS that implements the Camera Protocol). The definition file may be xz compressed, which will be indicated by the file extension .xml.xz (a GCS that implements the protocol must support decompressing the file). The string needs to be zero terminated.  Use a zero-length string if not known.*/
  uint8_t gimbal_device_id; /*<  Gimbal id of a gimbal associated with this camera. This is the component id of the gimbal device, or 1-6 for non mavlink gimbals. Use 0 if no gimbal is associated with the camera.*/
- uint8_t camera_device_id; /*<  Camera id of a camera associated with this component. This is the component id of a proxied MAVLink camera, or 1-6 for a non-MAVLink camera attached to the component. Use 0 if the component is a camera (not something else providing access to a camera).*/
+ uint8_t camera_device_id; /*<  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).*/
 } mavlink_camera_information_t;
 
 #define MAVLINK_MSG_ID_CAMERA_INFORMATION_LEN 237
@@ -99,7 +99,7 @@ typedef struct __mavlink_camera_information_t {
  * @param cam_definition_version  Camera definition version (iteration).  Use 0 if not known.
  * @param cam_definition_uri  Camera definition URI (if any, otherwise only basic functions will be available). HTTP- (http://) and MAVLink FTP- (mavlinkftp://) formatted URIs are allowed (and both must be supported by any GCS that implements the Camera Protocol). The definition file may be xz compressed, which will be indicated by the file extension .xml.xz (a GCS that implements the protocol must support decompressing the file). The string needs to be zero terminated.  Use a zero-length string if not known.
  * @param gimbal_device_id  Gimbal id of a gimbal associated with this camera. This is the component id of the gimbal device, or 1-6 for non mavlink gimbals. Use 0 if no gimbal is associated with the camera.
- * @param camera_device_id  Camera id of a camera associated with this component. This is the component id of a proxied MAVLink camera, or 1-6 for a non-MAVLink camera attached to the component. Use 0 if the component is a camera (not something else providing access to a camera).
+ * @param camera_device_id  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_camera_information_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -168,7 +168,7 @@ static inline uint16_t mavlink_msg_camera_information_pack(uint8_t system_id, ui
  * @param cam_definition_version  Camera definition version (iteration).  Use 0 if not known.
  * @param cam_definition_uri  Camera definition URI (if any, otherwise only basic functions will be available). HTTP- (http://) and MAVLink FTP- (mavlinkftp://) formatted URIs are allowed (and both must be supported by any GCS that implements the Camera Protocol). The definition file may be xz compressed, which will be indicated by the file extension .xml.xz (a GCS that implements the protocol must support decompressing the file). The string needs to be zero terminated.  Use a zero-length string if not known.
  * @param gimbal_device_id  Gimbal id of a gimbal associated with this camera. This is the component id of the gimbal device, or 1-6 for non mavlink gimbals. Use 0 if no gimbal is associated with the camera.
- * @param camera_device_id  Camera id of a camera associated with this component. This is the component id of a proxied MAVLink camera, or 1-6 for a non-MAVLink camera attached to the component. Use 0 if the component is a camera (not something else providing access to a camera).
+ * @param camera_device_id  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_camera_information_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
@@ -240,7 +240,7 @@ static inline uint16_t mavlink_msg_camera_information_pack_status(uint8_t system
  * @param cam_definition_version  Camera definition version (iteration).  Use 0 if not known.
  * @param cam_definition_uri  Camera definition URI (if any, otherwise only basic functions will be available). HTTP- (http://) and MAVLink FTP- (mavlinkftp://) formatted URIs are allowed (and both must be supported by any GCS that implements the Camera Protocol). The definition file may be xz compressed, which will be indicated by the file extension .xml.xz (a GCS that implements the protocol must support decompressing the file). The string needs to be zero terminated.  Use a zero-length string if not known.
  * @param gimbal_device_id  Gimbal id of a gimbal associated with this camera. This is the component id of the gimbal device, or 1-6 for non mavlink gimbals. Use 0 if no gimbal is associated with the camera.
- * @param camera_device_id  Camera id of a camera associated with this component. This is the component id of a proxied MAVLink camera, or 1-6 for a non-MAVLink camera attached to the component. Use 0 if the component is a camera (not something else providing access to a camera).
+ * @param camera_device_id  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_camera_information_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -348,7 +348,7 @@ static inline uint16_t mavlink_msg_camera_information_encode_status(uint8_t syst
  * @param cam_definition_version  Camera definition version (iteration).  Use 0 if not known.
  * @param cam_definition_uri  Camera definition URI (if any, otherwise only basic functions will be available). HTTP- (http://) and MAVLink FTP- (mavlinkftp://) formatted URIs are allowed (and both must be supported by any GCS that implements the Camera Protocol). The definition file may be xz compressed, which will be indicated by the file extension .xml.xz (a GCS that implements the protocol must support decompressing the file). The string needs to be zero terminated.  Use a zero-length string if not known.
  * @param gimbal_device_id  Gimbal id of a gimbal associated with this camera. This is the component id of the gimbal device, or 1-6 for non mavlink gimbals. Use 0 if no gimbal is associated with the camera.
- * @param camera_device_id  Camera id of a camera associated with this component. This is the component id of a proxied MAVLink camera, or 1-6 for a non-MAVLink camera attached to the component. Use 0 if the component is a camera (not something else providing access to a camera).
+ * @param camera_device_id  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -605,7 +605,7 @@ static inline uint8_t mavlink_msg_camera_information_get_gimbal_device_id(const 
 /**
  * @brief Get field camera_device_id from camera_information message
  *
- * @return  Camera id of a camera associated with this component. This is the component id of a proxied MAVLink camera, or 1-6 for a non-MAVLink camera attached to the component. Use 0 if the component is a camera (not something else providing access to a camera).
+ * @return  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).
  */
 static inline uint8_t mavlink_msg_camera_information_get_camera_device_id(const mavlink_message_t* msg)
 {
