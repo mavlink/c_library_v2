@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH -1704537934489487674
+#define MAVLINK_COMMON_XML_HASH -5515810540192704804
 
 #ifdef __cplusplus
 extern "C" {
@@ -1253,7 +1253,9 @@ typedef enum MAV_PROTOCOL_CAPABILITY
    MAV_PROTOCOL_CAPABILITY_PARAM_ENCODE_C_CAST=131072, /* Parameter protocol uses C-cast of parameter values to set the param_value (float) fields: https://mavlink.io/en/services/parameter.html#parameter-encoding.
           Note that either this flag or MAV_PROTOCOL_CAPABILITY_PARAM_ENCODE_BYTEWISE should be set if the parameter protocol is supported.
          | */
-   MAV_PROTOCOL_CAPABILITY_ENUM_END=131073, /*  | */
+   MAV_PROTOCOL_CAPABILITY_COMPONENT_IMPLEMENTS_GIMBAL_MANAGER=262144, /* This component implements/is a gimbal manager. This means the GIMBAL_MANAGER_INFORMATION, and other messages can be requested.
+         | */
+   MAV_PROTOCOL_CAPABILITY_ENUM_END=262145, /*  | */
 } MAV_PROTOCOL_CAPABILITY;
 #endif
 
