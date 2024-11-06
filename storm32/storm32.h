@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_STORM32.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_STORM32_XML_HASH 285622280872642138
+#define MAVLINK_STORM32_XML_HASH -5860377741821156283
 
 #ifdef __cplusplus
 extern "C" {
@@ -312,7 +312,7 @@ typedef enum MAV_CMD
    MAV_CMD_GET_HOME_POSITION=410, /* Request the home position from the vehicle.
 	  The vehicle will ACK the command and then emit the HOME_POSITION message. |Reserved| Reserved| Reserved| Reserved| Reserved| Reserved| Reserved|  */
    MAV_CMD_INJECT_FAILURE=420, /* Inject artificial failure for testing purposes. Note that autopilots should implement an additional protection before accepting this command such as a specific param setting. |The unit which is affected by the failure.| The type how the failure manifests itself.| Instance affected by failure (0 to signal all).| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
-   MAV_CMD_START_RX_PAIR=500, /* Starts receiver pairing. |0:Spektrum.| RC type.| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
+   MAV_CMD_START_RX_PAIR=500, /* Starts receiver pairing. |RC type.| RC sub type.| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
    MAV_CMD_GET_MESSAGE_INTERVAL=510, /* 
           Request the interval between messages for a particular MAVLink message ID.
           The receiver should ACK the command and then emit its response in a MESSAGE_INTERVAL message.

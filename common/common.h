@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH -7134362530682255705
+#define MAVLINK_COMMON_XML_HASH 1284390399481106529
 
 #ifdef __cplusplus
 extern "C" {
@@ -846,7 +846,7 @@ typedef enum MAV_CMD
    MAV_CMD_GET_HOME_POSITION=410, /* Request the home position from the vehicle.
 	  The vehicle will ACK the command and then emit the HOME_POSITION message. |Reserved| Reserved| Reserved| Reserved| Reserved| Reserved| Reserved|  */
    MAV_CMD_INJECT_FAILURE=420, /* Inject artificial failure for testing purposes. Note that autopilots should implement an additional protection before accepting this command such as a specific param setting. |The unit which is affected by the failure.| The type how the failure manifests itself.| Instance affected by failure (0 to signal all).| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
-   MAV_CMD_START_RX_PAIR=500, /* Starts receiver pairing. |0:Spektrum.| RC type.| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
+   MAV_CMD_START_RX_PAIR=500, /* Starts receiver pairing. |RC type.| RC sub type.| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
    MAV_CMD_GET_MESSAGE_INTERVAL=510, /* 
           Request the interval between messages for a particular MAVLink message ID.
           The receiver should ACK the command and then emit its response in a MESSAGE_INTERVAL message.
@@ -1846,15 +1846,27 @@ typedef enum MAV_ARM_AUTH_DENIED_REASON
 } MAV_ARM_AUTH_DENIED_REASON;
 #endif
 
-/** @brief RC type */
+/** @brief RC type. Used in MAV_CMD_START_RX_PAIR. */
 #ifndef HAVE_ENUM_RC_TYPE
 #define HAVE_ENUM_RC_TYPE
 typedef enum RC_TYPE
 {
-   RC_TYPE_SPEKTRUM_DSM2=0, /* Spektrum DSM2 | */
-   RC_TYPE_SPEKTRUM_DSMX=1, /* Spektrum DSMX | */
+   RC_TYPE_SPEKTRUM=0, /* Spektrum | */
+   RC_TYPE_CRSF=1, /* CRSF | */
    RC_TYPE_ENUM_END=2, /*  | */
 } RC_TYPE;
+#endif
+
+/** @brief RC sub-type of types defined in RC_TYPE. Used in MAV_CMD_START_RX_PAIR. Ignored if value does not correspond to the set RC_TYPE. */
+#ifndef HAVE_ENUM_RC_SUB_TYPE
+#define HAVE_ENUM_RC_SUB_TYPE
+typedef enum RC_SUB_TYPE
+{
+   RC_SUB_TYPE_SPEKTRUM_DSM2=0, /* Spektrum DSM2 | */
+   RC_SUB_TYPE_SPEKTRUM_DSMX=1, /* Spektrum DSMX | */
+   RC_SUB_TYPE_SPEKTRUM_DSMX8=2, /* Spektrum DSMX8 | */
+   RC_SUB_TYPE_ENUM_END=3, /*  | */
+} RC_SUB_TYPE;
 #endif
 
 /** @brief Bitmap to indicate which dimensions should be ignored by the vehicle: a value of 0b0000000000000000 or 0b0000001000000000 indicates that none of the setpoint dimensions should be ignored. If bit 9 is set the floats afx afy afz should be interpreted as force instead of acceleration. */
