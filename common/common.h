@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH 3953291638042279940
+#define MAVLINK_COMMON_XML_HASH 4156857735662511801
 
 #ifdef __cplusplus
 extern "C" {
@@ -1058,7 +1058,8 @@ typedef enum MAV_RESULT
    MAV_RESULT_COMMAND_LONG_ONLY=7, /* Command is only accepted when sent as a COMMAND_LONG. | */
    MAV_RESULT_COMMAND_INT_ONLY=8, /* Command is only accepted when sent as a COMMAND_INT. | */
    MAV_RESULT_COMMAND_UNSUPPORTED_MAV_FRAME=9, /* Command is invalid because a frame is required and the specified frame is not supported. | */
-   MAV_RESULT_ENUM_END=10, /*  | */
+   MAV_RESULT_PERMISSION_DENIED=10, /* Sender is not authorized to control this MAV component. Control may be requested using MAV_CMD_REQUEST_OPERATOR_CONTROL. | */
+   MAV_RESULT_ENUM_END=11, /*  | */
 } MAV_RESULT;
 #endif
 
@@ -1255,7 +1256,8 @@ typedef enum MAV_PROTOCOL_CAPABILITY
          | */
    MAV_PROTOCOL_CAPABILITY_COMPONENT_IMPLEMENTS_GIMBAL_MANAGER=262144, /* This component implements/is a gimbal manager. This means the GIMBAL_MANAGER_INFORMATION, and other messages can be requested.
          | */
-   MAV_PROTOCOL_CAPABILITY_ENUM_END=262145, /*  | */
+   MAV_PROTOCOL_CAPABILITY_COMPONENT_ACCEPTS_GCS_CONTROL=524288, /* Component supports locking control to a particular GCS independent of its system (via MAV_CMD_REQUEST_OPERATOR_CONTROL). | */
+   MAV_PROTOCOL_CAPABILITY_ENUM_END=524289, /*  | */
 } MAV_PROTOCOL_CAPABILITY;
 #endif
 
