@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE BATTERY_INFO PACKING
 
-#define MAVLINK_MSG_ID_BATTERY_INFO 370
+#define MAVLINK_MSG_ID_BATTERY_INFO 372
 
 
 typedef struct __mavlink_battery_info_t {
@@ -29,11 +29,11 @@ typedef struct __mavlink_battery_info_t {
 
 #define MAVLINK_MSG_ID_BATTERY_INFO_LEN 140
 #define MAVLINK_MSG_ID_BATTERY_INFO_MIN_LEN 140
-#define MAVLINK_MSG_ID_370_LEN 140
-#define MAVLINK_MSG_ID_370_MIN_LEN 140
+#define MAVLINK_MSG_ID_372_LEN 140
+#define MAVLINK_MSG_ID_372_MIN_LEN 140
 
 #define MAVLINK_MSG_ID_BATTERY_INFO_CRC 26
-#define MAVLINK_MSG_ID_370_CRC 26
+#define MAVLINK_MSG_ID_372_CRC 26
 
 #define MAVLINK_MSG_BATTERY_INFO_FIELD_MANUFACTURE_DATE_LEN 9
 #define MAVLINK_MSG_BATTERY_INFO_FIELD_SERIAL_NUMBER_LEN 32
@@ -41,7 +41,7 @@ typedef struct __mavlink_battery_info_t {
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_BATTERY_INFO { \
-    370, \
+    372, \
     "BATTERY_INFO", \
     20, \
     {  { "id", NULL, MAVLINK_TYPE_UINT8_T, 0, 44, offsetof(mavlink_battery_info_t, id) }, \
