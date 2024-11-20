@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_DEVELOPMENT.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_DEVELOPMENT_XML_HASH -6968864103599731944
+#define MAVLINK_DEVELOPMENT_XML_HASH 3663328754028868768
 
 #ifdef __cplusplus
 extern "C" {
@@ -616,18 +616,6 @@ typedef enum RADIO_RC_CHANNELS_FLAGS
 } RADIO_RC_CHANNELS_FLAGS;
 #endif
 
-/** @brief Fuel types for use in FUEL_TYPE. Fuel types specify the units for the maximum, available and consumed fuel, and for the flow rates. */
-#ifndef HAVE_ENUM_MAV_FUEL_TYPE
-#define HAVE_ENUM_MAV_FUEL_TYPE
-typedef enum MAV_FUEL_TYPE
-{
-   MAV_FUEL_TYPE_UNKNOWN=0, /* Not specified. Fuel levels are normalized (i.e. maximum is 1, and other levels are relative to 1. | */
-   MAV_FUEL_TYPE_LIQUID=1, /* A generic liquid fuel. Fuel levels are in millilitres (ml). Fuel rates are in millilitres/second. | */
-   MAV_FUEL_TYPE_GAS=2, /* A gas tank. Fuel levels are in kilo-Pascal (kPa), and flow rates are in milliliters per second (ml/s). | */
-   MAV_FUEL_TYPE_ENUM_END=3, /*  | */
-} MAV_FUEL_TYPE;
-#endif
-
 /** @brief Flags indicating errors in a GPS receiver. */
 #ifndef HAVE_ENUM_GPS_SYSTEM_ERROR_FLAGS
 #define HAVE_ENUM_GPS_SYSTEM_ERROR_FLAGS
@@ -715,7 +703,6 @@ typedef enum GPS_RAIM_STATE
 #include "./mavlink_msg_velocity_limits.h"
 #include "./mavlink_msg_figure_eight_execution_status.h"
 #include "./mavlink_msg_battery_status_v2.h"
-#include "./mavlink_msg_fuel_status.h"
 #include "./mavlink_msg_group_start.h"
 #include "./mavlink_msg_group_end.h"
 #include "./mavlink_msg_radio_rc_channels.h"
