@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH 5529026720863116748
+#define MAVLINK_COMMON_XML_HASH 557251548636495346
 
 #ifdef __cplusplus
 extern "C" {
@@ -1058,8 +1058,7 @@ typedef enum MAV_RESULT
    MAV_RESULT_COMMAND_LONG_ONLY=7, /* Command is only accepted when sent as a COMMAND_LONG. | */
    MAV_RESULT_COMMAND_INT_ONLY=8, /* Command is only accepted when sent as a COMMAND_INT. | */
    MAV_RESULT_COMMAND_UNSUPPORTED_MAV_FRAME=9, /* Command is invalid because a frame is required and the specified frame is not supported. | */
-   MAV_RESULT_PERMISSION_DENIED=10, /* Sender is not authorized to control this MAV component. Control may be requested using MAV_CMD_REQUEST_OPERATOR_CONTROL. | */
-   MAV_RESULT_ENUM_END=11, /*  | */
+   MAV_RESULT_ENUM_END=10, /*  | */
 } MAV_RESULT;
 #endif
 
