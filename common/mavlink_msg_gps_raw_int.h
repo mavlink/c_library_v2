@@ -18,7 +18,7 @@ typedef struct __mavlink_gps_raw_int_t {
  int32_t alt_ellipsoid; /*< [mm] Altitude (above WGS84, EGM96 ellipsoid). Positive for up.*/
  uint32_t h_acc; /*< [mm] Position uncertainty.*/
  uint32_t v_acc; /*< [mm] Altitude uncertainty.*/
- uint32_t vel_acc; /*< [mm] Speed uncertainty.*/
+ uint32_t vel_acc; /*< [mm/s] Speed uncertainty.*/
  uint32_t hdg_acc; /*< [degE5] Heading / track uncertainty*/
  uint16_t yaw; /*< [cdeg] Yaw in earth frame from north. Use 0 if this GPS does not provide yaw. Use UINT16_MAX if this GPS is configured to provide yaw and is currently unable to provide it. Use 36000 for north.*/
 }) mavlink_gps_raw_int_t;
@@ -99,7 +99,7 @@ typedef struct __mavlink_gps_raw_int_t {
  * @param alt_ellipsoid [mm] Altitude (above WGS84, EGM96 ellipsoid). Positive for up.
  * @param h_acc [mm] Position uncertainty.
  * @param v_acc [mm] Altitude uncertainty.
- * @param vel_acc [mm] Speed uncertainty.
+ * @param vel_acc [mm/s] Speed uncertainty.
  * @param hdg_acc [degE5] Heading / track uncertainty
  * @param yaw [cdeg] Yaw in earth frame from north. Use 0 if this GPS does not provide yaw. Use UINT16_MAX if this GPS is configured to provide yaw and is currently unable to provide it. Use 36000 for north.
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -173,7 +173,7 @@ static inline uint16_t mavlink_msg_gps_raw_int_pack(uint8_t system_id, uint8_t c
  * @param alt_ellipsoid [mm] Altitude (above WGS84, EGM96 ellipsoid). Positive for up.
  * @param h_acc [mm] Position uncertainty.
  * @param v_acc [mm] Altitude uncertainty.
- * @param vel_acc [mm] Speed uncertainty.
+ * @param vel_acc [mm/s] Speed uncertainty.
  * @param hdg_acc [degE5] Heading / track uncertainty
  * @param yaw [cdeg] Yaw in earth frame from north. Use 0 if this GPS does not provide yaw. Use UINT16_MAX if this GPS is configured to provide yaw and is currently unable to provide it. Use 36000 for north.
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -250,7 +250,7 @@ static inline uint16_t mavlink_msg_gps_raw_int_pack_status(uint8_t system_id, ui
  * @param alt_ellipsoid [mm] Altitude (above WGS84, EGM96 ellipsoid). Positive for up.
  * @param h_acc [mm] Position uncertainty.
  * @param v_acc [mm] Altitude uncertainty.
- * @param vel_acc [mm] Speed uncertainty.
+ * @param vel_acc [mm/s] Speed uncertainty.
  * @param hdg_acc [degE5] Heading / track uncertainty
  * @param yaw [cdeg] Yaw in earth frame from north. Use 0 if this GPS does not provide yaw. Use UINT16_MAX if this GPS is configured to provide yaw and is currently unable to provide it. Use 36000 for north.
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -363,7 +363,7 @@ static inline uint16_t mavlink_msg_gps_raw_int_encode_status(uint8_t system_id, 
  * @param alt_ellipsoid [mm] Altitude (above WGS84, EGM96 ellipsoid). Positive for up.
  * @param h_acc [mm] Position uncertainty.
  * @param v_acc [mm] Altitude uncertainty.
- * @param vel_acc [mm] Speed uncertainty.
+ * @param vel_acc [mm/s] Speed uncertainty.
  * @param hdg_acc [degE5] Heading / track uncertainty
  * @param yaw [cdeg] Yaw in earth frame from north. Use 0 if this GPS does not provide yaw. Use UINT16_MAX if this GPS is configured to provide yaw and is currently unable to provide it. Use 36000 for north.
  */
@@ -620,7 +620,7 @@ static inline uint32_t mavlink_msg_gps_raw_int_get_v_acc(const mavlink_message_t
 /**
  * @brief Get field vel_acc from gps_raw_int message
  *
- * @return [mm] Speed uncertainty.
+ * @return [mm/s] Speed uncertainty.
  */
 static inline uint32_t mavlink_msg_gps_raw_int_get_vel_acc(const mavlink_message_t* msg)
 {

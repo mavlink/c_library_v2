@@ -21,7 +21,7 @@ typedef struct __mavlink_gps2_raw_t {
  int32_t alt_ellipsoid; /*< [mm] Altitude (above WGS84, EGM96 ellipsoid). Positive for up.*/
  uint32_t h_acc; /*< [mm] Position uncertainty.*/
  uint32_t v_acc; /*< [mm] Altitude uncertainty.*/
- uint32_t vel_acc; /*< [mm] Speed uncertainty.*/
+ uint32_t vel_acc; /*< [mm/s] Speed uncertainty.*/
  uint32_t hdg_acc; /*< [degE5] Heading / track uncertainty*/
 }) mavlink_gps2_raw_t;
 
@@ -108,7 +108,7 @@ typedef struct __mavlink_gps2_raw_t {
  * @param alt_ellipsoid [mm] Altitude (above WGS84, EGM96 ellipsoid). Positive for up.
  * @param h_acc [mm] Position uncertainty.
  * @param v_acc [mm] Altitude uncertainty.
- * @param vel_acc [mm] Speed uncertainty.
+ * @param vel_acc [mm/s] Speed uncertainty.
  * @param hdg_acc [degE5] Heading / track uncertainty
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -188,7 +188,7 @@ static inline uint16_t mavlink_msg_gps2_raw_pack(uint8_t system_id, uint8_t comp
  * @param alt_ellipsoid [mm] Altitude (above WGS84, EGM96 ellipsoid). Positive for up.
  * @param h_acc [mm] Position uncertainty.
  * @param v_acc [mm] Altitude uncertainty.
- * @param vel_acc [mm] Speed uncertainty.
+ * @param vel_acc [mm/s] Speed uncertainty.
  * @param hdg_acc [degE5] Heading / track uncertainty
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -271,7 +271,7 @@ static inline uint16_t mavlink_msg_gps2_raw_pack_status(uint8_t system_id, uint8
  * @param alt_ellipsoid [mm] Altitude (above WGS84, EGM96 ellipsoid). Positive for up.
  * @param h_acc [mm] Position uncertainty.
  * @param v_acc [mm] Altitude uncertainty.
- * @param vel_acc [mm] Speed uncertainty.
+ * @param vel_acc [mm/s] Speed uncertainty.
  * @param hdg_acc [degE5] Heading / track uncertainty
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -390,7 +390,7 @@ static inline uint16_t mavlink_msg_gps2_raw_encode_status(uint8_t system_id, uin
  * @param alt_ellipsoid [mm] Altitude (above WGS84, EGM96 ellipsoid). Positive for up.
  * @param h_acc [mm] Position uncertainty.
  * @param v_acc [mm] Altitude uncertainty.
- * @param vel_acc [mm] Speed uncertainty.
+ * @param vel_acc [mm/s] Speed uncertainty.
  * @param hdg_acc [degE5] Heading / track uncertainty
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -684,7 +684,7 @@ static inline uint32_t mavlink_msg_gps2_raw_get_v_acc(const mavlink_message_t* m
 /**
  * @brief Get field vel_acc from gps2_raw message
  *
- * @return [mm] Speed uncertainty.
+ * @return [mm/s] Speed uncertainty.
  */
 static inline uint32_t mavlink_msg_gps2_raw_get_vel_acc(const mavlink_message_t* msg)
 {
