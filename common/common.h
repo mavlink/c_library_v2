@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH -295229644044947738
+#define MAVLINK_COMMON_XML_HASH -8631246360002040209
 
 #ifdef __cplusplus
 extern "C" {
@@ -1695,7 +1695,7 @@ typedef enum CAMERA_CAP_FLAGS
    CAMERA_CAP_FLAGS_HAS_TRACKING_POINT=512, /* Camera supports tracking of a point on the camera view. | */
    CAMERA_CAP_FLAGS_HAS_TRACKING_RECTANGLE=1024, /* Camera supports tracking of a selection rectangle on the camera view. | */
    CAMERA_CAP_FLAGS_HAS_TRACKING_GEO_STATUS=2048, /* Camera supports tracking geo status (CAMERA_TRACKING_GEO_STATUS). | */
-   CAMERA_CAP_FLAGS_HAS_THERMAL_RANGE=4096, /* Camera supports absolute thermal range (request CAMERA_THERMAL_RANGE with MAV_CMD_REQUEST_MESSAGE) (WIP). | */
+   CAMERA_CAP_FLAGS_HAS_THERMAL_RANGE=4096, /* Camera supports absolute thermal range (request CAMERA_THERMAL_RANGE with MAV_CMD_REQUEST_MESSAGE). | */
    CAMERA_CAP_FLAGS_ENUM_END=4097, /*  | */
 } CAMERA_CAP_FLAGS;
 #endif
@@ -1707,7 +1707,7 @@ typedef enum VIDEO_STREAM_STATUS_FLAGS
 {
    VIDEO_STREAM_STATUS_FLAGS_RUNNING=1, /* Stream is active (running) | */
    VIDEO_STREAM_STATUS_FLAGS_THERMAL=2, /* Stream is thermal imaging | */
-   VIDEO_STREAM_STATUS_FLAGS_THERMAL_RANGE_ENABLED=4, /* Stream can report absolute thermal range (see CAMERA_THERMAL_RANGE). (WIP). | */
+   VIDEO_STREAM_STATUS_FLAGS_THERMAL_RANGE_ENABLED=4, /* Stream can report absolute thermal range (see CAMERA_THERMAL_RANGE). | */
    VIDEO_STREAM_STATUS_FLAGS_ENUM_END=5, /*  | */
 } VIDEO_STREAM_STATUS_FLAGS;
 #endif
