@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_DEVELOPMENT.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_DEVELOPMENT_XML_HASH 8332822711581739476
+#define MAVLINK_DEVELOPMENT_XML_HASH -6802156978885296115
 
 #ifdef __cplusplus
 extern "C" {
@@ -112,29 +112,25 @@ typedef enum MAV_STANDARD_MODE
           Hybrid MC/FW ("VTOL") vehicles behave according to their current configuration/mode (FW or MC).
           Other vehicle types must not support this mode (this may be revisited through the PR process).
          | */
-   MAV_STANDARD_MODE_RETURN_HOME=5, /* Return home mode (auto).
-          Automatic mode that returns vehicle to home via a safe flight path.
-          It may also automatically land the vehicle (i.e. RTL).
-          The precise flight path and landing behaviour depend on vehicle configuration and type.
-         | */
-   MAV_STANDARD_MODE_SAFE_RECOVERY=6, /* Safe recovery mode (auto).
-          Automatic mode that takes vehicle to a predefined safe location via a safe flight path (rally point or mission defined landing) .
-          It may also automatically land the vehicle.
+   MAV_STANDARD_MODE_SAFE_RECOVERY=5, /* Safe recovery mode (auto).
+          Automatic mode that takes vehicle to a predefined safe location via a safe flight path, and may also automatically land the vehicle.
+          This mode is more commonly referred to as RTL and/or or Smart RTL.
           The precise return location, flight path, and landing behaviour depend on vehicle configuration and type.
+          For example, the vehicle might return to the home/launch location, a rally point, or the start of a mission landing, it might follow a direct path, mission path, or breadcrumb path, and land using a mission landing pattern or some other kind of descent.
          | */
-   MAV_STANDARD_MODE_MISSION=7, /* Mission mode (automatic).
+   MAV_STANDARD_MODE_MISSION=6, /* Mission mode (automatic).
           Automatic mode that executes MAVLink missions.
           Missions are executed from the current waypoint as soon as the mode is enabled.
          | */
-   MAV_STANDARD_MODE_LAND=8, /* Land mode (auto).
+   MAV_STANDARD_MODE_LAND=7, /* Land mode (auto).
           Automatic mode that lands the vehicle at the current location.
           The precise landing behaviour depends on vehicle configuration and type.
          | */
-   MAV_STANDARD_MODE_TAKEOFF=9, /* Takeoff mode (auto).
+   MAV_STANDARD_MODE_TAKEOFF=8, /* Takeoff mode (auto).
           Automatic takeoff mode.
           The precise takeoff behaviour depends on vehicle configuration and type.
          | */
-   MAV_STANDARD_MODE_ENUM_END=10, /*  | */
+   MAV_STANDARD_MODE_ENUM_END=9, /*  | */
 } MAV_STANDARD_MODE;
 #endif
 
