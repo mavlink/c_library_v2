@@ -13,7 +13,7 @@ typedef struct __mavlink_camera_image_captured_t {
  int32_t relative_alt; /*< [mm] Altitude above ground*/
  float q[4]; /*<  Quaternion of camera orientation (w, x, y, z order, zero-rotation is 1, 0, 0, 0)*/
  int32_t image_index; /*<  Zero based index of this image (i.e. a new image will have index CAMERA_CAPTURE_STATUS.image count -1)*/
- uint8_t camera_id; /*<  Deprecated/unused. Component IDs are used to differentiate multiple cameras.*/
+ uint8_t camera_id; /*<  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id). Field name is usually camera_device_id.*/
  int8_t capture_result; /*<  Boolean indicating success (1) or failure (0) while capturing this image.*/
  char file_url[205]; /*<  URL of image taken. Either local storage or http://foo.jpg if camera provides an HTTP interface.*/
 } mavlink_camera_image_captured_t;
@@ -74,7 +74,7 @@ typedef struct __mavlink_camera_image_captured_t {
  *
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param time_utc [us] Timestamp (time since UNIX epoch) in UTC. 0 for unknown.
- * @param camera_id  Deprecated/unused. Component IDs are used to differentiate multiple cameras.
+ * @param camera_id  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id). Field name is usually camera_device_id.
  * @param lat [degE7] Latitude where image was taken
  * @param lon [degE7] Longitude where capture was taken
  * @param alt [mm] Altitude (MSL) where image was taken
@@ -131,7 +131,7 @@ static inline uint16_t mavlink_msg_camera_image_captured_pack(uint8_t system_id,
  *
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param time_utc [us] Timestamp (time since UNIX epoch) in UTC. 0 for unknown.
- * @param camera_id  Deprecated/unused. Component IDs are used to differentiate multiple cameras.
+ * @param camera_id  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id). Field name is usually camera_device_id.
  * @param lat [degE7] Latitude where image was taken
  * @param lon [degE7] Longitude where capture was taken
  * @param alt [mm] Altitude (MSL) where image was taken
@@ -191,7 +191,7 @@ static inline uint16_t mavlink_msg_camera_image_captured_pack_status(uint8_t sys
  * @param msg The MAVLink message to compress the data into
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param time_utc [us] Timestamp (time since UNIX epoch) in UTC. 0 for unknown.
- * @param camera_id  Deprecated/unused. Component IDs are used to differentiate multiple cameras.
+ * @param camera_id  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id). Field name is usually camera_device_id.
  * @param lat [degE7] Latitude where image was taken
  * @param lon [degE7] Longitude where capture was taken
  * @param alt [mm] Altitude (MSL) where image was taken
@@ -287,7 +287,7 @@ static inline uint16_t mavlink_msg_camera_image_captured_encode_status(uint8_t s
  *
  * @param time_boot_ms [ms] Timestamp (time since system boot).
  * @param time_utc [us] Timestamp (time since UNIX epoch) in UTC. 0 for unknown.
- * @param camera_id  Deprecated/unused. Component IDs are used to differentiate multiple cameras.
+ * @param camera_id  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id). Field name is usually camera_device_id.
  * @param lat [degE7] Latitude where image was taken
  * @param lon [degE7] Longitude where capture was taken
  * @param alt [mm] Altitude (MSL) where image was taken
@@ -416,7 +416,7 @@ static inline uint64_t mavlink_msg_camera_image_captured_get_time_utc(const mavl
 /**
  * @brief Get field camera_id from camera_image_captured message
  *
- * @return  Deprecated/unused. Component IDs are used to differentiate multiple cameras.
+ * @return  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id). Field name is usually camera_device_id.
  */
 static inline uint8_t mavlink_msg_camera_image_captured_get_camera_id(const mavlink_message_t* msg)
 {
