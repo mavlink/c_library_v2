@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_AUTERION.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_AUTERION_XML_HASH 7292477672966198157
+#define MAVLINK_AUTERION_XML_HASH 5934480859785865437
 
 #ifdef __cplusplus
 extern "C" {
@@ -597,6 +597,29 @@ typedef enum HANDOFF_DECISION
 } HANDOFF_DECISION;
 #endif
 
+/** @brief Possible transport layers to set and get parameters via mavlink during a parameter transaction. */
+#ifndef HAVE_ENUM_PARAM_TRANSACTION_TRANSPORT
+#define HAVE_ENUM_PARAM_TRANSACTION_TRANSPORT
+typedef enum PARAM_TRANSACTION_TRANSPORT
+{
+   PARAM_TRANSACTION_TRANSPORT_PARAM=0, /* Transaction over param transport. | */
+   PARAM_TRANSACTION_TRANSPORT_PARAM_EXT=1, /* Transaction over param_ext transport. | */
+   PARAM_TRANSACTION_TRANSPORT_ENUM_END=2, /*  | */
+} PARAM_TRANSACTION_TRANSPORT;
+#endif
+
+/** @brief Possible parameter transaction actions. */
+#ifndef HAVE_ENUM_PARAM_TRANSACTION_ACTION
+#define HAVE_ENUM_PARAM_TRANSACTION_ACTION
+typedef enum PARAM_TRANSACTION_ACTION
+{
+   PARAM_TRANSACTION_ACTION_START=0, /* Commit the current parameter transaction. | */
+   PARAM_TRANSACTION_ACTION_COMMIT=1, /* Commit the current parameter transaction. | */
+   PARAM_TRANSACTION_ACTION_CANCEL=2, /* Cancel the current parameter transaction. | */
+   PARAM_TRANSACTION_ACTION_ENUM_END=3, /*  | */
+} PARAM_TRANSACTION_ACTION;
+#endif
+
 // MAVLINK VERSION
 
 #ifndef MAVLINK_VERSION
@@ -609,6 +632,14 @@ typedef enum HANDOFF_DECISION
 #endif
 
 // MESSAGE DEFINITIONS
+#include "./mavlink_msg_param_ack_transaction.h"
+#include "./mavlink_msg_beacon_position.h"
+#include "./mavlink_msg_radiation_detector_counts.h"
+#include "./mavlink_msg_radiation_detector_spectrum.h"
+#include "./mavlink_msg_radiation_detector_cps.h"
+#include "./mavlink_msg_tracker_status.h"
+#include "./mavlink_msg_tracker_detection_2d.h"
+#include "./mavlink_msg_joystick_state.h"
 #include "./mavlink_msg_motor_info.h"
 #include "./mavlink_msg_control_status.h"
 #include "./mavlink_msg_request_control.h"
@@ -616,14 +647,7 @@ typedef enum HANDOFF_DECISION
 #include "./mavlink_msg_release_control.h"
 #include "./mavlink_msg_request_handoff.h"
 #include "./mavlink_msg_handoff_respond.h"
-#include "./mavlink_msg_beacon_position.h"
-#include "./mavlink_msg_radiation_detector_counts.h"
-#include "./mavlink_msg_radiation_detector_spectrum.h"
-#include "./mavlink_msg_radiation_detector_cps.h"
 #include "./mavlink_msg_unique_identifier.h"
-#include "./mavlink_msg_tracker_status.h"
-#include "./mavlink_msg_tracker_detection_2d.h"
-#include "./mavlink_msg_joystick_state.h"
 
 // base include
 #include "../ras_a/ras_a.h"

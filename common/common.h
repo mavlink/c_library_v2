@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH -6244893635761564378
+#define MAVLINK_COMMON_XML_HASH 6589986545714797893
 
 #ifdef __cplusplus
 extern "C" {
@@ -1486,7 +1486,7 @@ typedef enum CAMERA_SOURCE
 } CAMERA_SOURCE;
 #endif
 
-/** @brief Result from PARAM_EXT_SET message (or a PARAM_SET within a transaction). */
+/** @brief Result from PARAM_EXT_SET message. */
 #ifndef HAVE_ENUM_PARAM_ACK
 #define HAVE_ENUM_PARAM_ACK
 typedef enum PARAM_ACK
@@ -1494,7 +1494,7 @@ typedef enum PARAM_ACK
    PARAM_ACK_ACCEPTED=0, /* Parameter value ACCEPTED and SET | */
    PARAM_ACK_VALUE_UNSUPPORTED=1, /* Parameter value UNKNOWN/UNSUPPORTED | */
    PARAM_ACK_FAILED=2, /* Parameter failed to set | */
-   PARAM_ACK_IN_PROGRESS=3, /* Parameter value received but not yet set/accepted. A subsequent PARAM_ACK_TRANSACTION or PARAM_EXT_ACK with the final result will follow once operation is completed. This is returned immediately for parameters that take longer to set, indicating that the the parameter was received and does not need to be resent. | */
+   PARAM_ACK_IN_PROGRESS=3, /* Parameter value received but not yet set/accepted. A subsequent PARAM_EXT_ACK with the final result will follow once operation is completed. This is returned immediately for parameters that take longer to set, indicating that the the parameter was received and does not need to be resent. | */
    PARAM_ACK_ENUM_END=4, /*  | */
 } PARAM_ACK;
 #endif
