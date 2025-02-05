@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_DEVELOPMENT.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_DEVELOPMENT_XML_HASH -8720870207380556488
+#define MAVLINK_DEVELOPMENT_XML_HASH -307027800850662430
 
 #ifdef __cplusplus
 extern "C" {
@@ -111,8 +111,8 @@ typedef enum MAV_BATTERY_STATUS_FLAGS
           If unset the capacity_consumed indicates the consumption since vehicle power-on, as measured using a power monitor. The capacity_remaining, if provided, indicates the estimated remaining capacity on the assumption that the battery was full on vehicle boot.
           If unset a GCS is recommended to advise that users fully charge the battery on power on.
          | */
-   MAV_BATTERY_STATUS_FLAGS_EXTENDED=4294967295, /* Reserved (not used). If set, this will indicate that an additional status field exists for higher status values. | */
-   MAV_BATTERY_STATUS_FLAGS_ENUM_END=4294967296, /*  | */
+   MAV_BATTERY_STATUS_FLAGS_EXTENDED=2147483648, /* Reserved (not used). If set, this will indicate that an additional status field exists for higher status values. | */
+   MAV_BATTERY_STATUS_FLAGS_ENUM_END=2147483649, /*  | */
 } MAV_BATTERY_STATUS_FLAGS;
 #endif
 
