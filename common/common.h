@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH -55712349244937096
+#define MAVLINK_COMMON_XML_HASH 3035523006930632726
 
 #ifdef __cplusplus
 extern "C" {
@@ -2611,8 +2611,7 @@ typedef enum HIGHRES_IMU_UPDATED_FLAGS
    HIGHRES_IMU_UPDATED_DIFF_PRESSURE=1024, /* The value in the diff_pressure field has been updated | */
    HIGHRES_IMU_UPDATED_PRESSURE_ALT=2048, /* The value in the pressure_alt field has been updated | */
    HIGHRES_IMU_UPDATED_TEMPERATURE=4096, /* The value in the temperature field has been updated | */
-   HIGHRES_IMU_UPDATED_ALL=65535, /* All fields in HIGHRES_IMU have been updated. | */
-   HIGHRES_IMU_UPDATED_FLAGS_ENUM_END=65536, /*  | */
+   HIGHRES_IMU_UPDATED_FLAGS_ENUM_END=4097, /*  | */
 } HIGHRES_IMU_UPDATED_FLAGS;
 #endif
 
