@@ -13,11 +13,12 @@ typedef struct __mavlink_video_stream_status_t {
  uint16_t rotation; /*< [deg] Video image rotation clockwise*/
  uint16_t hfov; /*< [deg] Horizontal Field of view*/
  uint8_t stream_id; /*<  Video Stream ID (1 for first, 2 for second, etc.)*/
+ uint8_t camera_device_id; /*<  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).*/
 } mavlink_video_stream_status_t;
 
-#define MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN 19
+#define MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN 20
 #define MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_MIN_LEN 19
-#define MAVLINK_MSG_ID_270_LEN 19
+#define MAVLINK_MSG_ID_270_LEN 20
 #define MAVLINK_MSG_ID_270_MIN_LEN 19
 
 #define MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_CRC 59
@@ -29,7 +30,7 @@ typedef struct __mavlink_video_stream_status_t {
 #define MAVLINK_MESSAGE_INFO_VIDEO_STREAM_STATUS { \
     270, \
     "VIDEO_STREAM_STATUS", \
-    8, \
+    9, \
     {  { "stream_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 18, offsetof(mavlink_video_stream_status_t, stream_id) }, \
          { "flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_video_stream_status_t, flags) }, \
          { "framerate", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_video_stream_status_t, framerate) }, \
@@ -38,12 +39,13 @@ typedef struct __mavlink_video_stream_status_t {
          { "bitrate", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_video_stream_status_t, bitrate) }, \
          { "rotation", NULL, MAVLINK_TYPE_UINT16_T, 0, 14, offsetof(mavlink_video_stream_status_t, rotation) }, \
          { "hfov", NULL, MAVLINK_TYPE_UINT16_T, 0, 16, offsetof(mavlink_video_stream_status_t, hfov) }, \
+         { "camera_device_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 19, offsetof(mavlink_video_stream_status_t, camera_device_id) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_VIDEO_STREAM_STATUS { \
     "VIDEO_STREAM_STATUS", \
-    8, \
+    9, \
     {  { "stream_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 18, offsetof(mavlink_video_stream_status_t, stream_id) }, \
          { "flags", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_video_stream_status_t, flags) }, \
          { "framerate", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_video_stream_status_t, framerate) }, \
@@ -52,6 +54,7 @@ typedef struct __mavlink_video_stream_status_t {
          { "bitrate", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_video_stream_status_t, bitrate) }, \
          { "rotation", NULL, MAVLINK_TYPE_UINT16_T, 0, 14, offsetof(mavlink_video_stream_status_t, rotation) }, \
          { "hfov", NULL, MAVLINK_TYPE_UINT16_T, 0, 16, offsetof(mavlink_video_stream_status_t, hfov) }, \
+         { "camera_device_id", NULL, MAVLINK_TYPE_UINT8_T, 0, 19, offsetof(mavlink_video_stream_status_t, camera_device_id) }, \
          } \
 }
 #endif
@@ -70,10 +73,11 @@ typedef struct __mavlink_video_stream_status_t {
  * @param bitrate [bits/s] Bit rate
  * @param rotation [deg] Video image rotation clockwise
  * @param hfov [deg] Horizontal Field of view
+ * @param camera_device_id  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_video_stream_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t stream_id, uint16_t flags, float framerate, uint16_t resolution_h, uint16_t resolution_v, uint32_t bitrate, uint16_t rotation, uint16_t hfov)
+                               uint8_t stream_id, uint16_t flags, float framerate, uint16_t resolution_h, uint16_t resolution_v, uint32_t bitrate, uint16_t rotation, uint16_t hfov, uint8_t camera_device_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN];
@@ -85,6 +89,7 @@ static inline uint16_t mavlink_msg_video_stream_status_pack(uint8_t system_id, u
     _mav_put_uint16_t(buf, 14, rotation);
     _mav_put_uint16_t(buf, 16, hfov);
     _mav_put_uint8_t(buf, 18, stream_id);
+    _mav_put_uint8_t(buf, 19, camera_device_id);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN);
 #else
@@ -97,6 +102,7 @@ static inline uint16_t mavlink_msg_video_stream_status_pack(uint8_t system_id, u
     packet.rotation = rotation;
     packet.hfov = hfov;
     packet.stream_id = stream_id;
+    packet.camera_device_id = camera_device_id;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN);
 #endif
@@ -120,10 +126,11 @@ static inline uint16_t mavlink_msg_video_stream_status_pack(uint8_t system_id, u
  * @param bitrate [bits/s] Bit rate
  * @param rotation [deg] Video image rotation clockwise
  * @param hfov [deg] Horizontal Field of view
+ * @param camera_device_id  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_video_stream_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               uint8_t stream_id, uint16_t flags, float framerate, uint16_t resolution_h, uint16_t resolution_v, uint32_t bitrate, uint16_t rotation, uint16_t hfov)
+                               uint8_t stream_id, uint16_t flags, float framerate, uint16_t resolution_h, uint16_t resolution_v, uint32_t bitrate, uint16_t rotation, uint16_t hfov, uint8_t camera_device_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN];
@@ -135,6 +142,7 @@ static inline uint16_t mavlink_msg_video_stream_status_pack_status(uint8_t syste
     _mav_put_uint16_t(buf, 14, rotation);
     _mav_put_uint16_t(buf, 16, hfov);
     _mav_put_uint8_t(buf, 18, stream_id);
+    _mav_put_uint8_t(buf, 19, camera_device_id);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN);
 #else
@@ -147,6 +155,7 @@ static inline uint16_t mavlink_msg_video_stream_status_pack_status(uint8_t syste
     packet.rotation = rotation;
     packet.hfov = hfov;
     packet.stream_id = stream_id;
+    packet.camera_device_id = camera_device_id;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN);
 #endif
@@ -173,11 +182,12 @@ static inline uint16_t mavlink_msg_video_stream_status_pack_status(uint8_t syste
  * @param bitrate [bits/s] Bit rate
  * @param rotation [deg] Video image rotation clockwise
  * @param hfov [deg] Horizontal Field of view
+ * @param camera_device_id  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_video_stream_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t stream_id,uint16_t flags,float framerate,uint16_t resolution_h,uint16_t resolution_v,uint32_t bitrate,uint16_t rotation,uint16_t hfov)
+                                   uint8_t stream_id,uint16_t flags,float framerate,uint16_t resolution_h,uint16_t resolution_v,uint32_t bitrate,uint16_t rotation,uint16_t hfov,uint8_t camera_device_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN];
@@ -189,6 +199,7 @@ static inline uint16_t mavlink_msg_video_stream_status_pack_chan(uint8_t system_
     _mav_put_uint16_t(buf, 14, rotation);
     _mav_put_uint16_t(buf, 16, hfov);
     _mav_put_uint8_t(buf, 18, stream_id);
+    _mav_put_uint8_t(buf, 19, camera_device_id);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN);
 #else
@@ -201,6 +212,7 @@ static inline uint16_t mavlink_msg_video_stream_status_pack_chan(uint8_t system_
     packet.rotation = rotation;
     packet.hfov = hfov;
     packet.stream_id = stream_id;
+    packet.camera_device_id = camera_device_id;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN);
 #endif
@@ -219,7 +231,7 @@ static inline uint16_t mavlink_msg_video_stream_status_pack_chan(uint8_t system_
  */
 static inline uint16_t mavlink_msg_video_stream_status_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_video_stream_status_t* video_stream_status)
 {
-    return mavlink_msg_video_stream_status_pack(system_id, component_id, msg, video_stream_status->stream_id, video_stream_status->flags, video_stream_status->framerate, video_stream_status->resolution_h, video_stream_status->resolution_v, video_stream_status->bitrate, video_stream_status->rotation, video_stream_status->hfov);
+    return mavlink_msg_video_stream_status_pack(system_id, component_id, msg, video_stream_status->stream_id, video_stream_status->flags, video_stream_status->framerate, video_stream_status->resolution_h, video_stream_status->resolution_v, video_stream_status->bitrate, video_stream_status->rotation, video_stream_status->hfov, video_stream_status->camera_device_id);
 }
 
 /**
@@ -233,7 +245,7 @@ static inline uint16_t mavlink_msg_video_stream_status_encode(uint8_t system_id,
  */
 static inline uint16_t mavlink_msg_video_stream_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_video_stream_status_t* video_stream_status)
 {
-    return mavlink_msg_video_stream_status_pack_chan(system_id, component_id, chan, msg, video_stream_status->stream_id, video_stream_status->flags, video_stream_status->framerate, video_stream_status->resolution_h, video_stream_status->resolution_v, video_stream_status->bitrate, video_stream_status->rotation, video_stream_status->hfov);
+    return mavlink_msg_video_stream_status_pack_chan(system_id, component_id, chan, msg, video_stream_status->stream_id, video_stream_status->flags, video_stream_status->framerate, video_stream_status->resolution_h, video_stream_status->resolution_v, video_stream_status->bitrate, video_stream_status->rotation, video_stream_status->hfov, video_stream_status->camera_device_id);
 }
 
 /**
@@ -247,7 +259,7 @@ static inline uint16_t mavlink_msg_video_stream_status_encode_chan(uint8_t syste
  */
 static inline uint16_t mavlink_msg_video_stream_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_video_stream_status_t* video_stream_status)
 {
-    return mavlink_msg_video_stream_status_pack_status(system_id, component_id, _status, msg,  video_stream_status->stream_id, video_stream_status->flags, video_stream_status->framerate, video_stream_status->resolution_h, video_stream_status->resolution_v, video_stream_status->bitrate, video_stream_status->rotation, video_stream_status->hfov);
+    return mavlink_msg_video_stream_status_pack_status(system_id, component_id, _status, msg,  video_stream_status->stream_id, video_stream_status->flags, video_stream_status->framerate, video_stream_status->resolution_h, video_stream_status->resolution_v, video_stream_status->bitrate, video_stream_status->rotation, video_stream_status->hfov, video_stream_status->camera_device_id);
 }
 
 /**
@@ -262,10 +274,11 @@ static inline uint16_t mavlink_msg_video_stream_status_encode_status(uint8_t sys
  * @param bitrate [bits/s] Bit rate
  * @param rotation [deg] Video image rotation clockwise
  * @param hfov [deg] Horizontal Field of view
+ * @param camera_device_id  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_video_stream_status_send(mavlink_channel_t chan, uint8_t stream_id, uint16_t flags, float framerate, uint16_t resolution_h, uint16_t resolution_v, uint32_t bitrate, uint16_t rotation, uint16_t hfov)
+static inline void mavlink_msg_video_stream_status_send(mavlink_channel_t chan, uint8_t stream_id, uint16_t flags, float framerate, uint16_t resolution_h, uint16_t resolution_v, uint32_t bitrate, uint16_t rotation, uint16_t hfov, uint8_t camera_device_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN];
@@ -277,6 +290,7 @@ static inline void mavlink_msg_video_stream_status_send(mavlink_channel_t chan, 
     _mav_put_uint16_t(buf, 14, rotation);
     _mav_put_uint16_t(buf, 16, hfov);
     _mav_put_uint8_t(buf, 18, stream_id);
+    _mav_put_uint8_t(buf, 19, camera_device_id);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS, buf, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_MIN_LEN, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_CRC);
 #else
@@ -289,6 +303,7 @@ static inline void mavlink_msg_video_stream_status_send(mavlink_channel_t chan, 
     packet.rotation = rotation;
     packet.hfov = hfov;
     packet.stream_id = stream_id;
+    packet.camera_device_id = camera_device_id;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS, (const char *)&packet, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_MIN_LEN, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_CRC);
 #endif
@@ -302,7 +317,7 @@ static inline void mavlink_msg_video_stream_status_send(mavlink_channel_t chan, 
 static inline void mavlink_msg_video_stream_status_send_struct(mavlink_channel_t chan, const mavlink_video_stream_status_t* video_stream_status)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_video_stream_status_send(chan, video_stream_status->stream_id, video_stream_status->flags, video_stream_status->framerate, video_stream_status->resolution_h, video_stream_status->resolution_v, video_stream_status->bitrate, video_stream_status->rotation, video_stream_status->hfov);
+    mavlink_msg_video_stream_status_send(chan, video_stream_status->stream_id, video_stream_status->flags, video_stream_status->framerate, video_stream_status->resolution_h, video_stream_status->resolution_v, video_stream_status->bitrate, video_stream_status->rotation, video_stream_status->hfov, video_stream_status->camera_device_id);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS, (const char *)video_stream_status, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_MIN_LEN, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_CRC);
 #endif
@@ -316,7 +331,7 @@ static inline void mavlink_msg_video_stream_status_send_struct(mavlink_channel_t
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_video_stream_status_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t stream_id, uint16_t flags, float framerate, uint16_t resolution_h, uint16_t resolution_v, uint32_t bitrate, uint16_t rotation, uint16_t hfov)
+static inline void mavlink_msg_video_stream_status_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t stream_id, uint16_t flags, float framerate, uint16_t resolution_h, uint16_t resolution_v, uint32_t bitrate, uint16_t rotation, uint16_t hfov, uint8_t camera_device_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -328,6 +343,7 @@ static inline void mavlink_msg_video_stream_status_send_buf(mavlink_message_t *m
     _mav_put_uint16_t(buf, 14, rotation);
     _mav_put_uint16_t(buf, 16, hfov);
     _mav_put_uint8_t(buf, 18, stream_id);
+    _mav_put_uint8_t(buf, 19, camera_device_id);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS, buf, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_MIN_LEN, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_CRC);
 #else
@@ -340,6 +356,7 @@ static inline void mavlink_msg_video_stream_status_send_buf(mavlink_message_t *m
     packet->rotation = rotation;
     packet->hfov = hfov;
     packet->stream_id = stream_id;
+    packet->camera_device_id = camera_device_id;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS, (const char *)packet, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_MIN_LEN, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_CRC);
 #endif
@@ -432,6 +449,16 @@ static inline uint16_t mavlink_msg_video_stream_status_get_hfov(const mavlink_me
 }
 
 /**
+ * @brief Get field camera_device_id from video_stream_status message
+ *
+ * @return  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).
+ */
+static inline uint8_t mavlink_msg_video_stream_status_get_camera_device_id(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint8_t(msg,  19);
+}
+
+/**
  * @brief Decode a video_stream_status message into a struct
  *
  * @param msg The message to decode
@@ -448,6 +475,7 @@ static inline void mavlink_msg_video_stream_status_decode(const mavlink_message_
     video_stream_status->rotation = mavlink_msg_video_stream_status_get_rotation(msg);
     video_stream_status->hfov = mavlink_msg_video_stream_status_get_hfov(msg);
     video_stream_status->stream_id = mavlink_msg_video_stream_status_get_stream_id(msg);
+    video_stream_status->camera_device_id = mavlink_msg_video_stream_status_get_camera_device_id(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN? msg->len : MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN;
         memset(video_stream_status, 0, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN);
