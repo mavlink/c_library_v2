@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH 8906598442983593713
+#define MAVLINK_COMMON_XML_HASH 2051751675424454637
 
 #ifdef __cplusplus
 extern "C" {
@@ -472,7 +472,6 @@ typedef enum ESC_CONNECTION_TYPE
 #define HAVE_ENUM_ESC_FAILURE_FLAGS
 typedef enum ESC_FAILURE_FLAGS
 {
-   ESC_FAILURE_NONE=0, /* No ESC failure. | */
    ESC_FAILURE_OVER_CURRENT=1, /* Over current failure. | */
    ESC_FAILURE_OVER_VOLTAGE=2, /* Over voltage failure. | */
    ESC_FAILURE_OVER_TEMPERATURE=4, /* Over temperature failure. | */
@@ -1770,7 +1769,6 @@ typedef enum CAMERA_TRACKING_MODE
 #define HAVE_ENUM_CAMERA_TRACKING_TARGET_DATA
 typedef enum CAMERA_TRACKING_TARGET_DATA
 {
-   CAMERA_TRACKING_TARGET_DATA_NONE=0, /* No target data | */
    CAMERA_TRACKING_TARGET_DATA_EMBEDDED=1, /* Target data embedded in image data (proprietary) | */
    CAMERA_TRACKING_TARGET_DATA_RENDERED=2, /* Target data rendered in image | */
    CAMERA_TRACKING_TARGET_DATA_IN_STATUS=4, /* Target data within status message (Point or Rectangle) | */
@@ -2573,7 +2571,6 @@ typedef enum MAV_EVENT_CURRENT_SEQUENCE_FLAGS
 #define HAVE_ENUM_HIL_SENSOR_UPDATED_FLAGS
 typedef enum HIL_SENSOR_UPDATED_FLAGS
 {
-   HIL_SENSOR_UPDATED_NONE=0, /* None of the fields in HIL_SENSOR have been updated | */
    HIL_SENSOR_UPDATED_XACC=1, /* The value in the xacc field has been updated | */
    HIL_SENSOR_UPDATED_YACC=2, /* The value in the yacc field has been updated | */
    HIL_SENSOR_UPDATED_ZACC=4, /* The value in the zacc field has been updated | */
@@ -2597,7 +2594,6 @@ typedef enum HIL_SENSOR_UPDATED_FLAGS
 #define HAVE_ENUM_HIGHRES_IMU_UPDATED_FLAGS
 typedef enum HIGHRES_IMU_UPDATED_FLAGS
 {
-   HIGHRES_IMU_UPDATED_NONE=0, /* None of the fields in HIGHRES_IMU have been updated | */
    HIGHRES_IMU_UPDATED_XACC=1, /* The value in the xacc field has been updated | */
    HIGHRES_IMU_UPDATED_YACC=2, /* The value in the yacc field has been updated | */
    HIGHRES_IMU_UPDATED_ZACC=4, /* The value in the zacc field has been updated since | */
