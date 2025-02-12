@@ -26,7 +26,7 @@ typedef struct __mavlink_high_latency2_t {
  uint8_t wind_heading; /*< [deg/2] Wind heading*/
  uint8_t eph; /*< [dm] Maximum error horizontal position since last message*/
  uint8_t epv; /*< [dm] Maximum error vertical position since last message*/
- int8_t temperature_air; /*< [degC] Air temperature from airspeed sensor*/
+ int8_t temperature_air; /*< [degC] Air temperature*/
  int8_t climb_rate; /*< [dm/s] Maximum climb rate magnitude since last message*/
  int8_t battery; /*< [%] Battery level (-1 if field not provided).*/
  int8_t custom0; /*<  Field for custom payload.*/
@@ -138,7 +138,7 @@ typedef struct __mavlink_high_latency2_t {
  * @param wind_heading [deg/2] Wind heading
  * @param eph [dm] Maximum error horizontal position since last message
  * @param epv [dm] Maximum error vertical position since last message
- * @param temperature_air [degC] Air temperature from airspeed sensor
+ * @param temperature_air [degC] Air temperature
  * @param climb_rate [dm/s] Maximum climb rate magnitude since last message
  * @param battery [%] Battery level (-1 if field not provided).
  * @param wp_num  Current waypoint number
@@ -245,7 +245,7 @@ static inline uint16_t mavlink_msg_high_latency2_pack(uint8_t system_id, uint8_t
  * @param wind_heading [deg/2] Wind heading
  * @param eph [dm] Maximum error horizontal position since last message
  * @param epv [dm] Maximum error vertical position since last message
- * @param temperature_air [degC] Air temperature from airspeed sensor
+ * @param temperature_air [degC] Air temperature
  * @param climb_rate [dm/s] Maximum climb rate magnitude since last message
  * @param battery [%] Battery level (-1 if field not provided).
  * @param wp_num  Current waypoint number
@@ -355,7 +355,7 @@ static inline uint16_t mavlink_msg_high_latency2_pack_status(uint8_t system_id, 
  * @param wind_heading [deg/2] Wind heading
  * @param eph [dm] Maximum error horizontal position since last message
  * @param epv [dm] Maximum error vertical position since last message
- * @param temperature_air [degC] Air temperature from airspeed sensor
+ * @param temperature_air [degC] Air temperature
  * @param climb_rate [dm/s] Maximum climb rate magnitude since last message
  * @param battery [%] Battery level (-1 if field not provided).
  * @param wp_num  Current waypoint number
@@ -501,7 +501,7 @@ static inline uint16_t mavlink_msg_high_latency2_encode_status(uint8_t system_id
  * @param wind_heading [deg/2] Wind heading
  * @param eph [dm] Maximum error horizontal position since last message
  * @param epv [dm] Maximum error vertical position since last message
- * @param temperature_air [degC] Air temperature from airspeed sensor
+ * @param temperature_air [degC] Air temperature
  * @param climb_rate [dm/s] Maximum climb rate magnitude since last message
  * @param battery [%] Battery level (-1 if field not provided).
  * @param wp_num  Current waypoint number
@@ -867,7 +867,7 @@ static inline uint8_t mavlink_msg_high_latency2_get_epv(const mavlink_message_t*
 /**
  * @brief Get field temperature_air from high_latency2 message
  *
- * @return [degC] Air temperature from airspeed sensor
+ * @return [degC] Air temperature
  */
 static inline int8_t mavlink_msg_high_latency2_get_temperature_air(const mavlink_message_t* msg)
 {
