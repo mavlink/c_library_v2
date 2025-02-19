@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH -5222659914288642481
+#define MAVLINK_COMMON_XML_HASH -8809977288617738043
 
 #ifdef __cplusplus
 extern "C" {
@@ -2038,7 +2038,10 @@ typedef enum MAV_TUNNEL_PAYLOAD_TYPE
    MAV_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED7=207, /* Registered for STorM32 gimbal controller. | */
    MAV_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED8=208, /* Registered for STorM32 gimbal controller. | */
    MAV_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED9=209, /* Registered for STorM32 gimbal controller. | */
-   MAV_TUNNEL_PAYLOAD_TYPE_ENUM_END=210, /*  | */
+   MAV_TUNNEL_PAYLOAD_TYPE_MODALAI_REMOTE_OSD=210, /* Registered for ModalAI remote OSD protocol. | */
+   MAV_TUNNEL_PAYLOAD_TYPE_MODALAI_ESC_UART_PASSTHRU=211, /* Registered for ModalAI ESC UART passthru protocol. | */
+   MAV_TUNNEL_PAYLOAD_TYPE_MODALAI_IO_UART_PASSTHRU=212, /* Registered for ModalAI vendor use. | */
+   MAV_TUNNEL_PAYLOAD_TYPE_ENUM_END=213, /*  | */
 } MAV_TUNNEL_PAYLOAD_TYPE;
 #endif
 
