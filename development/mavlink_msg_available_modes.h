@@ -8,7 +8,7 @@ typedef struct __mavlink_available_modes_t {
  uint32_t custom_mode; /*<  A bitfield for use for autopilot-specific flags*/
  uint32_t properties; /*<  Mode properties.*/
  uint8_t number_modes; /*<  The total number of available modes for the current vehicle type.*/
- uint8_t mode_index; /*<  The current mode index within number_modes, indexed from 1. The index is not guaranteed to be persistent, and may change between reboots or if the set of modes change.*/
+ uint8_t mode_index; /*<  The current mode index within number_modes, indexed from 1.*/
  uint8_t standard_mode; /*<  Standard mode.*/
  char mode_name[35]; /*<  Name of custom mode, with null termination character. Should be omitted for standard modes.*/
 } mavlink_available_modes_t;
@@ -57,7 +57,7 @@ typedef struct __mavlink_available_modes_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param number_modes  The total number of available modes for the current vehicle type.
- * @param mode_index  The current mode index within number_modes, indexed from 1. The index is not guaranteed to be persistent, and may change between reboots or if the set of modes change.
+ * @param mode_index  The current mode index within number_modes, indexed from 1.
  * @param standard_mode  Standard mode.
  * @param custom_mode  A bitfield for use for autopilot-specific flags
  * @param properties  Mode properties.
@@ -99,7 +99,7 @@ static inline uint16_t mavlink_msg_available_modes_pack(uint8_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  *
  * @param number_modes  The total number of available modes for the current vehicle type.
- * @param mode_index  The current mode index within number_modes, indexed from 1. The index is not guaranteed to be persistent, and may change between reboots or if the set of modes change.
+ * @param mode_index  The current mode index within number_modes, indexed from 1.
  * @param standard_mode  Standard mode.
  * @param custom_mode  A bitfield for use for autopilot-specific flags
  * @param properties  Mode properties.
@@ -144,7 +144,7 @@ static inline uint16_t mavlink_msg_available_modes_pack_status(uint8_t system_id
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param number_modes  The total number of available modes for the current vehicle type.
- * @param mode_index  The current mode index within number_modes, indexed from 1. The index is not guaranteed to be persistent, and may change between reboots or if the set of modes change.
+ * @param mode_index  The current mode index within number_modes, indexed from 1.
  * @param standard_mode  Standard mode.
  * @param custom_mode  A bitfield for use for autopilot-specific flags
  * @param properties  Mode properties.
@@ -225,7 +225,7 @@ static inline uint16_t mavlink_msg_available_modes_encode_status(uint8_t system_
  * @param chan MAVLink channel to send the message
  *
  * @param number_modes  The total number of available modes for the current vehicle type.
- * @param mode_index  The current mode index within number_modes, indexed from 1. The index is not guaranteed to be persistent, and may change between reboots or if the set of modes change.
+ * @param mode_index  The current mode index within number_modes, indexed from 1.
  * @param standard_mode  Standard mode.
  * @param custom_mode  A bitfield for use for autopilot-specific flags
  * @param properties  Mode properties.
@@ -320,7 +320,7 @@ static inline uint8_t mavlink_msg_available_modes_get_number_modes(const mavlink
 /**
  * @brief Get field mode_index from available_modes message
  *
- * @return  The current mode index within number_modes, indexed from 1. The index is not guaranteed to be persistent, and may change between reboots or if the set of modes change.
+ * @return  The current mode index within number_modes, indexed from 1.
  */
 static inline uint8_t mavlink_msg_available_modes_get_mode_index(const mavlink_message_t* msg)
 {
