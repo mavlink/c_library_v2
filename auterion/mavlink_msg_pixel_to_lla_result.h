@@ -10,7 +10,7 @@ typedef struct __mavlink_pixel_to_lla_result_t {
  double longitude; /*< [deg] Longitude of the requested pixel (degrees, WGS84).*/
  double altitude; /*< [m] Altitude of the requested pixel (meters, WGS84 ellipsoid).*/
  float ned_homography_matrix[9]; /*<  3x3 matrix for NED (North-East-Down) homography transform of the image. Row-major order.*/
- uint8_t status; /*<  0 = Success, 1 = Failure. If failure, error_message will provide details.*/
+ uint8_t status; /*<  0 = Failure, 1 = Success. If failure, error_message will provide details.*/
  char error_message[100]; /*<  Optional error message in case of failure. Max length 100 characters.*/
 } mavlink_pixel_to_lla_result_t;
 
@@ -61,7 +61,7 @@ typedef struct __mavlink_pixel_to_lla_result_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param uid   Unique ID of the request.
- * @param status  0 = Success, 1 = Failure. If failure, error_message will provide details.
+ * @param status  0 = Failure, 1 = Success. If failure, error_message will provide details.
  * @param latitude [deg] Latitude of the requested pixel (degrees, WGS84).
  * @param longitude [deg] Longitude of the requested pixel (degrees, WGS84).
  * @param altitude [m] Altitude of the requested pixel (meters, WGS84 ellipsoid).
@@ -106,7 +106,7 @@ static inline uint16_t mavlink_msg_pixel_to_lla_result_pack(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  *
  * @param uid   Unique ID of the request.
- * @param status  0 = Success, 1 = Failure. If failure, error_message will provide details.
+ * @param status  0 = Failure, 1 = Success. If failure, error_message will provide details.
  * @param latitude [deg] Latitude of the requested pixel (degrees, WGS84).
  * @param longitude [deg] Longitude of the requested pixel (degrees, WGS84).
  * @param altitude [m] Altitude of the requested pixel (meters, WGS84 ellipsoid).
@@ -154,7 +154,7 @@ static inline uint16_t mavlink_msg_pixel_to_lla_result_pack_status(uint8_t syste
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param uid   Unique ID of the request.
- * @param status  0 = Success, 1 = Failure. If failure, error_message will provide details.
+ * @param status  0 = Failure, 1 = Success. If failure, error_message will provide details.
  * @param latitude [deg] Latitude of the requested pixel (degrees, WGS84).
  * @param longitude [deg] Longitude of the requested pixel (degrees, WGS84).
  * @param altitude [m] Altitude of the requested pixel (meters, WGS84 ellipsoid).
@@ -238,7 +238,7 @@ static inline uint16_t mavlink_msg_pixel_to_lla_result_encode_status(uint8_t sys
  * @param chan MAVLink channel to send the message
  *
  * @param uid   Unique ID of the request.
- * @param status  0 = Success, 1 = Failure. If failure, error_message will provide details.
+ * @param status  0 = Failure, 1 = Success. If failure, error_message will provide details.
  * @param latitude [deg] Latitude of the requested pixel (degrees, WGS84).
  * @param longitude [deg] Longitude of the requested pixel (degrees, WGS84).
  * @param altitude [m] Altitude of the requested pixel (meters, WGS84 ellipsoid).
@@ -338,7 +338,7 @@ static inline uint64_t mavlink_msg_pixel_to_lla_result_get_uid(const mavlink_mes
 /**
  * @brief Get field status from pixel_to_lla_result message
  *
- * @return  0 = Success, 1 = Failure. If failure, error_message will provide details.
+ * @return  0 = Failure, 1 = Success. If failure, error_message will provide details.
  */
 static inline uint8_t mavlink_msg_pixel_to_lla_result_get_status(const mavlink_message_t* msg)
 {

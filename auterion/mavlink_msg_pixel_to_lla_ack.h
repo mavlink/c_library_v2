@@ -6,7 +6,7 @@
 
 typedef struct __mavlink_pixel_to_lla_ack_t {
  uint64_t uid; /*<   Unique ID of the request.*/
- uint8_t status; /*<  0 = Accepted, 1 = Rejected (with an optional error message).*/
+ uint8_t status; /*<  0 = Rejected, 1 = Accepted (with an optional error message).*/
  char error_message[100]; /*<   Optional error message in case of rejection. Max length 100 characters.*/
 } mavlink_pixel_to_lla_ack_t;
 
@@ -48,7 +48,7 @@ typedef struct __mavlink_pixel_to_lla_ack_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param uid   Unique ID of the request.
- * @param status  0 = Accepted, 1 = Rejected (with an optional error message).
+ * @param status  0 = Rejected, 1 = Accepted (with an optional error message).
  * @param error_message   Optional error message in case of rejection. Max length 100 characters.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -81,7 +81,7 @@ static inline uint16_t mavlink_msg_pixel_to_lla_ack_pack(uint8_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  *
  * @param uid   Unique ID of the request.
- * @param status  0 = Accepted, 1 = Rejected (with an optional error message).
+ * @param status  0 = Rejected, 1 = Accepted (with an optional error message).
  * @param error_message   Optional error message in case of rejection. Max length 100 characters.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -117,7 +117,7 @@ static inline uint16_t mavlink_msg_pixel_to_lla_ack_pack_status(uint8_t system_i
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param uid   Unique ID of the request.
- * @param status  0 = Accepted, 1 = Rejected (with an optional error message).
+ * @param status  0 = Rejected, 1 = Accepted (with an optional error message).
  * @param error_message   Optional error message in case of rejection. Max length 100 characters.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -189,7 +189,7 @@ static inline uint16_t mavlink_msg_pixel_to_lla_ack_encode_status(uint8_t system
  * @param chan MAVLink channel to send the message
  *
  * @param uid   Unique ID of the request.
- * @param status  0 = Accepted, 1 = Rejected (with an optional error message).
+ * @param status  0 = Rejected, 1 = Accepted (with an optional error message).
  * @param error_message   Optional error message in case of rejection. Max length 100 characters.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -269,7 +269,7 @@ static inline uint64_t mavlink_msg_pixel_to_lla_ack_get_uid(const mavlink_messag
 /**
  * @brief Get field status from pixel_to_lla_ack message
  *
- * @return  0 = Accepted, 1 = Rejected (with an optional error message).
+ * @return  0 = Rejected, 1 = Accepted (with an optional error message).
  */
 static inline uint8_t mavlink_msg_pixel_to_lla_ack_get_status(const mavlink_message_t* msg)
 {
