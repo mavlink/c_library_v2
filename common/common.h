@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH -804026525048327203
+#define MAVLINK_COMMON_XML_HASH -5317621451443134118
 
 #ifdef __cplusplus
 extern "C" {
@@ -2814,7 +2814,10 @@ typedef enum MAV_MODE_PROPERTY
    MAV_MODE_PROPERTY_NOT_USER_SELECTABLE=2, /* If set, this mode should not be added to the list of selectable modes.
           The mode might still be selected by the FC directly (for example as part of a failsafe).
          | */
-   MAV_MODE_PROPERTY_ENUM_END=3, /*  | */
+   MAV_MODE_PROPERTY_AUTO_MODE=4, /* If set, this mode is automatically controlled (it may use but does not require a manual controller).
+          If unset the mode is a assumed to require user input (be a manual mode).
+         | */
+   MAV_MODE_PROPERTY_ENUM_END=5, /*  | */
 } MAV_MODE_PROPERTY;
 #endif
 
