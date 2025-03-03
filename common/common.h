@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH -3813584108611648667
+#define MAVLINK_COMMON_XML_HASH 1361025091507329417
 
 #ifdef __cplusplus
 extern "C" {
@@ -472,7 +472,6 @@ typedef enum ESC_CONNECTION_TYPE
 #define HAVE_ENUM_ESC_FAILURE_FLAGS
 typedef enum ESC_FAILURE_FLAGS
 {
-   ESC_FAILURE_NONE=0, /* No ESC failure. | */
    ESC_FAILURE_OVER_CURRENT=1, /* Over current failure. | */
    ESC_FAILURE_OVER_VOLTAGE=2, /* Over voltage failure. | */
    ESC_FAILURE_OVER_TEMPERATURE=4, /* Over temperature failure. | */
@@ -1500,7 +1499,6 @@ typedef enum CAMERA_TRACKING_MODE
 #define HAVE_ENUM_CAMERA_TRACKING_TARGET_DATA
 typedef enum CAMERA_TRACKING_TARGET_DATA
 {
-   CAMERA_TRACKING_TARGET_DATA_NONE=0, /* No target data | */
    CAMERA_TRACKING_TARGET_DATA_EMBEDDED=1, /* Target data embedded in image data (proprietary) | */
    CAMERA_TRACKING_TARGET_DATA_RENDERED=2, /* Target data rendered in image | */
    CAMERA_TRACKING_TARGET_DATA_IN_STATUS=4, /* Target data within status message (Point or Rectangle) | */
@@ -1770,7 +1768,10 @@ typedef enum MAV_TUNNEL_PAYLOAD_TYPE
    MAV_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED7=207, /* Registered for STorM32 gimbal controller. | */
    MAV_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED8=208, /* Registered for STorM32 gimbal controller. | */
    MAV_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED9=209, /* Registered for STorM32 gimbal controller. | */
-   MAV_TUNNEL_PAYLOAD_TYPE_ENUM_END=210, /*  | */
+   MAV_TUNNEL_PAYLOAD_TYPE_MODALAI_REMOTE_OSD=210, /* Registered for ModalAI remote OSD protocol. | */
+   MAV_TUNNEL_PAYLOAD_TYPE_MODALAI_ESC_UART_PASSTHRU=211, /* Registered for ModalAI ESC UART passthru protocol. | */
+   MAV_TUNNEL_PAYLOAD_TYPE_MODALAI_IO_UART_PASSTHRU=212, /* Registered for ModalAI vendor use. | */
+   MAV_TUNNEL_PAYLOAD_TYPE_ENUM_END=213, /*  | */
 } MAV_TUNNEL_PAYLOAD_TYPE;
 #endif
 
@@ -2303,7 +2304,6 @@ typedef enum MAV_EVENT_CURRENT_SEQUENCE_FLAGS
 #define HAVE_ENUM_HIL_SENSOR_UPDATED_FLAGS
 typedef enum HIL_SENSOR_UPDATED_FLAGS
 {
-   HIL_SENSOR_UPDATED_NONE=0, /* None of the fields in HIL_SENSOR have been updated | */
    HIL_SENSOR_UPDATED_XACC=1, /* The value in the xacc field has been updated | */
    HIL_SENSOR_UPDATED_YACC=2, /* The value in the yacc field has been updated | */
    HIL_SENSOR_UPDATED_ZACC=4, /* The value in the zacc field has been updated | */
@@ -2327,7 +2327,6 @@ typedef enum HIL_SENSOR_UPDATED_FLAGS
 #define HAVE_ENUM_HIGHRES_IMU_UPDATED_FLAGS
 typedef enum HIGHRES_IMU_UPDATED_FLAGS
 {
-   HIGHRES_IMU_UPDATED_NONE=0, /* None of the fields in HIGHRES_IMU have been updated | */
    HIGHRES_IMU_UPDATED_XACC=1, /* The value in the xacc field has been updated | */
    HIGHRES_IMU_UPDATED_YACC=2, /* The value in the yacc field has been updated | */
    HIGHRES_IMU_UPDATED_ZACC=4, /* The value in the zacc field has been updated since | */
@@ -2341,8 +2340,7 @@ typedef enum HIGHRES_IMU_UPDATED_FLAGS
    HIGHRES_IMU_UPDATED_DIFF_PRESSURE=1024, /* The value in the diff_pressure field has been updated | */
    HIGHRES_IMU_UPDATED_PRESSURE_ALT=2048, /* The value in the pressure_alt field has been updated | */
    HIGHRES_IMU_UPDATED_TEMPERATURE=4096, /* The value in the temperature field has been updated | */
-   HIGHRES_IMU_UPDATED_ALL=65535, /* All fields in HIGHRES_IMU have been updated. | */
-   HIGHRES_IMU_UPDATED_FLAGS_ENUM_END=65536, /*  | */
+   HIGHRES_IMU_UPDATED_FLAGS_ENUM_END=4097, /*  | */
 } HIGHRES_IMU_UPDATED_FLAGS;
 #endif
 

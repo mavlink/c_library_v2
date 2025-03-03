@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_DEVELOPMENT.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_DEVELOPMENT_XML_HASH -8899540409078918625
+#define MAVLINK_DEVELOPMENT_XML_HASH 7601897010991181144
 
 #ifdef __cplusplus
 extern "C" {
@@ -38,9 +38,9 @@ extern "C" {
 #define HAVE_ENUM_AIRSPEED_SENSOR_FLAGS
 typedef enum AIRSPEED_SENSOR_FLAGS
 {
-   AIRSPEED_SENSOR_UNHEALTHY=0, /* Airspeed sensor is unhealthy | */
-   AIRSPEED_SENSOR_USING=1, /* True if the data from this sensor is being actively used by the flight controller for guidance, navigation or control. | */
-   AIRSPEED_SENSOR_FLAGS_ENUM_END=2, /*  | */
+   AIRSPEED_SENSOR_UNHEALTHY=1, /* Airspeed sensor is unhealthy | */
+   AIRSPEED_SENSOR_USING=2, /* True if the data from this sensor is being actively used by the flight controller for guidance, navigation or control. | */
+   AIRSPEED_SENSOR_FLAGS_ENUM_END=3, /*  | */
 } AIRSPEED_SENSOR_FLAGS;
 #endif
 
@@ -199,8 +199,8 @@ typedef enum MAV_BATTERY_STATUS_FLAGS
           If unset the capacity_consumed indicates the consumption since vehicle power-on, as measured using a power monitor. The capacity_remaining, if provided, indicates the estimated remaining capacity on the assumption that the battery was full on vehicle boot.
           If unset a GCS is recommended to advise that users fully charge the battery on power on.
          | */
-   MAV_BATTERY_STATUS_FLAGS_EXTENDED=4294967295, /* Reserved (not used). If set, this will indicate that an additional status field exists for higher status values. | */
-   MAV_BATTERY_STATUS_FLAGS_ENUM_END=4294967296, /*  | */
+   MAV_BATTERY_STATUS_FLAGS_EXTENDED=2147483648, /* Reserved (not used). If set, this will indicate that an additional status field exists for higher status values. | */
+   MAV_BATTERY_STATUS_FLAGS_ENUM_END=2147483649, /*  | */
 } MAV_BATTERY_STATUS_FLAGS;
 #endif
 
