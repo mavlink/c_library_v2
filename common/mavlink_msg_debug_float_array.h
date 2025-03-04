@@ -7,7 +7,7 @@
 typedef struct __mavlink_debug_float_array_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  uint16_t array_id; /*<  Unique ID used to discriminate between arrays*/
- char name[10]; /*<  Name, for human-friendly display in a Ground Control Station*/
+ char name[10]; /*<  Name, for human-friendly  in a Ground Control Station*/
  float data[58]; /*<  data*/
 } mavlink_debug_float_array_t;
 
@@ -52,7 +52,7 @@ typedef struct __mavlink_debug_float_array_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
- * @param name  Name, for human-friendly display in a Ground Control Station
+ * @param name  Name, for human-friendly  in a Ground Control Station
  * @param array_id  Unique ID used to discriminate between arrays
  * @param data  data
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -88,7 +88,7 @@ static inline uint16_t mavlink_msg_debug_float_array_pack(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  *
  * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
- * @param name  Name, for human-friendly display in a Ground Control Station
+ * @param name  Name, for human-friendly  in a Ground Control Station
  * @param array_id  Unique ID used to discriminate between arrays
  * @param data  data
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -127,7 +127,7 @@ static inline uint16_t mavlink_msg_debug_float_array_pack_status(uint8_t system_
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
- * @param name  Name, for human-friendly display in a Ground Control Station
+ * @param name  Name, for human-friendly  in a Ground Control Station
  * @param array_id  Unique ID used to discriminate between arrays
  * @param data  data
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -202,7 +202,7 @@ static inline uint16_t mavlink_msg_debug_float_array_encode_status(uint8_t syste
  * @param chan MAVLink channel to send the message
  *
  * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
- * @param name  Name, for human-friendly display in a Ground Control Station
+ * @param name  Name, for human-friendly  in a Ground Control Station
  * @param array_id  Unique ID used to discriminate between arrays
  * @param data  data
  */
@@ -287,7 +287,7 @@ static inline uint64_t mavlink_msg_debug_float_array_get_time_usec(const mavlink
 /**
  * @brief Get field name from debug_float_array message
  *
- * @return  Name, for human-friendly display in a Ground Control Station
+ * @return  Name, for human-friendly  in a Ground Control Station
  */
 static inline uint16_t mavlink_msg_debug_float_array_get_name(const mavlink_message_t* msg, char *name)
 {
