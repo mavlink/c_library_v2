@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_ASLUAV.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_ASLUAV_XML_HASH -1968097397968256616
+#define MAVLINK_ASLUAV_XML_HASH 5897597716517634309
 
 #ifdef __cplusplus
 extern "C" {
@@ -101,10 +101,16 @@ typedef enum MAV_CMD
           If specified, the item defines the waypoint at which the return segment starts.
           If sent using as a command, the vehicle will perform a mission landing (using the land segment if defined) or reject the command if mission landings are not supported, or no mission landing is defined. When used as a command any position information in the command is ignored.
          |Empty| Empty| Empty| Empty| Latitudee. 0: not used.| Longitudee. 0: not used.| Altitudee. 0: not used.|  */
-   MAV_CMD_DO_LAND_START=189, /* Mission command to perform a landing. This is used as a marker in a mission to tell the autopilot where a sequence of mission items that represents a landing starts.
-	  It may also be sent via a COMMAND_LONG to trigger a landing, in which case the nearest (geographically) landing sequence in the mission will be used.
-	  The Latitude/Longitude/Altitude is optional, and may be set to 0 if not needed. If specified then it will be used to help find the closest landing sequence.
-	 |Empty| Empty| Empty| Empty| Latitude| Longitude| Altitude|  */
+   MAV_CMD_DO_LAND_START=189, /* Mission item to mark the start of a mission landing pattern, or a command to land with a mission landing pattern.
+
+        When used in a mission, this is a marker for the start of a sequence of mission items that represent a landing pattern.
+        It should be followed by a navigation item that defines the first waypoint of the landing sequence.
+        The start marker positional params are used only for selecting what landing pattern to use if several are defined in the mission (the selected pattern will be the one with the marker position that is closest to the vehicle when a landing is commanded).
+        If the marker item position has zero-values for latitude, longitude, and altitude, then landing pattern selection is instead based on the position of the first waypoint in the landing sequence.
+
+	      When sent as a command it triggers a landing using a mission landing pattern.
+	      The location parameters are not used in this case, and should be set to 0.
+	 |Empty| Empty| Empty| Empty| Latitude for landing sequence selection, or 0 (see description). Ignored in commands (set 0).| Longitude for landing sequence selection, or 0 (see description). Ignored in commands (set 0).| Altitude for landing sequence selection, or 0 (see description). Ignored in commands (set 0).|  */
    MAV_CMD_DO_RALLY_LAND=190, /* Mission command to perform a landing from a rally point. |Break altitude| Landing speed| Empty| Empty| Empty| Empty| Empty|  */
    MAV_CMD_DO_GO_AROUND=191, /* Mission command to safely abort an autonomous landing. |Altitude| Empty| Empty| Empty| Empty| Empty| Empty|  */
    MAV_CMD_DO_REPOSITION=192, /* Reposition the vehicle to a specific WGS84 global position. This command is intended for guided commands (for missions use MAV_CMD_NAV_WAYPOINT instead). |Ground speed, less than 0 (-1) for default| Bitmask of option flags.| Loiter radius for planes. Positive values only, direction is controlled by Yaw value. A value of zero or NaN is ignored. | Yaw heading. NaN to use the current system yaw heading mode (e.g. yaw towards next waypoint, yaw to home, etc.). For planes indicates loiter direction (0: clockwise, 1: counter clockwise)| Latitude| Longitude| Altitude|  */
