@@ -17,7 +17,7 @@ typedef struct __mavlink_loweheiser_gov_efi_t {
  float generator_temp; /*< [degC] The temperature of the mechanical motor, fuel cell core or generator.*/
  float efi_batt; /*< [V]  EFI Supply Voltage.*/
  float efi_rpm; /*< [rpm] Motor RPM.*/
- float efi_pw; /*< [ms] Injector pulse-width in milliseconds.*/
+ float efi_pw; /*< [ms] Injector pulse-width in miliseconds.*/
  float efi_fuel_flow; /*<  Fuel flow rate in litres/hour.*/
  float efi_fuel_consumed; /*< [l] Fuel consumed.*/
  float efi_baro; /*< [kPa] Atmospheric pressure.*/
@@ -119,7 +119,7 @@ typedef struct __mavlink_loweheiser_gov_efi_t {
  * @param generator_temp [degC] The temperature of the mechanical motor, fuel cell core or generator.
  * @param efi_batt [V]  EFI Supply Voltage.
  * @param efi_rpm [rpm] Motor RPM.
- * @param efi_pw [ms] Injector pulse-width in milliseconds.
+ * @param efi_pw [ms] Injector pulse-width in miliseconds.
  * @param efi_fuel_flow  Fuel flow rate in litres/hour.
  * @param efi_fuel_consumed [l] Fuel consumed.
  * @param efi_baro [kPa] Atmospheric pressure.
@@ -214,7 +214,7 @@ static inline uint16_t mavlink_msg_loweheiser_gov_efi_pack(uint8_t system_id, ui
  * @param generator_temp [degC] The temperature of the mechanical motor, fuel cell core or generator.
  * @param efi_batt [V]  EFI Supply Voltage.
  * @param efi_rpm [rpm] Motor RPM.
- * @param efi_pw [ms] Injector pulse-width in milliseconds.
+ * @param efi_pw [ms] Injector pulse-width in miliseconds.
  * @param efi_fuel_flow  Fuel flow rate in litres/hour.
  * @param efi_fuel_consumed [l] Fuel consumed.
  * @param efi_baro [kPa] Atmospheric pressure.
@@ -312,7 +312,7 @@ static inline uint16_t mavlink_msg_loweheiser_gov_efi_pack_status(uint8_t system
  * @param generator_temp [degC] The temperature of the mechanical motor, fuel cell core or generator.
  * @param efi_batt [V]  EFI Supply Voltage.
  * @param efi_rpm [rpm] Motor RPM.
- * @param efi_pw [ms] Injector pulse-width in milliseconds.
+ * @param efi_pw [ms] Injector pulse-width in miliseconds.
  * @param efi_fuel_flow  Fuel flow rate in litres/hour.
  * @param efi_fuel_consumed [l] Fuel consumed.
  * @param efi_baro [kPa] Atmospheric pressure.
@@ -446,7 +446,7 @@ static inline uint16_t mavlink_msg_loweheiser_gov_efi_encode_status(uint8_t syst
  * @param generator_temp [degC] The temperature of the mechanical motor, fuel cell core or generator.
  * @param efi_batt [V]  EFI Supply Voltage.
  * @param efi_rpm [rpm] Motor RPM.
- * @param efi_pw [ms] Injector pulse-width in milliseconds.
+ * @param efi_pw [ms] Injector pulse-width in miliseconds.
  * @param efi_fuel_flow  Fuel flow rate in litres/hour.
  * @param efi_fuel_consumed [l] Fuel consumed.
  * @param efi_baro [kPa] Atmospheric pressure.
@@ -729,7 +729,7 @@ static inline float mavlink_msg_loweheiser_gov_efi_get_efi_rpm(const mavlink_mes
 /**
  * @brief Get field efi_pw from loweheiser_gov_efi message
  *
- * @return [ms] Injector pulse-width in milliseconds.
+ * @return [ms] Injector pulse-width in miliseconds.
  */
 static inline float mavlink_msg_loweheiser_gov_efi_get_efi_pw(const mavlink_message_t* msg)
 {
