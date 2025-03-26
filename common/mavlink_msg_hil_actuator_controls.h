@@ -6,7 +6,7 @@
 
 typedef struct __mavlink_hil_actuator_controls_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
- uint64_t flags; /*<  Flags as bitfield, 1: indicate simulation using lockstep.*/
+ uint64_t flags; /*<  Flags bitmask.*/
  float controls[16]; /*<  Control outputs -1 .. 1. Channel assignment depends on the simulated hardware.*/
  uint8_t mode; /*<  System mode. Includes arming state.*/
 } mavlink_hil_actuator_controls_t;
@@ -53,7 +53,7 @@ typedef struct __mavlink_hil_actuator_controls_t {
  * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param controls  Control outputs -1 .. 1. Channel assignment depends on the simulated hardware.
  * @param mode  System mode. Includes arming state.
- * @param flags  Flags as bitfield, 1: indicate simulation using lockstep.
+ * @param flags  Flags bitmask.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_hil_actuator_controls_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -89,7 +89,7 @@ static inline uint16_t mavlink_msg_hil_actuator_controls_pack(uint8_t system_id,
  * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param controls  Control outputs -1 .. 1. Channel assignment depends on the simulated hardware.
  * @param mode  System mode. Includes arming state.
- * @param flags  Flags as bitfield, 1: indicate simulation using lockstep.
+ * @param flags  Flags bitmask.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_hil_actuator_controls_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
@@ -128,7 +128,7 @@ static inline uint16_t mavlink_msg_hil_actuator_controls_pack_status(uint8_t sys
  * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param controls  Control outputs -1 .. 1. Channel assignment depends on the simulated hardware.
  * @param mode  System mode. Includes arming state.
- * @param flags  Flags as bitfield, 1: indicate simulation using lockstep.
+ * @param flags  Flags bitmask.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_hil_actuator_controls_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -203,7 +203,7 @@ static inline uint16_t mavlink_msg_hil_actuator_controls_encode_status(uint8_t s
  * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param controls  Control outputs -1 .. 1. Channel assignment depends on the simulated hardware.
  * @param mode  System mode. Includes arming state.
- * @param flags  Flags as bitfield, 1: indicate simulation using lockstep.
+ * @param flags  Flags bitmask.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -306,7 +306,7 @@ static inline uint8_t mavlink_msg_hil_actuator_controls_get_mode(const mavlink_m
 /**
  * @brief Get field flags from hil_actuator_controls message
  *
- * @return  Flags as bitfield, 1: indicate simulation using lockstep.
+ * @return  Flags bitmask.
  */
 static inline uint64_t mavlink_msg_hil_actuator_controls_get_flags(const mavlink_message_t* msg)
 {

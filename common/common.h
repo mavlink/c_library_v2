@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH 6303497016419065406
+#define MAVLINK_COMMON_XML_HASH 4952819464955936397
 
 #ifdef __cplusplus
 extern "C" {
@@ -2825,6 +2825,16 @@ typedef enum MAV_MODE_PROPERTY
          | */
    MAV_MODE_PROPERTY_ENUM_END=5, /*  | */
 } MAV_MODE_PROPERTY;
+#endif
+
+/** @brief Flags used in HIL_ACTUATOR_CONTROLS message. */
+#ifndef HAVE_ENUM_HIL_ACTUATOR_CONTROLS_FLAGS
+#define HAVE_ENUM_HIL_ACTUATOR_CONTROLS_FLAGS
+typedef enum HIL_ACTUATOR_CONTROLS_FLAGS
+{
+   HIL_ACTUATOR_CONTROLS_FLAGS_LOCKSTEP=1, /* Simulation is using lockstep | */
+   HIL_ACTUATOR_CONTROLS_FLAGS_ENUM_END=2, /*  | */
+} HIL_ACTUATOR_CONTROLS_FLAGS;
 #endif
 
 // MAVLINK VERSION
