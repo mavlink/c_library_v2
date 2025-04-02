@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH -5221209471275661265
+#define MAVLINK_COMMON_XML_HASH -2536291290529544067
 
 #ifdef __cplusplus
 extern "C" {
@@ -243,12 +243,11 @@ typedef enum FENCE_MITIGATE
 } FENCE_MITIGATE;
 #endif
 
-/** @brief  */
+/** @brief Fence types to enable or disable as a bitmask. Used in MAV_CMD_DO_FENCE_ENABLE. */
 #ifndef HAVE_ENUM_FENCE_TYPE
 #define HAVE_ENUM_FENCE_TYPE
 typedef enum FENCE_TYPE
 {
-   FENCE_TYPE_ALL=0, /* All fence types | */
    FENCE_TYPE_ALT_MAX=1, /* Maximum altitude fence | */
    FENCE_TYPE_CIRCLE=2, /* Circle fence | */
    FENCE_TYPE_POLYGON=4, /* Polygon fence | */
@@ -784,7 +783,7 @@ typedef enum MAV_CMD
           The persistence/lifetime of the setting is undefined.
           Depending on flight stack implementation it may persist until superseded, or it may revert to a system default at the end of a mission.
           Flight stacks typically reset the setting to system defaults on reboot.
-	 |enable? (0=disable, 1=enable, 2=disable_floor_only)| Fence types to enable or disable as a bitmask. A value of 0 indicates that all fences should be enabled or disabled. This parameter is ignored if param 1 has the value 2| Empty| Empty| Empty| Empty| Empty|  */
+	 |enable? (0=disable, 1=enable, 2=disable_floor_only)| Fence types to enable or disable as a bitmask. 0: all fences should be enabled or disabled (parameter is ignored, for compatibility reasons).Parameter is ignored if param1=2| Empty| Empty| Empty| Empty| Empty|  */
    MAV_CMD_DO_PARACHUTE=208, /* Mission item/command to release a parachute or enable/disable auto release. |Action| Empty| Empty| Empty| Empty| Empty| Empty|  */
    MAV_CMD_DO_MOTOR_TEST=209, /* Command to perform motor test. |Motor instance number (from 1 to max number of motors on the vehicle).| Throttle type (whether the Throttle Value in param3 is a percentage, PWM value, etc.)| Throttle value.| Timeout between tests that are run in sequence.| Motor count. Number of motors to test in sequence: 0/1=one motor, 2= two motors, etc. The Timeout (param4) is used between tests.| Motor test order.| Empty|  */
    MAV_CMD_DO_INVERTED_FLIGHT=210, /* Change to/from inverted flight. |Inverted flight. (0=normal, 1=inverted)| Empty| Empty| Empty| Empty| Empty| Empty|  */
