@@ -8,7 +8,7 @@ typedef struct __mavlink_autopilot_version_t {
  uint64_t capabilities; /*<  Bitmap of capabilities*/
  uint64_t uid; /*<  UID if provided by hardware (see uid2)*/
  uint32_t flight_sw_version; /*<  Firmware version number.
-        The field must be encoded as 4 bytes, where each byte (shown from MSB to LSB) is part of a semantic version: (major) (minor) (patch) (FIRMWARE_RELEASE_TYPE).
+        The field must be encoded as 4 bytes, where each byte (shown from MSB to LSB) is part of a semantic version: (major) (minor) (patch) (FIRMWARE_VERSION_TYPE).
       */
  uint32_t middleware_sw_version; /*<  Middleware version number*/
  uint32_t os_sw_version; /*<  Operating system version number*/
@@ -81,7 +81,7 @@ typedef struct __mavlink_autopilot_version_t {
  *
  * @param capabilities  Bitmap of capabilities
  * @param flight_sw_version  Firmware version number.
-        The field must be encoded as 4 bytes, where each byte (shown from MSB to LSB) is part of a semantic version: (major) (minor) (patch) (FIRMWARE_RELEASE_TYPE).
+        The field must be encoded as 4 bytes, where each byte (shown from MSB to LSB) is part of a semantic version: (major) (minor) (patch) (FIRMWARE_VERSION_TYPE).
       
  * @param middleware_sw_version  Middleware version number
  * @param os_sw_version  Operating system version number
@@ -143,7 +143,7 @@ static inline uint16_t mavlink_msg_autopilot_version_pack(uint8_t system_id, uin
  *
  * @param capabilities  Bitmap of capabilities
  * @param flight_sw_version  Firmware version number.
-        The field must be encoded as 4 bytes, where each byte (shown from MSB to LSB) is part of a semantic version: (major) (minor) (patch) (FIRMWARE_RELEASE_TYPE).
+        The field must be encoded as 4 bytes, where each byte (shown from MSB to LSB) is part of a semantic version: (major) (minor) (patch) (FIRMWARE_VERSION_TYPE).
       
  * @param middleware_sw_version  Middleware version number
  * @param os_sw_version  Operating system version number
@@ -208,7 +208,7 @@ static inline uint16_t mavlink_msg_autopilot_version_pack_status(uint8_t system_
  * @param msg The MAVLink message to compress the data into
  * @param capabilities  Bitmap of capabilities
  * @param flight_sw_version  Firmware version number.
-        The field must be encoded as 4 bytes, where each byte (shown from MSB to LSB) is part of a semantic version: (major) (minor) (patch) (FIRMWARE_RELEASE_TYPE).
+        The field must be encoded as 4 bytes, where each byte (shown from MSB to LSB) is part of a semantic version: (major) (minor) (patch) (FIRMWARE_VERSION_TYPE).
       
  * @param middleware_sw_version  Middleware version number
  * @param os_sw_version  Operating system version number
@@ -309,7 +309,7 @@ static inline uint16_t mavlink_msg_autopilot_version_encode_status(uint8_t syste
  *
  * @param capabilities  Bitmap of capabilities
  * @param flight_sw_version  Firmware version number.
-        The field must be encoded as 4 bytes, where each byte (shown from MSB to LSB) is part of a semantic version: (major) (minor) (patch) (FIRMWARE_RELEASE_TYPE).
+        The field must be encoded as 4 bytes, where each byte (shown from MSB to LSB) is part of a semantic version: (major) (minor) (patch) (FIRMWARE_VERSION_TYPE).
       
  * @param middleware_sw_version  Middleware version number
  * @param os_sw_version  Operating system version number
@@ -436,7 +436,7 @@ static inline uint64_t mavlink_msg_autopilot_version_get_capabilities(const mavl
  * @brief Get field flight_sw_version from autopilot_version message
  *
  * @return  Firmware version number.
-        The field must be encoded as 4 bytes, where each byte (shown from MSB to LSB) is part of a semantic version: (major) (minor) (patch) (FIRMWARE_RELEASE_TYPE).
+        The field must be encoded as 4 bytes, where each byte (shown from MSB to LSB) is part of a semantic version: (major) (minor) (patch) (FIRMWARE_VERSION_TYPE).
       
  */
 static inline uint32_t mavlink_msg_autopilot_version_get_flight_sw_version(const mavlink_message_t* msg)
