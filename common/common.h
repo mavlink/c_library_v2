@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH -2964318774627671538
+#define MAVLINK_COMMON_XML_HASH -2284614574572822454
 
 #ifdef __cplusplus
 extern "C" {
@@ -218,23 +218,6 @@ typedef enum MAVLINK_DATA_STREAM_TYPE
 } MAVLINK_DATA_STREAM_TYPE;
 #endif
 
-/** @brief Actions following geofence breach. */
-#ifndef HAVE_ENUM_FENCE_ACTION
-#define HAVE_ENUM_FENCE_ACTION
-typedef enum FENCE_ACTION
-{
-   FENCE_ACTION_NONE=0, /* Disable fenced mode. If used in a plan this would mean the next fence is disabled. | */
-   FENCE_ACTION_GUIDED=1, /* Fly to geofence MAV_CMD_NAV_FENCE_RETURN_POINT in GUIDED mode. Note: This action is only supported by ArduPlane, and may not be supported in all versions. | */
-   FENCE_ACTION_REPORT=2, /* Report fence breach, but don't take action | */
-   FENCE_ACTION_GUIDED_THR_PASS=3, /* Fly to geofence MAV_CMD_NAV_FENCE_RETURN_POINT with manual throttle control in GUIDED mode. Note: This action is only supported by ArduPlane, and may not be supported in all versions. | */
-   FENCE_ACTION_RTL=4, /* Return/RTL mode. | */
-   FENCE_ACTION_HOLD=5, /* Hold at current location. | */
-   FENCE_ACTION_TERMINATE=6, /* Termination failsafe. Motors are shut down (some flight stacks may trigger other failsafe actions). | */
-   FENCE_ACTION_LAND=7, /* Land at current location. | */
-   FENCE_ACTION_ENUM_END=8, /*  | */
-} FENCE_ACTION;
-#endif
-
 /** @brief  */
 #ifndef HAVE_ENUM_FENCE_BREACH
 #define HAVE_ENUM_FENCE_BREACH
@@ -260,12 +243,14 @@ typedef enum FENCE_MITIGATE
 } FENCE_MITIGATE;
 #endif
 
-/** @brief  */
+/** @brief Fence types to enable or disable when using MAV_CMD_DO_FENCE_ENABLE.
+        Note that at least one of these flags must be set in MAV_CMD_DO_FENCE_ENABLE.param2.
+        If none are set, the flight stack will ignore the field and enable/disable its default set of fences (usually all of them).
+       */
 #ifndef HAVE_ENUM_FENCE_TYPE
 #define HAVE_ENUM_FENCE_TYPE
 typedef enum FENCE_TYPE
 {
-   FENCE_TYPE_ALL=0, /* All fence types | */
    FENCE_TYPE_ALT_MAX=1, /* Maximum altitude fence | */
    FENCE_TYPE_CIRCLE=2, /* Circle fence | */
    FENCE_TYPE_POLYGON=4, /* Polygon fence | */
@@ -656,12 +641,12 @@ typedef enum ACTUATOR_OUTPUT_FUNCTION
 } ACTUATOR_OUTPUT_FUNCTION;
 #endif
 
-/** @brief Enable axes that will be tuned via autotuning. Used in MAV_CMD_DO_AUTOTUNE_ENABLE. */
+/** @brief Axes that will be autotuned by MAV_CMD_DO_AUTOTUNE_ENABLE.
+        Note that at least one flag must be set in MAV_CMD_DO_AUTOTUNE_ENABLE.param2: if none are set, the flight stack will tune its default set of axes. */
 #ifndef HAVE_ENUM_AUTOTUNE_AXIS
 #define HAVE_ENUM_AUTOTUNE_AXIS
 typedef enum AUTOTUNE_AXIS
 {
-   AUTOTUNE_AXIS_DEFAULT=0, /* Flight stack tunes axis according to its default settings. | */
    AUTOTUNE_AXIS_ROLL=1, /* Autotune roll axis. | */
    AUTOTUNE_AXIS_PITCH=2, /* Autotune pitch axis. | */
    AUTOTUNE_AXIS_YAW=4, /* Autotune yaw axis. | */
@@ -2458,6 +2443,16 @@ typedef enum ILLUMINATOR_ERROR_FLAGS
    ILLUMINATOR_ERROR_FLAGS_THERMISTOR_FAILURE=4, /* Illuminator thermistor failure. | */
    ILLUMINATOR_ERROR_FLAGS_ENUM_END=5, /*  | */
 } ILLUMINATOR_ERROR_FLAGS;
+#endif
+
+/** @brief Flags used in HIL_ACTUATOR_CONTROLS message. */
+#ifndef HAVE_ENUM_HIL_ACTUATOR_CONTROLS_FLAGS
+#define HAVE_ENUM_HIL_ACTUATOR_CONTROLS_FLAGS
+typedef enum HIL_ACTUATOR_CONTROLS_FLAGS
+{
+   HIL_ACTUATOR_CONTROLS_FLAGS_LOCKSTEP=1, /* Simulation is using lockstep | */
+   HIL_ACTUATOR_CONTROLS_FLAGS_ENUM_END=2, /*  | */
+} HIL_ACTUATOR_CONTROLS_FLAGS;
 #endif
 
 // MAVLINK VERSION
