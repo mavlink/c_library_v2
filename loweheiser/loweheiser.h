@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_LOWEHEISER.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_LOWEHEISER_XML_HASH -4342153058487501382
+#define MAVLINK_LOWEHEISER_XML_HASH -7602339873593350447
 
 #ifdef __cplusplus
 extern "C" {
@@ -33,6 +33,15 @@ extern "C" {
 // ENUM DEFINITIONS
 
 
+/** @brief  */
+#ifndef HAVE_ENUM_MAV_CMD
+#define HAVE_ENUM_MAV_CMD
+typedef enum MAV_CMD
+{
+   MAV_CMD_LOWEHEISER_SET_STATE=10151, /* Set Loweheiser desired states |EFI Index| Desired Engine/EFI State (0: Power Off, 1:Running)| Desired Governor State (0:manual throttle, 1:Governed throttle)| Manual throttle level, 0% - 100%| Electronic Start up (0:Off, 1:On)| Empty| Empty|  */
+   MAV_CMD_ENUM_END=10152, /*  | */
+} MAV_CMD;
+#endif
 
 // MAVLINK VERSION
 
