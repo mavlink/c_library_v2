@@ -414,6 +414,70 @@ static void mavlink_test_qshot_status(uint8_t system_id, uint8_t component_id, m
 #endif
 }
 
+static void mavlink_test_autopilot_state_for_gimbal_device_ext(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_autopilot_state_for_gimbal_device_ext_t packet_in = {
+        93372036854775807ULL,73.0,101.0,129.0,65,132
+    };
+    mavlink_autopilot_state_for_gimbal_device_ext_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.time_boot_us = packet_in.time_boot_us;
+        packet1.wind_x = packet_in.wind_x;
+        packet1.wind_y = packet_in.wind_y;
+        packet1.wind_correction_angle = packet_in.wind_correction_angle;
+        packet1.target_system = packet_in.target_system;
+        packet1.target_component = packet_in.target_component;
+        
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_autopilot_state_for_gimbal_device_ext_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_autopilot_state_for_gimbal_device_ext_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_autopilot_state_for_gimbal_device_ext_pack(system_id, component_id, &msg , packet1.target_system , packet1.target_component , packet1.time_boot_us , packet1.wind_x , packet1.wind_y , packet1.wind_correction_angle );
+    mavlink_msg_autopilot_state_for_gimbal_device_ext_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.target_system , packet1.target_component , packet1.time_boot_us , packet1.wind_x , packet1.wind_y , packet1.wind_correction_angle );
+    mavlink_msg_autopilot_state_for_gimbal_device_ext_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_autopilot_state_for_gimbal_device_ext_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_autopilot_state_for_gimbal_device_ext_send(MAVLINK_COMM_1 , packet1.target_system , packet1.target_component , packet1.time_boot_us , packet1.wind_x , packet1.wind_y , packet1.wind_correction_angle );
+    mavlink_msg_autopilot_state_for_gimbal_device_ext_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+#ifdef MAVLINK_HAVE_GET_MESSAGE_INFO
+    MAVLINK_ASSERT(mavlink_get_message_info_by_name("AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT") != NULL);
+    MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT) != NULL);
+#endif
+}
+
 static void mavlink_test_frsky_passthrough_array(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -538,6 +602,215 @@ static void mavlink_test_param_value_array(uint8_t system_id, uint8_t component_
 #endif
 }
 
+static void mavlink_test_mlrs_radio_link_stats(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_mlrs_radio_link_stats_t packet_in = {
+        17235,139,206,17,84,151,218,29,96,163,230,41,108,175,122.0,150.0
+    };
+    mavlink_mlrs_radio_link_stats_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.flags = packet_in.flags;
+        packet1.target_system = packet_in.target_system;
+        packet1.target_component = packet_in.target_component;
+        packet1.rx_LQ_rc = packet_in.rx_LQ_rc;
+        packet1.rx_LQ_ser = packet_in.rx_LQ_ser;
+        packet1.rx_rssi1 = packet_in.rx_rssi1;
+        packet1.rx_snr1 = packet_in.rx_snr1;
+        packet1.tx_LQ_ser = packet_in.tx_LQ_ser;
+        packet1.tx_rssi1 = packet_in.tx_rssi1;
+        packet1.tx_snr1 = packet_in.tx_snr1;
+        packet1.rx_rssi2 = packet_in.rx_rssi2;
+        packet1.rx_snr2 = packet_in.rx_snr2;
+        packet1.tx_rssi2 = packet_in.tx_rssi2;
+        packet1.tx_snr2 = packet_in.tx_snr2;
+        packet1.frequency1 = packet_in.frequency1;
+        packet1.frequency2 = packet_in.frequency2;
+        
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_mlrs_radio_link_stats_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_mlrs_radio_link_stats_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_mlrs_radio_link_stats_pack(system_id, component_id, &msg , packet1.target_system , packet1.target_component , packet1.flags , packet1.rx_LQ_rc , packet1.rx_LQ_ser , packet1.rx_rssi1 , packet1.rx_snr1 , packet1.tx_LQ_ser , packet1.tx_rssi1 , packet1.tx_snr1 , packet1.rx_rssi2 , packet1.rx_snr2 , packet1.tx_rssi2 , packet1.tx_snr2 , packet1.frequency1 , packet1.frequency2 );
+    mavlink_msg_mlrs_radio_link_stats_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_mlrs_radio_link_stats_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.target_system , packet1.target_component , packet1.flags , packet1.rx_LQ_rc , packet1.rx_LQ_ser , packet1.rx_rssi1 , packet1.rx_snr1 , packet1.tx_LQ_ser , packet1.tx_rssi1 , packet1.tx_snr1 , packet1.rx_rssi2 , packet1.rx_snr2 , packet1.tx_rssi2 , packet1.tx_snr2 , packet1.frequency1 , packet1.frequency2 );
+    mavlink_msg_mlrs_radio_link_stats_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_mlrs_radio_link_stats_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_mlrs_radio_link_stats_send(MAVLINK_COMM_1 , packet1.target_system , packet1.target_component , packet1.flags , packet1.rx_LQ_rc , packet1.rx_LQ_ser , packet1.rx_rssi1 , packet1.rx_snr1 , packet1.tx_LQ_ser , packet1.tx_rssi1 , packet1.tx_snr1 , packet1.rx_rssi2 , packet1.rx_snr2 , packet1.tx_rssi2 , packet1.tx_snr2 , packet1.frequency1 , packet1.frequency2 );
+    mavlink_msg_mlrs_radio_link_stats_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+#ifdef MAVLINK_HAVE_GET_MESSAGE_INFO
+    MAVLINK_ASSERT(mavlink_get_message_info_by_name("MLRS_RADIO_LINK_STATS") != NULL);
+    MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS) != NULL);
+#endif
+}
+
+static void mavlink_test_mlrs_radio_link_information(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_MLRS_RADIO_LINK_INFORMATION >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_mlrs_radio_link_information_t packet_in = {
+        17235,17339,17443,17547,29,96,163,230,41,108,"OPQRS","UVWXY",211,22
+    };
+    mavlink_mlrs_radio_link_information_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.tx_frame_rate = packet_in.tx_frame_rate;
+        packet1.rx_frame_rate = packet_in.rx_frame_rate;
+        packet1.tx_ser_data_rate = packet_in.tx_ser_data_rate;
+        packet1.rx_ser_data_rate = packet_in.rx_ser_data_rate;
+        packet1.target_system = packet_in.target_system;
+        packet1.target_component = packet_in.target_component;
+        packet1.type = packet_in.type;
+        packet1.mode = packet_in.mode;
+        packet1.tx_power = packet_in.tx_power;
+        packet1.rx_power = packet_in.rx_power;
+        packet1.tx_receive_sensitivity = packet_in.tx_receive_sensitivity;
+        packet1.rx_receive_sensitivity = packet_in.rx_receive_sensitivity;
+        
+        mav_array_memcpy(packet1.mode_str, packet_in.mode_str, sizeof(char)*6);
+        mav_array_memcpy(packet1.band_str, packet_in.band_str, sizeof(char)*6);
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_MLRS_RADIO_LINK_INFORMATION_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_MLRS_RADIO_LINK_INFORMATION_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_mlrs_radio_link_information_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_mlrs_radio_link_information_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_mlrs_radio_link_information_pack(system_id, component_id, &msg , packet1.target_system , packet1.target_component , packet1.type , packet1.mode , packet1.tx_power , packet1.rx_power , packet1.tx_frame_rate , packet1.rx_frame_rate , packet1.mode_str , packet1.band_str , packet1.tx_ser_data_rate , packet1.rx_ser_data_rate , packet1.tx_receive_sensitivity , packet1.rx_receive_sensitivity );
+    mavlink_msg_mlrs_radio_link_information_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_mlrs_radio_link_information_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.target_system , packet1.target_component , packet1.type , packet1.mode , packet1.tx_power , packet1.rx_power , packet1.tx_frame_rate , packet1.rx_frame_rate , packet1.mode_str , packet1.band_str , packet1.tx_ser_data_rate , packet1.rx_ser_data_rate , packet1.tx_receive_sensitivity , packet1.rx_receive_sensitivity );
+    mavlink_msg_mlrs_radio_link_information_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_mlrs_radio_link_information_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_mlrs_radio_link_information_send(MAVLINK_COMM_1 , packet1.target_system , packet1.target_component , packet1.type , packet1.mode , packet1.tx_power , packet1.rx_power , packet1.tx_frame_rate , packet1.rx_frame_rate , packet1.mode_str , packet1.band_str , packet1.tx_ser_data_rate , packet1.rx_ser_data_rate , packet1.tx_receive_sensitivity , packet1.rx_receive_sensitivity );
+    mavlink_msg_mlrs_radio_link_information_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+#ifdef MAVLINK_HAVE_GET_MESSAGE_INFO
+    MAVLINK_ASSERT(mavlink_get_message_info_by_name("MLRS_RADIO_LINK_INFORMATION") != NULL);
+    MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_MLRS_RADIO_LINK_INFORMATION) != NULL);
+#endif
+}
+
+static void mavlink_test_mlrs_radio_link_flow_control(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_MLRS_RADIO_LINK_FLOW_CONTROL >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_mlrs_radio_link_flow_control_t packet_in = {
+        17235,17339,17,84,151
+    };
+    mavlink_mlrs_radio_link_flow_control_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.tx_ser_rate = packet_in.tx_ser_rate;
+        packet1.rx_ser_rate = packet_in.rx_ser_rate;
+        packet1.tx_used_ser_bandwidth = packet_in.tx_used_ser_bandwidth;
+        packet1.rx_used_ser_bandwidth = packet_in.rx_used_ser_bandwidth;
+        packet1.txbuf = packet_in.txbuf;
+        
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_MLRS_RADIO_LINK_FLOW_CONTROL_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_MLRS_RADIO_LINK_FLOW_CONTROL_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_mlrs_radio_link_flow_control_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_mlrs_radio_link_flow_control_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_mlrs_radio_link_flow_control_pack(system_id, component_id, &msg , packet1.tx_ser_rate , packet1.rx_ser_rate , packet1.tx_used_ser_bandwidth , packet1.rx_used_ser_bandwidth , packet1.txbuf );
+    mavlink_msg_mlrs_radio_link_flow_control_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_mlrs_radio_link_flow_control_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.tx_ser_rate , packet1.rx_ser_rate , packet1.tx_used_ser_bandwidth , packet1.rx_used_ser_bandwidth , packet1.txbuf );
+    mavlink_msg_mlrs_radio_link_flow_control_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_mlrs_radio_link_flow_control_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_mlrs_radio_link_flow_control_send(MAVLINK_COMM_1 , packet1.tx_ser_rate , packet1.rx_ser_rate , packet1.tx_used_ser_bandwidth , packet1.rx_used_ser_bandwidth , packet1.txbuf );
+    mavlink_msg_mlrs_radio_link_flow_control_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+#ifdef MAVLINK_HAVE_GET_MESSAGE_INFO
+    MAVLINK_ASSERT(mavlink_get_message_info_by_name("MLRS_RADIO_LINK_FLOW_CONTROL") != NULL);
+    MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_MLRS_RADIO_LINK_FLOW_CONTROL) != NULL);
+#endif
+}
+
 static void mavlink_test_storm32(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
     mavlink_test_storm32_gimbal_manager_information(system_id, component_id, last_msg);
@@ -546,8 +819,12 @@ static void mavlink_test_storm32(uint8_t system_id, uint8_t component_id, mavlin
     mavlink_test_storm32_gimbal_manager_control_pitchyaw(system_id, component_id, last_msg);
     mavlink_test_storm32_gimbal_manager_correct_roll(system_id, component_id, last_msg);
     mavlink_test_qshot_status(system_id, component_id, last_msg);
+    mavlink_test_autopilot_state_for_gimbal_device_ext(system_id, component_id, last_msg);
     mavlink_test_frsky_passthrough_array(system_id, component_id, last_msg);
     mavlink_test_param_value_array(system_id, component_id, last_msg);
+    mavlink_test_mlrs_radio_link_stats(system_id, component_id, last_msg);
+    mavlink_test_mlrs_radio_link_information(system_id, component_id, last_msg);
+    mavlink_test_mlrs_radio_link_flow_control(system_id, component_id, last_msg);
 }
 
 #ifdef __cplusplus
