@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_STORM32.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_STORM32_XML_HASH -6226701192878107117
+#define MAVLINK_STORM32_XML_HASH 4859251312604427457
 
 #ifdef __cplusplus
 extern "C" {
@@ -63,7 +63,6 @@ typedef enum MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS
 #define HAVE_ENUM_MAV_STORM32_GIMBAL_MANAGER_FLAGS
 typedef enum MAV_STORM32_GIMBAL_MANAGER_FLAGS
 {
-   MAV_STORM32_GIMBAL_MANAGER_FLAGS_NONE=0, /* 0 = ignore. | */
    MAV_STORM32_GIMBAL_MANAGER_FLAGS_RC_ACTIVE=1, /* Request to set RC input to active, or report RC input is active. Implies RC mixed. RC exclusive is achieved by setting all clients to inactive. | */
    MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_ONBOARD_ACTIVE=2, /* Request to set onboard/companion computer client to active, or report this client is active. | */
    MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_AUTOPILOT_ACTIVE=4, /* Request to set autopliot client to active, or report this client is active. | */
