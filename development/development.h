@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_DEVELOPMENT.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_DEVELOPMENT_XML_HASH 6570178814244775117
+#define MAVLINK_DEVELOPMENT_XML_HASH 1867990244918804862
 
 #ifdef __cplusplus
 extern "C" {
@@ -42,94 +42,6 @@ typedef enum AIRSPEED_SENSOR_FLAGS
    AIRSPEED_SENSOR_USING=2, /* True if the data from this sensor is being actively used by the flight controller for guidance, navigation or control. | */
    AIRSPEED_SENSOR_FLAGS_ENUM_END=3, /*  | */
 } AIRSPEED_SENSOR_FLAGS;
-#endif
-
-/** @brief Standard modes with a well understood meaning across flight stacks and vehicle types.
-        For example, most flight stack have the concept of a "return" or "RTL" mode that takes a vehicle to safety, even though the precise mechanics of this mode may differ.
-        Modes may be set using MAV_CMD_DO_SET_STANDARD_MODE.
-       */
-#ifndef HAVE_ENUM_MAV_STANDARD_MODE
-#define HAVE_ENUM_MAV_STANDARD_MODE
-typedef enum MAV_STANDARD_MODE
-{
-   MAV_STANDARD_MODE_NON_STANDARD=0, /* Non standard mode.
-          This may be used when reporting the mode if the current flight mode is not a standard mode.
-         | */
-   MAV_STANDARD_MODE_POSITION_HOLD=1, /* Position mode (manual).
-          Position-controlled and stabilized manual mode.
-          When sticks are released vehicles return to their level-flight orientation and hold both position and altitude against wind and external forces.
-          This mode can only be set by vehicles that can hold a fixed position.
-          Multicopter (MC) vehicles actively brake and hold both position and altitude against wind and external forces.
-          Hybrid MC/FW ("VTOL") vehicles first transition to multicopter mode (if needed) but otherwise behave in the same way as MC vehicles.
-          Fixed-wing (FW) vehicles must not support this mode.
-          Other vehicle types must not support this mode (this may be revisited through the PR process).
-         | */
-   MAV_STANDARD_MODE_ORBIT=2, /* Orbit (manual).
-          Position-controlled and stabilized manual mode.
-          The vehicle circles around a fixed setpoint in the horizontal plane at a particular radius, altitude, and direction.
-          Flight stacks may further allow manual control over the setpoint position, radius, direction, speed, and/or altitude of the circle, but this is not mandated.
-          Flight stacks may support the [MAV_CMD_DO_ORBIT](https://mavlink.io/en/messages/common.html#MAV_CMD_DO_ORBIT) for changing the orbit parameters.
-          MC and FW vehicles may support this mode.
-          Hybrid MC/FW ("VTOL") vehicles may support this mode in MC/FW or both modes; if the mode is not supported by the current configuration the vehicle should transition to the supported configuration.
-          Other vehicle types must not support this mode (this may be revisited through the PR process).
-         | */
-   MAV_STANDARD_MODE_CRUISE=3, /* Cruise mode (manual).
-          Position-controlled and stabilized manual mode.
-          When sticks are released vehicles return to their level-flight orientation and hold their original track against wind and external forces.
-          Fixed-wing (FW) vehicles level orientation and maintain current track and altitude against wind and external forces.
-          Hybrid MC/FW ("VTOL") vehicles first transition to FW mode (if needed) but otherwise behave in the same way as MC vehicles.
-          Multicopter (MC) vehicles must not support this mode.
-          Other vehicle types must not support this mode (this may be revisited through the PR process).
-         | */
-   MAV_STANDARD_MODE_ALTITUDE_HOLD=4, /* Altitude hold (manual).
-          Altitude-controlled and stabilized manual mode.
-          When sticks are released vehicles return to their level-flight orientation and hold their altitude.
-          MC vehicles continue with existing momentum and may move with wind (or other external forces).
-          FW vehicles continue with current heading, but may be moved off-track by wind.
-          Hybrid MC/FW ("VTOL") vehicles behave according to their current configuration/mode (FW or MC).
-          Other vehicle types must not support this mode (this may be revisited through the PR process).
-         | */
-   MAV_STANDARD_MODE_RETURN_HOME=5, /* Return home mode (auto).
-          Automatic mode that returns vehicle to home via a safe flight path.
-          It may also automatically land the vehicle (i.e. RTL).
-          The precise flight path and landing behaviour depend on vehicle configuration and type.
-         | */
-   MAV_STANDARD_MODE_SAFE_RECOVERY=6, /* Safe recovery mode (auto).
-          Automatic mode that takes vehicle to a predefined safe location via a safe flight path (rally point or mission defined landing) .
-          It may also automatically land the vehicle.
-          The precise return location, flight path, and landing behaviour depend on vehicle configuration and type.
-         | */
-   MAV_STANDARD_MODE_MISSION=7, /* Mission mode (automatic).
-          Automatic mode that executes MAVLink missions.
-          Missions are executed from the current waypoint as soon as the mode is enabled.
-         | */
-   MAV_STANDARD_MODE_LAND=8, /* Land mode (auto).
-          Automatic mode that lands the vehicle at the current location.
-          The precise landing behaviour depends on vehicle configuration and type.
-         | */
-   MAV_STANDARD_MODE_TAKEOFF=9, /* Takeoff mode (auto).
-          Automatic takeoff mode.
-          The precise takeoff behaviour depends on vehicle configuration and type.
-         | */
-   MAV_STANDARD_MODE_ENUM_END=10, /*  | */
-} MAV_STANDARD_MODE;
-#endif
-
-/** @brief Mode properties.
-       */
-#ifndef HAVE_ENUM_MAV_MODE_PROPERTY
-#define HAVE_ENUM_MAV_MODE_PROPERTY
-typedef enum MAV_MODE_PROPERTY
-{
-   MAV_MODE_PROPERTY_ADVANCED=1, /* If set, this mode is an advanced mode.
-          For example a rate-controlled manual mode might be advanced, whereas a position-controlled manual mode is not.
-          A GCS can optionally use this flag to configure the UI for its intended users.
-         | */
-   MAV_MODE_PROPERTY_NOT_USER_SELECTABLE=2, /* If set, this mode should not be added to the list of selectable modes.
-          The mode might still be selected by the FC directly (for example as part of a failsafe).
-         | */
-   MAV_MODE_PROPERTY_ENUM_END=3, /*  | */
-} MAV_MODE_PROPERTY;
 #endif
 
 /** @brief Battery status flags for fault, health and state indication. */
@@ -344,9 +256,6 @@ typedef enum GPS_RAIM_STATE
 #include "./mavlink_msg_group_start.h"
 #include "./mavlink_msg_group_end.h"
 #include "./mavlink_msg_radio_rc_channels.h"
-#include "./mavlink_msg_available_modes.h"
-#include "./mavlink_msg_current_mode.h"
-#include "./mavlink_msg_available_modes_monitor.h"
 #include "./mavlink_msg_gnss_integrity.h"
 #include "./mavlink_msg_target_absolute.h"
 #include "./mavlink_msg_target_relative.h"
