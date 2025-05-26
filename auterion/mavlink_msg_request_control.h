@@ -7,7 +7,7 @@
 typedef struct __mavlink_request_control_t {
  uint8_t control_target; /*<  Control target to change to own ownership.*/
  uint8_t request_priority; /*<  Priority of the control request. If the priority is higher than the priority
-        of the current control entity, control is given without handoff request. 
+        of the current control entity, control is given without handoff request.
         The priority request should be authenticated on the target system before granting this privilegs. Default value of 0.*/
  char requester_id[40]; /*<  Identification of the control entity requesting ownership.*/
  char reason[100]; /*<  Reason for taking ownership.*/
@@ -55,7 +55,7 @@ typedef struct __mavlink_request_control_t {
  *
  * @param control_target  Control target to change to own ownership.
  * @param request_priority  Priority of the control request. If the priority is higher than the priority
-        of the current control entity, control is given without handoff request. 
+        of the current control entity, control is given without handoff request.
         The priority request should be authenticated on the target system before granting this privilegs. Default value of 0.
  * @param requester_id  Identification of the control entity requesting ownership.
  * @param reason  Reason for taking ownership.
@@ -93,7 +93,7 @@ static inline uint16_t mavlink_msg_request_control_pack(uint8_t system_id, uint8
  *
  * @param control_target  Control target to change to own ownership.
  * @param request_priority  Priority of the control request. If the priority is higher than the priority
-        of the current control entity, control is given without handoff request. 
+        of the current control entity, control is given without handoff request.
         The priority request should be authenticated on the target system before granting this privilegs. Default value of 0.
  * @param requester_id  Identification of the control entity requesting ownership.
  * @param reason  Reason for taking ownership.
@@ -134,7 +134,7 @@ static inline uint16_t mavlink_msg_request_control_pack_status(uint8_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param control_target  Control target to change to own ownership.
  * @param request_priority  Priority of the control request. If the priority is higher than the priority
-        of the current control entity, control is given without handoff request. 
+        of the current control entity, control is given without handoff request.
         The priority request should be authenticated on the target system before granting this privilegs. Default value of 0.
  * @param requester_id  Identification of the control entity requesting ownership.
  * @param reason  Reason for taking ownership.
@@ -211,7 +211,7 @@ static inline uint16_t mavlink_msg_request_control_encode_status(uint8_t system_
  *
  * @param control_target  Control target to change to own ownership.
  * @param request_priority  Priority of the control request. If the priority is higher than the priority
-        of the current control entity, control is given without handoff request. 
+        of the current control entity, control is given without handoff request.
         The priority request should be authenticated on the target system before granting this privilegs. Default value of 0.
  * @param requester_id  Identification of the control entity requesting ownership.
  * @param reason  Reason for taking ownership.
@@ -298,7 +298,7 @@ static inline uint8_t mavlink_msg_request_control_get_control_target(const mavli
  * @brief Get field request_priority from request_control message
  *
  * @return  Priority of the control request. If the priority is higher than the priority
-        of the current control entity, control is given without handoff request. 
+        of the current control entity, control is given without handoff request.
         The priority request should be authenticated on the target system before granting this privilegs. Default value of 0.
  */
 static inline uint8_t mavlink_msg_request_control_get_request_priority(const mavlink_message_t* msg)
