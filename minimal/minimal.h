@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_MINIMAL.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_MINIMAL_XML_HASH -5592443959532985390
+#define MAVLINK_MINIMAL_XML_HASH -6066532130481828224
 
 #ifdef __cplusplus
 extern "C" {
@@ -120,12 +120,12 @@ typedef enum MAV_TYPE
 } MAV_TYPE;
 #endif
 
-/** @brief These flags encode the MAV mode. */
+/** @brief These flags encode the MAV mode, see MAV_MODE enum for useful combinations. */
 #ifndef HAVE_ENUM_MAV_MODE_FLAG
 #define HAVE_ENUM_MAV_MODE_FLAG
 typedef enum MAV_MODE_FLAG
 {
-   MAV_MODE_FLAG_CUSTOM_MODE_ENABLED=1, /* 0b00000001 Reserved for future use. | */
+   MAV_MODE_FLAG_CUSTOM_MODE_ENABLED=1, /* 0b00000001 system-specific custom mode is enabled. When using this flag to enable a custom mode all other flags should be ignored. | */
    MAV_MODE_FLAG_TEST_ENABLED=2, /* 0b00000010 system has a test mode enabled. This flag is intended for temporary system tests and should not be used for stable implementations. | */
    MAV_MODE_FLAG_AUTO_ENABLED=4, /* 0b00000100 autonomous mode enabled, system finds its own goal positions. Guided flag can be set or not, depends on the actual implementation. | */
    MAV_MODE_FLAG_GUIDED_ENABLED=8, /* 0b00001000 guided mode enabled, system flies waypoints / mission items. | */
