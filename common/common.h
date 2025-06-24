@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH -6254073591867032628
+#define MAVLINK_COMMON_XML_HASH -5710688526222758755
 
 #ifdef __cplusplus
 extern "C" {
@@ -1231,7 +1231,8 @@ typedef enum ADSB_FLAGS
 typedef enum MAV_DO_REPOSITION_FLAGS
 {
    MAV_DO_REPOSITION_FLAGS_CHANGE_MODE=1, /* The aircraft should immediately transition into guided. This should not be set for follow me applications | */
-   MAV_DO_REPOSITION_FLAGS_ENUM_END=2, /*  | */
+   MAV_DO_REPOSITION_FLAGS_RELATIVE_YAW=2, /* Yaw relative to the vehicle current heading (if not set, relative to North). | */
+   MAV_DO_REPOSITION_FLAGS_ENUM_END=3, /*  | */
 } MAV_DO_REPOSITION_FLAGS;
 #endif
 
