@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_STANDARD.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_STANDARD_XML_HASH 348003127255645413
+#define MAVLINK_STANDARD_XML_HASH -8205463798635456562
 
 #ifdef __cplusplus
 extern "C" {
@@ -33,6 +33,16 @@ extern "C" {
 // ENUM DEFINITIONS
 
 
+/** @brief Enum used to indicate true or false (also: success or failure, enabled or disabled, active or inactive). */
+#ifndef HAVE_ENUM_BOOL
+#define HAVE_ENUM_BOOL
+typedef enum BOOL
+{
+   BOOL_FALSE=0, /* False. | */
+   BOOL_TRUE=1, /* True. | */
+   BOOL_ENUM_END=2, /*  | */
+} BOOL;
+#endif
 
 // MAVLINK VERSION
 
