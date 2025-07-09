@@ -89,7 +89,7 @@ static inline uint16_t mavlink_msg_secure_command_pack(uint8_t system_id, uint8_
     packet.target_component = target_component;
     packet.data_length = data_length;
     packet.sig_length = sig_length;
-    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*220);
+    mav_array_assign_uint8_t(packet.data, data, 220);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SECURE_COMMAND_LEN);
 #endif
 
@@ -183,7 +183,7 @@ static inline uint16_t mavlink_msg_secure_command_pack_chan(uint8_t system_id, u
     packet.target_component = target_component;
     packet.data_length = data_length;
     packet.sig_length = sig_length;
-    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*220);
+    mav_array_assign_uint8_t(packet.data, data, 220);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SECURE_COMMAND_LEN);
 #endif
 
@@ -266,7 +266,7 @@ static inline void mavlink_msg_secure_command_send(mavlink_channel_t chan, uint8
     packet.target_component = target_component;
     packet.data_length = data_length;
     packet.sig_length = sig_length;
-    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*220);
+    mav_array_assign_uint8_t(packet.data, data, 220);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SECURE_COMMAND, (const char *)&packet, MAVLINK_MSG_ID_SECURE_COMMAND_MIN_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_CRC);
 #endif
 }
@@ -287,7 +287,7 @@ static inline void mavlink_msg_secure_command_send_struct(mavlink_channel_t chan
 
 #if MAVLINK_MSG_ID_SECURE_COMMAND_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -313,7 +313,7 @@ static inline void mavlink_msg_secure_command_send_buf(mavlink_message_t *msgbuf
     packet->target_component = target_component;
     packet->data_length = data_length;
     packet->sig_length = sig_length;
-    mav_array_memcpy(packet->data, data, sizeof(uint8_t)*220);
+    mav_array_assign_uint8_t(packet->data, data, 220);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SECURE_COMMAND, (const char *)packet, MAVLINK_MSG_ID_SECURE_COMMAND_MIN_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_CRC);
 #endif
 }

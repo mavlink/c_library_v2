@@ -131,8 +131,8 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_information_pack(uint8_t syst
     packet.rx_power = rx_power;
     packet.tx_receive_sensitivity = tx_receive_sensitivity;
     packet.rx_receive_sensitivity = rx_receive_sensitivity;
-    mav_array_memcpy(packet.mode_str, mode_str, sizeof(char)*6);
-    mav_array_memcpy(packet.band_str, band_str, sizeof(char)*6);
+    mav_array_assign_char(packet.mode_str, mode_str, 6);
+    mav_array_assign_char(packet.band_str, band_str, 6);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_MLRS_RADIO_LINK_INFORMATION_LEN);
 #endif
 
@@ -267,8 +267,8 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_information_pack_chan(uint8_t
     packet.rx_power = rx_power;
     packet.tx_receive_sensitivity = tx_receive_sensitivity;
     packet.rx_receive_sensitivity = rx_receive_sensitivity;
-    mav_array_memcpy(packet.mode_str, mode_str, sizeof(char)*6);
-    mav_array_memcpy(packet.band_str, band_str, sizeof(char)*6);
+    mav_array_assign_char(packet.mode_str, mode_str, 6);
+    mav_array_assign_char(packet.band_str, band_str, 6);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_MLRS_RADIO_LINK_INFORMATION_LEN);
 #endif
 
@@ -371,8 +371,8 @@ static inline void mavlink_msg_mlrs_radio_link_information_send(mavlink_channel_
     packet.rx_power = rx_power;
     packet.tx_receive_sensitivity = tx_receive_sensitivity;
     packet.rx_receive_sensitivity = rx_receive_sensitivity;
-    mav_array_memcpy(packet.mode_str, mode_str, sizeof(char)*6);
-    mav_array_memcpy(packet.band_str, band_str, sizeof(char)*6);
+    mav_array_assign_char(packet.mode_str, mode_str, 6);
+    mav_array_assign_char(packet.band_str, band_str, 6);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MLRS_RADIO_LINK_INFORMATION, (const char *)&packet, MAVLINK_MSG_ID_MLRS_RADIO_LINK_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_INFORMATION_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_INFORMATION_CRC);
 #endif
 }
@@ -393,7 +393,7 @@ static inline void mavlink_msg_mlrs_radio_link_information_send_struct(mavlink_c
 
 #if MAVLINK_MSG_ID_MLRS_RADIO_LINK_INFORMATION_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -432,8 +432,8 @@ static inline void mavlink_msg_mlrs_radio_link_information_send_buf(mavlink_mess
     packet->rx_power = rx_power;
     packet->tx_receive_sensitivity = tx_receive_sensitivity;
     packet->rx_receive_sensitivity = rx_receive_sensitivity;
-    mav_array_memcpy(packet->mode_str, mode_str, sizeof(char)*6);
-    mav_array_memcpy(packet->band_str, band_str, sizeof(char)*6);
+    mav_array_assign_char(packet->mode_str, mode_str, 6);
+    mav_array_assign_char(packet->band_str, band_str, 6);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MLRS_RADIO_LINK_INFORMATION, (const char *)packet, MAVLINK_MSG_ID_MLRS_RADIO_LINK_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_INFORMATION_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_INFORMATION_CRC);
 #endif
 }

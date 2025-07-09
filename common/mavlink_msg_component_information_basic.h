@@ -95,11 +95,11 @@ static inline uint16_t mavlink_msg_component_information_basic_pack(uint8_t syst
     packet.capabilities = capabilities;
     packet.time_boot_ms = time_boot_ms;
     packet.time_manufacture_s = time_manufacture_s;
-    mav_array_memcpy(packet.vendor_name, vendor_name, sizeof(char)*32);
-    mav_array_memcpy(packet.model_name, model_name, sizeof(char)*32);
-    mav_array_memcpy(packet.software_version, software_version, sizeof(char)*24);
-    mav_array_memcpy(packet.hardware_version, hardware_version, sizeof(char)*24);
-    mav_array_memcpy(packet.serial_number, serial_number, sizeof(char)*32);
+    mav_array_assign_char(packet.vendor_name, vendor_name, 32);
+    mav_array_assign_char(packet.model_name, model_name, 32);
+    mav_array_assign_char(packet.software_version, software_version, 24);
+    mav_array_assign_char(packet.hardware_version, hardware_version, 24);
+    mav_array_assign_char(packet.serial_number, serial_number, 32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_LEN);
 #endif
 
@@ -195,11 +195,11 @@ static inline uint16_t mavlink_msg_component_information_basic_pack_chan(uint8_t
     packet.capabilities = capabilities;
     packet.time_boot_ms = time_boot_ms;
     packet.time_manufacture_s = time_manufacture_s;
-    mav_array_memcpy(packet.vendor_name, vendor_name, sizeof(char)*32);
-    mav_array_memcpy(packet.model_name, model_name, sizeof(char)*32);
-    mav_array_memcpy(packet.software_version, software_version, sizeof(char)*24);
-    mav_array_memcpy(packet.hardware_version, hardware_version, sizeof(char)*24);
-    mav_array_memcpy(packet.serial_number, serial_number, sizeof(char)*32);
+    mav_array_assign_char(packet.vendor_name, vendor_name, 32);
+    mav_array_assign_char(packet.model_name, model_name, 32);
+    mav_array_assign_char(packet.software_version, software_version, 24);
+    mav_array_assign_char(packet.hardware_version, hardware_version, 24);
+    mav_array_assign_char(packet.serial_number, serial_number, 32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_LEN);
 #endif
 
@@ -281,11 +281,11 @@ static inline void mavlink_msg_component_information_basic_send(mavlink_channel_
     packet.capabilities = capabilities;
     packet.time_boot_ms = time_boot_ms;
     packet.time_manufacture_s = time_manufacture_s;
-    mav_array_memcpy(packet.vendor_name, vendor_name, sizeof(char)*32);
-    mav_array_memcpy(packet.model_name, model_name, sizeof(char)*32);
-    mav_array_memcpy(packet.software_version, software_version, sizeof(char)*24);
-    mav_array_memcpy(packet.hardware_version, hardware_version, sizeof(char)*24);
-    mav_array_memcpy(packet.serial_number, serial_number, sizeof(char)*32);
+    mav_array_assign_char(packet.vendor_name, vendor_name, 32);
+    mav_array_assign_char(packet.model_name, model_name, 32);
+    mav_array_assign_char(packet.software_version, software_version, 24);
+    mav_array_assign_char(packet.hardware_version, hardware_version, 24);
+    mav_array_assign_char(packet.serial_number, serial_number, 32);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC, (const char *)&packet, MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_MIN_LEN, MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_LEN, MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_CRC);
 #endif
 }
@@ -306,7 +306,7 @@ static inline void mavlink_msg_component_information_basic_send_struct(mavlink_c
 
 #if MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -330,11 +330,11 @@ static inline void mavlink_msg_component_information_basic_send_buf(mavlink_mess
     packet->capabilities = capabilities;
     packet->time_boot_ms = time_boot_ms;
     packet->time_manufacture_s = time_manufacture_s;
-    mav_array_memcpy(packet->vendor_name, vendor_name, sizeof(char)*32);
-    mav_array_memcpy(packet->model_name, model_name, sizeof(char)*32);
-    mav_array_memcpy(packet->software_version, software_version, sizeof(char)*24);
-    mav_array_memcpy(packet->hardware_version, hardware_version, sizeof(char)*24);
-    mav_array_memcpy(packet->serial_number, serial_number, sizeof(char)*32);
+    mav_array_assign_char(packet->vendor_name, vendor_name, 32);
+    mav_array_assign_char(packet->model_name, model_name, 32);
+    mav_array_assign_char(packet->software_version, software_version, 24);
+    mav_array_assign_char(packet->hardware_version, hardware_version, 24);
+    mav_array_assign_char(packet->serial_number, serial_number, 32);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC, (const char *)packet, MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_MIN_LEN, MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_LEN, MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_CRC);
 #endif
 }

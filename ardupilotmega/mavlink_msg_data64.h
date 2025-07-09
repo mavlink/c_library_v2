@@ -65,7 +65,7 @@ static inline uint16_t mavlink_msg_data64_pack(uint8_t system_id, uint8_t compon
     mavlink_data64_t packet;
     packet.type = type;
     packet.len = len;
-    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*64);
+    mav_array_assign_uint8_t(packet.data, data, 64);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_DATA64_LEN);
 #endif
 
@@ -135,7 +135,7 @@ static inline uint16_t mavlink_msg_data64_pack_chan(uint8_t system_id, uint8_t c
     mavlink_data64_t packet;
     packet.type = type;
     packet.len = len;
-    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*64);
+    mav_array_assign_uint8_t(packet.data, data, 64);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_DATA64_LEN);
 #endif
 
@@ -206,7 +206,7 @@ static inline void mavlink_msg_data64_send(mavlink_channel_t chan, uint8_t type,
     mavlink_data64_t packet;
     packet.type = type;
     packet.len = len;
-    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*64);
+    mav_array_assign_uint8_t(packet.data, data, 64);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_DATA64, (const char *)&packet, MAVLINK_MSG_ID_DATA64_MIN_LEN, MAVLINK_MSG_ID_DATA64_LEN, MAVLINK_MSG_ID_DATA64_CRC);
 #endif
 }
@@ -227,7 +227,7 @@ static inline void mavlink_msg_data64_send_struct(mavlink_channel_t chan, const 
 
 #if MAVLINK_MSG_ID_DATA64_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -245,7 +245,7 @@ static inline void mavlink_msg_data64_send_buf(mavlink_message_t *msgbuf, mavlin
     mavlink_data64_t *packet = (mavlink_data64_t *)msgbuf;
     packet->type = type;
     packet->len = len;
-    mav_array_memcpy(packet->data, data, sizeof(uint8_t)*64);
+    mav_array_assign_uint8_t(packet->data, data, 64);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_DATA64, (const char *)packet, MAVLINK_MSG_ID_DATA64_MIN_LEN, MAVLINK_MSG_ID_DATA64_LEN, MAVLINK_MSG_ID_DATA64_CRC);
 #endif
 }

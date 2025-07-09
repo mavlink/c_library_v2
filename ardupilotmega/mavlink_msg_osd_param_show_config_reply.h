@@ -89,7 +89,7 @@ static inline uint16_t mavlink_msg_osd_param_show_config_reply_pack(uint8_t syst
     packet.increment = increment;
     packet.result = result;
     packet.config_type = config_type;
-    mav_array_memcpy(packet.param_id, param_id, sizeof(char)*16);
+    mav_array_assign_char(packet.param_id, param_id, 16);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_LEN);
 #endif
 
@@ -183,7 +183,7 @@ static inline uint16_t mavlink_msg_osd_param_show_config_reply_pack_chan(uint8_t
     packet.increment = increment;
     packet.result = result;
     packet.config_type = config_type;
-    mav_array_memcpy(packet.param_id, param_id, sizeof(char)*16);
+    mav_array_assign_char(packet.param_id, param_id, 16);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_LEN);
 #endif
 
@@ -266,7 +266,7 @@ static inline void mavlink_msg_osd_param_show_config_reply_send(mavlink_channel_
     packet.increment = increment;
     packet.result = result;
     packet.config_type = config_type;
-    mav_array_memcpy(packet.param_id, param_id, sizeof(char)*16);
+    mav_array_assign_char(packet.param_id, param_id, 16);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY, (const char *)&packet, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_CRC);
 #endif
 }
@@ -287,7 +287,7 @@ static inline void mavlink_msg_osd_param_show_config_reply_send_struct(mavlink_c
 
 #if MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -313,7 +313,7 @@ static inline void mavlink_msg_osd_param_show_config_reply_send_buf(mavlink_mess
     packet->increment = increment;
     packet->result = result;
     packet->config_type = config_type;
-    mav_array_memcpy(packet->param_id, param_id, sizeof(char)*16);
+    mav_array_assign_char(packet->param_id, param_id, 16);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY, (const char *)packet, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_CRC);
 #endif
 }

@@ -55,7 +55,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_flightid_pack(uint8_t s
 #else
     mavlink_uavionix_adsb_out_cfg_flightid_t packet;
 
-    mav_array_memcpy(packet.flight_id, flight_id, sizeof(char)*9);
+    mav_array_assign_char(packet.flight_id, flight_id, 9);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_FLIGHTID_LEN);
 #endif
 
@@ -117,7 +117,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_flightid_pack_chan(uint
 #else
     mavlink_uavionix_adsb_out_cfg_flightid_t packet;
 
-    mav_array_memcpy(packet.flight_id, flight_id, sizeof(char)*9);
+    mav_array_assign_char(packet.flight_id, flight_id, 9);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_FLIGHTID_LEN);
 #endif
 
@@ -184,7 +184,7 @@ static inline void mavlink_msg_uavionix_adsb_out_cfg_flightid_send(mavlink_chann
 #else
     mavlink_uavionix_adsb_out_cfg_flightid_t packet;
 
-    mav_array_memcpy(packet.flight_id, flight_id, sizeof(char)*9);
+    mav_array_assign_char(packet.flight_id, flight_id, 9);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_FLIGHTID, (const char *)&packet, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_FLIGHTID_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_FLIGHTID_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_FLIGHTID_CRC);
 #endif
 }
@@ -205,7 +205,7 @@ static inline void mavlink_msg_uavionix_adsb_out_cfg_flightid_send_struct(mavlin
 
 #if MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_FLIGHTID_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -221,7 +221,7 @@ static inline void mavlink_msg_uavionix_adsb_out_cfg_flightid_send_buf(mavlink_m
 #else
     mavlink_uavionix_adsb_out_cfg_flightid_t *packet = (mavlink_uavionix_adsb_out_cfg_flightid_t *)msgbuf;
 
-    mav_array_memcpy(packet->flight_id, flight_id, sizeof(char)*9);
+    mav_array_assign_char(packet->flight_id, flight_id, 9);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_FLIGHTID, (const char *)packet, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_FLIGHTID_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_FLIGHTID_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_FLIGHTID_CRC);
 #endif
 }

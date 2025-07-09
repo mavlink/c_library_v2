@@ -61,8 +61,8 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f16_pack(uint8_t system_id, 
 #else
     mavlink_serial_udb_extra_f16_t packet;
 
-    mav_array_memcpy(packet.sue_ID_LEAD_PILOT, sue_ID_LEAD_PILOT, sizeof(uint8_t)*40);
-    mav_array_memcpy(packet.sue_ID_DIY_DRONES_URL, sue_ID_DIY_DRONES_URL, sizeof(uint8_t)*70);
+    mav_array_assign_uint8_t(packet.sue_ID_LEAD_PILOT, sue_ID_LEAD_PILOT, 40);
+    mav_array_assign_uint8_t(packet.sue_ID_DIY_DRONES_URL, sue_ID_DIY_DRONES_URL, 70);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_LEN);
 #endif
 
@@ -129,8 +129,8 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f16_pack_chan(uint8_t system
 #else
     mavlink_serial_udb_extra_f16_t packet;
 
-    mav_array_memcpy(packet.sue_ID_LEAD_PILOT, sue_ID_LEAD_PILOT, sizeof(uint8_t)*40);
-    mav_array_memcpy(packet.sue_ID_DIY_DRONES_URL, sue_ID_DIY_DRONES_URL, sizeof(uint8_t)*70);
+    mav_array_assign_uint8_t(packet.sue_ID_LEAD_PILOT, sue_ID_LEAD_PILOT, 40);
+    mav_array_assign_uint8_t(packet.sue_ID_DIY_DRONES_URL, sue_ID_DIY_DRONES_URL, 70);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_LEN);
 #endif
 
@@ -199,8 +199,8 @@ static inline void mavlink_msg_serial_udb_extra_f16_send(mavlink_channel_t chan,
 #else
     mavlink_serial_udb_extra_f16_t packet;
 
-    mav_array_memcpy(packet.sue_ID_LEAD_PILOT, sue_ID_LEAD_PILOT, sizeof(uint8_t)*40);
-    mav_array_memcpy(packet.sue_ID_DIY_DRONES_URL, sue_ID_DIY_DRONES_URL, sizeof(uint8_t)*70);
+    mav_array_assign_uint8_t(packet.sue_ID_LEAD_PILOT, sue_ID_LEAD_PILOT, 40);
+    mav_array_assign_uint8_t(packet.sue_ID_DIY_DRONES_URL, sue_ID_DIY_DRONES_URL, 70);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16, (const char *)&packet, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_CRC);
 #endif
 }
@@ -221,7 +221,7 @@ static inline void mavlink_msg_serial_udb_extra_f16_send_struct(mavlink_channel_
 
 #if MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -238,8 +238,8 @@ static inline void mavlink_msg_serial_udb_extra_f16_send_buf(mavlink_message_t *
 #else
     mavlink_serial_udb_extra_f16_t *packet = (mavlink_serial_udb_extra_f16_t *)msgbuf;
 
-    mav_array_memcpy(packet->sue_ID_LEAD_PILOT, sue_ID_LEAD_PILOT, sizeof(uint8_t)*40);
-    mav_array_memcpy(packet->sue_ID_DIY_DRONES_URL, sue_ID_DIY_DRONES_URL, sizeof(uint8_t)*70);
+    mav_array_assign_uint8_t(packet->sue_ID_LEAD_PILOT, sue_ID_LEAD_PILOT, 40);
+    mav_array_assign_uint8_t(packet->sue_ID_DIY_DRONES_URL, sue_ID_DIY_DRONES_URL, 70);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16, (const char *)packet, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F16_CRC);
 #endif
 }

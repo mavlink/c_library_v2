@@ -83,7 +83,7 @@ static inline uint16_t mavlink_msg_available_modes_pack(uint8_t system_id, uint8
     packet.number_modes = number_modes;
     packet.mode_index = mode_index;
     packet.standard_mode = standard_mode;
-    mav_array_memcpy(packet.mode_name, mode_name, sizeof(char)*35);
+    mav_array_assign_char(packet.mode_name, mode_name, 35);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_AVAILABLE_MODES_LEN);
 #endif
 
@@ -171,7 +171,7 @@ static inline uint16_t mavlink_msg_available_modes_pack_chan(uint8_t system_id, 
     packet.number_modes = number_modes;
     packet.mode_index = mode_index;
     packet.standard_mode = standard_mode;
-    mav_array_memcpy(packet.mode_name, mode_name, sizeof(char)*35);
+    mav_array_assign_char(packet.mode_name, mode_name, 35);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_AVAILABLE_MODES_LEN);
 #endif
 
@@ -251,7 +251,7 @@ static inline void mavlink_msg_available_modes_send(mavlink_channel_t chan, uint
     packet.number_modes = number_modes;
     packet.mode_index = mode_index;
     packet.standard_mode = standard_mode;
-    mav_array_memcpy(packet.mode_name, mode_name, sizeof(char)*35);
+    mav_array_assign_char(packet.mode_name, mode_name, 35);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_AVAILABLE_MODES, (const char *)&packet, MAVLINK_MSG_ID_AVAILABLE_MODES_MIN_LEN, MAVLINK_MSG_ID_AVAILABLE_MODES_LEN, MAVLINK_MSG_ID_AVAILABLE_MODES_CRC);
 #endif
 }
@@ -272,7 +272,7 @@ static inline void mavlink_msg_available_modes_send_struct(mavlink_channel_t cha
 
 #if MAVLINK_MSG_ID_AVAILABLE_MODES_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -296,7 +296,7 @@ static inline void mavlink_msg_available_modes_send_buf(mavlink_message_t *msgbu
     packet->number_modes = number_modes;
     packet->mode_index = mode_index;
     packet->standard_mode = standard_mode;
-    mav_array_memcpy(packet->mode_name, mode_name, sizeof(char)*35);
+    mav_array_assign_char(packet->mode_name, mode_name, 35);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_AVAILABLE_MODES, (const char *)packet, MAVLINK_MSG_ID_AVAILABLE_MODES_MIN_LEN, MAVLINK_MSG_ID_AVAILABLE_MODES_LEN, MAVLINK_MSG_ID_AVAILABLE_MODES_CRC);
 #endif
 }

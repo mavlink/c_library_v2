@@ -83,7 +83,7 @@ static inline uint16_t mavlink_msg_led_control_pack(uint8_t system_id, uint8_t c
     packet.instance = instance;
     packet.pattern = pattern;
     packet.custom_len = custom_len;
-    mav_array_memcpy(packet.custom_bytes, custom_bytes, sizeof(uint8_t)*24);
+    mav_array_assign_uint8_t(packet.custom_bytes, custom_bytes, 24);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_LED_CONTROL_LEN);
 #endif
 
@@ -171,7 +171,7 @@ static inline uint16_t mavlink_msg_led_control_pack_chan(uint8_t system_id, uint
     packet.instance = instance;
     packet.pattern = pattern;
     packet.custom_len = custom_len;
-    mav_array_memcpy(packet.custom_bytes, custom_bytes, sizeof(uint8_t)*24);
+    mav_array_assign_uint8_t(packet.custom_bytes, custom_bytes, 24);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_LED_CONTROL_LEN);
 #endif
 
@@ -251,7 +251,7 @@ static inline void mavlink_msg_led_control_send(mavlink_channel_t chan, uint8_t 
     packet.instance = instance;
     packet.pattern = pattern;
     packet.custom_len = custom_len;
-    mav_array_memcpy(packet.custom_bytes, custom_bytes, sizeof(uint8_t)*24);
+    mav_array_assign_uint8_t(packet.custom_bytes, custom_bytes, 24);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LED_CONTROL, (const char *)&packet, MAVLINK_MSG_ID_LED_CONTROL_MIN_LEN, MAVLINK_MSG_ID_LED_CONTROL_LEN, MAVLINK_MSG_ID_LED_CONTROL_CRC);
 #endif
 }
@@ -272,7 +272,7 @@ static inline void mavlink_msg_led_control_send_struct(mavlink_channel_t chan, c
 
 #if MAVLINK_MSG_ID_LED_CONTROL_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -296,7 +296,7 @@ static inline void mavlink_msg_led_control_send_buf(mavlink_message_t *msgbuf, m
     packet->instance = instance;
     packet->pattern = pattern;
     packet->custom_len = custom_len;
-    mav_array_memcpy(packet->custom_bytes, custom_bytes, sizeof(uint8_t)*24);
+    mav_array_assign_uint8_t(packet->custom_bytes, custom_bytes, 24);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LED_CONTROL, (const char *)packet, MAVLINK_MSG_ID_LED_CONTROL_MIN_LEN, MAVLINK_MSG_ID_LED_CONTROL_LEN, MAVLINK_MSG_ID_LED_CONTROL_CRC);
 #endif
 }

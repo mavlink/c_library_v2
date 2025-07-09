@@ -71,7 +71,7 @@ static inline uint16_t mavlink_msg_param_request_read_pack(uint8_t system_id, ui
     packet.param_index = param_index;
     packet.target_system = target_system;
     packet.target_component = target_component;
-    mav_array_memcpy(packet.param_id, param_id, sizeof(char)*16);
+    mav_array_assign_char(packet.param_id, param_id, 16);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PARAM_REQUEST_READ_LEN);
 #endif
 
@@ -147,7 +147,7 @@ static inline uint16_t mavlink_msg_param_request_read_pack_chan(uint8_t system_i
     packet.param_index = param_index;
     packet.target_system = target_system;
     packet.target_component = target_component;
-    mav_array_memcpy(packet.param_id, param_id, sizeof(char)*16);
+    mav_array_assign_char(packet.param_id, param_id, 16);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PARAM_REQUEST_READ_LEN);
 #endif
 
@@ -221,7 +221,7 @@ static inline void mavlink_msg_param_request_read_send(mavlink_channel_t chan, u
     packet.param_index = param_index;
     packet.target_system = target_system;
     packet.target_component = target_component;
-    mav_array_memcpy(packet.param_id, param_id, sizeof(char)*16);
+    mav_array_assign_char(packet.param_id, param_id, 16);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PARAM_REQUEST_READ, (const char *)&packet, MAVLINK_MSG_ID_PARAM_REQUEST_READ_MIN_LEN, MAVLINK_MSG_ID_PARAM_REQUEST_READ_LEN, MAVLINK_MSG_ID_PARAM_REQUEST_READ_CRC);
 #endif
 }
@@ -242,7 +242,7 @@ static inline void mavlink_msg_param_request_read_send_struct(mavlink_channel_t 
 
 #if MAVLINK_MSG_ID_PARAM_REQUEST_READ_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -262,7 +262,7 @@ static inline void mavlink_msg_param_request_read_send_buf(mavlink_message_t *ms
     packet->param_index = param_index;
     packet->target_system = target_system;
     packet->target_component = target_component;
-    mav_array_memcpy(packet->param_id, param_id, sizeof(char)*16);
+    mav_array_assign_char(packet->param_id, param_id, 16);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PARAM_REQUEST_READ, (const char *)packet, MAVLINK_MSG_ID_PARAM_REQUEST_READ_MIN_LEN, MAVLINK_MSG_ID_PARAM_REQUEST_READ_LEN, MAVLINK_MSG_ID_PARAM_REQUEST_READ_CRC);
 #endif
 }

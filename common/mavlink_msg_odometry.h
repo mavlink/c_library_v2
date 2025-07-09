@@ -155,9 +155,9 @@ static inline uint16_t mavlink_msg_odometry_pack(uint8_t system_id, uint8_t comp
     packet.reset_counter = reset_counter;
     packet.estimator_type = estimator_type;
     packet.quality = quality;
-    mav_array_memcpy(packet.q, q, sizeof(float)*4);
-    mav_array_memcpy(packet.pose_covariance, pose_covariance, sizeof(float)*21);
-    mav_array_memcpy(packet.velocity_covariance, velocity_covariance, sizeof(float)*21);
+    mav_array_assign_float(packet.q, q, 4);
+    mav_array_assign_float(packet.pose_covariance, pose_covariance, 21);
+    mav_array_assign_float(packet.velocity_covariance, velocity_covariance, 21);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ODOMETRY_LEN);
 #endif
 
@@ -315,9 +315,9 @@ static inline uint16_t mavlink_msg_odometry_pack_chan(uint8_t system_id, uint8_t
     packet.reset_counter = reset_counter;
     packet.estimator_type = estimator_type;
     packet.quality = quality;
-    mav_array_memcpy(packet.q, q, sizeof(float)*4);
-    mav_array_memcpy(packet.pose_covariance, pose_covariance, sizeof(float)*21);
-    mav_array_memcpy(packet.velocity_covariance, velocity_covariance, sizeof(float)*21);
+    mav_array_assign_float(packet.q, q, 4);
+    mav_array_assign_float(packet.pose_covariance, pose_covariance, 21);
+    mav_array_assign_float(packet.velocity_covariance, velocity_covariance, 21);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ODOMETRY_LEN);
 #endif
 
@@ -431,9 +431,9 @@ static inline void mavlink_msg_odometry_send(mavlink_channel_t chan, uint64_t ti
     packet.reset_counter = reset_counter;
     packet.estimator_type = estimator_type;
     packet.quality = quality;
-    mav_array_memcpy(packet.q, q, sizeof(float)*4);
-    mav_array_memcpy(packet.pose_covariance, pose_covariance, sizeof(float)*21);
-    mav_array_memcpy(packet.velocity_covariance, velocity_covariance, sizeof(float)*21);
+    mav_array_assign_float(packet.q, q, 4);
+    mav_array_assign_float(packet.pose_covariance, pose_covariance, 21);
+    mav_array_assign_float(packet.velocity_covariance, velocity_covariance, 21);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ODOMETRY, (const char *)&packet, MAVLINK_MSG_ID_ODOMETRY_MIN_LEN, MAVLINK_MSG_ID_ODOMETRY_LEN, MAVLINK_MSG_ID_ODOMETRY_CRC);
 #endif
 }
@@ -454,7 +454,7 @@ static inline void mavlink_msg_odometry_send_struct(mavlink_channel_t chan, cons
 
 #if MAVLINK_MSG_ID_ODOMETRY_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -500,9 +500,9 @@ static inline void mavlink_msg_odometry_send_buf(mavlink_message_t *msgbuf, mavl
     packet->reset_counter = reset_counter;
     packet->estimator_type = estimator_type;
     packet->quality = quality;
-    mav_array_memcpy(packet->q, q, sizeof(float)*4);
-    mav_array_memcpy(packet->pose_covariance, pose_covariance, sizeof(float)*21);
-    mav_array_memcpy(packet->velocity_covariance, velocity_covariance, sizeof(float)*21);
+    mav_array_assign_float(packet->q, q, 4);
+    mav_array_assign_float(packet->pose_covariance, pose_covariance, 21);
+    mav_array_assign_float(packet->velocity_covariance, velocity_covariance, 21);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ODOMETRY, (const char *)packet, MAVLINK_MSG_ID_ODOMETRY_MIN_LEN, MAVLINK_MSG_ID_ODOMETRY_LEN, MAVLINK_MSG_ID_ODOMETRY_CRC);
 #endif
 }

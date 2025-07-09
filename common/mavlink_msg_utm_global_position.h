@@ -155,7 +155,7 @@ static inline uint16_t mavlink_msg_utm_global_position_pack(uint8_t system_id, u
     packet.update_rate = update_rate;
     packet.flight_state = flight_state;
     packet.flags = flags;
-    mav_array_memcpy(packet.uas_id, uas_id, sizeof(uint8_t)*18);
+    mav_array_assign_uint8_t(packet.uas_id, uas_id, 18);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_UTM_GLOBAL_POSITION_LEN);
 #endif
 
@@ -315,7 +315,7 @@ static inline uint16_t mavlink_msg_utm_global_position_pack_chan(uint8_t system_
     packet.update_rate = update_rate;
     packet.flight_state = flight_state;
     packet.flags = flags;
-    mav_array_memcpy(packet.uas_id, uas_id, sizeof(uint8_t)*18);
+    mav_array_assign_uint8_t(packet.uas_id, uas_id, 18);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_UTM_GLOBAL_POSITION_LEN);
 #endif
 
@@ -431,7 +431,7 @@ static inline void mavlink_msg_utm_global_position_send(mavlink_channel_t chan, 
     packet.update_rate = update_rate;
     packet.flight_state = flight_state;
     packet.flags = flags;
-    mav_array_memcpy(packet.uas_id, uas_id, sizeof(uint8_t)*18);
+    mav_array_assign_uint8_t(packet.uas_id, uas_id, 18);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UTM_GLOBAL_POSITION, (const char *)&packet, MAVLINK_MSG_ID_UTM_GLOBAL_POSITION_MIN_LEN, MAVLINK_MSG_ID_UTM_GLOBAL_POSITION_LEN, MAVLINK_MSG_ID_UTM_GLOBAL_POSITION_CRC);
 #endif
 }
@@ -452,7 +452,7 @@ static inline void mavlink_msg_utm_global_position_send_struct(mavlink_channel_t
 
 #if MAVLINK_MSG_ID_UTM_GLOBAL_POSITION_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -500,7 +500,7 @@ static inline void mavlink_msg_utm_global_position_send_buf(mavlink_message_t *m
     packet->update_rate = update_rate;
     packet->flight_state = flight_state;
     packet->flags = flags;
-    mav_array_memcpy(packet->uas_id, uas_id, sizeof(uint8_t)*18);
+    mav_array_assign_uint8_t(packet->uas_id, uas_id, 18);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UTM_GLOBAL_POSITION, (const char *)packet, MAVLINK_MSG_ID_UTM_GLOBAL_POSITION_MIN_LEN, MAVLINK_MSG_ID_UTM_GLOBAL_POSITION_LEN, MAVLINK_MSG_ID_UTM_GLOBAL_POSITION_CRC);
 #endif
 }

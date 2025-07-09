@@ -83,7 +83,7 @@ static inline uint16_t mavlink_msg_can_filter_modify_pack(uint8_t system_id, uin
     packet.bus = bus;
     packet.operation = operation;
     packet.num_ids = num_ids;
-    mav_array_memcpy(packet.ids, ids, sizeof(uint16_t)*16);
+    mav_array_assign_uint16_t(packet.ids, ids, 16);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CAN_FILTER_MODIFY_LEN);
 #endif
 
@@ -171,7 +171,7 @@ static inline uint16_t mavlink_msg_can_filter_modify_pack_chan(uint8_t system_id
     packet.bus = bus;
     packet.operation = operation;
     packet.num_ids = num_ids;
-    mav_array_memcpy(packet.ids, ids, sizeof(uint16_t)*16);
+    mav_array_assign_uint16_t(packet.ids, ids, 16);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CAN_FILTER_MODIFY_LEN);
 #endif
 
@@ -251,7 +251,7 @@ static inline void mavlink_msg_can_filter_modify_send(mavlink_channel_t chan, ui
     packet.bus = bus;
     packet.operation = operation;
     packet.num_ids = num_ids;
-    mav_array_memcpy(packet.ids, ids, sizeof(uint16_t)*16);
+    mav_array_assign_uint16_t(packet.ids, ids, 16);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAN_FILTER_MODIFY, (const char *)&packet, MAVLINK_MSG_ID_CAN_FILTER_MODIFY_MIN_LEN, MAVLINK_MSG_ID_CAN_FILTER_MODIFY_LEN, MAVLINK_MSG_ID_CAN_FILTER_MODIFY_CRC);
 #endif
 }
@@ -272,7 +272,7 @@ static inline void mavlink_msg_can_filter_modify_send_struct(mavlink_channel_t c
 
 #if MAVLINK_MSG_ID_CAN_FILTER_MODIFY_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -296,7 +296,7 @@ static inline void mavlink_msg_can_filter_modify_send_buf(mavlink_message_t *msg
     packet->bus = bus;
     packet->operation = operation;
     packet->num_ids = num_ids;
-    mav_array_memcpy(packet->ids, ids, sizeof(uint16_t)*16);
+    mav_array_assign_uint16_t(packet->ids, ids, 16);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAN_FILTER_MODIFY, (const char *)packet, MAVLINK_MSG_ID_CAN_FILTER_MODIFY_MIN_LEN, MAVLINK_MSG_ID_CAN_FILTER_MODIFY_LEN, MAVLINK_MSG_ID_CAN_FILTER_MODIFY_CRC);
 #endif
 }

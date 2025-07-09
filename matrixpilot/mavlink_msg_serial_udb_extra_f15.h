@@ -61,8 +61,8 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f15_pack(uint8_t system_id, 
 #else
     mavlink_serial_udb_extra_f15_t packet;
 
-    mav_array_memcpy(packet.sue_ID_VEHICLE_MODEL_NAME, sue_ID_VEHICLE_MODEL_NAME, sizeof(uint8_t)*40);
-    mav_array_memcpy(packet.sue_ID_VEHICLE_REGISTRATION, sue_ID_VEHICLE_REGISTRATION, sizeof(uint8_t)*20);
+    mav_array_assign_uint8_t(packet.sue_ID_VEHICLE_MODEL_NAME, sue_ID_VEHICLE_MODEL_NAME, 40);
+    mav_array_assign_uint8_t(packet.sue_ID_VEHICLE_REGISTRATION, sue_ID_VEHICLE_REGISTRATION, 20);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F15_LEN);
 #endif
 
@@ -129,8 +129,8 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f15_pack_chan(uint8_t system
 #else
     mavlink_serial_udb_extra_f15_t packet;
 
-    mav_array_memcpy(packet.sue_ID_VEHICLE_MODEL_NAME, sue_ID_VEHICLE_MODEL_NAME, sizeof(uint8_t)*40);
-    mav_array_memcpy(packet.sue_ID_VEHICLE_REGISTRATION, sue_ID_VEHICLE_REGISTRATION, sizeof(uint8_t)*20);
+    mav_array_assign_uint8_t(packet.sue_ID_VEHICLE_MODEL_NAME, sue_ID_VEHICLE_MODEL_NAME, 40);
+    mav_array_assign_uint8_t(packet.sue_ID_VEHICLE_REGISTRATION, sue_ID_VEHICLE_REGISTRATION, 20);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F15_LEN);
 #endif
 
@@ -199,8 +199,8 @@ static inline void mavlink_msg_serial_udb_extra_f15_send(mavlink_channel_t chan,
 #else
     mavlink_serial_udb_extra_f15_t packet;
 
-    mav_array_memcpy(packet.sue_ID_VEHICLE_MODEL_NAME, sue_ID_VEHICLE_MODEL_NAME, sizeof(uint8_t)*40);
-    mav_array_memcpy(packet.sue_ID_VEHICLE_REGISTRATION, sue_ID_VEHICLE_REGISTRATION, sizeof(uint8_t)*20);
+    mav_array_assign_uint8_t(packet.sue_ID_VEHICLE_MODEL_NAME, sue_ID_VEHICLE_MODEL_NAME, 40);
+    mav_array_assign_uint8_t(packet.sue_ID_VEHICLE_REGISTRATION, sue_ID_VEHICLE_REGISTRATION, 20);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F15, (const char *)&packet, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F15_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F15_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F15_CRC);
 #endif
 }
@@ -221,7 +221,7 @@ static inline void mavlink_msg_serial_udb_extra_f15_send_struct(mavlink_channel_
 
 #if MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F15_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -238,8 +238,8 @@ static inline void mavlink_msg_serial_udb_extra_f15_send_buf(mavlink_message_t *
 #else
     mavlink_serial_udb_extra_f15_t *packet = (mavlink_serial_udb_extra_f15_t *)msgbuf;
 
-    mav_array_memcpy(packet->sue_ID_VEHICLE_MODEL_NAME, sue_ID_VEHICLE_MODEL_NAME, sizeof(uint8_t)*40);
-    mav_array_memcpy(packet->sue_ID_VEHICLE_REGISTRATION, sue_ID_VEHICLE_REGISTRATION, sizeof(uint8_t)*20);
+    mav_array_assign_uint8_t(packet->sue_ID_VEHICLE_MODEL_NAME, sue_ID_VEHICLE_MODEL_NAME, 40);
+    mav_array_assign_uint8_t(packet->sue_ID_VEHICLE_REGISTRATION, sue_ID_VEHICLE_REGISTRATION, 20);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F15, (const char *)packet, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F15_MIN_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F15_LEN, MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F15_CRC);
 #endif
 }

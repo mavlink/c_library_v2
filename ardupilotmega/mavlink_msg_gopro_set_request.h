@@ -71,7 +71,7 @@ static inline uint16_t mavlink_msg_gopro_set_request_pack(uint8_t system_id, uin
     packet.target_system = target_system;
     packet.target_component = target_component;
     packet.cmd_id = cmd_id;
-    mav_array_memcpy(packet.value, value, sizeof(uint8_t)*4);
+    mav_array_assign_uint8_t(packet.value, value, 4);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_GOPRO_SET_REQUEST_LEN);
 #endif
 
@@ -147,7 +147,7 @@ static inline uint16_t mavlink_msg_gopro_set_request_pack_chan(uint8_t system_id
     packet.target_system = target_system;
     packet.target_component = target_component;
     packet.cmd_id = cmd_id;
-    mav_array_memcpy(packet.value, value, sizeof(uint8_t)*4);
+    mav_array_assign_uint8_t(packet.value, value, 4);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_GOPRO_SET_REQUEST_LEN);
 #endif
 
@@ -221,7 +221,7 @@ static inline void mavlink_msg_gopro_set_request_send(mavlink_channel_t chan, ui
     packet.target_system = target_system;
     packet.target_component = target_component;
     packet.cmd_id = cmd_id;
-    mav_array_memcpy(packet.value, value, sizeof(uint8_t)*4);
+    mav_array_assign_uint8_t(packet.value, value, 4);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GOPRO_SET_REQUEST, (const char *)&packet, MAVLINK_MSG_ID_GOPRO_SET_REQUEST_MIN_LEN, MAVLINK_MSG_ID_GOPRO_SET_REQUEST_LEN, MAVLINK_MSG_ID_GOPRO_SET_REQUEST_CRC);
 #endif
 }
@@ -242,7 +242,7 @@ static inline void mavlink_msg_gopro_set_request_send_struct(mavlink_channel_t c
 
 #if MAVLINK_MSG_ID_GOPRO_SET_REQUEST_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -262,7 +262,7 @@ static inline void mavlink_msg_gopro_set_request_send_buf(mavlink_message_t *msg
     packet->target_system = target_system;
     packet->target_component = target_component;
     packet->cmd_id = cmd_id;
-    mav_array_memcpy(packet->value, value, sizeof(uint8_t)*4);
+    mav_array_assign_uint8_t(packet->value, value, 4);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GOPRO_SET_REQUEST, (const char *)packet, MAVLINK_MSG_ID_GOPRO_SET_REQUEST_MIN_LEN, MAVLINK_MSG_ID_GOPRO_SET_REQUEST_LEN, MAVLINK_MSG_ID_GOPRO_SET_REQUEST_CRC);
 #endif
 }

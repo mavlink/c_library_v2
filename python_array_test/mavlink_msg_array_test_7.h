@@ -103,15 +103,15 @@ static inline uint16_t mavlink_msg_array_test_7_pack(uint8_t system_id, uint8_t 
 #else
     mavlink_array_test_7_t packet;
 
-    mav_array_memcpy(packet.ar_d, ar_d, sizeof(double)*2);
-    mav_array_memcpy(packet.ar_f, ar_f, sizeof(float)*2);
-    mav_array_memcpy(packet.ar_u32, ar_u32, sizeof(uint32_t)*2);
-    mav_array_memcpy(packet.ar_i32, ar_i32, sizeof(int32_t)*2);
-    mav_array_memcpy(packet.ar_u16, ar_u16, sizeof(uint16_t)*2);
-    mav_array_memcpy(packet.ar_i16, ar_i16, sizeof(int16_t)*2);
-    mav_array_memcpy(packet.ar_u8, ar_u8, sizeof(uint8_t)*2);
-    mav_array_memcpy(packet.ar_i8, ar_i8, sizeof(int8_t)*2);
-    mav_array_memcpy(packet.ar_c, ar_c, sizeof(char)*32);
+    mav_array_assign_double(packet.ar_d, ar_d, 2);
+    mav_array_assign_float(packet.ar_f, ar_f, 2);
+    mav_array_assign_uint32_t(packet.ar_u32, ar_u32, 2);
+    mav_array_assign_int32_t(packet.ar_i32, ar_i32, 2);
+    mav_array_assign_uint16_t(packet.ar_u16, ar_u16, 2);
+    mav_array_assign_int16_t(packet.ar_i16, ar_i16, 2);
+    mav_array_assign_uint8_t(packet.ar_u8, ar_u8, 2);
+    mav_array_assign_int8_t(packet.ar_i8, ar_i8, 2);
+    mav_array_assign_char(packet.ar_c, ar_c, 32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ARRAY_TEST_7_LEN);
 #endif
 
@@ -213,15 +213,15 @@ static inline uint16_t mavlink_msg_array_test_7_pack_chan(uint8_t system_id, uin
 #else
     mavlink_array_test_7_t packet;
 
-    mav_array_memcpy(packet.ar_d, ar_d, sizeof(double)*2);
-    mav_array_memcpy(packet.ar_f, ar_f, sizeof(float)*2);
-    mav_array_memcpy(packet.ar_u32, ar_u32, sizeof(uint32_t)*2);
-    mav_array_memcpy(packet.ar_i32, ar_i32, sizeof(int32_t)*2);
-    mav_array_memcpy(packet.ar_u16, ar_u16, sizeof(uint16_t)*2);
-    mav_array_memcpy(packet.ar_i16, ar_i16, sizeof(int16_t)*2);
-    mav_array_memcpy(packet.ar_u8, ar_u8, sizeof(uint8_t)*2);
-    mav_array_memcpy(packet.ar_i8, ar_i8, sizeof(int8_t)*2);
-    mav_array_memcpy(packet.ar_c, ar_c, sizeof(char)*32);
+    mav_array_assign_double(packet.ar_d, ar_d, 2);
+    mav_array_assign_float(packet.ar_f, ar_f, 2);
+    mav_array_assign_uint32_t(packet.ar_u32, ar_u32, 2);
+    mav_array_assign_int32_t(packet.ar_i32, ar_i32, 2);
+    mav_array_assign_uint16_t(packet.ar_u16, ar_u16, 2);
+    mav_array_assign_int16_t(packet.ar_i16, ar_i16, 2);
+    mav_array_assign_uint8_t(packet.ar_u8, ar_u8, 2);
+    mav_array_assign_int8_t(packet.ar_i8, ar_i8, 2);
+    mav_array_assign_char(packet.ar_c, ar_c, 32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ARRAY_TEST_7_LEN);
 #endif
 
@@ -304,15 +304,15 @@ static inline void mavlink_msg_array_test_7_send(mavlink_channel_t chan, const d
 #else
     mavlink_array_test_7_t packet;
 
-    mav_array_memcpy(packet.ar_d, ar_d, sizeof(double)*2);
-    mav_array_memcpy(packet.ar_f, ar_f, sizeof(float)*2);
-    mav_array_memcpy(packet.ar_u32, ar_u32, sizeof(uint32_t)*2);
-    mav_array_memcpy(packet.ar_i32, ar_i32, sizeof(int32_t)*2);
-    mav_array_memcpy(packet.ar_u16, ar_u16, sizeof(uint16_t)*2);
-    mav_array_memcpy(packet.ar_i16, ar_i16, sizeof(int16_t)*2);
-    mav_array_memcpy(packet.ar_u8, ar_u8, sizeof(uint8_t)*2);
-    mav_array_memcpy(packet.ar_i8, ar_i8, sizeof(int8_t)*2);
-    mav_array_memcpy(packet.ar_c, ar_c, sizeof(char)*32);
+    mav_array_assign_double(packet.ar_d, ar_d, 2);
+    mav_array_assign_float(packet.ar_f, ar_f, 2);
+    mav_array_assign_uint32_t(packet.ar_u32, ar_u32, 2);
+    mav_array_assign_int32_t(packet.ar_i32, ar_i32, 2);
+    mav_array_assign_uint16_t(packet.ar_u16, ar_u16, 2);
+    mav_array_assign_int16_t(packet.ar_i16, ar_i16, 2);
+    mav_array_assign_uint8_t(packet.ar_u8, ar_u8, 2);
+    mav_array_assign_int8_t(packet.ar_i8, ar_i8, 2);
+    mav_array_assign_char(packet.ar_c, ar_c, 32);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ARRAY_TEST_7, (const char *)&packet, MAVLINK_MSG_ID_ARRAY_TEST_7_MIN_LEN, MAVLINK_MSG_ID_ARRAY_TEST_7_LEN, MAVLINK_MSG_ID_ARRAY_TEST_7_CRC);
 #endif
 }
@@ -333,7 +333,7 @@ static inline void mavlink_msg_array_test_7_send_struct(mavlink_channel_t chan, 
 
 #if MAVLINK_MSG_ID_ARRAY_TEST_7_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -357,15 +357,15 @@ static inline void mavlink_msg_array_test_7_send_buf(mavlink_message_t *msgbuf, 
 #else
     mavlink_array_test_7_t *packet = (mavlink_array_test_7_t *)msgbuf;
 
-    mav_array_memcpy(packet->ar_d, ar_d, sizeof(double)*2);
-    mav_array_memcpy(packet->ar_f, ar_f, sizeof(float)*2);
-    mav_array_memcpy(packet->ar_u32, ar_u32, sizeof(uint32_t)*2);
-    mav_array_memcpy(packet->ar_i32, ar_i32, sizeof(int32_t)*2);
-    mav_array_memcpy(packet->ar_u16, ar_u16, sizeof(uint16_t)*2);
-    mav_array_memcpy(packet->ar_i16, ar_i16, sizeof(int16_t)*2);
-    mav_array_memcpy(packet->ar_u8, ar_u8, sizeof(uint8_t)*2);
-    mav_array_memcpy(packet->ar_i8, ar_i8, sizeof(int8_t)*2);
-    mav_array_memcpy(packet->ar_c, ar_c, sizeof(char)*32);
+    mav_array_assign_double(packet->ar_d, ar_d, 2);
+    mav_array_assign_float(packet->ar_f, ar_f, 2);
+    mav_array_assign_uint32_t(packet->ar_u32, ar_u32, 2);
+    mav_array_assign_int32_t(packet->ar_i32, ar_i32, 2);
+    mav_array_assign_uint16_t(packet->ar_u16, ar_u16, 2);
+    mav_array_assign_int16_t(packet->ar_i16, ar_i16, 2);
+    mav_array_assign_uint8_t(packet->ar_u8, ar_u8, 2);
+    mav_array_assign_int8_t(packet->ar_i8, ar_i8, 2);
+    mav_array_assign_char(packet->ar_c, ar_c, 32);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ARRAY_TEST_7, (const char *)packet, MAVLINK_MSG_ID_ARRAY_TEST_7_MIN_LEN, MAVLINK_MSG_ID_ARRAY_TEST_7_LEN, MAVLINK_MSG_ID_ARRAY_TEST_7_CRC);
 #endif
 }
