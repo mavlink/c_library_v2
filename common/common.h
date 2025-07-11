@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH -3385088037789619413
+#define MAVLINK_COMMON_XML_HASH 3011196198877975148
 
 #ifdef __cplusplus
 extern "C" {
@@ -984,7 +984,8 @@ typedef enum MAV_PROTOCOL_CAPABILITY
    MAV_PROTOCOL_CAPABILITY_COMPONENT_IMPLEMENTS_GIMBAL_MANAGER=262144, /* This component implements/is a gimbal manager. This means the GIMBAL_MANAGER_INFORMATION, and other messages can be requested.
          | */
    MAV_PROTOCOL_CAPABILITY_COMPONENT_ACCEPTS_GCS_CONTROL=524288, /* Component supports locking control to a particular GCS independent of its system (via MAV_CMD_REQUEST_OPERATOR_CONTROL). | */
-   MAV_PROTOCOL_CAPABILITY_ENUM_END=524289, /*  | */
+   MAV_PROTOCOL_CAPABILITY_GRIPPER=1048576, /* Autopilot has a connected gripper. MAVLink Grippers would set MAV_TYPE_GRIPPER instead. | */
+   MAV_PROTOCOL_CAPABILITY_ENUM_END=1048577, /*  | */
 } MAV_PROTOCOL_CAPABILITY;
 #endif
 

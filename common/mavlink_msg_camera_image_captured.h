@@ -14,7 +14,7 @@ typedef struct __mavlink_camera_image_captured_t {
  float q[4]; /*<  Quaternion of camera orientation (w, x, y, z order, zero-rotation is 1, 0, 0, 0)*/
  int32_t image_index; /*<  Zero based index of this image (i.e. a new image will have index CAMERA_CAPTURE_STATUS.image count -1)*/
  uint8_t camera_id; /*<  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id). Field name is usually camera_device_id.*/
- int8_t capture_result; /*<  Boolean indicating success (1) or failure (0) while capturing this image.*/
+ int8_t capture_result; /*<  Image was captured successfully (BOOL_TRUE). Values not equal to 0 or 1 are invalid.*/
  char file_url[205]; /*<  URL of image taken. Either local storage or http://foo.jpg if camera provides an HTTP interface.*/
 } mavlink_camera_image_captured_t;
 
@@ -81,7 +81,7 @@ typedef struct __mavlink_camera_image_captured_t {
  * @param relative_alt [mm] Altitude above ground
  * @param q  Quaternion of camera orientation (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
  * @param image_index  Zero based index of this image (i.e. a new image will have index CAMERA_CAPTURE_STATUS.image count -1)
- * @param capture_result  Boolean indicating success (1) or failure (0) while capturing this image.
+ * @param capture_result  Image was captured successfully (BOOL_TRUE). Values not equal to 0 or 1 are invalid.
  * @param file_url  URL of image taken. Either local storage or http://foo.jpg if camera provides an HTTP interface.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -138,7 +138,7 @@ static inline uint16_t mavlink_msg_camera_image_captured_pack(uint8_t system_id,
  * @param relative_alt [mm] Altitude above ground
  * @param q  Quaternion of camera orientation (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
  * @param image_index  Zero based index of this image (i.e. a new image will have index CAMERA_CAPTURE_STATUS.image count -1)
- * @param capture_result  Boolean indicating success (1) or failure (0) while capturing this image.
+ * @param capture_result  Image was captured successfully (BOOL_TRUE). Values not equal to 0 or 1 are invalid.
  * @param file_url  URL of image taken. Either local storage or http://foo.jpg if camera provides an HTTP interface.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -198,7 +198,7 @@ static inline uint16_t mavlink_msg_camera_image_captured_pack_status(uint8_t sys
  * @param relative_alt [mm] Altitude above ground
  * @param q  Quaternion of camera orientation (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
  * @param image_index  Zero based index of this image (i.e. a new image will have index CAMERA_CAPTURE_STATUS.image count -1)
- * @param capture_result  Boolean indicating success (1) or failure (0) while capturing this image.
+ * @param capture_result  Image was captured successfully (BOOL_TRUE). Values not equal to 0 or 1 are invalid.
  * @param file_url  URL of image taken. Either local storage or http://foo.jpg if camera provides an HTTP interface.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -294,7 +294,7 @@ static inline uint16_t mavlink_msg_camera_image_captured_encode_status(uint8_t s
  * @param relative_alt [mm] Altitude above ground
  * @param q  Quaternion of camera orientation (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
  * @param image_index  Zero based index of this image (i.e. a new image will have index CAMERA_CAPTURE_STATUS.image count -1)
- * @param capture_result  Boolean indicating success (1) or failure (0) while capturing this image.
+ * @param capture_result  Image was captured successfully (BOOL_TRUE). Values not equal to 0 or 1 are invalid.
  * @param file_url  URL of image taken. Either local storage or http://foo.jpg if camera provides an HTTP interface.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -486,7 +486,7 @@ static inline int32_t mavlink_msg_camera_image_captured_get_image_index(const ma
 /**
  * @brief Get field capture_result from camera_image_captured message
  *
- * @return  Boolean indicating success (1) or failure (0) while capturing this image.
+ * @return  Image was captured successfully (BOOL_TRUE). Values not equal to 0 or 1 are invalid.
  */
 static inline int8_t mavlink_msg_camera_image_captured_get_capture_result(const mavlink_message_t* msg)
 {

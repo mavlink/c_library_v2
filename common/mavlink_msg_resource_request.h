@@ -5,7 +5,7 @@
 
 
 typedef struct __mavlink_resource_request_t {
- uint8_t request_id; /*<  Request ID. This ID should be re-used when sending back URI contents*/
+ uint8_t request_id; /*<  Request ID. This ID should be reused when sending back URI contents*/
  uint8_t uri_type; /*<  The type of requested URI. 0 = a file via URL. 1 = a UAVCAN binary*/
  uint8_t uri[120]; /*<  The requested unique resource identifier (URI). It is not necessarily a straight domain name (depends on the URI type enum)*/
  uint8_t transfer_type; /*<  The way the autopilot wants to receive the URI. 0 = MAVLink FTP. 1 = binary stream.*/
@@ -54,7 +54,7 @@ typedef struct __mavlink_resource_request_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param request_id  Request ID. This ID should be re-used when sending back URI contents
+ * @param request_id  Request ID. This ID should be reused when sending back URI contents
  * @param uri_type  The type of requested URI. 0 = a file via URL. 1 = a UAVCAN binary
  * @param uri  The requested unique resource identifier (URI). It is not necessarily a straight domain name (depends on the URI type enum)
  * @param transfer_type  The way the autopilot wants to receive the URI. 0 = MAVLink FTP. 1 = binary stream.
@@ -93,7 +93,7 @@ static inline uint16_t mavlink_msg_resource_request_pack(uint8_t system_id, uint
  * @param status MAVLink status structure
  * @param msg The MAVLink message to compress the data into
  *
- * @param request_id  Request ID. This ID should be re-used when sending back URI contents
+ * @param request_id  Request ID. This ID should be reused when sending back URI contents
  * @param uri_type  The type of requested URI. 0 = a file via URL. 1 = a UAVCAN binary
  * @param uri  The requested unique resource identifier (URI). It is not necessarily a straight domain name (depends on the URI type enum)
  * @param transfer_type  The way the autopilot wants to receive the URI. 0 = MAVLink FTP. 1 = binary stream.
@@ -135,7 +135,7 @@ static inline uint16_t mavlink_msg_resource_request_pack_status(uint8_t system_i
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param request_id  Request ID. This ID should be re-used when sending back URI contents
+ * @param request_id  Request ID. This ID should be reused when sending back URI contents
  * @param uri_type  The type of requested URI. 0 = a file via URL. 1 = a UAVCAN binary
  * @param uri  The requested unique resource identifier (URI). It is not necessarily a straight domain name (depends on the URI type enum)
  * @param transfer_type  The way the autopilot wants to receive the URI. 0 = MAVLink FTP. 1 = binary stream.
@@ -213,7 +213,7 @@ static inline uint16_t mavlink_msg_resource_request_encode_status(uint8_t system
  * @brief Send a resource_request message
  * @param chan MAVLink channel to send the message
  *
- * @param request_id  Request ID. This ID should be re-used when sending back URI contents
+ * @param request_id  Request ID. This ID should be reused when sending back URI contents
  * @param uri_type  The type of requested URI. 0 = a file via URL. 1 = a UAVCAN binary
  * @param uri  The requested unique resource identifier (URI). It is not necessarily a straight domain name (depends on the URI type enum)
  * @param transfer_type  The way the autopilot wants to receive the URI. 0 = MAVLink FTP. 1 = binary stream.
@@ -294,7 +294,7 @@ static inline void mavlink_msg_resource_request_send_buf(mavlink_message_t *msgb
 /**
  * @brief Get field request_id from resource_request message
  *
- * @return  Request ID. This ID should be re-used when sending back URI contents
+ * @return  Request ID. This ID should be reused when sending back URI contents
  */
 static inline uint8_t mavlink_msg_resource_request_get_request_id(const mavlink_message_t* msg)
 {
