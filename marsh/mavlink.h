@@ -1,12 +1,12 @@
 /** @file
- *  @brief MAVLink comm protocol built from development.xml
+ *  @brief MAVLink comm protocol built from marsh.xml
  *  @see http://mavlink.org
  */
 #pragma once
 #ifndef MAVLINK_H
 #define MAVLINK_H
 
-#define MAVLINK_PRIMARY_XML_HASH -2595679557872144887
+#define MAVLINK_PRIMARY_XML_HASH 5428405586521564609
 
 #ifndef MAVLINK_STX
 #define MAVLINK_STX 253
@@ -29,6 +29,6 @@
 #endif
 
 #include "version.h"
-#include "development.h"
+#include "marsh.h"
 
 #endif // MAVLINK_H

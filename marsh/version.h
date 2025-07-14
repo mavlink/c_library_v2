@@ -1,5 +1,5 @@
 /** @file
- *  @brief MAVLink comm protocol built from paparazzi.xml
+ *  @brief MAVLink comm protocol built from marsh.xml
  *  @see http://mavlink.org
  */
 #pragma once
