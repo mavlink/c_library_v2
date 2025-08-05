@@ -15,7 +15,7 @@ typedef struct __mavlink_ais_vessel_t {
  uint16_t dimension_stern; /*< [m] Distance from lat/lon location to stern*/
  uint16_t tslc; /*< [s] Time since last communication in seconds*/
  uint16_t flags; /*<  Bitmask to indicate various statuses including valid data fields*/
- int8_t turn_rate; /*< [cdeg/s] Turn rate*/
+ int8_t turn_rate; /*< [ddeg/s] Turn rate, 0.1 degrees per second*/
  uint8_t navigational_status; /*<  Navigational status*/
  uint8_t type; /*<  Type of vessels*/
  uint8_t dimension_port; /*< [m] Distance from lat/lon location to port side*/
@@ -96,7 +96,7 @@ typedef struct __mavlink_ais_vessel_t {
  * @param COG [cdeg] Course over ground
  * @param heading [cdeg] True heading
  * @param velocity [cm/s] Speed over ground
- * @param turn_rate [cdeg/s] Turn rate
+ * @param turn_rate [ddeg/s] Turn rate, 0.1 degrees per second
  * @param navigational_status  Navigational status
  * @param type  Type of vessels
  * @param dimension_bow [m] Distance from lat/lon location to bow
@@ -171,7 +171,7 @@ static inline uint16_t mavlink_msg_ais_vessel_pack(uint8_t system_id, uint8_t co
  * @param COG [cdeg] Course over ground
  * @param heading [cdeg] True heading
  * @param velocity [cm/s] Speed over ground
- * @param turn_rate [cdeg/s] Turn rate
+ * @param turn_rate [ddeg/s] Turn rate, 0.1 degrees per second
  * @param navigational_status  Navigational status
  * @param type  Type of vessels
  * @param dimension_bow [m] Distance from lat/lon location to bow
@@ -249,7 +249,7 @@ static inline uint16_t mavlink_msg_ais_vessel_pack_status(uint8_t system_id, uin
  * @param COG [cdeg] Course over ground
  * @param heading [cdeg] True heading
  * @param velocity [cm/s] Speed over ground
- * @param turn_rate [cdeg/s] Turn rate
+ * @param turn_rate [ddeg/s] Turn rate, 0.1 degrees per second
  * @param navigational_status  Navigational status
  * @param type  Type of vessels
  * @param dimension_bow [m] Distance from lat/lon location to bow
@@ -363,7 +363,7 @@ static inline uint16_t mavlink_msg_ais_vessel_encode_status(uint8_t system_id, u
  * @param COG [cdeg] Course over ground
  * @param heading [cdeg] True heading
  * @param velocity [cm/s] Speed over ground
- * @param turn_rate [cdeg/s] Turn rate
+ * @param turn_rate [ddeg/s] Turn rate, 0.1 degrees per second
  * @param navigational_status  Navigational status
  * @param type  Type of vessels
  * @param dimension_bow [m] Distance from lat/lon location to bow
@@ -558,7 +558,7 @@ static inline uint16_t mavlink_msg_ais_vessel_get_velocity(const mavlink_message
 /**
  * @brief Get field turn_rate from ais_vessel message
  *
- * @return [cdeg/s] Turn rate
+ * @return [ddeg/s] Turn rate, 0.1 degrees per second
  */
 static inline int8_t mavlink_msg_ais_vessel_get_turn_rate(const mavlink_message_t* msg)
 {

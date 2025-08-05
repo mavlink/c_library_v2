@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH 6761971669131834351
+#define MAVLINK_COMMON_XML_HASH -2909216120261225192
 
 #ifdef __cplusplus
 extern "C" {
@@ -2417,22 +2417,22 @@ typedef enum AIS_TYPE
 #define HAVE_ENUM_AIS_NAV_STATUS
 typedef enum AIS_NAV_STATUS
 {
-   UNDER_WAY=0, /* Under way using engine. | */
-   AIS_NAV_ANCHORED=1, /*  | */
-   AIS_NAV_UN_COMMANDED=2, /*  | */
-   AIS_NAV_RESTRICTED_MANOEUVERABILITY=3, /*  | */
-   AIS_NAV_DRAUGHT_CONSTRAINED=4, /*  | */
-   AIS_NAV_MOORED=5, /*  | */
-   AIS_NAV_AGROUND=6, /*  | */
-   AIS_NAV_FISHING=7, /*  | */
-   AIS_NAV_SAILING=8, /*  | */
-   AIS_NAV_RESERVED_HSC=9, /*  | */
-   AIS_NAV_RESERVED_WIG=10, /*  | */
-   AIS_NAV_RESERVED_1=11, /*  | */
-   AIS_NAV_RESERVED_2=12, /*  | */
-   AIS_NAV_RESERVED_3=13, /*  | */
-   AIS_NAV_AIS_SART=14, /* Search And Rescue Transponder. | */
-   AIS_NAV_UNKNOWN=15, /* Not available (default). | */
+   AIS_NAV_STATUS_UNDER_WAY=0, /* Under way using engine. | */
+   AIS_NAV_STATUS_ANCHORED=1, /*  | */
+   AIS_NAV_STATUS_UN_COMMANDED=2, /*  | */
+   AIS_NAV_STATUS_RESTRICTED_MANOEUVERABILITY=3, /*  | */
+   AIS_NAV_STATUS_DRAUGHT_CONSTRAINED=4, /*  | */
+   AIS_NAV_STATUS_MOORED=5, /*  | */
+   AIS_NAV_STATUS_AGROUND=6, /*  | */
+   AIS_NAV_STATUS_FISHING=7, /*  | */
+   AIS_NAV_STATUS_SAILING=8, /*  | */
+   AIS_NAV_STATUS_RESERVED_HSC=9, /*  | */
+   AIS_NAV_STATUS_RESERVED_WIG=10, /*  | */
+   AIS_NAV_STATUS_RESERVED_1=11, /*  | */
+   AIS_NAV_STATUS_RESERVED_2=12, /*  | */
+   AIS_NAV_STATUS_RESERVED_3=13, /*  | */
+   AIS_NAV_STATUS_AIS_SART=14, /* Search And Rescue Transponder. | */
+   AIS_NAV_STATUS_UNKNOWN=15, /* Not available (default). | */
    AIS_NAV_STATUS_ENUM_END=16, /*  | */
 } AIS_NAV_STATUS;
 #endif
