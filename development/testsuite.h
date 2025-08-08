@@ -88,55 +88,53 @@ static void mavlink_test_airspeed(uint8_t system_id, uint8_t component_id, mavli
 #endif
 }
 
-static void mavlink_test_external_global_position(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+static void mavlink_test_global_position(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
-        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_EXTERNAL_GLOBAL_POSITION >= 256) {
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_GLOBAL_POSITION >= 256) {
             return;
         }
 #endif
     mavlink_message_t msg;
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
-    mavlink_external_global_position_t packet_in = {
-        93372036854775807ULL,963497880,963498088,129.0,157.0,185.0,213.0,241.0,269.0,297.0,325.0,149
+    mavlink_global_position_t packet_in = {
+        93372036854775807ULL,963497880,963498088,129.0,157.0,185.0,213.0,101,168,235
     };
-    mavlink_external_global_position_t packet1, packet2;
+    mavlink_global_position_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         packet1.time_usec = packet_in.time_usec;
         packet1.lat = packet_in.lat;
         packet1.lon = packet_in.lon;
         packet1.alt = packet_in.alt;
-        packet1.vn = packet_in.vn;
-        packet1.ve = packet_in.ve;
-        packet1.vd = packet_in.vd;
+        packet1.alt_ellipsoid = packet_in.alt_ellipsoid;
         packet1.eph = packet_in.eph;
         packet1.epv = packet_in.epv;
-        packet1.evh = packet_in.evh;
-        packet1.evv = packet_in.evv;
         packet1.id = packet_in.id;
+        packet1.source = packet_in.source;
+        packet1.flags = packet_in.flags;
         
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
         if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
            // cope with extensions
-           memset(MAVLINK_MSG_ID_EXTERNAL_GLOBAL_POSITION_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_EXTERNAL_GLOBAL_POSITION_MIN_LEN);
+           memset(MAVLINK_MSG_ID_GLOBAL_POSITION_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_GLOBAL_POSITION_MIN_LEN);
         }
 #endif
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_external_global_position_encode(system_id, component_id, &msg, &packet1);
-    mavlink_msg_external_global_position_decode(&msg, &packet2);
+    mavlink_msg_global_position_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_global_position_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_external_global_position_pack(system_id, component_id, &msg , packet1.id , packet1.time_usec , packet1.lat , packet1.lon , packet1.alt , packet1.vn , packet1.ve , packet1.vd , packet1.eph , packet1.epv , packet1.evh , packet1.evv );
-    mavlink_msg_external_global_position_decode(&msg, &packet2);
+    mavlink_msg_global_position_pack(system_id, component_id, &msg , packet1.id , packet1.time_usec , packet1.source , packet1.flags , packet1.lat , packet1.lon , packet1.alt , packet1.alt_ellipsoid , packet1.eph , packet1.epv );
+    mavlink_msg_global_position_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_external_global_position_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.id , packet1.time_usec , packet1.lat , packet1.lon , packet1.alt , packet1.vn , packet1.ve , packet1.vd , packet1.eph , packet1.epv , packet1.evh , packet1.evv );
-    mavlink_msg_external_global_position_decode(&msg, &packet2);
+    mavlink_msg_global_position_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.id , packet1.time_usec , packet1.source , packet1.flags , packet1.lat , packet1.lon , packet1.alt , packet1.alt_ellipsoid , packet1.eph , packet1.epv );
+    mavlink_msg_global_position_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
@@ -144,17 +142,17 @@ static void mavlink_test_external_global_position(uint8_t system_id, uint8_t com
         for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
             comm_send_ch(MAVLINK_COMM_0, buffer[i]);
         }
-    mavlink_msg_external_global_position_decode(last_msg, &packet2);
+    mavlink_msg_global_position_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_external_global_position_send(MAVLINK_COMM_1 , packet1.id , packet1.time_usec , packet1.lat , packet1.lon , packet1.alt , packet1.vn , packet1.ve , packet1.vd , packet1.eph , packet1.epv , packet1.evh , packet1.evv );
-    mavlink_msg_external_global_position_decode(last_msg, &packet2);
+    mavlink_msg_global_position_send(MAVLINK_COMM_1 , packet1.id , packet1.time_usec , packet1.source , packet1.flags , packet1.lat , packet1.lon , packet1.alt , packet1.alt_ellipsoid , packet1.eph , packet1.epv );
+    mavlink_msg_global_position_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
 #ifdef MAVLINK_HAVE_GET_MESSAGE_INFO
-    MAVLINK_ASSERT(mavlink_get_message_info_by_name("EXTERNAL_GLOBAL_POSITION") != NULL);
-    MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_EXTERNAL_GLOBAL_POSITION) != NULL);
+    MAVLINK_ASSERT(mavlink_get_message_info_by_name("GLOBAL_POSITION") != NULL);
+    MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_GLOBAL_POSITION) != NULL);
 #endif
 }
 
@@ -938,7 +936,7 @@ static void mavlink_test_control_status(uint8_t system_id, uint8_t component_id,
 static void mavlink_test_development(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
     mavlink_test_airspeed(system_id, component_id, last_msg);
-    mavlink_test_external_global_position(system_id, component_id, last_msg);
+    mavlink_test_global_position(system_id, component_id, last_msg);
     mavlink_test_cellular_modem_information(system_id, component_id, last_msg);
     mavlink_test_set_velocity_limits(system_id, component_id, last_msg);
     mavlink_test_velocity_limits(system_id, component_id, last_msg);

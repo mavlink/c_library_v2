@@ -107,8 +107,8 @@ static inline uint16_t mavlink_msg_set_attitude_target_pack(uint8_t system_id, u
     packet.target_system = target_system;
     packet.target_component = target_component;
     packet.type_mask = type_mask;
-    mav_array_memcpy(packet.q, q, sizeof(float)*4);
-    mav_array_memcpy(packet.thrust_body, thrust_body, sizeof(float)*3);
+    mav_array_assign_float(packet.q, q, 4);
+    mav_array_assign_float(packet.thrust_body, thrust_body, 3);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SET_ATTITUDE_TARGET_LEN);
 #endif
 
@@ -219,8 +219,8 @@ static inline uint16_t mavlink_msg_set_attitude_target_pack_chan(uint8_t system_
     packet.target_system = target_system;
     packet.target_component = target_component;
     packet.type_mask = type_mask;
-    mav_array_memcpy(packet.q, q, sizeof(float)*4);
-    mav_array_memcpy(packet.thrust_body, thrust_body, sizeof(float)*3);
+    mav_array_assign_float(packet.q, q, 4);
+    mav_array_assign_float(packet.thrust_body, thrust_body, 3);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SET_ATTITUDE_TARGET_LEN);
 #endif
 
@@ -311,8 +311,8 @@ static inline void mavlink_msg_set_attitude_target_send(mavlink_channel_t chan, 
     packet.target_system = target_system;
     packet.target_component = target_component;
     packet.type_mask = type_mask;
-    mav_array_memcpy(packet.q, q, sizeof(float)*4);
-    mav_array_memcpy(packet.thrust_body, thrust_body, sizeof(float)*3);
+    mav_array_assign_float(packet.q, q, 4);
+    mav_array_assign_float(packet.thrust_body, thrust_body, 3);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SET_ATTITUDE_TARGET, (const char *)&packet, MAVLINK_MSG_ID_SET_ATTITUDE_TARGET_MIN_LEN, MAVLINK_MSG_ID_SET_ATTITUDE_TARGET_LEN, MAVLINK_MSG_ID_SET_ATTITUDE_TARGET_CRC);
 #endif
 }
@@ -333,7 +333,7 @@ static inline void mavlink_msg_set_attitude_target_send_struct(mavlink_channel_t
 
 #if MAVLINK_MSG_ID_SET_ATTITUDE_TARGET_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -364,8 +364,8 @@ static inline void mavlink_msg_set_attitude_target_send_buf(mavlink_message_t *m
     packet->target_system = target_system;
     packet->target_component = target_component;
     packet->type_mask = type_mask;
-    mav_array_memcpy(packet->q, q, sizeof(float)*4);
-    mav_array_memcpy(packet->thrust_body, thrust_body, sizeof(float)*3);
+    mav_array_assign_float(packet->q, q, 4);
+    mav_array_assign_float(packet->thrust_body, thrust_body, 3);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SET_ATTITUDE_TARGET, (const char *)packet, MAVLINK_MSG_ID_SET_ATTITUDE_TARGET_MIN_LEN, MAVLINK_MSG_ID_SET_ATTITUDE_TARGET_LEN, MAVLINK_MSG_ID_SET_ATTITUDE_TARGET_CRC);
 #endif
 }

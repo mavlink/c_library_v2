@@ -83,7 +83,7 @@ static inline uint16_t mavlink_msg_logging_data_pack(uint8_t system_id, uint8_t 
     packet.target_component = target_component;
     packet.length = length;
     packet.first_message_offset = first_message_offset;
-    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*249);
+    mav_array_assign_uint8_t(packet.data, data, 249);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_LOGGING_DATA_LEN);
 #endif
 
@@ -171,7 +171,7 @@ static inline uint16_t mavlink_msg_logging_data_pack_chan(uint8_t system_id, uin
     packet.target_component = target_component;
     packet.length = length;
     packet.first_message_offset = first_message_offset;
-    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*249);
+    mav_array_assign_uint8_t(packet.data, data, 249);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_LOGGING_DATA_LEN);
 #endif
 
@@ -251,7 +251,7 @@ static inline void mavlink_msg_logging_data_send(mavlink_channel_t chan, uint8_t
     packet.target_component = target_component;
     packet.length = length;
     packet.first_message_offset = first_message_offset;
-    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*249);
+    mav_array_assign_uint8_t(packet.data, data, 249);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LOGGING_DATA, (const char *)&packet, MAVLINK_MSG_ID_LOGGING_DATA_MIN_LEN, MAVLINK_MSG_ID_LOGGING_DATA_LEN, MAVLINK_MSG_ID_LOGGING_DATA_CRC);
 #endif
 }
@@ -272,7 +272,7 @@ static inline void mavlink_msg_logging_data_send_struct(mavlink_channel_t chan, 
 
 #if MAVLINK_MSG_ID_LOGGING_DATA_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -296,7 +296,7 @@ static inline void mavlink_msg_logging_data_send_buf(mavlink_message_t *msgbuf, 
     packet->target_component = target_component;
     packet->length = length;
     packet->first_message_offset = first_message_offset;
-    mav_array_memcpy(packet->data, data, sizeof(uint8_t)*249);
+    mav_array_assign_uint8_t(packet->data, data, 249);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LOGGING_DATA, (const char *)packet, MAVLINK_MSG_ID_LOGGING_DATA_MIN_LEN, MAVLINK_MSG_ID_LOGGING_DATA_LEN, MAVLINK_MSG_ID_LOGGING_DATA_CRC);
 #endif
 }

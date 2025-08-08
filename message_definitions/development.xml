@@ -162,6 +162,16 @@
         <param index="6">Reserved</param>
         <param index="7">WIP: upgrade progress report rate (can be used for more granular control).</param>
       </entry>
+      <entry value="309" name="MAV_CMD_ACTUATOR_GROUP_TEST" hasLocation="false" isDestination="false">
+        <description>Command to test groups of related actuators together.
+          This might include groups such as the actuators that contribute to roll, pitch, or yaw torque, actuators that contribute to thrust in x, y, z axis, tilt mechanisms, flaps and spoilers, and so on.
+          This is similar to MAV_CMD_ACTUATOR_TEST, except that multiple actuators may be affected.
+          Different groups may also affect the same actuators (as in the case of controls that affect torque in different axes).
+          Autopilots must NACK this command with MAV_RESULT_TEMPORARILY_REJECTED while armed.
+        </description>
+        <param index="1" label="Group" enum="ACTUATOR_TEST_GROUP">Actuator group to check, such as actuators related to roll torque.</param>
+        <param index="2" label="Value" minValue="-1" maxValue="1">Value to set. This is a normalized value across the full range of the tested group [-1,1].</param>
+      </entry>
       <entry value="610" name="MAV_CMD_DO_SET_SYS_CMP_ID" hasLocation="false" isDestination="false">
         <description>
           Set system and component id.
@@ -383,6 +393,54 @@
         <description>RAIM integrity check failed.</description>
       </entry>
     </enum>
+    <enum name="ACTUATOR_TEST_GROUP">
+      <description>Actuator groups to test in MAV_CMD_ACTUATOR_GROUP_TEST.</description>
+      <entry value="0" name="ACTUATOR_TEST_GROUP_ROLL_TORQUE">
+        <description>Actuators that contribute to roll torque.</description>
+      </entry>
+      <entry value="1" name="ACTUATOR_TEST_GROUP_PITCH_TORQUE">
+        <description>Actuators that contribute to pitch torque.</description>
+      </entry>
+      <entry value="2" name="ACTUATOR_TEST_GROUP_YAW_TORQUE">
+        <description>Actuators that contribute to yaw torque.</description>
+      </entry>
+      <entry value="3" name="ACTUATOR_TEST_GROUP_COLLECTIVE_TILT">
+        <description>Actuators that affect collective tilt.</description>
+      </entry>
+    </enum>
+    <enum name="GLOBAL_POSITION_SRC">
+      <description>Source for GLOBAL_POSITION measurement or estimate.</description>
+      <entry value="0" name="GLOBAL_POSITION_UNKNOWN">
+        <description>Source is unknown or not one of the listed types.</description>
+      </entry>
+      <entry value="1" name="GLOBAL_POSITION_GNSS">
+        <description>Global Navigation Satellite System (e.g.: GPS, Galileo, Glonass, BeiDou).</description>
+      </entry>
+      <entry value="2" name="GLOBAL_POSITION_VISION">
+        <description>Vision system (e.g.: map matching).</description>
+      </entry>
+      <entry value="3" name="GLOBAL_POSITION_PSEUDOLITES">
+        <description>Pseudo-satellite system (performs GNSS-like function, but usually with transceiver beacons).</description>
+      </entry>
+      <entry value="4" name="GLOBAL_POSITION_TRN">
+        <description>Terrain referenced navigation.</description>
+      </entry>
+      <entry value="5" name="GLOBAL_POSITION_MAGNETIC">
+        <description>Magnetic positioning.</description>
+      </entry>
+      <entry value="6" name="GLOBAL_POSITION_ESTIMATOR">
+        <description>Estimated position based on various sensors (eg. a Kalman Filter).</description>
+      </entry>
+    </enum>
+    <enum name="GLOBAL_POSITION_FLAGS" bitmask="true">
+      <description>Status flags for GLOBAL_POSITION</description>
+      <entry value="1" name="GLOBAL_POSITION_UNHEALTHY">
+        <description>Unhealthy sensor/estimator.</description>
+      </entry>
+      <entry value="2" name="GLOBAL_POSITION_PRIMARY">
+        <description>True if the data originates from or is consumed by the primary estimator.</description>
+      </entry>
+    </enum>
   </enums>
   <messages>
     <message id="295" name="AIRSPEED">
@@ -393,20 +451,18 @@
       <field type="float" name="raw_press" units="hPa">Raw differential pressure. NaN for value unknown/not supplied.</field>
       <field type="uint8_t" name="flags" enum="AIRSPEED_SENSOR_FLAGS">Airspeed sensor flags.</field>
     </message>
-    <message id="296" name="EXTERNAL_GLOBAL_POSITION">
-      <description>Global position measurement from an external device.</description>
+    <message id="296" name="GLOBAL_POSITION">
+      <description>Global position measurement or estimate.</description>
       <field type="uint8_t" name="id" instance="true">Sensor ID</field>
       <field type="uint64_t" name="time_usec" units="us">Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.</field>
+      <field type="uint8_t" name="source" enum="GLOBAL_POSITION_SRC">Source of position/estimate (such as GNSS, estimator, etc.)</field>
+      <field type="uint8_t" name="flags" enum="GLOBAL_POSITION_FLAGS">Status flags</field>
       <field type="int32_t" name="lat" units="degE7" invalid="INT32_MAX">Latitude (WGS84)</field>
       <field type="int32_t" name="lon" units="degE7" invalid="INT32_MAX">Longitude (WGS84)</field>
-      <field type="float" name="alt" units="m" invalid="[NaN:]">Altitude (MSL)</field>
-      <field type="float" name="vn" units="m/s" invalid="[NaN:]">GPS velocity in north direction in earth-fixed NED frame. NaN is unused</field>
-      <field type="float" name="ve" units="m/s" invalid="[NaN:]">GPS velocity in east direction in earth-fixed NED frame</field>
-      <field type="float" name="vd" units="m/s" invalid="[NaN:]">GPS velocity in down direction in earth-fixed NED frame</field>
-      <field type="float" name="eph" units="m" invalid="[NaN:]">Standard deviation of horizontal position error</field>
-      <field type="float" name="epv" units="m" invalid="[NaN:]">Standard deviation of vertical position error</field>
-      <field type="float" name="evh" units="m" invalid="[NaN:]">Standard deviation of horizontal velocity error</field>
-      <field type="float" name="evv" units="m" invalid="[NaN:]">Standard deviation of vertical velocity error</field>
+      <field type="float" name="alt" units="m" invalid="NaN">Altitude (MSL - position-system specific value)</field>
+      <field type="float" name="alt_ellipsoid" units="m" invalid="NaN">Altitude (WGS84 elipsoid)</field>
+      <field type="float" name="eph" units="m" invalid="NaN">Standard deviation of horizontal position error</field>
+      <field type="float" name="epv" units="m" invalid="NaN">Standard deviation of vertical position error</field>
     </message>
     <message id="337" name="CELLULAR_MODEM_INFORMATION">
       <wip/>

@@ -149,9 +149,9 @@ static inline uint16_t mavlink_msg_control_system_state_pack(uint8_t system_id, 
     packet.roll_rate = roll_rate;
     packet.pitch_rate = pitch_rate;
     packet.yaw_rate = yaw_rate;
-    mav_array_memcpy(packet.vel_variance, vel_variance, sizeof(float)*3);
-    mav_array_memcpy(packet.pos_variance, pos_variance, sizeof(float)*3);
-    mav_array_memcpy(packet.q, q, sizeof(float)*4);
+    mav_array_assign_float(packet.vel_variance, vel_variance, 3);
+    mav_array_assign_float(packet.pos_variance, pos_variance, 3);
+    mav_array_assign_float(packet.q, q, 4);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE_LEN);
 #endif
 
@@ -303,9 +303,9 @@ static inline uint16_t mavlink_msg_control_system_state_pack_chan(uint8_t system
     packet.roll_rate = roll_rate;
     packet.pitch_rate = pitch_rate;
     packet.yaw_rate = yaw_rate;
-    mav_array_memcpy(packet.vel_variance, vel_variance, sizeof(float)*3);
-    mav_array_memcpy(packet.pos_variance, pos_variance, sizeof(float)*3);
-    mav_array_memcpy(packet.q, q, sizeof(float)*4);
+    mav_array_assign_float(packet.vel_variance, vel_variance, 3);
+    mav_array_assign_float(packet.pos_variance, pos_variance, 3);
+    mav_array_assign_float(packet.q, q, 4);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE_LEN);
 #endif
 
@@ -416,9 +416,9 @@ static inline void mavlink_msg_control_system_state_send(mavlink_channel_t chan,
     packet.roll_rate = roll_rate;
     packet.pitch_rate = pitch_rate;
     packet.yaw_rate = yaw_rate;
-    mav_array_memcpy(packet.vel_variance, vel_variance, sizeof(float)*3);
-    mav_array_memcpy(packet.pos_variance, pos_variance, sizeof(float)*3);
-    mav_array_memcpy(packet.q, q, sizeof(float)*4);
+    mav_array_assign_float(packet.vel_variance, vel_variance, 3);
+    mav_array_assign_float(packet.pos_variance, pos_variance, 3);
+    mav_array_assign_float(packet.q, q, 4);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE, (const char *)&packet, MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE_MIN_LEN, MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE_LEN, MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE_CRC);
 #endif
 }
@@ -439,7 +439,7 @@ static inline void mavlink_msg_control_system_state_send_struct(mavlink_channel_
 
 #if MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -483,9 +483,9 @@ static inline void mavlink_msg_control_system_state_send_buf(mavlink_message_t *
     packet->roll_rate = roll_rate;
     packet->pitch_rate = pitch_rate;
     packet->yaw_rate = yaw_rate;
-    mav_array_memcpy(packet->vel_variance, vel_variance, sizeof(float)*3);
-    mav_array_memcpy(packet->pos_variance, pos_variance, sizeof(float)*3);
-    mav_array_memcpy(packet->q, q, sizeof(float)*4);
+    mav_array_assign_float(packet->vel_variance, vel_variance, 3);
+    mav_array_assign_float(packet->pos_variance, pos_variance, 3);
+    mav_array_assign_float(packet->q, q, 4);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE, (const char *)packet, MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE_MIN_LEN, MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE_LEN, MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE_CRC);
 #endif
 }

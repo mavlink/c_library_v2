@@ -75,8 +75,8 @@ static inline uint16_t mavlink_msg_request_control_pack(uint8_t system_id, uint8
     mavlink_request_control_t packet;
     packet.control_target = control_target;
     packet.request_priority = request_priority;
-    mav_array_memcpy(packet.requester_id, requester_id, sizeof(char)*40);
-    mav_array_memcpy(packet.reason, reason, sizeof(char)*100);
+    mav_array_assign_char(packet.requester_id, requester_id, 40);
+    mav_array_assign_char(packet.reason, reason, 100);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_REQUEST_CONTROL_LEN);
 #endif
 
@@ -155,8 +155,8 @@ static inline uint16_t mavlink_msg_request_control_pack_chan(uint8_t system_id, 
     mavlink_request_control_t packet;
     packet.control_target = control_target;
     packet.request_priority = request_priority;
-    mav_array_memcpy(packet.requester_id, requester_id, sizeof(char)*40);
-    mav_array_memcpy(packet.reason, reason, sizeof(char)*100);
+    mav_array_assign_char(packet.requester_id, requester_id, 40);
+    mav_array_assign_char(packet.reason, reason, 100);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_REQUEST_CONTROL_LEN);
 #endif
 
@@ -231,8 +231,8 @@ static inline void mavlink_msg_request_control_send(mavlink_channel_t chan, uint
     mavlink_request_control_t packet;
     packet.control_target = control_target;
     packet.request_priority = request_priority;
-    mav_array_memcpy(packet.requester_id, requester_id, sizeof(char)*40);
-    mav_array_memcpy(packet.reason, reason, sizeof(char)*100);
+    mav_array_assign_char(packet.requester_id, requester_id, 40);
+    mav_array_assign_char(packet.reason, reason, 100);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_REQUEST_CONTROL, (const char *)&packet, MAVLINK_MSG_ID_REQUEST_CONTROL_MIN_LEN, MAVLINK_MSG_ID_REQUEST_CONTROL_LEN, MAVLINK_MSG_ID_REQUEST_CONTROL_CRC);
 #endif
 }
@@ -253,7 +253,7 @@ static inline void mavlink_msg_request_control_send_struct(mavlink_channel_t cha
 
 #if MAVLINK_MSG_ID_REQUEST_CONTROL_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -272,8 +272,8 @@ static inline void mavlink_msg_request_control_send_buf(mavlink_message_t *msgbu
     mavlink_request_control_t *packet = (mavlink_request_control_t *)msgbuf;
     packet->control_target = control_target;
     packet->request_priority = request_priority;
-    mav_array_memcpy(packet->requester_id, requester_id, sizeof(char)*40);
-    mav_array_memcpy(packet->reason, reason, sizeof(char)*100);
+    mav_array_assign_char(packet->requester_id, requester_id, 40);
+    mav_array_assign_char(packet->reason, reason, 100);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_REQUEST_CONTROL, (const char *)packet, MAVLINK_MSG_ID_REQUEST_CONTROL_MIN_LEN, MAVLINK_MSG_ID_REQUEST_CONTROL_LEN, MAVLINK_MSG_ID_REQUEST_CONTROL_CRC);
 #endif
 }
