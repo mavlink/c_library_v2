@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH 4356832729749457086
+#define MAVLINK_COMMON_XML_HASH 8131353652501079161
 
 #ifdef __cplusplus
 extern "C" {
@@ -1716,7 +1716,8 @@ typedef enum CAMERA_TRACKING_STATUS_FLAGS
    CAMERA_TRACKING_STATUS_FLAGS_ACTIVE=1, /* Camera is tracking | */
    CAMERA_TRACKING_STATUS_FLAGS_ERROR=2, /* Camera tracking in error state | */
    CAMERA_TRACKING_STATUS_FLAGS_MTI=4, /* Camera Moving Target Indicators (MTI) are active | */
-   CAMERA_TRACKING_STATUS_FLAGS_ENUM_END=5, /*  | */
+   CAMERA_TRACKING_STATUS_FLAGS_COASTING=8, /* Camera tracking target is obscured and is being predicted | */
+   CAMERA_TRACKING_STATUS_FLAGS_ENUM_END=9, /*  | */
 } CAMERA_TRACKING_STATUS_FLAGS;
 #endif
 
