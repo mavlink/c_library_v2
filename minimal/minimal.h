@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_MINIMAL.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_MINIMAL_XML_HASH 5202347693285294188
+#define MAVLINK_MINIMAL_XML_HASH -355228530340659473
 
 #ifdef __cplusplus
 extern "C" {
@@ -117,7 +117,8 @@ typedef enum MAV_TYPE
    MAV_TYPE_GROUND_QUADRUPED=46, /* A generic four-legged ground vehicle (e.g., a robot dog). | */
    MAV_TYPE_VTOL_GYRODYNE=47, /* VTOL hybrid of helicopter and autogyro. It has a main rotor for lift and separate propellers for forward flight. The rotor must be powered for hover but can autorotate in cruise flight. See: https://en.wikipedia.org/wiki/Gyrodyne | */
    MAV_TYPE_GRIPPER=48, /* Gripper | */
-   MAV_TYPE_ENUM_END=49, /*  | */
+   MAV_TYPE_RADIO=49, /* Radio | */
+   MAV_TYPE_ENUM_END=50, /*  | */
 } MAV_TYPE;
 #endif
 
@@ -272,6 +273,9 @@ typedef enum MAV_COMPONENT
    MAV_COMP_ID_CAMERA4=103, /* Camera #4. | */
    MAV_COMP_ID_CAMERA5=104, /* Camera #5. | */
    MAV_COMP_ID_CAMERA6=105, /* Camera #6. | */
+   MAV_COMP_ID_RADIO=110, /* Radio #1. | */
+   MAV_COMP_ID_RADIO2=111, /* Radio #2. | */
+   MAV_COMP_ID_RADIO3=112, /* Radio #3. | */
    MAV_COMP_ID_SERVO1=140, /* Servo #1. | */
    MAV_COMP_ID_SERVO2=141, /* Servo #2. | */
    MAV_COMP_ID_SERVO3=142, /* Servo #3. | */
