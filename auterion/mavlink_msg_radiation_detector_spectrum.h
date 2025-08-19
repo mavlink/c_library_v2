@@ -71,7 +71,7 @@ static inline uint16_t mavlink_msg_radiation_detector_spectrum_pack(uint8_t syst
     packet.serial_no = serial_no;
     packet.msg_no = msg_no;
     packet.seq_no = seq_no;
-    mav_array_assign_uint8_t(packet.segment, segment, 249);
+    mav_array_memcpy(packet.segment, segment, sizeof(uint8_t)*249);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_RADIATION_DETECTOR_SPECTRUM_LEN);
 #endif
 
@@ -147,7 +147,7 @@ static inline uint16_t mavlink_msg_radiation_detector_spectrum_pack_chan(uint8_t
     packet.serial_no = serial_no;
     packet.msg_no = msg_no;
     packet.seq_no = seq_no;
-    mav_array_assign_uint8_t(packet.segment, segment, 249);
+    mav_array_memcpy(packet.segment, segment, sizeof(uint8_t)*249);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_RADIATION_DETECTOR_SPECTRUM_LEN);
 #endif
 
@@ -221,7 +221,7 @@ static inline void mavlink_msg_radiation_detector_spectrum_send(mavlink_channel_
     packet.serial_no = serial_no;
     packet.msg_no = msg_no;
     packet.seq_no = seq_no;
-    mav_array_assign_uint8_t(packet.segment, segment, 249);
+    mav_array_memcpy(packet.segment, segment, sizeof(uint8_t)*249);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RADIATION_DETECTOR_SPECTRUM, (const char *)&packet, MAVLINK_MSG_ID_RADIATION_DETECTOR_SPECTRUM_MIN_LEN, MAVLINK_MSG_ID_RADIATION_DETECTOR_SPECTRUM_LEN, MAVLINK_MSG_ID_RADIATION_DETECTOR_SPECTRUM_CRC);
 #endif
 }
@@ -242,7 +242,7 @@ static inline void mavlink_msg_radiation_detector_spectrum_send_struct(mavlink_c
 
 #if MAVLINK_MSG_ID_RADIATION_DETECTOR_SPECTRUM_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by reusing
+  This variant of _send() can be used to save stack space by re-using
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -262,7 +262,7 @@ static inline void mavlink_msg_radiation_detector_spectrum_send_buf(mavlink_mess
     packet->serial_no = serial_no;
     packet->msg_no = msg_no;
     packet->seq_no = seq_no;
-    mav_array_assign_uint8_t(packet->segment, segment, 249);
+    mav_array_memcpy(packet->segment, segment, sizeof(uint8_t)*249);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RADIATION_DETECTOR_SPECTRUM, (const char *)packet, MAVLINK_MSG_ID_RADIATION_DETECTOR_SPECTRUM_MIN_LEN, MAVLINK_MSG_ID_RADIATION_DETECTOR_SPECTRUM_LEN, MAVLINK_MSG_ID_RADIATION_DETECTOR_SPECTRUM_CRC);
 #endif
 }
