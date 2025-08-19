@@ -89,10 +89,10 @@ static inline uint16_t mavlink_msg_cellular_modem_information_pack(uint8_t syste
     packet.imei = imei;
     packet.imsi = imsi;
     packet.id = id;
-    mav_array_assign_char(packet.modem_id, modem_id, 10);
-    mav_array_assign_char(packet.iccid, iccid, 20);
-    mav_array_assign_char(packet.firmware, firmware, 24);
-    mav_array_assign_char(packet.modem_model, modem_model, 50);
+    mav_array_memcpy(packet.modem_id, modem_id, sizeof(char)*10);
+    mav_array_memcpy(packet.iccid, iccid, sizeof(char)*20);
+    mav_array_memcpy(packet.firmware, firmware, sizeof(char)*24);
+    mav_array_memcpy(packet.modem_model, modem_model, sizeof(char)*50);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CELLULAR_MODEM_INFORMATION_LEN);
 #endif
 
@@ -183,10 +183,10 @@ static inline uint16_t mavlink_msg_cellular_modem_information_pack_chan(uint8_t 
     packet.imei = imei;
     packet.imsi = imsi;
     packet.id = id;
-    mav_array_assign_char(packet.modem_id, modem_id, 10);
-    mav_array_assign_char(packet.iccid, iccid, 20);
-    mav_array_assign_char(packet.firmware, firmware, 24);
-    mav_array_assign_char(packet.modem_model, modem_model, 50);
+    mav_array_memcpy(packet.modem_id, modem_id, sizeof(char)*10);
+    mav_array_memcpy(packet.iccid, iccid, sizeof(char)*20);
+    mav_array_memcpy(packet.firmware, firmware, sizeof(char)*24);
+    mav_array_memcpy(packet.modem_model, modem_model, sizeof(char)*50);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CELLULAR_MODEM_INFORMATION_LEN);
 #endif
 
@@ -266,10 +266,10 @@ static inline void mavlink_msg_cellular_modem_information_send(mavlink_channel_t
     packet.imei = imei;
     packet.imsi = imsi;
     packet.id = id;
-    mav_array_assign_char(packet.modem_id, modem_id, 10);
-    mav_array_assign_char(packet.iccid, iccid, 20);
-    mav_array_assign_char(packet.firmware, firmware, 24);
-    mav_array_assign_char(packet.modem_model, modem_model, 50);
+    mav_array_memcpy(packet.modem_id, modem_id, sizeof(char)*10);
+    mav_array_memcpy(packet.iccid, iccid, sizeof(char)*20);
+    mav_array_memcpy(packet.firmware, firmware, sizeof(char)*24);
+    mav_array_memcpy(packet.modem_model, modem_model, sizeof(char)*50);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CELLULAR_MODEM_INFORMATION, (const char *)&packet, MAVLINK_MSG_ID_CELLULAR_MODEM_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_CELLULAR_MODEM_INFORMATION_LEN, MAVLINK_MSG_ID_CELLULAR_MODEM_INFORMATION_CRC);
 #endif
 }
@@ -290,7 +290,7 @@ static inline void mavlink_msg_cellular_modem_information_send_struct(mavlink_ch
 
 #if MAVLINK_MSG_ID_CELLULAR_MODEM_INFORMATION_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by reusing
+  This variant of _send() can be used to save stack space by re-using
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -313,10 +313,10 @@ static inline void mavlink_msg_cellular_modem_information_send_buf(mavlink_messa
     packet->imei = imei;
     packet->imsi = imsi;
     packet->id = id;
-    mav_array_assign_char(packet->modem_id, modem_id, 10);
-    mav_array_assign_char(packet->iccid, iccid, 20);
-    mav_array_assign_char(packet->firmware, firmware, 24);
-    mav_array_assign_char(packet->modem_model, modem_model, 50);
+    mav_array_memcpy(packet->modem_id, modem_id, sizeof(char)*10);
+    mav_array_memcpy(packet->iccid, iccid, sizeof(char)*20);
+    mav_array_memcpy(packet->firmware, firmware, sizeof(char)*24);
+    mav_array_memcpy(packet->modem_model, modem_model, sizeof(char)*50);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CELLULAR_MODEM_INFORMATION, (const char *)packet, MAVLINK_MSG_ID_CELLULAR_MODEM_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_CELLULAR_MODEM_INFORMATION_LEN, MAVLINK_MSG_ID_CELLULAR_MODEM_INFORMATION_CRC);
 #endif
 }

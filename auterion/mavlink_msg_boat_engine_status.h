@@ -101,13 +101,13 @@ static inline uint16_t mavlink_msg_boat_engine_status_pack(uint8_t system_id, ui
     mavlink_boat_engine_status_t packet;
     packet.time_usec = time_usec;
     packet.fuel_consumption_rate = fuel_consumption_rate;
-    mav_array_assign_float(packet.oil_pressure, oil_pressure, 6);
-    mav_array_assign_float(packet.engine_coolant_temperature, engine_coolant_temperature, 6);
-    mav_array_assign_uint16_t(packet.engine_rpm, engine_rpm, 6);
-    mav_array_assign_uint8_t(packet.engine_state, engine_state, 6);
-    mav_array_assign_uint8_t(packet.engine_load, engine_load, 6);
-    mav_array_assign_uint8_t(packet.throttle_position, throttle_position, 6);
-    mav_array_assign_uint8_t(packet.transmission_state, transmission_state, 6);
+    mav_array_memcpy(packet.oil_pressure, oil_pressure, sizeof(float)*6);
+    mav_array_memcpy(packet.engine_coolant_temperature, engine_coolant_temperature, sizeof(float)*6);
+    mav_array_memcpy(packet.engine_rpm, engine_rpm, sizeof(uint16_t)*6);
+    mav_array_memcpy(packet.engine_state, engine_state, sizeof(uint8_t)*6);
+    mav_array_memcpy(packet.engine_load, engine_load, sizeof(uint8_t)*6);
+    mav_array_memcpy(packet.throttle_position, throttle_position, sizeof(uint8_t)*6);
+    mav_array_memcpy(packet.transmission_state, transmission_state, sizeof(uint8_t)*6);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_BOAT_ENGINE_STATUS_LEN);
 #endif
 
@@ -207,13 +207,13 @@ static inline uint16_t mavlink_msg_boat_engine_status_pack_chan(uint8_t system_i
     mavlink_boat_engine_status_t packet;
     packet.time_usec = time_usec;
     packet.fuel_consumption_rate = fuel_consumption_rate;
-    mav_array_assign_float(packet.oil_pressure, oil_pressure, 6);
-    mav_array_assign_float(packet.engine_coolant_temperature, engine_coolant_temperature, 6);
-    mav_array_assign_uint16_t(packet.engine_rpm, engine_rpm, 6);
-    mav_array_assign_uint8_t(packet.engine_state, engine_state, 6);
-    mav_array_assign_uint8_t(packet.engine_load, engine_load, 6);
-    mav_array_assign_uint8_t(packet.throttle_position, throttle_position, 6);
-    mav_array_assign_uint8_t(packet.transmission_state, transmission_state, 6);
+    mav_array_memcpy(packet.oil_pressure, oil_pressure, sizeof(float)*6);
+    mav_array_memcpy(packet.engine_coolant_temperature, engine_coolant_temperature, sizeof(float)*6);
+    mav_array_memcpy(packet.engine_rpm, engine_rpm, sizeof(uint16_t)*6);
+    mav_array_memcpy(packet.engine_state, engine_state, sizeof(uint8_t)*6);
+    mav_array_memcpy(packet.engine_load, engine_load, sizeof(uint8_t)*6);
+    mav_array_memcpy(packet.throttle_position, throttle_position, sizeof(uint8_t)*6);
+    mav_array_memcpy(packet.transmission_state, transmission_state, sizeof(uint8_t)*6);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_BOAT_ENGINE_STATUS_LEN);
 #endif
 
@@ -296,13 +296,13 @@ static inline void mavlink_msg_boat_engine_status_send(mavlink_channel_t chan, u
     mavlink_boat_engine_status_t packet;
     packet.time_usec = time_usec;
     packet.fuel_consumption_rate = fuel_consumption_rate;
-    mav_array_assign_float(packet.oil_pressure, oil_pressure, 6);
-    mav_array_assign_float(packet.engine_coolant_temperature, engine_coolant_temperature, 6);
-    mav_array_assign_uint16_t(packet.engine_rpm, engine_rpm, 6);
-    mav_array_assign_uint8_t(packet.engine_state, engine_state, 6);
-    mav_array_assign_uint8_t(packet.engine_load, engine_load, 6);
-    mav_array_assign_uint8_t(packet.throttle_position, throttle_position, 6);
-    mav_array_assign_uint8_t(packet.transmission_state, transmission_state, 6);
+    mav_array_memcpy(packet.oil_pressure, oil_pressure, sizeof(float)*6);
+    mav_array_memcpy(packet.engine_coolant_temperature, engine_coolant_temperature, sizeof(float)*6);
+    mav_array_memcpy(packet.engine_rpm, engine_rpm, sizeof(uint16_t)*6);
+    mav_array_memcpy(packet.engine_state, engine_state, sizeof(uint8_t)*6);
+    mav_array_memcpy(packet.engine_load, engine_load, sizeof(uint8_t)*6);
+    mav_array_memcpy(packet.throttle_position, throttle_position, sizeof(uint8_t)*6);
+    mav_array_memcpy(packet.transmission_state, transmission_state, sizeof(uint8_t)*6);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_BOAT_ENGINE_STATUS, (const char *)&packet, MAVLINK_MSG_ID_BOAT_ENGINE_STATUS_MIN_LEN, MAVLINK_MSG_ID_BOAT_ENGINE_STATUS_LEN, MAVLINK_MSG_ID_BOAT_ENGINE_STATUS_CRC);
 #endif
 }
@@ -323,7 +323,7 @@ static inline void mavlink_msg_boat_engine_status_send_struct(mavlink_channel_t 
 
 #if MAVLINK_MSG_ID_BOAT_ENGINE_STATUS_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by reusing
+  This variant of _send() can be used to save stack space by re-using
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -347,13 +347,13 @@ static inline void mavlink_msg_boat_engine_status_send_buf(mavlink_message_t *ms
     mavlink_boat_engine_status_t *packet = (mavlink_boat_engine_status_t *)msgbuf;
     packet->time_usec = time_usec;
     packet->fuel_consumption_rate = fuel_consumption_rate;
-    mav_array_assign_float(packet->oil_pressure, oil_pressure, 6);
-    mav_array_assign_float(packet->engine_coolant_temperature, engine_coolant_temperature, 6);
-    mav_array_assign_uint16_t(packet->engine_rpm, engine_rpm, 6);
-    mav_array_assign_uint8_t(packet->engine_state, engine_state, 6);
-    mav_array_assign_uint8_t(packet->engine_load, engine_load, 6);
-    mav_array_assign_uint8_t(packet->throttle_position, throttle_position, 6);
-    mav_array_assign_uint8_t(packet->transmission_state, transmission_state, 6);
+    mav_array_memcpy(packet->oil_pressure, oil_pressure, sizeof(float)*6);
+    mav_array_memcpy(packet->engine_coolant_temperature, engine_coolant_temperature, sizeof(float)*6);
+    mav_array_memcpy(packet->engine_rpm, engine_rpm, sizeof(uint16_t)*6);
+    mav_array_memcpy(packet->engine_state, engine_state, sizeof(uint8_t)*6);
+    mav_array_memcpy(packet->engine_load, engine_load, sizeof(uint8_t)*6);
+    mav_array_memcpy(packet->throttle_position, throttle_position, sizeof(uint8_t)*6);
+    mav_array_memcpy(packet->transmission_state, transmission_state, sizeof(uint8_t)*6);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_BOAT_ENGINE_STATUS, (const char *)packet, MAVLINK_MSG_ID_BOAT_ENGINE_STATUS_MIN_LEN, MAVLINK_MSG_ID_BOAT_ENGINE_STATUS_LEN, MAVLINK_MSG_ID_BOAT_ENGINE_STATUS_CRC);
 #endif
 }

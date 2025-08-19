@@ -65,8 +65,8 @@ static inline uint16_t mavlink_msg_request_handoff_pack(uint8_t system_id, uint8
 #else
     mavlink_request_handoff_t packet;
     packet.control_target = control_target;
-    mav_array_assign_char(packet.requester_id, requester_id, 40);
-    mav_array_assign_char(packet.reason, reason, 100);
+    mav_array_memcpy(packet.requester_id, requester_id, sizeof(char)*40);
+    mav_array_memcpy(packet.reason, reason, sizeof(char)*100);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_REQUEST_HANDOFF_LEN);
 #endif
 
@@ -135,8 +135,8 @@ static inline uint16_t mavlink_msg_request_handoff_pack_chan(uint8_t system_id, 
 #else
     mavlink_request_handoff_t packet;
     packet.control_target = control_target;
-    mav_array_assign_char(packet.requester_id, requester_id, 40);
-    mav_array_assign_char(packet.reason, reason, 100);
+    mav_array_memcpy(packet.requester_id, requester_id, sizeof(char)*40);
+    mav_array_memcpy(packet.reason, reason, sizeof(char)*100);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_REQUEST_HANDOFF_LEN);
 #endif
 
@@ -206,8 +206,8 @@ static inline void mavlink_msg_request_handoff_send(mavlink_channel_t chan, uint
 #else
     mavlink_request_handoff_t packet;
     packet.control_target = control_target;
-    mav_array_assign_char(packet.requester_id, requester_id, 40);
-    mav_array_assign_char(packet.reason, reason, 100);
+    mav_array_memcpy(packet.requester_id, requester_id, sizeof(char)*40);
+    mav_array_memcpy(packet.reason, reason, sizeof(char)*100);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_REQUEST_HANDOFF, (const char *)&packet, MAVLINK_MSG_ID_REQUEST_HANDOFF_MIN_LEN, MAVLINK_MSG_ID_REQUEST_HANDOFF_LEN, MAVLINK_MSG_ID_REQUEST_HANDOFF_CRC);
 #endif
 }
@@ -228,7 +228,7 @@ static inline void mavlink_msg_request_handoff_send_struct(mavlink_channel_t cha
 
 #if MAVLINK_MSG_ID_REQUEST_HANDOFF_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by reusing
+  This variant of _send() can be used to save stack space by re-using
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -245,8 +245,8 @@ static inline void mavlink_msg_request_handoff_send_buf(mavlink_message_t *msgbu
 #else
     mavlink_request_handoff_t *packet = (mavlink_request_handoff_t *)msgbuf;
     packet->control_target = control_target;
-    mav_array_assign_char(packet->requester_id, requester_id, 40);
-    mav_array_assign_char(packet->reason, reason, 100);
+    mav_array_memcpy(packet->requester_id, requester_id, sizeof(char)*40);
+    mav_array_memcpy(packet->reason, reason, sizeof(char)*100);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_REQUEST_HANDOFF, (const char *)packet, MAVLINK_MSG_ID_REQUEST_HANDOFF_MIN_LEN, MAVLINK_MSG_ID_REQUEST_HANDOFF_LEN, MAVLINK_MSG_ID_REQUEST_HANDOFF_CRC);
 #endif
 }
