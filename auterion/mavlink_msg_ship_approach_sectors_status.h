@@ -5,16 +5,16 @@
 
 
 typedef struct __mavlink_ship_approach_sectors_status_t {
- uint16_t sectors; /*<  Bitmap indicating which ship approach sectors are set. In clockwise order.*/
+ uint8_t sectors; /*<  Bitmap indicating which ship approach sectors are set. In clockwise order.*/
 } mavlink_ship_approach_sectors_status_t;
 
-#define MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_LEN 2
-#define MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_MIN_LEN 2
-#define MAVLINK_MSG_ID_13672_LEN 2
-#define MAVLINK_MSG_ID_13672_MIN_LEN 2
+#define MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_LEN 1
+#define MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_MIN_LEN 1
+#define MAVLINK_MSG_ID_13672_LEN 1
+#define MAVLINK_MSG_ID_13672_MIN_LEN 1
 
-#define MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_CRC 233
-#define MAVLINK_MSG_ID_13672_CRC 233
+#define MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_CRC 38
+#define MAVLINK_MSG_ID_13672_CRC 38
 
 
 
@@ -23,14 +23,14 @@ typedef struct __mavlink_ship_approach_sectors_status_t {
     13672, \
     "SHIP_APPROACH_SECTORS_STATUS", \
     1, \
-    {  { "sectors", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_ship_approach_sectors_status_t, sectors) }, \
+    {  { "sectors", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_ship_approach_sectors_status_t, sectors) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_SHIP_APPROACH_SECTORS_STATUS { \
     "SHIP_APPROACH_SECTORS_STATUS", \
     1, \
-    {  { "sectors", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_ship_approach_sectors_status_t, sectors) }, \
+    {  { "sectors", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_ship_approach_sectors_status_t, sectors) }, \
          } \
 }
 #endif
@@ -45,11 +45,11 @@ typedef struct __mavlink_ship_approach_sectors_status_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ship_approach_sectors_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint16_t sectors)
+                               uint8_t sectors)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_LEN];
-    _mav_put_uint16_t(buf, 0, sectors);
+    _mav_put_uint8_t(buf, 0, sectors);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_LEN);
 #else
@@ -74,11 +74,11 @@ static inline uint16_t mavlink_msg_ship_approach_sectors_status_pack(uint8_t sys
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ship_approach_sectors_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               uint16_t sectors)
+                               uint8_t sectors)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_LEN];
-    _mav_put_uint16_t(buf, 0, sectors);
+    _mav_put_uint8_t(buf, 0, sectors);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_LEN);
 #else
@@ -107,11 +107,11 @@ static inline uint16_t mavlink_msg_ship_approach_sectors_status_pack_status(uint
  */
 static inline uint16_t mavlink_msg_ship_approach_sectors_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint16_t sectors)
+                                   uint8_t sectors)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_LEN];
-    _mav_put_uint16_t(buf, 0, sectors);
+    _mav_put_uint8_t(buf, 0, sectors);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_LEN);
 #else
@@ -174,11 +174,11 @@ static inline uint16_t mavlink_msg_ship_approach_sectors_status_encode_status(ui
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_ship_approach_sectors_status_send(mavlink_channel_t chan, uint16_t sectors)
+static inline void mavlink_msg_ship_approach_sectors_status_send(mavlink_channel_t chan, uint8_t sectors)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_LEN];
-    _mav_put_uint16_t(buf, 0, sectors);
+    _mav_put_uint8_t(buf, 0, sectors);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS, buf, MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_MIN_LEN, MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_LEN, MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_CRC);
 #else
@@ -211,11 +211,11 @@ static inline void mavlink_msg_ship_approach_sectors_status_send_struct(mavlink_
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_ship_approach_sectors_status_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint16_t sectors)
+static inline void mavlink_msg_ship_approach_sectors_status_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t sectors)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
-    _mav_put_uint16_t(buf, 0, sectors);
+    _mav_put_uint8_t(buf, 0, sectors);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS, buf, MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_MIN_LEN, MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_LEN, MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_CRC);
 #else
@@ -237,9 +237,9 @@ static inline void mavlink_msg_ship_approach_sectors_status_send_buf(mavlink_mes
  *
  * @return  Bitmap indicating which ship approach sectors are set. In clockwise order.
  */
-static inline uint16_t mavlink_msg_ship_approach_sectors_status_get_sectors(const mavlink_message_t* msg)
+static inline uint8_t mavlink_msg_ship_approach_sectors_status_get_sectors(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint16_t(msg,  0);
+    return _MAV_RETURN_uint8_t(msg,  0);
 }
 
 /**

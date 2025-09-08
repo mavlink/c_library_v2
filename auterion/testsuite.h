@@ -1603,7 +1603,7 @@ static void mavlink_test_ship_approach_sectors_status(uint8_t system_id, uint8_t
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_ship_approach_sectors_status_t packet_in = {
-        17235
+        5
     };
     mavlink_ship_approach_sectors_status_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
