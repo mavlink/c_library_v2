@@ -55,7 +55,7 @@ static inline uint16_t mavlink_msg_array_test_1_pack(uint8_t system_id, uint8_t 
 #else
     mavlink_array_test_1_t packet;
 
-    mav_array_assign_uint32_t(packet.ar_u32, ar_u32, 4);
+    mav_array_memcpy(packet.ar_u32, ar_u32, sizeof(uint32_t)*4);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ARRAY_TEST_1_LEN);
 #endif
 
@@ -117,7 +117,7 @@ static inline uint16_t mavlink_msg_array_test_1_pack_chan(uint8_t system_id, uin
 #else
     mavlink_array_test_1_t packet;
 
-    mav_array_assign_uint32_t(packet.ar_u32, ar_u32, 4);
+    mav_array_memcpy(packet.ar_u32, ar_u32, sizeof(uint32_t)*4);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ARRAY_TEST_1_LEN);
 #endif
 
@@ -184,7 +184,7 @@ static inline void mavlink_msg_array_test_1_send(mavlink_channel_t chan, const u
 #else
     mavlink_array_test_1_t packet;
 
-    mav_array_assign_uint32_t(packet.ar_u32, ar_u32, 4);
+    mav_array_memcpy(packet.ar_u32, ar_u32, sizeof(uint32_t)*4);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ARRAY_TEST_1, (const char *)&packet, MAVLINK_MSG_ID_ARRAY_TEST_1_MIN_LEN, MAVLINK_MSG_ID_ARRAY_TEST_1_LEN, MAVLINK_MSG_ID_ARRAY_TEST_1_CRC);
 #endif
 }
@@ -205,7 +205,7 @@ static inline void mavlink_msg_array_test_1_send_struct(mavlink_channel_t chan, 
 
 #if MAVLINK_MSG_ID_ARRAY_TEST_1_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by reusing
+  This variant of _send() can be used to save stack space by re-using
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -221,7 +221,7 @@ static inline void mavlink_msg_array_test_1_send_buf(mavlink_message_t *msgbuf, 
 #else
     mavlink_array_test_1_t *packet = (mavlink_array_test_1_t *)msgbuf;
 
-    mav_array_assign_uint32_t(packet->ar_u32, ar_u32, 4);
+    mav_array_memcpy(packet->ar_u32, ar_u32, sizeof(uint32_t)*4);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ARRAY_TEST_1, (const char *)packet, MAVLINK_MSG_ID_ARRAY_TEST_1_MIN_LEN, MAVLINK_MSG_ID_ARRAY_TEST_1_LEN, MAVLINK_MSG_ID_ARRAY_TEST_1_CRC);
 #endif
 }

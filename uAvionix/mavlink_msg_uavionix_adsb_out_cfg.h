@@ -12,7 +12,7 @@ typedef struct __mavlink_uavionix_adsb_out_cfg_t {
  uint8_t aircraftSize; /*<  Aircraft length and width encoding (table 2-35 of DO-282B)*/
  uint8_t gpsOffsetLat; /*<  GPS antenna lateral offset (table 2-36 of DO-282B)*/
  uint8_t gpsOffsetLon; /*<  GPS antenna longitudinal offset from nose [if non-zero, take position (in meters) divide by 2 and add one] (table 2-37 DO-282B)*/
- uint8_t rfSelect; /*<  ADS-B transponder receiver and transmit enable flags*/
+ uint8_t rfSelect; /*<  ADS-B transponder reciever and transmit enable flags*/
 } mavlink_uavionix_adsb_out_cfg_t;
 
 #define MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_LEN 20
@@ -69,7 +69,7 @@ typedef struct __mavlink_uavionix_adsb_out_cfg_t {
  * @param gpsOffsetLat  GPS antenna lateral offset (table 2-36 of DO-282B)
  * @param gpsOffsetLon  GPS antenna longitudinal offset from nose [if non-zero, take position (in meters) divide by 2 and add one] (table 2-37 DO-282B)
  * @param stallSpeed [cm/s] Aircraft stall speed in cm/s
- * @param rfSelect  ADS-B transponder receiver and transmit enable flags
+ * @param rfSelect  ADS-B transponder reciever and transmit enable flags
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -95,7 +95,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_pack(uint8_t system_id,
     packet.gpsOffsetLat = gpsOffsetLat;
     packet.gpsOffsetLon = gpsOffsetLon;
     packet.rfSelect = rfSelect;
-    mav_array_assign_char(packet.callsign, callsign, 9);
+    mav_array_memcpy(packet.callsign, callsign, sizeof(char)*9);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_LEN);
 #endif
 
@@ -117,7 +117,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_pack(uint8_t system_id,
  * @param gpsOffsetLat  GPS antenna lateral offset (table 2-36 of DO-282B)
  * @param gpsOffsetLon  GPS antenna longitudinal offset from nose [if non-zero, take position (in meters) divide by 2 and add one] (table 2-37 DO-282B)
  * @param stallSpeed [cm/s] Aircraft stall speed in cm/s
- * @param rfSelect  ADS-B transponder receiver and transmit enable flags
+ * @param rfSelect  ADS-B transponder reciever and transmit enable flags
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
@@ -168,7 +168,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_pack_status(uint8_t sys
  * @param gpsOffsetLat  GPS antenna lateral offset (table 2-36 of DO-282B)
  * @param gpsOffsetLon  GPS antenna longitudinal offset from nose [if non-zero, take position (in meters) divide by 2 and add one] (table 2-37 DO-282B)
  * @param stallSpeed [cm/s] Aircraft stall speed in cm/s
- * @param rfSelect  ADS-B transponder receiver and transmit enable flags
+ * @param rfSelect  ADS-B transponder reciever and transmit enable flags
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -195,7 +195,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_pack_chan(uint8_t syste
     packet.gpsOffsetLat = gpsOffsetLat;
     packet.gpsOffsetLon = gpsOffsetLon;
     packet.rfSelect = rfSelect;
-    mav_array_assign_char(packet.callsign, callsign, 9);
+    mav_array_memcpy(packet.callsign, callsign, sizeof(char)*9);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_LEN);
 #endif
 
@@ -255,7 +255,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_encode_status(uint8_t s
  * @param gpsOffsetLat  GPS antenna lateral offset (table 2-36 of DO-282B)
  * @param gpsOffsetLon  GPS antenna longitudinal offset from nose [if non-zero, take position (in meters) divide by 2 and add one] (table 2-37 DO-282B)
  * @param stallSpeed [cm/s] Aircraft stall speed in cm/s
- * @param rfSelect  ADS-B transponder receiver and transmit enable flags
+ * @param rfSelect  ADS-B transponder reciever and transmit enable flags
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -281,7 +281,7 @@ static inline void mavlink_msg_uavionix_adsb_out_cfg_send(mavlink_channel_t chan
     packet.gpsOffsetLat = gpsOffsetLat;
     packet.gpsOffsetLon = gpsOffsetLon;
     packet.rfSelect = rfSelect;
-    mav_array_assign_char(packet.callsign, callsign, 9);
+    mav_array_memcpy(packet.callsign, callsign, sizeof(char)*9);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG, (const char *)&packet, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_CRC);
 #endif
 }
@@ -302,7 +302,7 @@ static inline void mavlink_msg_uavionix_adsb_out_cfg_send_struct(mavlink_channel
 
 #if MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by reusing
+  This variant of _send() can be used to save stack space by re-using
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -330,7 +330,7 @@ static inline void mavlink_msg_uavionix_adsb_out_cfg_send_buf(mavlink_message_t 
     packet->gpsOffsetLat = gpsOffsetLat;
     packet->gpsOffsetLon = gpsOffsetLon;
     packet->rfSelect = rfSelect;
-    mav_array_assign_char(packet->callsign, callsign, 9);
+    mav_array_memcpy(packet->callsign, callsign, sizeof(char)*9);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG, (const char *)packet, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_CRC);
 #endif
 }
@@ -414,7 +414,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_get_stallSpeed(const ma
 /**
  * @brief Get field rfSelect from uavionix_adsb_out_cfg message
  *
- * @return  ADS-B transponder receiver and transmit enable flags
+ * @return  ADS-B transponder reciever and transmit enable flags
  */
 static inline uint8_t mavlink_msg_uavionix_adsb_out_cfg_get_rfSelect(const mavlink_message_t* msg)
 {

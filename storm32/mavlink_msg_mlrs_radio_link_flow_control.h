@@ -6,7 +6,7 @@
 
 typedef struct __mavlink_mlrs_radio_link_flow_control_t {
  uint16_t tx_ser_rate; /*< [bytes/s] Transmitted bytes per second, UINT16_MAX: invalid/unknown.*/
- uint16_t rx_ser_rate; /*< [bytes/s] Received bytes per second, UINT16_MAX: invalid/unknown.*/
+ uint16_t rx_ser_rate; /*< [bytes/s] Recieved bytes per second, UINT16_MAX: invalid/unknown.*/
  uint8_t tx_used_ser_bandwidth; /*< [c%] Transmit bandwidth consumption. Values: 0..100, UINT8_MAX: invalid/unknown.*/
  uint8_t rx_used_ser_bandwidth; /*< [c%] Receive bandwidth consumption. Values: 0..100, UINT8_MAX: invalid/unknown.*/
  uint8_t txbuf; /*< [c%] For compatibility with legacy method. UINT8_MAX: unknown.*/
@@ -54,7 +54,7 @@ typedef struct __mavlink_mlrs_radio_link_flow_control_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param tx_ser_rate [bytes/s] Transmitted bytes per second, UINT16_MAX: invalid/unknown.
- * @param rx_ser_rate [bytes/s] Received bytes per second, UINT16_MAX: invalid/unknown.
+ * @param rx_ser_rate [bytes/s] Recieved bytes per second, UINT16_MAX: invalid/unknown.
  * @param tx_used_ser_bandwidth [c%] Transmit bandwidth consumption. Values: 0..100, UINT8_MAX: invalid/unknown.
  * @param rx_used_ser_bandwidth [c%] Receive bandwidth consumption. Values: 0..100, UINT8_MAX: invalid/unknown.
  * @param txbuf [c%] For compatibility with legacy method. UINT8_MAX: unknown.
@@ -95,7 +95,7 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_pack(uint8_t sys
  * @param msg The MAVLink message to compress the data into
  *
  * @param tx_ser_rate [bytes/s] Transmitted bytes per second, UINT16_MAX: invalid/unknown.
- * @param rx_ser_rate [bytes/s] Received bytes per second, UINT16_MAX: invalid/unknown.
+ * @param rx_ser_rate [bytes/s] Recieved bytes per second, UINT16_MAX: invalid/unknown.
  * @param tx_used_ser_bandwidth [c%] Transmit bandwidth consumption. Values: 0..100, UINT8_MAX: invalid/unknown.
  * @param rx_used_ser_bandwidth [c%] Receive bandwidth consumption. Values: 0..100, UINT8_MAX: invalid/unknown.
  * @param txbuf [c%] For compatibility with legacy method. UINT8_MAX: unknown.
@@ -139,7 +139,7 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_pack_status(uint
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param tx_ser_rate [bytes/s] Transmitted bytes per second, UINT16_MAX: invalid/unknown.
- * @param rx_ser_rate [bytes/s] Received bytes per second, UINT16_MAX: invalid/unknown.
+ * @param rx_ser_rate [bytes/s] Recieved bytes per second, UINT16_MAX: invalid/unknown.
  * @param tx_used_ser_bandwidth [c%] Transmit bandwidth consumption. Values: 0..100, UINT8_MAX: invalid/unknown.
  * @param rx_used_ser_bandwidth [c%] Receive bandwidth consumption. Values: 0..100, UINT8_MAX: invalid/unknown.
  * @param txbuf [c%] For compatibility with legacy method. UINT8_MAX: unknown.
@@ -219,7 +219,7 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_encode_status(ui
  * @param chan MAVLink channel to send the message
  *
  * @param tx_ser_rate [bytes/s] Transmitted bytes per second, UINT16_MAX: invalid/unknown.
- * @param rx_ser_rate [bytes/s] Received bytes per second, UINT16_MAX: invalid/unknown.
+ * @param rx_ser_rate [bytes/s] Recieved bytes per second, UINT16_MAX: invalid/unknown.
  * @param tx_used_ser_bandwidth [c%] Transmit bandwidth consumption. Values: 0..100, UINT8_MAX: invalid/unknown.
  * @param rx_used_ser_bandwidth [c%] Receive bandwidth consumption. Values: 0..100, UINT8_MAX: invalid/unknown.
  * @param txbuf [c%] For compatibility with legacy method. UINT8_MAX: unknown.
@@ -265,7 +265,7 @@ static inline void mavlink_msg_mlrs_radio_link_flow_control_send_struct(mavlink_
 
 #if MAVLINK_MSG_ID_MLRS_RADIO_LINK_FLOW_CONTROL_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by reusing
+  This variant of _send() can be used to save stack space by re-using
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -313,7 +313,7 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_get_tx_ser_rate(
 /**
  * @brief Get field rx_ser_rate from mlrs_radio_link_flow_control message
  *
- * @return [bytes/s] Received bytes per second, UINT16_MAX: invalid/unknown.
+ * @return [bytes/s] Recieved bytes per second, UINT16_MAX: invalid/unknown.
  */
 static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_get_rx_ser_rate(const mavlink_message_t* msg)
 {

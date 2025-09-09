@@ -71,7 +71,7 @@ static inline uint16_t mavlink_msg_asluav_status_pack(uint8_t system_id, uint8_t
     packet.Motor_rpm = Motor_rpm;
     packet.LED_status = LED_status;
     packet.SATCOM_status = SATCOM_status;
-    mav_array_assign_uint8_t(packet.Servo_status, Servo_status, 8);
+    mav_array_memcpy(packet.Servo_status, Servo_status, sizeof(uint8_t)*8);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ASLUAV_STATUS_LEN);
 #endif
 
@@ -147,7 +147,7 @@ static inline uint16_t mavlink_msg_asluav_status_pack_chan(uint8_t system_id, ui
     packet.Motor_rpm = Motor_rpm;
     packet.LED_status = LED_status;
     packet.SATCOM_status = SATCOM_status;
-    mav_array_assign_uint8_t(packet.Servo_status, Servo_status, 8);
+    mav_array_memcpy(packet.Servo_status, Servo_status, sizeof(uint8_t)*8);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ASLUAV_STATUS_LEN);
 #endif
 
@@ -221,7 +221,7 @@ static inline void mavlink_msg_asluav_status_send(mavlink_channel_t chan, uint8_
     packet.Motor_rpm = Motor_rpm;
     packet.LED_status = LED_status;
     packet.SATCOM_status = SATCOM_status;
-    mav_array_assign_uint8_t(packet.Servo_status, Servo_status, 8);
+    mav_array_memcpy(packet.Servo_status, Servo_status, sizeof(uint8_t)*8);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ASLUAV_STATUS, (const char *)&packet, MAVLINK_MSG_ID_ASLUAV_STATUS_MIN_LEN, MAVLINK_MSG_ID_ASLUAV_STATUS_LEN, MAVLINK_MSG_ID_ASLUAV_STATUS_CRC);
 #endif
 }
@@ -242,7 +242,7 @@ static inline void mavlink_msg_asluav_status_send_struct(mavlink_channel_t chan,
 
 #if MAVLINK_MSG_ID_ASLUAV_STATUS_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by reusing
+  This variant of _send() can be used to save stack space by re-using
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -262,7 +262,7 @@ static inline void mavlink_msg_asluav_status_send_buf(mavlink_message_t *msgbuf,
     packet->Motor_rpm = Motor_rpm;
     packet->LED_status = LED_status;
     packet->SATCOM_status = SATCOM_status;
-    mav_array_assign_uint8_t(packet->Servo_status, Servo_status, 8);
+    mav_array_memcpy(packet->Servo_status, Servo_status, sizeof(uint8_t)*8);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ASLUAV_STATUS, (const char *)packet, MAVLINK_MSG_ID_ASLUAV_STATUS_MIN_LEN, MAVLINK_MSG_ID_ASLUAV_STATUS_LEN, MAVLINK_MSG_ID_ASLUAV_STATUS_CRC);
 #endif
 }
