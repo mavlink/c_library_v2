@@ -7,8 +7,8 @@
 typedef struct __mavlink_gimbal_device_information_t {
  uint64_t uid; /*<  UID of gimbal hardware (0 if unknown).*/
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
- uint32_t firmware_version; /*<  Version of the gimbal firmware, encoded as: `(Dev & 0xff) << 24 \| (Patch & 0xff) << 16 \| (Minor & 0xff) << 8 \| (Major & 0xff)`.*/
- uint32_t hardware_version; /*<  Version of the gimbal hardware, encoded as: `(Dev & 0xff) << 24 \| (Patch & 0xff) << 16 \| (Minor & 0xff) << 8 \| (Major & 0xff)`.*/
+ uint32_t firmware_version; /*<  Version of the gimbal firmware, encoded as: `(Dev & 0xff) << 24 + (Patch & 0xff) << 16 + (Minor & 0xff) << 8 + (Major & 0xff)`.*/
+ uint32_t hardware_version; /*<  Version of the gimbal hardware, encoded as: `(Dev & 0xff) << 24 + (Patch & 0xff) << 16 + (Minor & 0xff) << 8 + (Major & 0xff)`.*/
  float roll_min; /*< [rad] Minimum hardware roll angle (positive: rolling to the right, negative: rolling to the left). NAN if unknown.*/
  float roll_max; /*< [rad] Maximum hardware roll angle (positive: rolling to the right, negative: rolling to the left). NAN if unknown.*/
  float pitch_min; /*< [rad] Minimum hardware pitch angle (positive: up, negative: down). NAN if unknown.*/
@@ -92,8 +92,8 @@ typedef struct __mavlink_gimbal_device_information_t {
  * @param vendor_name  Name of the gimbal vendor.
  * @param model_name  Name of the gimbal model.
  * @param custom_name  Custom name of the gimbal given to it by the user.
- * @param firmware_version  Version of the gimbal firmware, encoded as: `(Dev & 0xff) << 24 \| (Patch & 0xff) << 16 \| (Minor & 0xff) << 8 \| (Major & 0xff)`.
- * @param hardware_version  Version of the gimbal hardware, encoded as: `(Dev & 0xff) << 24 \| (Patch & 0xff) << 16 \| (Minor & 0xff) << 8 \| (Major & 0xff)`.
+ * @param firmware_version  Version of the gimbal firmware, encoded as: `(Dev & 0xff) << 24 + (Patch & 0xff) << 16 + (Minor & 0xff) << 8 + (Major & 0xff)`.
+ * @param hardware_version  Version of the gimbal hardware, encoded as: `(Dev & 0xff) << 24 + (Patch & 0xff) << 16 + (Minor & 0xff) << 8 + (Major & 0xff)`.
  * @param uid  UID of gimbal hardware (0 if unknown).
  * @param cap_flags  Bitmap of gimbal capability flags.
  * @param custom_cap_flags  Bitmap for use for gimbal-specific capability flags.
@@ -164,8 +164,8 @@ static inline uint16_t mavlink_msg_gimbal_device_information_pack(uint8_t system
  * @param vendor_name  Name of the gimbal vendor.
  * @param model_name  Name of the gimbal model.
  * @param custom_name  Custom name of the gimbal given to it by the user.
- * @param firmware_version  Version of the gimbal firmware, encoded as: `(Dev & 0xff) << 24 \| (Patch & 0xff) << 16 \| (Minor & 0xff) << 8 \| (Major & 0xff)`.
- * @param hardware_version  Version of the gimbal hardware, encoded as: `(Dev & 0xff) << 24 \| (Patch & 0xff) << 16 \| (Minor & 0xff) << 8 \| (Major & 0xff)`.
+ * @param firmware_version  Version of the gimbal firmware, encoded as: `(Dev & 0xff) << 24 + (Patch & 0xff) << 16 + (Minor & 0xff) << 8 + (Major & 0xff)`.
+ * @param hardware_version  Version of the gimbal hardware, encoded as: `(Dev & 0xff) << 24 + (Patch & 0xff) << 16 + (Minor & 0xff) << 8 + (Major & 0xff)`.
  * @param uid  UID of gimbal hardware (0 if unknown).
  * @param cap_flags  Bitmap of gimbal capability flags.
  * @param custom_cap_flags  Bitmap for use for gimbal-specific capability flags.
@@ -239,8 +239,8 @@ static inline uint16_t mavlink_msg_gimbal_device_information_pack_status(uint8_t
  * @param vendor_name  Name of the gimbal vendor.
  * @param model_name  Name of the gimbal model.
  * @param custom_name  Custom name of the gimbal given to it by the user.
- * @param firmware_version  Version of the gimbal firmware, encoded as: `(Dev & 0xff) << 24 \| (Patch & 0xff) << 16 \| (Minor & 0xff) << 8 \| (Major & 0xff)`.
- * @param hardware_version  Version of the gimbal hardware, encoded as: `(Dev & 0xff) << 24 \| (Patch & 0xff) << 16 \| (Minor & 0xff) << 8 \| (Major & 0xff)`.
+ * @param firmware_version  Version of the gimbal firmware, encoded as: `(Dev & 0xff) << 24 + (Patch & 0xff) << 16 + (Minor & 0xff) << 8 + (Major & 0xff)`.
+ * @param hardware_version  Version of the gimbal hardware, encoded as: `(Dev & 0xff) << 24 + (Patch & 0xff) << 16 + (Minor & 0xff) << 8 + (Major & 0xff)`.
  * @param uid  UID of gimbal hardware (0 if unknown).
  * @param cap_flags  Bitmap of gimbal capability flags.
  * @param custom_cap_flags  Bitmap for use for gimbal-specific capability flags.
@@ -350,8 +350,8 @@ static inline uint16_t mavlink_msg_gimbal_device_information_encode_status(uint8
  * @param vendor_name  Name of the gimbal vendor.
  * @param model_name  Name of the gimbal model.
  * @param custom_name  Custom name of the gimbal given to it by the user.
- * @param firmware_version  Version of the gimbal firmware, encoded as: `(Dev & 0xff) << 24 \| (Patch & 0xff) << 16 \| (Minor & 0xff) << 8 \| (Major & 0xff)`.
- * @param hardware_version  Version of the gimbal hardware, encoded as: `(Dev & 0xff) << 24 \| (Patch & 0xff) << 16 \| (Minor & 0xff) << 8 \| (Major & 0xff)`.
+ * @param firmware_version  Version of the gimbal firmware, encoded as: `(Dev & 0xff) << 24 + (Patch & 0xff) << 16 + (Minor & 0xff) << 8 + (Major & 0xff)`.
+ * @param hardware_version  Version of the gimbal hardware, encoded as: `(Dev & 0xff) << 24 + (Patch & 0xff) << 16 + (Minor & 0xff) << 8 + (Major & 0xff)`.
  * @param uid  UID of gimbal hardware (0 if unknown).
  * @param cap_flags  Bitmap of gimbal capability flags.
  * @param custom_cap_flags  Bitmap for use for gimbal-specific capability flags.
@@ -522,7 +522,7 @@ static inline uint16_t mavlink_msg_gimbal_device_information_get_custom_name(con
 /**
  * @brief Get field firmware_version from gimbal_device_information message
  *
- * @return  Version of the gimbal firmware, encoded as: `(Dev & 0xff) << 24 \| (Patch & 0xff) << 16 \| (Minor & 0xff) << 8 \| (Major & 0xff)`.
+ * @return  Version of the gimbal firmware, encoded as: `(Dev & 0xff) << 24 + (Patch & 0xff) << 16 + (Minor & 0xff) << 8 + (Major & 0xff)`.
  */
 static inline uint32_t mavlink_msg_gimbal_device_information_get_firmware_version(const mavlink_message_t* msg)
 {
@@ -532,7 +532,7 @@ static inline uint32_t mavlink_msg_gimbal_device_information_get_firmware_versio
 /**
  * @brief Get field hardware_version from gimbal_device_information message
  *
- * @return  Version of the gimbal hardware, encoded as: `(Dev & 0xff) << 24 \| (Patch & 0xff) << 16 \| (Minor & 0xff) << 8 \| (Major & 0xff)`.
+ * @return  Version of the gimbal hardware, encoded as: `(Dev & 0xff) << 24 + (Patch & 0xff) << 16 + (Minor & 0xff) << 8 + (Major & 0xff)`.
  */
 static inline uint32_t mavlink_msg_gimbal_device_information_get_hardware_version(const mavlink_message_t* msg)
 {
