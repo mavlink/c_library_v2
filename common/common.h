@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH -4607820659184219406
+#define MAVLINK_COMMON_XML_HASH -1695139748744787697
 
 #ifdef __cplusplus
 extern "C" {
@@ -2832,7 +2832,6 @@ typedef enum HIL_ACTUATOR_CONTROLS_FLAGS
 #include "./mavlink_msg_attitude.h"
 #include "./mavlink_msg_attitude_quaternion.h"
 #include "./mavlink_msg_local_position_ned.h"
-#include "./mavlink_msg_global_position_int.h"
 #include "./mavlink_msg_rc_channels_scaled.h"
 #include "./mavlink_msg_rc_channels_raw.h"
 #include "./mavlink_msg_servo_output_raw.h"
