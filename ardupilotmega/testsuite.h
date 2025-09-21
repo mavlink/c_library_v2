@@ -4664,6 +4664,67 @@ static void mavlink_test_esc_telemetry_29_to_32(uint8_t system_id, uint8_t compo
 #endif
 }
 
+static void mavlink_test_named_value_string(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_NAMED_VALUE_STRING >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_named_value_string_t packet_in = {
+        963497464,"EFGHIJKLM","OPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXY"
+    };
+    mavlink_named_value_string_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.time_boot_ms = packet_in.time_boot_ms;
+        
+        mav_array_memcpy(packet1.name, packet_in.name, sizeof(char)*10);
+        mav_array_memcpy(packet1.value, packet_in.value, sizeof(char)*64);
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_NAMED_VALUE_STRING_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_NAMED_VALUE_STRING_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_named_value_string_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_named_value_string_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_named_value_string_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.name , packet1.value );
+    mavlink_msg_named_value_string_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_named_value_string_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.name , packet1.value );
+    mavlink_msg_named_value_string_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_named_value_string_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_named_value_string_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.name , packet1.value );
+    mavlink_msg_named_value_string_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+#ifdef MAVLINK_HAVE_GET_MESSAGE_INFO
+    MAVLINK_ASSERT(mavlink_get_message_info_by_name("NAMED_VALUE_STRING") != NULL);
+    MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_NAMED_VALUE_STRING) != NULL);
+#endif
+}
+
 static void mavlink_test_ardupilotmega(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
     mavlink_test_sensor_offsets(system_id, component_id, last_msg);
@@ -4738,6 +4799,7 @@ static void mavlink_test_ardupilotmega(uint8_t system_id, uint8_t component_id, 
     mavlink_test_esc_telemetry_21_to_24(system_id, component_id, last_msg);
     mavlink_test_esc_telemetry_25_to_28(system_id, component_id, last_msg);
     mavlink_test_esc_telemetry_29_to_32(system_id, component_id, last_msg);
+    mavlink_test_named_value_string(system_id, component_id, last_msg);
 }
 
 #ifdef __cplusplus
