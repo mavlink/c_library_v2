@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_STANDARD.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_STANDARD_XML_HASH -3223516812352845781
+#define MAVLINK_STANDARD_XML_HASH -562365701099536811
 
 #ifdef __cplusplus
 extern "C" {
@@ -50,7 +50,7 @@ typedef enum MAV_BOOL
 typedef enum MAV_PROTOCOL_CAPABILITY
 {
    MAV_PROTOCOL_CAPABILITY_MISSION_FLOAT=1, /* Autopilot supports the MISSION_ITEM float message type.
-          Note that MISSION_ITEM is deprecated, and autopilots should use MISSION_INT instead.
+          Note that MISSION_ITEM is deprecated, and autopilots should use MISSION_ITEM_INT instead.
          | */
    MAV_PROTOCOL_CAPABILITY_PARAM_FLOAT=2, /* Autopilot supports the new param float message type. | */
    MAV_PROTOCOL_CAPABILITY_MISSION_INT=4, /* Autopilot supports MISSION_ITEM_INT scaled integer message type.
