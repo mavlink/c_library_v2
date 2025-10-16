@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH -5121179091619146271
+#define MAVLINK_COMMON_XML_HASH 3374719716310193990
 
 #ifdef __cplusplus
 extern "C" {
@@ -1041,7 +1041,10 @@ typedef enum MAV_PARAM_ERROR
    MAV_PARAM_ERROR_PERMISSION_DENIED=3, /* Caller is not permitted to set the value of this parameter | */
    MAV_PARAM_ERROR_COMPONENT_NOT_FOUND=4, /* Unknown component specified | */
    MAV_PARAM_ERROR_READ_ONLY=5, /* Parameter is read-only | */
-   MAV_PARAM_ERROR_ENUM_END=6, /*  | */
+   MAV_PARAM_ERROR_TYPE_UNSUPPORTED=6, /* Parameter data type (MAV_PARAM_TYPE) is not supported by flight stack (at all) | */
+   MAV_PARAM_ERROR_TYPE_MISMATCH=7, /* Parameter type does not match expected type | */
+   MAV_PARAM_ERROR_READ_FAIL=8, /* Parameter exists but reading failed | */
+   MAV_PARAM_ERROR_ENUM_END=9, /*  | */
 } MAV_PARAM_ERROR;
 #endif
 
