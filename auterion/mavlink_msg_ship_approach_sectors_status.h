@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE SHIP_APPROACH_SECTORS_STATUS PACKING
 
-#define MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS 13672
+#define MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS 13680
 
 
 typedef struct __mavlink_ship_approach_sectors_status_t {
@@ -10,17 +10,17 @@ typedef struct __mavlink_ship_approach_sectors_status_t {
 
 #define MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_LEN 1
 #define MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_MIN_LEN 1
-#define MAVLINK_MSG_ID_13672_LEN 1
-#define MAVLINK_MSG_ID_13672_MIN_LEN 1
+#define MAVLINK_MSG_ID_13680_LEN 1
+#define MAVLINK_MSG_ID_13680_MIN_LEN 1
 
 #define MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_CRC 38
-#define MAVLINK_MSG_ID_13672_CRC 38
+#define MAVLINK_MSG_ID_13680_CRC 38
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_SHIP_APPROACH_SECTORS_STATUS { \
-    13672, \
+    13680, \
     "SHIP_APPROACH_SECTORS_STATUS", \
     1, \
     {  { "sectors", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_ship_approach_sectors_status_t, sectors) }, \
@@ -205,7 +205,7 @@ static inline void mavlink_msg_ship_approach_sectors_status_send_struct(mavlink_
 
 #if MAVLINK_MSG_ID_SHIP_APPROACH_SECTORS_STATUS_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an

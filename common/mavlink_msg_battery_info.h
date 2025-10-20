@@ -167,9 +167,9 @@ static inline uint16_t mavlink_msg_battery_info_pack(uint8_t system_id, uint8_t 
     packet.type = type;
     packet.state_of_health = state_of_health;
     packet.cells_in_series = cells_in_series;
-    mav_array_memcpy(packet.manufacture_date, manufacture_date, sizeof(char)*9);
-    mav_array_memcpy(packet.serial_number, serial_number, sizeof(char)*32);
-    mav_array_memcpy(packet.name, name, sizeof(char)*50);
+    mav_array_assign_char(packet.manufacture_date, manufacture_date, 9);
+    mav_array_assign_char(packet.serial_number, serial_number, 32);
+    mav_array_assign_char(packet.name, name, 50);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_BATTERY_INFO_LEN);
 #endif
 
@@ -339,9 +339,9 @@ static inline uint16_t mavlink_msg_battery_info_pack_chan(uint8_t system_id, uin
     packet.type = type;
     packet.state_of_health = state_of_health;
     packet.cells_in_series = cells_in_series;
-    mav_array_memcpy(packet.manufacture_date, manufacture_date, sizeof(char)*9);
-    mav_array_memcpy(packet.serial_number, serial_number, sizeof(char)*32);
-    mav_array_memcpy(packet.name, name, sizeof(char)*50);
+    mav_array_assign_char(packet.manufacture_date, manufacture_date, 9);
+    mav_array_assign_char(packet.serial_number, serial_number, 32);
+    mav_array_assign_char(packet.name, name, 50);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_BATTERY_INFO_LEN);
 #endif
 
@@ -461,9 +461,9 @@ static inline void mavlink_msg_battery_info_send(mavlink_channel_t chan, uint8_t
     packet.type = type;
     packet.state_of_health = state_of_health;
     packet.cells_in_series = cells_in_series;
-    mav_array_memcpy(packet.manufacture_date, manufacture_date, sizeof(char)*9);
-    mav_array_memcpy(packet.serial_number, serial_number, sizeof(char)*32);
-    mav_array_memcpy(packet.name, name, sizeof(char)*50);
+    mav_array_assign_char(packet.manufacture_date, manufacture_date, 9);
+    mav_array_assign_char(packet.serial_number, serial_number, 32);
+    mav_array_assign_char(packet.name, name, 50);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_BATTERY_INFO, (const char *)&packet, MAVLINK_MSG_ID_BATTERY_INFO_MIN_LEN, MAVLINK_MSG_ID_BATTERY_INFO_LEN, MAVLINK_MSG_ID_BATTERY_INFO_CRC);
 #endif
 }
@@ -484,7 +484,7 @@ static inline void mavlink_msg_battery_info_send_struct(mavlink_channel_t chan, 
 
 #if MAVLINK_MSG_ID_BATTERY_INFO_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -534,9 +534,9 @@ static inline void mavlink_msg_battery_info_send_buf(mavlink_message_t *msgbuf, 
     packet->type = type;
     packet->state_of_health = state_of_health;
     packet->cells_in_series = cells_in_series;
-    mav_array_memcpy(packet->manufacture_date, manufacture_date, sizeof(char)*9);
-    mav_array_memcpy(packet->serial_number, serial_number, sizeof(char)*32);
-    mav_array_memcpy(packet->name, name, sizeof(char)*50);
+    mav_array_assign_char(packet->manufacture_date, manufacture_date, 9);
+    mav_array_assign_char(packet->serial_number, serial_number, 32);
+    mav_array_assign_char(packet->name, name, 50);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_BATTERY_INFO, (const char *)packet, MAVLINK_MSG_ID_BATTERY_INFO_MIN_LEN, MAVLINK_MSG_ID_BATTERY_INFO_LEN, MAVLINK_MSG_ID_BATTERY_INFO_CRC);
 #endif
 }

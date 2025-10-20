@@ -65,7 +65,7 @@ static inline uint16_t mavlink_msg_actuator_control_target_pack(uint8_t system_i
     mavlink_actuator_control_target_t packet;
     packet.time_usec = time_usec;
     packet.group_mlx = group_mlx;
-    mav_array_memcpy(packet.controls, controls, sizeof(float)*8);
+    mav_array_assign_float(packet.controls, controls, 8);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN);
 #endif
 
@@ -135,7 +135,7 @@ static inline uint16_t mavlink_msg_actuator_control_target_pack_chan(uint8_t sys
     mavlink_actuator_control_target_t packet;
     packet.time_usec = time_usec;
     packet.group_mlx = group_mlx;
-    mav_array_memcpy(packet.controls, controls, sizeof(float)*8);
+    mav_array_assign_float(packet.controls, controls, 8);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN);
 #endif
 
@@ -206,7 +206,7 @@ static inline void mavlink_msg_actuator_control_target_send(mavlink_channel_t ch
     mavlink_actuator_control_target_t packet;
     packet.time_usec = time_usec;
     packet.group_mlx = group_mlx;
-    mav_array_memcpy(packet.controls, controls, sizeof(float)*8);
+    mav_array_assign_float(packet.controls, controls, 8);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET, (const char *)&packet, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_MIN_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_CRC);
 #endif
 }
@@ -227,7 +227,7 @@ static inline void mavlink_msg_actuator_control_target_send_struct(mavlink_chann
 
 #if MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -245,7 +245,7 @@ static inline void mavlink_msg_actuator_control_target_send_buf(mavlink_message_
     mavlink_actuator_control_target_t *packet = (mavlink_actuator_control_target_t *)msgbuf;
     packet->time_usec = time_usec;
     packet->group_mlx = group_mlx;
-    mav_array_memcpy(packet->controls, controls, sizeof(float)*8);
+    mav_array_assign_float(packet->controls, controls, 8);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET, (const char *)packet, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_MIN_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_CRC);
 #endif
 }

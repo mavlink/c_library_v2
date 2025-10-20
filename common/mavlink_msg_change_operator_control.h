@@ -71,7 +71,7 @@ static inline uint16_t mavlink_msg_change_operator_control_pack(uint8_t system_i
     packet.target_system = target_system;
     packet.control_request = control_request;
     packet.version = version;
-    mav_array_memcpy(packet.passkey, passkey, sizeof(char)*25);
+    mav_array_assign_char(packet.passkey, passkey, 25);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL_LEN);
 #endif
 
@@ -147,7 +147,7 @@ static inline uint16_t mavlink_msg_change_operator_control_pack_chan(uint8_t sys
     packet.target_system = target_system;
     packet.control_request = control_request;
     packet.version = version;
-    mav_array_memcpy(packet.passkey, passkey, sizeof(char)*25);
+    mav_array_assign_char(packet.passkey, passkey, 25);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL_LEN);
 #endif
 
@@ -221,7 +221,7 @@ static inline void mavlink_msg_change_operator_control_send(mavlink_channel_t ch
     packet.target_system = target_system;
     packet.control_request = control_request;
     packet.version = version;
-    mav_array_memcpy(packet.passkey, passkey, sizeof(char)*25);
+    mav_array_assign_char(packet.passkey, passkey, 25);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL, (const char *)&packet, MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL_MIN_LEN, MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL_LEN, MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL_CRC);
 #endif
 }
@@ -242,7 +242,7 @@ static inline void mavlink_msg_change_operator_control_send_struct(mavlink_chann
 
 #if MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This variant of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by reusing
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -262,7 +262,7 @@ static inline void mavlink_msg_change_operator_control_send_buf(mavlink_message_
     packet->target_system = target_system;
     packet->control_request = control_request;
     packet->version = version;
-    mav_array_memcpy(packet->passkey, passkey, sizeof(char)*25);
+    mav_array_assign_char(packet->passkey, passkey, 25);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL, (const char *)packet, MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL_MIN_LEN, MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL_LEN, MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL_CRC);
 #endif
 }
