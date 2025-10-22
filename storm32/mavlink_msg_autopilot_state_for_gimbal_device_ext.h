@@ -64,6 +64,7 @@ typedef struct __mavlink_autopilot_state_for_gimbal_device_ext_t {
  * @param wind_correction_angle [rad] Correction angle due to wind. NaN if unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t target_system, uint8_t target_component, uint64_t time_boot_us, float wind_x, float wind_y, float wind_correction_angle)
 {
@@ -155,6 +156,7 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_st
  * @param wind_correction_angle [rad] Correction angle due to wind. NaN if unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t target_system,uint8_t target_component,uint64_t time_boot_us,float wind_x,float wind_y,float wind_correction_angle)
@@ -193,6 +195,7 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_ch
  * @param msg The MAVLink message to compress the data into
  * @param autopilot_state_for_gimbal_device_ext C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_autopilot_state_for_gimbal_device_ext_t* autopilot_state_for_gimbal_device_ext)
 {
     return mavlink_msg_autopilot_state_for_gimbal_device_ext_pack(system_id, component_id, msg, autopilot_state_for_gimbal_device_ext->target_system, autopilot_state_for_gimbal_device_ext->target_component, autopilot_state_for_gimbal_device_ext->time_boot_us, autopilot_state_for_gimbal_device_ext->wind_x, autopilot_state_for_gimbal_device_ext->wind_y, autopilot_state_for_gimbal_device_ext->wind_correction_angle);
@@ -207,6 +210,7 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_encode(
  * @param msg The MAVLink message to compress the data into
  * @param autopilot_state_for_gimbal_device_ext C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_autopilot_state_for_gimbal_device_ext_t* autopilot_state_for_gimbal_device_ext)
 {
     return mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_chan(system_id, component_id, chan, msg, autopilot_state_for_gimbal_device_ext->target_system, autopilot_state_for_gimbal_device_ext->target_component, autopilot_state_for_gimbal_device_ext->time_boot_us, autopilot_state_for_gimbal_device_ext->wind_x, autopilot_state_for_gimbal_device_ext->wind_y, autopilot_state_for_gimbal_device_ext->wind_correction_angle);
@@ -239,6 +243,7 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_encode_
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
+MAVLINK_WIP
 static inline void mavlink_msg_autopilot_state_for_gimbal_device_ext_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint64_t time_boot_us, float wind_x, float wind_y, float wind_correction_angle)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -269,6 +274,7 @@ static inline void mavlink_msg_autopilot_state_for_gimbal_device_ext_send(mavlin
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
+MAVLINK_WIP
 static inline void mavlink_msg_autopilot_state_for_gimbal_device_ext_send_struct(mavlink_channel_t chan, const mavlink_autopilot_state_for_gimbal_device_ext_t* autopilot_state_for_gimbal_device_ext)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -286,6 +292,7 @@ static inline void mavlink_msg_autopilot_state_for_gimbal_device_ext_send_struct
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
+MAVLINK_WIP
 static inline void mavlink_msg_autopilot_state_for_gimbal_device_ext_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, uint64_t time_boot_us, float wind_x, float wind_y, float wind_correction_angle)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -322,6 +329,7 @@ static inline void mavlink_msg_autopilot_state_for_gimbal_device_ext_send_buf(ma
  *
  * @return  System ID.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_autopilot_state_for_gimbal_device_ext_get_target_system(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  20);
@@ -332,6 +340,7 @@ static inline uint8_t mavlink_msg_autopilot_state_for_gimbal_device_ext_get_targ
  *
  * @return  Component ID.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_autopilot_state_for_gimbal_device_ext_get_target_component(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  21);
@@ -342,6 +351,7 @@ static inline uint8_t mavlink_msg_autopilot_state_for_gimbal_device_ext_get_targ
  *
  * @return [us] Timestamp (time since system boot).
  */
+MAVLINK_WIP
 static inline uint64_t mavlink_msg_autopilot_state_for_gimbal_device_ext_get_time_boot_us(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint64_t(msg,  0);
@@ -352,6 +362,7 @@ static inline uint64_t mavlink_msg_autopilot_state_for_gimbal_device_ext_get_tim
  *
  * @return [m/s] Wind X speed in NED (North,Est, Down). NAN if unknown.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_autopilot_state_for_gimbal_device_ext_get_wind_x(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  8);
@@ -362,6 +373,7 @@ static inline float mavlink_msg_autopilot_state_for_gimbal_device_ext_get_wind_x
  *
  * @return [m/s] Wind Y speed in NED (North, East, Down). NAN if unknown.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_autopilot_state_for_gimbal_device_ext_get_wind_y(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  12);
@@ -372,6 +384,7 @@ static inline float mavlink_msg_autopilot_state_for_gimbal_device_ext_get_wind_y
  *
  * @return [rad] Correction angle due to wind. NaN if unknown.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_autopilot_state_for_gimbal_device_ext_get_wind_correction_angle(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  16);
@@ -383,6 +396,7 @@ static inline float mavlink_msg_autopilot_state_for_gimbal_device_ext_get_wind_c
  * @param msg The message to decode
  * @param autopilot_state_for_gimbal_device_ext C-struct to decode the message contents into
  */
+MAVLINK_WIP
 static inline void mavlink_msg_autopilot_state_for_gimbal_device_ext_decode(const mavlink_message_t* msg, mavlink_autopilot_state_for_gimbal_device_ext_t* autopilot_state_for_gimbal_device_ext)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS

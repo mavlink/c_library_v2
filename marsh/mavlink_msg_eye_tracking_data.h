@@ -92,6 +92,7 @@ typedef struct __mavlink_eye_tracking_data_t {
  * @param surface_gaze_y  Gaze focal point on surface y value (normalized 0..1, 0 is top, 1 is bottom), NaN if unknown
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_eye_tracking_data_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint64_t time_usec, uint8_t sensor_id, float gaze_origin_x, float gaze_origin_y, float gaze_origin_z, float gaze_direction_x, float gaze_direction_y, float gaze_direction_z, float video_gaze_x, float video_gaze_y, uint8_t surface_id, float surface_gaze_x, float surface_gaze_y)
 {
@@ -225,6 +226,7 @@ static inline uint16_t mavlink_msg_eye_tracking_data_pack_status(uint8_t system_
  * @param surface_gaze_y  Gaze focal point on surface y value (normalized 0..1, 0 is top, 1 is bottom), NaN if unknown
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_eye_tracking_data_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint64_t time_usec,uint8_t sensor_id,float gaze_origin_x,float gaze_origin_y,float gaze_origin_z,float gaze_direction_x,float gaze_direction_y,float gaze_direction_z,float video_gaze_x,float video_gaze_y,uint8_t surface_id,float surface_gaze_x,float surface_gaze_y)
@@ -277,6 +279,7 @@ static inline uint16_t mavlink_msg_eye_tracking_data_pack_chan(uint8_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param eye_tracking_data C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_eye_tracking_data_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_eye_tracking_data_t* eye_tracking_data)
 {
     return mavlink_msg_eye_tracking_data_pack(system_id, component_id, msg, eye_tracking_data->time_usec, eye_tracking_data->sensor_id, eye_tracking_data->gaze_origin_x, eye_tracking_data->gaze_origin_y, eye_tracking_data->gaze_origin_z, eye_tracking_data->gaze_direction_x, eye_tracking_data->gaze_direction_y, eye_tracking_data->gaze_direction_z, eye_tracking_data->video_gaze_x, eye_tracking_data->video_gaze_y, eye_tracking_data->surface_id, eye_tracking_data->surface_gaze_x, eye_tracking_data->surface_gaze_y);
@@ -291,6 +294,7 @@ static inline uint16_t mavlink_msg_eye_tracking_data_encode(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param eye_tracking_data C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_eye_tracking_data_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_eye_tracking_data_t* eye_tracking_data)
 {
     return mavlink_msg_eye_tracking_data_pack_chan(system_id, component_id, chan, msg, eye_tracking_data->time_usec, eye_tracking_data->sensor_id, eye_tracking_data->gaze_origin_x, eye_tracking_data->gaze_origin_y, eye_tracking_data->gaze_origin_z, eye_tracking_data->gaze_direction_x, eye_tracking_data->gaze_direction_y, eye_tracking_data->gaze_direction_z, eye_tracking_data->video_gaze_x, eye_tracking_data->video_gaze_y, eye_tracking_data->surface_id, eye_tracking_data->surface_gaze_x, eye_tracking_data->surface_gaze_y);
@@ -330,6 +334,7 @@ static inline uint16_t mavlink_msg_eye_tracking_data_encode_status(uint8_t syste
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
+MAVLINK_WIP
 static inline void mavlink_msg_eye_tracking_data_send(mavlink_channel_t chan, uint64_t time_usec, uint8_t sensor_id, float gaze_origin_x, float gaze_origin_y, float gaze_origin_z, float gaze_direction_x, float gaze_direction_y, float gaze_direction_z, float video_gaze_x, float video_gaze_y, uint8_t surface_id, float surface_gaze_x, float surface_gaze_y)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -374,6 +379,7 @@ static inline void mavlink_msg_eye_tracking_data_send(mavlink_channel_t chan, ui
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
+MAVLINK_WIP
 static inline void mavlink_msg_eye_tracking_data_send_struct(mavlink_channel_t chan, const mavlink_eye_tracking_data_t* eye_tracking_data)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -391,6 +397,7 @@ static inline void mavlink_msg_eye_tracking_data_send_struct(mavlink_channel_t c
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
+MAVLINK_WIP
 static inline void mavlink_msg_eye_tracking_data_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, uint8_t sensor_id, float gaze_origin_x, float gaze_origin_y, float gaze_origin_z, float gaze_direction_x, float gaze_direction_y, float gaze_direction_z, float video_gaze_x, float video_gaze_y, uint8_t surface_id, float surface_gaze_x, float surface_gaze_y)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -441,6 +448,7 @@ static inline void mavlink_msg_eye_tracking_data_send_buf(mavlink_message_t *msg
  *
  * @return [us] Timestamp (time since system boot).
  */
+MAVLINK_WIP
 static inline uint64_t mavlink_msg_eye_tracking_data_get_time_usec(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint64_t(msg,  0);
@@ -451,6 +459,7 @@ static inline uint64_t mavlink_msg_eye_tracking_data_get_time_usec(const mavlink
  *
  * @return  Sensor ID, used for identifying the device and/or person tracked. Set to zero if unknown/unused.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_eye_tracking_data_get_sensor_id(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  48);
@@ -461,6 +470,7 @@ static inline uint8_t mavlink_msg_eye_tracking_data_get_sensor_id(const mavlink_
  *
  * @return [m] X axis of gaze origin point, NaN if unknown. The reference system depends on specific application.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_eye_tracking_data_get_gaze_origin_x(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  8);
@@ -471,6 +481,7 @@ static inline float mavlink_msg_eye_tracking_data_get_gaze_origin_x(const mavlin
  *
  * @return [m] Y axis of gaze origin point, NaN if unknown. The reference system depends on specific application.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_eye_tracking_data_get_gaze_origin_y(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  12);
@@ -481,6 +492,7 @@ static inline float mavlink_msg_eye_tracking_data_get_gaze_origin_y(const mavlin
  *
  * @return [m] Z axis of gaze origin point, NaN if unknown. The reference system depends on specific application.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_eye_tracking_data_get_gaze_origin_z(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  16);
@@ -491,6 +503,7 @@ static inline float mavlink_msg_eye_tracking_data_get_gaze_origin_z(const mavlin
  *
  * @return  X axis of gaze direction vector, expected to be normalized to unit magnitude, NaN if unknown. The reference system should match origin point.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_eye_tracking_data_get_gaze_direction_x(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  20);
@@ -501,6 +514,7 @@ static inline float mavlink_msg_eye_tracking_data_get_gaze_direction_x(const mav
  *
  * @return  Y axis of gaze direction vector, expected to be normalized to unit magnitude, NaN if unknown. The reference system should match origin point.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_eye_tracking_data_get_gaze_direction_y(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  24);
@@ -511,6 +525,7 @@ static inline float mavlink_msg_eye_tracking_data_get_gaze_direction_y(const mav
  *
  * @return  Z axis of gaze direction vector, expected to be normalized to unit magnitude, NaN if unknown. The reference system should match origin point.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_eye_tracking_data_get_gaze_direction_z(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  28);
@@ -521,6 +536,7 @@ static inline float mavlink_msg_eye_tracking_data_get_gaze_direction_z(const mav
  *
  * @return  Gaze focal point on video feed x value (normalized 0..1, 0 is left, 1 is right), NaN if unknown
  */
+MAVLINK_WIP
 static inline float mavlink_msg_eye_tracking_data_get_video_gaze_x(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  32);
@@ -531,6 +547,7 @@ static inline float mavlink_msg_eye_tracking_data_get_video_gaze_x(const mavlink
  *
  * @return  Gaze focal point on video feed y value (normalized 0..1, 0 is top, 1 is bottom), NaN if unknown
  */
+MAVLINK_WIP
 static inline float mavlink_msg_eye_tracking_data_get_video_gaze_y(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  36);
@@ -541,6 +558,7 @@ static inline float mavlink_msg_eye_tracking_data_get_video_gaze_y(const mavlink
  *
  * @return  Identifier of surface for 2D gaze point, or an identified region when surface point is invalid. Set to zero if unknown/unused.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_eye_tracking_data_get_surface_id(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  49);
@@ -551,6 +569,7 @@ static inline uint8_t mavlink_msg_eye_tracking_data_get_surface_id(const mavlink
  *
  * @return  Gaze focal point on surface x value (normalized 0..1, 0 is left, 1 is right), NaN if unknown
  */
+MAVLINK_WIP
 static inline float mavlink_msg_eye_tracking_data_get_surface_gaze_x(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  40);
@@ -561,6 +580,7 @@ static inline float mavlink_msg_eye_tracking_data_get_surface_gaze_x(const mavli
  *
  * @return  Gaze focal point on surface y value (normalized 0..1, 0 is top, 1 is bottom), NaN if unknown
  */
+MAVLINK_WIP
 static inline float mavlink_msg_eye_tracking_data_get_surface_gaze_y(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  44);
@@ -572,6 +592,7 @@ static inline float mavlink_msg_eye_tracking_data_get_surface_gaze_y(const mavli
  * @param msg The message to decode
  * @param eye_tracking_data C-struct to decode the message contents into
  */
+MAVLINK_WIP
 static inline void mavlink_msg_eye_tracking_data_decode(const mavlink_message_t* msg, mavlink_eye_tracking_data_t* eye_tracking_data)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS

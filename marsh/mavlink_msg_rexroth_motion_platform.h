@@ -128,6 +128,7 @@ typedef struct __mavlink_rexroth_motion_platform_t {
  * @param effect_setpoint_yaw [rad] Yaw special effect setpoint, positive right.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_rexroth_motion_platform_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint32_t time_boot_ms, uint32_t frame_count, uint32_t motion_status, uint8_t error_code, float actuator1, float actuator2, float actuator3, float actuator4, float actuator5, float actuator6, float platform_setpoint_x, float platform_setpoint_y, float platform_setpoint_z, float platform_setpoint_roll, float platform_setpoint_pitch, float platform_setpoint_yaw, float effect_setpoint_x, float effect_setpoint_y, float effect_setpoint_z, float effect_setpoint_roll, float effect_setpoint_pitch, float effect_setpoint_yaw)
 {
@@ -315,6 +316,7 @@ static inline uint16_t mavlink_msg_rexroth_motion_platform_pack_status(uint8_t s
  * @param effect_setpoint_yaw [rad] Yaw special effect setpoint, positive right.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_rexroth_motion_platform_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint32_t time_boot_ms,uint32_t frame_count,uint32_t motion_status,uint8_t error_code,float actuator1,float actuator2,float actuator3,float actuator4,float actuator5,float actuator6,float platform_setpoint_x,float platform_setpoint_y,float platform_setpoint_z,float platform_setpoint_roll,float platform_setpoint_pitch,float platform_setpoint_yaw,float effect_setpoint_x,float effect_setpoint_y,float effect_setpoint_z,float effect_setpoint_roll,float effect_setpoint_pitch,float effect_setpoint_yaw)
@@ -385,6 +387,7 @@ static inline uint16_t mavlink_msg_rexroth_motion_platform_pack_chan(uint8_t sys
  * @param msg The MAVLink message to compress the data into
  * @param rexroth_motion_platform C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_rexroth_motion_platform_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_rexroth_motion_platform_t* rexroth_motion_platform)
 {
     return mavlink_msg_rexroth_motion_platform_pack(system_id, component_id, msg, rexroth_motion_platform->time_boot_ms, rexroth_motion_platform->frame_count, rexroth_motion_platform->motion_status, rexroth_motion_platform->error_code, rexroth_motion_platform->actuator1, rexroth_motion_platform->actuator2, rexroth_motion_platform->actuator3, rexroth_motion_platform->actuator4, rexroth_motion_platform->actuator5, rexroth_motion_platform->actuator6, rexroth_motion_platform->platform_setpoint_x, rexroth_motion_platform->platform_setpoint_y, rexroth_motion_platform->platform_setpoint_z, rexroth_motion_platform->platform_setpoint_roll, rexroth_motion_platform->platform_setpoint_pitch, rexroth_motion_platform->platform_setpoint_yaw, rexroth_motion_platform->effect_setpoint_x, rexroth_motion_platform->effect_setpoint_y, rexroth_motion_platform->effect_setpoint_z, rexroth_motion_platform->effect_setpoint_roll, rexroth_motion_platform->effect_setpoint_pitch, rexroth_motion_platform->effect_setpoint_yaw);
@@ -399,6 +402,7 @@ static inline uint16_t mavlink_msg_rexroth_motion_platform_encode(uint8_t system
  * @param msg The MAVLink message to compress the data into
  * @param rexroth_motion_platform C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_rexroth_motion_platform_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_rexroth_motion_platform_t* rexroth_motion_platform)
 {
     return mavlink_msg_rexroth_motion_platform_pack_chan(system_id, component_id, chan, msg, rexroth_motion_platform->time_boot_ms, rexroth_motion_platform->frame_count, rexroth_motion_platform->motion_status, rexroth_motion_platform->error_code, rexroth_motion_platform->actuator1, rexroth_motion_platform->actuator2, rexroth_motion_platform->actuator3, rexroth_motion_platform->actuator4, rexroth_motion_platform->actuator5, rexroth_motion_platform->actuator6, rexroth_motion_platform->platform_setpoint_x, rexroth_motion_platform->platform_setpoint_y, rexroth_motion_platform->platform_setpoint_z, rexroth_motion_platform->platform_setpoint_roll, rexroth_motion_platform->platform_setpoint_pitch, rexroth_motion_platform->platform_setpoint_yaw, rexroth_motion_platform->effect_setpoint_x, rexroth_motion_platform->effect_setpoint_y, rexroth_motion_platform->effect_setpoint_z, rexroth_motion_platform->effect_setpoint_roll, rexroth_motion_platform->effect_setpoint_pitch, rexroth_motion_platform->effect_setpoint_yaw);
@@ -447,6 +451,7 @@ static inline uint16_t mavlink_msg_rexroth_motion_platform_encode_status(uint8_t
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
+MAVLINK_WIP
 static inline void mavlink_msg_rexroth_motion_platform_send(mavlink_channel_t chan, uint32_t time_boot_ms, uint32_t frame_count, uint32_t motion_status, uint8_t error_code, float actuator1, float actuator2, float actuator3, float actuator4, float actuator5, float actuator6, float platform_setpoint_x, float platform_setpoint_y, float platform_setpoint_z, float platform_setpoint_roll, float platform_setpoint_pitch, float platform_setpoint_yaw, float effect_setpoint_x, float effect_setpoint_y, float effect_setpoint_z, float effect_setpoint_roll, float effect_setpoint_pitch, float effect_setpoint_yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -509,6 +514,7 @@ static inline void mavlink_msg_rexroth_motion_platform_send(mavlink_channel_t ch
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
+MAVLINK_WIP
 static inline void mavlink_msg_rexroth_motion_platform_send_struct(mavlink_channel_t chan, const mavlink_rexroth_motion_platform_t* rexroth_motion_platform)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -526,6 +532,7 @@ static inline void mavlink_msg_rexroth_motion_platform_send_struct(mavlink_chann
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
+MAVLINK_WIP
 static inline void mavlink_msg_rexroth_motion_platform_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, uint32_t frame_count, uint32_t motion_status, uint8_t error_code, float actuator1, float actuator2, float actuator3, float actuator4, float actuator5, float actuator6, float platform_setpoint_x, float platform_setpoint_y, float platform_setpoint_z, float platform_setpoint_roll, float platform_setpoint_pitch, float platform_setpoint_yaw, float effect_setpoint_x, float effect_setpoint_y, float effect_setpoint_z, float effect_setpoint_roll, float effect_setpoint_pitch, float effect_setpoint_yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -594,6 +601,7 @@ static inline void mavlink_msg_rexroth_motion_platform_send_buf(mavlink_message_
  *
  * @return [ms] Timestamp (time since system boot).
  */
+MAVLINK_WIP
 static inline uint32_t mavlink_msg_rexroth_motion_platform_get_time_boot_ms(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint32_t(msg,  0);
@@ -604,6 +612,7 @@ static inline uint32_t mavlink_msg_rexroth_motion_platform_get_time_boot_ms(cons
  *
  * @return  Number of message as sent by the Motion System.
  */
+MAVLINK_WIP
 static inline uint32_t mavlink_msg_rexroth_motion_platform_get_frame_count(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint32_t(msg,  4);
@@ -614,6 +623,7 @@ static inline uint32_t mavlink_msg_rexroth_motion_platform_get_frame_count(const
  *
  * @return  Motion Status variable as sent by the system.
  */
+MAVLINK_WIP
 static inline uint32_t mavlink_msg_rexroth_motion_platform_get_motion_status(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint32_t(msg,  8);
@@ -624,6 +634,7 @@ static inline uint32_t mavlink_msg_rexroth_motion_platform_get_motion_status(con
  *
  * @return  Error code extracted from motion status.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_rexroth_motion_platform_get_error_code(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  84);
@@ -634,6 +645,7 @@ static inline uint8_t mavlink_msg_rexroth_motion_platform_get_error_code(const m
  *
  * @return [m] Current actuator 1 position.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_rexroth_motion_platform_get_actuator1(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  12);
@@ -644,6 +656,7 @@ static inline float mavlink_msg_rexroth_motion_platform_get_actuator1(const mavl
  *
  * @return [m] Current actuator 2 position.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_rexroth_motion_platform_get_actuator2(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  16);
@@ -654,6 +667,7 @@ static inline float mavlink_msg_rexroth_motion_platform_get_actuator2(const mavl
  *
  * @return [m] Current actuator 3 position.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_rexroth_motion_platform_get_actuator3(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  20);
@@ -664,6 +678,7 @@ static inline float mavlink_msg_rexroth_motion_platform_get_actuator3(const mavl
  *
  * @return [m] Current actuator 4 position.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_rexroth_motion_platform_get_actuator4(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  24);
@@ -674,6 +689,7 @@ static inline float mavlink_msg_rexroth_motion_platform_get_actuator4(const mavl
  *
  * @return [m] Current actuator 5 position.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_rexroth_motion_platform_get_actuator5(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  28);
@@ -684,6 +700,7 @@ static inline float mavlink_msg_rexroth_motion_platform_get_actuator5(const mavl
  *
  * @return [m] Current actuator 6 position.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_rexroth_motion_platform_get_actuator6(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  32);
@@ -694,6 +711,7 @@ static inline float mavlink_msg_rexroth_motion_platform_get_actuator6(const mavl
  *
  * @return [m] X axis (surge) platform setpoint, positive forward.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_rexroth_motion_platform_get_platform_setpoint_x(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  36);
@@ -704,6 +722,7 @@ static inline float mavlink_msg_rexroth_motion_platform_get_platform_setpoint_x(
  *
  * @return [m] Y axis (sway) platform setpoint, positive right.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_rexroth_motion_platform_get_platform_setpoint_y(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  40);
@@ -714,6 +733,7 @@ static inline float mavlink_msg_rexroth_motion_platform_get_platform_setpoint_y(
  *
  * @return [m] Z axis (heave) platform setpoint, positive down.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_rexroth_motion_platform_get_platform_setpoint_z(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  44);
@@ -724,6 +744,7 @@ static inline float mavlink_msg_rexroth_motion_platform_get_platform_setpoint_z(
  *
  * @return [rad] Roll platform setpoint, positive right.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_rexroth_motion_platform_get_platform_setpoint_roll(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  48);
@@ -734,6 +755,7 @@ static inline float mavlink_msg_rexroth_motion_platform_get_platform_setpoint_ro
  *
  * @return [rad] Pitch platform setpoint, positive nose up.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_rexroth_motion_platform_get_platform_setpoint_pitch(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  52);
@@ -744,6 +766,7 @@ static inline float mavlink_msg_rexroth_motion_platform_get_platform_setpoint_pi
  *
  * @return [rad] Yaw platform setpoint, positive right.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_rexroth_motion_platform_get_platform_setpoint_yaw(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  56);
@@ -754,6 +777,7 @@ static inline float mavlink_msg_rexroth_motion_platform_get_platform_setpoint_ya
  *
  * @return [m] X axis (surge) special effect setpoint, positive forward.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_rexroth_motion_platform_get_effect_setpoint_x(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  60);
@@ -764,6 +788,7 @@ static inline float mavlink_msg_rexroth_motion_platform_get_effect_setpoint_x(co
  *
  * @return [m] Y axis (sway) special effect setpoint, positive right.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_rexroth_motion_platform_get_effect_setpoint_y(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  64);
@@ -774,6 +799,7 @@ static inline float mavlink_msg_rexroth_motion_platform_get_effect_setpoint_y(co
  *
  * @return [m] Z axis (heave) special effect setpoint, positive down.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_rexroth_motion_platform_get_effect_setpoint_z(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  68);
@@ -784,6 +810,7 @@ static inline float mavlink_msg_rexroth_motion_platform_get_effect_setpoint_z(co
  *
  * @return [rad] Roll special effect setpoint, positive right.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_rexroth_motion_platform_get_effect_setpoint_roll(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  72);
@@ -794,6 +821,7 @@ static inline float mavlink_msg_rexroth_motion_platform_get_effect_setpoint_roll
  *
  * @return [rad] Pitch special effect setpoint, positive nose up.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_rexroth_motion_platform_get_effect_setpoint_pitch(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  76);
@@ -804,6 +832,7 @@ static inline float mavlink_msg_rexroth_motion_platform_get_effect_setpoint_pitc
  *
  * @return [rad] Yaw special effect setpoint, positive right.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_rexroth_motion_platform_get_effect_setpoint_yaw(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  80);
@@ -815,6 +844,7 @@ static inline float mavlink_msg_rexroth_motion_platform_get_effect_setpoint_yaw(
  * @param msg The message to decode
  * @param rexroth_motion_platform C-struct to decode the message contents into
  */
+MAVLINK_WIP
 static inline void mavlink_msg_rexroth_motion_platform_decode(const mavlink_message_t* msg, mavlink_rexroth_motion_platform_t* rexroth_motion_platform)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS

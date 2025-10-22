@@ -48,6 +48,7 @@ typedef struct __mavlink_current_event_sequence_t {
  * @param flags  Flag bitset.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_current_event_sequence_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint16_t sequence, uint8_t flags)
 {
@@ -115,6 +116,7 @@ static inline uint16_t mavlink_msg_current_event_sequence_pack_status(uint8_t sy
  * @param flags  Flag bitset.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_current_event_sequence_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint16_t sequence,uint8_t flags)
@@ -145,6 +147,7 @@ static inline uint16_t mavlink_msg_current_event_sequence_pack_chan(uint8_t syst
  * @param msg The MAVLink message to compress the data into
  * @param current_event_sequence C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_current_event_sequence_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_current_event_sequence_t* current_event_sequence)
 {
     return mavlink_msg_current_event_sequence_pack(system_id, component_id, msg, current_event_sequence->sequence, current_event_sequence->flags);
@@ -159,6 +162,7 @@ static inline uint16_t mavlink_msg_current_event_sequence_encode(uint8_t system_
  * @param msg The MAVLink message to compress the data into
  * @param current_event_sequence C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_current_event_sequence_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_current_event_sequence_t* current_event_sequence)
 {
     return mavlink_msg_current_event_sequence_pack_chan(system_id, component_id, chan, msg, current_event_sequence->sequence, current_event_sequence->flags);
@@ -187,6 +191,7 @@ static inline uint16_t mavlink_msg_current_event_sequence_encode_status(uint8_t 
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
+MAVLINK_WIP
 static inline void mavlink_msg_current_event_sequence_send(mavlink_channel_t chan, uint16_t sequence, uint8_t flags)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -209,6 +214,7 @@ static inline void mavlink_msg_current_event_sequence_send(mavlink_channel_t cha
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
+MAVLINK_WIP
 static inline void mavlink_msg_current_event_sequence_send_struct(mavlink_channel_t chan, const mavlink_current_event_sequence_t* current_event_sequence)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -226,6 +232,7 @@ static inline void mavlink_msg_current_event_sequence_send_struct(mavlink_channe
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
+MAVLINK_WIP
 static inline void mavlink_msg_current_event_sequence_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint16_t sequence, uint8_t flags)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -254,6 +261,7 @@ static inline void mavlink_msg_current_event_sequence_send_buf(mavlink_message_t
  *
  * @return  Sequence number.
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_current_event_sequence_get_sequence(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint16_t(msg,  0);
@@ -264,6 +272,7 @@ static inline uint16_t mavlink_msg_current_event_sequence_get_sequence(const mav
  *
  * @return  Flag bitset.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_current_event_sequence_get_flags(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  2);
@@ -275,6 +284,7 @@ static inline uint8_t mavlink_msg_current_event_sequence_get_flags(const mavlink
  * @param msg The message to decode
  * @param current_event_sequence C-struct to decode the message contents into
  */
+MAVLINK_WIP
 static inline void mavlink_msg_current_event_sequence_decode(const mavlink_message_t* msg, mavlink_current_event_sequence_t* current_event_sequence)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS

@@ -60,6 +60,7 @@ typedef struct __mavlink_mlrs_radio_link_flow_control_t {
  * @param txbuf [c%] For compatibility with legacy method. UINT8_MAX: unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint16_t tx_ser_rate, uint16_t rx_ser_rate, uint8_t tx_used_ser_bandwidth, uint8_t rx_used_ser_bandwidth, uint8_t txbuf)
 {
@@ -145,6 +146,7 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_pack_status(uint
  * @param txbuf [c%] For compatibility with legacy method. UINT8_MAX: unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint16_t tx_ser_rate,uint16_t rx_ser_rate,uint8_t tx_used_ser_bandwidth,uint8_t rx_used_ser_bandwidth,uint8_t txbuf)
@@ -181,6 +183,7 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_pack_chan(uint8_
  * @param msg The MAVLink message to compress the data into
  * @param mlrs_radio_link_flow_control C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_mlrs_radio_link_flow_control_t* mlrs_radio_link_flow_control)
 {
     return mavlink_msg_mlrs_radio_link_flow_control_pack(system_id, component_id, msg, mlrs_radio_link_flow_control->tx_ser_rate, mlrs_radio_link_flow_control->rx_ser_rate, mlrs_radio_link_flow_control->tx_used_ser_bandwidth, mlrs_radio_link_flow_control->rx_used_ser_bandwidth, mlrs_radio_link_flow_control->txbuf);
@@ -195,6 +198,7 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_encode(uint8_t s
  * @param msg The MAVLink message to compress the data into
  * @param mlrs_radio_link_flow_control C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mlrs_radio_link_flow_control_t* mlrs_radio_link_flow_control)
 {
     return mavlink_msg_mlrs_radio_link_flow_control_pack_chan(system_id, component_id, chan, msg, mlrs_radio_link_flow_control->tx_ser_rate, mlrs_radio_link_flow_control->rx_ser_rate, mlrs_radio_link_flow_control->tx_used_ser_bandwidth, mlrs_radio_link_flow_control->rx_used_ser_bandwidth, mlrs_radio_link_flow_control->txbuf);
@@ -226,6 +230,7 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_encode_status(ui
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
+MAVLINK_WIP
 static inline void mavlink_msg_mlrs_radio_link_flow_control_send(mavlink_channel_t chan, uint16_t tx_ser_rate, uint16_t rx_ser_rate, uint8_t tx_used_ser_bandwidth, uint8_t rx_used_ser_bandwidth, uint8_t txbuf)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -254,6 +259,7 @@ static inline void mavlink_msg_mlrs_radio_link_flow_control_send(mavlink_channel
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
+MAVLINK_WIP
 static inline void mavlink_msg_mlrs_radio_link_flow_control_send_struct(mavlink_channel_t chan, const mavlink_mlrs_radio_link_flow_control_t* mlrs_radio_link_flow_control)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -271,6 +277,7 @@ static inline void mavlink_msg_mlrs_radio_link_flow_control_send_struct(mavlink_
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
+MAVLINK_WIP
 static inline void mavlink_msg_mlrs_radio_link_flow_control_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint16_t tx_ser_rate, uint16_t rx_ser_rate, uint8_t tx_used_ser_bandwidth, uint8_t rx_used_ser_bandwidth, uint8_t txbuf)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -305,6 +312,7 @@ static inline void mavlink_msg_mlrs_radio_link_flow_control_send_buf(mavlink_mes
  *
  * @return [bytes/s] Transmitted bytes per second, UINT16_MAX: invalid/unknown.
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_get_tx_ser_rate(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint16_t(msg,  0);
@@ -315,6 +323,7 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_get_tx_ser_rate(
  *
  * @return [bytes/s] Received bytes per second, UINT16_MAX: invalid/unknown.
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_get_rx_ser_rate(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint16_t(msg,  2);
@@ -325,6 +334,7 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_get_rx_ser_rate(
  *
  * @return [c%] Transmit bandwidth consumption. Values: 0..100, UINT8_MAX: invalid/unknown.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_mlrs_radio_link_flow_control_get_tx_used_ser_bandwidth(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  4);
@@ -335,6 +345,7 @@ static inline uint8_t mavlink_msg_mlrs_radio_link_flow_control_get_tx_used_ser_b
  *
  * @return [c%] Receive bandwidth consumption. Values: 0..100, UINT8_MAX: invalid/unknown.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_mlrs_radio_link_flow_control_get_rx_used_ser_bandwidth(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  5);
@@ -345,6 +356,7 @@ static inline uint8_t mavlink_msg_mlrs_radio_link_flow_control_get_rx_used_ser_b
  *
  * @return [c%] For compatibility with legacy method. UINT8_MAX: unknown.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_mlrs_radio_link_flow_control_get_txbuf(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  6);
@@ -356,6 +368,7 @@ static inline uint8_t mavlink_msg_mlrs_radio_link_flow_control_get_txbuf(const m
  * @param msg The message to decode
  * @param mlrs_radio_link_flow_control C-struct to decode the message contents into
  */
+MAVLINK_WIP
 static inline void mavlink_msg_mlrs_radio_link_flow_control_decode(const mavlink_message_t* msg, mavlink_mlrs_radio_link_flow_control_t* mlrs_radio_link_flow_control)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS

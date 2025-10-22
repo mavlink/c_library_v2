@@ -60,6 +60,7 @@ typedef struct __mavlink_set_velocity_limits_t {
  * @param yaw_rate_limit [rad/s] Limit for vehicle turn rate around its yaw axis. NaN: Field not used (ignore)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_set_velocity_limits_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t target_system, uint8_t target_component, float horizontal_speed_limit, float vertical_speed_limit, float yaw_rate_limit)
 {
@@ -145,6 +146,7 @@ static inline uint16_t mavlink_msg_set_velocity_limits_pack_status(uint8_t syste
  * @param yaw_rate_limit [rad/s] Limit for vehicle turn rate around its yaw axis. NaN: Field not used (ignore)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_set_velocity_limits_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t target_system,uint8_t target_component,float horizontal_speed_limit,float vertical_speed_limit,float yaw_rate_limit)
@@ -181,6 +183,7 @@ static inline uint16_t mavlink_msg_set_velocity_limits_pack_chan(uint8_t system_
  * @param msg The MAVLink message to compress the data into
  * @param set_velocity_limits C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_set_velocity_limits_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_set_velocity_limits_t* set_velocity_limits)
 {
     return mavlink_msg_set_velocity_limits_pack(system_id, component_id, msg, set_velocity_limits->target_system, set_velocity_limits->target_component, set_velocity_limits->horizontal_speed_limit, set_velocity_limits->vertical_speed_limit, set_velocity_limits->yaw_rate_limit);
@@ -195,6 +198,7 @@ static inline uint16_t mavlink_msg_set_velocity_limits_encode(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param set_velocity_limits C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_set_velocity_limits_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_set_velocity_limits_t* set_velocity_limits)
 {
     return mavlink_msg_set_velocity_limits_pack_chan(system_id, component_id, chan, msg, set_velocity_limits->target_system, set_velocity_limits->target_component, set_velocity_limits->horizontal_speed_limit, set_velocity_limits->vertical_speed_limit, set_velocity_limits->yaw_rate_limit);
@@ -226,6 +230,7 @@ static inline uint16_t mavlink_msg_set_velocity_limits_encode_status(uint8_t sys
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
+MAVLINK_WIP
 static inline void mavlink_msg_set_velocity_limits_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, float horizontal_speed_limit, float vertical_speed_limit, float yaw_rate_limit)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -254,6 +259,7 @@ static inline void mavlink_msg_set_velocity_limits_send(mavlink_channel_t chan, 
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
+MAVLINK_WIP
 static inline void mavlink_msg_set_velocity_limits_send_struct(mavlink_channel_t chan, const mavlink_set_velocity_limits_t* set_velocity_limits)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -271,6 +277,7 @@ static inline void mavlink_msg_set_velocity_limits_send_struct(mavlink_channel_t
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
+MAVLINK_WIP
 static inline void mavlink_msg_set_velocity_limits_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, float horizontal_speed_limit, float vertical_speed_limit, float yaw_rate_limit)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -305,6 +312,7 @@ static inline void mavlink_msg_set_velocity_limits_send_buf(mavlink_message_t *m
  *
  * @return  System ID (0 for broadcast).
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_set_velocity_limits_get_target_system(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  12);
@@ -315,6 +323,7 @@ static inline uint8_t mavlink_msg_set_velocity_limits_get_target_system(const ma
  *
  * @return  Component ID (0 for broadcast).
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_set_velocity_limits_get_target_component(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  13);
@@ -325,6 +334,7 @@ static inline uint8_t mavlink_msg_set_velocity_limits_get_target_component(const
  *
  * @return [m/s] Limit for horizontal movement in MAV_FRAME_LOCAL_NED. NaN: Field not used (ignore)
  */
+MAVLINK_WIP
 static inline float mavlink_msg_set_velocity_limits_get_horizontal_speed_limit(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  0);
@@ -335,6 +345,7 @@ static inline float mavlink_msg_set_velocity_limits_get_horizontal_speed_limit(c
  *
  * @return [m/s] Limit for vertical movement in MAV_FRAME_LOCAL_NED. NaN: Field not used (ignore)
  */
+MAVLINK_WIP
 static inline float mavlink_msg_set_velocity_limits_get_vertical_speed_limit(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  4);
@@ -345,6 +356,7 @@ static inline float mavlink_msg_set_velocity_limits_get_vertical_speed_limit(con
  *
  * @return [rad/s] Limit for vehicle turn rate around its yaw axis. NaN: Field not used (ignore)
  */
+MAVLINK_WIP
 static inline float mavlink_msg_set_velocity_limits_get_yaw_rate_limit(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  8);
@@ -356,6 +368,7 @@ static inline float mavlink_msg_set_velocity_limits_get_yaw_rate_limit(const mav
  * @param msg The message to decode
  * @param set_velocity_limits C-struct to decode the message contents into
  */
+MAVLINK_WIP
 static inline void mavlink_msg_set_velocity_limits_decode(const mavlink_message_t* msg, mavlink_set_velocity_limits_t* set_velocity_limits)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS

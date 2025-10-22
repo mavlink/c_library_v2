@@ -60,6 +60,7 @@ typedef struct __mavlink_control_loading_axis_t {
  * @param force  Force applied in the pilot in the direction of movement axis (not gripping force), measured at the position of pilot's third finger (ring). Unit N (Newton), currently not part of mavschema.xsd
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_control_loading_axis_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint32_t time_boot_ms, uint8_t axis, float position, float velocity, float force)
 {
@@ -145,6 +146,7 @@ static inline uint16_t mavlink_msg_control_loading_axis_pack_status(uint8_t syst
  * @param force  Force applied in the pilot in the direction of movement axis (not gripping force), measured at the position of pilot's third finger (ring). Unit N (Newton), currently not part of mavschema.xsd
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_control_loading_axis_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint32_t time_boot_ms,uint8_t axis,float position,float velocity,float force)
@@ -181,6 +183,7 @@ static inline uint16_t mavlink_msg_control_loading_axis_pack_chan(uint8_t system
  * @param msg The MAVLink message to compress the data into
  * @param control_loading_axis C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_control_loading_axis_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_control_loading_axis_t* control_loading_axis)
 {
     return mavlink_msg_control_loading_axis_pack(system_id, component_id, msg, control_loading_axis->time_boot_ms, control_loading_axis->axis, control_loading_axis->position, control_loading_axis->velocity, control_loading_axis->force);
@@ -195,6 +198,7 @@ static inline uint16_t mavlink_msg_control_loading_axis_encode(uint8_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param control_loading_axis C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_control_loading_axis_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_control_loading_axis_t* control_loading_axis)
 {
     return mavlink_msg_control_loading_axis_pack_chan(system_id, component_id, chan, msg, control_loading_axis->time_boot_ms, control_loading_axis->axis, control_loading_axis->position, control_loading_axis->velocity, control_loading_axis->force);
@@ -226,6 +230,7 @@ static inline uint16_t mavlink_msg_control_loading_axis_encode_status(uint8_t sy
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
+MAVLINK_WIP
 static inline void mavlink_msg_control_loading_axis_send(mavlink_channel_t chan, uint32_t time_boot_ms, uint8_t axis, float position, float velocity, float force)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -254,6 +259,7 @@ static inline void mavlink_msg_control_loading_axis_send(mavlink_channel_t chan,
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
+MAVLINK_WIP
 static inline void mavlink_msg_control_loading_axis_send_struct(mavlink_channel_t chan, const mavlink_control_loading_axis_t* control_loading_axis)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -271,6 +277,7 @@ static inline void mavlink_msg_control_loading_axis_send_struct(mavlink_channel_
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
+MAVLINK_WIP
 static inline void mavlink_msg_control_loading_axis_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, uint8_t axis, float position, float velocity, float force)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -305,6 +312,7 @@ static inline void mavlink_msg_control_loading_axis_send_buf(mavlink_message_t *
  *
  * @return [ms] Timestamp (time since system boot).
  */
+MAVLINK_WIP
 static inline uint32_t mavlink_msg_control_loading_axis_get_time_boot_ms(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint32_t(msg,  0);
@@ -315,6 +323,7 @@ static inline uint32_t mavlink_msg_control_loading_axis_get_time_boot_ms(const m
  *
  * @return  Control axis on which the measurements were taken.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_control_loading_axis_get_axis(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  16);
@@ -325,6 +334,7 @@ static inline uint8_t mavlink_msg_control_loading_axis_get_axis(const mavlink_me
  *
  * @return [deg] Axis position
  */
+MAVLINK_WIP
 static inline float mavlink_msg_control_loading_axis_get_position(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  4);
@@ -335,6 +345,7 @@ static inline float mavlink_msg_control_loading_axis_get_position(const mavlink_
  *
  * @return [deg/s] Axis velocity
  */
+MAVLINK_WIP
 static inline float mavlink_msg_control_loading_axis_get_velocity(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  8);
@@ -345,6 +356,7 @@ static inline float mavlink_msg_control_loading_axis_get_velocity(const mavlink_
  *
  * @return  Force applied in the pilot in the direction of movement axis (not gripping force), measured at the position of pilot's third finger (ring). Unit N (Newton), currently not part of mavschema.xsd
  */
+MAVLINK_WIP
 static inline float mavlink_msg_control_loading_axis_get_force(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  12);
@@ -356,6 +368,7 @@ static inline float mavlink_msg_control_loading_axis_get_force(const mavlink_mes
  * @param msg The message to decode
  * @param control_loading_axis C-struct to decode the message contents into
  */
+MAVLINK_WIP
 static inline void mavlink_msg_control_loading_axis_decode(const mavlink_message_t* msg, mavlink_control_loading_axis_t* control_loading_axis)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS

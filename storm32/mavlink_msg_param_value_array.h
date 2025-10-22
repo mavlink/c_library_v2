@@ -60,6 +60,7 @@ typedef struct __mavlink_param_value_array_t {
  * @param packet_buf  Parameters buffer. Contains a series of variable length parameter blocks, one per parameter, with format as specified elsewhere.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_param_value_array_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint16_t param_count, uint16_t param_index_first, uint8_t param_array_len, uint16_t flags, const uint8_t *packet_buf)
 {
@@ -141,6 +142,7 @@ static inline uint16_t mavlink_msg_param_value_array_pack_status(uint8_t system_
  * @param packet_buf  Parameters buffer. Contains a series of variable length parameter blocks, one per parameter, with format as specified elsewhere.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_param_value_array_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint16_t param_count,uint16_t param_index_first,uint8_t param_array_len,uint16_t flags,const uint8_t *packet_buf)
@@ -175,6 +177,7 @@ static inline uint16_t mavlink_msg_param_value_array_pack_chan(uint8_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param param_value_array C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_param_value_array_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_param_value_array_t* param_value_array)
 {
     return mavlink_msg_param_value_array_pack(system_id, component_id, msg, param_value_array->param_count, param_value_array->param_index_first, param_value_array->param_array_len, param_value_array->flags, param_value_array->packet_buf);
@@ -189,6 +192,7 @@ static inline uint16_t mavlink_msg_param_value_array_encode(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param param_value_array C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_param_value_array_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_param_value_array_t* param_value_array)
 {
     return mavlink_msg_param_value_array_pack_chan(system_id, component_id, chan, msg, param_value_array->param_count, param_value_array->param_index_first, param_value_array->param_array_len, param_value_array->flags, param_value_array->packet_buf);
@@ -220,6 +224,7 @@ static inline uint16_t mavlink_msg_param_value_array_encode_status(uint8_t syste
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
+MAVLINK_WIP
 static inline void mavlink_msg_param_value_array_send(mavlink_channel_t chan, uint16_t param_count, uint16_t param_index_first, uint8_t param_array_len, uint16_t flags, const uint8_t *packet_buf)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -246,6 +251,7 @@ static inline void mavlink_msg_param_value_array_send(mavlink_channel_t chan, ui
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
+MAVLINK_WIP
 static inline void mavlink_msg_param_value_array_send_struct(mavlink_channel_t chan, const mavlink_param_value_array_t* param_value_array)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -263,6 +269,7 @@ static inline void mavlink_msg_param_value_array_send_struct(mavlink_channel_t c
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
+MAVLINK_WIP
 static inline void mavlink_msg_param_value_array_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint16_t param_count, uint16_t param_index_first, uint8_t param_array_len, uint16_t flags, const uint8_t *packet_buf)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -295,6 +302,7 @@ static inline void mavlink_msg_param_value_array_send_buf(mavlink_message_t *msg
  *
  * @return  Total number of onboard parameters.
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_param_value_array_get_param_count(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint16_t(msg,  0);
@@ -305,6 +313,7 @@ static inline uint16_t mavlink_msg_param_value_array_get_param_count(const mavli
  *
  * @return  Index of the first onboard parameter in this array.
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_param_value_array_get_param_index_first(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint16_t(msg,  2);
@@ -315,6 +324,7 @@ static inline uint16_t mavlink_msg_param_value_array_get_param_index_first(const
  *
  * @return  Number of onboard parameters in this array.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_param_value_array_get_param_array_len(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  6);
@@ -325,6 +335,7 @@ static inline uint8_t mavlink_msg_param_value_array_get_param_array_len(const ma
  *
  * @return  Flags.
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_param_value_array_get_flags(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint16_t(msg,  4);
@@ -335,6 +346,7 @@ static inline uint16_t mavlink_msg_param_value_array_get_flags(const mavlink_mes
  *
  * @return  Parameters buffer. Contains a series of variable length parameter blocks, one per parameter, with format as specified elsewhere.
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_param_value_array_get_packet_buf(const mavlink_message_t* msg, uint8_t *packet_buf)
 {
     return _MAV_RETURN_uint8_t_array(msg, packet_buf, 248,  7);
@@ -346,6 +358,7 @@ static inline uint16_t mavlink_msg_param_value_array_get_packet_buf(const mavlin
  * @param msg The message to decode
  * @param param_value_array C-struct to decode the message contents into
  */
+MAVLINK_WIP
 static inline void mavlink_msg_param_value_array_decode(const mavlink_message_t* msg, mavlink_param_value_array_t* param_value_array)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
