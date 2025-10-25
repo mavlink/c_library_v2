@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_DEVELOPMENT.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_DEVELOPMENT_XML_HASH 5654262566458239070
+#define MAVLINK_DEVELOPMENT_XML_HASH -8513195043046158140
 
 #ifdef __cplusplus
 extern "C" {
@@ -32,17 +32,6 @@ extern "C" {
 
 // ENUM DEFINITIONS
 
-
-/** @brief Airspeed sensor flags */
-#ifndef HAVE_ENUM_AIRSPEED_SENSOR_FLAGS
-#define HAVE_ENUM_AIRSPEED_SENSOR_FLAGS
-typedef enum AIRSPEED_SENSOR_FLAGS
-{
-   AIRSPEED_SENSOR_UNHEALTHY=1, /* Airspeed sensor is unhealthy | */
-   AIRSPEED_SENSOR_USING=2, /* True if the data from this sensor is being actively used by the flight controller for guidance, navigation or control. | */
-   AIRSPEED_SENSOR_FLAGS_ENUM_END=3, /*  | */
-} AIRSPEED_SENSOR_FLAGS;
-#endif
 
 /** @brief Battery status flags for fault, health and state indication. */
 #ifndef HAVE_ENUM_MAV_BATTERY_STATUS_FLAGS
@@ -642,7 +631,6 @@ typedef enum GLOBAL_POSITION_FLAGS
 #endif
 
 // MESSAGE DEFINITIONS
-#include "./mavlink_msg_airspeed.h"
 #include "./mavlink_msg_global_position.h"
 #include "./mavlink_msg_set_velocity_limits.h"
 #include "./mavlink_msg_velocity_limits.h"

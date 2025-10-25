@@ -6,8 +6,8 @@
 
 typedef struct __mavlink_airspeed_t {
  float airspeed; /*< [m/s] Calibrated airspeed (CAS).*/
- float raw_press; /*< [hPa] Raw differential pressure. NaN for value unknown/not supplied.*/
- int16_t temperature; /*< [cdegC] Temperature. INT16_MAX for value unknown/not supplied.*/
+ float raw_press; /*< [hPa] Raw differential pressure.*/
+ int16_t temperature; /*< [cdegC] Temperature.*/
  uint8_t id; /*<  Sensor ID.*/
  uint8_t flags; /*<  Airspeed sensor flags.*/
 } mavlink_airspeed_t;
@@ -55,8 +55,8 @@ typedef struct __mavlink_airspeed_t {
  *
  * @param id  Sensor ID.
  * @param airspeed [m/s] Calibrated airspeed (CAS).
- * @param temperature [cdegC] Temperature. INT16_MAX for value unknown/not supplied.
- * @param raw_press [hPa] Raw differential pressure. NaN for value unknown/not supplied.
+ * @param temperature [cdegC] Temperature.
+ * @param raw_press [hPa] Raw differential pressure.
  * @param flags  Airspeed sensor flags.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -96,8 +96,8 @@ static inline uint16_t mavlink_msg_airspeed_pack(uint8_t system_id, uint8_t comp
  *
  * @param id  Sensor ID.
  * @param airspeed [m/s] Calibrated airspeed (CAS).
- * @param temperature [cdegC] Temperature. INT16_MAX for value unknown/not supplied.
- * @param raw_press [hPa] Raw differential pressure. NaN for value unknown/not supplied.
+ * @param temperature [cdegC] Temperature.
+ * @param raw_press [hPa] Raw differential pressure.
  * @param flags  Airspeed sensor flags.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -140,8 +140,8 @@ static inline uint16_t mavlink_msg_airspeed_pack_status(uint8_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param id  Sensor ID.
  * @param airspeed [m/s] Calibrated airspeed (CAS).
- * @param temperature [cdegC] Temperature. INT16_MAX for value unknown/not supplied.
- * @param raw_press [hPa] Raw differential pressure. NaN for value unknown/not supplied.
+ * @param temperature [cdegC] Temperature.
+ * @param raw_press [hPa] Raw differential pressure.
  * @param flags  Airspeed sensor flags.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -220,8 +220,8 @@ static inline uint16_t mavlink_msg_airspeed_encode_status(uint8_t system_id, uin
  *
  * @param id  Sensor ID.
  * @param airspeed [m/s] Calibrated airspeed (CAS).
- * @param temperature [cdegC] Temperature. INT16_MAX for value unknown/not supplied.
- * @param raw_press [hPa] Raw differential pressure. NaN for value unknown/not supplied.
+ * @param temperature [cdegC] Temperature.
+ * @param raw_press [hPa] Raw differential pressure.
  * @param flags  Airspeed sensor flags.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -323,7 +323,7 @@ static inline float mavlink_msg_airspeed_get_airspeed(const mavlink_message_t* m
 /**
  * @brief Get field temperature from airspeed message
  *
- * @return [cdegC] Temperature. INT16_MAX for value unknown/not supplied.
+ * @return [cdegC] Temperature.
  */
 static inline int16_t mavlink_msg_airspeed_get_temperature(const mavlink_message_t* msg)
 {
@@ -333,7 +333,7 @@ static inline int16_t mavlink_msg_airspeed_get_temperature(const mavlink_message
 /**
  * @brief Get field raw_press from airspeed message
  *
- * @return [hPa] Raw differential pressure. NaN for value unknown/not supplied.
+ * @return [hPa] Raw differential pressure.
  */
 static inline float mavlink_msg_airspeed_get_raw_press(const mavlink_message_t* msg)
 {
