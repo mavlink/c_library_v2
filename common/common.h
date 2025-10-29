@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH 5199495037453215278
+#define MAVLINK_COMMON_XML_HASH -7562379307603418629
 
 #ifdef __cplusplus
 extern "C" {
@@ -3025,6 +3025,7 @@ typedef enum AIRSPEED_SENSOR_FLAGS
 #include "./mavlink_msg_esc_status.h"
 #include "./mavlink_msg_airspeed.h"
 #include "./mavlink_msg_wifi_config_ap.h"
+#include "./mavlink_msg_protocol_version.h"
 #include "./mavlink_msg_ais_vessel.h"
 #include "./mavlink_msg_uavcan_node_status.h"
 #include "./mavlink_msg_uavcan_node_info.h"

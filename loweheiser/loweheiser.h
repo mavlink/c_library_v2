@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_LOWEHEISER.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_LOWEHEISER_XML_HASH -4611073587705768578
+#define MAVLINK_LOWEHEISER_XML_HASH -4545667635138114820
 
 #ifdef __cplusplus
 extern "C" {
@@ -23,7 +23,7 @@ extern "C" {
 #endif
 
 #ifndef MAVLINK_MESSAGE_CRCS
-#define MAVLINK_MESSAGE_CRCS {{0, 50, 9, 9, 0, 0, 0}, {300, 217, 22, 22, 0, 0, 0}, {10151, 195, 85, 85, 0, 0, 0}}
+#define MAVLINK_MESSAGE_CRCS {{0, 50, 9, 9, 0, 0, 0}, {10151, 195, 85, 85, 0, 0, 0}}
 #endif
 
 #include "../protocol.h"
@@ -62,8 +62,8 @@ typedef enum MAV_CMD
 
 
 #if MAVLINK_LOWEHEISER_XML_HASH == MAVLINK_PRIMARY_XML_HASH
-# define MAVLINK_MESSAGE_INFO {MAVLINK_MESSAGE_INFO_HEARTBEAT, MAVLINK_MESSAGE_INFO_PROTOCOL_VERSION, MAVLINK_MESSAGE_INFO_LOWEHEISER_GOV_EFI}
-# define MAVLINK_MESSAGE_NAMES {{ "HEARTBEAT", 0 }, { "LOWEHEISER_GOV_EFI", 10151 }, { "PROTOCOL_VERSION", 300 }}
+# define MAVLINK_MESSAGE_INFO {MAVLINK_MESSAGE_INFO_HEARTBEAT, MAVLINK_MESSAGE_INFO_LOWEHEISER_GOV_EFI}
+# define MAVLINK_MESSAGE_NAMES {{ "HEARTBEAT", 0 }, { "LOWEHEISER_GOV_EFI", 10151 }}
 # if MAVLINK_COMMAND_24BIT
 #  include "../mavlink_get_info.h"
 # endif
