@@ -101,7 +101,7 @@ static inline uint16_t mavlink_msg_mag_cal_progress_pack(uint8_t system_id, uint
     packet.cal_status = cal_status;
     packet.attempt = attempt;
     packet.completion_pct = completion_pct;
-    mav_array_assign_uint8_t(packet.completion_mask, completion_mask, 10);
+    mav_array_memcpy(packet.completion_mask, completion_mask, sizeof(uint8_t)*10);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_MAG_CAL_PROGRESS_LEN);
 #endif
 
@@ -207,7 +207,7 @@ static inline uint16_t mavlink_msg_mag_cal_progress_pack_chan(uint8_t system_id,
     packet.cal_status = cal_status;
     packet.attempt = attempt;
     packet.completion_pct = completion_pct;
-    mav_array_assign_uint8_t(packet.completion_mask, completion_mask, 10);
+    mav_array_memcpy(packet.completion_mask, completion_mask, sizeof(uint8_t)*10);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_MAG_CAL_PROGRESS_LEN);
 #endif
 
@@ -296,7 +296,7 @@ static inline void mavlink_msg_mag_cal_progress_send(mavlink_channel_t chan, uin
     packet.cal_status = cal_status;
     packet.attempt = attempt;
     packet.completion_pct = completion_pct;
-    mav_array_assign_uint8_t(packet.completion_mask, completion_mask, 10);
+    mav_array_memcpy(packet.completion_mask, completion_mask, sizeof(uint8_t)*10);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MAG_CAL_PROGRESS, (const char *)&packet, MAVLINK_MSG_ID_MAG_CAL_PROGRESS_MIN_LEN, MAVLINK_MSG_ID_MAG_CAL_PROGRESS_LEN, MAVLINK_MSG_ID_MAG_CAL_PROGRESS_CRC);
 #endif
 }
@@ -347,7 +347,7 @@ static inline void mavlink_msg_mag_cal_progress_send_buf(mavlink_message_t *msgb
     packet->cal_status = cal_status;
     packet->attempt = attempt;
     packet->completion_pct = completion_pct;
-    mav_array_assign_uint8_t(packet->completion_mask, completion_mask, 10);
+    mav_array_memcpy(packet->completion_mask, completion_mask, sizeof(uint8_t)*10);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MAG_CAL_PROGRESS, (const char *)packet, MAVLINK_MSG_ID_MAG_CAL_PROGRESS_MIN_LEN, MAVLINK_MSG_ID_MAG_CAL_PROGRESS_LEN, MAVLINK_MSG_ID_MAG_CAL_PROGRESS_CRC);
 #endif
 }

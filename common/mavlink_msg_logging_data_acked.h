@@ -83,7 +83,7 @@ static inline uint16_t mavlink_msg_logging_data_acked_pack(uint8_t system_id, ui
     packet.target_component = target_component;
     packet.length = length;
     packet.first_message_offset = first_message_offset;
-    mav_array_assign_uint8_t(packet.data, data, 249);
+    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*249);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_LOGGING_DATA_ACKED_LEN);
 #endif
 
@@ -171,7 +171,7 @@ static inline uint16_t mavlink_msg_logging_data_acked_pack_chan(uint8_t system_i
     packet.target_component = target_component;
     packet.length = length;
     packet.first_message_offset = first_message_offset;
-    mav_array_assign_uint8_t(packet.data, data, 249);
+    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*249);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_LOGGING_DATA_ACKED_LEN);
 #endif
 
@@ -251,7 +251,7 @@ static inline void mavlink_msg_logging_data_acked_send(mavlink_channel_t chan, u
     packet.target_component = target_component;
     packet.length = length;
     packet.first_message_offset = first_message_offset;
-    mav_array_assign_uint8_t(packet.data, data, 249);
+    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*249);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LOGGING_DATA_ACKED, (const char *)&packet, MAVLINK_MSG_ID_LOGGING_DATA_ACKED_MIN_LEN, MAVLINK_MSG_ID_LOGGING_DATA_ACKED_LEN, MAVLINK_MSG_ID_LOGGING_DATA_ACKED_CRC);
 #endif
 }
@@ -296,7 +296,7 @@ static inline void mavlink_msg_logging_data_acked_send_buf(mavlink_message_t *ms
     packet->target_component = target_component;
     packet->length = length;
     packet->first_message_offset = first_message_offset;
-    mav_array_assign_uint8_t(packet->data, data, 249);
+    mav_array_memcpy(packet->data, data, sizeof(uint8_t)*249);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LOGGING_DATA_ACKED, (const char *)packet, MAVLINK_MSG_ID_LOGGING_DATA_ACKED_MIN_LEN, MAVLINK_MSG_ID_LOGGING_DATA_ACKED_LEN, MAVLINK_MSG_ID_LOGGING_DATA_ACKED_CRC);
 #endif
 }

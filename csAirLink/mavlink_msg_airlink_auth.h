@@ -61,8 +61,8 @@ static inline uint16_t mavlink_msg_airlink_auth_pack(uint8_t system_id, uint8_t 
 #else
     mavlink_airlink_auth_t packet;
 
-    mav_array_assign_char(packet.login, login, 50);
-    mav_array_assign_char(packet.password, password, 50);
+    mav_array_memcpy(packet.login, login, sizeof(char)*50);
+    mav_array_memcpy(packet.password, password, sizeof(char)*50);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_AIRLINK_AUTH_LEN);
 #endif
 
@@ -129,8 +129,8 @@ static inline uint16_t mavlink_msg_airlink_auth_pack_chan(uint8_t system_id, uin
 #else
     mavlink_airlink_auth_t packet;
 
-    mav_array_assign_char(packet.login, login, 50);
-    mav_array_assign_char(packet.password, password, 50);
+    mav_array_memcpy(packet.login, login, sizeof(char)*50);
+    mav_array_memcpy(packet.password, password, sizeof(char)*50);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_AIRLINK_AUTH_LEN);
 #endif
 
@@ -199,8 +199,8 @@ static inline void mavlink_msg_airlink_auth_send(mavlink_channel_t chan, const c
 #else
     mavlink_airlink_auth_t packet;
 
-    mav_array_assign_char(packet.login, login, 50);
-    mav_array_assign_char(packet.password, password, 50);
+    mav_array_memcpy(packet.login, login, sizeof(char)*50);
+    mav_array_memcpy(packet.password, password, sizeof(char)*50);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_AIRLINK_AUTH, (const char *)&packet, MAVLINK_MSG_ID_AIRLINK_AUTH_MIN_LEN, MAVLINK_MSG_ID_AIRLINK_AUTH_LEN, MAVLINK_MSG_ID_AIRLINK_AUTH_CRC);
 #endif
 }
@@ -238,8 +238,8 @@ static inline void mavlink_msg_airlink_auth_send_buf(mavlink_message_t *msgbuf, 
 #else
     mavlink_airlink_auth_t *packet = (mavlink_airlink_auth_t *)msgbuf;
 
-    mav_array_assign_char(packet->login, login, 50);
-    mav_array_assign_char(packet->password, password, 50);
+    mav_array_memcpy(packet->login, login, sizeof(char)*50);
+    mav_array_memcpy(packet->password, password, sizeof(char)*50);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_AIRLINK_AUTH, (const char *)packet, MAVLINK_MSG_ID_AIRLINK_AUTH_MIN_LEN, MAVLINK_MSG_ID_AIRLINK_AUTH_LEN, MAVLINK_MSG_ID_AIRLINK_AUTH_CRC);
 #endif
 }

@@ -65,7 +65,7 @@ static inline uint16_t mavlink_msg_data96_pack(uint8_t system_id, uint8_t compon
     mavlink_data96_t packet;
     packet.type = type;
     packet.len = len;
-    mav_array_assign_uint8_t(packet.data, data, 96);
+    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*96);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_DATA96_LEN);
 #endif
 
@@ -135,7 +135,7 @@ static inline uint16_t mavlink_msg_data96_pack_chan(uint8_t system_id, uint8_t c
     mavlink_data96_t packet;
     packet.type = type;
     packet.len = len;
-    mav_array_assign_uint8_t(packet.data, data, 96);
+    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*96);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_DATA96_LEN);
 #endif
 
@@ -206,7 +206,7 @@ static inline void mavlink_msg_data96_send(mavlink_channel_t chan, uint8_t type,
     mavlink_data96_t packet;
     packet.type = type;
     packet.len = len;
-    mav_array_assign_uint8_t(packet.data, data, 96);
+    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*96);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_DATA96, (const char *)&packet, MAVLINK_MSG_ID_DATA96_MIN_LEN, MAVLINK_MSG_ID_DATA96_LEN, MAVLINK_MSG_ID_DATA96_CRC);
 #endif
 }
@@ -245,7 +245,7 @@ static inline void mavlink_msg_data96_send_buf(mavlink_message_t *msgbuf, mavlin
     mavlink_data96_t *packet = (mavlink_data96_t *)msgbuf;
     packet->type = type;
     packet->len = len;
-    mav_array_assign_uint8_t(packet->data, data, 96);
+    mav_array_memcpy(packet->data, data, sizeof(uint8_t)*96);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_DATA96, (const char *)packet, MAVLINK_MSG_ID_DATA96_MIN_LEN, MAVLINK_MSG_ID_DATA96_LEN, MAVLINK_MSG_ID_DATA96_CRC);
 #endif
 }

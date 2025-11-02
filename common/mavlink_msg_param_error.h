@@ -78,7 +78,7 @@ static inline uint16_t mavlink_msg_param_error_pack(uint8_t system_id, uint8_t c
     packet.target_system = target_system;
     packet.target_component = target_component;
     packet.error = error;
-    mav_array_assign_char(packet.param_id, param_id, 16);
+    mav_array_memcpy(packet.param_id, param_id, sizeof(char)*16);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PARAM_ERROR_LEN);
 #endif
 
@@ -161,7 +161,7 @@ static inline uint16_t mavlink_msg_param_error_pack_chan(uint8_t system_id, uint
     packet.target_system = target_system;
     packet.target_component = target_component;
     packet.error = error;
-    mav_array_assign_char(packet.param_id, param_id, 16);
+    mav_array_memcpy(packet.param_id, param_id, sizeof(char)*16);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PARAM_ERROR_LEN);
 #endif
 
@@ -241,7 +241,7 @@ static inline void mavlink_msg_param_error_send(mavlink_channel_t chan, uint8_t 
     packet.target_system = target_system;
     packet.target_component = target_component;
     packet.error = error;
-    mav_array_assign_char(packet.param_id, param_id, 16);
+    mav_array_memcpy(packet.param_id, param_id, sizeof(char)*16);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PARAM_ERROR, (const char *)&packet, MAVLINK_MSG_ID_PARAM_ERROR_MIN_LEN, MAVLINK_MSG_ID_PARAM_ERROR_LEN, MAVLINK_MSG_ID_PARAM_ERROR_CRC);
 #endif
 }
@@ -286,7 +286,7 @@ static inline void mavlink_msg_param_error_send_buf(mavlink_message_t *msgbuf, m
     packet->target_system = target_system;
     packet->target_component = target_component;
     packet->error = error;
-    mav_array_assign_char(packet->param_id, param_id, 16);
+    mav_array_memcpy(packet->param_id, param_id, sizeof(char)*16);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PARAM_ERROR, (const char *)packet, MAVLINK_MSG_ID_PARAM_ERROR_MIN_LEN, MAVLINK_MSG_ID_PARAM_ERROR_LEN, MAVLINK_MSG_ID_PARAM_ERROR_CRC);
 #endif
 }

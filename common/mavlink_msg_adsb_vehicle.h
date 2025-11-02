@@ -125,7 +125,7 @@ static inline uint16_t mavlink_msg_adsb_vehicle_pack(uint8_t system_id, uint8_t 
     packet.altitude_type = altitude_type;
     packet.emitter_type = emitter_type;
     packet.tslc = tslc;
-    mav_array_assign_char(packet.callsign, callsign, 9);
+    mav_array_memcpy(packet.callsign, callsign, sizeof(char)*9);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ADSB_VEHICLE_LEN);
 #endif
 
@@ -255,7 +255,7 @@ static inline uint16_t mavlink_msg_adsb_vehicle_pack_chan(uint8_t system_id, uin
     packet.altitude_type = altitude_type;
     packet.emitter_type = emitter_type;
     packet.tslc = tslc;
-    mav_array_assign_char(packet.callsign, callsign, 9);
+    mav_array_memcpy(packet.callsign, callsign, sizeof(char)*9);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ADSB_VEHICLE_LEN);
 #endif
 
@@ -356,7 +356,7 @@ static inline void mavlink_msg_adsb_vehicle_send(mavlink_channel_t chan, uint32_
     packet.altitude_type = altitude_type;
     packet.emitter_type = emitter_type;
     packet.tslc = tslc;
-    mav_array_assign_char(packet.callsign, callsign, 9);
+    mav_array_memcpy(packet.callsign, callsign, sizeof(char)*9);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ADSB_VEHICLE, (const char *)&packet, MAVLINK_MSG_ID_ADSB_VEHICLE_MIN_LEN, MAVLINK_MSG_ID_ADSB_VEHICLE_LEN, MAVLINK_MSG_ID_ADSB_VEHICLE_CRC);
 #endif
 }
@@ -415,7 +415,7 @@ static inline void mavlink_msg_adsb_vehicle_send_buf(mavlink_message_t *msgbuf, 
     packet->altitude_type = altitude_type;
     packet->emitter_type = emitter_type;
     packet->tslc = tslc;
-    mav_array_assign_char(packet->callsign, callsign, 9);
+    mav_array_memcpy(packet->callsign, callsign, sizeof(char)*9);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ADSB_VEHICLE, (const char *)packet, MAVLINK_MSG_ID_ADSB_VEHICLE_MIN_LEN, MAVLINK_MSG_ID_ADSB_VEHICLE_LEN, MAVLINK_MSG_ID_ADSB_VEHICLE_CRC);
 #endif
 }

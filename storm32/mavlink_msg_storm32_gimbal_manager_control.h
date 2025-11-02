@@ -107,7 +107,7 @@ static inline uint16_t mavlink_msg_storm32_gimbal_manager_control_pack(uint8_t s
     packet.target_component = target_component;
     packet.gimbal_id = gimbal_id;
     packet.client = client;
-    mav_array_assign_float(packet.q, q, 4);
+    mav_array_memcpy(packet.q, q, sizeof(float)*4);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL_LEN);
 #endif
 
@@ -219,7 +219,7 @@ static inline uint16_t mavlink_msg_storm32_gimbal_manager_control_pack_chan(uint
     packet.target_component = target_component;
     packet.gimbal_id = gimbal_id;
     packet.client = client;
-    mav_array_assign_float(packet.q, q, 4);
+    mav_array_memcpy(packet.q, q, sizeof(float)*4);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL_LEN);
 #endif
 
@@ -311,7 +311,7 @@ static inline void mavlink_msg_storm32_gimbal_manager_control_send(mavlink_chann
     packet.target_component = target_component;
     packet.gimbal_id = gimbal_id;
     packet.client = client;
-    mav_array_assign_float(packet.q, q, 4);
+    mav_array_memcpy(packet.q, q, sizeof(float)*4);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL, (const char *)&packet, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL_MIN_LEN, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL_LEN, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL_CRC);
 #endif
 }
@@ -364,7 +364,7 @@ static inline void mavlink_msg_storm32_gimbal_manager_control_send_buf(mavlink_m
     packet->target_component = target_component;
     packet->gimbal_id = gimbal_id;
     packet->client = client;
-    mav_array_assign_float(packet->q, q, 4);
+    mav_array_memcpy(packet->q, q, sizeof(float)*4);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL, (const char *)packet, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL_MIN_LEN, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL_LEN, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL_CRC);
 #endif
 }

@@ -78,9 +78,9 @@ static inline uint16_t mavlink_msg_esc_status_pack(uint8_t system_id, uint8_t co
     mavlink_esc_status_t packet;
     packet.time_usec = time_usec;
     packet.index = index;
-    mav_array_assign_int32_t(packet.rpm, rpm, 4);
-    mav_array_assign_float(packet.voltage, voltage, 4);
-    mav_array_assign_float(packet.current, current, 4);
+    mav_array_memcpy(packet.rpm, rpm, sizeof(int32_t)*4);
+    mav_array_memcpy(packet.voltage, voltage, sizeof(float)*4);
+    mav_array_memcpy(packet.current, current, sizeof(float)*4);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ESC_STATUS_LEN);
 #endif
 
@@ -161,9 +161,9 @@ static inline uint16_t mavlink_msg_esc_status_pack_chan(uint8_t system_id, uint8
     mavlink_esc_status_t packet;
     packet.time_usec = time_usec;
     packet.index = index;
-    mav_array_assign_int32_t(packet.rpm, rpm, 4);
-    mav_array_assign_float(packet.voltage, voltage, 4);
-    mav_array_assign_float(packet.current, current, 4);
+    mav_array_memcpy(packet.rpm, rpm, sizeof(int32_t)*4);
+    mav_array_memcpy(packet.voltage, voltage, sizeof(float)*4);
+    mav_array_memcpy(packet.current, current, sizeof(float)*4);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ESC_STATUS_LEN);
 #endif
 
@@ -241,9 +241,9 @@ static inline void mavlink_msg_esc_status_send(mavlink_channel_t chan, uint8_t i
     mavlink_esc_status_t packet;
     packet.time_usec = time_usec;
     packet.index = index;
-    mav_array_assign_int32_t(packet.rpm, rpm, 4);
-    mav_array_assign_float(packet.voltage, voltage, 4);
-    mav_array_assign_float(packet.current, current, 4);
+    mav_array_memcpy(packet.rpm, rpm, sizeof(int32_t)*4);
+    mav_array_memcpy(packet.voltage, voltage, sizeof(float)*4);
+    mav_array_memcpy(packet.current, current, sizeof(float)*4);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ESC_STATUS, (const char *)&packet, MAVLINK_MSG_ID_ESC_STATUS_MIN_LEN, MAVLINK_MSG_ID_ESC_STATUS_LEN, MAVLINK_MSG_ID_ESC_STATUS_CRC);
 #endif
 }
@@ -286,9 +286,9 @@ static inline void mavlink_msg_esc_status_send_buf(mavlink_message_t *msgbuf, ma
     mavlink_esc_status_t *packet = (mavlink_esc_status_t *)msgbuf;
     packet->time_usec = time_usec;
     packet->index = index;
-    mav_array_assign_int32_t(packet->rpm, rpm, 4);
-    mav_array_assign_float(packet->voltage, voltage, 4);
-    mav_array_assign_float(packet->current, current, 4);
+    mav_array_memcpy(packet->rpm, rpm, sizeof(int32_t)*4);
+    mav_array_memcpy(packet->voltage, voltage, sizeof(float)*4);
+    mav_array_memcpy(packet->current, current, sizeof(float)*4);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ESC_STATUS, (const char *)packet, MAVLINK_MSG_ID_ESC_STATUS_MIN_LEN, MAVLINK_MSG_ID_ESC_STATUS_LEN, MAVLINK_MSG_ID_ESC_STATUS_CRC);
 #endif
 }

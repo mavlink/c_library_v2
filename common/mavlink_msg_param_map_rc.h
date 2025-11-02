@@ -101,7 +101,7 @@ static inline uint16_t mavlink_msg_param_map_rc_pack(uint8_t system_id, uint8_t 
     packet.target_system = target_system;
     packet.target_component = target_component;
     packet.parameter_rc_channel_index = parameter_rc_channel_index;
-    mav_array_assign_char(packet.param_id, param_id, 16);
+    mav_array_memcpy(packet.param_id, param_id, sizeof(char)*16);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PARAM_MAP_RC_LEN);
 #endif
 
@@ -207,7 +207,7 @@ static inline uint16_t mavlink_msg_param_map_rc_pack_chan(uint8_t system_id, uin
     packet.target_system = target_system;
     packet.target_component = target_component;
     packet.parameter_rc_channel_index = parameter_rc_channel_index;
-    mav_array_assign_char(packet.param_id, param_id, 16);
+    mav_array_memcpy(packet.param_id, param_id, sizeof(char)*16);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PARAM_MAP_RC_LEN);
 #endif
 
@@ -296,7 +296,7 @@ static inline void mavlink_msg_param_map_rc_send(mavlink_channel_t chan, uint8_t
     packet.target_system = target_system;
     packet.target_component = target_component;
     packet.parameter_rc_channel_index = parameter_rc_channel_index;
-    mav_array_assign_char(packet.param_id, param_id, 16);
+    mav_array_memcpy(packet.param_id, param_id, sizeof(char)*16);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PARAM_MAP_RC, (const char *)&packet, MAVLINK_MSG_ID_PARAM_MAP_RC_MIN_LEN, MAVLINK_MSG_ID_PARAM_MAP_RC_LEN, MAVLINK_MSG_ID_PARAM_MAP_RC_CRC);
 #endif
 }
@@ -347,7 +347,7 @@ static inline void mavlink_msg_param_map_rc_send_buf(mavlink_message_t *msgbuf, 
     packet->target_system = target_system;
     packet->target_component = target_component;
     packet->parameter_rc_channel_index = parameter_rc_channel_index;
-    mav_array_assign_char(packet->param_id, param_id, 16);
+    mav_array_memcpy(packet->param_id, param_id, sizeof(char)*16);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PARAM_MAP_RC, (const char *)packet, MAVLINK_MSG_ID_PARAM_MAP_RC_MIN_LEN, MAVLINK_MSG_ID_PARAM_MAP_RC_LEN, MAVLINK_MSG_ID_PARAM_MAP_RC_CRC);
 #endif
 }

@@ -65,7 +65,7 @@ static inline uint16_t mavlink_msg_named_value_int_pack(uint8_t system_id, uint8
     mavlink_named_value_int_t packet;
     packet.time_boot_ms = time_boot_ms;
     packet.value = value;
-    mav_array_assign_char(packet.name, name, 10);
+    mav_array_memcpy(packet.name, name, sizeof(char)*10);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_NAMED_VALUE_INT_LEN);
 #endif
 
@@ -135,7 +135,7 @@ static inline uint16_t mavlink_msg_named_value_int_pack_chan(uint8_t system_id, 
     mavlink_named_value_int_t packet;
     packet.time_boot_ms = time_boot_ms;
     packet.value = value;
-    mav_array_assign_char(packet.name, name, 10);
+    mav_array_memcpy(packet.name, name, sizeof(char)*10);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_NAMED_VALUE_INT_LEN);
 #endif
 
@@ -206,7 +206,7 @@ static inline void mavlink_msg_named_value_int_send(mavlink_channel_t chan, uint
     mavlink_named_value_int_t packet;
     packet.time_boot_ms = time_boot_ms;
     packet.value = value;
-    mav_array_assign_char(packet.name, name, 10);
+    mav_array_memcpy(packet.name, name, sizeof(char)*10);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_NAMED_VALUE_INT, (const char *)&packet, MAVLINK_MSG_ID_NAMED_VALUE_INT_MIN_LEN, MAVLINK_MSG_ID_NAMED_VALUE_INT_LEN, MAVLINK_MSG_ID_NAMED_VALUE_INT_CRC);
 #endif
 }
@@ -245,7 +245,7 @@ static inline void mavlink_msg_named_value_int_send_buf(mavlink_message_t *msgbu
     mavlink_named_value_int_t *packet = (mavlink_named_value_int_t *)msgbuf;
     packet->time_boot_ms = time_boot_ms;
     packet->value = value;
-    mav_array_assign_char(packet->name, name, 10);
+    mav_array_memcpy(packet->name, name, sizeof(char)*10);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_NAMED_VALUE_INT, (const char *)packet, MAVLINK_MSG_ID_NAMED_VALUE_INT_MIN_LEN, MAVLINK_MSG_ID_NAMED_VALUE_INT_LEN, MAVLINK_MSG_ID_NAMED_VALUE_INT_CRC);
 #endif
 }

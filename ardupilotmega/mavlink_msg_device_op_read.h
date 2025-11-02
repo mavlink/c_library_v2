@@ -107,7 +107,7 @@ static inline uint16_t mavlink_msg_device_op_read_pack(uint8_t system_id, uint8_
     packet.regstart = regstart;
     packet.count = count;
     packet.bank = bank;
-    mav_array_assign_char(packet.busname, busname, 40);
+    mav_array_memcpy(packet.busname, busname, sizeof(char)*40);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_DEVICE_OP_READ_LEN);
 #endif
 
@@ -219,7 +219,7 @@ static inline uint16_t mavlink_msg_device_op_read_pack_chan(uint8_t system_id, u
     packet.regstart = regstart;
     packet.count = count;
     packet.bank = bank;
-    mav_array_assign_char(packet.busname, busname, 40);
+    mav_array_memcpy(packet.busname, busname, sizeof(char)*40);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_DEVICE_OP_READ_LEN);
 #endif
 
@@ -311,7 +311,7 @@ static inline void mavlink_msg_device_op_read_send(mavlink_channel_t chan, uint8
     packet.regstart = regstart;
     packet.count = count;
     packet.bank = bank;
-    mav_array_assign_char(packet.busname, busname, 40);
+    mav_array_memcpy(packet.busname, busname, sizeof(char)*40);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_DEVICE_OP_READ, (const char *)&packet, MAVLINK_MSG_ID_DEVICE_OP_READ_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_CRC);
 #endif
 }
@@ -364,7 +364,7 @@ static inline void mavlink_msg_device_op_read_send_buf(mavlink_message_t *msgbuf
     packet->regstart = regstart;
     packet->count = count;
     packet->bank = bank;
-    mav_array_assign_char(packet->busname, busname, 40);
+    mav_array_memcpy(packet->busname, busname, sizeof(char)*40);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_DEVICE_OP_READ, (const char *)packet, MAVLINK_MSG_ID_DEVICE_OP_READ_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_CRC);
 #endif
 }

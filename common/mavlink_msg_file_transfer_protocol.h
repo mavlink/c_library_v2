@@ -71,7 +71,7 @@ static inline uint16_t mavlink_msg_file_transfer_protocol_pack(uint8_t system_id
     packet.target_network = target_network;
     packet.target_system = target_system;
     packet.target_component = target_component;
-    mav_array_assign_uint8_t(packet.payload, payload, 251);
+    mav_array_memcpy(packet.payload, payload, sizeof(uint8_t)*251);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_FILE_TRANSFER_PROTOCOL_LEN);
 #endif
 
@@ -147,7 +147,7 @@ static inline uint16_t mavlink_msg_file_transfer_protocol_pack_chan(uint8_t syst
     packet.target_network = target_network;
     packet.target_system = target_system;
     packet.target_component = target_component;
-    mav_array_assign_uint8_t(packet.payload, payload, 251);
+    mav_array_memcpy(packet.payload, payload, sizeof(uint8_t)*251);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_FILE_TRANSFER_PROTOCOL_LEN);
 #endif
 
@@ -221,7 +221,7 @@ static inline void mavlink_msg_file_transfer_protocol_send(mavlink_channel_t cha
     packet.target_network = target_network;
     packet.target_system = target_system;
     packet.target_component = target_component;
-    mav_array_assign_uint8_t(packet.payload, payload, 251);
+    mav_array_memcpy(packet.payload, payload, sizeof(uint8_t)*251);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FILE_TRANSFER_PROTOCOL, (const char *)&packet, MAVLINK_MSG_ID_FILE_TRANSFER_PROTOCOL_MIN_LEN, MAVLINK_MSG_ID_FILE_TRANSFER_PROTOCOL_LEN, MAVLINK_MSG_ID_FILE_TRANSFER_PROTOCOL_CRC);
 #endif
 }
@@ -262,7 +262,7 @@ static inline void mavlink_msg_file_transfer_protocol_send_buf(mavlink_message_t
     packet->target_network = target_network;
     packet->target_system = target_system;
     packet->target_component = target_component;
-    mav_array_assign_uint8_t(packet->payload, payload, 251);
+    mav_array_memcpy(packet->payload, payload, sizeof(uint8_t)*251);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FILE_TRANSFER_PROTOCOL, (const char *)packet, MAVLINK_MSG_ID_FILE_TRANSFER_PROTOCOL_MIN_LEN, MAVLINK_MSG_ID_FILE_TRANSFER_PROTOCOL_LEN, MAVLINK_MSG_ID_FILE_TRANSFER_PROTOCOL_CRC);
 #endif
 }

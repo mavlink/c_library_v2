@@ -83,7 +83,7 @@ static inline uint16_t mavlink_msg_flexifunction_directory_pack(uint8_t system_i
     packet.directory_type = directory_type;
     packet.start_index = start_index;
     packet.count = count;
-    mav_array_assign_int8_t(packet.directory_data, directory_data, 48);
+    mav_array_memcpy(packet.directory_data, directory_data, sizeof(int8_t)*48);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_LEN);
 #endif
 
@@ -171,7 +171,7 @@ static inline uint16_t mavlink_msg_flexifunction_directory_pack_chan(uint8_t sys
     packet.directory_type = directory_type;
     packet.start_index = start_index;
     packet.count = count;
-    mav_array_assign_int8_t(packet.directory_data, directory_data, 48);
+    mav_array_memcpy(packet.directory_data, directory_data, sizeof(int8_t)*48);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_LEN);
 #endif
 
@@ -251,7 +251,7 @@ static inline void mavlink_msg_flexifunction_directory_send(mavlink_channel_t ch
     packet.directory_type = directory_type;
     packet.start_index = start_index;
     packet.count = count;
-    mav_array_assign_int8_t(packet.directory_data, directory_data, 48);
+    mav_array_memcpy(packet.directory_data, directory_data, sizeof(int8_t)*48);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY, (const char *)&packet, MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_MIN_LEN, MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_LEN, MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_CRC);
 #endif
 }
@@ -296,7 +296,7 @@ static inline void mavlink_msg_flexifunction_directory_send_buf(mavlink_message_
     packet->directory_type = directory_type;
     packet->start_index = start_index;
     packet->count = count;
-    mav_array_assign_int8_t(packet->directory_data, directory_data, 48);
+    mav_array_memcpy(packet->directory_data, directory_data, sizeof(int8_t)*48);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY, (const char *)packet, MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_MIN_LEN, MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_LEN, MAVLINK_MSG_ID_FLEXIFUNCTION_DIRECTORY_CRC);
 #endif
 }

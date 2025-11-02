@@ -102,9 +102,9 @@ static inline uint16_t mavlink_msg_esc_info_pack(uint8_t system_id, uint8_t comp
     packet.count = count;
     packet.connection_type = connection_type;
     packet.info = info;
-    mav_array_assign_uint32_t(packet.error_count, error_count, 4);
-    mav_array_assign_uint16_t(packet.failure_flags, failure_flags, 4);
-    mav_array_assign_int16_t(packet.temperature, temperature, 4);
+    mav_array_memcpy(packet.error_count, error_count, sizeof(uint32_t)*4);
+    mav_array_memcpy(packet.failure_flags, failure_flags, sizeof(uint16_t)*4);
+    mav_array_memcpy(packet.temperature, temperature, sizeof(int16_t)*4);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ESC_INFO_LEN);
 #endif
 
@@ -209,9 +209,9 @@ static inline uint16_t mavlink_msg_esc_info_pack_chan(uint8_t system_id, uint8_t
     packet.count = count;
     packet.connection_type = connection_type;
     packet.info = info;
-    mav_array_assign_uint32_t(packet.error_count, error_count, 4);
-    mav_array_assign_uint16_t(packet.failure_flags, failure_flags, 4);
-    mav_array_assign_int16_t(packet.temperature, temperature, 4);
+    mav_array_memcpy(packet.error_count, error_count, sizeof(uint32_t)*4);
+    mav_array_memcpy(packet.failure_flags, failure_flags, sizeof(uint16_t)*4);
+    mav_array_memcpy(packet.temperature, temperature, sizeof(int16_t)*4);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ESC_INFO_LEN);
 #endif
 
@@ -301,9 +301,9 @@ static inline void mavlink_msg_esc_info_send(mavlink_channel_t chan, uint8_t ind
     packet.count = count;
     packet.connection_type = connection_type;
     packet.info = info;
-    mav_array_assign_uint32_t(packet.error_count, error_count, 4);
-    mav_array_assign_uint16_t(packet.failure_flags, failure_flags, 4);
-    mav_array_assign_int16_t(packet.temperature, temperature, 4);
+    mav_array_memcpy(packet.error_count, error_count, sizeof(uint32_t)*4);
+    mav_array_memcpy(packet.failure_flags, failure_flags, sizeof(uint16_t)*4);
+    mav_array_memcpy(packet.temperature, temperature, sizeof(int16_t)*4);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ESC_INFO, (const char *)&packet, MAVLINK_MSG_ID_ESC_INFO_MIN_LEN, MAVLINK_MSG_ID_ESC_INFO_LEN, MAVLINK_MSG_ID_ESC_INFO_CRC);
 #endif
 }
@@ -354,9 +354,9 @@ static inline void mavlink_msg_esc_info_send_buf(mavlink_message_t *msgbuf, mavl
     packet->count = count;
     packet->connection_type = connection_type;
     packet->info = info;
-    mav_array_assign_uint32_t(packet->error_count, error_count, 4);
-    mav_array_assign_uint16_t(packet->failure_flags, failure_flags, 4);
-    mav_array_assign_int16_t(packet->temperature, temperature, 4);
+    mav_array_memcpy(packet->error_count, error_count, sizeof(uint32_t)*4);
+    mav_array_memcpy(packet->failure_flags, failure_flags, sizeof(uint16_t)*4);
+    mav_array_memcpy(packet->temperature, temperature, sizeof(int16_t)*4);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ESC_INFO, (const char *)packet, MAVLINK_MSG_ID_ESC_INFO_MIN_LEN, MAVLINK_MSG_ID_ESC_INFO_LEN, MAVLINK_MSG_ID_ESC_INFO_CRC);
 #endif
 }

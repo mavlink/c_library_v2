@@ -113,7 +113,7 @@ static inline uint16_t mavlink_msg_camera_fov_status_pack(uint8_t system_id, uin
     packet.hfov = hfov;
     packet.vfov = vfov;
     packet.camera_device_id = camera_device_id;
-    mav_array_assign_float(packet.q, q, 4);
+    mav_array_memcpy(packet.q, q, sizeof(float)*4);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CAMERA_FOV_STATUS_LEN);
 #endif
 
@@ -231,7 +231,7 @@ static inline uint16_t mavlink_msg_camera_fov_status_pack_chan(uint8_t system_id
     packet.hfov = hfov;
     packet.vfov = vfov;
     packet.camera_device_id = camera_device_id;
-    mav_array_assign_float(packet.q, q, 4);
+    mav_array_memcpy(packet.q, q, sizeof(float)*4);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CAMERA_FOV_STATUS_LEN);
 #endif
 
@@ -326,7 +326,7 @@ static inline void mavlink_msg_camera_fov_status_send(mavlink_channel_t chan, ui
     packet.hfov = hfov;
     packet.vfov = vfov;
     packet.camera_device_id = camera_device_id;
-    mav_array_assign_float(packet.q, q, 4);
+    mav_array_memcpy(packet.q, q, sizeof(float)*4);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAMERA_FOV_STATUS, (const char *)&packet, MAVLINK_MSG_ID_CAMERA_FOV_STATUS_MIN_LEN, MAVLINK_MSG_ID_CAMERA_FOV_STATUS_LEN, MAVLINK_MSG_ID_CAMERA_FOV_STATUS_CRC);
 #endif
 }
@@ -381,7 +381,7 @@ static inline void mavlink_msg_camera_fov_status_send_buf(mavlink_message_t *msg
     packet->hfov = hfov;
     packet->vfov = vfov;
     packet->camera_device_id = camera_device_id;
-    mav_array_assign_float(packet->q, q, 4);
+    mav_array_memcpy(packet->q, q, sizeof(float)*4);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CAMERA_FOV_STATUS, (const char *)packet, MAVLINK_MSG_ID_CAMERA_FOV_STATUS_MIN_LEN, MAVLINK_MSG_ID_CAMERA_FOV_STATUS_LEN, MAVLINK_MSG_ID_CAMERA_FOV_STATUS_CRC);
 #endif
 }

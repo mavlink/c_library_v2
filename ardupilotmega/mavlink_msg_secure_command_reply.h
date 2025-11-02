@@ -77,7 +77,7 @@ static inline uint16_t mavlink_msg_secure_command_reply_pack(uint8_t system_id, 
     packet.operation = operation;
     packet.result = result;
     packet.data_length = data_length;
-    mav_array_assign_uint8_t(packet.data, data, 220);
+    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*220);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SECURE_COMMAND_REPLY_LEN);
 #endif
 
@@ -159,7 +159,7 @@ static inline uint16_t mavlink_msg_secure_command_reply_pack_chan(uint8_t system
     packet.operation = operation;
     packet.result = result;
     packet.data_length = data_length;
-    mav_array_assign_uint8_t(packet.data, data, 220);
+    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*220);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SECURE_COMMAND_REPLY_LEN);
 #endif
 
@@ -236,7 +236,7 @@ static inline void mavlink_msg_secure_command_reply_send(mavlink_channel_t chan,
     packet.operation = operation;
     packet.result = result;
     packet.data_length = data_length;
-    mav_array_assign_uint8_t(packet.data, data, 220);
+    mav_array_memcpy(packet.data, data, sizeof(uint8_t)*220);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SECURE_COMMAND_REPLY, (const char *)&packet, MAVLINK_MSG_ID_SECURE_COMMAND_REPLY_MIN_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_REPLY_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_REPLY_CRC);
 #endif
 }
@@ -279,7 +279,7 @@ static inline void mavlink_msg_secure_command_reply_send_buf(mavlink_message_t *
     packet->operation = operation;
     packet->result = result;
     packet->data_length = data_length;
-    mav_array_assign_uint8_t(packet->data, data, 220);
+    mav_array_memcpy(packet->data, data, sizeof(uint8_t)*220);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SECURE_COMMAND_REPLY, (const char *)packet, MAVLINK_MSG_ID_SECURE_COMMAND_REPLY_MIN_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_REPLY_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_REPLY_CRC);
 #endif
 }

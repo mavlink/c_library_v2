@@ -131,7 +131,7 @@ static inline uint16_t mavlink_msg_landing_target_pack(uint8_t system_id, uint8_
     packet.z = z;
     packet.type = type;
     packet.position_valid = position_valid;
-    mav_array_assign_float(packet.q, q, 4);
+    mav_array_memcpy(packet.q, q, sizeof(float)*4);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_LANDING_TARGET_LEN);
 #endif
 
@@ -267,7 +267,7 @@ static inline uint16_t mavlink_msg_landing_target_pack_chan(uint8_t system_id, u
     packet.z = z;
     packet.type = type;
     packet.position_valid = position_valid;
-    mav_array_assign_float(packet.q, q, 4);
+    mav_array_memcpy(packet.q, q, sizeof(float)*4);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_LANDING_TARGET_LEN);
 #endif
 
@@ -371,7 +371,7 @@ static inline void mavlink_msg_landing_target_send(mavlink_channel_t chan, uint6
     packet.z = z;
     packet.type = type;
     packet.position_valid = position_valid;
-    mav_array_assign_float(packet.q, q, 4);
+    mav_array_memcpy(packet.q, q, sizeof(float)*4);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LANDING_TARGET, (const char *)&packet, MAVLINK_MSG_ID_LANDING_TARGET_MIN_LEN, MAVLINK_MSG_ID_LANDING_TARGET_LEN, MAVLINK_MSG_ID_LANDING_TARGET_CRC);
 #endif
 }
@@ -432,7 +432,7 @@ static inline void mavlink_msg_landing_target_send_buf(mavlink_message_t *msgbuf
     packet->z = z;
     packet->type = type;
     packet->position_valid = position_valid;
-    mav_array_assign_float(packet->q, q, 4);
+    mav_array_memcpy(packet->q, q, sizeof(float)*4);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LANDING_TARGET, (const char *)packet, MAVLINK_MSG_ID_LANDING_TARGET_MIN_LEN, MAVLINK_MSG_ID_LANDING_TARGET_LEN, MAVLINK_MSG_ID_LANDING_TARGET_CRC);
 #endif
 }

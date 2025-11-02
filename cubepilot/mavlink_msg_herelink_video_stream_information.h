@@ -95,7 +95,7 @@ static inline uint16_t mavlink_msg_herelink_video_stream_information_pack(uint8_
     packet.rotation = rotation;
     packet.camera_id = camera_id;
     packet.status = status;
-    mav_array_assign_char(packet.uri, uri, 230);
+    mav_array_memcpy(packet.uri, uri, sizeof(char)*230);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_LEN);
 #endif
 
@@ -195,7 +195,7 @@ static inline uint16_t mavlink_msg_herelink_video_stream_information_pack_chan(u
     packet.rotation = rotation;
     packet.camera_id = camera_id;
     packet.status = status;
-    mav_array_assign_char(packet.uri, uri, 230);
+    mav_array_memcpy(packet.uri, uri, sizeof(char)*230);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_LEN);
 #endif
 
@@ -281,7 +281,7 @@ static inline void mavlink_msg_herelink_video_stream_information_send(mavlink_ch
     packet.rotation = rotation;
     packet.camera_id = camera_id;
     packet.status = status;
-    mav_array_assign_char(packet.uri, uri, 230);
+    mav_array_memcpy(packet.uri, uri, sizeof(char)*230);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION, (const char *)&packet, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_LEN, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_CRC);
 #endif
 }
@@ -330,7 +330,7 @@ static inline void mavlink_msg_herelink_video_stream_information_send_buf(mavlin
     packet->rotation = rotation;
     packet->camera_id = camera_id;
     packet->status = status;
-    mav_array_assign_char(packet->uri, uri, 230);
+    mav_array_memcpy(packet->uri, uri, sizeof(char)*230);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION, (const char *)packet, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_LEN, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_CRC);
 #endif
 }

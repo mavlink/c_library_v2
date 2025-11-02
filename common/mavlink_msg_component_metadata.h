@@ -66,7 +66,7 @@ static inline uint16_t mavlink_msg_component_metadata_pack(uint8_t system_id, ui
     mavlink_component_metadata_t packet;
     packet.time_boot_ms = time_boot_ms;
     packet.file_crc = file_crc;
-    mav_array_assign_char(packet.uri, uri, 100);
+    mav_array_memcpy(packet.uri, uri, sizeof(char)*100);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_COMPONENT_METADATA_LEN);
 #endif
 
@@ -137,7 +137,7 @@ static inline uint16_t mavlink_msg_component_metadata_pack_chan(uint8_t system_i
     mavlink_component_metadata_t packet;
     packet.time_boot_ms = time_boot_ms;
     packet.file_crc = file_crc;
-    mav_array_assign_char(packet.uri, uri, 100);
+    mav_array_memcpy(packet.uri, uri, sizeof(char)*100);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_COMPONENT_METADATA_LEN);
 #endif
 
@@ -211,7 +211,7 @@ static inline void mavlink_msg_component_metadata_send(mavlink_channel_t chan, u
     mavlink_component_metadata_t packet;
     packet.time_boot_ms = time_boot_ms;
     packet.file_crc = file_crc;
-    mav_array_assign_char(packet.uri, uri, 100);
+    mav_array_memcpy(packet.uri, uri, sizeof(char)*100);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_COMPONENT_METADATA, (const char *)&packet, MAVLINK_MSG_ID_COMPONENT_METADATA_MIN_LEN, MAVLINK_MSG_ID_COMPONENT_METADATA_LEN, MAVLINK_MSG_ID_COMPONENT_METADATA_CRC);
 #endif
 }
@@ -252,7 +252,7 @@ static inline void mavlink_msg_component_metadata_send_buf(mavlink_message_t *ms
     mavlink_component_metadata_t *packet = (mavlink_component_metadata_t *)msgbuf;
     packet->time_boot_ms = time_boot_ms;
     packet->file_crc = file_crc;
-    mav_array_assign_char(packet->uri, uri, 100);
+    mav_array_memcpy(packet->uri, uri, sizeof(char)*100);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_COMPONENT_METADATA, (const char *)packet, MAVLINK_MSG_ID_COMPONENT_METADATA_MIN_LEN, MAVLINK_MSG_ID_COMPONENT_METADATA_LEN, MAVLINK_MSG_ID_COMPONENT_METADATA_CRC);
 #endif
 }

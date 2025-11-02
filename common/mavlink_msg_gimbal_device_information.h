@@ -143,9 +143,9 @@ static inline uint16_t mavlink_msg_gimbal_device_information_pack(uint8_t system
     packet.cap_flags = cap_flags;
     packet.custom_cap_flags = custom_cap_flags;
     packet.gimbal_device_id = gimbal_device_id;
-    mav_array_assign_char(packet.vendor_name, vendor_name, 32);
-    mav_array_assign_char(packet.model_name, model_name, 32);
-    mav_array_assign_char(packet.custom_name, custom_name, 32);
+    mav_array_memcpy(packet.vendor_name, vendor_name, sizeof(char)*32);
+    mav_array_memcpy(packet.model_name, model_name, sizeof(char)*32);
+    mav_array_memcpy(packet.custom_name, custom_name, sizeof(char)*32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN);
 #endif
 
@@ -291,9 +291,9 @@ static inline uint16_t mavlink_msg_gimbal_device_information_pack_chan(uint8_t s
     packet.cap_flags = cap_flags;
     packet.custom_cap_flags = custom_cap_flags;
     packet.gimbal_device_id = gimbal_device_id;
-    mav_array_assign_char(packet.vendor_name, vendor_name, 32);
-    mav_array_assign_char(packet.model_name, model_name, 32);
-    mav_array_assign_char(packet.custom_name, custom_name, 32);
+    mav_array_memcpy(packet.vendor_name, vendor_name, sizeof(char)*32);
+    mav_array_memcpy(packet.model_name, model_name, sizeof(char)*32);
+    mav_array_memcpy(packet.custom_name, custom_name, sizeof(char)*32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN);
 #endif
 
@@ -401,9 +401,9 @@ static inline void mavlink_msg_gimbal_device_information_send(mavlink_channel_t 
     packet.cap_flags = cap_flags;
     packet.custom_cap_flags = custom_cap_flags;
     packet.gimbal_device_id = gimbal_device_id;
-    mav_array_assign_char(packet.vendor_name, vendor_name, 32);
-    mav_array_assign_char(packet.model_name, model_name, 32);
-    mav_array_assign_char(packet.custom_name, custom_name, 32);
+    mav_array_memcpy(packet.vendor_name, vendor_name, sizeof(char)*32);
+    mav_array_memcpy(packet.model_name, model_name, sizeof(char)*32);
+    mav_array_memcpy(packet.custom_name, custom_name, sizeof(char)*32);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION, (const char *)&packet, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_CRC);
 #endif
 }
@@ -466,9 +466,9 @@ static inline void mavlink_msg_gimbal_device_information_send_buf(mavlink_messag
     packet->cap_flags = cap_flags;
     packet->custom_cap_flags = custom_cap_flags;
     packet->gimbal_device_id = gimbal_device_id;
-    mav_array_assign_char(packet->vendor_name, vendor_name, 32);
-    mav_array_assign_char(packet->model_name, model_name, 32);
-    mav_array_assign_char(packet->custom_name, custom_name, 32);
+    mav_array_memcpy(packet->vendor_name, vendor_name, sizeof(char)*32);
+    mav_array_memcpy(packet->model_name, model_name, sizeof(char)*32);
+    mav_array_memcpy(packet->custom_name, custom_name, sizeof(char)*32);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION, (const char *)packet, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_CRC);
 #endif
 }

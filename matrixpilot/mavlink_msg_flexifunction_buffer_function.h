@@ -89,7 +89,7 @@ static inline uint16_t mavlink_msg_flexifunction_buffer_function_pack(uint8_t sy
     packet.data_size = data_size;
     packet.target_system = target_system;
     packet.target_component = target_component;
-    mav_array_assign_int8_t(packet.data, data, 48);
+    mav_array_memcpy(packet.data, data, sizeof(int8_t)*48);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_LEN);
 #endif
 
@@ -183,7 +183,7 @@ static inline uint16_t mavlink_msg_flexifunction_buffer_function_pack_chan(uint8
     packet.data_size = data_size;
     packet.target_system = target_system;
     packet.target_component = target_component;
-    mav_array_assign_int8_t(packet.data, data, 48);
+    mav_array_memcpy(packet.data, data, sizeof(int8_t)*48);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_LEN);
 #endif
 
@@ -266,7 +266,7 @@ static inline void mavlink_msg_flexifunction_buffer_function_send(mavlink_channe
     packet.data_size = data_size;
     packet.target_system = target_system;
     packet.target_component = target_component;
-    mav_array_assign_int8_t(packet.data, data, 48);
+    mav_array_memcpy(packet.data, data, sizeof(int8_t)*48);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION, (const char *)&packet, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_MIN_LEN, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_LEN, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_CRC);
 #endif
 }
@@ -313,7 +313,7 @@ static inline void mavlink_msg_flexifunction_buffer_function_send_buf(mavlink_me
     packet->data_size = data_size;
     packet->target_system = target_system;
     packet->target_component = target_component;
-    mav_array_assign_int8_t(packet->data, data, 48);
+    mav_array_memcpy(packet->data, data, sizeof(int8_t)*48);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION, (const char *)packet, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_MIN_LEN, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_LEN, MAVLINK_MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_CRC);
 #endif
 }

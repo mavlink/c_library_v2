@@ -149,8 +149,8 @@ static inline uint16_t mavlink_msg_ais_vessel_pack(uint8_t system_id, uint8_t co
     packet.type = type;
     packet.dimension_port = dimension_port;
     packet.dimension_starboard = dimension_starboard;
-    mav_array_assign_char(packet.callsign, callsign, 7);
-    mav_array_assign_char(packet.name, name, 20);
+    mav_array_memcpy(packet.callsign, callsign, sizeof(char)*7);
+    mav_array_memcpy(packet.name, name, sizeof(char)*20);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_AIS_VESSEL_LEN);
 #endif
 
@@ -303,8 +303,8 @@ static inline uint16_t mavlink_msg_ais_vessel_pack_chan(uint8_t system_id, uint8
     packet.type = type;
     packet.dimension_port = dimension_port;
     packet.dimension_starboard = dimension_starboard;
-    mav_array_assign_char(packet.callsign, callsign, 7);
-    mav_array_assign_char(packet.name, name, 20);
+    mav_array_memcpy(packet.callsign, callsign, sizeof(char)*7);
+    mav_array_memcpy(packet.name, name, sizeof(char)*20);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_AIS_VESSEL_LEN);
 #endif
 
@@ -416,8 +416,8 @@ static inline void mavlink_msg_ais_vessel_send(mavlink_channel_t chan, uint32_t 
     packet.type = type;
     packet.dimension_port = dimension_port;
     packet.dimension_starboard = dimension_starboard;
-    mav_array_assign_char(packet.callsign, callsign, 7);
-    mav_array_assign_char(packet.name, name, 20);
+    mav_array_memcpy(packet.callsign, callsign, sizeof(char)*7);
+    mav_array_memcpy(packet.name, name, sizeof(char)*20);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_AIS_VESSEL, (const char *)&packet, MAVLINK_MSG_ID_AIS_VESSEL_MIN_LEN, MAVLINK_MSG_ID_AIS_VESSEL_LEN, MAVLINK_MSG_ID_AIS_VESSEL_CRC);
 #endif
 }
@@ -483,8 +483,8 @@ static inline void mavlink_msg_ais_vessel_send_buf(mavlink_message_t *msgbuf, ma
     packet->type = type;
     packet->dimension_port = dimension_port;
     packet->dimension_starboard = dimension_starboard;
-    mav_array_assign_char(packet->callsign, callsign, 7);
-    mav_array_assign_char(packet->name, name, 20);
+    mav_array_memcpy(packet->callsign, callsign, sizeof(char)*7);
+    mav_array_memcpy(packet->name, name, sizeof(char)*20);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_AIS_VESSEL, (const char *)packet, MAVLINK_MSG_ID_AIS_VESSEL_MIN_LEN, MAVLINK_MSG_ID_AIS_VESSEL_LEN, MAVLINK_MSG_ID_AIS_VESSEL_CRC);
 #endif
 }
