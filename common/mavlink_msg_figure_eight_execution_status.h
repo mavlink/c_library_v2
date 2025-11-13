@@ -72,7 +72,6 @@ typedef struct __mavlink_figure_eight_execution_status_t {
  * @param z [m] Altitude of center point. Coordinate system depends on frame field.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-MAVLINK_WIP
 static inline uint16_t mavlink_msg_figure_eight_execution_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint64_t time_usec, float major_radius, float minor_radius, float orientation, uint8_t frame, int32_t x, int32_t y, float z)
 {
@@ -176,7 +175,6 @@ static inline uint16_t mavlink_msg_figure_eight_execution_status_pack_status(uin
  * @param z [m] Altitude of center point. Coordinate system depends on frame field.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-MAVLINK_WIP
 static inline uint16_t mavlink_msg_figure_eight_execution_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint64_t time_usec,float major_radius,float minor_radius,float orientation,uint8_t frame,int32_t x,int32_t y,float z)
@@ -219,7 +217,6 @@ static inline uint16_t mavlink_msg_figure_eight_execution_status_pack_chan(uint8
  * @param msg The MAVLink message to compress the data into
  * @param figure_eight_execution_status C-struct to read the message contents from
  */
-MAVLINK_WIP
 static inline uint16_t mavlink_msg_figure_eight_execution_status_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_figure_eight_execution_status_t* figure_eight_execution_status)
 {
     return mavlink_msg_figure_eight_execution_status_pack(system_id, component_id, msg, figure_eight_execution_status->time_usec, figure_eight_execution_status->major_radius, figure_eight_execution_status->minor_radius, figure_eight_execution_status->orientation, figure_eight_execution_status->frame, figure_eight_execution_status->x, figure_eight_execution_status->y, figure_eight_execution_status->z);
@@ -234,7 +231,6 @@ static inline uint16_t mavlink_msg_figure_eight_execution_status_encode(uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param figure_eight_execution_status C-struct to read the message contents from
  */
-MAVLINK_WIP
 static inline uint16_t mavlink_msg_figure_eight_execution_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_figure_eight_execution_status_t* figure_eight_execution_status)
 {
     return mavlink_msg_figure_eight_execution_status_pack_chan(system_id, component_id, chan, msg, figure_eight_execution_status->time_usec, figure_eight_execution_status->major_radius, figure_eight_execution_status->minor_radius, figure_eight_execution_status->orientation, figure_eight_execution_status->frame, figure_eight_execution_status->x, figure_eight_execution_status->y, figure_eight_execution_status->z);
@@ -269,7 +265,6 @@ static inline uint16_t mavlink_msg_figure_eight_execution_status_encode_status(u
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-MAVLINK_WIP
 static inline void mavlink_msg_figure_eight_execution_status_send(mavlink_channel_t chan, uint64_t time_usec, float major_radius, float minor_radius, float orientation, uint8_t frame, int32_t x, int32_t y, float z)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -304,7 +299,6 @@ static inline void mavlink_msg_figure_eight_execution_status_send(mavlink_channe
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
-MAVLINK_WIP
 static inline void mavlink_msg_figure_eight_execution_status_send_struct(mavlink_channel_t chan, const mavlink_figure_eight_execution_status_t* figure_eight_execution_status)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -322,7 +316,6 @@ static inline void mavlink_msg_figure_eight_execution_status_send_struct(mavlink
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-MAVLINK_WIP
 static inline void mavlink_msg_figure_eight_execution_status_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, float major_radius, float minor_radius, float orientation, uint8_t frame, int32_t x, int32_t y, float z)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -363,7 +356,6 @@ static inline void mavlink_msg_figure_eight_execution_status_send_buf(mavlink_me
  *
  * @return [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  */
-MAVLINK_WIP
 static inline uint64_t mavlink_msg_figure_eight_execution_status_get_time_usec(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint64_t(msg,  0);
@@ -374,7 +366,6 @@ static inline uint64_t mavlink_msg_figure_eight_execution_status_get_time_usec(c
  *
  * @return [m] Major axis radius of the figure eight. Positive: orbit the north circle clockwise. Negative: orbit the north circle counter-clockwise.
  */
-MAVLINK_WIP
 static inline float mavlink_msg_figure_eight_execution_status_get_major_radius(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  8);
@@ -385,7 +376,6 @@ static inline float mavlink_msg_figure_eight_execution_status_get_major_radius(c
  *
  * @return [m] Minor axis radius of the figure eight. Defines the radius of two circles that make up the figure.
  */
-MAVLINK_WIP
 static inline float mavlink_msg_figure_eight_execution_status_get_minor_radius(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  12);
@@ -396,7 +386,6 @@ static inline float mavlink_msg_figure_eight_execution_status_get_minor_radius(c
  *
  * @return [rad] Orientation of the figure eight major axis with respect to true north in [-pi,pi).
  */
-MAVLINK_WIP
 static inline float mavlink_msg_figure_eight_execution_status_get_orientation(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  16);
@@ -407,7 +396,6 @@ static inline float mavlink_msg_figure_eight_execution_status_get_orientation(co
  *
  * @return  The coordinate system of the fields: x, y, z.
  */
-MAVLINK_WIP
 static inline uint8_t mavlink_msg_figure_eight_execution_status_get_frame(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  32);
@@ -418,7 +406,6 @@ static inline uint8_t mavlink_msg_figure_eight_execution_status_get_frame(const 
  *
  * @return  X coordinate of center point. Coordinate system depends on frame field.
  */
-MAVLINK_WIP
 static inline int32_t mavlink_msg_figure_eight_execution_status_get_x(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_int32_t(msg,  20);
@@ -429,7 +416,6 @@ static inline int32_t mavlink_msg_figure_eight_execution_status_get_x(const mavl
  *
  * @return  Y coordinate of center point. Coordinate system depends on frame field.
  */
-MAVLINK_WIP
 static inline int32_t mavlink_msg_figure_eight_execution_status_get_y(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_int32_t(msg,  24);
@@ -440,7 +426,6 @@ static inline int32_t mavlink_msg_figure_eight_execution_status_get_y(const mavl
  *
  * @return [m] Altitude of center point. Coordinate system depends on frame field.
  */
-MAVLINK_WIP
 static inline float mavlink_msg_figure_eight_execution_status_get_z(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  28);
@@ -452,7 +437,6 @@ static inline float mavlink_msg_figure_eight_execution_status_get_z(const mavlin
  * @param msg The message to decode
  * @param figure_eight_execution_status C-struct to decode the message contents into
  */
-MAVLINK_WIP
 static inline void mavlink_msg_figure_eight_execution_status_decode(const mavlink_message_t* msg, mavlink_figure_eight_execution_status_t* figure_eight_execution_status)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
