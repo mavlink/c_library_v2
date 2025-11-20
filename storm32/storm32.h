@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_STORM32.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_STORM32_XML_HASH 9216865930502717817
+#define MAVLINK_STORM32_XML_HASH -2083119253256938070
 
 #ifdef __cplusplus
 extern "C" {
