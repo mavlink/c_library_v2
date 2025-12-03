@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_DEVELOPMENT.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_DEVELOPMENT_XML_HASH -6722053865705576093
+#define MAVLINK_DEVELOPMENT_XML_HASH -6246995793944524084
 
 #ifdef __cplusplus
 extern "C" {
@@ -550,7 +550,7 @@ typedef enum GPS_AUTHENTICATION_STATE
 typedef enum GPS_JAMMING_STATE
 {
    GPS_JAMMING_STATE_UNKNOWN=0, /* The GPS receiver does not provide GPS signal jamming info. | */
-   GPS_JAMMING_STATE_OK=1, /* The GPS receiver detected no signal jamming. | */
+   GPS_JAMMING_STATE_NOT_JAMMED=1, /* The GPS receiver detected no signal jamming. | */
    GPS_JAMMING_STATE_MITIGATED=2, /* The GPS receiver detected and mitigated signal jamming. | */
    GPS_JAMMING_STATE_DETECTED=3, /* The GPS receiver detected signal jamming. | */
    GPS_JAMMING_STATE_ENUM_END=4, /*  | */
@@ -563,7 +563,7 @@ typedef enum GPS_JAMMING_STATE
 typedef enum GPS_SPOOFING_STATE
 {
    GPS_SPOOFING_STATE_UNKNOWN=0, /* The GPS receiver does not provide GPS signal spoofing info. | */
-   GPS_SPOOFING_STATE_OK=1, /* The GPS receiver detected no signal spoofing. | */
+   GPS_SPOOFING_STATE_NOT_SPOOFED=1, /* The GPS receiver detected no signal spoofing. | */
    GPS_SPOOFING_STATE_MITIGATED=2, /* The GPS receiver detected and mitigated signal spoofing. | */
    GPS_SPOOFING_STATE_DETECTED=3, /* The GPS receiver detected signal spoofing but still has a fix. | */
    GPS_SPOOFING_STATE_ENUM_END=4, /*  | */
