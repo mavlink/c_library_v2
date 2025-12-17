@@ -52,7 +52,6 @@ typedef struct __mavlink_component_metadata_t {
  * @param uri  MAVLink FTP URI for the general metadata file (COMP_METADATA_TYPE_GENERAL), which may be compressed with xz. The file contains general component metadata, and may contain URI links for additional metadata (see COMP_METADATA_TYPE). The information is static from boot, and may be generated at compile time. The string needs to be zero terminated.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-MAVLINK_WIP
 static inline uint16_t mavlink_msg_component_metadata_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint32_t time_boot_ms, uint32_t file_crc, const char *uri)
 {
@@ -122,7 +121,6 @@ static inline uint16_t mavlink_msg_component_metadata_pack_status(uint8_t system
  * @param uri  MAVLink FTP URI for the general metadata file (COMP_METADATA_TYPE_GENERAL), which may be compressed with xz. The file contains general component metadata, and may contain URI links for additional metadata (see COMP_METADATA_TYPE). The information is static from boot, and may be generated at compile time. The string needs to be zero terminated.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-MAVLINK_WIP
 static inline uint16_t mavlink_msg_component_metadata_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint32_t time_boot_ms,uint32_t file_crc,const char *uri)
@@ -153,7 +151,6 @@ static inline uint16_t mavlink_msg_component_metadata_pack_chan(uint8_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param component_metadata C-struct to read the message contents from
  */
-MAVLINK_WIP
 static inline uint16_t mavlink_msg_component_metadata_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_component_metadata_t* component_metadata)
 {
     return mavlink_msg_component_metadata_pack(system_id, component_id, msg, component_metadata->time_boot_ms, component_metadata->file_crc, component_metadata->uri);
@@ -168,7 +165,6 @@ static inline uint16_t mavlink_msg_component_metadata_encode(uint8_t system_id, 
  * @param msg The MAVLink message to compress the data into
  * @param component_metadata C-struct to read the message contents from
  */
-MAVLINK_WIP
 static inline uint16_t mavlink_msg_component_metadata_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_component_metadata_t* component_metadata)
 {
     return mavlink_msg_component_metadata_pack_chan(system_id, component_id, chan, msg, component_metadata->time_boot_ms, component_metadata->file_crc, component_metadata->uri);
@@ -198,7 +194,6 @@ static inline uint16_t mavlink_msg_component_metadata_encode_status(uint8_t syst
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-MAVLINK_WIP
 static inline void mavlink_msg_component_metadata_send(mavlink_channel_t chan, uint32_t time_boot_ms, uint32_t file_crc, const char *uri)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -221,7 +216,6 @@ static inline void mavlink_msg_component_metadata_send(mavlink_channel_t chan, u
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
-MAVLINK_WIP
 static inline void mavlink_msg_component_metadata_send_struct(mavlink_channel_t chan, const mavlink_component_metadata_t* component_metadata)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -239,7 +233,6 @@ static inline void mavlink_msg_component_metadata_send_struct(mavlink_channel_t 
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-MAVLINK_WIP
 static inline void mavlink_msg_component_metadata_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, uint32_t file_crc, const char *uri)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -268,7 +261,6 @@ static inline void mavlink_msg_component_metadata_send_buf(mavlink_message_t *ms
  *
  * @return [ms] Timestamp (time since system boot).
  */
-MAVLINK_WIP
 static inline uint32_t mavlink_msg_component_metadata_get_time_boot_ms(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint32_t(msg,  0);
@@ -279,7 +271,6 @@ static inline uint32_t mavlink_msg_component_metadata_get_time_boot_ms(const mav
  *
  * @return  CRC32 of the general metadata file.
  */
-MAVLINK_WIP
 static inline uint32_t mavlink_msg_component_metadata_get_file_crc(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint32_t(msg,  4);
@@ -290,7 +281,6 @@ static inline uint32_t mavlink_msg_component_metadata_get_file_crc(const mavlink
  *
  * @return  MAVLink FTP URI for the general metadata file (COMP_METADATA_TYPE_GENERAL), which may be compressed with xz. The file contains general component metadata, and may contain URI links for additional metadata (see COMP_METADATA_TYPE). The information is static from boot, and may be generated at compile time. The string needs to be zero terminated.
  */
-MAVLINK_WIP
 static inline uint16_t mavlink_msg_component_metadata_get_uri(const mavlink_message_t* msg, char *uri)
 {
     return _MAV_RETURN_char_array(msg, uri, 100,  8);
@@ -302,7 +292,6 @@ static inline uint16_t mavlink_msg_component_metadata_get_uri(const mavlink_mess
  * @param msg The message to decode
  * @param component_metadata C-struct to decode the message contents into
  */
-MAVLINK_WIP
 static inline void mavlink_msg_component_metadata_decode(const mavlink_message_t* msg, mavlink_component_metadata_t* component_metadata)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
