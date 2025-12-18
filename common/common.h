@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH 6506017462026093818
+#define MAVLINK_COMMON_XML_HASH -8552063042857211841
 
 #ifdef __cplusplus
 extern "C" {
@@ -370,9 +370,9 @@ typedef enum GIMBAL_DEVICE_ERROR_FLAGS
 #define HAVE_ENUM_GRIPPER_ACTIONS
 typedef enum GRIPPER_ACTIONS
 {
-   GRIPPER_ACTION_OPEN=0, /* Gripper commence open. Often used to release cargo. | */
-   GRIPPER_ACTION_CLOSE=1, /* Gripper commence close. Often used to grab onto cargo. | */
-   GRIPPER_ACTION_STOP=2, /* Gripper stop (maintain current grip position). | */
+   GRIPPER_ACTION_RELEASE=0, /* Gripper release cargo. | */
+   GRIPPER_ACTION_GRAB=1, /* Gripper grab onto cargo. | */
+   GRIPPER_ACTION_HOLD=2, /* Gripper hold current grip state/position. | */
    GRIPPER_ACTIONS_ENUM_END=3, /*  | */
 } GRIPPER_ACTIONS;
 #endif
