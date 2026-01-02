@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_STORM32.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_STORM32_XML_HASH 7721457657686444227
+#define MAVLINK_STORM32_XML_HASH -6602767841470712468
 
 #ifdef __cplusplus
 extern "C" {
@@ -258,7 +258,7 @@ typedef enum MAV_CMD
    MAV_CMD_DO_MOUNT_CONTROL_QUAT=220, /* Mission command to control a camera or antenna mount, using a quaternion as reference. |quaternion param q1, w (1 in null-rotation)| quaternion param q2, x (0 in null-rotation)| quaternion param q3, y (0 in null-rotation)| quaternion param q4, z (0 in null-rotation)| Empty| Empty| Empty|  */
    MAV_CMD_DO_GUIDED_MASTER=221, /* set id of master controller |System ID| Component ID| Empty| Empty| Empty| Empty| Empty|  */
    MAV_CMD_DO_GUIDED_LIMITS=222, /* Set limits for external control |Timeout - maximum time that external controller will be allowed to control vehicle. 0 means no timeout.| Altitude (MSL) min - if vehicle moves below this alt, the command will be aborted and the mission will continue. 0 means no lower altitude limit.| Altitude (MSL) max - if vehicle moves above this alt, the command will be aborted and the mission will continue. 0 means no upper altitude limit.| Horizontal move limit - if vehicle moves more than this distance from its location at the moment the command was executed, the command will be aborted and the mission will continue. 0 means no horizontal move limit.| Empty| Empty| Empty|  */
-   MAV_CMD_DO_ENGINE_CONTROL=223, /* Control vehicle engine. This is interpreted by the vehicles engine controller to change the target engine state. It is intended for vehicles with internal combustion engines |Start engine (MAV_BOOL_False: Stop engine). Values not equal to 0 or 1 are invalid.| Cold start engine (MAV_BOOL_FALSE: Warm start). Values not equal to 0 or 1 are invalid. Controls use of choke where applicable| Height delay. This is for commanding engine start only after the vehicle has gained the specified height. Used in VTOL vehicles during takeoff to start engine after the aircraft is off the ground. Zero for no delay.| Empty| Empty| Empty| Empty|  */
+   MAV_CMD_DO_ENGINE_CONTROL=223, /* Control vehicle engine. This is interpreted by the vehicles engine controller to change the target engine state. It is intended for vehicles with internal combustion engines |Start engine (MAV_BOOL_False: Stop engine). Values not equal to 0 or 1 are invalid.| Cold start engine (MAV_BOOL_FALSE: Warm start). Values not equal to 0 or 1 are invalid. Controls use of choke where applicable| Height delay. This is for commanding engine start only after the vehicle has gained the specified height. Used in VTOL vehicles during takeoff to start engine after the aircraft is off the ground. Zero for no delay.| A bitmask of options for engine control| Empty| Empty| Empty|  */
    MAV_CMD_DO_SET_MISSION_CURRENT=224, /* 
           Set the mission item with sequence number seq as the current item and emit MISSION_CURRENT (whether or not the mission number changed).
           If a mission is currently being executed, the system will continue to this new mission item on the shortest path, skipping any intermediate mission items.
