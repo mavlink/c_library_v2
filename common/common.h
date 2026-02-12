@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH 2571001556718334482
+#define MAVLINK_COMMON_XML_HASH 8775755433627878753
 
 #ifdef __cplusplus
 extern "C" {
@@ -2637,7 +2637,7 @@ typedef enum CAN_FILTER_OP
 } CAN_FILTER_OP;
 #endif
 
-/** @brief MAV FTP error codes (https://mavlink.io/en/services/ftp.html) */
+/** @brief MAV FTP error codes (may be used in FILE_TRANSFER_PROTOCOL). See https://mavlink.io/en/services/ftp.html. */
 #ifndef HAVE_ENUM_MAV_FTP_ERR
 #define HAVE_ENUM_MAV_FTP_ERR
 typedef enum MAV_FTP_ERR
@@ -2658,7 +2658,7 @@ typedef enum MAV_FTP_ERR
 } MAV_FTP_ERR;
 #endif
 
-/** @brief MAV FTP opcodes: https://mavlink.io/en/services/ftp.html */
+/** @brief MAV FTP opcodes (may be used in FILE_TRANSFER_PROTOCOL). See https://mavlink.io/en/services/ftp.html. */
 #ifndef HAVE_ENUM_MAV_FTP_OPCODE
 #define HAVE_ENUM_MAV_FTP_OPCODE
 typedef enum MAV_FTP_OPCODE
