@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_DEVELOPMENT.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_DEVELOPMENT_XML_HASH -4998896339364373786
+#define MAVLINK_DEVELOPMENT_XML_HASH -7411793285923965421
 
 #ifdef __cplusplus
 extern "C" {
@@ -609,33 +609,6 @@ typedef enum ESC_FIRMWARE
 } ESC_FIRMWARE;
 #endif
 
-/** @brief Source for GLOBAL_POSITION measurement or estimate. */
-#ifndef HAVE_ENUM_GLOBAL_POSITION_SRC
-#define HAVE_ENUM_GLOBAL_POSITION_SRC
-typedef enum GLOBAL_POSITION_SRC
-{
-   GLOBAL_POSITION_SRC_UNKNOWN=0, /* Source is unknown or not one of the listed types. | */
-   GLOBAL_POSITION_SRC_GNSS=1, /* Global Navigation Satellite System (e.g.: GPS, Galileo, Glonass, BeiDou). | */
-   GLOBAL_POSITION_SRC_VISION=2, /* Vision system (e.g.: map matching). | */
-   GLOBAL_POSITION_SRC_PSEUDOLITES=3, /* A pseudo-satellite system using transceiver beacons to perform GNSS-like positioning. | */
-   GLOBAL_POSITION_SRC_TERRAIN=4, /* Terrain referenced navigation. | */
-   GLOBAL_POSITION_SRC_MAGNETIC=5, /* Magnetic positioning. | */
-   GLOBAL_POSITION_SRC_ESTIMATOR=6, /* Estimated position based on various sensors (eg. a Kalman Filter). | */
-   GLOBAL_POSITION_SRC_ENUM_END=7, /*  | */
-} GLOBAL_POSITION_SRC;
-#endif
-
-/** @brief Status flags for GLOBAL_POSITION */
-#ifndef HAVE_ENUM_GLOBAL_POSITION_FLAGS
-#define HAVE_ENUM_GLOBAL_POSITION_FLAGS
-typedef enum GLOBAL_POSITION_FLAGS
-{
-   GLOBAL_POSITION_UNHEALTHY=1, /* Unhealthy sensor/estimator. | */
-   GLOBAL_POSITION_PRIMARY=2, /* True if the data originates from or is consumed by the primary estimator. | */
-   GLOBAL_POSITION_FLAGS_ENUM_END=3, /*  | */
-} GLOBAL_POSITION_FLAGS;
-#endif
-
 // MAVLINK VERSION
 
 #ifndef MAVLINK_VERSION
@@ -648,7 +621,6 @@ typedef enum GLOBAL_POSITION_FLAGS
 #endif
 
 // MESSAGE DEFINITIONS
-#include "./mavlink_msg_global_position_sensor.h"
 #include "./mavlink_msg_set_velocity_limits.h"
 #include "./mavlink_msg_velocity_limits.h"
 #include "./mavlink_msg_battery_status_v2.h"
