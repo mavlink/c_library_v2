@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH -5928411289677333918
+#define MAVLINK_COMMON_XML_HASH -4792304179792829967
 
 #ifdef __cplusplus
 extern "C" {
@@ -136,7 +136,8 @@ typedef enum MAV_SYS_STATUS_SENSOR
 typedef enum MAV_SYS_STATUS_SENSOR_EXTENDED
 {
    MAV_SYS_STATUS_RECOVERY_SYSTEM=1, /* 0x01 Recovery system (parachute, balloon, retracts etc) | */
-   MAV_SYS_STATUS_SENSOR_EXTENDED_ENUM_END=2, /*  | */
+   MAV_SYS_STATUS_SENSOR_LEAK=2, /* 0x02 Leak detection | */
+   MAV_SYS_STATUS_SENSOR_EXTENDED_ENUM_END=3, /*  | */
 } MAV_SYS_STATUS_SENSOR_EXTENDED;
 #endif
 
