@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH 7346001547782910964
+#define MAVLINK_COMMON_XML_HASH -5928411289677333918
 
 #ifdef __cplusplus
 extern "C" {
@@ -650,9 +650,9 @@ typedef enum PREFLIGHT_STORAGE_PARAMETER_ACTION
 {
    PARAM_READ_PERSISTENT=0, /* Read all parameters from persistent storage. Replaces values in volatile storage. | */
    PARAM_WRITE_PERSISTENT=1, /* Write all parameter values to persistent storage (flash/EEPROM) | */
-   PARAM_RESET_CONFIG_DEFAULT=2, /* Reset all user configurable parameters to their default value (including airframe selection, sensor calibration data, safety settings, and so on). Does not reset values that contain operation counters and vehicle computed statistics. | */
+   PARAM_RESET_FACTORY_DEFAULT=2, /* Reset parameters to default values (such as sensor calibration, safety settings, and so on). Note that a flight stack may choose not to reset some parameters at their own discretion (such as those that are locked or expected to persist for the vehicle lifetime). | */
    PARAM_RESET_SENSOR_DEFAULT=3, /* Reset only sensor calibration parameters to factory defaults (or firmware default if not available) | */
-   PARAM_RESET_ALL_DEFAULT=4, /* Reset all parameters, including operation counters, to default values | */
+   PARAM_RESET_ALL_DEFAULT=4, /* Reset all parameters to default values. | */
    PREFLIGHT_STORAGE_PARAMETER_ACTION_ENUM_END=5, /*  | */
 } PREFLIGHT_STORAGE_PARAMETER_ACTION;
 #endif
