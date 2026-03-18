@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH -5765706277265375181
+#define MAVLINK_COMMON_XML_HASH -2517284434415693072
 
 #ifdef __cplusplus
 extern "C" {
@@ -700,6 +700,33 @@ typedef enum REBOOT_SHUTDOWN_CONDITIONS
 } REBOOT_SHUTDOWN_CONDITIONS;
 #endif
 
+/** @brief Action for the magnetometer (param2) of MAV_CMD_PREFLIGHT_CALIBRATION. */
+#ifndef HAVE_ENUM_PREFLIGHT_CALIBRATION_MAGNETOMETER
+#define HAVE_ENUM_PREFLIGHT_CALIBRATION_MAGNETOMETER
+typedef enum PREFLIGHT_CALIBRATION_MAGNETOMETER
+{
+   PREFLIGHT_CALIBRATION_MAGNETOMETER_NONE=0, /* No action. | */
+   PREFLIGHT_CALIBRATION_MAGNETOMETER_START=1, /* Start magnetometer calibration. | */
+   PREFLIGHT_CALIBRATION_MAGNETOMETER_FORCE_SAVE=76, /* Force-accept the existing compass calibration as valid without re-running it. Useful after a parameter reload that cleared calibration validity flags. | */
+   PREFLIGHT_CALIBRATION_MAGNETOMETER_ENUM_END=77, /*  | */
+} PREFLIGHT_CALIBRATION_MAGNETOMETER;
+#endif
+
+/** @brief Action for the accelerometer (param5) of MAV_CMD_PREFLIGHT_CALIBRATION. */
+#ifndef HAVE_ENUM_PREFLIGHT_CALIBRATION_ACCELEROMETER
+#define HAVE_ENUM_PREFLIGHT_CALIBRATION_ACCELEROMETER
+typedef enum PREFLIGHT_CALIBRATION_ACCELEROMETER
+{
+   PREFLIGHT_CALIBRATION_ACCELEROMETER_NONE=0, /* No action. | */
+   PREFLIGHT_CALIBRATION_ACCELEROMETER_FULL=1, /* Full 6-position accelerometer calibration. | */
+   PREFLIGHT_CALIBRATION_ACCELEROMETER_TRIM=2, /* Board level (trim) calibration. | */
+   PREFLIGHT_CALIBRATION_ACCELEROMETER_TEMPERATURE=3, /* Accelerometer temperature calibration. | */
+   PREFLIGHT_CALIBRATION_ACCELEROMETER_SIMPLE=4, /* Simple accelerometer calibration. | */
+   PREFLIGHT_CALIBRATION_ACCELEROMETER_FORCE_SAVE=76, /* Force-accept the existing accelerometer calibration as valid without re-running it. Useful after a parameter reload that cleared calibration validity flags. | */
+   PREFLIGHT_CALIBRATION_ACCELEROMETER_ENUM_END=77, /*  | */
+} PREFLIGHT_CALIBRATION_ACCELEROMETER;
+#endif
+
 /** @brief Commands to be executed by the MAV. They can be executed on user request, or as part of a mission script. If the action is used in a mission, the parameter mapping to the waypoint/mission message is as follows: Param 1, Param 2, Param 3, Param 4, X: Param 5, Y:Param 6, Z:Param 7. This command list is similar what ARINC 424 is for commercial aircraft: A data format how to interpret waypoint/mission data. NaN and INT32_MAX may be used in float/integer params (respectively) to indicate optional/default values (e.g. to use the component's current yaw or latitude rather than a specific value). See https://mavlink.io/en/guide/xml_schema.html#MAV_CMD for information about the structure of the MAV_CMD entries */
 #ifndef HAVE_ENUM_MAV_CMD
 #define HAVE_ENUM_MAV_CMD
@@ -840,7 +867,7 @@ typedef enum MAV_CMD
 	  The command will ACK with MAV_RESULT_FAILED if the sequence number is out of range (including if there is no mission item).
          |Mission sequence value to set. -1 for the current mission item (use to reset mission without changing current mission item).| Reset mission (MAV_BOOL_TRUE). Values not equal to 0 or 1 are invalid. Resets jump counters to initial values and changes mission state "completed" to be "active" or "paused".| Empty| Empty| Empty| Empty| Empty|  */
    MAV_CMD_DO_LAST=240, /* NOP - This command is only used to mark the upper limit of the DO commands in the enumeration |Empty| Empty| Empty| Empty| Empty| Empty| Empty|  */
-   MAV_CMD_PREFLIGHT_CALIBRATION=241, /* Trigger calibration. This command will be only accepted if in pre-flight mode. Except for Temperature Calibration, only one sensor should be set in a single message and all others should be zero. |1: gyro calibration, 3: gyro temperature calibration| Magnetometer calibration. Values not equal to 0 or 1 are invalid.| Ground pressure calibration. Values not equal to 0 or 1 are invalid.| 1: radio RC calibration, 2: RC trim calibration| 1: accelerometer calibration, 2: board level calibration, 3: accelerometer temperature calibration, 4: simple accelerometer calibration| 1: APM: compass/motor interference calibration (PX4: airspeed calibration, deprecated), 2: airspeed calibration| 1: ESC calibration, 3: barometer temperature calibration|  */
+   MAV_CMD_PREFLIGHT_CALIBRATION=241, /* Trigger calibration. This command will be only accepted if in pre-flight mode. Except for Temperature Calibration, only one sensor should be set in a single message and all others should be zero. |1: gyro calibration, 3: gyro temperature calibration| Magnetometer calibration action.| Ground pressure calibration. Values not equal to 0 or 1 are invalid.| 1: radio RC calibration, 2: RC trim calibration| Accelerometer calibration action.| 1: APM: compass/motor interference calibration (PX4: airspeed calibration, deprecated), 2: airspeed calibration| 1: ESC calibration, 3: barometer temperature calibration|  */
    MAV_CMD_PREFLIGHT_SET_SENSOR_OFFSETS=242, /* Set sensor offsets. This command will be only accepted if in pre-flight mode. |Sensor to adjust the offsets for: 0: gyros, 1: accelerometer, 2: magnetometer, 3: barometer, 4: optical flow, 5: second magnetometer, 6: third magnetometer| X axis offset (or generic dimension 1), in the sensor's raw units| Y axis offset (or generic dimension 2), in the sensor's raw units| Z axis offset (or generic dimension 3), in the sensor's raw units| Generic dimension 4, in the sensor's raw units| Generic dimension 5, in the sensor's raw units| Generic dimension 6, in the sensor's raw units|  */
    MAV_CMD_PREFLIGHT_UAVCAN=243, /* Trigger UAVCAN configuration (actuator ID assignment and direction mapping). Note that this maps to the legacy UAVCAN v0 function UAVCAN_ENUMERATE, which is intended to be executed just once during initial vehicle configuration (it is not a normal pre-flight command and has been poorly named). |1: Trigger actuator ID assignment and direction mapping. 0: Cancel command.| Reserved| Reserved| Reserved| Reserved| Reserved| Reserved|  */
    MAV_CMD_PREFLIGHT_STORAGE=245, /* Request storage of different parameter values and logs. This command will be only accepted if in pre-flight mode. |Action to perform on the persistent parameter storage| Action to perform on the persistent mission storage| Onboard logging: 0: Ignore, 1: Start default rate logging, -1: Stop logging, > 1: logging rate (e.g. set to 1000 for 1000 Hz logging)| Reserved| Empty| Empty| Empty|  */
