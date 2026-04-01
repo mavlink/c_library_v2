@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_ALL.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_ALL_XML_HASH -7131162722962762190
+#define MAVLINK_ALL_XML_HASH -3635954102893994678
 
 #ifdef __cplusplus
 extern "C" {
@@ -331,6 +331,7 @@ typedef enum MAV_CMD
          |Radius.| Vehicle must be inside ALL inclusion zones in a single group, vehicle must be inside at least one group| Reserved| Reserved| Latitude| Longitude| Reserved|  */
    MAV_CMD_NAV_FENCE_CIRCLE_EXCLUSION=5004, /* Circular fence area. The vehicle must stay outside this area.
          |Radius.| Reserved| Reserved| Reserved| Latitude| Longitude| Reserved|  */
+   MAV_CMD_NAV_FENCE_HOME_CIRCLE_INCLUSION=5005, /* Circular fence area centered on home. The vehicle must stay inside this area. If home is moved, the fence moves. |Radius.| Vehicle must be inside ALL inclusion zones in a single group, vehicle must be inside at least one group. Ignored when sent as a command.| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
    MAV_CMD_NAV_RALLY_POINT=5100, /* Rally point. You can have multiple rally points defined.
          |Reserved| Reserved| Reserved| Reserved| Latitude| Longitude| Altitude|  */
    MAV_CMD_UAVCAN_GET_NODE_INFO=5200, /* Commands the vehicle to respond with a sequence of messages UAVCAN_NODE_INFO, one message per every UAVCAN node that is online. Note that some of the response messages can be lost, which the receiver can detect easily by checking whether every received UAVCAN_NODE_STATUS has a matching message UAVCAN_NODE_INFO received earlier; if not, this command should be sent again in order to request re-transmission of the node information messages. |Reserved (set to 0)| Reserved (set to 0)| Reserved (set to 0)| Reserved (set to 0)| Reserved (set to 0)| Reserved (set to 0)| Reserved (set to 0)|  */
