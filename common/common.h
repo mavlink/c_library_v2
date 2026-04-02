@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH 8135275468848583900
+#define MAVLINK_COMMON_XML_HASH 2815493384776572642
 
 #ifdef __cplusplus
 extern "C" {
@@ -2492,19 +2492,19 @@ typedef enum AIS_NAV_STATUS
 #define HAVE_ENUM_AIS_FLAGS
 typedef enum AIS_FLAGS
 {
-   AIS_FLAGS_POSITION_ACCURACY=1, /* 1 = Position accuracy less than 10m, 0 = position accuracy greater than 10m. | */
-   AIS_FLAGS_VALID_COG=2, /*  | */
-   AIS_FLAGS_VALID_VELOCITY=4, /*  | */
+   AIS_FLAGS_POSITION_ACCURACY=1, /* 1 = High (Position accuracy less than or equal to 10m), 0 = Low (position accuracy greater than 10m). | */
+   AIS_FLAGS_VALID_COG=2, /* The COG field contains valid data | */
+   AIS_FLAGS_VALID_VELOCITY=4, /* The velocity field contains valid data | */
    AIS_FLAGS_HIGH_VELOCITY=8, /* 1 = Velocity over 52.5765m/s (102.2 knots) | */
-   AIS_FLAGS_VALID_TURN_RATE=16, /*  | */
-   AIS_FLAGS_TURN_RATE_SIGN_ONLY=32, /* Only the sign of the returned turn rate value is valid, either greater than 5deg/30s or less than -5deg/30s | */
+   AIS_FLAGS_VALID_TURN_RATE=16, /* The turn_rate field contains valid data | */
+   AIS_FLAGS_TURN_RATE_SIGN_ONLY=32, /* Only the sign of the returned turn_rate value is valid. The actual turn rate is either greater than 5deg/30s or less than -5deg/30s. | */
    AIS_FLAGS_VALID_DIMENSIONS=64, /*  | */
-   AIS_FLAGS_LARGE_BOW_DIMENSION=128, /* Distance to bow is larger than 511m | */
-   AIS_FLAGS_LARGE_STERN_DIMENSION=256, /* Distance to stern is larger than 511m | */
-   AIS_FLAGS_LARGE_PORT_DIMENSION=512, /* Distance to port side is larger than 63m | */
-   AIS_FLAGS_LARGE_STARBOARD_DIMENSION=1024, /* Distance to starboard side is larger than 63m | */
-   AIS_FLAGS_VALID_CALLSIGN=2048, /*  | */
-   AIS_FLAGS_VALID_NAME=4096, /*  | */
+   AIS_FLAGS_LARGE_BOW_DIMENSION=128, /* Distance to bow is greater than or equal to 511m | */
+   AIS_FLAGS_LARGE_STERN_DIMENSION=256, /* Distance to stern is greater than or equal to 511m | */
+   AIS_FLAGS_LARGE_PORT_DIMENSION=512, /* Distance to port side is greater than or equal to 63m | */
+   AIS_FLAGS_LARGE_STARBOARD_DIMENSION=1024, /* Distance to starboard side is greater than or equal to 63m | */
+   AIS_FLAGS_VALID_CALLSIGN=2048, /* The callsign field contains valid data | */
+   AIS_FLAGS_VALID_NAME=4096, /* The name field contains valid data | */
    AIS_FLAGS_ENUM_END=4097, /*  | */
 } AIS_FLAGS;
 #endif
