@@ -685,13 +685,14 @@ static void mavlink_test_control_status(uint8_t system_id, uint8_t component_id,
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_control_status_t packet_in = {
-        5,72
+        5,72,{ 139, 140, 141, 142, 143, 144, 145, 146, 147, 148 }
     };
     mavlink_control_status_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
-        packet1.sysid_in_control = packet_in.sysid_in_control;
         packet1.flags = packet_in.flags;
+        packet1.gcs_main = packet_in.gcs_main;
         
+        mav_array_memcpy(packet1.gcs_secondary, packet_in.gcs_secondary, sizeof(uint8_t)*10);
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
         if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
@@ -705,12 +706,12 @@ static void mavlink_test_control_status(uint8_t system_id, uint8_t component_id,
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_control_status_pack(system_id, component_id, &msg , packet1.sysid_in_control , packet1.flags );
+    mavlink_msg_control_status_pack(system_id, component_id, &msg , packet1.flags , packet1.gcs_main , packet1.gcs_secondary );
     mavlink_msg_control_status_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_control_status_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.sysid_in_control , packet1.flags );
+    mavlink_msg_control_status_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.flags , packet1.gcs_main , packet1.gcs_secondary );
     mavlink_msg_control_status_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -723,7 +724,7 @@ static void mavlink_test_control_status(uint8_t system_id, uint8_t component_id,
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_control_status_send(MAVLINK_COMM_1 , packet1.sysid_in_control , packet1.flags );
+    mavlink_msg_control_status_send(MAVLINK_COMM_1 , packet1.flags , packet1.gcs_main , packet1.gcs_secondary );
     mavlink_msg_control_status_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
