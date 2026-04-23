@@ -23,11 +23,12 @@ typedef struct __mavlink_cellular_status_t {
  uint16_t ber; /*<  (WIP) The bit error rate (BER) is determined by comparing the erroneous bits received with the total number of bits received. It is a ratio.*/
  uint8_t id; /*<  (WIP) Cellular instance number. Indexed from 1. Matches index in corresponding CELLULAR_MODEM_INFORMATION message.*/
  char cell_tower_id[9]; /*<  (WIP) ID of the currently connected cell tower. This must be NULL terminated if the length is less than 9 human-readable chars, and without the null termination (NULL) byte if the length is exactly 9 chars.*/
+ float sinr; /*< [dB] (WIP) Signal to interference plus noise ratio (SINR).*/
 }) mavlink_cellular_status_t;
 
-#define MAVLINK_MSG_ID_CELLULAR_STATUS_LEN 49
+#define MAVLINK_MSG_ID_CELLULAR_STATUS_LEN 53
 #define MAVLINK_MSG_ID_CELLULAR_STATUS_MIN_LEN 10
-#define MAVLINK_MSG_ID_334_LEN 49
+#define MAVLINK_MSG_ID_334_LEN 53
 #define MAVLINK_MSG_ID_334_MIN_LEN 10
 
 #define MAVLINK_MSG_ID_CELLULAR_STATUS_CRC 72
@@ -39,7 +40,7 @@ typedef struct __mavlink_cellular_status_t {
 #define MAVLINK_MESSAGE_INFO_CELLULAR_STATUS { \
     334, \
     "CELLULAR_STATUS", \
-    18, \
+    19, \
     {  { "status", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_cellular_status_t, status) }, \
          { "failure_reason", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_cellular_status_t, failure_reason) }, \
          { "type", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_cellular_status_t, type) }, \
@@ -58,12 +59,13 @@ typedef struct __mavlink_cellular_status_t {
          { "ber", NULL, MAVLINK_TYPE_UINT16_T, 0, 37, offsetof(mavlink_cellular_status_t, ber) }, \
          { "id", NULL, MAVLINK_TYPE_UINT8_T, 0, 39, offsetof(mavlink_cellular_status_t, id) }, \
          { "cell_tower_id", NULL, MAVLINK_TYPE_CHAR, 9, 40, offsetof(mavlink_cellular_status_t, cell_tower_id) }, \
+         { "sinr", NULL, MAVLINK_TYPE_FLOAT, 0, 49, offsetof(mavlink_cellular_status_t, sinr) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_CELLULAR_STATUS { \
     "CELLULAR_STATUS", \
-    18, \
+    19, \
     {  { "status", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_cellular_status_t, status) }, \
          { "failure_reason", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_cellular_status_t, failure_reason) }, \
          { "type", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_cellular_status_t, type) }, \
@@ -82,6 +84,7 @@ typedef struct __mavlink_cellular_status_t {
          { "ber", NULL, MAVLINK_TYPE_UINT16_T, 0, 37, offsetof(mavlink_cellular_status_t, ber) }, \
          { "id", NULL, MAVLINK_TYPE_UINT8_T, 0, 39, offsetof(mavlink_cellular_status_t, id) }, \
          { "cell_tower_id", NULL, MAVLINK_TYPE_CHAR, 9, 40, offsetof(mavlink_cellular_status_t, cell_tower_id) }, \
+         { "sinr", NULL, MAVLINK_TYPE_FLOAT, 0, 49, offsetof(mavlink_cellular_status_t, sinr) }, \
          } \
 }
 #endif
@@ -110,10 +113,11 @@ typedef struct __mavlink_cellular_status_t {
  * @param ber  (WIP) The bit error rate (BER) is determined by comparing the erroneous bits received with the total number of bits received. It is a ratio.
  * @param id  (WIP) Cellular instance number. Indexed from 1. Matches index in corresponding CELLULAR_MODEM_INFORMATION message.
  * @param cell_tower_id  (WIP) ID of the currently connected cell tower. This must be NULL terminated if the length is less than 9 human-readable chars, and without the null termination (NULL) byte if the length is exactly 9 chars.
+ * @param sinr [dB] (WIP) Signal to interference plus noise ratio (SINR).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_cellular_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t status, uint8_t failure_reason, uint8_t type, uint8_t quality, uint16_t mcc, uint16_t mnc, uint16_t lac, uint8_t band_number, float band_frequency, uint16_t channel_number, float rx_level, float tx_level, float rx_quality, uint32_t link_tx_rate, uint32_t link_rx_rate, uint16_t ber, uint8_t id, const char *cell_tower_id)
+                               uint8_t status, uint8_t failure_reason, uint8_t type, uint8_t quality, uint16_t mcc, uint16_t mnc, uint16_t lac, uint8_t band_number, float band_frequency, uint16_t channel_number, float rx_level, float tx_level, float rx_quality, uint32_t link_tx_rate, uint32_t link_rx_rate, uint16_t ber, uint8_t id, const char *cell_tower_id, float sinr)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_CELLULAR_STATUS_LEN];
@@ -134,6 +138,7 @@ static inline uint16_t mavlink_msg_cellular_status_pack(uint8_t system_id, uint8
     _mav_put_uint32_t(buf, 33, link_rx_rate);
     _mav_put_uint16_t(buf, 37, ber);
     _mav_put_uint8_t(buf, 39, id);
+    _mav_put_float(buf, 49, sinr);
     _mav_put_char_array(buf, 40, cell_tower_id, 9);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CELLULAR_STATUS_LEN);
 #else
@@ -155,6 +160,7 @@ static inline uint16_t mavlink_msg_cellular_status_pack(uint8_t system_id, uint8
     packet.link_rx_rate = link_rx_rate;
     packet.ber = ber;
     packet.id = id;
+    packet.sinr = sinr;
     mav_array_memcpy(packet.cell_tower_id, cell_tower_id, sizeof(char)*9);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CELLULAR_STATUS_LEN);
 #endif
@@ -188,10 +194,11 @@ static inline uint16_t mavlink_msg_cellular_status_pack(uint8_t system_id, uint8
  * @param ber  (WIP) The bit error rate (BER) is determined by comparing the erroneous bits received with the total number of bits received. It is a ratio.
  * @param id  (WIP) Cellular instance number. Indexed from 1. Matches index in corresponding CELLULAR_MODEM_INFORMATION message.
  * @param cell_tower_id  (WIP) ID of the currently connected cell tower. This must be NULL terminated if the length is less than 9 human-readable chars, and without the null termination (NULL) byte if the length is exactly 9 chars.
+ * @param sinr [dB] (WIP) Signal to interference plus noise ratio (SINR).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_cellular_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               uint8_t status, uint8_t failure_reason, uint8_t type, uint8_t quality, uint16_t mcc, uint16_t mnc, uint16_t lac, uint8_t band_number, float band_frequency, uint16_t channel_number, float rx_level, float tx_level, float rx_quality, uint32_t link_tx_rate, uint32_t link_rx_rate, uint16_t ber, uint8_t id, const char *cell_tower_id)
+                               uint8_t status, uint8_t failure_reason, uint8_t type, uint8_t quality, uint16_t mcc, uint16_t mnc, uint16_t lac, uint8_t band_number, float band_frequency, uint16_t channel_number, float rx_level, float tx_level, float rx_quality, uint32_t link_tx_rate, uint32_t link_rx_rate, uint16_t ber, uint8_t id, const char *cell_tower_id, float sinr)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_CELLULAR_STATUS_LEN];
@@ -212,6 +219,7 @@ static inline uint16_t mavlink_msg_cellular_status_pack_status(uint8_t system_id
     _mav_put_uint32_t(buf, 33, link_rx_rate);
     _mav_put_uint16_t(buf, 37, ber);
     _mav_put_uint8_t(buf, 39, id);
+    _mav_put_float(buf, 49, sinr);
     _mav_put_char_array(buf, 40, cell_tower_id, 9);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CELLULAR_STATUS_LEN);
 #else
@@ -233,6 +241,7 @@ static inline uint16_t mavlink_msg_cellular_status_pack_status(uint8_t system_id
     packet.link_rx_rate = link_rx_rate;
     packet.ber = ber;
     packet.id = id;
+    packet.sinr = sinr;
     mav_array_memcpy(packet.cell_tower_id, cell_tower_id, sizeof(char)*9);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CELLULAR_STATUS_LEN);
 #endif
@@ -269,11 +278,12 @@ static inline uint16_t mavlink_msg_cellular_status_pack_status(uint8_t system_id
  * @param ber  (WIP) The bit error rate (BER) is determined by comparing the erroneous bits received with the total number of bits received. It is a ratio.
  * @param id  (WIP) Cellular instance number. Indexed from 1. Matches index in corresponding CELLULAR_MODEM_INFORMATION message.
  * @param cell_tower_id  (WIP) ID of the currently connected cell tower. This must be NULL terminated if the length is less than 9 human-readable chars, and without the null termination (NULL) byte if the length is exactly 9 chars.
+ * @param sinr [dB] (WIP) Signal to interference plus noise ratio (SINR).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_cellular_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t status,uint8_t failure_reason,uint8_t type,uint8_t quality,uint16_t mcc,uint16_t mnc,uint16_t lac,uint8_t band_number,float band_frequency,uint16_t channel_number,float rx_level,float tx_level,float rx_quality,uint32_t link_tx_rate,uint32_t link_rx_rate,uint16_t ber,uint8_t id,const char *cell_tower_id)
+                                   uint8_t status,uint8_t failure_reason,uint8_t type,uint8_t quality,uint16_t mcc,uint16_t mnc,uint16_t lac,uint8_t band_number,float band_frequency,uint16_t channel_number,float rx_level,float tx_level,float rx_quality,uint32_t link_tx_rate,uint32_t link_rx_rate,uint16_t ber,uint8_t id,const char *cell_tower_id,float sinr)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_CELLULAR_STATUS_LEN];
@@ -294,6 +304,7 @@ static inline uint16_t mavlink_msg_cellular_status_pack_chan(uint8_t system_id, 
     _mav_put_uint32_t(buf, 33, link_rx_rate);
     _mav_put_uint16_t(buf, 37, ber);
     _mav_put_uint8_t(buf, 39, id);
+    _mav_put_float(buf, 49, sinr);
     _mav_put_char_array(buf, 40, cell_tower_id, 9);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CELLULAR_STATUS_LEN);
 #else
@@ -315,6 +326,7 @@ static inline uint16_t mavlink_msg_cellular_status_pack_chan(uint8_t system_id, 
     packet.link_rx_rate = link_rx_rate;
     packet.ber = ber;
     packet.id = id;
+    packet.sinr = sinr;
     mav_array_memcpy(packet.cell_tower_id, cell_tower_id, sizeof(char)*9);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CELLULAR_STATUS_LEN);
 #endif
@@ -333,7 +345,7 @@ static inline uint16_t mavlink_msg_cellular_status_pack_chan(uint8_t system_id, 
  */
 static inline uint16_t mavlink_msg_cellular_status_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_cellular_status_t* cellular_status)
 {
-    return mavlink_msg_cellular_status_pack(system_id, component_id, msg, cellular_status->status, cellular_status->failure_reason, cellular_status->type, cellular_status->quality, cellular_status->mcc, cellular_status->mnc, cellular_status->lac, cellular_status->band_number, cellular_status->band_frequency, cellular_status->channel_number, cellular_status->rx_level, cellular_status->tx_level, cellular_status->rx_quality, cellular_status->link_tx_rate, cellular_status->link_rx_rate, cellular_status->ber, cellular_status->id, cellular_status->cell_tower_id);
+    return mavlink_msg_cellular_status_pack(system_id, component_id, msg, cellular_status->status, cellular_status->failure_reason, cellular_status->type, cellular_status->quality, cellular_status->mcc, cellular_status->mnc, cellular_status->lac, cellular_status->band_number, cellular_status->band_frequency, cellular_status->channel_number, cellular_status->rx_level, cellular_status->tx_level, cellular_status->rx_quality, cellular_status->link_tx_rate, cellular_status->link_rx_rate, cellular_status->ber, cellular_status->id, cellular_status->cell_tower_id, cellular_status->sinr);
 }
 
 /**
@@ -347,7 +359,7 @@ static inline uint16_t mavlink_msg_cellular_status_encode(uint8_t system_id, uin
  */
 static inline uint16_t mavlink_msg_cellular_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_cellular_status_t* cellular_status)
 {
-    return mavlink_msg_cellular_status_pack_chan(system_id, component_id, chan, msg, cellular_status->status, cellular_status->failure_reason, cellular_status->type, cellular_status->quality, cellular_status->mcc, cellular_status->mnc, cellular_status->lac, cellular_status->band_number, cellular_status->band_frequency, cellular_status->channel_number, cellular_status->rx_level, cellular_status->tx_level, cellular_status->rx_quality, cellular_status->link_tx_rate, cellular_status->link_rx_rate, cellular_status->ber, cellular_status->id, cellular_status->cell_tower_id);
+    return mavlink_msg_cellular_status_pack_chan(system_id, component_id, chan, msg, cellular_status->status, cellular_status->failure_reason, cellular_status->type, cellular_status->quality, cellular_status->mcc, cellular_status->mnc, cellular_status->lac, cellular_status->band_number, cellular_status->band_frequency, cellular_status->channel_number, cellular_status->rx_level, cellular_status->tx_level, cellular_status->rx_quality, cellular_status->link_tx_rate, cellular_status->link_rx_rate, cellular_status->ber, cellular_status->id, cellular_status->cell_tower_id, cellular_status->sinr);
 }
 
 /**
@@ -361,7 +373,7 @@ static inline uint16_t mavlink_msg_cellular_status_encode_chan(uint8_t system_id
  */
 static inline uint16_t mavlink_msg_cellular_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_cellular_status_t* cellular_status)
 {
-    return mavlink_msg_cellular_status_pack_status(system_id, component_id, _status, msg,  cellular_status->status, cellular_status->failure_reason, cellular_status->type, cellular_status->quality, cellular_status->mcc, cellular_status->mnc, cellular_status->lac, cellular_status->band_number, cellular_status->band_frequency, cellular_status->channel_number, cellular_status->rx_level, cellular_status->tx_level, cellular_status->rx_quality, cellular_status->link_tx_rate, cellular_status->link_rx_rate, cellular_status->ber, cellular_status->id, cellular_status->cell_tower_id);
+    return mavlink_msg_cellular_status_pack_status(system_id, component_id, _status, msg,  cellular_status->status, cellular_status->failure_reason, cellular_status->type, cellular_status->quality, cellular_status->mcc, cellular_status->mnc, cellular_status->lac, cellular_status->band_number, cellular_status->band_frequency, cellular_status->channel_number, cellular_status->rx_level, cellular_status->tx_level, cellular_status->rx_quality, cellular_status->link_tx_rate, cellular_status->link_rx_rate, cellular_status->ber, cellular_status->id, cellular_status->cell_tower_id, cellular_status->sinr);
 }
 
 /**
@@ -386,10 +398,11 @@ static inline uint16_t mavlink_msg_cellular_status_encode_status(uint8_t system_
  * @param ber  (WIP) The bit error rate (BER) is determined by comparing the erroneous bits received with the total number of bits received. It is a ratio.
  * @param id  (WIP) Cellular instance number. Indexed from 1. Matches index in corresponding CELLULAR_MODEM_INFORMATION message.
  * @param cell_tower_id  (WIP) ID of the currently connected cell tower. This must be NULL terminated if the length is less than 9 human-readable chars, and without the null termination (NULL) byte if the length is exactly 9 chars.
+ * @param sinr [dB] (WIP) Signal to interference plus noise ratio (SINR).
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_cellular_status_send(mavlink_channel_t chan, uint8_t status, uint8_t failure_reason, uint8_t type, uint8_t quality, uint16_t mcc, uint16_t mnc, uint16_t lac, uint8_t band_number, float band_frequency, uint16_t channel_number, float rx_level, float tx_level, float rx_quality, uint32_t link_tx_rate, uint32_t link_rx_rate, uint16_t ber, uint8_t id, const char *cell_tower_id)
+static inline void mavlink_msg_cellular_status_send(mavlink_channel_t chan, uint8_t status, uint8_t failure_reason, uint8_t type, uint8_t quality, uint16_t mcc, uint16_t mnc, uint16_t lac, uint8_t band_number, float band_frequency, uint16_t channel_number, float rx_level, float tx_level, float rx_quality, uint32_t link_tx_rate, uint32_t link_rx_rate, uint16_t ber, uint8_t id, const char *cell_tower_id, float sinr)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_CELLULAR_STATUS_LEN];
@@ -410,6 +423,7 @@ static inline void mavlink_msg_cellular_status_send(mavlink_channel_t chan, uint
     _mav_put_uint32_t(buf, 33, link_rx_rate);
     _mav_put_uint16_t(buf, 37, ber);
     _mav_put_uint8_t(buf, 39, id);
+    _mav_put_float(buf, 49, sinr);
     _mav_put_char_array(buf, 40, cell_tower_id, 9);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CELLULAR_STATUS, buf, MAVLINK_MSG_ID_CELLULAR_STATUS_MIN_LEN, MAVLINK_MSG_ID_CELLULAR_STATUS_LEN, MAVLINK_MSG_ID_CELLULAR_STATUS_CRC);
 #else
@@ -431,6 +445,7 @@ static inline void mavlink_msg_cellular_status_send(mavlink_channel_t chan, uint
     packet.link_rx_rate = link_rx_rate;
     packet.ber = ber;
     packet.id = id;
+    packet.sinr = sinr;
     mav_array_memcpy(packet.cell_tower_id, cell_tower_id, sizeof(char)*9);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CELLULAR_STATUS, (const char *)&packet, MAVLINK_MSG_ID_CELLULAR_STATUS_MIN_LEN, MAVLINK_MSG_ID_CELLULAR_STATUS_LEN, MAVLINK_MSG_ID_CELLULAR_STATUS_CRC);
 #endif
@@ -444,7 +459,7 @@ static inline void mavlink_msg_cellular_status_send(mavlink_channel_t chan, uint
 static inline void mavlink_msg_cellular_status_send_struct(mavlink_channel_t chan, const mavlink_cellular_status_t* cellular_status)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_cellular_status_send(chan, cellular_status->status, cellular_status->failure_reason, cellular_status->type, cellular_status->quality, cellular_status->mcc, cellular_status->mnc, cellular_status->lac, cellular_status->band_number, cellular_status->band_frequency, cellular_status->channel_number, cellular_status->rx_level, cellular_status->tx_level, cellular_status->rx_quality, cellular_status->link_tx_rate, cellular_status->link_rx_rate, cellular_status->ber, cellular_status->id, cellular_status->cell_tower_id);
+    mavlink_msg_cellular_status_send(chan, cellular_status->status, cellular_status->failure_reason, cellular_status->type, cellular_status->quality, cellular_status->mcc, cellular_status->mnc, cellular_status->lac, cellular_status->band_number, cellular_status->band_frequency, cellular_status->channel_number, cellular_status->rx_level, cellular_status->tx_level, cellular_status->rx_quality, cellular_status->link_tx_rate, cellular_status->link_rx_rate, cellular_status->ber, cellular_status->id, cellular_status->cell_tower_id, cellular_status->sinr);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CELLULAR_STATUS, (const char *)cellular_status, MAVLINK_MSG_ID_CELLULAR_STATUS_MIN_LEN, MAVLINK_MSG_ID_CELLULAR_STATUS_LEN, MAVLINK_MSG_ID_CELLULAR_STATUS_CRC);
 #endif
@@ -458,7 +473,7 @@ static inline void mavlink_msg_cellular_status_send_struct(mavlink_channel_t cha
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_cellular_status_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t status, uint8_t failure_reason, uint8_t type, uint8_t quality, uint16_t mcc, uint16_t mnc, uint16_t lac, uint8_t band_number, float band_frequency, uint16_t channel_number, float rx_level, float tx_level, float rx_quality, uint32_t link_tx_rate, uint32_t link_rx_rate, uint16_t ber, uint8_t id, const char *cell_tower_id)
+static inline void mavlink_msg_cellular_status_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t status, uint8_t failure_reason, uint8_t type, uint8_t quality, uint16_t mcc, uint16_t mnc, uint16_t lac, uint8_t band_number, float band_frequency, uint16_t channel_number, float rx_level, float tx_level, float rx_quality, uint32_t link_tx_rate, uint32_t link_rx_rate, uint16_t ber, uint8_t id, const char *cell_tower_id, float sinr)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -479,6 +494,7 @@ static inline void mavlink_msg_cellular_status_send_buf(mavlink_message_t *msgbu
     _mav_put_uint32_t(buf, 33, link_rx_rate);
     _mav_put_uint16_t(buf, 37, ber);
     _mav_put_uint8_t(buf, 39, id);
+    _mav_put_float(buf, 49, sinr);
     _mav_put_char_array(buf, 40, cell_tower_id, 9);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CELLULAR_STATUS, buf, MAVLINK_MSG_ID_CELLULAR_STATUS_MIN_LEN, MAVLINK_MSG_ID_CELLULAR_STATUS_LEN, MAVLINK_MSG_ID_CELLULAR_STATUS_CRC);
 #else
@@ -500,6 +516,7 @@ static inline void mavlink_msg_cellular_status_send_buf(mavlink_message_t *msgbu
     packet->link_rx_rate = link_rx_rate;
     packet->ber = ber;
     packet->id = id;
+    packet->sinr = sinr;
     mav_array_memcpy(packet->cell_tower_id, cell_tower_id, sizeof(char)*9);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CELLULAR_STATUS, (const char *)packet, MAVLINK_MSG_ID_CELLULAR_STATUS_MIN_LEN, MAVLINK_MSG_ID_CELLULAR_STATUS_LEN, MAVLINK_MSG_ID_CELLULAR_STATUS_CRC);
 #endif
@@ -692,6 +709,16 @@ static inline uint16_t mavlink_msg_cellular_status_get_cell_tower_id(const mavli
 }
 
 /**
+ * @brief Get field sinr from cellular_status message
+ *
+ * @return [dB] (WIP) Signal to interference plus noise ratio (SINR).
+ */
+static inline float mavlink_msg_cellular_status_get_sinr(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_float(msg,  49);
+}
+
+/**
  * @brief Decode a cellular_status message into a struct
  *
  * @param msg The message to decode
@@ -718,6 +745,7 @@ static inline void mavlink_msg_cellular_status_decode(const mavlink_message_t* m
     cellular_status->ber = mavlink_msg_cellular_status_get_ber(msg);
     cellular_status->id = mavlink_msg_cellular_status_get_id(msg);
     mavlink_msg_cellular_status_get_cell_tower_id(msg, cellular_status->cell_tower_id);
+    cellular_status->sinr = mavlink_msg_cellular_status_get_sinr(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_CELLULAR_STATUS_LEN? msg->len : MAVLINK_MSG_ID_CELLULAR_STATUS_LEN;
         memset(cellular_status, 0, MAVLINK_MSG_ID_CELLULAR_STATUS_LEN);
