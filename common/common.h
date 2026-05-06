@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH -8461722831688018655
+#define MAVLINK_COMMON_XML_HASH -6853983035236697873
 
 #ifdef __cplusplus
 extern "C" {
@@ -2621,7 +2621,8 @@ typedef enum GLOBAL_POSITION_SRC
    GLOBAL_POSITION_SRC_TERRAIN=4, /* Terrain referenced navigation. | */
    GLOBAL_POSITION_SRC_MAGNETIC=5, /* Magnetic positioning. | */
    GLOBAL_POSITION_SRC_ESTIMATOR=6, /* Estimated position based on various sensors (eg. a Kalman Filter). | */
-   GLOBAL_POSITION_SRC_ENUM_END=7, /*  | */
+   GLOBAL_POSITION_SRC_LEO=7, /* Low Earth Orbit satellite-based positioning (e.g.: Starlink, Xona PULSAR). | */
+   GLOBAL_POSITION_SRC_ENUM_END=8, /*  | */
 } GLOBAL_POSITION_SRC;
 #endif
 
