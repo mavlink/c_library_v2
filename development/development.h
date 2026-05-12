@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_DEVELOPMENT.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_DEVELOPMENT_XML_HASH 1802721329707321067
+#define MAVLINK_DEVELOPMENT_XML_HASH 8638096171081820188
 
 #ifdef __cplusplus
 extern "C" {
@@ -235,7 +235,10 @@ typedef enum ACTUATOR_TEST_GROUP
    ACTUATOR_TEST_GROUP_PITCH_TORQUE=1, /* Actuators that contribute to pitch torque. | */
    ACTUATOR_TEST_GROUP_YAW_TORQUE=2, /* Actuators that contribute to yaw torque. | */
    ACTUATOR_TEST_GROUP_COLLECTIVE_TILT=3, /* Actuators that affect collective tilt. | */
-   ACTUATOR_TEST_GROUP_ENUM_END=4, /*  | */
+   ACTUATOR_TEST_GROUP_X_THRUST=4, /* Actuators that contribute to x (longitudinal, positive = forward) thrust. | */
+   ACTUATOR_TEST_GROUP_Y_THRUST=5, /* Actuators that contribute to y (lateral, positive = right) thrust. | */
+   ACTUATOR_TEST_GROUP_Z_THRUST=6, /* Actuators that contribute to z (vertical, positive = down) thrust. | */
+   ACTUATOR_TEST_GROUP_ENUM_END=7, /*  | */
 } ACTUATOR_TEST_GROUP;
 #endif
 
