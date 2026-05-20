@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH -8999899667799225838
+#define MAVLINK_COMMON_XML_HASH 781271345169458691
 
 #ifdef __cplusplus
 extern "C" {
@@ -2852,6 +2852,8 @@ typedef enum GLOBAL_POSITION_FLAGS
 #include "./mavlink_msg_time_estimate_to_target.h"
 #include "./mavlink_msg_tunnel.h"
 #include "./mavlink_msg_can_frame.h"
+#include "./mavlink_msg_canfd_frame.h"
+#include "./mavlink_msg_can_filter_modify.h"
 #include "./mavlink_msg_onboard_computer_status.h"
 #include "./mavlink_msg_component_information.h"
 #include "./mavlink_msg_component_information_basic.h"
@@ -2866,8 +2868,6 @@ typedef enum GLOBAL_POSITION_FLAGS
 #include "./mavlink_msg_current_mode.h"
 #include "./mavlink_msg_available_modes_monitor.h"
 #include "./mavlink_msg_illuminator_status.h"
-#include "./mavlink_msg_canfd_frame.h"
-#include "./mavlink_msg_can_filter_modify.h"
 #include "./mavlink_msg_wheel_distance.h"
 #include "./mavlink_msg_winch_status.h"
 #include "./mavlink_msg_open_drone_id_basic_id.h"
