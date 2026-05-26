@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH 1665519358998391438
+#define MAVLINK_COMMON_XML_HASH 2329939841528249258
 
 #ifdef __cplusplus
 extern "C" {
@@ -2739,6 +2739,7 @@ typedef enum MAV_FTP_OPCODE
    MAV_FTP_OPCODE_RENAME=13, /* Rename: Rename path1 to path2 | */
    MAV_FTP_OPCODE_CALCFILECRC=14, /* CalcFileCRC32: Calculate CRC32 for file at path | */
    MAV_FTP_OPCODE_BURSTREADFILE=15, /* BurstReadFile: Burst download session file | */
+   MAV_FTP_OPCODE_LISTDIRECTORYWITHTIME=16, /* ListDirectoryWithTime: List files and directories, along with last-modification timestamps, in path from offset. This is the same as ListDirectory except for the addition of timestamps. Servers that do not support this opcode respond with a NAK (MAV_FTP_ERR_UNKNOWNCOMMAND). | */
    MAV_FTP_OPCODE_ACK=128, /* ACK: ACK response | */
    MAV_FTP_OPCODE_NAK=129, /* NAK: NAK response | */
    MAV_FTP_OPCODE_ENUM_END=130, /*  | */
