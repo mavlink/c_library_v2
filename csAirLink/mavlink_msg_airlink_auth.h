@@ -39,6 +39,37 @@ typedef struct __mavlink_airlink_auth_t {
 }
 #endif
 
+/*
+ * Hash password with SHA-256 before packing to avoid transmitting plaintext credentials.
+ * Stores 32-byte digest in the 50-byte hashed buffer (remaining 18 bytes zeroed).
+ */
+static inline void _airlink_auth_hash_password(const char *password, char *hashed)
+{
+    mavlink_sha256_ctx ctx;
+    uint8_t zeros[72];
+    uint8_t *p;
+    unsigned int i, pw_len = 0;
+    unsigned offset, dstart;
+    while (pw_len < 49U && password[pw_len] != '\0') { pw_len++; }
+    mavlink_sha256_init(&ctx);
+    mavlink_sha256_update(&ctx, password, (uint32_t)pw_len);
+    offset = (ctx.sz[0] / 8) % 64;
+    dstart = (120 - offset - 1) % 64 + 1;
+    zeros[0] = 0x80;
+    memset(zeros + 1, 0, sizeof(zeros) - 1);
+    zeros[dstart+7] = (ctx.sz[0] >> 0) & 0xff; zeros[dstart+6] = (ctx.sz[0] >> 8) & 0xff;
+    zeros[dstart+5] = (ctx.sz[0] >> 16) & 0xff; zeros[dstart+4] = (ctx.sz[0] >> 24) & 0xff;
+    zeros[dstart+3] = (ctx.sz[1] >> 0) & 0xff; zeros[dstart+2] = (ctx.sz[1] >> 8) & 0xff;
+    zeros[dstart+1] = (ctx.sz[1] >> 16) & 0xff; zeros[dstart+0] = (ctx.sz[1] >> 24) & 0xff;
+    mavlink_sha256_update(&ctx, zeros, dstart + 8);
+    p = (uint8_t *)&ctx.counter[0];
+    for (i = 0; i < 8; i++) {
+        hashed[i*4+0] = (char)p[i*4+3]; hashed[i*4+1] = (char)p[i*4+2];
+        hashed[i*4+2] = (char)p[i*4+1]; hashed[i*4+3] = (char)p[i*4+0];
+    }
+    memset(hashed + 32, 0, 18);
+}
+
 /**
  * @brief Pack a airlink_auth message
  * @param system_id ID of this system
@@ -52,6 +83,7 @@ typedef struct __mavlink_airlink_auth_t {
 static inline uint16_t mavlink_msg_airlink_auth_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                const char *login, const char *password)
 {
+    char _pw_hash[50]; _airlink_auth_hash_password(password, _pw_hash); password = _pw_hash;
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_AIRLINK_AUTH_LEN];
 
@@ -84,6 +116,7 @@ static inline uint16_t mavlink_msg_airlink_auth_pack(uint8_t system_id, uint8_t 
 static inline uint16_t mavlink_msg_airlink_auth_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                const char *login, const char *password)
 {
+    char _pw_hash[50]; _airlink_auth_hash_password(password, _pw_hash); password = _pw_hash;
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_AIRLINK_AUTH_LEN];
 
@@ -120,6 +153,7 @@ static inline uint16_t mavlink_msg_airlink_auth_pack_chan(uint8_t system_id, uin
                                mavlink_message_t* msg,
                                    const char *login,const char *password)
 {
+    char _pw_hash[50]; _airlink_auth_hash_password(password, _pw_hash); password = _pw_hash;
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_AIRLINK_AUTH_LEN];
 
@@ -190,6 +224,7 @@ static inline uint16_t mavlink_msg_airlink_auth_encode_status(uint8_t system_id,
 
 static inline void mavlink_msg_airlink_auth_send(mavlink_channel_t chan, const char *login, const char *password)
 {
+    char _pw_hash[50]; _airlink_auth_hash_password(password, _pw_hash); password = _pw_hash;
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_AIRLINK_AUTH_LEN];
 
