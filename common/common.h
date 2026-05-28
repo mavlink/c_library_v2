@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH 37793971438259047
+#define MAVLINK_COMMON_XML_HASH 2488908854178092813
 
 #ifdef __cplusplus
 extern "C" {
@@ -257,7 +257,8 @@ typedef enum MAV_MOUNT_MODE
    MAV_MOUNT_MODE_GPS_POINT=4, /* Load neutral position and start to point to Lat,Lon,Alt | */
    MAV_MOUNT_MODE_SYSID_TARGET=5, /* Gimbal tracks system with specified system ID | */
    MAV_MOUNT_MODE_HOME_LOCATION=6, /* Gimbal tracks home position | */
-   MAV_MOUNT_MODE_ENUM_END=7, /*  | */
+   MAV_MOUNT_MODE_WPNEXT_OFFSET=7, /* Gimbal tracks next waypoint location with offset | */
+   MAV_MOUNT_MODE_ENUM_END=8, /*  | */
 } MAV_MOUNT_MODE;
 #endif
 
