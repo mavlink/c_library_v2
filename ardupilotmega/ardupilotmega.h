@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_ARDUPILOTMEGA.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_ARDUPILOTMEGA_XML_HASH 8970296741400575177
+#define MAVLINK_ARDUPILOTMEGA_XML_HASH 1522221687278488564
 
 #ifdef __cplusplus
 extern "C" {
@@ -873,7 +873,17 @@ typedef enum PID_TUNING_AXIS
    PID_TUNING_ACCZ=4, /*  | */
    PID_TUNING_STEER=5, /*  | */
    PID_TUNING_LANDING=6, /*  | */
-   PID_TUNING_AXIS_ENUM_END=7, /*  | */
+   PID_TUNING_WHEEL_LEFT=7, /* Left wheel rate. | */
+   PID_TUNING_WHEEL_RIGHT=8, /* Right wheel rate. | */
+   PID_TUNING_SAIL_HEEL=9, /* Sailboat heel to mainsail. | */
+   PID_TUNING_VEL_NORTH=10, /* Velocity north. | */
+   PID_TUNING_VEL_EAST=11, /* Velocity east. | */
+   PID_TUNING_VEL_DOWN=12, /* Velocity down. | */
+   PID_TUNING_POS_NORTH=13, /* Position north. | */
+   PID_TUNING_POS_EAST=14, /* Position east. | */
+   PID_TUNING_POS_DOWN=15, /* Position down. | */
+   PID_TUNING_YAW_ANGLE=16, /* Yaw angle. | */
+   PID_TUNING_AXIS_ENUM_END=17, /*  | */
 } PID_TUNING_AXIS;
 #endif
 
