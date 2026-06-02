@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH -3042345338690720110
+#define MAVLINK_COMMON_XML_HASH 8510346501108640507
 
 #ifdef __cplusplus
 extern "C" {
@@ -2615,9 +2615,12 @@ typedef enum MAG_CAL_STATUS
    MAG_CAL_RUNNING_STEP_TWO=3, /*  | */
    MAG_CAL_SUCCESS=4, /*  | */
    MAG_CAL_FAILED=5, /*  | */
-   MAG_CAL_BAD_ORIENTATION=6, /*  | */
-   MAG_CAL_BAD_RADIUS=7, /*  | */
-   MAG_CAL_STATUS_ENUM_END=8, /*  | */
+   MAG_CAL_FAILED_ORIENTATION=6, /* Compass calibration failed: the vehicle orientation is outside the required tolerance. | */
+   MAG_CAL_FAILED_RADIUS=7, /* Compass calibration failed: the radius of the fitted sphere is unrealistically small or large. | */
+   MAG_CAL_FAILED_OFFSETS=8, /* Compass calibration failed: offset magnitude too large. | */
+   MAG_CAL_FAILED_DIAG_SCALING=9, /* Compass calibration failed: diagonal or off-diagonal scaling values out of valid range. | */
+   MAG_CAL_FAILED_RESIDUALS_HIGH=10, /* Compass calibration failed: fitness (RMS residual) exceeds tolerance. | */
+   MAG_CAL_STATUS_ENUM_END=11, /*  | */
 } MAG_CAL_STATUS;
 #endif
 
