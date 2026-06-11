@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH 3991779710267856507
+#define MAVLINK_COMMON_XML_HASH 5070217707552921660
 
 #ifdef __cplusplus
 extern "C" {
@@ -1216,7 +1216,17 @@ typedef enum SERIAL_CONTROL_DEV
    SERIAL_CONTROL_DEV_TELEM2=1, /* Second telemetry port | */
    SERIAL_CONTROL_DEV_GPS1=2, /* First GPS port | */
    SERIAL_CONTROL_DEV_GPS2=3, /* Second GPS port | */
+   SERIAL_CONTROL_DEV_TELEM3=4, /* Third telemetry port | */
+   SERIAL_CONTROL_DEV_TELEM4=5, /* Fourth telemetry port | */
    SERIAL_CONTROL_DEV_SHELL=10, /* system shell | */
+   SERIAL_CONTROL_DEV_ESC0=20, /* Electronic Speed Controller 0 | */
+   SERIAL_CONTROL_DEV_ESC1=21, /* Electronic Speed Controller 1 | */
+   SERIAL_CONTROL_DEV_ESC2=22, /* Electronic Speed Controller 2 | */
+   SERIAL_CONTROL_DEV_ESC3=23, /* Electronic Speed Controller 3 | */
+   SERIAL_CONTROL_DEV_ESC4=24, /* Electronic Speed Controller 4 | */
+   SERIAL_CONTROL_DEV_ESC5=25, /* Electronic Speed Controller 5 | */
+   SERIAL_CONTROL_DEV_ESC6=26, /* Electronic Speed Controller 6 | */
+   SERIAL_CONTROL_DEV_ESC7=27, /* Electronic Speed Controller 7 | */
    SERIAL_CONTROL_SERIAL0=100, /* SERIAL0 | */
    SERIAL_CONTROL_SERIAL1=101, /* SERIAL1 | */
    SERIAL_CONTROL_SERIAL2=102, /* SERIAL2 | */
