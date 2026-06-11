@@ -398,6 +398,9 @@
       <entry value="6" name="MAV_MOUNT_MODE_HOME_LOCATION">
         <description>Gimbal tracks home position</description>
       </entry>
+      <entry value="7" name="MAV_MOUNT_MODE_WPNEXT_OFFSET">
+        <description>Gimbal tracks next waypoint location with offset</description>
+      </entry>
     </enum>
     <enum name="GIMBAL_DEVICE_CAP_FLAGS" bitmask="true">
       <description>Gimbal device (low level) capability flags (bitmap).</description>
@@ -1153,7 +1156,7 @@
         <param index="1" label="Turns" minValue="0">Number of turns.</param>
         <param index="2" label="Heading Required" enum="MAV_BOOL">Leave loiter circle only when track heads towards the next waypoint (MAV_BOOL_FALSE: Leave when turns complete). Values not equal to 0 or 1 are invalid.</param>
         <param index="3" label="Radius" units="m">Loiter radius around waypoint for forward-only moving vehicles (not multicopters). If positive loiter clockwise, else counter-clockwise</param>
-        <param index="4" label="Xtrack Location">Loiter circle exit location and/or path to next waypoint ("xtrack") for forward-only moving vehicles (not multicopters). 0 for the vehicle to converge towards the center xtrack when it leaves the loiter (the line between the centers of the current and next waypoint), 1 to converge to the direct line between the location that the vehicle exits the loiter radius and the next waypoint. Otherwise the angle (in degrees) between the tangent of the loiter circle and the center xtrack at which the vehicle must leave the loiter (and converge to the center xtrack). NaN to use the current system default xtrack behaviour.</param>
+        <param index="4" label="Xtrack Location">Loiter circle exit location and/or path to next waypoint ("xtrack") for forward-only moving vehicles (not multicopters). 0 for the vehicle to converge towards the center xtrack when it leaves the loiter (the line between the centers of the current and next waypoint), 1 to converge to the direct line between the location that the vehicle exits the loiter radius and the next waypoint. NaN to use the current system default xtrack behaviour.</param>
         <param index="5" label="Latitude">Latitude</param>
         <param index="6" label="Longitude">Longitude</param>
         <param index="7" label="Altitude" units="m">Altitude</param>
@@ -1163,7 +1166,7 @@
         <param index="1" label="Time" units="s" minValue="0">Loiter time (only starts once Lat, Lon and Alt is reached).</param>
         <param index="2" label="Heading Required" enum="MAV_BOOL">Leave loiter circle only when track heading towards the next waypoint (MAV_BOOL_FALSE: Leave on time expiry). Values not equal to 0 or 1 are invalid.</param>
         <param index="3" label="Radius" units="m">Loiter radius around waypoint for forward-only moving vehicles (not multicopters). If positive loiter clockwise, else counter-clockwise.</param>
-        <param index="4" label="Xtrack Location">Loiter circle exit location and/or path to next waypoint ("xtrack") for forward-only moving vehicles (not multicopters). 0 for the vehicle to converge towards the center xtrack when it leaves the loiter (the line between the centers of the current and next waypoint), 1 to converge to the direct line between the location that the vehicle exits the loiter radius and the next waypoint. Otherwise the angle (in degrees) between the tangent of the loiter circle and the center xtrack at which the vehicle must leave the loiter (and converge to the center xtrack). NaN to use the current system default xtrack behaviour.</param>
+        <param index="4" label="Xtrack Location">Loiter circle exit location and/or path to next waypoint ("xtrack") for forward-only moving vehicles (not multicopters). 0 for the vehicle to converge towards the center xtrack when it leaves the loiter (the line between the centers of the current and next waypoint), 1 to converge to the direct line between the location that the vehicle exits the loiter radius and the next waypoint. NaN to use the current system default xtrack behaviour.</param>
         <param index="5" label="Latitude">Latitude</param>
         <param index="6" label="Longitude">Longitude</param>
         <param index="7" label="Altitude" units="m">Altitude</param>
@@ -1243,7 +1246,7 @@
         <param index="1" label="Heading Required" enum="MAV_BOOL">Leave loiter circle only when track heading towards the next waypoint (MAV_BOOL_FALSE: Leave when altitude reached). Values not equal to 0 or 1 are invalid.</param>
         <param index="2" label="Radius" units="m">Loiter radius around waypoint for forward-only moving vehicles (not multicopters). If positive loiter clockwise, negative counter-clockwise, 0 means no change to standard loiter.</param>
         <param index="3">Empty</param>
-        <param index="4" label="Xtrack Location" minValue="0" maxValue="1" increment="1">Loiter circle exit location and/or path to next waypoint ("xtrack") for forward-only moving vehicles (not multicopters). 0 for the vehicle to converge towards the center xtrack when it leaves the loiter (the line between the centers of the current and next waypoint), 1 to converge to the direct line between the location that the vehicle exits the loiter radius and the next waypoint. Otherwise the angle (in degrees) between the tangent of the loiter circle and the center xtrack at which the vehicle must leave the loiter (and converge to the center xtrack). NaN to use the current system default xtrack behaviour.</param>
+        <param index="4" label="Xtrack Location" minValue="0" maxValue="1" increment="1">Loiter circle exit location and/or path to next waypoint ("xtrack") for forward-only moving vehicles (not multicopters). 0 for the vehicle to converge towards the center xtrack when it leaves the loiter (the line between the centers of the current and next waypoint), 1 to converge to the direct line between the location that the vehicle exits the loiter radius and the next waypoint. NaN to use the current system default xtrack behaviour.</param>
         <param index="5" label="Latitude">Latitude</param>
         <param index="6" label="Longitude">Longitude</param>
         <param index="7" label="Altitude" units="m">Altitude</param>
@@ -1592,8 +1595,6 @@
         <param index="7" label="Index" minValue="0" increment="1">Index of actuator set (i.e if set to 1, Actuator 1 becomes Actuator 7)</param>
       </entry>
       <entry value="188" name="MAV_CMD_DO_RETURN_PATH_START" hasLocation="true" isDestination="false">
-        <wip/>
-        <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
         <description>Mission item to specify the start of a failsafe/landing return-path segment (the end of the segment is the next MAV_CMD_DO_LAND_START item).
           A vehicle that is using missions for landing (e.g. in a return mode) will join the mission on the closest path of the return-path segment (instead of MAV_CMD_DO_LAND_START or the nearest waypoint).
           The main use case is to minimize the failsafe flight path in corridor missions, where the inbound/outbound paths are constrained (by geofences) to the same particular path.
@@ -2612,7 +2613,12 @@
         <param index="6">Empty.</param>
         <param index="7">Empty.</param>
       </entry>
-      <!-- from ardupilotmega.xml (hence ID is in that range) -->
+      <entry value="43002" name="MAV_CMD_GUIDED_CHANGE_HEADING" hasLocation="false" isDestination="false">
+        <description>Change to target direction at a given rate, overriding previous heading/s. This slews the vehicle at a controllable rate between its previous heading and the new one.</description>
+        <param index="1" label="Heading Type" enum="HEADING_TYPE">Course-over-ground or raw vehicle heading.</param>
+        <param index="2" label="Heading Target" units="deg" minValue="0" maxValue="359.99">Target heading.</param>
+        <param index="3" label="Heading Rate of Change" units="deg/s">Maximum centripetal acceleration, i.e. rate of change toward new heading.</param>
+      </entry>
       <entry value="43003" name="MAV_CMD_EXTERNAL_POSITION_ESTIMATE" hasLocation="true" isDestination="false">
         <description>Provide an external position estimate for use when dead-reckoning. This is meant to be used for occasional position resets that may be provided by a external system such as a remote pilot using landmarks over a video link.</description>
         <param index="1" label="transmission_time" units="s">Timestamp that this message was sent as a time in the transmitters time domain. The sender should wrap this time back to zero based on required timing accuracy for the application and the limitations of a 32 bit float. For example, wrapping at 10 hours would give approximately 1ms accuracy. Recipient must handle time wrap in any timing jitter correction applied to this field. Wrap rollover time should not be at not more than 250 seconds, which would give approximately 10 microsecond accuracy.</param>
@@ -3630,6 +3636,18 @@
         <description>Descent speed</description>
       </entry>
     </enum>
+    <enum name="HEADING_TYPE">
+      <description>Heading setpoint types used in MAV_CMD_GUIDED_CHANGE_HEADING</description>
+      <entry value="0" name="HEADING_TYPE_COURSE_OVER_GROUND">
+        <description>Course over ground.</description>
+      </entry>
+      <entry value="1" name="HEADING_TYPE_HEADING">
+        <description>Raw vehicle heading.</description>
+      </entry>
+      <entry value="2" name="HEADING_TYPE_DEFAULT">
+        <description>Default heading.</description>
+      </entry>
+    </enum>
     <!-- ESTIMATOR_STATUS_FLAGS - these values should be bit-and with the messages flags field to know if flag has been set -->
     <enum name="ESTIMATOR_STATUS_FLAGS" bitmask="true">
       <description>Flags in ESTIMATOR_STATUS message</description>
@@ -3914,6 +3932,9 @@
       </entry>
       <entry value="3" name="VIDEO_STREAM_TYPE_MPEG_TS">
         <description>Stream is MPEG TS (URI gives the port number)</description>
+      </entry>
+      <entry value="4" name="VIDEO_STREAM_TYPE_WHEP">
+        <description>Stream is WHEP (WebRTC-HTTP Egress Protocol)</description>
       </entry>
     </enum>
     <enum name="VIDEO_STREAM_ENCODING">
@@ -4974,8 +4995,21 @@
       <entry value="3" name="MAG_CAL_RUNNING_STEP_TWO"/>
       <entry value="4" name="MAG_CAL_SUCCESS"/>
       <entry value="5" name="MAG_CAL_FAILED"/>
-      <entry value="6" name="MAG_CAL_BAD_ORIENTATION"/>
-      <entry value="7" name="MAG_CAL_BAD_RADIUS"/>
+      <entry value="6" name="MAG_CAL_FAILED_ORIENTATION">
+        <description>Compass calibration failed: the vehicle orientation is outside the required tolerance.</description>
+      </entry>
+      <entry value="7" name="MAG_CAL_FAILED_RADIUS">
+        <description>Compass calibration failed: the radius of the fitted sphere is unrealistically small or large.</description>
+      </entry>
+      <entry value="8" name="MAG_CAL_FAILED_OFFSETS">
+        <description>Compass calibration failed: offset magnitude too large.</description>
+      </entry>
+      <entry value="9" name="MAG_CAL_FAILED_DIAG_SCALING">
+        <description>Compass calibration failed: diagonal or off-diagonal scaling values out of valid range.</description>
+      </entry>
+      <entry value="10" name="MAG_CAL_FAILED_RESIDUALS_HIGH">
+        <description>Compass calibration failed: fitness (RMS residual) exceeds tolerance.</description>
+      </entry>
     </enum>
     <enum name="MAV_EVENT_ERROR_REASON">
       <description>Reason for an event error response.</description>
@@ -5167,6 +5201,9 @@
       </entry>
       <entry value="15" name="MAV_FTP_OPCODE_BURSTREADFILE">
         <description>BurstReadFile: Burst download session file</description>
+      </entry>
+      <entry value="16" name="MAV_FTP_OPCODE_LISTDIRECTORYWITHTIME">
+        <description>ListDirectoryWithTime: List files and directories, along with last-modification timestamps, in path from offset. This is the same as ListDirectory except for the addition of timestamps. Servers that do not support this opcode respond with a NAK (MAV_FTP_ERR_UNKNOWNCOMMAND).</description>
       </entry>
       <entry value="128" name="MAV_FTP_OPCODE_ACK">
         <description>ACK: ACK response</description>
@@ -5405,9 +5442,9 @@
       <field type="uint32_t" name="onboard_control_sensors_enabled" enum="MAV_SYS_STATUS_SENSOR" print_format="0x%04x">Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled.</field>
       <field type="uint32_t" name="onboard_control_sensors_health" enum="MAV_SYS_STATUS_SENSOR" print_format="0x%04x">Bitmap showing which onboard controllers and sensors have an error (or are operational). Value of 0: error. Value of 1: healthy.</field>
       <field type="uint16_t" name="load" units="d%">Maximum usage in percent of the mainloop time. Values: [0-1000] - should always be below 1000</field>
-      <field type="uint16_t" name="voltage_battery" units="mV" invalid="UINT16_MAX">Battery voltage, UINT16_MAX: Voltage not sent by autopilot</field>
-      <field type="int16_t" name="current_battery" units="cA" invalid="-1">Battery current, -1: Current not sent by autopilot</field>
-      <field type="int8_t" name="battery_remaining" units="%" invalid="-1">Battery energy remaining, -1: Battery remaining energy not sent by autopilot</field>
+      <field type="uint16_t" name="voltage_battery" units="mV" invalid="UINT16_MAX">Battery voltage, UINT16_MAX: Voltage not sent by autopilot. Value is ambiguous on multi-battery systems. BATTERY_STATUS is a recommended alternative.</field>
+      <field type="int16_t" name="current_battery" units="cA" invalid="-1">Battery current, -1: Current not sent by autopilot. Value may overflow/rollover for very high currents (&gt; 327.67A). Value is ambiguous on multi-battery systems. BATTERY_STATUS is a recommended alternative.</field>
+      <field type="int8_t" name="battery_remaining" units="%" invalid="-1">Battery energy remaining, -1: Battery remaining energy not sent by autopilot. Value is ambiguous on multi-battery systems. BATTERY_STATUS is a recommended alternative.</field>
       <field type="uint16_t" name="drop_rate_comm" units="c%">Communication drop rate, (UART, I2C, SPI, CAN), dropped packets on all links (packets that were corrupted on reception on the MAV)</field>
       <field type="uint16_t" name="errors_comm">Communication errors (UART, I2C, SPI, CAN), dropped packets on all links (packets that were corrupted on reception on the MAV)</field>
       <field type="uint16_t" name="errors_count1">Autopilot-specific errors</field>
@@ -5471,9 +5508,9 @@
     </message>
     <message id="11" name="SET_MODE">
       <superseded since="2015-12" replaced_by="MAV_CMD_DO_SET_MODE">Use COMMAND_LONG with MAV_CMD_DO_SET_MODE instead</superseded>
-      <description>Set the system mode, as defined by enum MAV_MODE. There is no target component id as the mode is by definition for the overall aircraft, not only for one component.</description>
+      <description>Set the system mode, as defined by enum MAV_MODE_FLAG. There is no target component id as the mode is by definition for the overall aircraft, not only for one component.</description>
       <field type="uint8_t" name="target_system">The system setting the mode</field>
-      <field type="uint8_t" name="base_mode" enum="MAV_MODE">The new base mode.</field>
+      <field type="uint8_t" name="base_mode" enum="MAV_MODE_FLAG">The new base mode.</field>
       <field type="uint32_t" name="custom_mode">The new autopilot-specific mode. This field can be ignored by an autopilot.</field>
     </message>
     <!-- IDs 15-17 reserved for PARAM_VALUE_UNION and other param messages -->
@@ -6795,7 +6832,7 @@
       <field type="uint8_t" name="type" enum="MAV_BATTERY_TYPE">Type (chemistry) of the battery</field>
       <field type="int16_t" name="temperature" units="cdegC" invalid="INT16_MAX">Temperature of the battery. INT16_MAX for unknown temperature.</field>
       <field type="uint16_t[10]" name="voltages" units="mV" invalid="[UINT16_MAX]">Battery voltage of cells 1 to 10 (see voltages_ext for cells 11-14). Cells in this field above the valid cell count for this battery should have the UINT16_MAX value. If individual cell voltages are unknown or not measured for this battery, then the overall battery voltage should be filled in cell 0, with all others set to UINT16_MAX. If the voltage of the battery is greater than (UINT16_MAX - 1), then cell 0 should be set to (UINT16_MAX - 1), and cell 1 to the remaining voltage. This can be extended to multiple cells if the total voltage is greater than 2 * (UINT16_MAX - 1).</field>
-      <field type="int16_t" name="current_battery" units="cA" invalid="-1">Battery current, -1: autopilot does not measure the current</field>
+      <field type="int16_t" name="current_battery" units="cA" invalid="-1">Battery current, -1: autopilot does not measure the current. Value may overflow/rollover for very high currents (&gt; 327.67A)</field>
       <field type="int32_t" name="current_consumed" units="mAh" invalid="-1">Consumed charge, -1: autopilot does not provide consumption estimate</field>
       <field type="int32_t" name="energy_consumed" units="hJ" invalid="-1">Consumed energy, -1: autopilot does not provide energy consumption estimate</field>
       <field type="int8_t" name="battery_remaining" units="%" invalid="-1">Remaining battery energy. Values: [0-100], -1: autopilot does not estimate the remaining battery.</field>
@@ -7507,7 +7544,7 @@
       <field type="uint16_t" name="estimator_status" enum="ESTIMATOR_STATUS_FLAGS">Bitmap indicating which estimator outputs are valid.</field>
       <field type="uint8_t" name="landed_state" enum="MAV_LANDED_STATE" invalid="MAV_LANDED_STATE_UNDEFINED">The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown.</field>
       <extensions/>
-      <field type="float" name="angular_velocity_z" units="rad/s" invalid="NaN">Z component of angular velocity in NED (North, East, Down). NaN if unknown.</field>
+      <field type="float" name="angular_velocity_z" units="rad/s" invalid="0">Z component of angular velocity in NED (North, East, Down). 0 if unknown. Use 0.00001 to represent a measured value of zero.</field>
     </message>
     <message id="287" name="GIMBAL_MANAGER_SET_PITCHYAW">
       <description>Set gimbal manager pitch and yaw angles (high rate message). This message is to be sent to the gimbal manager (e.g. from a ground station) and will be ignored by gimbal devices. Angles and rates can be set to NaN according to use case. Use MAV_CMD_DO_GIMBAL_MANAGER_PITCHYAW for low-rate adjustments that require confirmation.</description>
@@ -7745,8 +7782,13 @@
     </message>
     <!-- cellular status information -->
     <message id="334" name="CELLULAR_STATUS">
-      <description>Report current used cellular network status.
-                   Note that the extensions are still an open PR here and subject to change slightly: https://github.com/mavlink/mavlink/pull/1945</description>
+      <description>Cellular network status as reported by a particular modem.
+      
+        This is primarily intended for logging, but a GCS may choose to display link_tx_rate and link_rx_rate.
+        
+        Note that a value of 0 in the id field indicates that the sender does not support reporting of multiple modems.
+        Message data should be from a single modem, but that is not guaranteed.
+      </description>
       <field type="uint8_t" name="status" enum="CELLULAR_STATUS_FLAG">Cellular modem status</field>
       <field type="uint8_t" name="failure_reason" enum="CELLULAR_NETWORK_FAILED_REASON">Failure reason when status in in CELLULAR_STATUS_FLAG_FAILED</field>
       <field type="uint8_t" name="type" enum="CELLULAR_NETWORK_RADIO_TYPE">Cellular network radio type: gsm, cdma, lte...</field>
@@ -7755,18 +7797,17 @@
       <field type="uint16_t" name="mnc" invalid="UINT16_MAX">Mobile network code. If unknown, set to UINT16_MAX</field>
       <field type="uint16_t" name="lac" invalid="0">Location area code. If unknown, set to 0</field>
       <extensions/>
-      <field type="uint8_t" name="band_number" invalid="0">(WIP) LTE frequency band number.</field>
-      <field type="float" name="band_frequency" units="MHz" invalid="0">(WIP) LTE radio frequency.</field>
-      <field type="uint16_t" name="channel_number" invalid="0">(WIP) The channel number (CN). Absolute radio-frequency (ARFCN) / E-UTRA (EARFCN) / UTRA (UARFCN) / New radio (NR_CH).</field>
-      <field type="float" name="rx_level" units="dBm" invalid="0">(WIP) On 3G is Received Signal Code Power (RSCP). On LTE Reference Signal Received Power (RSRP). On 5G  is New Radio Reference Signal Received Power (NR_RSRQ).</field>
-      <field type="float" name="tx_level" units="dBm" invalid="0">(WIP) Transmitter (modem) signal absolute power level.</field>
-      <field type="float" name="rx_quality" units="dBm" invalid="0">(WIP) On 3G is Receiver Quality (RxQual). On LTE is Reference Signal Received Quality (RSRQ). On 5G is New radio Reference Signal Received Quality (NR_RSRQ).</field>
-      <field type="uint32_t" name="link_tx_rate" units="KiB/s" invalid="0">(WIP) Download rate.</field>
-      <field type="uint32_t" name="link_rx_rate" units="KiB/s" invalid="0">(WIP) Upload rate.</field>
-      <field type="uint16_t" name="ber" invalid="0">(WIP) The bit error rate (BER) is determined by comparing the erroneous bits received with the total number of bits received. It is a ratio.</field>
-      <field type="uint8_t" name="id" instance="true" invalid="0">(WIP) Cellular instance number. Indexed from 1. Matches index in corresponding CELLULAR_MODEM_INFORMATION message.</field>
-      <field type="char[9]" name="cell_tower_id" invalid="0">(WIP) ID of the currently connected cell tower. This must be NULL terminated if the length is less than 9 human-readable chars, and without the null termination (NULL) byte if the length is exactly 9 chars.</field>
-      <field type="float" name="sinr" units="dB" invalid="0">(WIP) Signal to interference plus noise ratio (SINR).</field>
+      <field type="uint8_t" name="id" instance="true" minValue="1">Cellular modem instance number. Indexed from 1.</field>
+      <field type="uint32_t" name="link_tx_rate" units="KiB/s" invalid="0">Download rate.</field>
+      <field type="uint32_t" name="link_rx_rate" units="KiB/s" invalid="0">Upload rate.</field>
+      <field type="char[9]" name="cell_tower_id" invalid="0">ID of the currently connected cell tower. This must be NULL terminated if the length is less than 9 human-readable chars, and without the null termination (NULL) byte if the length is exactly 9 chars.</field>
+      <field type="uint8_t" name="band_number" invalid="0">LTE frequency band number.</field>
+      <field type="float" name="band_frequency" units="MHz" invalid="0">LTE radio frequency.</field>
+      <field type="uint32_t" name="channel_number" invalid="0">The channel number (CN). Absolute radio-frequency (ARFCN) / E-UTRA (EARFCN) / UTRA (UARFCN) / New radio (NR_CH).</field>
+      <field type="float" name="rx_level" units="dBm" invalid="0">On 3G is Received Signal Code Power (RSCP). On LTE is Reference Signal Received Power (RSRP). On 5G is New Radio Reference Signal Received Power (NR_RSRP).</field>
+      <field type="float" name="tx_level" units="dBm" invalid="0">Transmitter (modem) signal absolute power level.</field>
+      <field type="float" name="rx_quality" units="dBm" invalid="0">On 3G is Receiver Quality (RxQual). On LTE is Reference Signal Received Quality (RSRQ). On 5G is New Radio Reference Signal Received Quality (NR_RSRQ).</field>
+      <field type="float" name="sinr" units="dB" invalid="0">Signal to interference plus noise ratio (SINR).</field>
     </message>
     <message id="335" name="ISBD_LINK_STATUS">
       <description>Status of the Iridium SBD link.</description>
@@ -8073,14 +8114,14 @@
       <field type="char[100]" name="uri">MAVLink FTP URI for the general metadata file (COMP_METADATA_TYPE_GENERAL), which may be compressed with xz. The file contains general component metadata, and may contain URI links for additional metadata (see COMP_METADATA_TYPE). The information is static from boot, and may be generated at compile time. The string needs to be zero terminated.</field>
     </message>
     <message id="400" name="PLAY_TUNE_V2">
-      <description>Play vehicle tone/tune (buzzer). Supersedes message PLAY_TUNE.</description>
+      <description>Play vehicle tone/tune (buzzer). Supported tunes can be determined using SUPPORTED_TUNES. Supersedes message PLAY_TUNE.</description>
       <field type="uint8_t" name="target_system">System ID</field>
       <field type="uint8_t" name="target_component">Component ID</field>
       <field type="uint32_t" name="format" enum="TUNE_FORMAT">Tune format</field>
       <field type="char[248]" name="tune">Tune definition as a NULL-terminated string.</field>
     </message>
     <message id="401" name="SUPPORTED_TUNES">
-      <description>Tune formats supported by vehicle. This should be emitted as response to MAV_CMD_REQUEST_MESSAGE.</description>
+      <description>Tune formats supported by vehicle, i.e. via PLAY_TUNE_V2. This should be emitted as response to MAV_CMD_REQUEST_MESSAGE.</description>
       <field type="uint8_t" name="target_system">System ID</field>
       <field type="uint8_t" name="target_component">Component ID</field>
       <field type="uint32_t" name="format" enum="TUNE_FORMAT">Bitfield of supported tune formats.</field>

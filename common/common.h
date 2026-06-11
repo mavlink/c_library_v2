@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH 781271345169458691
+#define MAVLINK_COMMON_XML_HASH 7962755774233452142
 
 #ifdef __cplusplus
 extern "C" {
@@ -257,7 +257,8 @@ typedef enum MAV_MOUNT_MODE
    MAV_MOUNT_MODE_GPS_POINT=4, /* Load neutral position and start to point to Lat,Lon,Alt | */
    MAV_MOUNT_MODE_SYSID_TARGET=5, /* Gimbal tracks system with specified system ID | */
    MAV_MOUNT_MODE_HOME_LOCATION=6, /* Gimbal tracks home position | */
-   MAV_MOUNT_MODE_ENUM_END=7, /*  | */
+   MAV_MOUNT_MODE_WPNEXT_OFFSET=7, /* Gimbal tracks next waypoint location with offset | */
+   MAV_MOUNT_MODE_ENUM_END=8, /*  | */
 } MAV_MOUNT_MODE;
 #endif
 
@@ -1271,6 +1272,18 @@ typedef enum SPEED_TYPE
 } SPEED_TYPE;
 #endif
 
+/** @brief Heading setpoint types used in MAV_CMD_GUIDED_CHANGE_HEADING */
+#ifndef HAVE_ENUM_HEADING_TYPE
+#define HAVE_ENUM_HEADING_TYPE
+typedef enum HEADING_TYPE
+{
+   HEADING_TYPE_COURSE_OVER_GROUND=0, /* Course over ground. | */
+   HEADING_TYPE_HEADING=1, /* Raw vehicle heading. | */
+   HEADING_TYPE_DEFAULT=2, /* Default heading. | */
+   HEADING_TYPE_ENUM_END=3, /*  | */
+} HEADING_TYPE;
+#endif
+
 /** @brief Flags in ESTIMATOR_STATUS message */
 #ifndef HAVE_ENUM_ESTIMATOR_STATUS_FLAGS
 #define HAVE_ENUM_ESTIMATOR_STATUS_FLAGS
@@ -1473,7 +1486,8 @@ typedef enum VIDEO_STREAM_TYPE
    VIDEO_STREAM_TYPE_RTPUDP=1, /* Stream is RTP UDP (URI gives the port number) | */
    VIDEO_STREAM_TYPE_TCP_MPEG=2, /* Stream is MPEG on TCP | */
    VIDEO_STREAM_TYPE_MPEG_TS=3, /* Stream is MPEG TS (URI gives the port number) | */
-   VIDEO_STREAM_TYPE_ENUM_END=4, /*  | */
+   VIDEO_STREAM_TYPE_WHEP=4, /* Stream is WHEP (WebRTC-HTTP Egress Protocol) | */
+   VIDEO_STREAM_TYPE_ENUM_END=5, /*  | */
 } VIDEO_STREAM_TYPE;
 #endif
 
@@ -2302,9 +2316,12 @@ typedef enum MAG_CAL_STATUS
    MAG_CAL_RUNNING_STEP_TWO=3, /*  | */
    MAG_CAL_SUCCESS=4, /*  | */
    MAG_CAL_FAILED=5, /*  | */
-   MAG_CAL_BAD_ORIENTATION=6, /*  | */
-   MAG_CAL_BAD_RADIUS=7, /*  | */
-   MAG_CAL_STATUS_ENUM_END=8, /*  | */
+   MAG_CAL_FAILED_ORIENTATION=6, /* Compass calibration failed: the vehicle orientation is outside the required tolerance. | */
+   MAG_CAL_FAILED_RADIUS=7, /* Compass calibration failed: the radius of the fitted sphere is unrealistically small or large. | */
+   MAG_CAL_FAILED_OFFSETS=8, /* Compass calibration failed: offset magnitude too large. | */
+   MAG_CAL_FAILED_DIAG_SCALING=9, /* Compass calibration failed: diagonal or off-diagonal scaling values out of valid range. | */
+   MAG_CAL_FAILED_RESIDUALS_HIGH=10, /* Compass calibration failed: fitness (RMS residual) exceeds tolerance. | */
+   MAG_CAL_STATUS_ENUM_END=11, /*  | */
 } MAG_CAL_STATUS;
 #endif
 
@@ -2427,6 +2444,7 @@ typedef enum MAV_FTP_OPCODE
    MAV_FTP_OPCODE_RENAME=13, /* Rename: Rename path1 to path2 | */
    MAV_FTP_OPCODE_CALCFILECRC=14, /* CalcFileCRC32: Calculate CRC32 for file at path | */
    MAV_FTP_OPCODE_BURSTREADFILE=15, /* BurstReadFile: Burst download session file | */
+   MAV_FTP_OPCODE_LISTDIRECTORYWITHTIME=16, /* ListDirectoryWithTime: List files and directories, along with last-modification timestamps, in path from offset. This is the same as ListDirectory except for the addition of timestamps. Servers that do not support this opcode respond with a NAK (MAV_FTP_ERR_UNKNOWNCOMMAND). | */
    MAV_FTP_OPCODE_ACK=128, /* ACK: ACK response | */
    MAV_FTP_OPCODE_NAK=129, /* NAK: NAK response | */
    MAV_FTP_OPCODE_ENUM_END=130, /*  | */
