@@ -6,7 +6,7 @@
 
 typedef struct __mavlink_autopilot_state_for_gimbal_device_ext_t {
  uint64_t time_boot_us; /*< [us] Timestamp (time since system boot).*/
- float wind_x; /*< [m/s] Wind X speed in NED (North,Est, Down). NAN if unknown.*/
+ float wind_x; /*< [m/s] Wind X speed in NED (North, East, Down). NAN if unknown.*/
  float wind_y; /*< [m/s] Wind Y speed in NED (North, East, Down). NAN if unknown.*/
  float wind_correction_angle; /*< [rad] Correction angle due to wind. NaN if unknown.*/
  uint8_t target_system; /*<  System ID.*/
@@ -59,7 +59,7 @@ typedef struct __mavlink_autopilot_state_for_gimbal_device_ext_t {
  * @param target_system  System ID.
  * @param target_component  Component ID.
  * @param time_boot_us [us] Timestamp (time since system boot).
- * @param wind_x [m/s] Wind X speed in NED (North,Est, Down). NAN if unknown.
+ * @param wind_x [m/s] Wind X speed in NED (North, East, Down). NAN if unknown.
  * @param wind_y [m/s] Wind Y speed in NED (North, East, Down). NAN if unknown.
  * @param wind_correction_angle [rad] Correction angle due to wind. NaN if unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -104,7 +104,7 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack(ui
  * @param target_system  System ID.
  * @param target_component  Component ID.
  * @param time_boot_us [us] Timestamp (time since system boot).
- * @param wind_x [m/s] Wind X speed in NED (North,Est, Down). NAN if unknown.
+ * @param wind_x [m/s] Wind X speed in NED (North, East, Down). NAN if unknown.
  * @param wind_y [m/s] Wind Y speed in NED (North, East, Down). NAN if unknown.
  * @param wind_correction_angle [rad] Correction angle due to wind. NaN if unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -151,7 +151,7 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_st
  * @param target_system  System ID.
  * @param target_component  Component ID.
  * @param time_boot_us [us] Timestamp (time since system boot).
- * @param wind_x [m/s] Wind X speed in NED (North,Est, Down). NAN if unknown.
+ * @param wind_x [m/s] Wind X speed in NED (North, East, Down). NAN if unknown.
  * @param wind_y [m/s] Wind Y speed in NED (North, East, Down). NAN if unknown.
  * @param wind_correction_angle [rad] Correction angle due to wind. NaN if unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -237,7 +237,7 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_encode_
  * @param target_system  System ID.
  * @param target_component  Component ID.
  * @param time_boot_us [us] Timestamp (time since system boot).
- * @param wind_x [m/s] Wind X speed in NED (North,Est, Down). NAN if unknown.
+ * @param wind_x [m/s] Wind X speed in NED (North, East, Down). NAN if unknown.
  * @param wind_y [m/s] Wind Y speed in NED (North, East, Down). NAN if unknown.
  * @param wind_correction_angle [rad] Correction angle due to wind. NaN if unknown.
  */
@@ -360,7 +360,7 @@ static inline uint64_t mavlink_msg_autopilot_state_for_gimbal_device_ext_get_tim
 /**
  * @brief Get field wind_x from autopilot_state_for_gimbal_device_ext message
  *
- * @return [m/s] Wind X speed in NED (North,Est, Down). NAN if unknown.
+ * @return [m/s] Wind X speed in NED (North, East, Down). NAN if unknown.
  */
 MAVLINK_WIP
 static inline float mavlink_msg_autopilot_state_for_gimbal_device_ext_get_wind_x(const mavlink_message_t* msg)
