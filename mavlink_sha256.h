@@ -105,7 +105,7 @@ MAVLINK_HELPER void mavlink_sha256_init(mavlink_sha256_ctx *m)
 static inline void mavlink_sha256_calc(mavlink_sha256_ctx *m, uint32_t *in)
 {
     uint32_t AA, BB, CC, DD, EE, FF, GG, HH;
-    uint32_t data[64];
+    thread_local uint32_t data[64];
     int i;
 
     AA = m->counter[0];
@@ -170,7 +170,7 @@ MAVLINK_HELPER void mavlink_sha256_update(mavlink_sha256_ctx *m, const void *v, 
 	len -= l;
 	if(offset == 64){
 	    int i;
-	    uint32_t current[16];
+	    thread_local uint32_t current[16];
 	    const uint32_t *u = m->u.save_u32;
 	    for (i = 0; i < 16; i++){
                 const uint8_t *p1 = (const uint8_t *)&u[i];
