@@ -9,16 +9,16 @@ typedef struct __mavlink_tracker_detection_2d_t {
  uint64_t img_id; /*<   Unique ID specifiying the video frame (image) in the message sender video stream.*/
  uint32_t object_id; /*<   Unique ID representing the object. */
  uint32_t class_id; /*<   Unique ID specifiying the class of the object.*/
- int32_t lat; /*< [degE7]  Latitude in WGS84 coordinate frame of the detected object. NAN if unknown.*/
- int32_t lon; /*< [degE7]  Longitude in WGS84 coordinate frame of the detected object. NAN if unknown.*/
- float alt; /*< [m]  Altitude in EGM96 coordiante frame of the detected object. NAN if unknown.*/
+ int32_t lat; /*< [degE7]  Latitude in WGS84 coordinate frame of the detected object. INT32_MAX if unknown.*/
+ int32_t lon; /*< [degE7]  Longitude in WGS84 coordinate frame of the detected object. INT32_MAX if unknown.*/
+ float alt; /*< [m]  Altitude in EGM96 coordinate frame of the detected object. NAN if unknown.*/
  float vel_n; /*< [m/s]  North velocity of the object in global frame. NAN if unknown.*/
  float vel_e; /*< [m/s]  East velocity of the object in global frame. NAN if unknown.*/
  float vel_up; /*< [m/s]  Up velocity of the object in global frame. NAN if unknown.*/
  uint16_t bbox_top_left_x; /*< [c%]  Relative image x coordinate (left to right axis) in the range of [0.00, 100.00] describing the top left corner of the bounding box .*/
  uint16_t bbox_top_left_y; /*< [c%]  Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the top left corner of the bounding box.*/
  uint16_t bbox_bot_right_x; /*< [c%]  Relative image x coordinate (left to right axis) in the range of [0.00, 100.00] describing the bottom right corner of the bounding box.*/
- uint16_t bbox_bot_right_y; /*< [c%]  Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the bottom left corner of the bounding box.*/
+ uint16_t bbox_bot_right_y; /*< [c%]  Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the bottom right corner of the bounding box.*/
  uint8_t tracking_status; /*<   0: not tracked, 1: tracked.*/
  uint8_t confidence; /*< [%]  Confidence score in the range of [0, 100] for the classifcation.*/
 } mavlink_tracker_detection_2d_t;
@@ -95,10 +95,10 @@ typedef struct __mavlink_tracker_detection_2d_t {
  * @param bbox_top_left_x [c%]  Relative image x coordinate (left to right axis) in the range of [0.00, 100.00] describing the top left corner of the bounding box .
  * @param bbox_top_left_y [c%]  Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the top left corner of the bounding box.
  * @param bbox_bot_right_x [c%]  Relative image x coordinate (left to right axis) in the range of [0.00, 100.00] describing the bottom right corner of the bounding box.
- * @param bbox_bot_right_y [c%]  Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the bottom left corner of the bounding box.
- * @param lat [degE7]  Latitude in WGS84 coordinate frame of the detected object. NAN if unknown.
- * @param lon [degE7]  Longitude in WGS84 coordinate frame of the detected object. NAN if unknown.
- * @param alt [m]  Altitude in EGM96 coordiante frame of the detected object. NAN if unknown.
+ * @param bbox_bot_right_y [c%]  Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the bottom right corner of the bounding box.
+ * @param lat [degE7]  Latitude in WGS84 coordinate frame of the detected object. INT32_MAX if unknown.
+ * @param lon [degE7]  Longitude in WGS84 coordinate frame of the detected object. INT32_MAX if unknown.
+ * @param alt [m]  Altitude in EGM96 coordinate frame of the detected object. NAN if unknown.
  * @param vel_n [m/s]  North velocity of the object in global frame. NAN if unknown.
  * @param vel_e [m/s]  East velocity of the object in global frame. NAN if unknown.
  * @param vel_up [m/s]  Up velocity of the object in global frame. NAN if unknown.
@@ -170,10 +170,10 @@ static inline uint16_t mavlink_msg_tracker_detection_2d_pack(uint8_t system_id, 
  * @param bbox_top_left_x [c%]  Relative image x coordinate (left to right axis) in the range of [0.00, 100.00] describing the top left corner of the bounding box .
  * @param bbox_top_left_y [c%]  Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the top left corner of the bounding box.
  * @param bbox_bot_right_x [c%]  Relative image x coordinate (left to right axis) in the range of [0.00, 100.00] describing the bottom right corner of the bounding box.
- * @param bbox_bot_right_y [c%]  Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the bottom left corner of the bounding box.
- * @param lat [degE7]  Latitude in WGS84 coordinate frame of the detected object. NAN if unknown.
- * @param lon [degE7]  Longitude in WGS84 coordinate frame of the detected object. NAN if unknown.
- * @param alt [m]  Altitude in EGM96 coordiante frame of the detected object. NAN if unknown.
+ * @param bbox_bot_right_y [c%]  Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the bottom right corner of the bounding box.
+ * @param lat [degE7]  Latitude in WGS84 coordinate frame of the detected object. INT32_MAX if unknown.
+ * @param lon [degE7]  Longitude in WGS84 coordinate frame of the detected object. INT32_MAX if unknown.
+ * @param alt [m]  Altitude in EGM96 coordinate frame of the detected object. NAN if unknown.
  * @param vel_n [m/s]  North velocity of the object in global frame. NAN if unknown.
  * @param vel_e [m/s]  East velocity of the object in global frame. NAN if unknown.
  * @param vel_up [m/s]  Up velocity of the object in global frame. NAN if unknown.
@@ -247,10 +247,10 @@ static inline uint16_t mavlink_msg_tracker_detection_2d_pack_status(uint8_t syst
  * @param bbox_top_left_x [c%]  Relative image x coordinate (left to right axis) in the range of [0.00, 100.00] describing the top left corner of the bounding box .
  * @param bbox_top_left_y [c%]  Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the top left corner of the bounding box.
  * @param bbox_bot_right_x [c%]  Relative image x coordinate (left to right axis) in the range of [0.00, 100.00] describing the bottom right corner of the bounding box.
- * @param bbox_bot_right_y [c%]  Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the bottom left corner of the bounding box.
- * @param lat [degE7]  Latitude in WGS84 coordinate frame of the detected object. NAN if unknown.
- * @param lon [degE7]  Longitude in WGS84 coordinate frame of the detected object. NAN if unknown.
- * @param alt [m]  Altitude in EGM96 coordiante frame of the detected object. NAN if unknown.
+ * @param bbox_bot_right_y [c%]  Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the bottom right corner of the bounding box.
+ * @param lat [degE7]  Latitude in WGS84 coordinate frame of the detected object. INT32_MAX if unknown.
+ * @param lon [degE7]  Longitude in WGS84 coordinate frame of the detected object. INT32_MAX if unknown.
+ * @param alt [m]  Altitude in EGM96 coordinate frame of the detected object. NAN if unknown.
  * @param vel_n [m/s]  North velocity of the object in global frame. NAN if unknown.
  * @param vel_e [m/s]  East velocity of the object in global frame. NAN if unknown.
  * @param vel_up [m/s]  Up velocity of the object in global frame. NAN if unknown.
@@ -363,10 +363,10 @@ static inline uint16_t mavlink_msg_tracker_detection_2d_encode_status(uint8_t sy
  * @param bbox_top_left_x [c%]  Relative image x coordinate (left to right axis) in the range of [0.00, 100.00] describing the top left corner of the bounding box .
  * @param bbox_top_left_y [c%]  Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the top left corner of the bounding box.
  * @param bbox_bot_right_x [c%]  Relative image x coordinate (left to right axis) in the range of [0.00, 100.00] describing the bottom right corner of the bounding box.
- * @param bbox_bot_right_y [c%]  Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the bottom left corner of the bounding box.
- * @param lat [degE7]  Latitude in WGS84 coordinate frame of the detected object. NAN if unknown.
- * @param lon [degE7]  Longitude in WGS84 coordinate frame of the detected object. NAN if unknown.
- * @param alt [m]  Altitude in EGM96 coordiante frame of the detected object. NAN if unknown.
+ * @param bbox_bot_right_y [c%]  Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the bottom right corner of the bounding box.
+ * @param lat [degE7]  Latitude in WGS84 coordinate frame of the detected object. INT32_MAX if unknown.
+ * @param lon [degE7]  Longitude in WGS84 coordinate frame of the detected object. INT32_MAX if unknown.
+ * @param alt [m]  Altitude in EGM96 coordinate frame of the detected object. NAN if unknown.
  * @param vel_n [m/s]  North velocity of the object in global frame. NAN if unknown.
  * @param vel_e [m/s]  East velocity of the object in global frame. NAN if unknown.
  * @param vel_up [m/s]  Up velocity of the object in global frame. NAN if unknown.
@@ -596,7 +596,7 @@ static inline uint16_t mavlink_msg_tracker_detection_2d_get_bbox_bot_right_x(con
 /**
  * @brief Get field bbox_bot_right_y from tracker_detection_2d message
  *
- * @return [c%]  Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the bottom left corner of the bounding box.
+ * @return [c%]  Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the bottom right corner of the bounding box.
  */
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_tracker_detection_2d_get_bbox_bot_right_y(const mavlink_message_t* msg)
@@ -607,7 +607,7 @@ static inline uint16_t mavlink_msg_tracker_detection_2d_get_bbox_bot_right_y(con
 /**
  * @brief Get field lat from tracker_detection_2d message
  *
- * @return [degE7]  Latitude in WGS84 coordinate frame of the detected object. NAN if unknown.
+ * @return [degE7]  Latitude in WGS84 coordinate frame of the detected object. INT32_MAX if unknown.
  */
 MAVLINK_WIP
 static inline int32_t mavlink_msg_tracker_detection_2d_get_lat(const mavlink_message_t* msg)
@@ -618,7 +618,7 @@ static inline int32_t mavlink_msg_tracker_detection_2d_get_lat(const mavlink_mes
 /**
  * @brief Get field lon from tracker_detection_2d message
  *
- * @return [degE7]  Longitude in WGS84 coordinate frame of the detected object. NAN if unknown.
+ * @return [degE7]  Longitude in WGS84 coordinate frame of the detected object. INT32_MAX if unknown.
  */
 MAVLINK_WIP
 static inline int32_t mavlink_msg_tracker_detection_2d_get_lon(const mavlink_message_t* msg)
@@ -629,7 +629,7 @@ static inline int32_t mavlink_msg_tracker_detection_2d_get_lon(const mavlink_mes
 /**
  * @brief Get field alt from tracker_detection_2d message
  *
- * @return [m]  Altitude in EGM96 coordiante frame of the detected object. NAN if unknown.
+ * @return [m]  Altitude in EGM96 coordinate frame of the detected object. NAN if unknown.
  */
 MAVLINK_WIP
 static inline float mavlink_msg_tracker_detection_2d_get_alt(const mavlink_message_t* msg)

@@ -562,10 +562,10 @@
       <field type="uint16_t" name="bbox_top_left_x" units="c%"> Relative image x coordinate (left to right axis) in the range of [0.00, 100.00] describing the top left corner of the bounding box .</field>
       <field type="uint16_t" name="bbox_top_left_y" units="c%"> Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the top left corner of the bounding box.</field>
       <field type="uint16_t" name="bbox_bot_right_x" units="c%"> Relative image x coordinate (left to right axis) in the range of [0.00, 100.00] describing the bottom right corner of the bounding box.</field>
-      <field type="uint16_t" name="bbox_bot_right_y" units="c%"> Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the bottom left corner of the bounding box.</field>
-      <field type="int32_t" name="lat" units="degE7" invalid="UINT32_MAX"> Latitude in WGS84 coordinate frame of the detected object. NAN if unknown.</field>
-      <field type="int32_t" name="lon" units="degE7" invalid="UINT32_MAX"> Longitude in WGS84 coordinate frame of the detected object. NAN if unknown.</field>
-      <field type="float" name="alt" units="m" invalid="[NaN:]"> Altitude in EGM96 coordiante frame of the detected object. NAN if unknown.</field>
+      <field type="uint16_t" name="bbox_bot_right_y" units="c%"> Relative image y coordinate (top to bottom axis) in the range of [0.00, 100.00] describing the bottom right corner of the bounding box.</field>
+      <field type="int32_t" name="lat" units="degE7" invalid="INT32_MAX"> Latitude in WGS84 coordinate frame of the detected object. INT32_MAX if unknown.</field>
+      <field type="int32_t" name="lon" units="degE7" invalid="INT32_MAX"> Longitude in WGS84 coordinate frame of the detected object. INT32_MAX if unknown.</field>
+      <field type="float" name="alt" units="m" invalid="[NaN:]"> Altitude in EGM96 coordinate frame of the detected object. NAN if unknown.</field>
       <field type="float" name="vel_n" units="m/s" invalid="[NaN:]"> North velocity of the object in global frame. NAN if unknown.</field>
       <field type="float" name="vel_e" units="m/s" invalid="[NaN:]"> East velocity of the object in global frame. NAN if unknown.</field>
       <field type="float" name="vel_up" units="m/s" invalid="[NaN:]"> Up velocity of the object in global frame. NAN if unknown.</field>
