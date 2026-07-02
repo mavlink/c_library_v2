@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_ALL.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_ALL_XML_HASH -4029420215359541607
+#define MAVLINK_ALL_XML_HASH 1046861811061317266
 
 #ifdef __cplusplus
 extern "C" {
@@ -399,7 +399,7 @@ typedef enum MAV_CMD
           The component will then stream CONTROL_STATUS for its controlling GCS (it must not set GCS_CONTROL_STATUS_FLAGS_SYSTEM_MANAGER).
           The component should fall back to the system GCS (if any) when it is not directly controlled, and may stop emitting CONTROL_STATUS.
           The flow is otherwise the same as for requesting control over the whole system.
-         |0: Release control, 1: Request control.| Enable automatic granting of ownership on request (by default reject request and notify current owner). 0: Ask current owner and reject request, 1: Allow automatic takeover.| Timeout in seconds before a request to a GCS to allow takeover is assumed to be rejected. This is used to display the timeout graphically on requester and GCS in control.| System ID of GCS requesting control. For a range of GCS in control, this the minimum id (and the sender system ID may be anywhere in the range).| Upper range of controlling GCS system IDs. 0 for single-GCS control. If non-zero the sender system ID may be anywhere in the range).| Reserved (default:0)| Reserved (default:0)|  */
+         |0: Release control, 1: Request control.| Enable automatic granting of ownership on request (by default reject request and notify current owner). 0: Ask current owner and reject request, 1: Allow automatic takeover.| Timeout in seconds before a request to a GCS to allow takeover is assumed to be rejected. This is used to display the timeout graphically on requester and GCS in control.| System ID of GCS requesting control. For a range of GCS in control, this the minimum id (and the sender system ID may be anywhere in the range).| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
    MAV_CMD_RESET_MPPT=40001, /* Mission command to reset Maximum Power Point Tracker (MPPT) |MPPT number| Empty| Empty| Empty| Empty| Empty| Empty|  */
    MAV_CMD_PAYLOAD_CONTROL=40002, /* Mission command to perform a power cycle on payload |Complete power cycle| VISensor power cycle| Empty| Empty| Empty| Empty| Empty|  */
    MAV_CMD_POWER_OFF_INITIATED=42000, /* A system wide power-off event has been initiated. |Empty.| Empty.| Empty.| Empty.| Empty.| Empty.| Empty.|  */

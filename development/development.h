@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_DEVELOPMENT.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_DEVELOPMENT_XML_HASH -6984480629186151182
+#define MAVLINK_DEVELOPMENT_XML_HASH 558912943912803951
 
 #ifdef __cplusplus
 extern "C" {
@@ -463,7 +463,7 @@ typedef enum MAV_CMD
           The component will then stream CONTROL_STATUS for its controlling GCS (it must not set GCS_CONTROL_STATUS_FLAGS_SYSTEM_MANAGER).
           The component should fall back to the system GCS (if any) when it is not directly controlled, and may stop emitting CONTROL_STATUS.
           The flow is otherwise the same as for requesting control over the whole system.
-         |0: Release control, 1: Request control.| Enable automatic granting of ownership on request (by default reject request and notify current owner). 0: Ask current owner and reject request, 1: Allow automatic takeover.| Timeout in seconds before a request to a GCS to allow takeover is assumed to be rejected. This is used to display the timeout graphically on requester and GCS in control.| System ID of GCS requesting control. For a range of GCS in control, this the minimum id (and the sender system ID may be anywhere in the range).| Upper range of controlling GCS system IDs. 0 for single-GCS control. If non-zero the sender system ID may be anywhere in the range).| Reserved (default:0)| Reserved (default:0)|  */
+         |0: Release control, 1: Request control.| Enable automatic granting of ownership on request (by default reject request and notify current owner). 0: Ask current owner and reject request, 1: Allow automatic takeover.| Timeout in seconds before a request to a GCS to allow takeover is assumed to be rejected. This is used to display the timeout graphically on requester and GCS in control.| System ID of GCS requesting control. For a range of GCS in control, this the minimum id (and the sender system ID may be anywhere in the range).| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
    MAV_CMD_FIXED_MAG_CAL_YAW=42006, /* Magnetometer calibration based on provided known yaw. This allows for fast calibration using WMM field tables in the vehicle, given only the known yaw of the vehicle. If Latitude and longitude are both zero then use the current vehicle location. |Yaw of vehicle in earth frame.| CompassMask, 0 for all.| Latitude.| Longitude.| Empty.| Empty.| Empty.|  */
    MAV_CMD_DO_WINCH=42600, /* Command to operate winch. |Winch instance number.| Action to perform.| Length of line to release (negative to wind).| Release rate (negative to wind).| Empty.| Empty.| Empty.|  */
    MAV_CMD_GUIDED_CHANGE_SPEED=43000, /* Change flight speed at a given rate. This slews the vehicle at a controllable rate between it's previous speed and the new one. |Airspeed or groundspeed.| Target Speed| Acceleration rate, 0 to take effect instantly| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
