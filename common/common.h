@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH 8262996384018201223
+#define MAVLINK_COMMON_XML_HASH 2259199157271750500
 
 #ifdef __cplusplus
 extern "C" {
@@ -2254,12 +2254,13 @@ typedef enum FAILURE_UNIT
    FAILURE_UNIT_SENSOR_DISTANCE_SENSOR=7, /*  | */
    FAILURE_UNIT_SENSOR_AIRSPEED=8, /*  | */
    FAILURE_UNIT_SYSTEM_BATTERY=100, /*  | */
-   FAILURE_UNIT_SYSTEM_MOTOR=101, /*  | */
+   FAILURE_UNIT_SYSTEM_MOTOR=101, /* Interrupts the commanded output to the motor. | */
    FAILURE_UNIT_SYSTEM_SERVO=102, /*  | */
    FAILURE_UNIT_SYSTEM_AVOIDANCE=103, /*  | */
    FAILURE_UNIT_SYSTEM_RC_SIGNAL=104, /*  | */
    FAILURE_UNIT_SYSTEM_MAVLINK_SIGNAL=105, /*  | */
-   FAILURE_UNIT_ENUM_END=106, /*  | */
+   FAILURE_UNIT_SYSTEM_ESC=106, /* Interrupts the telemetry reported by the ESC. | */
+   FAILURE_UNIT_ENUM_END=107, /*  | */
 } FAILURE_UNIT;
 #endif
 
