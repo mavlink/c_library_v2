@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_ARDUPILOTMEGA.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_ARDUPILOTMEGA_XML_HASH 6651173405913873743
+#define MAVLINK_ARDUPILOTMEGA_XML_HASH -4231207119189807172
 
 #ifdef __cplusplus
 extern "C" {
@@ -1008,8 +1008,7 @@ typedef enum COPTER_MODE
    COPTER_MODE_AUTOROTATE=26, /* AUTOROTATE | */
    COPTER_MODE_AUTO_RTL=27, /* AUTO RTL | */
    COPTER_MODE_TURTLE=28, /* TURTLE | */
-   COPTER_MODE_RATE_ACRO=29, /* RATE_ACRO | */
-   COPTER_MODE_ENUM_END=30, /*  | */
+   COPTER_MODE_ENUM_END=29, /*  | */
 } COPTER_MODE;
 #endif
 
