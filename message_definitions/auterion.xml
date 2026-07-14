@@ -656,7 +656,7 @@
       <field type="char[32]" name="uuid">uuid of the sender.</field>
     </message>
     <!-- Boat specific MAVLink-->
-    <message id="13666" name="BOAT_ACTUATOR_STATUS">
+    <message id="13666" name="BOAT_ACTUATOR_STATUS_V2">
       <wip/>
       <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
       <description>Boat actuator status reports status and position of all boat control surfaces (currently rudders, engine leg trims).</description>
@@ -666,7 +666,7 @@
       <field type="uint8_t[6]" name="rudder_state" enum="RUDDER_STATE">Rudder state.</field>
       <field type="float[6]" name="rudder_position" units="deg">Rudder position.</field>
     </message>
-    <message id="13667" name="BOAT_ENGINE_STATUS">
+    <message id="13667" name="BOAT_ENGINE_STATUS_V2">
       <wip/>
       <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
       <description>Boat engine status reports status and position of all boat engines.</description>

@@ -9,8 +9,8 @@ typedef struct __mavlink_rc_channels_override_v2_t {
  uint8_t target_system; /*<  System ID.*/
  uint8_t target_component; /*<  Component ID.*/
  int16_t channels[32]; /*<  
-        RC channels in centered 13-bit format. Range: -4096 to 4096, Center: 0. 
-        Conversion to PWM: (x * 5/32) + 1500. 
+        RC channels in centered 13-bit format. Range: -4096 to 4096, Center: 0.
+        Conversion to PWM: (x * 5/32) + 1500.
         Unused channels must be set to 0 to enable MAVLink 2 trailing-zero trimming.
       */
 } mavlink_rc_channels_override_v2_t;
@@ -58,8 +58,8 @@ typedef struct __mavlink_rc_channels_override_v2_t {
  * @param target_component  Component ID.
  * @param active_mask  Bitmap of included channels (bit 0 = CH1). 1: Valid/Override, 0: Ignore.
  * @param channels  
-        RC channels in centered 13-bit format. Range: -4096 to 4096, Center: 0. 
-        Conversion to PWM: (x * 5/32) + 1500. 
+        RC channels in centered 13-bit format. Range: -4096 to 4096, Center: 0.
+        Conversion to PWM: (x * 5/32) + 1500.
         Unused channels must be set to 0 to enable MAVLink 2 trailing-zero trimming.
       
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -99,8 +99,8 @@ static inline uint16_t mavlink_msg_rc_channels_override_v2_pack(uint8_t system_i
  * @param target_component  Component ID.
  * @param active_mask  Bitmap of included channels (bit 0 = CH1). 1: Valid/Override, 0: Ignore.
  * @param channels  
-        RC channels in centered 13-bit format. Range: -4096 to 4096, Center: 0. 
-        Conversion to PWM: (x * 5/32) + 1500. 
+        RC channels in centered 13-bit format. Range: -4096 to 4096, Center: 0.
+        Conversion to PWM: (x * 5/32) + 1500.
         Unused channels must be set to 0 to enable MAVLink 2 trailing-zero trimming.
       
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -142,8 +142,8 @@ static inline uint16_t mavlink_msg_rc_channels_override_v2_pack_status(uint8_t s
  * @param target_component  Component ID.
  * @param active_mask  Bitmap of included channels (bit 0 = CH1). 1: Valid/Override, 0: Ignore.
  * @param channels  
-        RC channels in centered 13-bit format. Range: -4096 to 4096, Center: 0. 
-        Conversion to PWM: (x * 5/32) + 1500. 
+        RC channels in centered 13-bit format. Range: -4096 to 4096, Center: 0.
+        Conversion to PWM: (x * 5/32) + 1500.
         Unused channels must be set to 0 to enable MAVLink 2 trailing-zero trimming.
       
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -224,8 +224,8 @@ static inline uint16_t mavlink_msg_rc_channels_override_v2_encode_status(uint8_t
  * @param target_component  Component ID.
  * @param active_mask  Bitmap of included channels (bit 0 = CH1). 1: Valid/Override, 0: Ignore.
  * @param channels  
-        RC channels in centered 13-bit format. Range: -4096 to 4096, Center: 0. 
-        Conversion to PWM: (x * 5/32) + 1500. 
+        RC channels in centered 13-bit format. Range: -4096 to 4096, Center: 0.
+        Conversion to PWM: (x * 5/32) + 1500.
         Unused channels must be set to 0 to enable MAVLink 2 trailing-zero trimming.
       
  */
@@ -337,8 +337,8 @@ static inline uint32_t mavlink_msg_rc_channels_override_v2_get_active_mask(const
  * @brief Get field channels from rc_channels_override_v2 message
  *
  * @return  
-        RC channels in centered 13-bit format. Range: -4096 to 4096, Center: 0. 
-        Conversion to PWM: (x * 5/32) + 1500. 
+        RC channels in centered 13-bit format. Range: -4096 to 4096, Center: 0.
+        Conversion to PWM: (x * 5/32) + 1500.
         Unused channels must be set to 0 to enable MAVLink 2 trailing-zero trimming.
       
  */
