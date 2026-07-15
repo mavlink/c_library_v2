@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_COMMON.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_COMMON_XML_HASH 698367537445263881
+#define MAVLINK_COMMON_XML_HASH -510337277942896006
 
 #ifdef __cplusplus
 extern "C" {
@@ -2571,7 +2571,8 @@ typedef enum FAILURE_UNIT
    FAILURE_UNIT_SYSTEM_RC_SIGNAL=104, /*  | */
    FAILURE_UNIT_SYSTEM_MAVLINK_SIGNAL=105, /*  | */
    FAILURE_UNIT_SYSTEM_ESC=106, /* Interrupts the telemetry reported by the ESC. | */
-   FAILURE_UNIT_ENUM_END=107, /*  | */
+   FAILURE_UNIT_SYSTEM_TRAFFIC_AVOIDANCE=107, /* Traffic avoidance system like ADS-B or FLARM. | */
+   FAILURE_UNIT_ENUM_END=108, /*  | */
 } FAILURE_UNIT;
 #endif
 
@@ -2588,7 +2589,8 @@ typedef enum FAILURE_TYPE
    FAILURE_TYPE_SLOW=5, /* Unit is slow, so e.g. reporting at slower than expected rate. | */
    FAILURE_TYPE_DELAYED=6, /* Data of unit is delayed in time. | */
    FAILURE_TYPE_INTERMITTENT=7, /* Unit is sometimes working, sometimes not. | */
-   FAILURE_TYPE_ENUM_END=8, /*  | */
+   FAILURE_TYPE_DRIFT=8, /* Unit is publishing plausible values but drifting away from true values. | */
+   FAILURE_TYPE_ENUM_END=9, /*  | */
 } FAILURE_TYPE;
 #endif
 
