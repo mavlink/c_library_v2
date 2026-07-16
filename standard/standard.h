@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_STANDARD.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_STANDARD_XML_HASH 7395778693031084363
+#define MAVLINK_STANDARD_XML_HASH 7959613532013832675
 
 #ifdef __cplusplus
 extern "C" {
@@ -61,9 +61,9 @@ typedef enum MAV_PROTOCOL_CAPABILITY
           Note that either this flag or MAV_PROTOCOL_CAPABILITY_PARAM_ENCODE_C_CAST should be set if the parameter protocol is supported.
          | */
    MAV_PROTOCOL_CAPABILITY_FTP=32, /* Autopilot supports the File Transfer Protocol v1: https://mavlink.io/en/services/ftp.html. | */
-   MAV_PROTOCOL_CAPABILITY_SET_ATTITUDE_TARGET=64, /* Autopilot supports commanding attitude offboard. | */
-   MAV_PROTOCOL_CAPABILITY_SET_POSITION_TARGET_LOCAL_NED=128, /* Autopilot supports commanding position and velocity targets in local NED frame. | */
-   MAV_PROTOCOL_CAPABILITY_SET_POSITION_TARGET_GLOBAL_INT=256, /* Autopilot supports commanding position and velocity targets in global scaled integers. | */
+   MAV_PROTOCOL_CAPABILITY_SET_ATTITUDE_TARGET=64, /* Autopilot supports the SET_ATTITUDE_TARGET message (for commanding attitude from an offboard controller). | */
+   MAV_PROTOCOL_CAPABILITY_SET_POSITION_TARGET_LOCAL_NED=128, /* Autopilot supports the SET_POSITION_TARGET_LOCAL_NED message (for commanding position and velocity targets in local NED frame). | */
+   MAV_PROTOCOL_CAPABILITY_SET_POSITION_TARGET_GLOBAL_INT=256, /* Autopilot supports the SET_POSITION_TARGET_GLOBAL_INT message (for commanding position and velocity targets in global scaled integers). | */
    MAV_PROTOCOL_CAPABILITY_TERRAIN=512, /* Autopilot supports terrain protocol / data handling. | */
    MAV_PROTOCOL_CAPABILITY_RESERVED3=1024, /* Reserved for future use. | */
    MAV_PROTOCOL_CAPABILITY_FLIGHT_TERMINATION=2048, /* Autopilot supports the MAV_CMD_DO_FLIGHTTERMINATION command (flight termination). | */
