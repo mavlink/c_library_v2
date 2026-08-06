@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE GPS_RTCM_DATA PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_GPS_RTCM_DATA 233
 
 

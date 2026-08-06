@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE RADIO_CALIBRATION PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_RADIO_CALIBRATION 221
 
 

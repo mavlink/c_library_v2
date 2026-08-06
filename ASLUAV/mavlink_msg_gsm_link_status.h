@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE GSM_LINK_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_GSM_LINK_STATUS 8014
 
 

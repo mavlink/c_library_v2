@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE PARAM_EXT_ACK PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_PARAM_EXT_ACK 324
 
 

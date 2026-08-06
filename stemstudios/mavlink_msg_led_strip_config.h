@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE LED_STRIP_CONFIG PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_LED_STRIP_CONFIG 52600
 
 

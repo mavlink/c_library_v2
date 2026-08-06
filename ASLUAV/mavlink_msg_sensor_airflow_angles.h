@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SENSOR_AIRFLOW_ANGLES PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SENSOR_AIRFLOW_ANGLES 8016
 
 

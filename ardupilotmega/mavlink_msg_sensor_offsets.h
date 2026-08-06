@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SENSOR_OFFSETS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SENSOR_OFFSETS 150
 
 

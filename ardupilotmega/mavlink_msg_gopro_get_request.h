@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE GOPRO_GET_REQUEST PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_GOPRO_GET_REQUEST 216
 
 

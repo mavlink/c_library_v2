@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE ASLUAV_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_ASLUAV_STATUS 8006
 
 

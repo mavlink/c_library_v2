@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE MEMINFO PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_MEMINFO 152
 
 

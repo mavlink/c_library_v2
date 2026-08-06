@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE AVSS_DRONE_IMU PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_AVSS_DRONE_IMU 60052
 
 

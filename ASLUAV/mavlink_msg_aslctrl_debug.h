@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE ASLCTRL_DEBUG PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_ASLCTRL_DEBUG 8005
 
 

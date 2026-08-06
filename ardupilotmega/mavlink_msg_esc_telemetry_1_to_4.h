@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE ESC_TELEMETRY_1_TO_4 PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_ESC_TELEMETRY_1_TO_4 11030
 
 

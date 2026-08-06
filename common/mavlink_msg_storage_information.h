@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE STORAGE_INFORMATION PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_STORAGE_INFORMATION 261
 
 

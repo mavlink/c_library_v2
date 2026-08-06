@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE FW_SOARING_DATA PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_FW_SOARING_DATA 8011
 
 

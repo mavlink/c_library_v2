@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE UALBERTA_SYS_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_UALBERTA_SYS_STATUS 222
 
 

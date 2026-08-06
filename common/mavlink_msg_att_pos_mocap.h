@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE ATT_POS_MOCAP PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_ATT_POS_MOCAP 138
 
 

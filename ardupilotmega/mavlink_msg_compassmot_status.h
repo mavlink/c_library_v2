@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE COMPASSMOT_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_COMPASSMOT_STATUS 177
 
 

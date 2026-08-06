@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE UAVIONIX_ADSB_GET PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_UAVIONIX_ADSB_GET 10006
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE AHRS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_AHRS 163
 
 

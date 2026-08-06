@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE COMMAND_CANCEL PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_COMMAND_CANCEL 80
 
 

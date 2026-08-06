@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SETUP_SIGNING PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SETUP_SIGNING 256
 
 

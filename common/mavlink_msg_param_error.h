@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE PARAM_ERROR PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_PARAM_ERROR 345
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE GIMBAL_TORQUE_CMD_REPORT PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_GIMBAL_TORQUE_CMD_REPORT 214
 
 

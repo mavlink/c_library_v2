@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SCRIPT_COUNT PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SCRIPT_COUNT 183
 
 

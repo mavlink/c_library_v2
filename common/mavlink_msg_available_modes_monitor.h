@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE AVAILABLE_MODES_MONITOR PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR 437
 
 

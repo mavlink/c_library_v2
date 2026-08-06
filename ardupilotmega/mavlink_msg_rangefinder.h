@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE RANGEFINDER PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_RANGEFINDER 173
 
 

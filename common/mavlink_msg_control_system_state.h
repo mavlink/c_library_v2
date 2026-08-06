@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE CONTROL_SYSTEM_STATE PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE 146
 
 

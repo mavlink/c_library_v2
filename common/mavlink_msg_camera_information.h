@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE CAMERA_INFORMATION PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_CAMERA_INFORMATION 259
 
 

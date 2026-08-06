@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE AUTOPILOT_VERSION_REQUEST PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_AUTOPILOT_VERSION_REQUEST 183
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE HOME_POSITION PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_HOME_POSITION 242
 
 MAVPACKED(

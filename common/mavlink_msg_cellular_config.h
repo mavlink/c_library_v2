@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE CELLULAR_CONFIG PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_CELLULAR_CONFIG 336
 
 

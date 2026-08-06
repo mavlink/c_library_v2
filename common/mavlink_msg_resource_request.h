@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE RESOURCE_REQUEST PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_RESOURCE_REQUEST 142
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE LIMITS_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_LIMITS_STATUS 167
 
 

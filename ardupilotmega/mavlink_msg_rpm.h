@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE RPM PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_RPM 226
 
 

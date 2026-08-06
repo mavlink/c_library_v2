@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SECURE_COMMAND PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SECURE_COMMAND 11004
 
 

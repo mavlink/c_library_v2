@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE ADSB_VEHICLE PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_ADSB_VEHICLE 246
 
 

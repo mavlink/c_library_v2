@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SET_MAG_OFFSETS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SET_MAG_OFFSETS 151
 
 

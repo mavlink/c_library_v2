@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE TARGET_RELATIVE PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_TARGET_RELATIVE 511
 
 

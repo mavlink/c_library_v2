@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SECURE_COMMAND_REPLY PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SECURE_COMMAND_REPLY 11005
 
 

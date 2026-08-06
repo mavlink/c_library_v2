@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE ONBOARD_COMPUTER_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_ONBOARD_COMPUTER_STATUS 390
 
 

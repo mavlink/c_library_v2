@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE AVSS_DRONE_POSITION PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_AVSS_DRONE_POSITION 60051
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SENSORPOD_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SENSORPOD_STATUS 8012
 
 

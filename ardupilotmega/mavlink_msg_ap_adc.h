@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE AP_ADC PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_AP_ADC 153
 
 

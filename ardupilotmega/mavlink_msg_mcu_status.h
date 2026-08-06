@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE MCU_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_MCU_STATUS 11039
 
 

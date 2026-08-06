@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE DISTANCE_SENSOR PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_DISTANCE_SENSOR 132
 
 MAVPACKED(

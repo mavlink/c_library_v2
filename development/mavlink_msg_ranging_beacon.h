@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE RANGING_BEACON PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_RANGING_BEACON 513
 
 

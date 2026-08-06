@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE FILE_TRANSFER_PROTOCOL PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_FILE_TRANSFER_PROTOCOL 110
 
 

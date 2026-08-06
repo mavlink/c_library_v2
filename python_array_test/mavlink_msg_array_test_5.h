@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE ARRAY_TEST_5 PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_ARRAY_TEST_5 17155
 
 

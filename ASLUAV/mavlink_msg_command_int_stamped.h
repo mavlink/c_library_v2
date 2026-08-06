@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE COMMAND_INT_STAMPED PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_COMMAND_INT_STAMPED 223
 
 

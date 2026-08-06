@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE AUTOPILOT_VERSION PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_AUTOPILOT_VERSION 148
 
 

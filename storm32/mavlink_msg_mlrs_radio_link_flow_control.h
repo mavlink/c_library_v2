@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE MLRS_RADIO_LINK_FLOW_CONTROL PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_MLRS_RADIO_LINK_FLOW_CONTROL 60047
 
 

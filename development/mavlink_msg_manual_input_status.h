@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE MANUAL_INPUT_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_MANUAL_INPUT_STATUS 515
 
 

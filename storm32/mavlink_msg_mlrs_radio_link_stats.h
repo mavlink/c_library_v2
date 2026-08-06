@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE MLRS_RADIO_LINK_STATS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS 60045
 
 MAVPACKED(

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE ASLCTRL_DATA PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_ASLCTRL_DATA 8004
 
 

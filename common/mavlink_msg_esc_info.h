@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE ESC_INFO PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_ESC_INFO 290
 
 

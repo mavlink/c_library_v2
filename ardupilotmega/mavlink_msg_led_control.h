@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE LED_CONTROL PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_LED_CONTROL 186
 
 

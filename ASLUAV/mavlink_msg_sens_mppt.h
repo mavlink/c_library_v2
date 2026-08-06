@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SENS_MPPT PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SENS_MPPT 8003
 
 

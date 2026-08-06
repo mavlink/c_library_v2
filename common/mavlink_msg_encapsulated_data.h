@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE ENCAPSULATED_DATA PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_ENCAPSULATED_DATA 131
 
 

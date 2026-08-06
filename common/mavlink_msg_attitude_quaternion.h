@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE ATTITUDE_QUATERNION PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_ATTITUDE_QUATERNION 31
 
 

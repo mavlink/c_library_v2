@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE CAMERA_FEEDBACK PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_CAMERA_FEEDBACK 180
 
 MAVPACKED(

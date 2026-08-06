@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE REMOTE_LOG_DATA_BLOCK PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_REMOTE_LOG_DATA_BLOCK 184
 
 

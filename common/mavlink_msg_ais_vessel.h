@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE AIS_VESSEL PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_AIS_VESSEL 301
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE RALLY_POINT PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_RALLY_POINT 175
 
 

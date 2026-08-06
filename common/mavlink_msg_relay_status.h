@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE RELAY_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_RELAY_STATUS 376
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE V2_EXTENSION PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_V2_EXTENSION 248
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE AHRS3 PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_AHRS3 182
 
 

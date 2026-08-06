@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SENS_BATMON PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SENS_BATMON 8010
 
 

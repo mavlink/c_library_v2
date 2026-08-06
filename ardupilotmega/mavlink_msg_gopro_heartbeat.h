@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE GOPRO_HEARTBEAT PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_GOPRO_HEARTBEAT 215
 
 

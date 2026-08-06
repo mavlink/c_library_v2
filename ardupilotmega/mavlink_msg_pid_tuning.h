@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE PID_TUNING PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_PID_TUNING 194
 
 MAVPACKED(

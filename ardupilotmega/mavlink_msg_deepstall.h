@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE DEEPSTALL PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_DEEPSTALL 195
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE PARAM_VALUE_ARRAY PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_PARAM_VALUE_ARRAY 60041
 
 

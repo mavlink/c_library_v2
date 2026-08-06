@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE WATER_DEPTH PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_WATER_DEPTH 11038
 
 

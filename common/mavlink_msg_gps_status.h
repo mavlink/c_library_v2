@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE GPS_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_GPS_STATUS 25
 
 

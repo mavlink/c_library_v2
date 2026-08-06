@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE ESC_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_ESC_STATUS 291
 
 

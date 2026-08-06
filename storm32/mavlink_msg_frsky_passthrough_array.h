@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE FRSKY_PASSTHROUGH_ARRAY PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_FRSKY_PASSTHROUGH_ARRAY 60040
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE REXROTH_MOTION_PLATFORM PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_REXROTH_MOTION_PLATFORM 52503
 
 

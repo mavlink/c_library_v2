@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE STATUSTEXT PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_STATUSTEXT 253
 
 MAVPACKED(

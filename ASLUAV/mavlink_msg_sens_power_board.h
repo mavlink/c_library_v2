@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SENS_POWER_BOARD PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SENS_POWER_BOARD 8013
 
 

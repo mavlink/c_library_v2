@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE FENCE_POINT PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_FENCE_POINT 160
 
 

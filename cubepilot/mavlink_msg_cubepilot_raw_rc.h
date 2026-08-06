@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE CUBEPILOT_RAW_RC PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_CUBEPILOT_RAW_RC 50001
 
 

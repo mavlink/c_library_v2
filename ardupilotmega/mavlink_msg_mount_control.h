@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE MOUNT_CONTROL PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_MOUNT_CONTROL 157
 
 

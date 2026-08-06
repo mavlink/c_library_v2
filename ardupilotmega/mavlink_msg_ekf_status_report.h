@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE EKF_STATUS_REPORT PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_EKF_STATUS_REPORT 193
 
 MAVPACKED(

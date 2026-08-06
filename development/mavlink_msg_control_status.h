@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE CONTROL_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_CONTROL_STATUS 512
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE NAV_FILTER_BIAS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_NAV_FILTER_BIAS 220
 
 

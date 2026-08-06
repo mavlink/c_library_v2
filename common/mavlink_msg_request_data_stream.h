@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE REQUEST_DATA_STREAM PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_REQUEST_DATA_STREAM 66
 
 

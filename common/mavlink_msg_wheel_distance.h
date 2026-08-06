@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE WHEEL_DISTANCE PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_WHEEL_DISTANCE 9000
 
 

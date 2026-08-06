@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE COMMAND_LONG_STAMPED PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_COMMAND_LONG_STAMPED 224
 
 

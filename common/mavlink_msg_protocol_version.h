@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE PROTOCOL_VERSION PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_PROTOCOL_VERSION 300
 
 

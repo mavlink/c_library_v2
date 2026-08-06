@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE DATA96 PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_DATA96 172
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SCRIPT_ITEM PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SCRIPT_ITEM 180
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SET_ACTUATOR_CONTROL_TARGET PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SET_ACTUATOR_CONTROL_TARGET 139
 
 

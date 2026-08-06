@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE TARGET_ABSOLUTE PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_TARGET_ABSOLUTE 510
 
 

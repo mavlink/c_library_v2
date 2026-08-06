@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE NAMED_VALUE_FLOAT PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_NAMED_VALUE_FLOAT 251
 
 

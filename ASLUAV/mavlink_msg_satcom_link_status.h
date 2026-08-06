@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SATCOM_LINK_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SATCOM_LINK_STATUS 8015
 
 

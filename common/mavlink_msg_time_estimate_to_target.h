@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE TIME_ESTIMATE_TO_TARGET PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_TIME_ESTIMATE_TO_TARGET 380
 
 

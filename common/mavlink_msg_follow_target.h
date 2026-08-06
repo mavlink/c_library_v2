@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE FOLLOW_TARGET PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_FOLLOW_TARGET 144
 
 

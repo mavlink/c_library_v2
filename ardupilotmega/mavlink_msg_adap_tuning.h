@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE ADAP_TUNING PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_ADAP_TUNING 11010
 
 

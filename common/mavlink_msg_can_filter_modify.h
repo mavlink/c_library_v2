@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE CAN_FILTER_MODIFY PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_CAN_FILTER_MODIFY 388
 
 

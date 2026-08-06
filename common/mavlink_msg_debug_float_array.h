@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE DEBUG_FLOAT_ARRAY PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_DEBUG_FLOAT_ARRAY 350
 
 

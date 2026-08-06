@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SMART_BATTERY_INFO PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SMART_BATTERY_INFO 370
 
 MAVPACKED(

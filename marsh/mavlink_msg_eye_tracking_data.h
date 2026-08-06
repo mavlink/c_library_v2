@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE EYE_TRACKING_DATA PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_EYE_TRACKING_DATA 52505
 
 

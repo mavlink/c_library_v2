@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE VELOCITY_LIMITS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_VELOCITY_LIMITS 355
 
 

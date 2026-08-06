@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE PLAY_TUNE_V2 PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_PLAY_TUNE_V2 400
 
 

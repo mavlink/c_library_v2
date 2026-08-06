@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE LOWEHEISER_GOV_EFI PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_LOWEHEISER_GOV_EFI 10151
 
 

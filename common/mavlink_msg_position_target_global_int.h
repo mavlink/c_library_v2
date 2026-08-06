@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE POSITION_TARGET_GLOBAL_INT PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_POSITION_TARGET_GLOBAL_INT 87
 
 

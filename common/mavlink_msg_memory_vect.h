@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE MEMORY_VECT PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_MEMORY_VECT 249
 
 

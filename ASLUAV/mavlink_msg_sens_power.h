@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SENS_POWER PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SENS_POWER 8002
 
 

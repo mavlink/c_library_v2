@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE MAG_CAL_PROGRESS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_MAG_CAL_PROGRESS 191
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE WIND PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_WIND 168
 
 

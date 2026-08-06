@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE COMPONENT_INFORMATION PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_COMPONENT_INFORMATION 395
 
 

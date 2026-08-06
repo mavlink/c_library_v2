@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE BATTERY_INFO PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_BATTERY_INFO 372
 
 

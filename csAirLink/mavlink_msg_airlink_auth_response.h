@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE AIRLINK_AUTH_RESPONSE PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_AIRLINK_AUTH_RESPONSE 52001
 
 

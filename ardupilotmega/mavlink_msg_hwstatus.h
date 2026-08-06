@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE HWSTATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_HWSTATUS 165
 
 

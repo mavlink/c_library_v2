@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE HERELINK_TELEM PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_HERELINK_TELEM 50003
 
 

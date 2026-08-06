@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE GIMBAL_CONTROL PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_GIMBAL_CONTROL 201
 
 

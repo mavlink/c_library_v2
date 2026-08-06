@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE OSD_PARAM_SHOW_CONFIG PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG 11035
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE EKF_EXT PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_EKF_EXT 8007
 
 

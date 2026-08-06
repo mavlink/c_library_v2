@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SCRIPT_REQUEST_LIST PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SCRIPT_REQUEST_LIST 182
 
 

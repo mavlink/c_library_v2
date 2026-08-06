@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE ACTUATOR_OUTPUT_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_ACTUATOR_OUTPUT_STATUS 375
 
 

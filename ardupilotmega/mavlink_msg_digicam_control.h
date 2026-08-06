@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE DIGICAM_CONTROL PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_DIGICAM_CONTROL 155
 
 

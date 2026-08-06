@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE MOUNT_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_MOUNT_STATUS 158
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE VISION_POSITION_ESTIMATE PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_VISION_POSITION_ESTIMATE 102
 
 

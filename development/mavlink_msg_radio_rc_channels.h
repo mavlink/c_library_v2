@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE RADIO_RC_CHANNELS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_RADIO_RC_CHANNELS 420
 
 MAVPACKED(

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE CELLULAR_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_CELLULAR_STATUS 334
 
 MAVPACKED(

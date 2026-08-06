@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE LANDING_TARGET PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_LANDING_TARGET 149
 
 MAVPACKED(

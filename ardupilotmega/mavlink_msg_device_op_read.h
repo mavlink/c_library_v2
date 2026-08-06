@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE DEVICE_OP_READ PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_DEVICE_OP_READ 11000
 
 

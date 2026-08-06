@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE RADIO PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_RADIO 166
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE LOGGING_DATA PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_LOGGING_DATA 266
 
 

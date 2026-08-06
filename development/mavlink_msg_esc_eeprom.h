@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE ESC_EEPROM PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_ESC_EEPROM 292
 
 

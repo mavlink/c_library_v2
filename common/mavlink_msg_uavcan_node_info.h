@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE UAVCAN_NODE_INFO PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_UAVCAN_NODE_INFO 311
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE CAMERA_FOV_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_CAMERA_FOV_STATUS 271
 
 

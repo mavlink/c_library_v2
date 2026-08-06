@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE CONTROL_LOADING_AXIS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_CONTROL_LOADING_AXIS 52501
 
 

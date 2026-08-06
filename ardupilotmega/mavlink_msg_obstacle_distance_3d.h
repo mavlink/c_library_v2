@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE OBSTACLE_DISTANCE_3D PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_OBSTACLE_DISTANCE_3D 11037
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE UTM_GLOBAL_POSITION PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_UTM_GLOBAL_POSITION 340
 
 

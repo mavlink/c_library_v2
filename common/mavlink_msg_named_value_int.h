@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE NAMED_VALUE_INT PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_NAMED_VALUE_INT 252
 
 

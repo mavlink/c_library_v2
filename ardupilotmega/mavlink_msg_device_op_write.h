@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE DEVICE_OP_WRITE PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_DEVICE_OP_WRITE 11002
 
 

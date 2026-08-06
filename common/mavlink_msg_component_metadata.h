@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE COMPONENT_METADATA PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_COMPONENT_METADATA 397
 
 

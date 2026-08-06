@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE CANFD_FRAME PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_CANFD_FRAME 387
 
 

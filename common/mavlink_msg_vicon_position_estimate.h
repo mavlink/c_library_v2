@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE VICON_POSITION_ESTIMATE PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_VICON_POSITION_ESTIMATE 104
 
 

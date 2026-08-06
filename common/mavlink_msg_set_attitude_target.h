@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SET_ATTITUDE_TARGET PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SET_ATTITUDE_TARGET 82
 
 MAVPACKED(

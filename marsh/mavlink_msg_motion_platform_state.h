@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE MOTION_PLATFORM_STATE PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_MOTION_PLATFORM_STATE 52502
 
 

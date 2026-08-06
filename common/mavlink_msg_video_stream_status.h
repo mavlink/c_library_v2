@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE VIDEO_STREAM_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_VIDEO_STREAM_STATUS 270
 
 

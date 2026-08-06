@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE ICAROUS_HEARTBEAT PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_ICAROUS_HEARTBEAT 42000
 
 

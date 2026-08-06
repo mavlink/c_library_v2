@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE TEST_TYPES PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_TEST_TYPES 17000
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE MOUNT_CONFIGURE PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_MOUNT_CONFIGURE 156
 
 

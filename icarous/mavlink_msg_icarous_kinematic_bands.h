@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE ICAROUS_KINEMATIC_BANDS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_ICAROUS_KINEMATIC_BANDS 42001
 
 

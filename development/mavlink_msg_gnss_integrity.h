@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE GNSS_INTEGRITY PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_GNSS_INTEGRITY 441
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SERIAL_CONTROL PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SERIAL_CONTROL 126
 
 

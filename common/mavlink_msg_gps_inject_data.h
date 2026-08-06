@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE GPS_INJECT_DATA PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_GPS_INJECT_DATA 123
 
 

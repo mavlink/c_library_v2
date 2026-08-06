@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE DEBUG_VECT PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_DEBUG_VECT 250
 
 

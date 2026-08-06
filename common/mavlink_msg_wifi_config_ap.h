@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE WIFI_CONFIG_AP PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_WIFI_CONFIG_AP 299
 
 

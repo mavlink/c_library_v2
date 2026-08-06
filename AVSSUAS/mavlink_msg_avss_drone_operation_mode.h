@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE AVSS_DRONE_OPERATION_MODE PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_AVSS_DRONE_OPERATION_MODE 60053
 
 

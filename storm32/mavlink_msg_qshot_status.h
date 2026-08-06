@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE QSHOT_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_QSHOT_STATUS 60020
 
 

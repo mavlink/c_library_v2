@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE GROUP_START PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_GROUP_START 414
 
 

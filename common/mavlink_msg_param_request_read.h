@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE PARAM_REQUEST_READ PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_PARAM_REQUEST_READ 20
 
 

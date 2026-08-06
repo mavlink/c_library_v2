@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE AUTH_KEY PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_AUTH_KEY 7
 
 

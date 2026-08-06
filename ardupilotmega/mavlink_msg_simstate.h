@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SIMSTATE PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SIMSTATE 164
 
 

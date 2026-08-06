@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE AIRSPEED_AUTOCAL PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_AIRSPEED_AUTOCAL 174
 
 

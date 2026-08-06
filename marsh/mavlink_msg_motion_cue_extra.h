@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE MOTION_CUE_EXTRA PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_MOTION_CUE_EXTRA 52504
 
 

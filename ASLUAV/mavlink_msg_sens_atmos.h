@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SENS_ATMOS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SENS_ATMOS 8009
 
 

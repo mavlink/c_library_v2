@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE GIMBAL_DEVICE_SET_ATTITUDE PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_GIMBAL_DEVICE_SET_ATTITUDE 284
 
 

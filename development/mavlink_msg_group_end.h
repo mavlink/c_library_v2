@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE GROUP_END PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_GROUP_END 415
 
 

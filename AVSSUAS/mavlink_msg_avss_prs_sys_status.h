@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE AVSS_PRS_SYS_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_AVSS_PRS_SYS_STATUS 60050
 
 

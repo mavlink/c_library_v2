@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE AOA_SSA PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_AOA_SSA 11020
 
 

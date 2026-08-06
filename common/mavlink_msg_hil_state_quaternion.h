@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE HIL_STATE_QUATERNION PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_HIL_STATE_QUATERNION 115
 
 

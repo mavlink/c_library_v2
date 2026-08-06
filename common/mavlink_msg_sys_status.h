@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE SYS_STATUS PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_SYS_STATUS 1
 
 MAVPACKED(

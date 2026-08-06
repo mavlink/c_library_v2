@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE ASL_OBCTRL PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_ASL_OBCTRL 8008
 
 

@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE RALLY_FETCH_POINT PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_RALLY_FETCH_POINT 176
 
 
