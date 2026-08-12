@@ -996,6 +996,84 @@ static void mavlink_test_manual_input_status(uint8_t system_id, uint8_t componen
 #endif
 }
 
+static void mavlink_test_efi_performance(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_EFI_PERFORMANCE >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_efi_performance_t packet_in = {
+        93372036854775807ULL,73.0,101.0,963498296,157.0,185.0,18691,18795,18899,19003,19107,19211,19315,3,70,137,204,15,82,149
+    };
+    mavlink_efi_performance_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.status_flags = packet_in.status_flags;
+        packet1.fuel_mass_rate = packet_in.fuel_mass_rate;
+        packet1.commanded_rpm = packet_in.commanded_rpm;
+        packet1.engine_runtime = packet_in.engine_runtime;
+        packet1.boost_pressure = packet_in.boost_pressure;
+        packet1.coolant_pressure = packet_in.coolant_pressure;
+        packet1.fuel_pump_voltage = packet_in.fuel_pump_voltage;
+        packet1.fuel_pump_current = packet_in.fuel_pump_current;
+        packet1.ecu_supply_voltage = packet_in.ecu_supply_voltage;
+        packet1.ecu_current = packet_in.ecu_current;
+        packet1.ecu_temperature = packet_in.ecu_temperature;
+        packet1.servo_supply_voltage = packet_in.servo_supply_voltage;
+        packet1.engine_torque = packet_in.engine_torque;
+        packet1.ecu_index = packet_in.ecu_index;
+        packet1.fuel_pump_duty_cycle = packet_in.fuel_pump_duty_cycle;
+        packet1.ecu_cpu_load = packet_in.ecu_cpu_load;
+        packet1.servo_output_level = packet_in.servo_output_level;
+        packet1.water_pump_duty_cycle = packet_in.water_pump_duty_cycle;
+        packet1.injector_duty_cycle = packet_in.injector_duty_cycle;
+        packet1.error_memory_count = packet_in.error_memory_count;
+        
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_EFI_PERFORMANCE_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_EFI_PERFORMANCE_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_efi_performance_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_efi_performance_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_efi_performance_pack(system_id, component_id, &msg , packet1.ecu_index , packet1.fuel_pump_duty_cycle , packet1.fuel_pump_voltage , packet1.fuel_pump_current , packet1.ecu_supply_voltage , packet1.ecu_current , packet1.ecu_temperature , packet1.ecu_cpu_load , packet1.servo_supply_voltage , packet1.servo_output_level , packet1.water_pump_duty_cycle , packet1.injector_duty_cycle , packet1.fuel_mass_rate , packet1.commanded_rpm , packet1.engine_runtime , packet1.error_memory_count , packet1.boost_pressure , packet1.coolant_pressure , packet1.engine_torque , packet1.status_flags );
+    mavlink_msg_efi_performance_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_efi_performance_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.ecu_index , packet1.fuel_pump_duty_cycle , packet1.fuel_pump_voltage , packet1.fuel_pump_current , packet1.ecu_supply_voltage , packet1.ecu_current , packet1.ecu_temperature , packet1.ecu_cpu_load , packet1.servo_supply_voltage , packet1.servo_output_level , packet1.water_pump_duty_cycle , packet1.injector_duty_cycle , packet1.fuel_mass_rate , packet1.commanded_rpm , packet1.engine_runtime , packet1.error_memory_count , packet1.boost_pressure , packet1.coolant_pressure , packet1.engine_torque , packet1.status_flags );
+    mavlink_msg_efi_performance_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_efi_performance_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_efi_performance_send(MAVLINK_COMM_1 , packet1.ecu_index , packet1.fuel_pump_duty_cycle , packet1.fuel_pump_voltage , packet1.fuel_pump_current , packet1.ecu_supply_voltage , packet1.ecu_current , packet1.ecu_temperature , packet1.ecu_cpu_load , packet1.servo_supply_voltage , packet1.servo_output_level , packet1.water_pump_duty_cycle , packet1.injector_duty_cycle , packet1.fuel_mass_rate , packet1.commanded_rpm , packet1.engine_runtime , packet1.error_memory_count , packet1.boost_pressure , packet1.coolant_pressure , packet1.engine_torque , packet1.status_flags );
+    mavlink_msg_efi_performance_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+#ifdef MAVLINK_HAVE_GET_MESSAGE_INFO
+    MAVLINK_ASSERT(mavlink_get_message_info_by_name("EFI_PERFORMANCE") != NULL);
+    MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_EFI_PERFORMANCE) != NULL);
+#endif
+}
+
 static void mavlink_test_development(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
     mavlink_test_set_velocity_limits(system_id, component_id, last_msg);
@@ -1013,6 +1091,7 @@ static void mavlink_test_development(uint8_t system_id, uint8_t component_id, ma
     mavlink_test_ranging_beacon(system_id, component_id, last_msg);
     mavlink_test_estimator_sensor_fusion_status(system_id, component_id, last_msg);
     mavlink_test_manual_input_status(system_id, component_id, last_msg);
+    mavlink_test_efi_performance(system_id, component_id, last_msg);
 }
 
 #ifdef __cplusplus
