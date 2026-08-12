@@ -14302,7 +14302,7 @@ static void mavlink_test_available_modes(uint8_t system_id, uint8_t component_id
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_available_modes_t packet_in = {
-        963497464,963497672,29,96,163,"LMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRS"
+        963497464,963497672,29,96,163,"LMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRS",15
     };
     mavlink_available_modes_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -14311,6 +14311,7 @@ static void mavlink_test_available_modes(uint8_t system_id, uint8_t component_id
         packet1.number_modes = packet_in.number_modes;
         packet1.mode_index = packet_in.mode_index;
         packet1.standard_mode = packet_in.standard_mode;
+        packet1.seq = packet_in.seq;
         
         mav_array_memcpy(packet1.mode_name, packet_in.mode_name, sizeof(char)*35);
         
@@ -14326,12 +14327,12 @@ static void mavlink_test_available_modes(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_available_modes_pack(system_id, component_id, &msg , packet1.number_modes , packet1.mode_index , packet1.standard_mode , packet1.custom_mode , packet1.properties , packet1.mode_name );
+    mavlink_msg_available_modes_pack(system_id, component_id, &msg , packet1.number_modes , packet1.mode_index , packet1.standard_mode , packet1.custom_mode , packet1.properties , packet1.mode_name , packet1.seq );
     mavlink_msg_available_modes_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_available_modes_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.number_modes , packet1.mode_index , packet1.standard_mode , packet1.custom_mode , packet1.properties , packet1.mode_name );
+    mavlink_msg_available_modes_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.number_modes , packet1.mode_index , packet1.standard_mode , packet1.custom_mode , packet1.properties , packet1.mode_name , packet1.seq );
     mavlink_msg_available_modes_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -14344,7 +14345,7 @@ static void mavlink_test_available_modes(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_available_modes_send(MAVLINK_COMM_1 , packet1.number_modes , packet1.mode_index , packet1.standard_mode , packet1.custom_mode , packet1.properties , packet1.mode_name );
+    mavlink_msg_available_modes_send(MAVLINK_COMM_1 , packet1.number_modes , packet1.mode_index , packet1.standard_mode , packet1.custom_mode , packet1.properties , packet1.mode_name , packet1.seq );
     mavlink_msg_available_modes_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
