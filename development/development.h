@@ -430,7 +430,7 @@ typedef enum MAV_CMD
           - In single-owner mode there is a single GCS "owner" that can send state changing operations to the whole system, and this command can be used to request takeover of that ownership role.
           - In multi-owner mode the flight stack allows multiple GCS to be "owners" and send (most) state changing operations (which GCS those are is implementation-dependent, and not controlled by this protocol).
             However only one GCS owner can control manual input of the vehicle: this command can be used to request takeover of that ownership role.
-        
+
           A controlled system should only accept MAVLink operations that change the state of the vehicle, such as commands and command-like messages, which are sent by its controlling GCS(s) (or from other components in its own system/with the same system id, such as a companion computer).
           Commands to control the vehicle from other systems should be rejected with MAV_RESULT_NOT_IN_CONTROL (except for this command, which may be acknowledged with MAV_RESULT_ACCEPTED if control is granted).
           Messages and commands that don't control or change vehicle movement or functionality, such as telemetry requests, may still be send from (and to) a controlled system.
@@ -456,7 +456,7 @@ typedef enum MAV_CMD
           While any owning GCS are connected the system should consider itself connected to a GCS, and still owned by all GCS (even those that are not connected).
           If all owning GCS are disconnected the vehicle should GCS loss failsafe, and broadcast a CONTROL_STATUS indicating that it has no owner(s).
           In simultaneous-owner scenarios this allows an owner to disconnect and reconnect without the vehicle failsafing, provided at least one owner is connected.
-               
+
           Note that in most systems the only controlled component will be the "system manager component", and that will be the autopilot (although it could be a companion computer).
           However separate GCS control of a particular component is also permitted, if supported by the component.
           In this case the GCS will address MAV_CMD_REQUEST_OPERATOR_CONTROL to the specific component it wants to control.
@@ -485,7 +485,7 @@ typedef enum MAV_CMD
 #define HAVE_ENUM_GCS_CONTROL_STATUS_FLAGS
 typedef enum GCS_CONTROL_STATUS_FLAGS
 {
-   GCS_CONTROL_STATUS_FLAGS_SYSTEM_MANAGER=1, /* If set, this CONTROL_STATUS publishes the controlling GCS(s) of the whole system. 
+   GCS_CONTROL_STATUS_FLAGS_SYSTEM_MANAGER=1, /* If set, this CONTROL_STATUS publishes the controlling GCS(s) of the whole system.
           If unset, the CONTROL_STATUS indicates the controlling GCS(s) for just the component emitting the message.
           Note that to request control of the system a GCS should send MAV_CMD_REQUEST_OPERATOR_CONTROL to the component emitting CONTROL_STATUS with this flag set.
          | */
