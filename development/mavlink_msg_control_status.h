@@ -9,7 +9,7 @@
 typedef struct __mavlink_control_status_t {
  uint8_t flags; /*<  Control status. For example, whether takeover of the `gcs_main` role is allowed, and whether this CONTROL_STATUS instance defines the default controlling GCS for the whole system.*/
  uint8_t gcs_main; /*<  System ID of GCS in control. 0: no GCS in control.*/
- uint8_t gcs_secondary[10]; /*<  System IDs from which the system can recieve state-changing commands/messages in multi-control mode. All values should be zero for single-ower mode.*/
+ uint8_t gcs_secondary[10]; /*<  System IDs from which the system can receive state-changing commands/messages in multi-control mode. All values should be zero for single-owner mode.*/
 } mavlink_control_status_t;
 
 #define MAVLINK_MSG_ID_CONTROL_STATUS_LEN 12
@@ -51,7 +51,7 @@ typedef struct __mavlink_control_status_t {
  *
  * @param flags  Control status. For example, whether takeover of the `gcs_main` role is allowed, and whether this CONTROL_STATUS instance defines the default controlling GCS for the whole system.
  * @param gcs_main  System ID of GCS in control. 0: no GCS in control.
- * @param gcs_secondary  System IDs from which the system can recieve state-changing commands/messages in multi-control mode. All values should be zero for single-ower mode.
+ * @param gcs_secondary  System IDs from which the system can receive state-changing commands/messages in multi-control mode. All values should be zero for single-owner mode.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_control_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -84,7 +84,7 @@ static inline uint16_t mavlink_msg_control_status_pack(uint8_t system_id, uint8_
  *
  * @param flags  Control status. For example, whether takeover of the `gcs_main` role is allowed, and whether this CONTROL_STATUS instance defines the default controlling GCS for the whole system.
  * @param gcs_main  System ID of GCS in control. 0: no GCS in control.
- * @param gcs_secondary  System IDs from which the system can recieve state-changing commands/messages in multi-control mode. All values should be zero for single-ower mode.
+ * @param gcs_secondary  System IDs from which the system can receive state-changing commands/messages in multi-control mode. All values should be zero for single-owner mode.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_control_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
@@ -120,7 +120,7 @@ static inline uint16_t mavlink_msg_control_status_pack_status(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param flags  Control status. For example, whether takeover of the `gcs_main` role is allowed, and whether this CONTROL_STATUS instance defines the default controlling GCS for the whole system.
  * @param gcs_main  System ID of GCS in control. 0: no GCS in control.
- * @param gcs_secondary  System IDs from which the system can recieve state-changing commands/messages in multi-control mode. All values should be zero for single-ower mode.
+ * @param gcs_secondary  System IDs from which the system can receive state-changing commands/messages in multi-control mode. All values should be zero for single-owner mode.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_control_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -192,7 +192,7 @@ static inline uint16_t mavlink_msg_control_status_encode_status(uint8_t system_i
  *
  * @param flags  Control status. For example, whether takeover of the `gcs_main` role is allowed, and whether this CONTROL_STATUS instance defines the default controlling GCS for the whole system.
  * @param gcs_main  System ID of GCS in control. 0: no GCS in control.
- * @param gcs_secondary  System IDs from which the system can recieve state-changing commands/messages in multi-control mode. All values should be zero for single-ower mode.
+ * @param gcs_secondary  System IDs from which the system can receive state-changing commands/messages in multi-control mode. All values should be zero for single-owner mode.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -281,7 +281,7 @@ static inline uint8_t mavlink_msg_control_status_get_gcs_main(const mavlink_mess
 /**
  * @brief Get field gcs_secondary from control_status message
  *
- * @return  System IDs from which the system can recieve state-changing commands/messages in multi-control mode. All values should be zero for single-ower mode.
+ * @return  System IDs from which the system can receive state-changing commands/messages in multi-control mode. All values should be zero for single-owner mode.
  */
 static inline uint16_t mavlink_msg_control_status_get_gcs_secondary(const mavlink_message_t* msg, uint8_t *gcs_secondary)
 {
