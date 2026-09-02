@@ -12,12 +12,12 @@ typedef struct __mavlink_follow_target_t {
  int32_t lat; /*< [degE7] Latitude (WGS84)*/
  int32_t lon; /*< [degE7] Longitude (WGS84)*/
  float alt; /*< [m] Altitude (MSL)*/
- float vel[3]; /*< [m/s] target velocity (0,0,0) for unknown*/
- float acc[3]; /*< [m/s/s] linear target acceleration (0,0,0) for unknown*/
- float attitude_q[4]; /*<  (0 0 0 0 for unknown)*/
- float rates[3]; /*<  (0 0 0 for unknown)*/
+ float vel[3]; /*< [m/s] Target velocity in MAV_FRAME_LOCAL_NED frame. (0,0,0) for unknown.*/
+ float acc[3]; /*< [m/s/s] Target linear acceleration in MAV_FRAME_LOCAL_NED frame. (0,0,0) for unknown.*/
+ float attitude_q[4]; /*<  Target orientation as a quaternion rotating from MAV_FRAME_BODY_FRD to MAV_FRAME_LOCAL_NED (w, x, y, z order, zero-rotation is [1, 0, 0, 0]). (0, 0, 0, 0) for unknown.*/
+ float rates[3]; /*< [rad/s] Target angular rates (roll, pitch, yaw) in MAV_FRAME_BODY_FRD frame. (0,0,0) for unknown.*/
  float position_cov[3]; /*<  eph epv*/
- uint8_t est_capabilities; /*<  bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3)*/
+ uint8_t est_capabilities; /*<  Bitmask indicating which fields in this message contain valid data.*/
 } mavlink_follow_target_t;
 
 #define MAVLINK_MSG_ID_FOLLOW_TARGET_LEN 93
@@ -78,14 +78,14 @@ typedef struct __mavlink_follow_target_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param timestamp [ms] Timestamp (time since system boot).
- * @param est_capabilities  bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3)
+ * @param est_capabilities  Bitmask indicating which fields in this message contain valid data.
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
  * @param alt [m] Altitude (MSL)
- * @param vel [m/s] target velocity (0,0,0) for unknown
- * @param acc [m/s/s] linear target acceleration (0,0,0) for unknown
- * @param attitude_q  (0 0 0 0 for unknown)
- * @param rates  (0 0 0 for unknown)
+ * @param vel [m/s] Target velocity in MAV_FRAME_LOCAL_NED frame. (0,0,0) for unknown.
+ * @param acc [m/s/s] Target linear acceleration in MAV_FRAME_LOCAL_NED frame. (0,0,0) for unknown.
+ * @param attitude_q  Target orientation as a quaternion rotating from MAV_FRAME_BODY_FRD to MAV_FRAME_LOCAL_NED (w, x, y, z order, zero-rotation is [1, 0, 0, 0]). (0, 0, 0, 0) for unknown.
+ * @param rates [rad/s] Target angular rates (roll, pitch, yaw) in MAV_FRAME_BODY_FRD frame. (0,0,0) for unknown.
  * @param position_cov  eph epv
  * @param custom_state  button states or switches of a tracker device
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -135,14 +135,14 @@ static inline uint16_t mavlink_msg_follow_target_pack(uint8_t system_id, uint8_t
  * @param msg The MAVLink message to compress the data into
  *
  * @param timestamp [ms] Timestamp (time since system boot).
- * @param est_capabilities  bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3)
+ * @param est_capabilities  Bitmask indicating which fields in this message contain valid data.
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
  * @param alt [m] Altitude (MSL)
- * @param vel [m/s] target velocity (0,0,0) for unknown
- * @param acc [m/s/s] linear target acceleration (0,0,0) for unknown
- * @param attitude_q  (0 0 0 0 for unknown)
- * @param rates  (0 0 0 for unknown)
+ * @param vel [m/s] Target velocity in MAV_FRAME_LOCAL_NED frame. (0,0,0) for unknown.
+ * @param acc [m/s/s] Target linear acceleration in MAV_FRAME_LOCAL_NED frame. (0,0,0) for unknown.
+ * @param attitude_q  Target orientation as a quaternion rotating from MAV_FRAME_BODY_FRD to MAV_FRAME_LOCAL_NED (w, x, y, z order, zero-rotation is [1, 0, 0, 0]). (0, 0, 0, 0) for unknown.
+ * @param rates [rad/s] Target angular rates (roll, pitch, yaw) in MAV_FRAME_BODY_FRD frame. (0,0,0) for unknown.
  * @param position_cov  eph epv
  * @param custom_state  button states or switches of a tracker device
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -195,14 +195,14 @@ static inline uint16_t mavlink_msg_follow_target_pack_status(uint8_t system_id, 
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param timestamp [ms] Timestamp (time since system boot).
- * @param est_capabilities  bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3)
+ * @param est_capabilities  Bitmask indicating which fields in this message contain valid data.
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
  * @param alt [m] Altitude (MSL)
- * @param vel [m/s] target velocity (0,0,0) for unknown
- * @param acc [m/s/s] linear target acceleration (0,0,0) for unknown
- * @param attitude_q  (0 0 0 0 for unknown)
- * @param rates  (0 0 0 for unknown)
+ * @param vel [m/s] Target velocity in MAV_FRAME_LOCAL_NED frame. (0,0,0) for unknown.
+ * @param acc [m/s/s] Target linear acceleration in MAV_FRAME_LOCAL_NED frame. (0,0,0) for unknown.
+ * @param attitude_q  Target orientation as a quaternion rotating from MAV_FRAME_BODY_FRD to MAV_FRAME_LOCAL_NED (w, x, y, z order, zero-rotation is [1, 0, 0, 0]). (0, 0, 0, 0) for unknown.
+ * @param rates [rad/s] Target angular rates (roll, pitch, yaw) in MAV_FRAME_BODY_FRD frame. (0,0,0) for unknown.
  * @param position_cov  eph epv
  * @param custom_state  button states or switches of a tracker device
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -291,14 +291,14 @@ static inline uint16_t mavlink_msg_follow_target_encode_status(uint8_t system_id
  * @param chan MAVLink channel to send the message
  *
  * @param timestamp [ms] Timestamp (time since system boot).
- * @param est_capabilities  bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3)
+ * @param est_capabilities  Bitmask indicating which fields in this message contain valid data.
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
  * @param alt [m] Altitude (MSL)
- * @param vel [m/s] target velocity (0,0,0) for unknown
- * @param acc [m/s/s] linear target acceleration (0,0,0) for unknown
- * @param attitude_q  (0 0 0 0 for unknown)
- * @param rates  (0 0 0 for unknown)
+ * @param vel [m/s] Target velocity in MAV_FRAME_LOCAL_NED frame. (0,0,0) for unknown.
+ * @param acc [m/s/s] Target linear acceleration in MAV_FRAME_LOCAL_NED frame. (0,0,0) for unknown.
+ * @param attitude_q  Target orientation as a quaternion rotating from MAV_FRAME_BODY_FRD to MAV_FRAME_LOCAL_NED (w, x, y, z order, zero-rotation is [1, 0, 0, 0]). (0, 0, 0, 0) for unknown.
+ * @param rates [rad/s] Target angular rates (roll, pitch, yaw) in MAV_FRAME_BODY_FRD frame. (0,0,0) for unknown.
  * @param position_cov  eph epv
  * @param custom_state  button states or switches of a tracker device
  */
@@ -411,7 +411,7 @@ static inline uint64_t mavlink_msg_follow_target_get_timestamp(const mavlink_mes
 /**
  * @brief Get field est_capabilities from follow_target message
  *
- * @return  bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3)
+ * @return  Bitmask indicating which fields in this message contain valid data.
  */
 static inline uint8_t mavlink_msg_follow_target_get_est_capabilities(const mavlink_message_t* msg)
 {
@@ -451,7 +451,7 @@ static inline float mavlink_msg_follow_target_get_alt(const mavlink_message_t* m
 /**
  * @brief Get field vel from follow_target message
  *
- * @return [m/s] target velocity (0,0,0) for unknown
+ * @return [m/s] Target velocity in MAV_FRAME_LOCAL_NED frame. (0,0,0) for unknown.
  */
 static inline uint16_t mavlink_msg_follow_target_get_vel(const mavlink_message_t* msg, float *vel)
 {
@@ -461,7 +461,7 @@ static inline uint16_t mavlink_msg_follow_target_get_vel(const mavlink_message_t
 /**
  * @brief Get field acc from follow_target message
  *
- * @return [m/s/s] linear target acceleration (0,0,0) for unknown
+ * @return [m/s/s] Target linear acceleration in MAV_FRAME_LOCAL_NED frame. (0,0,0) for unknown.
  */
 static inline uint16_t mavlink_msg_follow_target_get_acc(const mavlink_message_t* msg, float *acc)
 {
@@ -471,7 +471,7 @@ static inline uint16_t mavlink_msg_follow_target_get_acc(const mavlink_message_t
 /**
  * @brief Get field attitude_q from follow_target message
  *
- * @return  (0 0 0 0 for unknown)
+ * @return  Target orientation as a quaternion rotating from MAV_FRAME_BODY_FRD to MAV_FRAME_LOCAL_NED (w, x, y, z order, zero-rotation is [1, 0, 0, 0]). (0, 0, 0, 0) for unknown.
  */
 static inline uint16_t mavlink_msg_follow_target_get_attitude_q(const mavlink_message_t* msg, float *attitude_q)
 {
@@ -481,7 +481,7 @@ static inline uint16_t mavlink_msg_follow_target_get_attitude_q(const mavlink_me
 /**
  * @brief Get field rates from follow_target message
  *
- * @return  (0 0 0 for unknown)
+ * @return [rad/s] Target angular rates (roll, pitch, yaw) in MAV_FRAME_BODY_FRD frame. (0,0,0) for unknown.
  */
 static inline uint16_t mavlink_msg_follow_target_get_rates(const mavlink_message_t* msg, float *rates)
 {

@@ -2975,6 +2975,19 @@ typedef enum GLOBAL_POSITION_FLAGS
 } GLOBAL_POSITION_FLAGS;
 #endif
 
+/** @brief Bitmask indicating which fields contain valid data in a FOLLOW_TARGET message (lat/lon/alt, vel, acc, attitude_q, rates). If a bit is unset, the corresponding field(s) are zero-filled and should be ignored. */
+#ifndef HAVE_ENUM_FOLLOW_TARGET_CAP_FLAGS
+#define HAVE_ENUM_FOLLOW_TARGET_CAP_FLAGS
+typedef enum FOLLOW_TARGET_CAP_FLAGS
+{
+   FOLLOW_TARGET_CAP_FLAGS_POS=1, /* Position estimate is valid (lat/lon/alt). | */
+   FOLLOW_TARGET_CAP_FLAGS_VEL=2, /* Velocity estimate is valid (vel field). | */
+   FOLLOW_TARGET_CAP_FLAGS_ACCEL=4, /* Acceleration estimate is valid (acc field). | */
+   FOLLOW_TARGET_CAP_FLAGS_ATT_RATES=8, /* Attitude and angular rate estimates are valid (attitude_q and rates fields). | */
+   FOLLOW_TARGET_CAP_FLAGS_ENUM_END=9, /*  | */
+} FOLLOW_TARGET_CAP_FLAGS;
+#endif
+
 // MAVLINK VERSION
 
 #ifndef MAVLINK_VERSION
