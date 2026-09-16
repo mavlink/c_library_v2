@@ -285,7 +285,7 @@ typedef enum GIMBAL_DEVICE_CAP_FLAGS
    GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_FOLLOW=512, /* Gimbal device supports to follow a yaw angle relative to the vehicle (generally that's the default). | */
    GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_LOCK=1024, /* Gimbal device supports locking to an absolute heading, i.e., yaw angle relative to North (earth frame, often this is an option available). | */
    GIMBAL_DEVICE_CAP_FLAGS_SUPPORTS_INFINITE_YAW=2048, /* Gimbal device supports yawing/panning infinitely (e.g. using slip disk). | */
-   GIMBAL_DEVICE_CAP_FLAGS_SUPPORTS_YAW_IN_EARTH_FRAME=4096, /* Gimbal device supports yaw angles and angular velocities relative to North (earth frame). This usually requires support by an autopilot via AUTOPILOT_STATE_FOR_GIMBAL_DEVICE. Support can go on and off during runtime, which is reported by the flag GIMBAL_DEVICE_FLAGS_CAN_ACCEPT_YAW_IN_EARTH_FRAME. | */
+   GIMBAL_DEVICE_CAP_FLAGS_SUPPORTS_YAW_IN_EARTH_FRAME=4096, /* Gimbal device supports yaw angles and angular velocities relative to North (earth frame). This usually requires support by an autopilot via AUTOPILOT_STATE_FOR_GIMBAL_DEVICE. Support can go on and off during runtime, which is reported by the flag GIMBAL_DEVICE_FLAGS_ACCEPTS_YAW_IN_EARTH_FRAME. | */
    GIMBAL_DEVICE_CAP_FLAGS_HAS_RC_INPUTS=8192, /* Gimbal device supports radio control inputs as an alternative input for controlling the gimbal orientation. | */
    GIMBAL_DEVICE_CAP_FLAGS_CAN_POINT_LOCATION_LOCAL=65536, /* Gimbal device supports to point to a local position. | */
    GIMBAL_DEVICE_CAP_FLAGS_CAN_POINT_LOCATION_GLOBAL=131072, /* Gimbal device supports to point to a global latitude, longitude, altitude position. | */
@@ -811,7 +811,7 @@ typedef enum MAV_CMD
    MAV_CMD_DO_RETURN_PATH_START=188, /* Mission item to specify the start of a failsafe/landing return-path segment (the end of the segment is the next MAV_CMD_DO_LAND_START item).
           A vehicle that is using missions for landing (e.g. in a return mode) will join the mission on the closest path of the return-path segment (instead of MAV_CMD_DO_LAND_START or the nearest waypoint).
           The main use case is to minimize the failsafe flight path in corridor missions, where the inbound/outbound paths are constrained (by geofences) to the same particular path.
-          The MAV_CMD_NAV_RETURN_PATH_START would be placed at the start of the return path.
+          The MAV_CMD_DO_RETURN_PATH_START would be placed at the start of the return path.
           If a failsafe occurs on the outbound path the vehicle will move to the nearest point on the return path (which is parallel for this kind of mission), effectively turning round and following the shortest path to landing.
           If a failsafe occurs on the inbound path the vehicle is already on the return segment and will continue to landing.
           The Latitude/Longitude/Altitude are optional, and may be set to 0 if not needed.
@@ -1415,7 +1415,7 @@ typedef enum MAV_BATTERY_FAULT
 {
    MAV_BATTERY_FAULT_DEEP_DISCHARGE=1, /* Battery has deep discharged. | */
    MAV_BATTERY_FAULT_SPIKES=2, /* Voltage spikes. | */
-   MAV_BATTERY_FAULT_CELL_FAIL=4, /* One or more cells have failed. Battery should also report MAV_BATTERY_CHARGE_STATE_FAILE (and should not be used). | */
+   MAV_BATTERY_FAULT_CELL_FAIL=4, /* One or more cells have failed. Battery should also report MAV_BATTERY_CHARGE_STATE_FAILED (and should not be used). | */
    MAV_BATTERY_FAULT_OVER_CURRENT=8, /* Over-current fault. | */
    MAV_BATTERY_FAULT_OVER_TEMPERATURE=16, /* Over-temperature fault. | */
    MAV_BATTERY_FAULT_UNDER_TEMPERATURE=32, /* Under-temperature fault. | */

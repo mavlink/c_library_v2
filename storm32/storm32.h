@@ -212,7 +212,7 @@ typedef enum MAV_CMD
    MAV_CMD_DO_RETURN_PATH_START=188, /* Mission item to specify the start of a failsafe/landing return-path segment (the end of the segment is the next MAV_CMD_DO_LAND_START item).
           A vehicle that is using missions for landing (e.g. in a return mode) will join the mission on the closest path of the return-path segment (instead of MAV_CMD_DO_LAND_START or the nearest waypoint).
           The main use case is to minimize the failsafe flight path in corridor missions, where the inbound/outbound paths are constrained (by geofences) to the same particular path.
-          The MAV_CMD_NAV_RETURN_PATH_START would be placed at the start of the return path.
+          The MAV_CMD_DO_RETURN_PATH_START would be placed at the start of the return path.
           If a failsafe occurs on the outbound path the vehicle will move to the nearest point on the return path (which is parallel for this kind of mission), effectively turning round and following the shortest path to landing.
           If a failsafe occurs on the inbound path the vehicle is already on the return segment and will continue to landing.
           The Latitude/Longitude/Altitude are optional, and may be set to 0 if not needed.
