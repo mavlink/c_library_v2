@@ -80,7 +80,6 @@ typedef struct __mavlink_esc_info_t {
  * @param temperature [cdegC] Temperature of each ESC. INT16_MAX: if data not supplied by ESC.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-MAVLINK_WIP
 static inline uint16_t mavlink_msg_esc_info_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t index, uint64_t time_usec, uint16_t counter, uint8_t count, uint8_t connection_type, uint8_t info, const uint16_t *failure_flags, const uint32_t *error_count, const int16_t *temperature)
 {
@@ -186,7 +185,6 @@ static inline uint16_t mavlink_msg_esc_info_pack_status(uint8_t system_id, uint8
  * @param temperature [cdegC] Temperature of each ESC. INT16_MAX: if data not supplied by ESC.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-MAVLINK_WIP
 static inline uint16_t mavlink_msg_esc_info_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t index,uint64_t time_usec,uint16_t counter,uint8_t count,uint8_t connection_type,uint8_t info,const uint16_t *failure_flags,const uint32_t *error_count,const int16_t *temperature)
@@ -229,7 +227,6 @@ static inline uint16_t mavlink_msg_esc_info_pack_chan(uint8_t system_id, uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param esc_info C-struct to read the message contents from
  */
-MAVLINK_WIP
 static inline uint16_t mavlink_msg_esc_info_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_esc_info_t* esc_info)
 {
     return mavlink_msg_esc_info_pack(system_id, component_id, msg, esc_info->index, esc_info->time_usec, esc_info->counter, esc_info->count, esc_info->connection_type, esc_info->info, esc_info->failure_flags, esc_info->error_count, esc_info->temperature);
@@ -244,7 +241,6 @@ static inline uint16_t mavlink_msg_esc_info_encode(uint8_t system_id, uint8_t co
  * @param msg The MAVLink message to compress the data into
  * @param esc_info C-struct to read the message contents from
  */
-MAVLINK_WIP
 static inline uint16_t mavlink_msg_esc_info_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_esc_info_t* esc_info)
 {
     return mavlink_msg_esc_info_pack_chan(system_id, component_id, chan, msg, esc_info->index, esc_info->time_usec, esc_info->counter, esc_info->count, esc_info->connection_type, esc_info->info, esc_info->failure_flags, esc_info->error_count, esc_info->temperature);
@@ -280,7 +276,6 @@ static inline uint16_t mavlink_msg_esc_info_encode_status(uint8_t system_id, uin
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-MAVLINK_WIP
 static inline void mavlink_msg_esc_info_send(mavlink_channel_t chan, uint8_t index, uint64_t time_usec, uint16_t counter, uint8_t count, uint8_t connection_type, uint8_t info, const uint16_t *failure_flags, const uint32_t *error_count, const int16_t *temperature)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -315,7 +310,6 @@ static inline void mavlink_msg_esc_info_send(mavlink_channel_t chan, uint8_t ind
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
-MAVLINK_WIP
 static inline void mavlink_msg_esc_info_send_struct(mavlink_channel_t chan, const mavlink_esc_info_t* esc_info)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -333,7 +327,6 @@ static inline void mavlink_msg_esc_info_send_struct(mavlink_channel_t chan, cons
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-MAVLINK_WIP
 static inline void mavlink_msg_esc_info_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t index, uint64_t time_usec, uint16_t counter, uint8_t count, uint8_t connection_type, uint8_t info, const uint16_t *failure_flags, const uint32_t *error_count, const int16_t *temperature)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -374,7 +367,6 @@ static inline void mavlink_msg_esc_info_send_buf(mavlink_message_t *msgbuf, mavl
  *
  * @return  Index of the first ESC in this message (ESC are indexed in motor order). minValue = 0, maxValue = 60, increment = 4.
  */
-MAVLINK_WIP
 static inline uint8_t mavlink_msg_esc_info_get_index(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  42);
@@ -385,7 +377,6 @@ static inline uint8_t mavlink_msg_esc_info_get_index(const mavlink_message_t* ms
  *
  * @return [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
  */
-MAVLINK_WIP
 static inline uint64_t mavlink_msg_esc_info_get_time_usec(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint64_t(msg,  0);
@@ -396,7 +387,6 @@ static inline uint64_t mavlink_msg_esc_info_get_time_usec(const mavlink_message_
  *
  * @return  Counter of data packets received.
  */
-MAVLINK_WIP
 static inline uint16_t mavlink_msg_esc_info_get_counter(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint16_t(msg,  24);
@@ -407,7 +397,6 @@ static inline uint16_t mavlink_msg_esc_info_get_counter(const mavlink_message_t*
  *
  * @return  Total number of ESCs in all messages of this type. Message fields with an index higher than this should be ignored because they contain invalid data.
  */
-MAVLINK_WIP
 static inline uint8_t mavlink_msg_esc_info_get_count(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  43);
@@ -418,7 +407,6 @@ static inline uint8_t mavlink_msg_esc_info_get_count(const mavlink_message_t* ms
  *
  * @return  Connection type protocol for all ESC.
  */
-MAVLINK_WIP
 static inline uint8_t mavlink_msg_esc_info_get_connection_type(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  44);
@@ -429,7 +417,6 @@ static inline uint8_t mavlink_msg_esc_info_get_connection_type(const mavlink_mes
  *
  * @return  Information regarding online/offline status of each ESC.
  */
-MAVLINK_WIP
 static inline uint8_t mavlink_msg_esc_info_get_info(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  45);
@@ -440,7 +427,6 @@ static inline uint8_t mavlink_msg_esc_info_get_info(const mavlink_message_t* msg
  *
  * @return  Bitmap of ESC failure flags.
  */
-MAVLINK_WIP
 static inline uint16_t mavlink_msg_esc_info_get_failure_flags(const mavlink_message_t* msg, uint16_t *failure_flags)
 {
     return _MAV_RETURN_uint16_t_array(msg, failure_flags, 4,  26);
@@ -451,7 +437,6 @@ static inline uint16_t mavlink_msg_esc_info_get_failure_flags(const mavlink_mess
  *
  * @return  Number of reported errors by each ESC since boot.
  */
-MAVLINK_WIP
 static inline uint16_t mavlink_msg_esc_info_get_error_count(const mavlink_message_t* msg, uint32_t *error_count)
 {
     return _MAV_RETURN_uint32_t_array(msg, error_count, 4,  8);
@@ -462,7 +447,6 @@ static inline uint16_t mavlink_msg_esc_info_get_error_count(const mavlink_messag
  *
  * @return [cdegC] Temperature of each ESC. INT16_MAX: if data not supplied by ESC.
  */
-MAVLINK_WIP
 static inline uint16_t mavlink_msg_esc_info_get_temperature(const mavlink_message_t* msg, int16_t *temperature)
 {
     return _MAV_RETURN_int16_t_array(msg, temperature, 4,  34);
@@ -474,7 +458,6 @@ static inline uint16_t mavlink_msg_esc_info_get_temperature(const mavlink_messag
  * @param msg The message to decode
  * @param esc_info C-struct to decode the message contents into
  */
-MAVLINK_WIP
 static inline void mavlink_msg_esc_info_decode(const mavlink_message_t* msg, mavlink_esc_info_t* esc_info)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
