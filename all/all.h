@@ -477,6 +477,7 @@ typedef enum MAV_CMD
 #include "../standard/standard.h"
 #include "../test/test.h"
 #include "../uAvionix/uAvionix.h"
+#include "../loweheiser/loweheiser.h"
 #include "../storm32/storm32.h"
 #include "../AVSSUAS/AVSSUAS.h"
 #include "../cubepilot/cubepilot.h"
