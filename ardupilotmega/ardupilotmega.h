@@ -220,7 +220,7 @@ typedef enum MAV_CMD
    MAV_CMD_RUN_PREARM_CHECKS=401, /* Instructs a target system to run pre-arm checks.
           This allows preflight checks to be run on demand, which may be useful on systems that normally run them at low rate, or which do not trigger checks when the armable state might have changed.
           This command should return MAV_RESULT_ACCEPTED if it will run the checks.
-          The results of the checks are usually then reported in SYS_STATUS messages (this is system-specific).
+          The results of the checks are usually then reported in SYS_STATUS, EVENT, or STATUSTEXT messages (this is system-specific).
           The command should return MAV_RESULT_TEMPORARILY_REJECTED if the system is already armed.
          |Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
    MAV_CMD_ILLUMINATOR_ON_OFF=405, /* Turns illuminators ON/OFF. An illuminator is a light source that is used for lighting up dark areas external to the system: e.g. a torch or searchlight (as opposed to a light source for illuminating the system itself, e.g. an indicator light). |Illuminators on (MAV_BOOL_TRUE). A value of MAV_BOOL_FALSE turns illuminators off. Values not equal to 0 or 1 are invalid.| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
