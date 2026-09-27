@@ -86,7 +86,7 @@ typedef struct __mavlink_hil_controls_t {
  * @param nav_mode  Navigation mode (MAV_NAV_MODE)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_hil_controls_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_hil_controls_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint64_t time_usec, float roll_ailerons, float pitch_elevator, float yaw_rudder, float throttle, float aux1, float aux2, float aux3, float aux4, uint8_t mode, uint8_t nav_mode)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -145,7 +145,7 @@ static inline uint16_t mavlink_msg_hil_controls_pack(uint8_t system_id, uint8_t 
  * @param nav_mode  Navigation mode (MAV_NAV_MODE)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_hil_controls_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_hil_controls_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint64_t time_usec, float roll_ailerons, float pitch_elevator, float yaw_rudder, float throttle, float aux1, float aux2, float aux3, float aux4, uint8_t mode, uint8_t nav_mode)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -184,7 +184,7 @@ static inline uint16_t mavlink_msg_hil_controls_pack_status(uint8_t system_id, u
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_HIL_CONTROLS_MIN_LEN, MAVLINK_MSG_ID_HIL_CONTROLS_LEN, MAVLINK_MSG_ID_HIL_CONTROLS_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_HIL_CONTROLS_MIN_LEN, MAVLINK_MSG_ID_HIL_CONTROLS_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_HIL_CONTROLS_MIN_LEN, MAVLINK_MSG_ID_HIL_CONTROLS_LEN, 0);
 #endif
 }
 
@@ -207,7 +207,7 @@ static inline uint16_t mavlink_msg_hil_controls_pack_status(uint8_t system_id, u
  * @param nav_mode  Navigation mode (MAV_NAV_MODE)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_hil_controls_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_hil_controls_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint64_t time_usec,float roll_ailerons,float pitch_elevator,float yaw_rudder,float throttle,float aux1,float aux2,float aux3,float aux4,uint8_t mode,uint8_t nav_mode)
 {
@@ -255,7 +255,7 @@ static inline uint16_t mavlink_msg_hil_controls_pack_chan(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param hil_controls C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_hil_controls_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_hil_controls_t* hil_controls)
+static inline uint16_t mavlink_msg_hil_controls_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_hil_controls_t* hil_controls)
 {
     return mavlink_msg_hil_controls_pack(system_id, component_id, msg, hil_controls->time_usec, hil_controls->roll_ailerons, hil_controls->pitch_elevator, hil_controls->yaw_rudder, hil_controls->throttle, hil_controls->aux1, hil_controls->aux2, hil_controls->aux3, hil_controls->aux4, hil_controls->mode, hil_controls->nav_mode);
 }
@@ -269,7 +269,7 @@ static inline uint16_t mavlink_msg_hil_controls_encode(uint8_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param hil_controls C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_hil_controls_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_hil_controls_t* hil_controls)
+static inline uint16_t mavlink_msg_hil_controls_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_hil_controls_t* hil_controls)
 {
     return mavlink_msg_hil_controls_pack_chan(system_id, component_id, chan, msg, hil_controls->time_usec, hil_controls->roll_ailerons, hil_controls->pitch_elevator, hil_controls->yaw_rudder, hil_controls->throttle, hil_controls->aux1, hil_controls->aux2, hil_controls->aux3, hil_controls->aux4, hil_controls->mode, hil_controls->nav_mode);
 }
@@ -283,7 +283,7 @@ static inline uint16_t mavlink_msg_hil_controls_encode_chan(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param hil_controls C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_hil_controls_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_hil_controls_t* hil_controls)
+static inline uint16_t mavlink_msg_hil_controls_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_hil_controls_t* hil_controls)
 {
     return mavlink_msg_hil_controls_pack_status(system_id, component_id, _status, msg,  hil_controls->time_usec, hil_controls->roll_ailerons, hil_controls->pitch_elevator, hil_controls->yaw_rudder, hil_controls->throttle, hil_controls->aux1, hil_controls->aux2, hil_controls->aux3, hil_controls->aux4, hil_controls->mode, hil_controls->nav_mode);
 }
@@ -539,4 +539,5 @@ static inline void mavlink_msg_hil_controls_decode(const mavlink_message_t* msg,
         memset(hil_controls, 0, MAVLINK_MSG_ID_HIL_CONTROLS_LEN);
     memcpy(hil_controls, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

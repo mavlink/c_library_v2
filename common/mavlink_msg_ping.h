@@ -58,14 +58,14 @@ typedef struct __mavlink_ping_t {
  * @param target_component  0: request ping from all receiving components. If greater than 0: message is a ping response and number is the component id of the requesting component.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_ping_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint64_t time_usec, uint32_t seq, uint8_t target_system, uint8_t target_component)
+static inline uint16_t mavlink_msg_ping_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
+                               uint64_t time_usec, uint32_t seq, uint32_t target_system, uint8_t target_component)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_PING_LEN];
     _mav_put_uint64_t(buf, 0, time_usec);
     _mav_put_uint32_t(buf, 8, seq);
-    _mav_put_uint8_t(buf, 12, target_system);
+    _mav_put_uint8_t(buf, 12, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 13, target_component);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_PING_LEN);
@@ -73,14 +73,14 @@ static inline uint16_t mavlink_msg_ping_pack(uint8_t system_id, uint8_t componen
     mavlink_ping_t packet;
     packet.time_usec = time_usec;
     packet.seq = seq;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PING_LEN);
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_PING;
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, MAVLINK_MSG_ID_PING_CRC);
+    return mavlink_finalize_message_target(msg, system_id, component_id, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, MAVLINK_MSG_ID_PING_CRC, target_system);
 }
 
 /**
@@ -96,14 +96,14 @@ static inline uint16_t mavlink_msg_ping_pack(uint8_t system_id, uint8_t componen
  * @param target_component  0: request ping from all receiving components. If greater than 0: message is a ping response and number is the component id of the requesting component.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_ping_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               uint64_t time_usec, uint32_t seq, uint8_t target_system, uint8_t target_component)
+static inline uint16_t mavlink_msg_ping_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint64_t time_usec, uint32_t seq, uint32_t target_system, uint8_t target_component)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_PING_LEN];
     _mav_put_uint64_t(buf, 0, time_usec);
     _mav_put_uint32_t(buf, 8, seq);
-    _mav_put_uint8_t(buf, 12, target_system);
+    _mav_put_uint8_t(buf, 12, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 13, target_component);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_PING_LEN);
@@ -111,7 +111,7 @@ static inline uint16_t mavlink_msg_ping_pack_status(uint8_t system_id, uint8_t c
     mavlink_ping_t packet;
     packet.time_usec = time_usec;
     packet.seq = seq;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PING_LEN);
@@ -119,9 +119,9 @@ static inline uint16_t mavlink_msg_ping_pack_status(uint8_t system_id, uint8_t c
 
     msg->msgid = MAVLINK_MSG_ID_PING;
 #if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, MAVLINK_MSG_ID_PING_CRC);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, MAVLINK_MSG_ID_PING_CRC, target_system);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, 0, target_system);
 #endif
 }
 
@@ -137,15 +137,15 @@ static inline uint16_t mavlink_msg_ping_pack_status(uint8_t system_id, uint8_t c
  * @param target_component  0: request ping from all receiving components. If greater than 0: message is a ping response and number is the component id of the requesting component.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_ping_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_ping_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint64_t time_usec,uint32_t seq,uint8_t target_system,uint8_t target_component)
+                                   uint64_t time_usec,uint32_t seq,uint32_t target_system,uint8_t target_component)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_PING_LEN];
     _mav_put_uint64_t(buf, 0, time_usec);
     _mav_put_uint32_t(buf, 8, seq);
-    _mav_put_uint8_t(buf, 12, target_system);
+    _mav_put_uint8_t(buf, 12, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 13, target_component);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_PING_LEN);
@@ -153,14 +153,14 @@ static inline uint16_t mavlink_msg_ping_pack_chan(uint8_t system_id, uint8_t com
     mavlink_ping_t packet;
     packet.time_usec = time_usec;
     packet.seq = seq;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PING_LEN);
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_PING;
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, MAVLINK_MSG_ID_PING_CRC);
+    return mavlink_finalize_message_chan_target(msg, system_id, component_id, chan, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, MAVLINK_MSG_ID_PING_CRC, target_system);
 }
 
 /**
@@ -171,7 +171,7 @@ static inline uint16_t mavlink_msg_ping_pack_chan(uint8_t system_id, uint8_t com
  * @param msg The MAVLink message to compress the data into
  * @param ping C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_ping_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_ping_t* ping)
+static inline uint16_t mavlink_msg_ping_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_ping_t* ping)
 {
     return mavlink_msg_ping_pack(system_id, component_id, msg, ping->time_usec, ping->seq, ping->target_system, ping->target_component);
 }
@@ -185,7 +185,7 @@ static inline uint16_t mavlink_msg_ping_encode(uint8_t system_id, uint8_t compon
  * @param msg The MAVLink message to compress the data into
  * @param ping C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_ping_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_ping_t* ping)
+static inline uint16_t mavlink_msg_ping_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_ping_t* ping)
 {
     return mavlink_msg_ping_pack_chan(system_id, component_id, chan, msg, ping->time_usec, ping->seq, ping->target_system, ping->target_component);
 }
@@ -199,7 +199,7 @@ static inline uint16_t mavlink_msg_ping_encode_chan(uint8_t system_id, uint8_t c
  * @param msg The MAVLink message to compress the data into
  * @param ping C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_ping_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_ping_t* ping)
+static inline uint16_t mavlink_msg_ping_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_ping_t* ping)
 {
     return mavlink_msg_ping_pack_status(system_id, component_id, _status, msg,  ping->time_usec, ping->seq, ping->target_system, ping->target_component);
 }
@@ -215,24 +215,24 @@ static inline uint16_t mavlink_msg_ping_encode_status(uint8_t system_id, uint8_t
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_ping_send(mavlink_channel_t chan, uint64_t time_usec, uint32_t seq, uint8_t target_system, uint8_t target_component)
+static inline void mavlink_msg_ping_send(mavlink_channel_t chan, uint64_t time_usec, uint32_t seq, uint32_t target_system, uint8_t target_component)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_PING_LEN];
     _mav_put_uint64_t(buf, 0, time_usec);
     _mav_put_uint32_t(buf, 8, seq);
-    _mav_put_uint8_t(buf, 12, target_system);
+    _mav_put_uint8_t(buf, 12, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 13, target_component);
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PING, buf, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, MAVLINK_MSG_ID_PING_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_PING, buf, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, MAVLINK_MSG_ID_PING_CRC, target_system);
 #else
     mavlink_ping_t packet;
     packet.time_usec = time_usec;
     packet.seq = seq;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PING, (const char *)&packet, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, MAVLINK_MSG_ID_PING_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_PING, (const char *)&packet, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, MAVLINK_MSG_ID_PING_CRC, target_system);
 #endif
 }
 
@@ -258,24 +258,24 @@ static inline void mavlink_msg_ping_send_struct(mavlink_channel_t chan, const ma
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_ping_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, uint32_t seq, uint8_t target_system, uint8_t target_component)
+static inline void mavlink_msg_ping_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, uint32_t seq, uint32_t target_system, uint8_t target_component)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_uint64_t(buf, 0, time_usec);
     _mav_put_uint32_t(buf, 8, seq);
-    _mav_put_uint8_t(buf, 12, target_system);
+    _mav_put_uint8_t(buf, 12, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 13, target_component);
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PING, buf, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, MAVLINK_MSG_ID_PING_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_PING, buf, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, MAVLINK_MSG_ID_PING_CRC, target_system);
 #else
     mavlink_ping_t *packet = (mavlink_ping_t *)msgbuf;
     packet->time_usec = time_usec;
     packet->seq = seq;
-    packet->target_system = target_system;
+    packet->target_system = mavlink_msg_target_field(target_system);
     packet->target_component = target_component;
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PING, (const char *)packet, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, MAVLINK_MSG_ID_PING_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_PING, (const char *)packet, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, MAVLINK_MSG_ID_PING_CRC, target_system);
 #endif
 }
 #endif
@@ -306,16 +306,6 @@ static inline uint32_t mavlink_msg_ping_get_seq(const mavlink_message_t* msg)
 }
 
 /**
- * @brief Get field target_system from ping message
- *
- * @return  0: request ping from all receiving systems. If greater than 0: message is a ping response and number is the system id of the requesting system
- */
-static inline uint8_t mavlink_msg_ping_get_target_system(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint8_t(msg,  12);
-}
-
-/**
  * @brief Get field target_component from ping message
  *
  * @return  0: request ping from all receiving components. If greater than 0: message is a ping response and number is the component id of the requesting component.
@@ -336,11 +326,18 @@ static inline void mavlink_msg_ping_decode(const mavlink_message_t* msg, mavlink
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     ping->time_usec = mavlink_msg_ping_get_time_usec(msg);
     ping->seq = mavlink_msg_ping_get_seq(msg);
-    ping->target_system = mavlink_msg_ping_get_target_system(msg);
+    ping->target_system = _MAV_RETURN_uint8_t(msg, 12);
     ping->target_component = mavlink_msg_ping_get_target_component(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_PING_LEN? msg->len : MAVLINK_MSG_ID_PING_LEN;
         memset(ping, 0, MAVLINK_MSG_ID_PING_LEN);
     memcpy(ping, _MAV_PAYLOAD(msg), len);
 #endif
+    if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
+        // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
+        // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
+        // To relay after edits, pass that full target to _pack*(); _encode*() loses it.
+        ping->target_system = mavlink_msg_target_field(msg->target_sysid);
+    }
+
 }

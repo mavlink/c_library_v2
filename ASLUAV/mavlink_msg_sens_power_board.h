@@ -90,7 +90,7 @@ typedef struct __mavlink_sens_power_board_t {
  * @param pwr_brd_aux_amp [A] Power board aux current sensor
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_sens_power_board_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_sens_power_board_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint64_t timestamp, uint8_t pwr_brd_status, uint8_t pwr_brd_led_status, float pwr_brd_system_volt, float pwr_brd_servo_volt, float pwr_brd_digital_volt, float pwr_brd_mot_l_amp, float pwr_brd_mot_r_amp, float pwr_brd_analog_amp, float pwr_brd_digital_amp, float pwr_brd_ext_amp, float pwr_brd_aux_amp)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -152,7 +152,7 @@ static inline uint16_t mavlink_msg_sens_power_board_pack(uint8_t system_id, uint
  * @param pwr_brd_aux_amp [A] Power board aux current sensor
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_sens_power_board_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_sens_power_board_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint64_t timestamp, uint8_t pwr_brd_status, uint8_t pwr_brd_led_status, float pwr_brd_system_volt, float pwr_brd_servo_volt, float pwr_brd_digital_volt, float pwr_brd_mot_l_amp, float pwr_brd_mot_r_amp, float pwr_brd_analog_amp, float pwr_brd_digital_amp, float pwr_brd_ext_amp, float pwr_brd_aux_amp)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -193,7 +193,7 @@ static inline uint16_t mavlink_msg_sens_power_board_pack_status(uint8_t system_i
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SENS_POWER_BOARD_MIN_LEN, MAVLINK_MSG_ID_SENS_POWER_BOARD_LEN, MAVLINK_MSG_ID_SENS_POWER_BOARD_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SENS_POWER_BOARD_MIN_LEN, MAVLINK_MSG_ID_SENS_POWER_BOARD_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SENS_POWER_BOARD_MIN_LEN, MAVLINK_MSG_ID_SENS_POWER_BOARD_LEN, 0);
 #endif
 }
 
@@ -217,7 +217,7 @@ static inline uint16_t mavlink_msg_sens_power_board_pack_status(uint8_t system_i
  * @param pwr_brd_aux_amp [A] Power board aux current sensor
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_sens_power_board_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_sens_power_board_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint64_t timestamp,uint8_t pwr_brd_status,uint8_t pwr_brd_led_status,float pwr_brd_system_volt,float pwr_brd_servo_volt,float pwr_brd_digital_volt,float pwr_brd_mot_l_amp,float pwr_brd_mot_r_amp,float pwr_brd_analog_amp,float pwr_brd_digital_amp,float pwr_brd_ext_amp,float pwr_brd_aux_amp)
 {
@@ -267,7 +267,7 @@ static inline uint16_t mavlink_msg_sens_power_board_pack_chan(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param sens_power_board C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_sens_power_board_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_sens_power_board_t* sens_power_board)
+static inline uint16_t mavlink_msg_sens_power_board_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_sens_power_board_t* sens_power_board)
 {
     return mavlink_msg_sens_power_board_pack(system_id, component_id, msg, sens_power_board->timestamp, sens_power_board->pwr_brd_status, sens_power_board->pwr_brd_led_status, sens_power_board->pwr_brd_system_volt, sens_power_board->pwr_brd_servo_volt, sens_power_board->pwr_brd_digital_volt, sens_power_board->pwr_brd_mot_l_amp, sens_power_board->pwr_brd_mot_r_amp, sens_power_board->pwr_brd_analog_amp, sens_power_board->pwr_brd_digital_amp, sens_power_board->pwr_brd_ext_amp, sens_power_board->pwr_brd_aux_amp);
 }
@@ -281,7 +281,7 @@ static inline uint16_t mavlink_msg_sens_power_board_encode(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param sens_power_board C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_sens_power_board_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_sens_power_board_t* sens_power_board)
+static inline uint16_t mavlink_msg_sens_power_board_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_sens_power_board_t* sens_power_board)
 {
     return mavlink_msg_sens_power_board_pack_chan(system_id, component_id, chan, msg, sens_power_board->timestamp, sens_power_board->pwr_brd_status, sens_power_board->pwr_brd_led_status, sens_power_board->pwr_brd_system_volt, sens_power_board->pwr_brd_servo_volt, sens_power_board->pwr_brd_digital_volt, sens_power_board->pwr_brd_mot_l_amp, sens_power_board->pwr_brd_mot_r_amp, sens_power_board->pwr_brd_analog_amp, sens_power_board->pwr_brd_digital_amp, sens_power_board->pwr_brd_ext_amp, sens_power_board->pwr_brd_aux_amp);
 }
@@ -295,7 +295,7 @@ static inline uint16_t mavlink_msg_sens_power_board_encode_chan(uint8_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param sens_power_board C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_sens_power_board_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_sens_power_board_t* sens_power_board)
+static inline uint16_t mavlink_msg_sens_power_board_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_sens_power_board_t* sens_power_board)
 {
     return mavlink_msg_sens_power_board_pack_status(system_id, component_id, _status, msg,  sens_power_board->timestamp, sens_power_board->pwr_brd_status, sens_power_board->pwr_brd_led_status, sens_power_board->pwr_brd_system_volt, sens_power_board->pwr_brd_servo_volt, sens_power_board->pwr_brd_digital_volt, sens_power_board->pwr_brd_mot_l_amp, sens_power_board->pwr_brd_mot_r_amp, sens_power_board->pwr_brd_analog_amp, sens_power_board->pwr_brd_digital_amp, sens_power_board->pwr_brd_ext_amp, sens_power_board->pwr_brd_aux_amp);
 }
@@ -567,4 +567,5 @@ static inline void mavlink_msg_sens_power_board_decode(const mavlink_message_t* 
         memset(sens_power_board, 0, MAVLINK_MSG_ID_SENS_POWER_BOARD_LEN);
     memcpy(sens_power_board, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

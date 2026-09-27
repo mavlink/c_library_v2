@@ -54,7 +54,7 @@ typedef struct __mavlink_actuator_control_target_t {
  * @param controls  Actuator controls. Normed to -1..+1 where 0 is neutral position. Throttle for single rotation direction motors is 0..1, negative range for reverse direction. Standard mapping for attitude controls (group 0): (index 0-7): roll, pitch, yaw, throttle, flaps, spoilers, airbrakes, landing gear. Load a pass-through mixer to repurpose them as generic outputs.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_actuator_control_target_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_actuator_control_target_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint64_t time_usec, uint8_t group_mlx, const float *controls)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -87,7 +87,7 @@ static inline uint16_t mavlink_msg_actuator_control_target_pack(uint8_t system_i
  * @param controls  Actuator controls. Normed to -1..+1 where 0 is neutral position. Throttle for single rotation direction motors is 0..1, negative range for reverse direction. Standard mapping for attitude controls (group 0): (index 0-7): roll, pitch, yaw, throttle, flaps, spoilers, airbrakes, landing gear. Load a pass-through mixer to repurpose them as generic outputs.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_actuator_control_target_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_actuator_control_target_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint64_t time_usec, uint8_t group_mlx, const float *controls)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -108,7 +108,7 @@ static inline uint16_t mavlink_msg_actuator_control_target_pack_status(uint8_t s
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_MIN_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_MIN_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_MIN_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN, 0);
 #endif
 }
 
@@ -123,7 +123,7 @@ static inline uint16_t mavlink_msg_actuator_control_target_pack_status(uint8_t s
  * @param controls  Actuator controls. Normed to -1..+1 where 0 is neutral position. Throttle for single rotation direction motors is 0..1, negative range for reverse direction. Standard mapping for attitude controls (group 0): (index 0-7): roll, pitch, yaw, throttle, flaps, spoilers, airbrakes, landing gear. Load a pass-through mixer to repurpose them as generic outputs.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_actuator_control_target_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_actuator_control_target_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint64_t time_usec,uint8_t group_mlx,const float *controls)
 {
@@ -153,7 +153,7 @@ static inline uint16_t mavlink_msg_actuator_control_target_pack_chan(uint8_t sys
  * @param msg The MAVLink message to compress the data into
  * @param actuator_control_target C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_actuator_control_target_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_actuator_control_target_t* actuator_control_target)
+static inline uint16_t mavlink_msg_actuator_control_target_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_actuator_control_target_t* actuator_control_target)
 {
     return mavlink_msg_actuator_control_target_pack(system_id, component_id, msg, actuator_control_target->time_usec, actuator_control_target->group_mlx, actuator_control_target->controls);
 }
@@ -167,7 +167,7 @@ static inline uint16_t mavlink_msg_actuator_control_target_encode(uint8_t system
  * @param msg The MAVLink message to compress the data into
  * @param actuator_control_target C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_actuator_control_target_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_actuator_control_target_t* actuator_control_target)
+static inline uint16_t mavlink_msg_actuator_control_target_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_actuator_control_target_t* actuator_control_target)
 {
     return mavlink_msg_actuator_control_target_pack_chan(system_id, component_id, chan, msg, actuator_control_target->time_usec, actuator_control_target->group_mlx, actuator_control_target->controls);
 }
@@ -181,7 +181,7 @@ static inline uint16_t mavlink_msg_actuator_control_target_encode_chan(uint8_t s
  * @param msg The MAVLink message to compress the data into
  * @param actuator_control_target C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_actuator_control_target_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_actuator_control_target_t* actuator_control_target)
+static inline uint16_t mavlink_msg_actuator_control_target_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_actuator_control_target_t* actuator_control_target)
 {
     return mavlink_msg_actuator_control_target_pack_status(system_id, component_id, _status, msg,  actuator_control_target->time_usec, actuator_control_target->group_mlx, actuator_control_target->controls);
 }
@@ -305,4 +305,5 @@ static inline void mavlink_msg_actuator_control_target_decode(const mavlink_mess
         memset(actuator_control_target, 0, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN);
     memcpy(actuator_control_target, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

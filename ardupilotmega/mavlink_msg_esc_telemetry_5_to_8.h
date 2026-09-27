@@ -71,7 +71,7 @@ typedef struct __mavlink_esc_telemetry_5_to_8_t {
  * @param count  count of telemetry packets received (wraps at 65535).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_esc_telemetry_5_to_8_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_esc_telemetry_5_to_8_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                const uint8_t *temperature, const uint16_t *voltage, const uint16_t *current, const uint16_t *totalcurrent, const uint16_t *rpm, const uint16_t *count)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -115,7 +115,7 @@ static inline uint16_t mavlink_msg_esc_telemetry_5_to_8_pack(uint8_t system_id, 
  * @param count  count of telemetry packets received (wraps at 65535).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_esc_telemetry_5_to_8_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_esc_telemetry_5_to_8_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                const uint8_t *temperature, const uint16_t *voltage, const uint16_t *current, const uint16_t *totalcurrent, const uint16_t *rpm, const uint16_t *count)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -144,7 +144,7 @@ static inline uint16_t mavlink_msg_esc_telemetry_5_to_8_pack_status(uint8_t syst
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ESC_TELEMETRY_5_TO_8_MIN_LEN, MAVLINK_MSG_ID_ESC_TELEMETRY_5_TO_8_LEN, MAVLINK_MSG_ID_ESC_TELEMETRY_5_TO_8_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ESC_TELEMETRY_5_TO_8_MIN_LEN, MAVLINK_MSG_ID_ESC_TELEMETRY_5_TO_8_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ESC_TELEMETRY_5_TO_8_MIN_LEN, MAVLINK_MSG_ID_ESC_TELEMETRY_5_TO_8_LEN, 0);
 #endif
 }
 
@@ -162,7 +162,7 @@ static inline uint16_t mavlink_msg_esc_telemetry_5_to_8_pack_status(uint8_t syst
  * @param count  count of telemetry packets received (wraps at 65535).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_esc_telemetry_5_to_8_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_esc_telemetry_5_to_8_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    const uint8_t *temperature,const uint16_t *voltage,const uint16_t *current,const uint16_t *totalcurrent,const uint16_t *rpm,const uint16_t *count)
 {
@@ -200,7 +200,7 @@ static inline uint16_t mavlink_msg_esc_telemetry_5_to_8_pack_chan(uint8_t system
  * @param msg The MAVLink message to compress the data into
  * @param esc_telemetry_5_to_8 C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_esc_telemetry_5_to_8_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_esc_telemetry_5_to_8_t* esc_telemetry_5_to_8)
+static inline uint16_t mavlink_msg_esc_telemetry_5_to_8_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_esc_telemetry_5_to_8_t* esc_telemetry_5_to_8)
 {
     return mavlink_msg_esc_telemetry_5_to_8_pack(system_id, component_id, msg, esc_telemetry_5_to_8->temperature, esc_telemetry_5_to_8->voltage, esc_telemetry_5_to_8->current, esc_telemetry_5_to_8->totalcurrent, esc_telemetry_5_to_8->rpm, esc_telemetry_5_to_8->count);
 }
@@ -214,7 +214,7 @@ static inline uint16_t mavlink_msg_esc_telemetry_5_to_8_encode(uint8_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param esc_telemetry_5_to_8 C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_esc_telemetry_5_to_8_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_esc_telemetry_5_to_8_t* esc_telemetry_5_to_8)
+static inline uint16_t mavlink_msg_esc_telemetry_5_to_8_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_esc_telemetry_5_to_8_t* esc_telemetry_5_to_8)
 {
     return mavlink_msg_esc_telemetry_5_to_8_pack_chan(system_id, component_id, chan, msg, esc_telemetry_5_to_8->temperature, esc_telemetry_5_to_8->voltage, esc_telemetry_5_to_8->current, esc_telemetry_5_to_8->totalcurrent, esc_telemetry_5_to_8->rpm, esc_telemetry_5_to_8->count);
 }
@@ -228,7 +228,7 @@ static inline uint16_t mavlink_msg_esc_telemetry_5_to_8_encode_chan(uint8_t syst
  * @param msg The MAVLink message to compress the data into
  * @param esc_telemetry_5_to_8 C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_esc_telemetry_5_to_8_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_esc_telemetry_5_to_8_t* esc_telemetry_5_to_8)
+static inline uint16_t mavlink_msg_esc_telemetry_5_to_8_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_esc_telemetry_5_to_8_t* esc_telemetry_5_to_8)
 {
     return mavlink_msg_esc_telemetry_5_to_8_pack_status(system_id, component_id, _status, msg,  esc_telemetry_5_to_8->temperature, esc_telemetry_5_to_8->voltage, esc_telemetry_5_to_8->current, esc_telemetry_5_to_8->totalcurrent, esc_telemetry_5_to_8->rpm, esc_telemetry_5_to_8->count);
 }
@@ -404,4 +404,5 @@ static inline void mavlink_msg_esc_telemetry_5_to_8_decode(const mavlink_message
         memset(esc_telemetry_5_to_8, 0, MAVLINK_MSG_ID_ESC_TELEMETRY_5_TO_8_LEN);
     memcpy(esc_telemetry_5_to_8, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

@@ -62,7 +62,7 @@ typedef struct __mavlink_led_strip_state_t {
  * @param colors  Array of 32-bit color values (0xWWRRGGBB).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_led_strip_state_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_led_strip_state_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t length, uint8_t index, uint8_t id, uint8_t following_flight_mode, const uint32_t *colors)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -101,7 +101,7 @@ static inline uint16_t mavlink_msg_led_strip_state_pack(uint8_t system_id, uint8
  * @param colors  Array of 32-bit color values (0xWWRRGGBB).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_led_strip_state_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_led_strip_state_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t length, uint8_t index, uint8_t id, uint8_t following_flight_mode, const uint32_t *colors)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -126,7 +126,7 @@ static inline uint16_t mavlink_msg_led_strip_state_pack_status(uint8_t system_id
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_LED_STRIP_STATE_MIN_LEN, MAVLINK_MSG_ID_LED_STRIP_STATE_LEN, MAVLINK_MSG_ID_LED_STRIP_STATE_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_LED_STRIP_STATE_MIN_LEN, MAVLINK_MSG_ID_LED_STRIP_STATE_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_LED_STRIP_STATE_MIN_LEN, MAVLINK_MSG_ID_LED_STRIP_STATE_LEN, 0);
 #endif
 }
 
@@ -143,7 +143,7 @@ static inline uint16_t mavlink_msg_led_strip_state_pack_status(uint8_t system_id
  * @param colors  Array of 32-bit color values (0xWWRRGGBB).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_led_strip_state_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_led_strip_state_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t length,uint8_t index,uint8_t id,uint8_t following_flight_mode,const uint32_t *colors)
 {
@@ -177,7 +177,7 @@ static inline uint16_t mavlink_msg_led_strip_state_pack_chan(uint8_t system_id, 
  * @param msg The MAVLink message to compress the data into
  * @param led_strip_state C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_led_strip_state_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_led_strip_state_t* led_strip_state)
+static inline uint16_t mavlink_msg_led_strip_state_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_led_strip_state_t* led_strip_state)
 {
     return mavlink_msg_led_strip_state_pack(system_id, component_id, msg, led_strip_state->length, led_strip_state->index, led_strip_state->id, led_strip_state->following_flight_mode, led_strip_state->colors);
 }
@@ -191,7 +191,7 @@ static inline uint16_t mavlink_msg_led_strip_state_encode(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param led_strip_state C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_led_strip_state_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_led_strip_state_t* led_strip_state)
+static inline uint16_t mavlink_msg_led_strip_state_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_led_strip_state_t* led_strip_state)
 {
     return mavlink_msg_led_strip_state_pack_chan(system_id, component_id, chan, msg, led_strip_state->length, led_strip_state->index, led_strip_state->id, led_strip_state->following_flight_mode, led_strip_state->colors);
 }
@@ -205,7 +205,7 @@ static inline uint16_t mavlink_msg_led_strip_state_encode_chan(uint8_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param led_strip_state C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_led_strip_state_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_led_strip_state_t* led_strip_state)
+static inline uint16_t mavlink_msg_led_strip_state_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_led_strip_state_t* led_strip_state)
 {
     return mavlink_msg_led_strip_state_pack_status(system_id, component_id, _status, msg,  led_strip_state->length, led_strip_state->index, led_strip_state->id, led_strip_state->following_flight_mode, led_strip_state->colors);
 }
@@ -361,4 +361,5 @@ static inline void mavlink_msg_led_strip_state_decode(const mavlink_message_t* m
         memset(led_strip_state, 0, MAVLINK_MSG_ID_LED_STRIP_STATE_LEN);
     memcpy(led_strip_state, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

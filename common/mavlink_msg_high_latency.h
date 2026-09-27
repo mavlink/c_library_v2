@@ -138,7 +138,7 @@ typedef struct __mavlink_high_latency_t {
  * @param wp_distance [m] distance to target
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_high_latency_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_high_latency_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t base_mode, uint32_t custom_mode, uint8_t landed_state, int16_t roll, int16_t pitch, uint16_t heading, int8_t throttle, int16_t heading_sp, int32_t latitude, int32_t longitude, int16_t altitude_amsl, int16_t altitude_sp, uint8_t airspeed, uint8_t airspeed_sp, uint8_t groundspeed, int8_t climb_rate, uint8_t gps_nsat, uint8_t gps_fix_type, uint8_t battery_remaining, int8_t temperature, int8_t temperature_air, uint8_t failsafe, uint8_t wp_num, uint16_t wp_distance)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -236,7 +236,7 @@ static inline uint16_t mavlink_msg_high_latency_pack(uint8_t system_id, uint8_t 
  * @param wp_distance [m] distance to target
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_high_latency_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_high_latency_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t base_mode, uint32_t custom_mode, uint8_t landed_state, int16_t roll, int16_t pitch, uint16_t heading, int8_t throttle, int16_t heading_sp, int32_t latitude, int32_t longitude, int16_t altitude_amsl, int16_t altitude_sp, uint8_t airspeed, uint8_t airspeed_sp, uint8_t groundspeed, int8_t climb_rate, uint8_t gps_nsat, uint8_t gps_fix_type, uint8_t battery_remaining, int8_t temperature, int8_t temperature_air, uint8_t failsafe, uint8_t wp_num, uint16_t wp_distance)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -301,7 +301,7 @@ static inline uint16_t mavlink_msg_high_latency_pack_status(uint8_t system_id, u
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_HIGH_LATENCY_MIN_LEN, MAVLINK_MSG_ID_HIGH_LATENCY_LEN, MAVLINK_MSG_ID_HIGH_LATENCY_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_HIGH_LATENCY_MIN_LEN, MAVLINK_MSG_ID_HIGH_LATENCY_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_HIGH_LATENCY_MIN_LEN, MAVLINK_MSG_ID_HIGH_LATENCY_LEN, 0);
 #endif
 }
 
@@ -337,7 +337,7 @@ static inline uint16_t mavlink_msg_high_latency_pack_status(uint8_t system_id, u
  * @param wp_distance [m] distance to target
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_high_latency_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_high_latency_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t base_mode,uint32_t custom_mode,uint8_t landed_state,int16_t roll,int16_t pitch,uint16_t heading,int8_t throttle,int16_t heading_sp,int32_t latitude,int32_t longitude,int16_t altitude_amsl,int16_t altitude_sp,uint8_t airspeed,uint8_t airspeed_sp,uint8_t groundspeed,int8_t climb_rate,uint8_t gps_nsat,uint8_t gps_fix_type,uint8_t battery_remaining,int8_t temperature,int8_t temperature_air,uint8_t failsafe,uint8_t wp_num,uint16_t wp_distance)
 {
@@ -411,7 +411,7 @@ static inline uint16_t mavlink_msg_high_latency_pack_chan(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param high_latency C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_high_latency_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_high_latency_t* high_latency)
+static inline uint16_t mavlink_msg_high_latency_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_high_latency_t* high_latency)
 {
     return mavlink_msg_high_latency_pack(system_id, component_id, msg, high_latency->base_mode, high_latency->custom_mode, high_latency->landed_state, high_latency->roll, high_latency->pitch, high_latency->heading, high_latency->throttle, high_latency->heading_sp, high_latency->latitude, high_latency->longitude, high_latency->altitude_amsl, high_latency->altitude_sp, high_latency->airspeed, high_latency->airspeed_sp, high_latency->groundspeed, high_latency->climb_rate, high_latency->gps_nsat, high_latency->gps_fix_type, high_latency->battery_remaining, high_latency->temperature, high_latency->temperature_air, high_latency->failsafe, high_latency->wp_num, high_latency->wp_distance);
 }
@@ -425,7 +425,7 @@ static inline uint16_t mavlink_msg_high_latency_encode(uint8_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param high_latency C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_high_latency_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_high_latency_t* high_latency)
+static inline uint16_t mavlink_msg_high_latency_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_high_latency_t* high_latency)
 {
     return mavlink_msg_high_latency_pack_chan(system_id, component_id, chan, msg, high_latency->base_mode, high_latency->custom_mode, high_latency->landed_state, high_latency->roll, high_latency->pitch, high_latency->heading, high_latency->throttle, high_latency->heading_sp, high_latency->latitude, high_latency->longitude, high_latency->altitude_amsl, high_latency->altitude_sp, high_latency->airspeed, high_latency->airspeed_sp, high_latency->groundspeed, high_latency->climb_rate, high_latency->gps_nsat, high_latency->gps_fix_type, high_latency->battery_remaining, high_latency->temperature, high_latency->temperature_air, high_latency->failsafe, high_latency->wp_num, high_latency->wp_distance);
 }
@@ -439,7 +439,7 @@ static inline uint16_t mavlink_msg_high_latency_encode_chan(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param high_latency C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_high_latency_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_high_latency_t* high_latency)
+static inline uint16_t mavlink_msg_high_latency_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_high_latency_t* high_latency)
 {
     return mavlink_msg_high_latency_pack_status(system_id, component_id, _status, msg,  high_latency->base_mode, high_latency->custom_mode, high_latency->landed_state, high_latency->roll, high_latency->pitch, high_latency->heading, high_latency->throttle, high_latency->heading_sp, high_latency->latitude, high_latency->longitude, high_latency->altitude_amsl, high_latency->altitude_sp, high_latency->airspeed, high_latency->airspeed_sp, high_latency->groundspeed, high_latency->climb_rate, high_latency->gps_nsat, high_latency->gps_fix_type, high_latency->battery_remaining, high_latency->temperature, high_latency->temperature_air, high_latency->failsafe, high_latency->wp_num, high_latency->wp_distance);
 }
@@ -903,4 +903,5 @@ static inline void mavlink_msg_high_latency_decode(const mavlink_message_t* msg,
         memset(high_latency, 0, MAVLINK_MSG_ID_HIGH_LATENCY_LEN);
     memcpy(high_latency, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

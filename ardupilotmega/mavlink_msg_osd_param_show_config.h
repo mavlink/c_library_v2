@@ -62,13 +62,13 @@ typedef struct __mavlink_osd_param_show_config_t {
  * @param osd_index  OSD parameter display index.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_osd_param_show_config_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint32_t request_id, uint8_t osd_screen, uint8_t osd_index)
+static inline uint16_t mavlink_msg_osd_param_show_config_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, uint32_t request_id, uint8_t osd_screen, uint8_t osd_index)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN];
     _mav_put_uint32_t(buf, 0, request_id);
-    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 4, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 5, target_component);
     _mav_put_uint8_t(buf, 6, osd_screen);
     _mav_put_uint8_t(buf, 7, osd_index);
@@ -77,7 +77,7 @@ static inline uint16_t mavlink_msg_osd_param_show_config_pack(uint8_t system_id,
 #else
     mavlink_osd_param_show_config_t packet;
     packet.request_id = request_id;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.osd_screen = osd_screen;
     packet.osd_index = osd_index;
@@ -86,7 +86,7 @@ static inline uint16_t mavlink_msg_osd_param_show_config_pack(uint8_t system_id,
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG;
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_CRC);
+    return mavlink_finalize_message_target(msg, system_id, component_id, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_CRC, target_system);
 }
 
 /**
@@ -103,13 +103,13 @@ static inline uint16_t mavlink_msg_osd_param_show_config_pack(uint8_t system_id,
  * @param osd_index  OSD parameter display index.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_osd_param_show_config_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint32_t request_id, uint8_t osd_screen, uint8_t osd_index)
+static inline uint16_t mavlink_msg_osd_param_show_config_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, uint32_t request_id, uint8_t osd_screen, uint8_t osd_index)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN];
     _mav_put_uint32_t(buf, 0, request_id);
-    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 4, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 5, target_component);
     _mav_put_uint8_t(buf, 6, osd_screen);
     _mav_put_uint8_t(buf, 7, osd_index);
@@ -118,7 +118,7 @@ static inline uint16_t mavlink_msg_osd_param_show_config_pack_status(uint8_t sys
 #else
     mavlink_osd_param_show_config_t packet;
     packet.request_id = request_id;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.osd_screen = osd_screen;
     packet.osd_index = osd_index;
@@ -128,9 +128,9 @@ static inline uint16_t mavlink_msg_osd_param_show_config_pack_status(uint8_t sys
 
     msg->msgid = MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG;
 #if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_CRC);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_CRC, target_system);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN, 0, target_system);
 #endif
 }
 
@@ -147,14 +147,14 @@ static inline uint16_t mavlink_msg_osd_param_show_config_pack_status(uint8_t sys
  * @param osd_index  OSD parameter display index.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_osd_param_show_config_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_osd_param_show_config_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t target_system,uint8_t target_component,uint32_t request_id,uint8_t osd_screen,uint8_t osd_index)
+                                   uint32_t target_system,uint8_t target_component,uint32_t request_id,uint8_t osd_screen,uint8_t osd_index)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN];
     _mav_put_uint32_t(buf, 0, request_id);
-    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 4, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 5, target_component);
     _mav_put_uint8_t(buf, 6, osd_screen);
     _mav_put_uint8_t(buf, 7, osd_index);
@@ -163,7 +163,7 @@ static inline uint16_t mavlink_msg_osd_param_show_config_pack_chan(uint8_t syste
 #else
     mavlink_osd_param_show_config_t packet;
     packet.request_id = request_id;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.osd_screen = osd_screen;
     packet.osd_index = osd_index;
@@ -172,7 +172,7 @@ static inline uint16_t mavlink_msg_osd_param_show_config_pack_chan(uint8_t syste
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG;
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_CRC);
+    return mavlink_finalize_message_chan_target(msg, system_id, component_id, chan, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_CRC, target_system);
 }
 
 /**
@@ -183,7 +183,7 @@ static inline uint16_t mavlink_msg_osd_param_show_config_pack_chan(uint8_t syste
  * @param msg The MAVLink message to compress the data into
  * @param osd_param_show_config C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_osd_param_show_config_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_osd_param_show_config_t* osd_param_show_config)
+static inline uint16_t mavlink_msg_osd_param_show_config_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_osd_param_show_config_t* osd_param_show_config)
 {
     return mavlink_msg_osd_param_show_config_pack(system_id, component_id, msg, osd_param_show_config->target_system, osd_param_show_config->target_component, osd_param_show_config->request_id, osd_param_show_config->osd_screen, osd_param_show_config->osd_index);
 }
@@ -197,7 +197,7 @@ static inline uint16_t mavlink_msg_osd_param_show_config_encode(uint8_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param osd_param_show_config C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_osd_param_show_config_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_osd_param_show_config_t* osd_param_show_config)
+static inline uint16_t mavlink_msg_osd_param_show_config_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_osd_param_show_config_t* osd_param_show_config)
 {
     return mavlink_msg_osd_param_show_config_pack_chan(system_id, component_id, chan, msg, osd_param_show_config->target_system, osd_param_show_config->target_component, osd_param_show_config->request_id, osd_param_show_config->osd_screen, osd_param_show_config->osd_index);
 }
@@ -211,7 +211,7 @@ static inline uint16_t mavlink_msg_osd_param_show_config_encode_chan(uint8_t sys
  * @param msg The MAVLink message to compress the data into
  * @param osd_param_show_config C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_osd_param_show_config_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_osd_param_show_config_t* osd_param_show_config)
+static inline uint16_t mavlink_msg_osd_param_show_config_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_osd_param_show_config_t* osd_param_show_config)
 {
     return mavlink_msg_osd_param_show_config_pack_status(system_id, component_id, _status, msg,  osd_param_show_config->target_system, osd_param_show_config->target_component, osd_param_show_config->request_id, osd_param_show_config->osd_screen, osd_param_show_config->osd_index);
 }
@@ -228,26 +228,26 @@ static inline uint16_t mavlink_msg_osd_param_show_config_encode_status(uint8_t s
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_osd_param_show_config_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint32_t request_id, uint8_t osd_screen, uint8_t osd_index)
+static inline void mavlink_msg_osd_param_show_config_send(mavlink_channel_t chan, uint32_t target_system, uint8_t target_component, uint32_t request_id, uint8_t osd_screen, uint8_t osd_index)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN];
     _mav_put_uint32_t(buf, 0, request_id);
-    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 4, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 5, target_component);
     _mav_put_uint8_t(buf, 6, osd_screen);
     _mav_put_uint8_t(buf, 7, osd_index);
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG, buf, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG, buf, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_CRC, target_system);
 #else
     mavlink_osd_param_show_config_t packet;
     packet.request_id = request_id;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.osd_screen = osd_screen;
     packet.osd_index = osd_index;
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG, (const char *)&packet, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG, (const char *)&packet, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_CRC, target_system);
 #endif
 }
 
@@ -273,26 +273,26 @@ static inline void mavlink_msg_osd_param_show_config_send_struct(mavlink_channel
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_osd_param_show_config_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, uint32_t request_id, uint8_t osd_screen, uint8_t osd_index)
+static inline void mavlink_msg_osd_param_show_config_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t target_system, uint8_t target_component, uint32_t request_id, uint8_t osd_screen, uint8_t osd_index)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_uint32_t(buf, 0, request_id);
-    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 4, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 5, target_component);
     _mav_put_uint8_t(buf, 6, osd_screen);
     _mav_put_uint8_t(buf, 7, osd_index);
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG, buf, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG, buf, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_CRC, target_system);
 #else
     mavlink_osd_param_show_config_t *packet = (mavlink_osd_param_show_config_t *)msgbuf;
     packet->request_id = request_id;
-    packet->target_system = target_system;
+    packet->target_system = mavlink_msg_target_field(target_system);
     packet->target_component = target_component;
     packet->osd_screen = osd_screen;
     packet->osd_index = osd_index;
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG, (const char *)packet, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG, (const char *)packet, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_MIN_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_CRC, target_system);
 #endif
 }
 #endif
@@ -301,16 +301,6 @@ static inline void mavlink_msg_osd_param_show_config_send_buf(mavlink_message_t 
 
 // MESSAGE OSD_PARAM_SHOW_CONFIG UNPACKING
 
-
-/**
- * @brief Get field target_system from osd_param_show_config message
- *
- * @return  System ID.
- */
-static inline uint8_t mavlink_msg_osd_param_show_config_get_target_system(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint8_t(msg,  4);
-}
 
 /**
  * @brief Get field target_component from osd_param_show_config message
@@ -362,7 +352,7 @@ static inline void mavlink_msg_osd_param_show_config_decode(const mavlink_messag
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     osd_param_show_config->request_id = mavlink_msg_osd_param_show_config_get_request_id(msg);
-    osd_param_show_config->target_system = mavlink_msg_osd_param_show_config_get_target_system(msg);
+    osd_param_show_config->target_system = _MAV_RETURN_uint8_t(msg, 4);
     osd_param_show_config->target_component = mavlink_msg_osd_param_show_config_get_target_component(msg);
     osd_param_show_config->osd_screen = mavlink_msg_osd_param_show_config_get_osd_screen(msg);
     osd_param_show_config->osd_index = mavlink_msg_osd_param_show_config_get_osd_index(msg);
@@ -371,4 +361,11 @@ static inline void mavlink_msg_osd_param_show_config_decode(const mavlink_messag
         memset(osd_param_show_config, 0, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN);
     memcpy(osd_param_show_config, _MAV_PAYLOAD(msg), len);
 #endif
+    if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
+        // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
+        // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
+        // To relay after edits, pass that full target to _pack*(); _encode*() loses it.
+        osd_param_show_config->target_system = mavlink_msg_target_field(msg->target_sysid);
+    }
+
 }

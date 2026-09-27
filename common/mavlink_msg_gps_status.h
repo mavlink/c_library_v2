@@ -70,7 +70,7 @@ typedef struct __mavlink_gps_status_t {
  * @param satellite_snr [dB] Signal to noise ratio of satellite
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_gps_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_gps_status_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t satellites_visible, const uint8_t *satellite_prn, const uint8_t *satellite_used, const uint8_t *satellite_elevation, const uint8_t *satellite_azimuth, const uint8_t *satellite_snr)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -112,7 +112,7 @@ static inline uint16_t mavlink_msg_gps_status_pack(uint8_t system_id, uint8_t co
  * @param satellite_snr [dB] Signal to noise ratio of satellite
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_gps_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_gps_status_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t satellites_visible, const uint8_t *satellite_prn, const uint8_t *satellite_used, const uint8_t *satellite_elevation, const uint8_t *satellite_azimuth, const uint8_t *satellite_snr)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -139,7 +139,7 @@ static inline uint16_t mavlink_msg_gps_status_pack_status(uint8_t system_id, uin
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GPS_STATUS_MIN_LEN, MAVLINK_MSG_ID_GPS_STATUS_LEN, MAVLINK_MSG_ID_GPS_STATUS_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GPS_STATUS_MIN_LEN, MAVLINK_MSG_ID_GPS_STATUS_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GPS_STATUS_MIN_LEN, MAVLINK_MSG_ID_GPS_STATUS_LEN, 0);
 #endif
 }
 
@@ -157,7 +157,7 @@ static inline uint16_t mavlink_msg_gps_status_pack_status(uint8_t system_id, uin
  * @param satellite_snr [dB] Signal to noise ratio of satellite
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_gps_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_gps_status_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t satellites_visible,const uint8_t *satellite_prn,const uint8_t *satellite_used,const uint8_t *satellite_elevation,const uint8_t *satellite_azimuth,const uint8_t *satellite_snr)
 {
@@ -193,7 +193,7 @@ static inline uint16_t mavlink_msg_gps_status_pack_chan(uint8_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param gps_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gps_status_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_gps_status_t* gps_status)
+static inline uint16_t mavlink_msg_gps_status_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_gps_status_t* gps_status)
 {
     return mavlink_msg_gps_status_pack(system_id, component_id, msg, gps_status->satellites_visible, gps_status->satellite_prn, gps_status->satellite_used, gps_status->satellite_elevation, gps_status->satellite_azimuth, gps_status->satellite_snr);
 }
@@ -207,7 +207,7 @@ static inline uint16_t mavlink_msg_gps_status_encode(uint8_t system_id, uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param gps_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gps_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gps_status_t* gps_status)
+static inline uint16_t mavlink_msg_gps_status_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gps_status_t* gps_status)
 {
     return mavlink_msg_gps_status_pack_chan(system_id, component_id, chan, msg, gps_status->satellites_visible, gps_status->satellite_prn, gps_status->satellite_used, gps_status->satellite_elevation, gps_status->satellite_azimuth, gps_status->satellite_snr);
 }
@@ -221,7 +221,7 @@ static inline uint16_t mavlink_msg_gps_status_encode_chan(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param gps_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gps_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_gps_status_t* gps_status)
+static inline uint16_t mavlink_msg_gps_status_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_gps_status_t* gps_status)
 {
     return mavlink_msg_gps_status_pack_status(system_id, component_id, _status, msg,  gps_status->satellites_visible, gps_status->satellite_prn, gps_status->satellite_used, gps_status->satellite_elevation, gps_status->satellite_azimuth, gps_status->satellite_snr);
 }
@@ -393,4 +393,5 @@ static inline void mavlink_msg_gps_status_decode(const mavlink_message_t* msg, m
         memset(gps_status, 0, MAVLINK_MSG_ID_GPS_STATUS_LEN);
     memcpy(gps_status, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

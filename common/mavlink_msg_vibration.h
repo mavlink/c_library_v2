@@ -70,7 +70,7 @@ typedef struct __mavlink_vibration_t {
  * @param clipping_2  third accelerometer clipping count
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_vibration_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_vibration_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint64_t time_usec, float vibration_x, float vibration_y, float vibration_z, uint32_t clipping_0, uint32_t clipping_1, uint32_t clipping_2)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -117,7 +117,7 @@ static inline uint16_t mavlink_msg_vibration_pack(uint8_t system_id, uint8_t com
  * @param clipping_2  third accelerometer clipping count
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_vibration_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_vibration_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint64_t time_usec, float vibration_x, float vibration_y, float vibration_z, uint32_t clipping_0, uint32_t clipping_1, uint32_t clipping_2)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -148,7 +148,7 @@ static inline uint16_t mavlink_msg_vibration_pack_status(uint8_t system_id, uint
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_VIBRATION_MIN_LEN, MAVLINK_MSG_ID_VIBRATION_LEN, MAVLINK_MSG_ID_VIBRATION_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_VIBRATION_MIN_LEN, MAVLINK_MSG_ID_VIBRATION_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_VIBRATION_MIN_LEN, MAVLINK_MSG_ID_VIBRATION_LEN, 0);
 #endif
 }
 
@@ -167,7 +167,7 @@ static inline uint16_t mavlink_msg_vibration_pack_status(uint8_t system_id, uint
  * @param clipping_2  third accelerometer clipping count
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_vibration_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_vibration_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint64_t time_usec,float vibration_x,float vibration_y,float vibration_z,uint32_t clipping_0,uint32_t clipping_1,uint32_t clipping_2)
 {
@@ -207,7 +207,7 @@ static inline uint16_t mavlink_msg_vibration_pack_chan(uint8_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param vibration C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_vibration_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_vibration_t* vibration)
+static inline uint16_t mavlink_msg_vibration_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_vibration_t* vibration)
 {
     return mavlink_msg_vibration_pack(system_id, component_id, msg, vibration->time_usec, vibration->vibration_x, vibration->vibration_y, vibration->vibration_z, vibration->clipping_0, vibration->clipping_1, vibration->clipping_2);
 }
@@ -221,7 +221,7 @@ static inline uint16_t mavlink_msg_vibration_encode(uint8_t system_id, uint8_t c
  * @param msg The MAVLink message to compress the data into
  * @param vibration C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_vibration_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_vibration_t* vibration)
+static inline uint16_t mavlink_msg_vibration_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_vibration_t* vibration)
 {
     return mavlink_msg_vibration_pack_chan(system_id, component_id, chan, msg, vibration->time_usec, vibration->vibration_x, vibration->vibration_y, vibration->vibration_z, vibration->clipping_0, vibration->clipping_1, vibration->clipping_2);
 }
@@ -235,7 +235,7 @@ static inline uint16_t mavlink_msg_vibration_encode_chan(uint8_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  * @param vibration C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_vibration_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_vibration_t* vibration)
+static inline uint16_t mavlink_msg_vibration_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_vibration_t* vibration)
 {
     return mavlink_msg_vibration_pack_status(system_id, component_id, _status, msg,  vibration->time_usec, vibration->vibration_x, vibration->vibration_y, vibration->vibration_z, vibration->clipping_0, vibration->clipping_1, vibration->clipping_2);
 }
@@ -427,4 +427,5 @@ static inline void mavlink_msg_vibration_decode(const mavlink_message_t* msg, ma
         memset(vibration, 0, MAVLINK_MSG_ID_VIBRATION_LEN);
     memcpy(vibration, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

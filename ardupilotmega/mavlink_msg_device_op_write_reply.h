@@ -50,7 +50,7 @@ typedef struct __mavlink_device_op_write_reply_t {
  * @param result  0 for success, anything else is failure code.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_device_op_write_reply_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_device_op_write_reply_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint32_t request_id, uint8_t result)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -82,7 +82,7 @@ static inline uint16_t mavlink_msg_device_op_write_reply_pack(uint8_t system_id,
  * @param result  0 for success, anything else is failure code.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_device_op_write_reply_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_device_op_write_reply_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint32_t request_id, uint8_t result)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -103,7 +103,7 @@ static inline uint16_t mavlink_msg_device_op_write_reply_pack_status(uint8_t sys
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_DEVICE_OP_WRITE_REPLY_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_WRITE_REPLY_LEN, MAVLINK_MSG_ID_DEVICE_OP_WRITE_REPLY_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_DEVICE_OP_WRITE_REPLY_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_WRITE_REPLY_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_DEVICE_OP_WRITE_REPLY_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_WRITE_REPLY_LEN, 0);
 #endif
 }
 
@@ -117,7 +117,7 @@ static inline uint16_t mavlink_msg_device_op_write_reply_pack_status(uint8_t sys
  * @param result  0 for success, anything else is failure code.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_device_op_write_reply_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_device_op_write_reply_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint32_t request_id,uint8_t result)
 {
@@ -147,7 +147,7 @@ static inline uint16_t mavlink_msg_device_op_write_reply_pack_chan(uint8_t syste
  * @param msg The MAVLink message to compress the data into
  * @param device_op_write_reply C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_device_op_write_reply_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_device_op_write_reply_t* device_op_write_reply)
+static inline uint16_t mavlink_msg_device_op_write_reply_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_device_op_write_reply_t* device_op_write_reply)
 {
     return mavlink_msg_device_op_write_reply_pack(system_id, component_id, msg, device_op_write_reply->request_id, device_op_write_reply->result);
 }
@@ -161,7 +161,7 @@ static inline uint16_t mavlink_msg_device_op_write_reply_encode(uint8_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param device_op_write_reply C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_device_op_write_reply_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_device_op_write_reply_t* device_op_write_reply)
+static inline uint16_t mavlink_msg_device_op_write_reply_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_device_op_write_reply_t* device_op_write_reply)
 {
     return mavlink_msg_device_op_write_reply_pack_chan(system_id, component_id, chan, msg, device_op_write_reply->request_id, device_op_write_reply->result);
 }
@@ -175,7 +175,7 @@ static inline uint16_t mavlink_msg_device_op_write_reply_encode_chan(uint8_t sys
  * @param msg The MAVLink message to compress the data into
  * @param device_op_write_reply C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_device_op_write_reply_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_device_op_write_reply_t* device_op_write_reply)
+static inline uint16_t mavlink_msg_device_op_write_reply_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_device_op_write_reply_t* device_op_write_reply)
 {
     return mavlink_msg_device_op_write_reply_pack_status(system_id, component_id, _status, msg,  device_op_write_reply->request_id, device_op_write_reply->result);
 }
@@ -287,4 +287,5 @@ static inline void mavlink_msg_device_op_write_reply_decode(const mavlink_messag
         memset(device_op_write_reply, 0, MAVLINK_MSG_ID_DEVICE_OP_WRITE_REPLY_LEN);
     memcpy(device_op_write_reply, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

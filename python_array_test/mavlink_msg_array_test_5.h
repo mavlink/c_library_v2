@@ -51,7 +51,7 @@ typedef struct __mavlink_array_test_5_t {
  * @param c2  Value array
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_array_test_5_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_array_test_5_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                const char *c1, const char *c2)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -83,7 +83,7 @@ static inline uint16_t mavlink_msg_array_test_5_pack(uint8_t system_id, uint8_t 
  * @param c2  Value array
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_array_test_5_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_array_test_5_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                const char *c1, const char *c2)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -104,7 +104,7 @@ static inline uint16_t mavlink_msg_array_test_5_pack_status(uint8_t system_id, u
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ARRAY_TEST_5_MIN_LEN, MAVLINK_MSG_ID_ARRAY_TEST_5_LEN, MAVLINK_MSG_ID_ARRAY_TEST_5_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ARRAY_TEST_5_MIN_LEN, MAVLINK_MSG_ID_ARRAY_TEST_5_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ARRAY_TEST_5_MIN_LEN, MAVLINK_MSG_ID_ARRAY_TEST_5_LEN, 0);
 #endif
 }
 
@@ -118,7 +118,7 @@ static inline uint16_t mavlink_msg_array_test_5_pack_status(uint8_t system_id, u
  * @param c2  Value array
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_array_test_5_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_array_test_5_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    const char *c1,const char *c2)
 {
@@ -148,7 +148,7 @@ static inline uint16_t mavlink_msg_array_test_5_pack_chan(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param array_test_5 C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_array_test_5_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_array_test_5_t* array_test_5)
+static inline uint16_t mavlink_msg_array_test_5_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_array_test_5_t* array_test_5)
 {
     return mavlink_msg_array_test_5_pack(system_id, component_id, msg, array_test_5->c1, array_test_5->c2);
 }
@@ -162,7 +162,7 @@ static inline uint16_t mavlink_msg_array_test_5_encode(uint8_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param array_test_5 C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_array_test_5_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_array_test_5_t* array_test_5)
+static inline uint16_t mavlink_msg_array_test_5_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_array_test_5_t* array_test_5)
 {
     return mavlink_msg_array_test_5_pack_chan(system_id, component_id, chan, msg, array_test_5->c1, array_test_5->c2);
 }
@@ -176,7 +176,7 @@ static inline uint16_t mavlink_msg_array_test_5_encode_chan(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param array_test_5 C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_array_test_5_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_array_test_5_t* array_test_5)
+static inline uint16_t mavlink_msg_array_test_5_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_array_test_5_t* array_test_5)
 {
     return mavlink_msg_array_test_5_pack_status(system_id, component_id, _status, msg,  array_test_5->c1, array_test_5->c2);
 }
@@ -288,4 +288,5 @@ static inline void mavlink_msg_array_test_5_decode(const mavlink_message_t* msg,
         memset(array_test_5, 0, MAVLINK_MSG_ID_ARRAY_TEST_5_LEN);
     memcpy(array_test_5, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

@@ -54,7 +54,7 @@ typedef struct __mavlink_control_status_t {
  * @param gcs_secondary  System IDs from which the system can receive state-changing commands/messages in multi-control mode. All values should be zero for single-owner mode.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_control_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_control_status_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t flags, uint8_t gcs_main, const uint8_t *gcs_secondary)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -87,7 +87,7 @@ static inline uint16_t mavlink_msg_control_status_pack(uint8_t system_id, uint8_
  * @param gcs_secondary  System IDs from which the system can receive state-changing commands/messages in multi-control mode. All values should be zero for single-owner mode.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_control_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_control_status_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t flags, uint8_t gcs_main, const uint8_t *gcs_secondary)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -108,7 +108,7 @@ static inline uint16_t mavlink_msg_control_status_pack_status(uint8_t system_id,
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CONTROL_STATUS_MIN_LEN, MAVLINK_MSG_ID_CONTROL_STATUS_LEN, MAVLINK_MSG_ID_CONTROL_STATUS_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CONTROL_STATUS_MIN_LEN, MAVLINK_MSG_ID_CONTROL_STATUS_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CONTROL_STATUS_MIN_LEN, MAVLINK_MSG_ID_CONTROL_STATUS_LEN, 0);
 #endif
 }
 
@@ -123,7 +123,7 @@ static inline uint16_t mavlink_msg_control_status_pack_status(uint8_t system_id,
  * @param gcs_secondary  System IDs from which the system can receive state-changing commands/messages in multi-control mode. All values should be zero for single-owner mode.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_control_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_control_status_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t flags,uint8_t gcs_main,const uint8_t *gcs_secondary)
 {
@@ -153,7 +153,7 @@ static inline uint16_t mavlink_msg_control_status_pack_chan(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param control_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_control_status_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_control_status_t* control_status)
+static inline uint16_t mavlink_msg_control_status_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_control_status_t* control_status)
 {
     return mavlink_msg_control_status_pack(system_id, component_id, msg, control_status->flags, control_status->gcs_main, control_status->gcs_secondary);
 }
@@ -167,7 +167,7 @@ static inline uint16_t mavlink_msg_control_status_encode(uint8_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  * @param control_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_control_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_control_status_t* control_status)
+static inline uint16_t mavlink_msg_control_status_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_control_status_t* control_status)
 {
     return mavlink_msg_control_status_pack_chan(system_id, component_id, chan, msg, control_status->flags, control_status->gcs_main, control_status->gcs_secondary);
 }
@@ -181,7 +181,7 @@ static inline uint16_t mavlink_msg_control_status_encode_chan(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param control_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_control_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_control_status_t* control_status)
+static inline uint16_t mavlink_msg_control_status_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_control_status_t* control_status)
 {
     return mavlink_msg_control_status_pack_status(system_id, component_id, _status, msg,  control_status->flags, control_status->gcs_main, control_status->gcs_secondary);
 }
@@ -305,4 +305,5 @@ static inline void mavlink_msg_control_status_decode(const mavlink_message_t* ms
         memset(control_status, 0, MAVLINK_MSG_ID_CONTROL_STATUS_LEN);
     memcpy(control_status, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

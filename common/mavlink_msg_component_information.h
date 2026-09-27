@@ -63,7 +63,7 @@ typedef struct __mavlink_component_information_t {
  * @param peripherals_metadata_uri  (Optional) MAVLink FTP URI for the peripherals metadata file (COMP_METADATA_TYPE_PERIPHERALS), which may be compressed with xz. This contains data about "attached components" such as UAVCAN nodes. The peripherals are in a separate file because the information must be generated dynamically at runtime. The string needs to be zero terminated.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_component_information_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_component_information_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint32_t time_boot_ms, uint32_t general_metadata_file_crc, const char *general_metadata_uri, uint32_t peripherals_metadata_file_crc, const char *peripherals_metadata_uri)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -102,7 +102,7 @@ static inline uint16_t mavlink_msg_component_information_pack(uint8_t system_id,
  * @param peripherals_metadata_uri  (Optional) MAVLink FTP URI for the peripherals metadata file (COMP_METADATA_TYPE_PERIPHERALS), which may be compressed with xz. This contains data about "attached components" such as UAVCAN nodes. The peripherals are in a separate file because the information must be generated dynamically at runtime. The string needs to be zero terminated.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_component_information_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_component_information_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint32_t time_boot_ms, uint32_t general_metadata_file_crc, const char *general_metadata_uri, uint32_t peripherals_metadata_file_crc, const char *peripherals_metadata_uri)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -127,7 +127,7 @@ static inline uint16_t mavlink_msg_component_information_pack_status(uint8_t sys
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_COMPONENT_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_COMPONENT_INFORMATION_LEN, MAVLINK_MSG_ID_COMPONENT_INFORMATION_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_COMPONENT_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_COMPONENT_INFORMATION_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_COMPONENT_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_COMPONENT_INFORMATION_LEN, 0);
 #endif
 }
 
@@ -144,7 +144,7 @@ static inline uint16_t mavlink_msg_component_information_pack_status(uint8_t sys
  * @param peripherals_metadata_uri  (Optional) MAVLink FTP URI for the peripherals metadata file (COMP_METADATA_TYPE_PERIPHERALS), which may be compressed with xz. This contains data about "attached components" such as UAVCAN nodes. The peripherals are in a separate file because the information must be generated dynamically at runtime. The string needs to be zero terminated.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_component_information_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_component_information_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint32_t time_boot_ms,uint32_t general_metadata_file_crc,const char *general_metadata_uri,uint32_t peripherals_metadata_file_crc,const char *peripherals_metadata_uri)
 {
@@ -178,7 +178,7 @@ static inline uint16_t mavlink_msg_component_information_pack_chan(uint8_t syste
  * @param msg The MAVLink message to compress the data into
  * @param component_information C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_component_information_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_component_information_t* component_information)
+static inline uint16_t mavlink_msg_component_information_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_component_information_t* component_information)
 {
     return mavlink_msg_component_information_pack(system_id, component_id, msg, component_information->time_boot_ms, component_information->general_metadata_file_crc, component_information->general_metadata_uri, component_information->peripherals_metadata_file_crc, component_information->peripherals_metadata_uri);
 }
@@ -192,7 +192,7 @@ static inline uint16_t mavlink_msg_component_information_encode(uint8_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param component_information C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_component_information_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_component_information_t* component_information)
+static inline uint16_t mavlink_msg_component_information_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_component_information_t* component_information)
 {
     return mavlink_msg_component_information_pack_chan(system_id, component_id, chan, msg, component_information->time_boot_ms, component_information->general_metadata_file_crc, component_information->general_metadata_uri, component_information->peripherals_metadata_file_crc, component_information->peripherals_metadata_uri);
 }
@@ -206,7 +206,7 @@ static inline uint16_t mavlink_msg_component_information_encode_chan(uint8_t sys
  * @param msg The MAVLink message to compress the data into
  * @param component_information C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_component_information_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_component_information_t* component_information)
+static inline uint16_t mavlink_msg_component_information_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_component_information_t* component_information)
 {
     return mavlink_msg_component_information_pack_status(system_id, component_id, _status, msg,  component_information->time_boot_ms, component_information->general_metadata_file_crc, component_information->general_metadata_uri, component_information->peripherals_metadata_file_crc, component_information->peripherals_metadata_uri);
 }
@@ -362,4 +362,5 @@ static inline void mavlink_msg_component_information_decode(const mavlink_messag
         memset(component_information, 0, MAVLINK_MSG_ID_COMPONENT_INFORMATION_LEN);
     memcpy(component_information, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

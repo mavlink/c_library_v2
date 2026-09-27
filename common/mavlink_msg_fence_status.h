@@ -62,7 +62,7 @@ typedef struct __mavlink_fence_status_t {
  * @param breach_mitigation  Active action to prevent fence breach
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_fence_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_fence_status_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t breach_status, uint16_t breach_count, uint8_t breach_type, uint32_t breach_time, uint8_t breach_mitigation)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -103,7 +103,7 @@ static inline uint16_t mavlink_msg_fence_status_pack(uint8_t system_id, uint8_t 
  * @param breach_mitigation  Active action to prevent fence breach
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_fence_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_fence_status_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t breach_status, uint16_t breach_count, uint8_t breach_type, uint32_t breach_time, uint8_t breach_mitigation)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -130,7 +130,7 @@ static inline uint16_t mavlink_msg_fence_status_pack_status(uint8_t system_id, u
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_FENCE_STATUS_MIN_LEN, MAVLINK_MSG_ID_FENCE_STATUS_LEN, MAVLINK_MSG_ID_FENCE_STATUS_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_FENCE_STATUS_MIN_LEN, MAVLINK_MSG_ID_FENCE_STATUS_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_FENCE_STATUS_MIN_LEN, MAVLINK_MSG_ID_FENCE_STATUS_LEN, 0);
 #endif
 }
 
@@ -147,7 +147,7 @@ static inline uint16_t mavlink_msg_fence_status_pack_status(uint8_t system_id, u
  * @param breach_mitigation  Active action to prevent fence breach
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_fence_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_fence_status_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t breach_status,uint16_t breach_count,uint8_t breach_type,uint32_t breach_time,uint8_t breach_mitigation)
 {
@@ -183,7 +183,7 @@ static inline uint16_t mavlink_msg_fence_status_pack_chan(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param fence_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_fence_status_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_fence_status_t* fence_status)
+static inline uint16_t mavlink_msg_fence_status_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_fence_status_t* fence_status)
 {
     return mavlink_msg_fence_status_pack(system_id, component_id, msg, fence_status->breach_status, fence_status->breach_count, fence_status->breach_type, fence_status->breach_time, fence_status->breach_mitigation);
 }
@@ -197,7 +197,7 @@ static inline uint16_t mavlink_msg_fence_status_encode(uint8_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param fence_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_fence_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_fence_status_t* fence_status)
+static inline uint16_t mavlink_msg_fence_status_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_fence_status_t* fence_status)
 {
     return mavlink_msg_fence_status_pack_chan(system_id, component_id, chan, msg, fence_status->breach_status, fence_status->breach_count, fence_status->breach_type, fence_status->breach_time, fence_status->breach_mitigation);
 }
@@ -211,7 +211,7 @@ static inline uint16_t mavlink_msg_fence_status_encode_chan(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param fence_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_fence_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_fence_status_t* fence_status)
+static inline uint16_t mavlink_msg_fence_status_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_fence_status_t* fence_status)
 {
     return mavlink_msg_fence_status_pack_status(system_id, component_id, _status, msg,  fence_status->breach_status, fence_status->breach_count, fence_status->breach_type, fence_status->breach_time, fence_status->breach_mitigation);
 }
@@ -371,4 +371,5 @@ static inline void mavlink_msg_fence_status_decode(const mavlink_message_t* msg,
         memset(fence_status, 0, MAVLINK_MSG_ID_FENCE_STATUS_LEN);
     memcpy(fence_status, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

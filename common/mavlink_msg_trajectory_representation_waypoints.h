@@ -109,7 +109,7 @@ typedef struct __mavlink_trajectory_representation_waypoints_t {
  * @param command  MAV_CMD command id of waypoint, set to UINT16_MAX if not being used.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint64_t time_usec, uint8_t valid_points, const float *pos_x, const float *pos_y, const float *pos_z, const float *vel_x, const float *vel_y, const float *vel_z, const float *acc_x, const float *acc_y, const float *acc_z, const float *pos_yaw, const float *vel_yaw, const uint16_t *command)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -175,7 +175,7 @@ static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack(uint
  * @param command  MAV_CMD command id of waypoint, set to UINT16_MAX if not being used.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint64_t time_usec, uint8_t valid_points, const float *pos_x, const float *pos_y, const float *pos_z, const float *vel_x, const float *vel_y, const float *vel_z, const float *acc_x, const float *acc_y, const float *acc_z, const float *pos_yaw, const float *vel_yaw, const uint16_t *command)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -218,7 +218,7 @@ static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack_stat
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_MIN_LEN, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_MIN_LEN, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_MIN_LEN, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN, 0);
 #endif
 }
 
@@ -244,7 +244,7 @@ static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack_stat
  * @param command  MAV_CMD command id of waypoint, set to UINT16_MAX if not being used.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint64_t time_usec,uint8_t valid_points,const float *pos_x,const float *pos_y,const float *pos_z,const float *vel_x,const float *vel_y,const float *vel_z,const float *acc_x,const float *acc_y,const float *acc_z,const float *pos_yaw,const float *vel_yaw,const uint16_t *command)
 {
@@ -296,7 +296,7 @@ static inline uint16_t mavlink_msg_trajectory_representation_waypoints_pack_chan
  * @param msg The MAVLink message to compress the data into
  * @param trajectory_representation_waypoints C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_trajectory_representation_waypoints_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_trajectory_representation_waypoints_t* trajectory_representation_waypoints)
+static inline uint16_t mavlink_msg_trajectory_representation_waypoints_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_trajectory_representation_waypoints_t* trajectory_representation_waypoints)
 {
     return mavlink_msg_trajectory_representation_waypoints_pack(system_id, component_id, msg, trajectory_representation_waypoints->time_usec, trajectory_representation_waypoints->valid_points, trajectory_representation_waypoints->pos_x, trajectory_representation_waypoints->pos_y, trajectory_representation_waypoints->pos_z, trajectory_representation_waypoints->vel_x, trajectory_representation_waypoints->vel_y, trajectory_representation_waypoints->vel_z, trajectory_representation_waypoints->acc_x, trajectory_representation_waypoints->acc_y, trajectory_representation_waypoints->acc_z, trajectory_representation_waypoints->pos_yaw, trajectory_representation_waypoints->vel_yaw, trajectory_representation_waypoints->command);
 }
@@ -310,7 +310,7 @@ static inline uint16_t mavlink_msg_trajectory_representation_waypoints_encode(ui
  * @param msg The MAVLink message to compress the data into
  * @param trajectory_representation_waypoints C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_trajectory_representation_waypoints_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_trajectory_representation_waypoints_t* trajectory_representation_waypoints)
+static inline uint16_t mavlink_msg_trajectory_representation_waypoints_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_trajectory_representation_waypoints_t* trajectory_representation_waypoints)
 {
     return mavlink_msg_trajectory_representation_waypoints_pack_chan(system_id, component_id, chan, msg, trajectory_representation_waypoints->time_usec, trajectory_representation_waypoints->valid_points, trajectory_representation_waypoints->pos_x, trajectory_representation_waypoints->pos_y, trajectory_representation_waypoints->pos_z, trajectory_representation_waypoints->vel_x, trajectory_representation_waypoints->vel_y, trajectory_representation_waypoints->vel_z, trajectory_representation_waypoints->acc_x, trajectory_representation_waypoints->acc_y, trajectory_representation_waypoints->acc_z, trajectory_representation_waypoints->pos_yaw, trajectory_representation_waypoints->vel_yaw, trajectory_representation_waypoints->command);
 }
@@ -324,7 +324,7 @@ static inline uint16_t mavlink_msg_trajectory_representation_waypoints_encode_ch
  * @param msg The MAVLink message to compress the data into
  * @param trajectory_representation_waypoints C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_trajectory_representation_waypoints_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_trajectory_representation_waypoints_t* trajectory_representation_waypoints)
+static inline uint16_t mavlink_msg_trajectory_representation_waypoints_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_trajectory_representation_waypoints_t* trajectory_representation_waypoints)
 {
     return mavlink_msg_trajectory_representation_waypoints_pack_status(system_id, component_id, _status, msg,  trajectory_representation_waypoints->time_usec, trajectory_representation_waypoints->valid_points, trajectory_representation_waypoints->pos_x, trajectory_representation_waypoints->pos_y, trajectory_representation_waypoints->pos_z, trajectory_representation_waypoints->vel_x, trajectory_representation_waypoints->vel_y, trajectory_representation_waypoints->vel_z, trajectory_representation_waypoints->acc_x, trajectory_representation_waypoints->acc_y, trajectory_representation_waypoints->acc_z, trajectory_representation_waypoints->pos_yaw, trajectory_representation_waypoints->vel_yaw, trajectory_representation_waypoints->command);
 }
@@ -624,4 +624,5 @@ static inline void mavlink_msg_trajectory_representation_waypoints_decode(const 
         memset(trajectory_representation_waypoints, 0, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN);
     memcpy(trajectory_representation_waypoints, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

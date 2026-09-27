@@ -54,7 +54,7 @@ typedef struct __mavlink_data32_t {
  * @param data  Raw data.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_data32_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_data32_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t type, uint8_t len, const uint8_t *data)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -87,7 +87,7 @@ static inline uint16_t mavlink_msg_data32_pack(uint8_t system_id, uint8_t compon
  * @param data  Raw data.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_data32_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_data32_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t type, uint8_t len, const uint8_t *data)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -108,7 +108,7 @@ static inline uint16_t mavlink_msg_data32_pack_status(uint8_t system_id, uint8_t
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_DATA32_MIN_LEN, MAVLINK_MSG_ID_DATA32_LEN, MAVLINK_MSG_ID_DATA32_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_DATA32_MIN_LEN, MAVLINK_MSG_ID_DATA32_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_DATA32_MIN_LEN, MAVLINK_MSG_ID_DATA32_LEN, 0);
 #endif
 }
 
@@ -123,7 +123,7 @@ static inline uint16_t mavlink_msg_data32_pack_status(uint8_t system_id, uint8_t
  * @param data  Raw data.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_data32_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_data32_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t type,uint8_t len,const uint8_t *data)
 {
@@ -153,7 +153,7 @@ static inline uint16_t mavlink_msg_data32_pack_chan(uint8_t system_id, uint8_t c
  * @param msg The MAVLink message to compress the data into
  * @param data32 C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_data32_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_data32_t* data32)
+static inline uint16_t mavlink_msg_data32_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_data32_t* data32)
 {
     return mavlink_msg_data32_pack(system_id, component_id, msg, data32->type, data32->len, data32->data);
 }
@@ -167,7 +167,7 @@ static inline uint16_t mavlink_msg_data32_encode(uint8_t system_id, uint8_t comp
  * @param msg The MAVLink message to compress the data into
  * @param data32 C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_data32_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_data32_t* data32)
+static inline uint16_t mavlink_msg_data32_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_data32_t* data32)
 {
     return mavlink_msg_data32_pack_chan(system_id, component_id, chan, msg, data32->type, data32->len, data32->data);
 }
@@ -181,7 +181,7 @@ static inline uint16_t mavlink_msg_data32_encode_chan(uint8_t system_id, uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param data32 C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_data32_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_data32_t* data32)
+static inline uint16_t mavlink_msg_data32_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_data32_t* data32)
 {
     return mavlink_msg_data32_pack_status(system_id, component_id, _status, msg,  data32->type, data32->len, data32->data);
 }
@@ -305,4 +305,5 @@ static inline void mavlink_msg_data32_decode(const mavlink_message_t* msg, mavli
         memset(data32, 0, MAVLINK_MSG_ID_DATA32_LEN);
     memcpy(data32, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

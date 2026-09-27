@@ -82,7 +82,7 @@ typedef struct __mavlink_optical_flow_t {
  * @param flow_rate_y [rad/s] Flow rate about Y axis
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_optical_flow_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_optical_flow_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint64_t time_usec, uint8_t sensor_id, int16_t flow_x, int16_t flow_y, float flow_comp_m_x, float flow_comp_m_y, uint8_t quality, float ground_distance, float flow_rate_x, float flow_rate_y)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -138,7 +138,7 @@ static inline uint16_t mavlink_msg_optical_flow_pack(uint8_t system_id, uint8_t 
  * @param flow_rate_y [rad/s] Flow rate about Y axis
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_optical_flow_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_optical_flow_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint64_t time_usec, uint8_t sensor_id, int16_t flow_x, int16_t flow_y, float flow_comp_m_x, float flow_comp_m_y, uint8_t quality, float ground_distance, float flow_rate_x, float flow_rate_y)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -175,7 +175,7 @@ static inline uint16_t mavlink_msg_optical_flow_pack_status(uint8_t system_id, u
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_OPTICAL_FLOW_MIN_LEN, MAVLINK_MSG_ID_OPTICAL_FLOW_LEN, MAVLINK_MSG_ID_OPTICAL_FLOW_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_OPTICAL_FLOW_MIN_LEN, MAVLINK_MSG_ID_OPTICAL_FLOW_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_OPTICAL_FLOW_MIN_LEN, MAVLINK_MSG_ID_OPTICAL_FLOW_LEN, 0);
 #endif
 }
 
@@ -197,7 +197,7 @@ static inline uint16_t mavlink_msg_optical_flow_pack_status(uint8_t system_id, u
  * @param flow_rate_y [rad/s] Flow rate about Y axis
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_optical_flow_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_optical_flow_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint64_t time_usec,uint8_t sensor_id,int16_t flow_x,int16_t flow_y,float flow_comp_m_x,float flow_comp_m_y,uint8_t quality,float ground_distance,float flow_rate_x,float flow_rate_y)
 {
@@ -243,7 +243,7 @@ static inline uint16_t mavlink_msg_optical_flow_pack_chan(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param optical_flow C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_optical_flow_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_optical_flow_t* optical_flow)
+static inline uint16_t mavlink_msg_optical_flow_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_optical_flow_t* optical_flow)
 {
     return mavlink_msg_optical_flow_pack(system_id, component_id, msg, optical_flow->time_usec, optical_flow->sensor_id, optical_flow->flow_x, optical_flow->flow_y, optical_flow->flow_comp_m_x, optical_flow->flow_comp_m_y, optical_flow->quality, optical_flow->ground_distance, optical_flow->flow_rate_x, optical_flow->flow_rate_y);
 }
@@ -257,7 +257,7 @@ static inline uint16_t mavlink_msg_optical_flow_encode(uint8_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param optical_flow C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_optical_flow_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_optical_flow_t* optical_flow)
+static inline uint16_t mavlink_msg_optical_flow_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_optical_flow_t* optical_flow)
 {
     return mavlink_msg_optical_flow_pack_chan(system_id, component_id, chan, msg, optical_flow->time_usec, optical_flow->sensor_id, optical_flow->flow_x, optical_flow->flow_y, optical_flow->flow_comp_m_x, optical_flow->flow_comp_m_y, optical_flow->quality, optical_flow->ground_distance, optical_flow->flow_rate_x, optical_flow->flow_rate_y);
 }
@@ -271,7 +271,7 @@ static inline uint16_t mavlink_msg_optical_flow_encode_chan(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param optical_flow C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_optical_flow_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_optical_flow_t* optical_flow)
+static inline uint16_t mavlink_msg_optical_flow_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_optical_flow_t* optical_flow)
 {
     return mavlink_msg_optical_flow_pack_status(system_id, component_id, _status, msg,  optical_flow->time_usec, optical_flow->sensor_id, optical_flow->flow_x, optical_flow->flow_y, optical_flow->flow_comp_m_x, optical_flow->flow_comp_m_y, optical_flow->quality, optical_flow->ground_distance, optical_flow->flow_rate_x, optical_flow->flow_rate_y);
 }
@@ -511,4 +511,5 @@ static inline void mavlink_msg_optical_flow_decode(const mavlink_message_t* msg,
         memset(optical_flow, 0, MAVLINK_MSG_ID_OPTICAL_FLOW_LEN);
     memcpy(optical_flow, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

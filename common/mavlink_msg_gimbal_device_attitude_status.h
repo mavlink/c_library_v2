@@ -90,8 +90,8 @@ typedef struct __mavlink_gimbal_device_attitude_status_t {
  * @param gimbal_device_id  This field is to be used if the gimbal manager and the gimbal device are the same component and hence have the same component ID. This field is then set a number between 1-6. If the component ID is separate, this field is not required and must be set to 0.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_gimbal_device_attitude_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint32_t time_boot_ms, uint16_t flags, const float *q, float angular_velocity_x, float angular_velocity_y, float angular_velocity_z, uint32_t failure_flags, float delta_yaw, float delta_yaw_velocity, uint8_t gimbal_device_id)
+static inline uint16_t mavlink_msg_gimbal_device_attitude_status_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, uint32_t time_boot_ms, uint16_t flags, const float *q, float angular_velocity_x, float angular_velocity_y, float angular_velocity_z, uint32_t failure_flags, float delta_yaw, float delta_yaw_velocity, uint8_t gimbal_device_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN];
@@ -101,7 +101,7 @@ static inline uint16_t mavlink_msg_gimbal_device_attitude_status_pack(uint8_t sy
     _mav_put_float(buf, 28, angular_velocity_z);
     _mav_put_uint32_t(buf, 32, failure_flags);
     _mav_put_uint16_t(buf, 36, flags);
-    _mav_put_uint8_t(buf, 38, target_system);
+    _mav_put_uint8_t(buf, 38, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 39, target_component);
     _mav_put_float(buf, 40, delta_yaw);
     _mav_put_float(buf, 44, delta_yaw_velocity);
@@ -116,7 +116,7 @@ static inline uint16_t mavlink_msg_gimbal_device_attitude_status_pack(uint8_t sy
     packet.angular_velocity_z = angular_velocity_z;
     packet.failure_flags = failure_flags;
     packet.flags = flags;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.delta_yaw = delta_yaw;
     packet.delta_yaw_velocity = delta_yaw_velocity;
@@ -126,7 +126,7 @@ static inline uint16_t mavlink_msg_gimbal_device_attitude_status_pack(uint8_t sy
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS;
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_CRC);
+    return mavlink_finalize_message_target(msg, system_id, component_id, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_CRC, target_system);
 }
 
 /**
@@ -150,8 +150,8 @@ static inline uint16_t mavlink_msg_gimbal_device_attitude_status_pack(uint8_t sy
  * @param gimbal_device_id  This field is to be used if the gimbal manager and the gimbal device are the same component and hence have the same component ID. This field is then set a number between 1-6. If the component ID is separate, this field is not required and must be set to 0.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_gimbal_device_attitude_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint32_t time_boot_ms, uint16_t flags, const float *q, float angular_velocity_x, float angular_velocity_y, float angular_velocity_z, uint32_t failure_flags, float delta_yaw, float delta_yaw_velocity, uint8_t gimbal_device_id)
+static inline uint16_t mavlink_msg_gimbal_device_attitude_status_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, uint32_t time_boot_ms, uint16_t flags, const float *q, float angular_velocity_x, float angular_velocity_y, float angular_velocity_z, uint32_t failure_flags, float delta_yaw, float delta_yaw_velocity, uint8_t gimbal_device_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN];
@@ -161,7 +161,7 @@ static inline uint16_t mavlink_msg_gimbal_device_attitude_status_pack_status(uin
     _mav_put_float(buf, 28, angular_velocity_z);
     _mav_put_uint32_t(buf, 32, failure_flags);
     _mav_put_uint16_t(buf, 36, flags);
-    _mav_put_uint8_t(buf, 38, target_system);
+    _mav_put_uint8_t(buf, 38, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 39, target_component);
     _mav_put_float(buf, 40, delta_yaw);
     _mav_put_float(buf, 44, delta_yaw_velocity);
@@ -176,7 +176,7 @@ static inline uint16_t mavlink_msg_gimbal_device_attitude_status_pack_status(uin
     packet.angular_velocity_z = angular_velocity_z;
     packet.failure_flags = failure_flags;
     packet.flags = flags;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.delta_yaw = delta_yaw;
     packet.delta_yaw_velocity = delta_yaw_velocity;
@@ -187,9 +187,9 @@ static inline uint16_t mavlink_msg_gimbal_device_attitude_status_pack_status(uin
 
     msg->msgid = MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS;
 #if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_CRC);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_CRC, target_system);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN, 0, target_system);
 #endif
 }
 
@@ -213,9 +213,9 @@ static inline uint16_t mavlink_msg_gimbal_device_attitude_status_pack_status(uin
  * @param gimbal_device_id  This field is to be used if the gimbal manager and the gimbal device are the same component and hence have the same component ID. This field is then set a number between 1-6. If the component ID is separate, this field is not required and must be set to 0.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_gimbal_device_attitude_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_gimbal_device_attitude_status_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t target_system,uint8_t target_component,uint32_t time_boot_ms,uint16_t flags,const float *q,float angular_velocity_x,float angular_velocity_y,float angular_velocity_z,uint32_t failure_flags,float delta_yaw,float delta_yaw_velocity,uint8_t gimbal_device_id)
+                                   uint32_t target_system,uint8_t target_component,uint32_t time_boot_ms,uint16_t flags,const float *q,float angular_velocity_x,float angular_velocity_y,float angular_velocity_z,uint32_t failure_flags,float delta_yaw,float delta_yaw_velocity,uint8_t gimbal_device_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN];
@@ -225,7 +225,7 @@ static inline uint16_t mavlink_msg_gimbal_device_attitude_status_pack_chan(uint8
     _mav_put_float(buf, 28, angular_velocity_z);
     _mav_put_uint32_t(buf, 32, failure_flags);
     _mav_put_uint16_t(buf, 36, flags);
-    _mav_put_uint8_t(buf, 38, target_system);
+    _mav_put_uint8_t(buf, 38, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 39, target_component);
     _mav_put_float(buf, 40, delta_yaw);
     _mav_put_float(buf, 44, delta_yaw_velocity);
@@ -240,7 +240,7 @@ static inline uint16_t mavlink_msg_gimbal_device_attitude_status_pack_chan(uint8
     packet.angular_velocity_z = angular_velocity_z;
     packet.failure_flags = failure_flags;
     packet.flags = flags;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.delta_yaw = delta_yaw;
     packet.delta_yaw_velocity = delta_yaw_velocity;
@@ -250,7 +250,7 @@ static inline uint16_t mavlink_msg_gimbal_device_attitude_status_pack_chan(uint8
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS;
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_CRC);
+    return mavlink_finalize_message_chan_target(msg, system_id, component_id, chan, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_CRC, target_system);
 }
 
 /**
@@ -261,7 +261,7 @@ static inline uint16_t mavlink_msg_gimbal_device_attitude_status_pack_chan(uint8
  * @param msg The MAVLink message to compress the data into
  * @param gimbal_device_attitude_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gimbal_device_attitude_status_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_gimbal_device_attitude_status_t* gimbal_device_attitude_status)
+static inline uint16_t mavlink_msg_gimbal_device_attitude_status_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_gimbal_device_attitude_status_t* gimbal_device_attitude_status)
 {
     return mavlink_msg_gimbal_device_attitude_status_pack(system_id, component_id, msg, gimbal_device_attitude_status->target_system, gimbal_device_attitude_status->target_component, gimbal_device_attitude_status->time_boot_ms, gimbal_device_attitude_status->flags, gimbal_device_attitude_status->q, gimbal_device_attitude_status->angular_velocity_x, gimbal_device_attitude_status->angular_velocity_y, gimbal_device_attitude_status->angular_velocity_z, gimbal_device_attitude_status->failure_flags, gimbal_device_attitude_status->delta_yaw, gimbal_device_attitude_status->delta_yaw_velocity, gimbal_device_attitude_status->gimbal_device_id);
 }
@@ -275,7 +275,7 @@ static inline uint16_t mavlink_msg_gimbal_device_attitude_status_encode(uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param gimbal_device_attitude_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gimbal_device_attitude_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gimbal_device_attitude_status_t* gimbal_device_attitude_status)
+static inline uint16_t mavlink_msg_gimbal_device_attitude_status_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gimbal_device_attitude_status_t* gimbal_device_attitude_status)
 {
     return mavlink_msg_gimbal_device_attitude_status_pack_chan(system_id, component_id, chan, msg, gimbal_device_attitude_status->target_system, gimbal_device_attitude_status->target_component, gimbal_device_attitude_status->time_boot_ms, gimbal_device_attitude_status->flags, gimbal_device_attitude_status->q, gimbal_device_attitude_status->angular_velocity_x, gimbal_device_attitude_status->angular_velocity_y, gimbal_device_attitude_status->angular_velocity_z, gimbal_device_attitude_status->failure_flags, gimbal_device_attitude_status->delta_yaw, gimbal_device_attitude_status->delta_yaw_velocity, gimbal_device_attitude_status->gimbal_device_id);
 }
@@ -289,7 +289,7 @@ static inline uint16_t mavlink_msg_gimbal_device_attitude_status_encode_chan(uin
  * @param msg The MAVLink message to compress the data into
  * @param gimbal_device_attitude_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gimbal_device_attitude_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_gimbal_device_attitude_status_t* gimbal_device_attitude_status)
+static inline uint16_t mavlink_msg_gimbal_device_attitude_status_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_gimbal_device_attitude_status_t* gimbal_device_attitude_status)
 {
     return mavlink_msg_gimbal_device_attitude_status_pack_status(system_id, component_id, _status, msg,  gimbal_device_attitude_status->target_system, gimbal_device_attitude_status->target_component, gimbal_device_attitude_status->time_boot_ms, gimbal_device_attitude_status->flags, gimbal_device_attitude_status->q, gimbal_device_attitude_status->angular_velocity_x, gimbal_device_attitude_status->angular_velocity_y, gimbal_device_attitude_status->angular_velocity_z, gimbal_device_attitude_status->failure_flags, gimbal_device_attitude_status->delta_yaw, gimbal_device_attitude_status->delta_yaw_velocity, gimbal_device_attitude_status->gimbal_device_id);
 }
@@ -313,7 +313,7 @@ static inline uint16_t mavlink_msg_gimbal_device_attitude_status_encode_status(u
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_gimbal_device_attitude_status_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint32_t time_boot_ms, uint16_t flags, const float *q, float angular_velocity_x, float angular_velocity_y, float angular_velocity_z, uint32_t failure_flags, float delta_yaw, float delta_yaw_velocity, uint8_t gimbal_device_id)
+static inline void mavlink_msg_gimbal_device_attitude_status_send(mavlink_channel_t chan, uint32_t target_system, uint8_t target_component, uint32_t time_boot_ms, uint16_t flags, const float *q, float angular_velocity_x, float angular_velocity_y, float angular_velocity_z, uint32_t failure_flags, float delta_yaw, float delta_yaw_velocity, uint8_t gimbal_device_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN];
@@ -323,13 +323,13 @@ static inline void mavlink_msg_gimbal_device_attitude_status_send(mavlink_channe
     _mav_put_float(buf, 28, angular_velocity_z);
     _mav_put_uint32_t(buf, 32, failure_flags);
     _mav_put_uint16_t(buf, 36, flags);
-    _mav_put_uint8_t(buf, 38, target_system);
+    _mav_put_uint8_t(buf, 38, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 39, target_component);
     _mav_put_float(buf, 40, delta_yaw);
     _mav_put_float(buf, 44, delta_yaw_velocity);
     _mav_put_uint8_t(buf, 48, gimbal_device_id);
     _mav_put_float_array(buf, 4, q, 4);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS, buf, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS, buf, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_CRC, target_system);
 #else
     mavlink_gimbal_device_attitude_status_t packet;
     packet.time_boot_ms = time_boot_ms;
@@ -338,13 +338,13 @@ static inline void mavlink_msg_gimbal_device_attitude_status_send(mavlink_channe
     packet.angular_velocity_z = angular_velocity_z;
     packet.failure_flags = failure_flags;
     packet.flags = flags;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.delta_yaw = delta_yaw;
     packet.delta_yaw_velocity = delta_yaw_velocity;
     packet.gimbal_device_id = gimbal_device_id;
     mav_array_memcpy(packet.q, q, sizeof(float)*4);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS, (const char *)&packet, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS, (const char *)&packet, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_CRC, target_system);
 #endif
 }
 
@@ -370,7 +370,7 @@ static inline void mavlink_msg_gimbal_device_attitude_status_send_struct(mavlink
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_gimbal_device_attitude_status_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, uint32_t time_boot_ms, uint16_t flags, const float *q, float angular_velocity_x, float angular_velocity_y, float angular_velocity_z, uint32_t failure_flags, float delta_yaw, float delta_yaw_velocity, uint8_t gimbal_device_id)
+static inline void mavlink_msg_gimbal_device_attitude_status_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t target_system, uint8_t target_component, uint32_t time_boot_ms, uint16_t flags, const float *q, float angular_velocity_x, float angular_velocity_y, float angular_velocity_z, uint32_t failure_flags, float delta_yaw, float delta_yaw_velocity, uint8_t gimbal_device_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -380,13 +380,13 @@ static inline void mavlink_msg_gimbal_device_attitude_status_send_buf(mavlink_me
     _mav_put_float(buf, 28, angular_velocity_z);
     _mav_put_uint32_t(buf, 32, failure_flags);
     _mav_put_uint16_t(buf, 36, flags);
-    _mav_put_uint8_t(buf, 38, target_system);
+    _mav_put_uint8_t(buf, 38, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 39, target_component);
     _mav_put_float(buf, 40, delta_yaw);
     _mav_put_float(buf, 44, delta_yaw_velocity);
     _mav_put_uint8_t(buf, 48, gimbal_device_id);
     _mav_put_float_array(buf, 4, q, 4);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS, buf, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS, buf, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_CRC, target_system);
 #else
     mavlink_gimbal_device_attitude_status_t *packet = (mavlink_gimbal_device_attitude_status_t *)msgbuf;
     packet->time_boot_ms = time_boot_ms;
@@ -395,13 +395,13 @@ static inline void mavlink_msg_gimbal_device_attitude_status_send_buf(mavlink_me
     packet->angular_velocity_z = angular_velocity_z;
     packet->failure_flags = failure_flags;
     packet->flags = flags;
-    packet->target_system = target_system;
+    packet->target_system = mavlink_msg_target_field(target_system);
     packet->target_component = target_component;
     packet->delta_yaw = delta_yaw;
     packet->delta_yaw_velocity = delta_yaw_velocity;
     packet->gimbal_device_id = gimbal_device_id;
     mav_array_memcpy(packet->q, q, sizeof(float)*4);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS, (const char *)packet, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS, (const char *)packet, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_CRC, target_system);
 #endif
 }
 #endif
@@ -410,16 +410,6 @@ static inline void mavlink_msg_gimbal_device_attitude_status_send_buf(mavlink_me
 
 // MESSAGE GIMBAL_DEVICE_ATTITUDE_STATUS UNPACKING
 
-
-/**
- * @brief Get field target_system from gimbal_device_attitude_status message
- *
- * @return  System ID
- */
-static inline uint8_t mavlink_msg_gimbal_device_attitude_status_get_target_system(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint8_t(msg,  38);
-}
 
 /**
  * @brief Get field target_component from gimbal_device_attitude_status message
@@ -547,7 +537,7 @@ static inline void mavlink_msg_gimbal_device_attitude_status_decode(const mavlin
     gimbal_device_attitude_status->angular_velocity_z = mavlink_msg_gimbal_device_attitude_status_get_angular_velocity_z(msg);
     gimbal_device_attitude_status->failure_flags = mavlink_msg_gimbal_device_attitude_status_get_failure_flags(msg);
     gimbal_device_attitude_status->flags = mavlink_msg_gimbal_device_attitude_status_get_flags(msg);
-    gimbal_device_attitude_status->target_system = mavlink_msg_gimbal_device_attitude_status_get_target_system(msg);
+    gimbal_device_attitude_status->target_system = _MAV_RETURN_uint8_t(msg, 38);
     gimbal_device_attitude_status->target_component = mavlink_msg_gimbal_device_attitude_status_get_target_component(msg);
     gimbal_device_attitude_status->delta_yaw = mavlink_msg_gimbal_device_attitude_status_get_delta_yaw(msg);
     gimbal_device_attitude_status->delta_yaw_velocity = mavlink_msg_gimbal_device_attitude_status_get_delta_yaw_velocity(msg);
@@ -557,4 +547,11 @@ static inline void mavlink_msg_gimbal_device_attitude_status_decode(const mavlin
         memset(gimbal_device_attitude_status, 0, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN);
     memcpy(gimbal_device_attitude_status, _MAV_PAYLOAD(msg), len);
 #endif
+    if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
+        // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
+        // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
+        // To relay after edits, pass that full target to _pack*(); _encode*() loses it.
+        gimbal_device_attitude_status->target_system = mavlink_msg_target_field(msg->target_sysid);
+    }
+
 }

@@ -62,14 +62,14 @@ typedef struct __mavlink_v2_extension_t {
  * @param payload  Variable length payload. The length must be encoded in the payload as part of the message_type protocol, e.g. by including the length as payload data, or by terminating the payload data with a non-zero marker. This is required in order to reconstruct zero-terminated payloads that are (or otherwise would be) trimmed by MAVLink 2 empty-byte truncation. The entire content of the payload block is opaque unless you understand the encoding message_type. The particular encoding used can be extension specific and might not always be documented as part of the MAVLink specification.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_v2_extension_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t target_network, uint8_t target_system, uint8_t target_component, uint16_t message_type, const uint8_t *payload)
+static inline uint16_t mavlink_msg_v2_extension_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
+                               uint8_t target_network, uint32_t target_system, uint8_t target_component, uint16_t message_type, const uint8_t *payload)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_V2_EXTENSION_LEN];
     _mav_put_uint16_t(buf, 0, message_type);
     _mav_put_uint8_t(buf, 2, target_network);
-    _mav_put_uint8_t(buf, 3, target_system);
+    _mav_put_uint8_t(buf, 3, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 4, target_component);
     _mav_put_uint8_t_array(buf, 5, payload, 249);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_V2_EXTENSION_LEN);
@@ -77,14 +77,14 @@ static inline uint16_t mavlink_msg_v2_extension_pack(uint8_t system_id, uint8_t 
     mavlink_v2_extension_t packet;
     packet.message_type = message_type;
     packet.target_network = target_network;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     mav_array_memcpy(packet.payload, payload, sizeof(uint8_t)*249);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_V2_EXTENSION_LEN);
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_V2_EXTENSION;
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_V2_EXTENSION_MIN_LEN, MAVLINK_MSG_ID_V2_EXTENSION_LEN, MAVLINK_MSG_ID_V2_EXTENSION_CRC);
+    return mavlink_finalize_message_target(msg, system_id, component_id, MAVLINK_MSG_ID_V2_EXTENSION_MIN_LEN, MAVLINK_MSG_ID_V2_EXTENSION_LEN, MAVLINK_MSG_ID_V2_EXTENSION_CRC, target_system);
 }
 
 /**
@@ -101,14 +101,14 @@ static inline uint16_t mavlink_msg_v2_extension_pack(uint8_t system_id, uint8_t 
  * @param payload  Variable length payload. The length must be encoded in the payload as part of the message_type protocol, e.g. by including the length as payload data, or by terminating the payload data with a non-zero marker. This is required in order to reconstruct zero-terminated payloads that are (or otherwise would be) trimmed by MAVLink 2 empty-byte truncation. The entire content of the payload block is opaque unless you understand the encoding message_type. The particular encoding used can be extension specific and might not always be documented as part of the MAVLink specification.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_v2_extension_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               uint8_t target_network, uint8_t target_system, uint8_t target_component, uint16_t message_type, const uint8_t *payload)
+static inline uint16_t mavlink_msg_v2_extension_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint8_t target_network, uint32_t target_system, uint8_t target_component, uint16_t message_type, const uint8_t *payload)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_V2_EXTENSION_LEN];
     _mav_put_uint16_t(buf, 0, message_type);
     _mav_put_uint8_t(buf, 2, target_network);
-    _mav_put_uint8_t(buf, 3, target_system);
+    _mav_put_uint8_t(buf, 3, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 4, target_component);
     _mav_put_uint8_t_array(buf, 5, payload, 249);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_V2_EXTENSION_LEN);
@@ -116,7 +116,7 @@ static inline uint16_t mavlink_msg_v2_extension_pack_status(uint8_t system_id, u
     mavlink_v2_extension_t packet;
     packet.message_type = message_type;
     packet.target_network = target_network;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     mav_array_memcpy(packet.payload, payload, sizeof(uint8_t)*249);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_V2_EXTENSION_LEN);
@@ -124,9 +124,9 @@ static inline uint16_t mavlink_msg_v2_extension_pack_status(uint8_t system_id, u
 
     msg->msgid = MAVLINK_MSG_ID_V2_EXTENSION;
 #if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_V2_EXTENSION_MIN_LEN, MAVLINK_MSG_ID_V2_EXTENSION_LEN, MAVLINK_MSG_ID_V2_EXTENSION_CRC);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_V2_EXTENSION_MIN_LEN, MAVLINK_MSG_ID_V2_EXTENSION_LEN, MAVLINK_MSG_ID_V2_EXTENSION_CRC, target_system);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_V2_EXTENSION_MIN_LEN, MAVLINK_MSG_ID_V2_EXTENSION_LEN);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_V2_EXTENSION_MIN_LEN, MAVLINK_MSG_ID_V2_EXTENSION_LEN, 0, target_system);
 #endif
 }
 
@@ -143,15 +143,15 @@ static inline uint16_t mavlink_msg_v2_extension_pack_status(uint8_t system_id, u
  * @param payload  Variable length payload. The length must be encoded in the payload as part of the message_type protocol, e.g. by including the length as payload data, or by terminating the payload data with a non-zero marker. This is required in order to reconstruct zero-terminated payloads that are (or otherwise would be) trimmed by MAVLink 2 empty-byte truncation. The entire content of the payload block is opaque unless you understand the encoding message_type. The particular encoding used can be extension specific and might not always be documented as part of the MAVLink specification.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_v2_extension_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_v2_extension_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t target_network,uint8_t target_system,uint8_t target_component,uint16_t message_type,const uint8_t *payload)
+                                   uint8_t target_network,uint32_t target_system,uint8_t target_component,uint16_t message_type,const uint8_t *payload)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_V2_EXTENSION_LEN];
     _mav_put_uint16_t(buf, 0, message_type);
     _mav_put_uint8_t(buf, 2, target_network);
-    _mav_put_uint8_t(buf, 3, target_system);
+    _mav_put_uint8_t(buf, 3, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 4, target_component);
     _mav_put_uint8_t_array(buf, 5, payload, 249);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_V2_EXTENSION_LEN);
@@ -159,14 +159,14 @@ static inline uint16_t mavlink_msg_v2_extension_pack_chan(uint8_t system_id, uin
     mavlink_v2_extension_t packet;
     packet.message_type = message_type;
     packet.target_network = target_network;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     mav_array_memcpy(packet.payload, payload, sizeof(uint8_t)*249);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_V2_EXTENSION_LEN);
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_V2_EXTENSION;
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_V2_EXTENSION_MIN_LEN, MAVLINK_MSG_ID_V2_EXTENSION_LEN, MAVLINK_MSG_ID_V2_EXTENSION_CRC);
+    return mavlink_finalize_message_chan_target(msg, system_id, component_id, chan, MAVLINK_MSG_ID_V2_EXTENSION_MIN_LEN, MAVLINK_MSG_ID_V2_EXTENSION_LEN, MAVLINK_MSG_ID_V2_EXTENSION_CRC, target_system);
 }
 
 /**
@@ -177,7 +177,7 @@ static inline uint16_t mavlink_msg_v2_extension_pack_chan(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param v2_extension C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_v2_extension_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_v2_extension_t* v2_extension)
+static inline uint16_t mavlink_msg_v2_extension_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_v2_extension_t* v2_extension)
 {
     return mavlink_msg_v2_extension_pack(system_id, component_id, msg, v2_extension->target_network, v2_extension->target_system, v2_extension->target_component, v2_extension->message_type, v2_extension->payload);
 }
@@ -191,7 +191,7 @@ static inline uint16_t mavlink_msg_v2_extension_encode(uint8_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param v2_extension C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_v2_extension_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_v2_extension_t* v2_extension)
+static inline uint16_t mavlink_msg_v2_extension_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_v2_extension_t* v2_extension)
 {
     return mavlink_msg_v2_extension_pack_chan(system_id, component_id, chan, msg, v2_extension->target_network, v2_extension->target_system, v2_extension->target_component, v2_extension->message_type, v2_extension->payload);
 }
@@ -205,7 +205,7 @@ static inline uint16_t mavlink_msg_v2_extension_encode_chan(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param v2_extension C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_v2_extension_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_v2_extension_t* v2_extension)
+static inline uint16_t mavlink_msg_v2_extension_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_v2_extension_t* v2_extension)
 {
     return mavlink_msg_v2_extension_pack_status(system_id, component_id, _status, msg,  v2_extension->target_network, v2_extension->target_system, v2_extension->target_component, v2_extension->message_type, v2_extension->payload);
 }
@@ -222,24 +222,24 @@ static inline uint16_t mavlink_msg_v2_extension_encode_status(uint8_t system_id,
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_v2_extension_send(mavlink_channel_t chan, uint8_t target_network, uint8_t target_system, uint8_t target_component, uint16_t message_type, const uint8_t *payload)
+static inline void mavlink_msg_v2_extension_send(mavlink_channel_t chan, uint8_t target_network, uint32_t target_system, uint8_t target_component, uint16_t message_type, const uint8_t *payload)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_V2_EXTENSION_LEN];
     _mav_put_uint16_t(buf, 0, message_type);
     _mav_put_uint8_t(buf, 2, target_network);
-    _mav_put_uint8_t(buf, 3, target_system);
+    _mav_put_uint8_t(buf, 3, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 4, target_component);
     _mav_put_uint8_t_array(buf, 5, payload, 249);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_V2_EXTENSION, buf, MAVLINK_MSG_ID_V2_EXTENSION_MIN_LEN, MAVLINK_MSG_ID_V2_EXTENSION_LEN, MAVLINK_MSG_ID_V2_EXTENSION_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_V2_EXTENSION, buf, MAVLINK_MSG_ID_V2_EXTENSION_MIN_LEN, MAVLINK_MSG_ID_V2_EXTENSION_LEN, MAVLINK_MSG_ID_V2_EXTENSION_CRC, target_system);
 #else
     mavlink_v2_extension_t packet;
     packet.message_type = message_type;
     packet.target_network = target_network;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     mav_array_memcpy(packet.payload, payload, sizeof(uint8_t)*249);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_V2_EXTENSION, (const char *)&packet, MAVLINK_MSG_ID_V2_EXTENSION_MIN_LEN, MAVLINK_MSG_ID_V2_EXTENSION_LEN, MAVLINK_MSG_ID_V2_EXTENSION_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_V2_EXTENSION, (const char *)&packet, MAVLINK_MSG_ID_V2_EXTENSION_MIN_LEN, MAVLINK_MSG_ID_V2_EXTENSION_LEN, MAVLINK_MSG_ID_V2_EXTENSION_CRC, target_system);
 #endif
 }
 
@@ -265,24 +265,24 @@ static inline void mavlink_msg_v2_extension_send_struct(mavlink_channel_t chan, 
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_v2_extension_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_network, uint8_t target_system, uint8_t target_component, uint16_t message_type, const uint8_t *payload)
+static inline void mavlink_msg_v2_extension_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_network, uint32_t target_system, uint8_t target_component, uint16_t message_type, const uint8_t *payload)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_uint16_t(buf, 0, message_type);
     _mav_put_uint8_t(buf, 2, target_network);
-    _mav_put_uint8_t(buf, 3, target_system);
+    _mav_put_uint8_t(buf, 3, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 4, target_component);
     _mav_put_uint8_t_array(buf, 5, payload, 249);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_V2_EXTENSION, buf, MAVLINK_MSG_ID_V2_EXTENSION_MIN_LEN, MAVLINK_MSG_ID_V2_EXTENSION_LEN, MAVLINK_MSG_ID_V2_EXTENSION_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_V2_EXTENSION, buf, MAVLINK_MSG_ID_V2_EXTENSION_MIN_LEN, MAVLINK_MSG_ID_V2_EXTENSION_LEN, MAVLINK_MSG_ID_V2_EXTENSION_CRC, target_system);
 #else
     mavlink_v2_extension_t *packet = (mavlink_v2_extension_t *)msgbuf;
     packet->message_type = message_type;
     packet->target_network = target_network;
-    packet->target_system = target_system;
+    packet->target_system = mavlink_msg_target_field(target_system);
     packet->target_component = target_component;
     mav_array_memcpy(packet->payload, payload, sizeof(uint8_t)*249);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_V2_EXTENSION, (const char *)packet, MAVLINK_MSG_ID_V2_EXTENSION_MIN_LEN, MAVLINK_MSG_ID_V2_EXTENSION_LEN, MAVLINK_MSG_ID_V2_EXTENSION_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_V2_EXTENSION, (const char *)packet, MAVLINK_MSG_ID_V2_EXTENSION_MIN_LEN, MAVLINK_MSG_ID_V2_EXTENSION_LEN, MAVLINK_MSG_ID_V2_EXTENSION_CRC, target_system);
 #endif
 }
 #endif
@@ -300,16 +300,6 @@ static inline void mavlink_msg_v2_extension_send_buf(mavlink_message_t *msgbuf, 
 static inline uint8_t mavlink_msg_v2_extension_get_target_network(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  2);
-}
-
-/**
- * @brief Get field target_system from v2_extension message
- *
- * @return  System ID (0 for broadcast)
- */
-static inline uint8_t mavlink_msg_v2_extension_get_target_system(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint8_t(msg,  3);
 }
 
 /**
@@ -353,7 +343,7 @@ static inline void mavlink_msg_v2_extension_decode(const mavlink_message_t* msg,
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     v2_extension->message_type = mavlink_msg_v2_extension_get_message_type(msg);
     v2_extension->target_network = mavlink_msg_v2_extension_get_target_network(msg);
-    v2_extension->target_system = mavlink_msg_v2_extension_get_target_system(msg);
+    v2_extension->target_system = _MAV_RETURN_uint8_t(msg, 3);
     v2_extension->target_component = mavlink_msg_v2_extension_get_target_component(msg);
     mavlink_msg_v2_extension_get_payload(msg, v2_extension->payload);
 #else
@@ -361,4 +351,11 @@ static inline void mavlink_msg_v2_extension_decode(const mavlink_message_t* msg,
         memset(v2_extension, 0, MAVLINK_MSG_ID_V2_EXTENSION_LEN);
     memcpy(v2_extension, _MAV_PAYLOAD(msg), len);
 #endif
+    if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
+        // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
+        // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
+        // To relay after edits, pass that full target to _pack*(); _encode*() loses it.
+        v2_extension->target_system = mavlink_msg_target_field(msg->target_sysid);
+    }
+
 }

@@ -63,15 +63,15 @@ typedef struct __mavlink_set_velocity_limits_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_set_velocity_limits_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, float horizontal_speed_limit, float vertical_speed_limit, float yaw_rate_limit)
+static inline uint16_t mavlink_msg_set_velocity_limits_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, float horizontal_speed_limit, float vertical_speed_limit, float yaw_rate_limit)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN];
     _mav_put_float(buf, 0, horizontal_speed_limit);
     _mav_put_float(buf, 4, vertical_speed_limit);
     _mav_put_float(buf, 8, yaw_rate_limit);
-    _mav_put_uint8_t(buf, 12, target_system);
+    _mav_put_uint8_t(buf, 12, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 13, target_component);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN);
@@ -80,14 +80,14 @@ static inline uint16_t mavlink_msg_set_velocity_limits_pack(uint8_t system_id, u
     packet.horizontal_speed_limit = horizontal_speed_limit;
     packet.vertical_speed_limit = vertical_speed_limit;
     packet.yaw_rate_limit = yaw_rate_limit;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN);
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_SET_VELOCITY_LIMITS;
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_MIN_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_CRC);
+    return mavlink_finalize_message_target(msg, system_id, component_id, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_MIN_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_CRC, target_system);
 }
 
 /**
@@ -104,15 +104,15 @@ static inline uint16_t mavlink_msg_set_velocity_limits_pack(uint8_t system_id, u
  * @param yaw_rate_limit [rad/s] Limit for vehicle turn rate around its yaw axis. NaN: Field not used (ignore)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_set_velocity_limits_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, float horizontal_speed_limit, float vertical_speed_limit, float yaw_rate_limit)
+static inline uint16_t mavlink_msg_set_velocity_limits_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, float horizontal_speed_limit, float vertical_speed_limit, float yaw_rate_limit)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN];
     _mav_put_float(buf, 0, horizontal_speed_limit);
     _mav_put_float(buf, 4, vertical_speed_limit);
     _mav_put_float(buf, 8, yaw_rate_limit);
-    _mav_put_uint8_t(buf, 12, target_system);
+    _mav_put_uint8_t(buf, 12, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 13, target_component);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN);
@@ -121,7 +121,7 @@ static inline uint16_t mavlink_msg_set_velocity_limits_pack_status(uint8_t syste
     packet.horizontal_speed_limit = horizontal_speed_limit;
     packet.vertical_speed_limit = vertical_speed_limit;
     packet.yaw_rate_limit = yaw_rate_limit;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN);
@@ -129,9 +129,9 @@ static inline uint16_t mavlink_msg_set_velocity_limits_pack_status(uint8_t syste
 
     msg->msgid = MAVLINK_MSG_ID_SET_VELOCITY_LIMITS;
 #if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_MIN_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_CRC);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_MIN_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_CRC, target_system);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_MIN_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_MIN_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN, 0, target_system);
 #endif
 }
 
@@ -149,16 +149,16 @@ static inline uint16_t mavlink_msg_set_velocity_limits_pack_status(uint8_t syste
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_set_velocity_limits_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_set_velocity_limits_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t target_system,uint8_t target_component,float horizontal_speed_limit,float vertical_speed_limit,float yaw_rate_limit)
+                                   uint32_t target_system,uint8_t target_component,float horizontal_speed_limit,float vertical_speed_limit,float yaw_rate_limit)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN];
     _mav_put_float(buf, 0, horizontal_speed_limit);
     _mav_put_float(buf, 4, vertical_speed_limit);
     _mav_put_float(buf, 8, yaw_rate_limit);
-    _mav_put_uint8_t(buf, 12, target_system);
+    _mav_put_uint8_t(buf, 12, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 13, target_component);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN);
@@ -167,14 +167,14 @@ static inline uint16_t mavlink_msg_set_velocity_limits_pack_chan(uint8_t system_
     packet.horizontal_speed_limit = horizontal_speed_limit;
     packet.vertical_speed_limit = vertical_speed_limit;
     packet.yaw_rate_limit = yaw_rate_limit;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN);
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_SET_VELOCITY_LIMITS;
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_MIN_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_CRC);
+    return mavlink_finalize_message_chan_target(msg, system_id, component_id, chan, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_MIN_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_CRC, target_system);
 }
 
 /**
@@ -186,7 +186,7 @@ static inline uint16_t mavlink_msg_set_velocity_limits_pack_chan(uint8_t system_
  * @param set_velocity_limits C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_set_velocity_limits_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_set_velocity_limits_t* set_velocity_limits)
+static inline uint16_t mavlink_msg_set_velocity_limits_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_set_velocity_limits_t* set_velocity_limits)
 {
     return mavlink_msg_set_velocity_limits_pack(system_id, component_id, msg, set_velocity_limits->target_system, set_velocity_limits->target_component, set_velocity_limits->horizontal_speed_limit, set_velocity_limits->vertical_speed_limit, set_velocity_limits->yaw_rate_limit);
 }
@@ -201,7 +201,7 @@ static inline uint16_t mavlink_msg_set_velocity_limits_encode(uint8_t system_id,
  * @param set_velocity_limits C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_set_velocity_limits_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_set_velocity_limits_t* set_velocity_limits)
+static inline uint16_t mavlink_msg_set_velocity_limits_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_set_velocity_limits_t* set_velocity_limits)
 {
     return mavlink_msg_set_velocity_limits_pack_chan(system_id, component_id, chan, msg, set_velocity_limits->target_system, set_velocity_limits->target_component, set_velocity_limits->horizontal_speed_limit, set_velocity_limits->vertical_speed_limit, set_velocity_limits->yaw_rate_limit);
 }
@@ -215,7 +215,7 @@ static inline uint16_t mavlink_msg_set_velocity_limits_encode_chan(uint8_t syste
  * @param msg The MAVLink message to compress the data into
  * @param set_velocity_limits C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_set_velocity_limits_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_set_velocity_limits_t* set_velocity_limits)
+static inline uint16_t mavlink_msg_set_velocity_limits_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_set_velocity_limits_t* set_velocity_limits)
 {
     return mavlink_msg_set_velocity_limits_pack_status(system_id, component_id, _status, msg,  set_velocity_limits->target_system, set_velocity_limits->target_component, set_velocity_limits->horizontal_speed_limit, set_velocity_limits->vertical_speed_limit, set_velocity_limits->yaw_rate_limit);
 }
@@ -233,26 +233,26 @@ static inline uint16_t mavlink_msg_set_velocity_limits_encode_status(uint8_t sys
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
 MAVLINK_WIP
-static inline void mavlink_msg_set_velocity_limits_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, float horizontal_speed_limit, float vertical_speed_limit, float yaw_rate_limit)
+static inline void mavlink_msg_set_velocity_limits_send(mavlink_channel_t chan, uint32_t target_system, uint8_t target_component, float horizontal_speed_limit, float vertical_speed_limit, float yaw_rate_limit)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN];
     _mav_put_float(buf, 0, horizontal_speed_limit);
     _mav_put_float(buf, 4, vertical_speed_limit);
     _mav_put_float(buf, 8, yaw_rate_limit);
-    _mav_put_uint8_t(buf, 12, target_system);
+    _mav_put_uint8_t(buf, 12, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 13, target_component);
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS, buf, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_MIN_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS, buf, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_MIN_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_CRC, target_system);
 #else
     mavlink_set_velocity_limits_t packet;
     packet.horizontal_speed_limit = horizontal_speed_limit;
     packet.vertical_speed_limit = vertical_speed_limit;
     packet.yaw_rate_limit = yaw_rate_limit;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS, (const char *)&packet, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_MIN_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS, (const char *)&packet, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_MIN_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_CRC, target_system);
 #endif
 }
 
@@ -280,26 +280,26 @@ static inline void mavlink_msg_set_velocity_limits_send_struct(mavlink_channel_t
   incoming message with minimum stack space usage.
  */
 MAVLINK_WIP
-static inline void mavlink_msg_set_velocity_limits_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, float horizontal_speed_limit, float vertical_speed_limit, float yaw_rate_limit)
+static inline void mavlink_msg_set_velocity_limits_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t target_system, uint8_t target_component, float horizontal_speed_limit, float vertical_speed_limit, float yaw_rate_limit)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_float(buf, 0, horizontal_speed_limit);
     _mav_put_float(buf, 4, vertical_speed_limit);
     _mav_put_float(buf, 8, yaw_rate_limit);
-    _mav_put_uint8_t(buf, 12, target_system);
+    _mav_put_uint8_t(buf, 12, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 13, target_component);
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS, buf, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_MIN_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS, buf, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_MIN_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_CRC, target_system);
 #else
     mavlink_set_velocity_limits_t *packet = (mavlink_set_velocity_limits_t *)msgbuf;
     packet->horizontal_speed_limit = horizontal_speed_limit;
     packet->vertical_speed_limit = vertical_speed_limit;
     packet->yaw_rate_limit = yaw_rate_limit;
-    packet->target_system = target_system;
+    packet->target_system = mavlink_msg_target_field(target_system);
     packet->target_component = target_component;
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS, (const char *)packet, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_MIN_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS, (const char *)packet, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_MIN_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_CRC, target_system);
 #endif
 }
 #endif
@@ -308,17 +308,6 @@ static inline void mavlink_msg_set_velocity_limits_send_buf(mavlink_message_t *m
 
 // MESSAGE SET_VELOCITY_LIMITS UNPACKING
 
-
-/**
- * @brief Get field target_system from set_velocity_limits message
- *
- * @return  System ID (0 for broadcast).
- */
-MAVLINK_WIP
-static inline uint8_t mavlink_msg_set_velocity_limits_get_target_system(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint8_t(msg,  12);
-}
 
 /**
  * @brief Get field target_component from set_velocity_limits message
@@ -377,11 +366,18 @@ static inline void mavlink_msg_set_velocity_limits_decode(const mavlink_message_
     set_velocity_limits->horizontal_speed_limit = mavlink_msg_set_velocity_limits_get_horizontal_speed_limit(msg);
     set_velocity_limits->vertical_speed_limit = mavlink_msg_set_velocity_limits_get_vertical_speed_limit(msg);
     set_velocity_limits->yaw_rate_limit = mavlink_msg_set_velocity_limits_get_yaw_rate_limit(msg);
-    set_velocity_limits->target_system = mavlink_msg_set_velocity_limits_get_target_system(msg);
+    set_velocity_limits->target_system = _MAV_RETURN_uint8_t(msg, 12);
     set_velocity_limits->target_component = mavlink_msg_set_velocity_limits_get_target_component(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN? msg->len : MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN;
         memset(set_velocity_limits, 0, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN);
     memcpy(set_velocity_limits, _MAV_PAYLOAD(msg), len);
 #endif
+    if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
+        // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
+        // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
+        // To relay after edits, pass that full target to _pack*(); _encode*() loses it.
+        set_velocity_limits->target_system = mavlink_msg_target_field(msg->target_sysid);
+    }
+
 }

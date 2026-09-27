@@ -67,8 +67,8 @@ typedef struct __mavlink_autopilot_state_for_gimbal_device_ext_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint64_t time_boot_us, float wind_x, float wind_y, float wind_correction_angle)
+static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, uint64_t time_boot_us, float wind_x, float wind_y, float wind_correction_angle)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN];
@@ -76,7 +76,7 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack(ui
     _mav_put_float(buf, 8, wind_x);
     _mav_put_float(buf, 12, wind_y);
     _mav_put_float(buf, 16, wind_correction_angle);
-    _mav_put_uint8_t(buf, 20, target_system);
+    _mav_put_uint8_t(buf, 20, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 21, target_component);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN);
@@ -86,14 +86,14 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack(ui
     packet.wind_x = wind_x;
     packet.wind_y = wind_y;
     packet.wind_correction_angle = wind_correction_angle;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN);
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT;
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_MIN_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_CRC);
+    return mavlink_finalize_message_target(msg, system_id, component_id, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_MIN_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_CRC, target_system);
 }
 
 /**
@@ -111,8 +111,8 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack(ui
  * @param wind_correction_angle [rad] Correction angle due to wind. NaN if unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint64_t time_boot_us, float wind_x, float wind_y, float wind_correction_angle)
+static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, uint64_t time_boot_us, float wind_x, float wind_y, float wind_correction_angle)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN];
@@ -120,7 +120,7 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_st
     _mav_put_float(buf, 8, wind_x);
     _mav_put_float(buf, 12, wind_y);
     _mav_put_float(buf, 16, wind_correction_angle);
-    _mav_put_uint8_t(buf, 20, target_system);
+    _mav_put_uint8_t(buf, 20, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 21, target_component);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN);
@@ -130,7 +130,7 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_st
     packet.wind_x = wind_x;
     packet.wind_y = wind_y;
     packet.wind_correction_angle = wind_correction_angle;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN);
@@ -138,9 +138,9 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_st
 
     msg->msgid = MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT;
 #if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_MIN_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_CRC);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_MIN_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_CRC, target_system);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_MIN_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_MIN_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN, 0, target_system);
 #endif
 }
 
@@ -159,9 +159,9 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_st
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t target_system,uint8_t target_component,uint64_t time_boot_us,float wind_x,float wind_y,float wind_correction_angle)
+                                   uint32_t target_system,uint8_t target_component,uint64_t time_boot_us,float wind_x,float wind_y,float wind_correction_angle)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN];
@@ -169,7 +169,7 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_ch
     _mav_put_float(buf, 8, wind_x);
     _mav_put_float(buf, 12, wind_y);
     _mav_put_float(buf, 16, wind_correction_angle);
-    _mav_put_uint8_t(buf, 20, target_system);
+    _mav_put_uint8_t(buf, 20, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 21, target_component);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN);
@@ -179,14 +179,14 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_ch
     packet.wind_x = wind_x;
     packet.wind_y = wind_y;
     packet.wind_correction_angle = wind_correction_angle;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN);
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT;
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_MIN_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_CRC);
+    return mavlink_finalize_message_chan_target(msg, system_id, component_id, chan, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_MIN_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_CRC, target_system);
 }
 
 /**
@@ -198,7 +198,7 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_ch
  * @param autopilot_state_for_gimbal_device_ext C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_autopilot_state_for_gimbal_device_ext_t* autopilot_state_for_gimbal_device_ext)
+static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_autopilot_state_for_gimbal_device_ext_t* autopilot_state_for_gimbal_device_ext)
 {
     return mavlink_msg_autopilot_state_for_gimbal_device_ext_pack(system_id, component_id, msg, autopilot_state_for_gimbal_device_ext->target_system, autopilot_state_for_gimbal_device_ext->target_component, autopilot_state_for_gimbal_device_ext->time_boot_us, autopilot_state_for_gimbal_device_ext->wind_x, autopilot_state_for_gimbal_device_ext->wind_y, autopilot_state_for_gimbal_device_ext->wind_correction_angle);
 }
@@ -213,7 +213,7 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_encode(
  * @param autopilot_state_for_gimbal_device_ext C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_autopilot_state_for_gimbal_device_ext_t* autopilot_state_for_gimbal_device_ext)
+static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_autopilot_state_for_gimbal_device_ext_t* autopilot_state_for_gimbal_device_ext)
 {
     return mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_chan(system_id, component_id, chan, msg, autopilot_state_for_gimbal_device_ext->target_system, autopilot_state_for_gimbal_device_ext->target_component, autopilot_state_for_gimbal_device_ext->time_boot_us, autopilot_state_for_gimbal_device_ext->wind_x, autopilot_state_for_gimbal_device_ext->wind_y, autopilot_state_for_gimbal_device_ext->wind_correction_angle);
 }
@@ -227,7 +227,7 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_encode_
  * @param msg The MAVLink message to compress the data into
  * @param autopilot_state_for_gimbal_device_ext C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_autopilot_state_for_gimbal_device_ext_t* autopilot_state_for_gimbal_device_ext)
+static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_autopilot_state_for_gimbal_device_ext_t* autopilot_state_for_gimbal_device_ext)
 {
     return mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_status(system_id, component_id, _status, msg,  autopilot_state_for_gimbal_device_ext->target_system, autopilot_state_for_gimbal_device_ext->target_component, autopilot_state_for_gimbal_device_ext->time_boot_us, autopilot_state_for_gimbal_device_ext->wind_x, autopilot_state_for_gimbal_device_ext->wind_y, autopilot_state_for_gimbal_device_ext->wind_correction_angle);
 }
@@ -246,7 +246,7 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_encode_
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
 MAVLINK_WIP
-static inline void mavlink_msg_autopilot_state_for_gimbal_device_ext_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint64_t time_boot_us, float wind_x, float wind_y, float wind_correction_angle)
+static inline void mavlink_msg_autopilot_state_for_gimbal_device_ext_send(mavlink_channel_t chan, uint32_t target_system, uint8_t target_component, uint64_t time_boot_us, float wind_x, float wind_y, float wind_correction_angle)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN];
@@ -254,20 +254,20 @@ static inline void mavlink_msg_autopilot_state_for_gimbal_device_ext_send(mavlin
     _mav_put_float(buf, 8, wind_x);
     _mav_put_float(buf, 12, wind_y);
     _mav_put_float(buf, 16, wind_correction_angle);
-    _mav_put_uint8_t(buf, 20, target_system);
+    _mav_put_uint8_t(buf, 20, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 21, target_component);
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT, buf, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_MIN_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT, buf, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_MIN_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_CRC, target_system);
 #else
     mavlink_autopilot_state_for_gimbal_device_ext_t packet;
     packet.time_boot_us = time_boot_us;
     packet.wind_x = wind_x;
     packet.wind_y = wind_y;
     packet.wind_correction_angle = wind_correction_angle;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT, (const char *)&packet, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_MIN_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT, (const char *)&packet, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_MIN_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_CRC, target_system);
 #endif
 }
 
@@ -295,7 +295,7 @@ static inline void mavlink_msg_autopilot_state_for_gimbal_device_ext_send_struct
   incoming message with minimum stack space usage.
  */
 MAVLINK_WIP
-static inline void mavlink_msg_autopilot_state_for_gimbal_device_ext_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, uint64_t time_boot_us, float wind_x, float wind_y, float wind_correction_angle)
+static inline void mavlink_msg_autopilot_state_for_gimbal_device_ext_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t target_system, uint8_t target_component, uint64_t time_boot_us, float wind_x, float wind_y, float wind_correction_angle)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -303,20 +303,20 @@ static inline void mavlink_msg_autopilot_state_for_gimbal_device_ext_send_buf(ma
     _mav_put_float(buf, 8, wind_x);
     _mav_put_float(buf, 12, wind_y);
     _mav_put_float(buf, 16, wind_correction_angle);
-    _mav_put_uint8_t(buf, 20, target_system);
+    _mav_put_uint8_t(buf, 20, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 21, target_component);
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT, buf, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_MIN_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT, buf, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_MIN_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_CRC, target_system);
 #else
     mavlink_autopilot_state_for_gimbal_device_ext_t *packet = (mavlink_autopilot_state_for_gimbal_device_ext_t *)msgbuf;
     packet->time_boot_us = time_boot_us;
     packet->wind_x = wind_x;
     packet->wind_y = wind_y;
     packet->wind_correction_angle = wind_correction_angle;
-    packet->target_system = target_system;
+    packet->target_system = mavlink_msg_target_field(target_system);
     packet->target_component = target_component;
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT, (const char *)packet, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_MIN_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT, (const char *)packet, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_MIN_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_CRC, target_system);
 #endif
 }
 #endif
@@ -325,17 +325,6 @@ static inline void mavlink_msg_autopilot_state_for_gimbal_device_ext_send_buf(ma
 
 // MESSAGE AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT UNPACKING
 
-
-/**
- * @brief Get field target_system from autopilot_state_for_gimbal_device_ext message
- *
- * @return  System ID.
- */
-MAVLINK_WIP
-static inline uint8_t mavlink_msg_autopilot_state_for_gimbal_device_ext_get_target_system(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint8_t(msg,  20);
-}
 
 /**
  * @brief Get field target_component from autopilot_state_for_gimbal_device_ext message
@@ -406,11 +395,18 @@ static inline void mavlink_msg_autopilot_state_for_gimbal_device_ext_decode(cons
     autopilot_state_for_gimbal_device_ext->wind_x = mavlink_msg_autopilot_state_for_gimbal_device_ext_get_wind_x(msg);
     autopilot_state_for_gimbal_device_ext->wind_y = mavlink_msg_autopilot_state_for_gimbal_device_ext_get_wind_y(msg);
     autopilot_state_for_gimbal_device_ext->wind_correction_angle = mavlink_msg_autopilot_state_for_gimbal_device_ext_get_wind_correction_angle(msg);
-    autopilot_state_for_gimbal_device_ext->target_system = mavlink_msg_autopilot_state_for_gimbal_device_ext_get_target_system(msg);
+    autopilot_state_for_gimbal_device_ext->target_system = _MAV_RETURN_uint8_t(msg, 20);
     autopilot_state_for_gimbal_device_ext->target_component = mavlink_msg_autopilot_state_for_gimbal_device_ext_get_target_component(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN? msg->len : MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN;
         memset(autopilot_state_for_gimbal_device_ext, 0, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN);
     memcpy(autopilot_state_for_gimbal_device_ext, _MAV_PAYLOAD(msg), len);
 #endif
+    if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
+        // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
+        // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
+        // To relay after edits, pass that full target to _pack*(); _encode*() loses it.
+        autopilot_state_for_gimbal_device_ext->target_system = mavlink_msg_target_field(msg->target_sysid);
+    }
+
 }

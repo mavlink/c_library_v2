@@ -58,7 +58,7 @@ typedef struct __mavlink_terrain_request_t {
  * @param mask  Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_terrain_request_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_terrain_request_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                int32_t lat, int32_t lon, uint16_t grid_spacing, uint64_t mask)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -96,7 +96,7 @@ static inline uint16_t mavlink_msg_terrain_request_pack(uint8_t system_id, uint8
  * @param mask  Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_terrain_request_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_terrain_request_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                int32_t lat, int32_t lon, uint16_t grid_spacing, uint64_t mask)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -121,7 +121,7 @@ static inline uint16_t mavlink_msg_terrain_request_pack_status(uint8_t system_id
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_TERRAIN_REQUEST_MIN_LEN, MAVLINK_MSG_ID_TERRAIN_REQUEST_LEN, MAVLINK_MSG_ID_TERRAIN_REQUEST_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_TERRAIN_REQUEST_MIN_LEN, MAVLINK_MSG_ID_TERRAIN_REQUEST_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_TERRAIN_REQUEST_MIN_LEN, MAVLINK_MSG_ID_TERRAIN_REQUEST_LEN, 0);
 #endif
 }
 
@@ -137,7 +137,7 @@ static inline uint16_t mavlink_msg_terrain_request_pack_status(uint8_t system_id
  * @param mask  Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_terrain_request_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_terrain_request_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    int32_t lat,int32_t lon,uint16_t grid_spacing,uint64_t mask)
 {
@@ -171,7 +171,7 @@ static inline uint16_t mavlink_msg_terrain_request_pack_chan(uint8_t system_id, 
  * @param msg The MAVLink message to compress the data into
  * @param terrain_request C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_terrain_request_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_terrain_request_t* terrain_request)
+static inline uint16_t mavlink_msg_terrain_request_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_terrain_request_t* terrain_request)
 {
     return mavlink_msg_terrain_request_pack(system_id, component_id, msg, terrain_request->lat, terrain_request->lon, terrain_request->grid_spacing, terrain_request->mask);
 }
@@ -185,7 +185,7 @@ static inline uint16_t mavlink_msg_terrain_request_encode(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param terrain_request C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_terrain_request_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_terrain_request_t* terrain_request)
+static inline uint16_t mavlink_msg_terrain_request_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_terrain_request_t* terrain_request)
 {
     return mavlink_msg_terrain_request_pack_chan(system_id, component_id, chan, msg, terrain_request->lat, terrain_request->lon, terrain_request->grid_spacing, terrain_request->mask);
 }
@@ -199,7 +199,7 @@ static inline uint16_t mavlink_msg_terrain_request_encode_chan(uint8_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param terrain_request C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_terrain_request_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_terrain_request_t* terrain_request)
+static inline uint16_t mavlink_msg_terrain_request_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_terrain_request_t* terrain_request)
 {
     return mavlink_msg_terrain_request_pack_status(system_id, component_id, _status, msg,  terrain_request->lat, terrain_request->lon, terrain_request->grid_spacing, terrain_request->mask);
 }
@@ -343,4 +343,5 @@ static inline void mavlink_msg_terrain_request_decode(const mavlink_message_t* m
         memset(terrain_request, 0, MAVLINK_MSG_ID_TERRAIN_REQUEST_LEN);
     memcpy(terrain_request, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

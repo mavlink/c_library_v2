@@ -86,7 +86,7 @@ typedef struct __mavlink_camera_tracking_image_status_t {
  * @param camera_device_id  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_camera_tracking_image_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_camera_tracking_image_status_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t tracking_status, uint8_t tracking_mode, uint8_t target_data, float point_x, float point_y, float radius, float rec_top_x, float rec_top_y, float rec_bottom_x, float rec_bottom_y, uint8_t camera_device_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -145,7 +145,7 @@ static inline uint16_t mavlink_msg_camera_tracking_image_status_pack(uint8_t sys
  * @param camera_device_id  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_camera_tracking_image_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_camera_tracking_image_status_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t tracking_status, uint8_t tracking_mode, uint8_t target_data, float point_x, float point_y, float radius, float rec_top_x, float rec_top_y, float rec_bottom_x, float rec_bottom_y, uint8_t camera_device_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -184,7 +184,7 @@ static inline uint16_t mavlink_msg_camera_tracking_image_status_pack_status(uint
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CAMERA_TRACKING_IMAGE_STATUS_MIN_LEN, MAVLINK_MSG_ID_CAMERA_TRACKING_IMAGE_STATUS_LEN, MAVLINK_MSG_ID_CAMERA_TRACKING_IMAGE_STATUS_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CAMERA_TRACKING_IMAGE_STATUS_MIN_LEN, MAVLINK_MSG_ID_CAMERA_TRACKING_IMAGE_STATUS_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CAMERA_TRACKING_IMAGE_STATUS_MIN_LEN, MAVLINK_MSG_ID_CAMERA_TRACKING_IMAGE_STATUS_LEN, 0);
 #endif
 }
 
@@ -207,7 +207,7 @@ static inline uint16_t mavlink_msg_camera_tracking_image_status_pack_status(uint
  * @param camera_device_id  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_camera_tracking_image_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_camera_tracking_image_status_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t tracking_status,uint8_t tracking_mode,uint8_t target_data,float point_x,float point_y,float radius,float rec_top_x,float rec_top_y,float rec_bottom_x,float rec_bottom_y,uint8_t camera_device_id)
 {
@@ -255,7 +255,7 @@ static inline uint16_t mavlink_msg_camera_tracking_image_status_pack_chan(uint8_
  * @param msg The MAVLink message to compress the data into
  * @param camera_tracking_image_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_camera_tracking_image_status_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_camera_tracking_image_status_t* camera_tracking_image_status)
+static inline uint16_t mavlink_msg_camera_tracking_image_status_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_camera_tracking_image_status_t* camera_tracking_image_status)
 {
     return mavlink_msg_camera_tracking_image_status_pack(system_id, component_id, msg, camera_tracking_image_status->tracking_status, camera_tracking_image_status->tracking_mode, camera_tracking_image_status->target_data, camera_tracking_image_status->point_x, camera_tracking_image_status->point_y, camera_tracking_image_status->radius, camera_tracking_image_status->rec_top_x, camera_tracking_image_status->rec_top_y, camera_tracking_image_status->rec_bottom_x, camera_tracking_image_status->rec_bottom_y, camera_tracking_image_status->camera_device_id);
 }
@@ -269,7 +269,7 @@ static inline uint16_t mavlink_msg_camera_tracking_image_status_encode(uint8_t s
  * @param msg The MAVLink message to compress the data into
  * @param camera_tracking_image_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_camera_tracking_image_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_camera_tracking_image_status_t* camera_tracking_image_status)
+static inline uint16_t mavlink_msg_camera_tracking_image_status_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_camera_tracking_image_status_t* camera_tracking_image_status)
 {
     return mavlink_msg_camera_tracking_image_status_pack_chan(system_id, component_id, chan, msg, camera_tracking_image_status->tracking_status, camera_tracking_image_status->tracking_mode, camera_tracking_image_status->target_data, camera_tracking_image_status->point_x, camera_tracking_image_status->point_y, camera_tracking_image_status->radius, camera_tracking_image_status->rec_top_x, camera_tracking_image_status->rec_top_y, camera_tracking_image_status->rec_bottom_x, camera_tracking_image_status->rec_bottom_y, camera_tracking_image_status->camera_device_id);
 }
@@ -283,7 +283,7 @@ static inline uint16_t mavlink_msg_camera_tracking_image_status_encode_chan(uint
  * @param msg The MAVLink message to compress the data into
  * @param camera_tracking_image_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_camera_tracking_image_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_camera_tracking_image_status_t* camera_tracking_image_status)
+static inline uint16_t mavlink_msg_camera_tracking_image_status_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_camera_tracking_image_status_t* camera_tracking_image_status)
 {
     return mavlink_msg_camera_tracking_image_status_pack_status(system_id, component_id, _status, msg,  camera_tracking_image_status->tracking_status, camera_tracking_image_status->tracking_mode, camera_tracking_image_status->target_data, camera_tracking_image_status->point_x, camera_tracking_image_status->point_y, camera_tracking_image_status->radius, camera_tracking_image_status->rec_top_x, camera_tracking_image_status->rec_top_y, camera_tracking_image_status->rec_bottom_x, camera_tracking_image_status->rec_bottom_y, camera_tracking_image_status->camera_device_id);
 }
@@ -539,4 +539,5 @@ static inline void mavlink_msg_camera_tracking_image_status_decode(const mavlink
         memset(camera_tracking_image_status, 0, MAVLINK_MSG_ID_CAMERA_TRACKING_IMAGE_STATUS_LEN);
     memcpy(camera_tracking_image_status, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

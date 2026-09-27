@@ -70,7 +70,7 @@ typedef struct __mavlink_radio_t {
  * @param fixed  Count of error corrected packets.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_radio_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_radio_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t rssi, uint8_t remrssi, uint8_t txbuf, uint8_t noise, uint8_t remnoise, uint16_t rxerrors, uint16_t fixed)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -117,7 +117,7 @@ static inline uint16_t mavlink_msg_radio_pack(uint8_t system_id, uint8_t compone
  * @param fixed  Count of error corrected packets.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_radio_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_radio_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t rssi, uint8_t remrssi, uint8_t txbuf, uint8_t noise, uint8_t remnoise, uint16_t rxerrors, uint16_t fixed)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -148,7 +148,7 @@ static inline uint16_t mavlink_msg_radio_pack_status(uint8_t system_id, uint8_t 
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_RADIO_MIN_LEN, MAVLINK_MSG_ID_RADIO_LEN, MAVLINK_MSG_ID_RADIO_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_RADIO_MIN_LEN, MAVLINK_MSG_ID_RADIO_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_RADIO_MIN_LEN, MAVLINK_MSG_ID_RADIO_LEN, 0);
 #endif
 }
 
@@ -167,7 +167,7 @@ static inline uint16_t mavlink_msg_radio_pack_status(uint8_t system_id, uint8_t 
  * @param fixed  Count of error corrected packets.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_radio_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_radio_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t rssi,uint8_t remrssi,uint8_t txbuf,uint8_t noise,uint8_t remnoise,uint16_t rxerrors,uint16_t fixed)
 {
@@ -207,7 +207,7 @@ static inline uint16_t mavlink_msg_radio_pack_chan(uint8_t system_id, uint8_t co
  * @param msg The MAVLink message to compress the data into
  * @param radio C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_radio_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_radio_t* radio)
+static inline uint16_t mavlink_msg_radio_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_radio_t* radio)
 {
     return mavlink_msg_radio_pack(system_id, component_id, msg, radio->rssi, radio->remrssi, radio->txbuf, radio->noise, radio->remnoise, radio->rxerrors, radio->fixed);
 }
@@ -221,7 +221,7 @@ static inline uint16_t mavlink_msg_radio_encode(uint8_t system_id, uint8_t compo
  * @param msg The MAVLink message to compress the data into
  * @param radio C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_radio_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_radio_t* radio)
+static inline uint16_t mavlink_msg_radio_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_radio_t* radio)
 {
     return mavlink_msg_radio_pack_chan(system_id, component_id, chan, msg, radio->rssi, radio->remrssi, radio->txbuf, radio->noise, radio->remnoise, radio->rxerrors, radio->fixed);
 }
@@ -235,7 +235,7 @@ static inline uint16_t mavlink_msg_radio_encode_chan(uint8_t system_id, uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param radio C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_radio_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_radio_t* radio)
+static inline uint16_t mavlink_msg_radio_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_radio_t* radio)
 {
     return mavlink_msg_radio_pack_status(system_id, component_id, _status, msg,  radio->rssi, radio->remrssi, radio->txbuf, radio->noise, radio->remnoise, radio->rxerrors, radio->fixed);
 }
@@ -427,4 +427,5 @@ static inline void mavlink_msg_radio_decode(const mavlink_message_t* msg, mavlin
         memset(radio, 0, MAVLINK_MSG_ID_RADIO_LEN);
     memcpy(radio, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

@@ -62,7 +62,7 @@ typedef struct __mavlink_param_value_t {
  * @param param_index  Index of this onboard parameter
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_param_value_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_param_value_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                const char *param_id, float param_value, uint8_t param_type, uint16_t param_count, uint16_t param_index)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -101,7 +101,7 @@ static inline uint16_t mavlink_msg_param_value_pack(uint8_t system_id, uint8_t c
  * @param param_index  Index of this onboard parameter
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_param_value_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_param_value_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                const char *param_id, float param_value, uint8_t param_type, uint16_t param_count, uint16_t param_index)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -126,7 +126,7 @@ static inline uint16_t mavlink_msg_param_value_pack_status(uint8_t system_id, ui
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_PARAM_VALUE_MIN_LEN, MAVLINK_MSG_ID_PARAM_VALUE_LEN, MAVLINK_MSG_ID_PARAM_VALUE_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_PARAM_VALUE_MIN_LEN, MAVLINK_MSG_ID_PARAM_VALUE_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_PARAM_VALUE_MIN_LEN, MAVLINK_MSG_ID_PARAM_VALUE_LEN, 0);
 #endif
 }
 
@@ -143,7 +143,7 @@ static inline uint16_t mavlink_msg_param_value_pack_status(uint8_t system_id, ui
  * @param param_index  Index of this onboard parameter
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_param_value_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_param_value_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    const char *param_id,float param_value,uint8_t param_type,uint16_t param_count,uint16_t param_index)
 {
@@ -177,7 +177,7 @@ static inline uint16_t mavlink_msg_param_value_pack_chan(uint8_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  * @param param_value C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_param_value_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_param_value_t* param_value)
+static inline uint16_t mavlink_msg_param_value_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_param_value_t* param_value)
 {
     return mavlink_msg_param_value_pack(system_id, component_id, msg, param_value->param_id, param_value->param_value, param_value->param_type, param_value->param_count, param_value->param_index);
 }
@@ -191,7 +191,7 @@ static inline uint16_t mavlink_msg_param_value_encode(uint8_t system_id, uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param param_value C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_param_value_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_param_value_t* param_value)
+static inline uint16_t mavlink_msg_param_value_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_param_value_t* param_value)
 {
     return mavlink_msg_param_value_pack_chan(system_id, component_id, chan, msg, param_value->param_id, param_value->param_value, param_value->param_type, param_value->param_count, param_value->param_index);
 }
@@ -205,7 +205,7 @@ static inline uint16_t mavlink_msg_param_value_encode_chan(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param param_value C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_param_value_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_param_value_t* param_value)
+static inline uint16_t mavlink_msg_param_value_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_param_value_t* param_value)
 {
     return mavlink_msg_param_value_pack_status(system_id, component_id, _status, msg,  param_value->param_id, param_value->param_value, param_value->param_type, param_value->param_count, param_value->param_index);
 }
@@ -361,4 +361,5 @@ static inline void mavlink_msg_param_value_decode(const mavlink_message_t* msg, 
         memset(param_value, 0, MAVLINK_MSG_ID_PARAM_VALUE_LEN);
     memcpy(param_value, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

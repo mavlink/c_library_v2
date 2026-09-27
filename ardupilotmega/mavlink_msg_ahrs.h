@@ -70,7 +70,7 @@ typedef struct __mavlink_ahrs_t {
  * @param error_yaw  Average error_yaw value.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_ahrs_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_ahrs_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                float omegaIx, float omegaIy, float omegaIz, float accel_weight, float renorm_val, float error_rp, float error_yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -117,7 +117,7 @@ static inline uint16_t mavlink_msg_ahrs_pack(uint8_t system_id, uint8_t componen
  * @param error_yaw  Average error_yaw value.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_ahrs_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_ahrs_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                float omegaIx, float omegaIy, float omegaIz, float accel_weight, float renorm_val, float error_rp, float error_yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -148,7 +148,7 @@ static inline uint16_t mavlink_msg_ahrs_pack_status(uint8_t system_id, uint8_t c
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AHRS_MIN_LEN, MAVLINK_MSG_ID_AHRS_LEN, MAVLINK_MSG_ID_AHRS_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AHRS_MIN_LEN, MAVLINK_MSG_ID_AHRS_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AHRS_MIN_LEN, MAVLINK_MSG_ID_AHRS_LEN, 0);
 #endif
 }
 
@@ -167,7 +167,7 @@ static inline uint16_t mavlink_msg_ahrs_pack_status(uint8_t system_id, uint8_t c
  * @param error_yaw  Average error_yaw value.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_ahrs_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_ahrs_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    float omegaIx,float omegaIy,float omegaIz,float accel_weight,float renorm_val,float error_rp,float error_yaw)
 {
@@ -207,7 +207,7 @@ static inline uint16_t mavlink_msg_ahrs_pack_chan(uint8_t system_id, uint8_t com
  * @param msg The MAVLink message to compress the data into
  * @param ahrs C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_ahrs_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_ahrs_t* ahrs)
+static inline uint16_t mavlink_msg_ahrs_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_ahrs_t* ahrs)
 {
     return mavlink_msg_ahrs_pack(system_id, component_id, msg, ahrs->omegaIx, ahrs->omegaIy, ahrs->omegaIz, ahrs->accel_weight, ahrs->renorm_val, ahrs->error_rp, ahrs->error_yaw);
 }
@@ -221,7 +221,7 @@ static inline uint16_t mavlink_msg_ahrs_encode(uint8_t system_id, uint8_t compon
  * @param msg The MAVLink message to compress the data into
  * @param ahrs C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_ahrs_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_ahrs_t* ahrs)
+static inline uint16_t mavlink_msg_ahrs_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_ahrs_t* ahrs)
 {
     return mavlink_msg_ahrs_pack_chan(system_id, component_id, chan, msg, ahrs->omegaIx, ahrs->omegaIy, ahrs->omegaIz, ahrs->accel_weight, ahrs->renorm_val, ahrs->error_rp, ahrs->error_yaw);
 }
@@ -235,7 +235,7 @@ static inline uint16_t mavlink_msg_ahrs_encode_chan(uint8_t system_id, uint8_t c
  * @param msg The MAVLink message to compress the data into
  * @param ahrs C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_ahrs_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_ahrs_t* ahrs)
+static inline uint16_t mavlink_msg_ahrs_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_ahrs_t* ahrs)
 {
     return mavlink_msg_ahrs_pack_status(system_id, component_id, _status, msg,  ahrs->omegaIx, ahrs->omegaIy, ahrs->omegaIz, ahrs->accel_weight, ahrs->renorm_val, ahrs->error_rp, ahrs->error_yaw);
 }
@@ -427,4 +427,5 @@ static inline void mavlink_msg_ahrs_decode(const mavlink_message_t* msg, mavlink
         memset(ahrs, 0, MAVLINK_MSG_ID_AHRS_LEN);
     memcpy(ahrs, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

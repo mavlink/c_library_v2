@@ -58,27 +58,27 @@ typedef struct __mavlink_setup_signing_t {
  * @param initial_timestamp  initial timestamp
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_setup_signing_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, const uint8_t *secret_key, uint64_t initial_timestamp)
+static inline uint16_t mavlink_msg_setup_signing_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, const uint8_t *secret_key, uint64_t initial_timestamp)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SETUP_SIGNING_LEN];
     _mav_put_uint64_t(buf, 0, initial_timestamp);
-    _mav_put_uint8_t(buf, 8, target_system);
+    _mav_put_uint8_t(buf, 8, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 9, target_component);
     _mav_put_uint8_t_array(buf, 10, secret_key, 32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SETUP_SIGNING_LEN);
 #else
     mavlink_setup_signing_t packet;
     packet.initial_timestamp = initial_timestamp;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     mav_array_memcpy(packet.secret_key, secret_key, sizeof(uint8_t)*32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SETUP_SIGNING_LEN);
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_SETUP_SIGNING;
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_SETUP_SIGNING_MIN_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_CRC);
+    return mavlink_finalize_message_target(msg, system_id, component_id, MAVLINK_MSG_ID_SETUP_SIGNING_MIN_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_CRC, target_system);
 }
 
 /**
@@ -94,20 +94,20 @@ static inline uint16_t mavlink_msg_setup_signing_pack(uint8_t system_id, uint8_t
  * @param initial_timestamp  initial timestamp
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_setup_signing_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, const uint8_t *secret_key, uint64_t initial_timestamp)
+static inline uint16_t mavlink_msg_setup_signing_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, const uint8_t *secret_key, uint64_t initial_timestamp)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SETUP_SIGNING_LEN];
     _mav_put_uint64_t(buf, 0, initial_timestamp);
-    _mav_put_uint8_t(buf, 8, target_system);
+    _mav_put_uint8_t(buf, 8, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 9, target_component);
     _mav_put_uint8_t_array(buf, 10, secret_key, 32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SETUP_SIGNING_LEN);
 #else
     mavlink_setup_signing_t packet;
     packet.initial_timestamp = initial_timestamp;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     mav_array_memcpy(packet.secret_key, secret_key, sizeof(uint8_t)*32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SETUP_SIGNING_LEN);
@@ -115,9 +115,9 @@ static inline uint16_t mavlink_msg_setup_signing_pack_status(uint8_t system_id, 
 
     msg->msgid = MAVLINK_MSG_ID_SETUP_SIGNING;
 #if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SETUP_SIGNING_MIN_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_CRC);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SETUP_SIGNING_MIN_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_CRC, target_system);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SETUP_SIGNING_MIN_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_LEN);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SETUP_SIGNING_MIN_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_LEN, 0, target_system);
 #endif
 }
 
@@ -133,28 +133,28 @@ static inline uint16_t mavlink_msg_setup_signing_pack_status(uint8_t system_id, 
  * @param initial_timestamp  initial timestamp
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_setup_signing_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_setup_signing_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t target_system,uint8_t target_component,const uint8_t *secret_key,uint64_t initial_timestamp)
+                                   uint32_t target_system,uint8_t target_component,const uint8_t *secret_key,uint64_t initial_timestamp)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SETUP_SIGNING_LEN];
     _mav_put_uint64_t(buf, 0, initial_timestamp);
-    _mav_put_uint8_t(buf, 8, target_system);
+    _mav_put_uint8_t(buf, 8, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 9, target_component);
     _mav_put_uint8_t_array(buf, 10, secret_key, 32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SETUP_SIGNING_LEN);
 #else
     mavlink_setup_signing_t packet;
     packet.initial_timestamp = initial_timestamp;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     mav_array_memcpy(packet.secret_key, secret_key, sizeof(uint8_t)*32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SETUP_SIGNING_LEN);
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_SETUP_SIGNING;
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_SETUP_SIGNING_MIN_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_CRC);
+    return mavlink_finalize_message_chan_target(msg, system_id, component_id, chan, MAVLINK_MSG_ID_SETUP_SIGNING_MIN_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_CRC, target_system);
 }
 
 /**
@@ -165,7 +165,7 @@ static inline uint16_t mavlink_msg_setup_signing_pack_chan(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param setup_signing C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_setup_signing_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_setup_signing_t* setup_signing)
+static inline uint16_t mavlink_msg_setup_signing_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_setup_signing_t* setup_signing)
 {
     return mavlink_msg_setup_signing_pack(system_id, component_id, msg, setup_signing->target_system, setup_signing->target_component, setup_signing->secret_key, setup_signing->initial_timestamp);
 }
@@ -179,7 +179,7 @@ static inline uint16_t mavlink_msg_setup_signing_encode(uint8_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param setup_signing C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_setup_signing_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_setup_signing_t* setup_signing)
+static inline uint16_t mavlink_msg_setup_signing_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_setup_signing_t* setup_signing)
 {
     return mavlink_msg_setup_signing_pack_chan(system_id, component_id, chan, msg, setup_signing->target_system, setup_signing->target_component, setup_signing->secret_key, setup_signing->initial_timestamp);
 }
@@ -193,7 +193,7 @@ static inline uint16_t mavlink_msg_setup_signing_encode_chan(uint8_t system_id, 
  * @param msg The MAVLink message to compress the data into
  * @param setup_signing C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_setup_signing_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_setup_signing_t* setup_signing)
+static inline uint16_t mavlink_msg_setup_signing_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_setup_signing_t* setup_signing)
 {
     return mavlink_msg_setup_signing_pack_status(system_id, component_id, _status, msg,  setup_signing->target_system, setup_signing->target_component, setup_signing->secret_key, setup_signing->initial_timestamp);
 }
@@ -209,22 +209,22 @@ static inline uint16_t mavlink_msg_setup_signing_encode_status(uint8_t system_id
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_setup_signing_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, const uint8_t *secret_key, uint64_t initial_timestamp)
+static inline void mavlink_msg_setup_signing_send(mavlink_channel_t chan, uint32_t target_system, uint8_t target_component, const uint8_t *secret_key, uint64_t initial_timestamp)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SETUP_SIGNING_LEN];
     _mav_put_uint64_t(buf, 0, initial_timestamp);
-    _mav_put_uint8_t(buf, 8, target_system);
+    _mav_put_uint8_t(buf, 8, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 9, target_component);
     _mav_put_uint8_t_array(buf, 10, secret_key, 32);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SETUP_SIGNING, buf, MAVLINK_MSG_ID_SETUP_SIGNING_MIN_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_SETUP_SIGNING, buf, MAVLINK_MSG_ID_SETUP_SIGNING_MIN_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_CRC, target_system);
 #else
     mavlink_setup_signing_t packet;
     packet.initial_timestamp = initial_timestamp;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     mav_array_memcpy(packet.secret_key, secret_key, sizeof(uint8_t)*32);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SETUP_SIGNING, (const char *)&packet, MAVLINK_MSG_ID_SETUP_SIGNING_MIN_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_SETUP_SIGNING, (const char *)&packet, MAVLINK_MSG_ID_SETUP_SIGNING_MIN_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_CRC, target_system);
 #endif
 }
 
@@ -250,22 +250,22 @@ static inline void mavlink_msg_setup_signing_send_struct(mavlink_channel_t chan,
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_setup_signing_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, const uint8_t *secret_key, uint64_t initial_timestamp)
+static inline void mavlink_msg_setup_signing_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t target_system, uint8_t target_component, const uint8_t *secret_key, uint64_t initial_timestamp)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_uint64_t(buf, 0, initial_timestamp);
-    _mav_put_uint8_t(buf, 8, target_system);
+    _mav_put_uint8_t(buf, 8, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 9, target_component);
     _mav_put_uint8_t_array(buf, 10, secret_key, 32);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SETUP_SIGNING, buf, MAVLINK_MSG_ID_SETUP_SIGNING_MIN_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_SETUP_SIGNING, buf, MAVLINK_MSG_ID_SETUP_SIGNING_MIN_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_CRC, target_system);
 #else
     mavlink_setup_signing_t *packet = (mavlink_setup_signing_t *)msgbuf;
     packet->initial_timestamp = initial_timestamp;
-    packet->target_system = target_system;
+    packet->target_system = mavlink_msg_target_field(target_system);
     packet->target_component = target_component;
     mav_array_memcpy(packet->secret_key, secret_key, sizeof(uint8_t)*32);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SETUP_SIGNING, (const char *)packet, MAVLINK_MSG_ID_SETUP_SIGNING_MIN_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_SETUP_SIGNING, (const char *)packet, MAVLINK_MSG_ID_SETUP_SIGNING_MIN_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_LEN, MAVLINK_MSG_ID_SETUP_SIGNING_CRC, target_system);
 #endif
 }
 #endif
@@ -274,16 +274,6 @@ static inline void mavlink_msg_setup_signing_send_buf(mavlink_message_t *msgbuf,
 
 // MESSAGE SETUP_SIGNING UNPACKING
 
-
-/**
- * @brief Get field target_system from setup_signing message
- *
- * @return  system id of the target
- */
-static inline uint8_t mavlink_msg_setup_signing_get_target_system(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint8_t(msg,  8);
-}
 
 /**
  * @brief Get field target_component from setup_signing message
@@ -325,7 +315,7 @@ static inline void mavlink_msg_setup_signing_decode(const mavlink_message_t* msg
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     setup_signing->initial_timestamp = mavlink_msg_setup_signing_get_initial_timestamp(msg);
-    setup_signing->target_system = mavlink_msg_setup_signing_get_target_system(msg);
+    setup_signing->target_system = _MAV_RETURN_uint8_t(msg, 8);
     setup_signing->target_component = mavlink_msg_setup_signing_get_target_component(msg);
     mavlink_msg_setup_signing_get_secret_key(msg, setup_signing->secret_key);
 #else
@@ -333,4 +323,11 @@ static inline void mavlink_msg_setup_signing_decode(const mavlink_message_t* msg
         memset(setup_signing, 0, MAVLINK_MSG_ID_SETUP_SIGNING_LEN);
     memcpy(setup_signing, _MAV_PAYLOAD(msg), len);
 #endif
+    if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
+        // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
+        // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
+        // To relay after edits, pass that full target to _pack*(); _encode*() loses it.
+        setup_signing->target_system = mavlink_msg_target_field(msg->target_sysid);
+    }
+
 }

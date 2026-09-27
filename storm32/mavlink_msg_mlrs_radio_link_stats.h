@@ -106,13 +106,13 @@ typedef struct __mavlink_mlrs_radio_link_stats_t {
  * @param frequency2 [Hz] Frequency on antenna2 in Hz. 0: unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_mlrs_radio_link_stats_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint16_t flags, uint8_t rx_LQ_rc, uint8_t rx_LQ_ser, uint8_t rx_rssi1, int8_t rx_snr1, uint8_t tx_LQ_ser, uint8_t tx_rssi1, int8_t tx_snr1, uint8_t rx_rssi2, int8_t rx_snr2, uint8_t tx_rssi2, int8_t tx_snr2, float frequency1, float frequency2)
+static inline uint16_t mavlink_msg_mlrs_radio_link_stats_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, uint16_t flags, uint8_t rx_LQ_rc, uint8_t rx_LQ_ser, uint8_t rx_rssi1, int8_t rx_snr1, uint8_t tx_LQ_ser, uint8_t tx_rssi1, int8_t tx_snr1, uint8_t rx_rssi2, int8_t rx_snr2, uint8_t tx_rssi2, int8_t tx_snr2, float frequency1, float frequency2)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN];
     _mav_put_uint16_t(buf, 0, flags);
-    _mav_put_uint8_t(buf, 2, target_system);
+    _mav_put_uint8_t(buf, 2, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 3, target_component);
     _mav_put_uint8_t(buf, 4, rx_LQ_rc);
     _mav_put_uint8_t(buf, 5, rx_LQ_ser);
@@ -132,7 +132,7 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_stats_pack(uint8_t system_id,
 #else
     mavlink_mlrs_radio_link_stats_t packet;
     packet.flags = flags;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.rx_LQ_rc = rx_LQ_rc;
     packet.rx_LQ_ser = rx_LQ_ser;
@@ -152,7 +152,7 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_stats_pack(uint8_t system_id,
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS;
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_MIN_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_CRC);
+    return mavlink_finalize_message_target(msg, system_id, component_id, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_MIN_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_CRC, target_system);
 }
 
 /**
@@ -180,13 +180,13 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_stats_pack(uint8_t system_id,
  * @param frequency2 [Hz] Frequency on antenna2 in Hz. 0: unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_mlrs_radio_link_stats_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint16_t flags, uint8_t rx_LQ_rc, uint8_t rx_LQ_ser, uint8_t rx_rssi1, int8_t rx_snr1, uint8_t tx_LQ_ser, uint8_t tx_rssi1, int8_t tx_snr1, uint8_t rx_rssi2, int8_t rx_snr2, uint8_t tx_rssi2, int8_t tx_snr2, float frequency1, float frequency2)
+static inline uint16_t mavlink_msg_mlrs_radio_link_stats_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, uint16_t flags, uint8_t rx_LQ_rc, uint8_t rx_LQ_ser, uint8_t rx_rssi1, int8_t rx_snr1, uint8_t tx_LQ_ser, uint8_t tx_rssi1, int8_t tx_snr1, uint8_t rx_rssi2, int8_t rx_snr2, uint8_t tx_rssi2, int8_t tx_snr2, float frequency1, float frequency2)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN];
     _mav_put_uint16_t(buf, 0, flags);
-    _mav_put_uint8_t(buf, 2, target_system);
+    _mav_put_uint8_t(buf, 2, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 3, target_component);
     _mav_put_uint8_t(buf, 4, rx_LQ_rc);
     _mav_put_uint8_t(buf, 5, rx_LQ_ser);
@@ -206,7 +206,7 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_stats_pack_status(uint8_t sys
 #else
     mavlink_mlrs_radio_link_stats_t packet;
     packet.flags = flags;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.rx_LQ_rc = rx_LQ_rc;
     packet.rx_LQ_ser = rx_LQ_ser;
@@ -227,9 +227,9 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_stats_pack_status(uint8_t sys
 
     msg->msgid = MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS;
 #if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_MIN_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_CRC);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_MIN_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_CRC, target_system);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_MIN_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_MIN_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN, 0, target_system);
 #endif
 }
 
@@ -257,14 +257,14 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_stats_pack_status(uint8_t sys
  * @param frequency2 [Hz] Frequency on antenna2 in Hz. 0: unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_mlrs_radio_link_stats_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_mlrs_radio_link_stats_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t target_system,uint8_t target_component,uint16_t flags,uint8_t rx_LQ_rc,uint8_t rx_LQ_ser,uint8_t rx_rssi1,int8_t rx_snr1,uint8_t tx_LQ_ser,uint8_t tx_rssi1,int8_t tx_snr1,uint8_t rx_rssi2,int8_t rx_snr2,uint8_t tx_rssi2,int8_t tx_snr2,float frequency1,float frequency2)
+                                   uint32_t target_system,uint8_t target_component,uint16_t flags,uint8_t rx_LQ_rc,uint8_t rx_LQ_ser,uint8_t rx_rssi1,int8_t rx_snr1,uint8_t tx_LQ_ser,uint8_t tx_rssi1,int8_t tx_snr1,uint8_t rx_rssi2,int8_t rx_snr2,uint8_t tx_rssi2,int8_t tx_snr2,float frequency1,float frequency2)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN];
     _mav_put_uint16_t(buf, 0, flags);
-    _mav_put_uint8_t(buf, 2, target_system);
+    _mav_put_uint8_t(buf, 2, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 3, target_component);
     _mav_put_uint8_t(buf, 4, rx_LQ_rc);
     _mav_put_uint8_t(buf, 5, rx_LQ_ser);
@@ -284,7 +284,7 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_stats_pack_chan(uint8_t syste
 #else
     mavlink_mlrs_radio_link_stats_t packet;
     packet.flags = flags;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.rx_LQ_rc = rx_LQ_rc;
     packet.rx_LQ_ser = rx_LQ_ser;
@@ -304,7 +304,7 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_stats_pack_chan(uint8_t syste
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS;
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_MIN_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_CRC);
+    return mavlink_finalize_message_chan_target(msg, system_id, component_id, chan, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_MIN_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_CRC, target_system);
 }
 
 /**
@@ -315,7 +315,7 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_stats_pack_chan(uint8_t syste
  * @param msg The MAVLink message to compress the data into
  * @param mlrs_radio_link_stats C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mlrs_radio_link_stats_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_mlrs_radio_link_stats_t* mlrs_radio_link_stats)
+static inline uint16_t mavlink_msg_mlrs_radio_link_stats_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_mlrs_radio_link_stats_t* mlrs_radio_link_stats)
 {
     return mavlink_msg_mlrs_radio_link_stats_pack(system_id, component_id, msg, mlrs_radio_link_stats->target_system, mlrs_radio_link_stats->target_component, mlrs_radio_link_stats->flags, mlrs_radio_link_stats->rx_LQ_rc, mlrs_radio_link_stats->rx_LQ_ser, mlrs_radio_link_stats->rx_rssi1, mlrs_radio_link_stats->rx_snr1, mlrs_radio_link_stats->tx_LQ_ser, mlrs_radio_link_stats->tx_rssi1, mlrs_radio_link_stats->tx_snr1, mlrs_radio_link_stats->rx_rssi2, mlrs_radio_link_stats->rx_snr2, mlrs_radio_link_stats->tx_rssi2, mlrs_radio_link_stats->tx_snr2, mlrs_radio_link_stats->frequency1, mlrs_radio_link_stats->frequency2);
 }
@@ -329,7 +329,7 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_stats_encode(uint8_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param mlrs_radio_link_stats C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mlrs_radio_link_stats_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mlrs_radio_link_stats_t* mlrs_radio_link_stats)
+static inline uint16_t mavlink_msg_mlrs_radio_link_stats_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mlrs_radio_link_stats_t* mlrs_radio_link_stats)
 {
     return mavlink_msg_mlrs_radio_link_stats_pack_chan(system_id, component_id, chan, msg, mlrs_radio_link_stats->target_system, mlrs_radio_link_stats->target_component, mlrs_radio_link_stats->flags, mlrs_radio_link_stats->rx_LQ_rc, mlrs_radio_link_stats->rx_LQ_ser, mlrs_radio_link_stats->rx_rssi1, mlrs_radio_link_stats->rx_snr1, mlrs_radio_link_stats->tx_LQ_ser, mlrs_radio_link_stats->tx_rssi1, mlrs_radio_link_stats->tx_snr1, mlrs_radio_link_stats->rx_rssi2, mlrs_radio_link_stats->rx_snr2, mlrs_radio_link_stats->tx_rssi2, mlrs_radio_link_stats->tx_snr2, mlrs_radio_link_stats->frequency1, mlrs_radio_link_stats->frequency2);
 }
@@ -343,7 +343,7 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_stats_encode_chan(uint8_t sys
  * @param msg The MAVLink message to compress the data into
  * @param mlrs_radio_link_stats C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mlrs_radio_link_stats_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_mlrs_radio_link_stats_t* mlrs_radio_link_stats)
+static inline uint16_t mavlink_msg_mlrs_radio_link_stats_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_mlrs_radio_link_stats_t* mlrs_radio_link_stats)
 {
     return mavlink_msg_mlrs_radio_link_stats_pack_status(system_id, component_id, _status, msg,  mlrs_radio_link_stats->target_system, mlrs_radio_link_stats->target_component, mlrs_radio_link_stats->flags, mlrs_radio_link_stats->rx_LQ_rc, mlrs_radio_link_stats->rx_LQ_ser, mlrs_radio_link_stats->rx_rssi1, mlrs_radio_link_stats->rx_snr1, mlrs_radio_link_stats->tx_LQ_ser, mlrs_radio_link_stats->tx_rssi1, mlrs_radio_link_stats->tx_snr1, mlrs_radio_link_stats->rx_rssi2, mlrs_radio_link_stats->rx_snr2, mlrs_radio_link_stats->tx_rssi2, mlrs_radio_link_stats->tx_snr2, mlrs_radio_link_stats->frequency1, mlrs_radio_link_stats->frequency2);
 }
@@ -371,12 +371,12 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_stats_encode_status(uint8_t s
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_mlrs_radio_link_stats_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint16_t flags, uint8_t rx_LQ_rc, uint8_t rx_LQ_ser, uint8_t rx_rssi1, int8_t rx_snr1, uint8_t tx_LQ_ser, uint8_t tx_rssi1, int8_t tx_snr1, uint8_t rx_rssi2, int8_t rx_snr2, uint8_t tx_rssi2, int8_t tx_snr2, float frequency1, float frequency2)
+static inline void mavlink_msg_mlrs_radio_link_stats_send(mavlink_channel_t chan, uint32_t target_system, uint8_t target_component, uint16_t flags, uint8_t rx_LQ_rc, uint8_t rx_LQ_ser, uint8_t rx_rssi1, int8_t rx_snr1, uint8_t tx_LQ_ser, uint8_t tx_rssi1, int8_t tx_snr1, uint8_t rx_rssi2, int8_t rx_snr2, uint8_t tx_rssi2, int8_t tx_snr2, float frequency1, float frequency2)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN];
     _mav_put_uint16_t(buf, 0, flags);
-    _mav_put_uint8_t(buf, 2, target_system);
+    _mav_put_uint8_t(buf, 2, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 3, target_component);
     _mav_put_uint8_t(buf, 4, rx_LQ_rc);
     _mav_put_uint8_t(buf, 5, rx_LQ_ser);
@@ -392,11 +392,11 @@ static inline void mavlink_msg_mlrs_radio_link_stats_send(mavlink_channel_t chan
     _mav_put_float(buf, 15, frequency1);
     _mav_put_float(buf, 19, frequency2);
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS, buf, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_MIN_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS, buf, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_MIN_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_CRC, target_system);
 #else
     mavlink_mlrs_radio_link_stats_t packet;
     packet.flags = flags;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.rx_LQ_rc = rx_LQ_rc;
     packet.rx_LQ_ser = rx_LQ_ser;
@@ -412,7 +412,7 @@ static inline void mavlink_msg_mlrs_radio_link_stats_send(mavlink_channel_t chan
     packet.frequency1 = frequency1;
     packet.frequency2 = frequency2;
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS, (const char *)&packet, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_MIN_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS, (const char *)&packet, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_MIN_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_CRC, target_system);
 #endif
 }
 
@@ -438,12 +438,12 @@ static inline void mavlink_msg_mlrs_radio_link_stats_send_struct(mavlink_channel
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_mlrs_radio_link_stats_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, uint16_t flags, uint8_t rx_LQ_rc, uint8_t rx_LQ_ser, uint8_t rx_rssi1, int8_t rx_snr1, uint8_t tx_LQ_ser, uint8_t tx_rssi1, int8_t tx_snr1, uint8_t rx_rssi2, int8_t rx_snr2, uint8_t tx_rssi2, int8_t tx_snr2, float frequency1, float frequency2)
+static inline void mavlink_msg_mlrs_radio_link_stats_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t target_system, uint8_t target_component, uint16_t flags, uint8_t rx_LQ_rc, uint8_t rx_LQ_ser, uint8_t rx_rssi1, int8_t rx_snr1, uint8_t tx_LQ_ser, uint8_t tx_rssi1, int8_t tx_snr1, uint8_t rx_rssi2, int8_t rx_snr2, uint8_t tx_rssi2, int8_t tx_snr2, float frequency1, float frequency2)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_uint16_t(buf, 0, flags);
-    _mav_put_uint8_t(buf, 2, target_system);
+    _mav_put_uint8_t(buf, 2, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 3, target_component);
     _mav_put_uint8_t(buf, 4, rx_LQ_rc);
     _mav_put_uint8_t(buf, 5, rx_LQ_ser);
@@ -459,11 +459,11 @@ static inline void mavlink_msg_mlrs_radio_link_stats_send_buf(mavlink_message_t 
     _mav_put_float(buf, 15, frequency1);
     _mav_put_float(buf, 19, frequency2);
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS, buf, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_MIN_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS, buf, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_MIN_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_CRC, target_system);
 #else
     mavlink_mlrs_radio_link_stats_t *packet = (mavlink_mlrs_radio_link_stats_t *)msgbuf;
     packet->flags = flags;
-    packet->target_system = target_system;
+    packet->target_system = mavlink_msg_target_field(target_system);
     packet->target_component = target_component;
     packet->rx_LQ_rc = rx_LQ_rc;
     packet->rx_LQ_ser = rx_LQ_ser;
@@ -479,7 +479,7 @@ static inline void mavlink_msg_mlrs_radio_link_stats_send_buf(mavlink_message_t 
     packet->frequency1 = frequency1;
     packet->frequency2 = frequency2;
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS, (const char *)packet, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_MIN_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS, (const char *)packet, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_MIN_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_CRC, target_system);
 #endif
 }
 #endif
@@ -488,16 +488,6 @@ static inline void mavlink_msg_mlrs_radio_link_stats_send_buf(mavlink_message_t 
 
 // MESSAGE MLRS_RADIO_LINK_STATS UNPACKING
 
-
-/**
- * @brief Get field target_system from mlrs_radio_link_stats message
- *
- * @return  System ID (ID of target system, normally flight controller).
- */
-static inline uint8_t mavlink_msg_mlrs_radio_link_stats_get_target_system(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint8_t(msg,  2);
-}
 
 /**
  * @brief Get field target_component from mlrs_radio_link_stats message
@@ -659,7 +649,7 @@ static inline void mavlink_msg_mlrs_radio_link_stats_decode(const mavlink_messag
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mlrs_radio_link_stats->flags = mavlink_msg_mlrs_radio_link_stats_get_flags(msg);
-    mlrs_radio_link_stats->target_system = mavlink_msg_mlrs_radio_link_stats_get_target_system(msg);
+    mlrs_radio_link_stats->target_system = _MAV_RETURN_uint8_t(msg, 2);
     mlrs_radio_link_stats->target_component = mavlink_msg_mlrs_radio_link_stats_get_target_component(msg);
     mlrs_radio_link_stats->rx_LQ_rc = mavlink_msg_mlrs_radio_link_stats_get_rx_LQ_rc(msg);
     mlrs_radio_link_stats->rx_LQ_ser = mavlink_msg_mlrs_radio_link_stats_get_rx_LQ_ser(msg);
@@ -679,4 +669,11 @@ static inline void mavlink_msg_mlrs_radio_link_stats_decode(const mavlink_messag
         memset(mlrs_radio_link_stats, 0, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN);
     memcpy(mlrs_radio_link_stats, _MAV_PAYLOAD(msg), len);
 #endif
+    if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
+        // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
+        // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
+        // To relay after edits, pass that full target to _pack*(); _encode*() loses it.
+        mlrs_radio_link_stats->target_system = mavlink_msg_target_field(msg->target_sysid);
+    }
+
 }

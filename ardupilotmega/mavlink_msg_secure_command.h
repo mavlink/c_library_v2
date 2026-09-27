@@ -70,14 +70,14 @@ typedef struct __mavlink_secure_command_t {
  * @param data  Signed data.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_secure_command_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint32_t sequence, uint32_t operation, uint8_t data_length, uint8_t sig_length, const uint8_t *data)
+static inline uint16_t mavlink_msg_secure_command_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, uint32_t sequence, uint32_t operation, uint8_t data_length, uint8_t sig_length, const uint8_t *data)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SECURE_COMMAND_LEN];
     _mav_put_uint32_t(buf, 0, sequence);
     _mav_put_uint32_t(buf, 4, operation);
-    _mav_put_uint8_t(buf, 8, target_system);
+    _mav_put_uint8_t(buf, 8, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 9, target_component);
     _mav_put_uint8_t(buf, 10, data_length);
     _mav_put_uint8_t(buf, 11, sig_length);
@@ -87,7 +87,7 @@ static inline uint16_t mavlink_msg_secure_command_pack(uint8_t system_id, uint8_
     mavlink_secure_command_t packet;
     packet.sequence = sequence;
     packet.operation = operation;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.data_length = data_length;
     packet.sig_length = sig_length;
@@ -96,7 +96,7 @@ static inline uint16_t mavlink_msg_secure_command_pack(uint8_t system_id, uint8_
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_SECURE_COMMAND;
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_SECURE_COMMAND_MIN_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_CRC);
+    return mavlink_finalize_message_target(msg, system_id, component_id, MAVLINK_MSG_ID_SECURE_COMMAND_MIN_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_CRC, target_system);
 }
 
 /**
@@ -115,14 +115,14 @@ static inline uint16_t mavlink_msg_secure_command_pack(uint8_t system_id, uint8_
  * @param data  Signed data.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_secure_command_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint32_t sequence, uint32_t operation, uint8_t data_length, uint8_t sig_length, const uint8_t *data)
+static inline uint16_t mavlink_msg_secure_command_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, uint32_t sequence, uint32_t operation, uint8_t data_length, uint8_t sig_length, const uint8_t *data)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SECURE_COMMAND_LEN];
     _mav_put_uint32_t(buf, 0, sequence);
     _mav_put_uint32_t(buf, 4, operation);
-    _mav_put_uint8_t(buf, 8, target_system);
+    _mav_put_uint8_t(buf, 8, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 9, target_component);
     _mav_put_uint8_t(buf, 10, data_length);
     _mav_put_uint8_t(buf, 11, sig_length);
@@ -132,7 +132,7 @@ static inline uint16_t mavlink_msg_secure_command_pack_status(uint8_t system_id,
     mavlink_secure_command_t packet;
     packet.sequence = sequence;
     packet.operation = operation;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.data_length = data_length;
     packet.sig_length = sig_length;
@@ -142,9 +142,9 @@ static inline uint16_t mavlink_msg_secure_command_pack_status(uint8_t system_id,
 
     msg->msgid = MAVLINK_MSG_ID_SECURE_COMMAND;
 #if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SECURE_COMMAND_MIN_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_CRC);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SECURE_COMMAND_MIN_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_CRC, target_system);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SECURE_COMMAND_MIN_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_LEN);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SECURE_COMMAND_MIN_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_LEN, 0, target_system);
 #endif
 }
 
@@ -163,15 +163,15 @@ static inline uint16_t mavlink_msg_secure_command_pack_status(uint8_t system_id,
  * @param data  Signed data.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_secure_command_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_secure_command_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t target_system,uint8_t target_component,uint32_t sequence,uint32_t operation,uint8_t data_length,uint8_t sig_length,const uint8_t *data)
+                                   uint32_t target_system,uint8_t target_component,uint32_t sequence,uint32_t operation,uint8_t data_length,uint8_t sig_length,const uint8_t *data)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SECURE_COMMAND_LEN];
     _mav_put_uint32_t(buf, 0, sequence);
     _mav_put_uint32_t(buf, 4, operation);
-    _mav_put_uint8_t(buf, 8, target_system);
+    _mav_put_uint8_t(buf, 8, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 9, target_component);
     _mav_put_uint8_t(buf, 10, data_length);
     _mav_put_uint8_t(buf, 11, sig_length);
@@ -181,7 +181,7 @@ static inline uint16_t mavlink_msg_secure_command_pack_chan(uint8_t system_id, u
     mavlink_secure_command_t packet;
     packet.sequence = sequence;
     packet.operation = operation;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.data_length = data_length;
     packet.sig_length = sig_length;
@@ -190,7 +190,7 @@ static inline uint16_t mavlink_msg_secure_command_pack_chan(uint8_t system_id, u
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_SECURE_COMMAND;
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_SECURE_COMMAND_MIN_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_CRC);
+    return mavlink_finalize_message_chan_target(msg, system_id, component_id, chan, MAVLINK_MSG_ID_SECURE_COMMAND_MIN_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_CRC, target_system);
 }
 
 /**
@@ -201,7 +201,7 @@ static inline uint16_t mavlink_msg_secure_command_pack_chan(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param secure_command C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_secure_command_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_secure_command_t* secure_command)
+static inline uint16_t mavlink_msg_secure_command_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_secure_command_t* secure_command)
 {
     return mavlink_msg_secure_command_pack(system_id, component_id, msg, secure_command->target_system, secure_command->target_component, secure_command->sequence, secure_command->operation, secure_command->data_length, secure_command->sig_length, secure_command->data);
 }
@@ -215,7 +215,7 @@ static inline uint16_t mavlink_msg_secure_command_encode(uint8_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  * @param secure_command C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_secure_command_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_secure_command_t* secure_command)
+static inline uint16_t mavlink_msg_secure_command_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_secure_command_t* secure_command)
 {
     return mavlink_msg_secure_command_pack_chan(system_id, component_id, chan, msg, secure_command->target_system, secure_command->target_component, secure_command->sequence, secure_command->operation, secure_command->data_length, secure_command->sig_length, secure_command->data);
 }
@@ -229,7 +229,7 @@ static inline uint16_t mavlink_msg_secure_command_encode_chan(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param secure_command C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_secure_command_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_secure_command_t* secure_command)
+static inline uint16_t mavlink_msg_secure_command_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_secure_command_t* secure_command)
 {
     return mavlink_msg_secure_command_pack_status(system_id, component_id, _status, msg,  secure_command->target_system, secure_command->target_component, secure_command->sequence, secure_command->operation, secure_command->data_length, secure_command->sig_length, secure_command->data);
 }
@@ -248,28 +248,28 @@ static inline uint16_t mavlink_msg_secure_command_encode_status(uint8_t system_i
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_secure_command_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint32_t sequence, uint32_t operation, uint8_t data_length, uint8_t sig_length, const uint8_t *data)
+static inline void mavlink_msg_secure_command_send(mavlink_channel_t chan, uint32_t target_system, uint8_t target_component, uint32_t sequence, uint32_t operation, uint8_t data_length, uint8_t sig_length, const uint8_t *data)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SECURE_COMMAND_LEN];
     _mav_put_uint32_t(buf, 0, sequence);
     _mav_put_uint32_t(buf, 4, operation);
-    _mav_put_uint8_t(buf, 8, target_system);
+    _mav_put_uint8_t(buf, 8, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 9, target_component);
     _mav_put_uint8_t(buf, 10, data_length);
     _mav_put_uint8_t(buf, 11, sig_length);
     _mav_put_uint8_t_array(buf, 12, data, 220);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SECURE_COMMAND, buf, MAVLINK_MSG_ID_SECURE_COMMAND_MIN_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_SECURE_COMMAND, buf, MAVLINK_MSG_ID_SECURE_COMMAND_MIN_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_CRC, target_system);
 #else
     mavlink_secure_command_t packet;
     packet.sequence = sequence;
     packet.operation = operation;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.data_length = data_length;
     packet.sig_length = sig_length;
     mav_array_memcpy(packet.data, data, sizeof(uint8_t)*220);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SECURE_COMMAND, (const char *)&packet, MAVLINK_MSG_ID_SECURE_COMMAND_MIN_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_SECURE_COMMAND, (const char *)&packet, MAVLINK_MSG_ID_SECURE_COMMAND_MIN_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_CRC, target_system);
 #endif
 }
 
@@ -295,28 +295,28 @@ static inline void mavlink_msg_secure_command_send_struct(mavlink_channel_t chan
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_secure_command_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, uint32_t sequence, uint32_t operation, uint8_t data_length, uint8_t sig_length, const uint8_t *data)
+static inline void mavlink_msg_secure_command_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t target_system, uint8_t target_component, uint32_t sequence, uint32_t operation, uint8_t data_length, uint8_t sig_length, const uint8_t *data)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_uint32_t(buf, 0, sequence);
     _mav_put_uint32_t(buf, 4, operation);
-    _mav_put_uint8_t(buf, 8, target_system);
+    _mav_put_uint8_t(buf, 8, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 9, target_component);
     _mav_put_uint8_t(buf, 10, data_length);
     _mav_put_uint8_t(buf, 11, sig_length);
     _mav_put_uint8_t_array(buf, 12, data, 220);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SECURE_COMMAND, buf, MAVLINK_MSG_ID_SECURE_COMMAND_MIN_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_SECURE_COMMAND, buf, MAVLINK_MSG_ID_SECURE_COMMAND_MIN_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_CRC, target_system);
 #else
     mavlink_secure_command_t *packet = (mavlink_secure_command_t *)msgbuf;
     packet->sequence = sequence;
     packet->operation = operation;
-    packet->target_system = target_system;
+    packet->target_system = mavlink_msg_target_field(target_system);
     packet->target_component = target_component;
     packet->data_length = data_length;
     packet->sig_length = sig_length;
     mav_array_memcpy(packet->data, data, sizeof(uint8_t)*220);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SECURE_COMMAND, (const char *)packet, MAVLINK_MSG_ID_SECURE_COMMAND_MIN_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_SECURE_COMMAND, (const char *)packet, MAVLINK_MSG_ID_SECURE_COMMAND_MIN_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_LEN, MAVLINK_MSG_ID_SECURE_COMMAND_CRC, target_system);
 #endif
 }
 #endif
@@ -325,16 +325,6 @@ static inline void mavlink_msg_secure_command_send_buf(mavlink_message_t *msgbuf
 
 // MESSAGE SECURE_COMMAND UNPACKING
 
-
-/**
- * @brief Get field target_system from secure_command message
- *
- * @return  System ID.
- */
-static inline uint8_t mavlink_msg_secure_command_get_target_system(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint8_t(msg,  8);
-}
 
 /**
  * @brief Get field target_component from secure_command message
@@ -407,7 +397,7 @@ static inline void mavlink_msg_secure_command_decode(const mavlink_message_t* ms
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     secure_command->sequence = mavlink_msg_secure_command_get_sequence(msg);
     secure_command->operation = mavlink_msg_secure_command_get_operation(msg);
-    secure_command->target_system = mavlink_msg_secure_command_get_target_system(msg);
+    secure_command->target_system = _MAV_RETURN_uint8_t(msg, 8);
     secure_command->target_component = mavlink_msg_secure_command_get_target_component(msg);
     secure_command->data_length = mavlink_msg_secure_command_get_data_length(msg);
     secure_command->sig_length = mavlink_msg_secure_command_get_sig_length(msg);
@@ -417,4 +407,11 @@ static inline void mavlink_msg_secure_command_decode(const mavlink_message_t* ms
         memset(secure_command, 0, MAVLINK_MSG_ID_SECURE_COMMAND_LEN);
     memcpy(secure_command, _MAV_PAYLOAD(msg), len);
 #endif
+    if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
+        // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
+        // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
+        // To relay after edits, pass that full target to _pack*(); _encode*() loses it.
+        secure_command->target_system = mavlink_msg_target_field(msg->target_sysid);
+    }
+
 }

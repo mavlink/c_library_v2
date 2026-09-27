@@ -90,7 +90,7 @@ typedef struct __mavlink_airspeed_autocal_t {
  * @param Pcz  EKF Pcz.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_airspeed_autocal_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_airspeed_autocal_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                float vx, float vy, float vz, float diff_pressure, float EAS2TAS, float ratio, float state_x, float state_y, float state_z, float Pax, float Pby, float Pcz)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -152,7 +152,7 @@ static inline uint16_t mavlink_msg_airspeed_autocal_pack(uint8_t system_id, uint
  * @param Pcz  EKF Pcz.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_airspeed_autocal_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_airspeed_autocal_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                float vx, float vy, float vz, float diff_pressure, float EAS2TAS, float ratio, float state_x, float state_y, float state_z, float Pax, float Pby, float Pcz)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -193,7 +193,7 @@ static inline uint16_t mavlink_msg_airspeed_autocal_pack_status(uint8_t system_i
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AIRSPEED_AUTOCAL_MIN_LEN, MAVLINK_MSG_ID_AIRSPEED_AUTOCAL_LEN, MAVLINK_MSG_ID_AIRSPEED_AUTOCAL_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AIRSPEED_AUTOCAL_MIN_LEN, MAVLINK_MSG_ID_AIRSPEED_AUTOCAL_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AIRSPEED_AUTOCAL_MIN_LEN, MAVLINK_MSG_ID_AIRSPEED_AUTOCAL_LEN, 0);
 #endif
 }
 
@@ -217,7 +217,7 @@ static inline uint16_t mavlink_msg_airspeed_autocal_pack_status(uint8_t system_i
  * @param Pcz  EKF Pcz.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_airspeed_autocal_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_airspeed_autocal_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    float vx,float vy,float vz,float diff_pressure,float EAS2TAS,float ratio,float state_x,float state_y,float state_z,float Pax,float Pby,float Pcz)
 {
@@ -267,7 +267,7 @@ static inline uint16_t mavlink_msg_airspeed_autocal_pack_chan(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param airspeed_autocal C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_airspeed_autocal_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_airspeed_autocal_t* airspeed_autocal)
+static inline uint16_t mavlink_msg_airspeed_autocal_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_airspeed_autocal_t* airspeed_autocal)
 {
     return mavlink_msg_airspeed_autocal_pack(system_id, component_id, msg, airspeed_autocal->vx, airspeed_autocal->vy, airspeed_autocal->vz, airspeed_autocal->diff_pressure, airspeed_autocal->EAS2TAS, airspeed_autocal->ratio, airspeed_autocal->state_x, airspeed_autocal->state_y, airspeed_autocal->state_z, airspeed_autocal->Pax, airspeed_autocal->Pby, airspeed_autocal->Pcz);
 }
@@ -281,7 +281,7 @@ static inline uint16_t mavlink_msg_airspeed_autocal_encode(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param airspeed_autocal C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_airspeed_autocal_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_airspeed_autocal_t* airspeed_autocal)
+static inline uint16_t mavlink_msg_airspeed_autocal_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_airspeed_autocal_t* airspeed_autocal)
 {
     return mavlink_msg_airspeed_autocal_pack_chan(system_id, component_id, chan, msg, airspeed_autocal->vx, airspeed_autocal->vy, airspeed_autocal->vz, airspeed_autocal->diff_pressure, airspeed_autocal->EAS2TAS, airspeed_autocal->ratio, airspeed_autocal->state_x, airspeed_autocal->state_y, airspeed_autocal->state_z, airspeed_autocal->Pax, airspeed_autocal->Pby, airspeed_autocal->Pcz);
 }
@@ -295,7 +295,7 @@ static inline uint16_t mavlink_msg_airspeed_autocal_encode_chan(uint8_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param airspeed_autocal C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_airspeed_autocal_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_airspeed_autocal_t* airspeed_autocal)
+static inline uint16_t mavlink_msg_airspeed_autocal_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_airspeed_autocal_t* airspeed_autocal)
 {
     return mavlink_msg_airspeed_autocal_pack_status(system_id, component_id, _status, msg,  airspeed_autocal->vx, airspeed_autocal->vy, airspeed_autocal->vz, airspeed_autocal->diff_pressure, airspeed_autocal->EAS2TAS, airspeed_autocal->ratio, airspeed_autocal->state_x, airspeed_autocal->state_y, airspeed_autocal->state_z, airspeed_autocal->Pax, airspeed_autocal->Pby, airspeed_autocal->Pcz);
 }
@@ -567,4 +567,5 @@ static inline void mavlink_msg_airspeed_autocal_decode(const mavlink_message_t* 
         memset(airspeed_autocal, 0, MAVLINK_MSG_ID_AIRSPEED_AUTOCAL_LEN);
     memcpy(airspeed_autocal, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

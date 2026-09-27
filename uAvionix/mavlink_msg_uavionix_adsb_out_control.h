@@ -66,7 +66,7 @@ typedef struct __mavlink_uavionix_adsb_out_control_t {
  * @param x_bit  X-Bit enable (military transponders only)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_uavionix_adsb_out_control_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_uavionix_adsb_out_control_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t state, int32_t baroAltMSL, uint16_t squawk, uint8_t emergencyStatus, const char *flight_id, uint8_t x_bit)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -108,7 +108,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_control_pack(uint8_t system
  * @param x_bit  X-Bit enable (military transponders only)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_uavionix_adsb_out_control_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_uavionix_adsb_out_control_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t state, int32_t baroAltMSL, uint16_t squawk, uint8_t emergencyStatus, const char *flight_id, uint8_t x_bit)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -135,7 +135,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_control_pack_status(uint8_t
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CONTROL_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CONTROL_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CONTROL_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CONTROL_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CONTROL_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CONTROL_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CONTROL_LEN, 0);
 #endif
 }
 
@@ -153,7 +153,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_control_pack_status(uint8_t
  * @param x_bit  X-Bit enable (military transponders only)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_uavionix_adsb_out_control_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_uavionix_adsb_out_control_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t state,int32_t baroAltMSL,uint16_t squawk,uint8_t emergencyStatus,const char *flight_id,uint8_t x_bit)
 {
@@ -189,7 +189,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_control_pack_chan(uint8_t s
  * @param msg The MAVLink message to compress the data into
  * @param uavionix_adsb_out_control C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_uavionix_adsb_out_control_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_uavionix_adsb_out_control_t* uavionix_adsb_out_control)
+static inline uint16_t mavlink_msg_uavionix_adsb_out_control_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_uavionix_adsb_out_control_t* uavionix_adsb_out_control)
 {
     return mavlink_msg_uavionix_adsb_out_control_pack(system_id, component_id, msg, uavionix_adsb_out_control->state, uavionix_adsb_out_control->baroAltMSL, uavionix_adsb_out_control->squawk, uavionix_adsb_out_control->emergencyStatus, uavionix_adsb_out_control->flight_id, uavionix_adsb_out_control->x_bit);
 }
@@ -203,7 +203,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_control_encode(uint8_t syst
  * @param msg The MAVLink message to compress the data into
  * @param uavionix_adsb_out_control C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_uavionix_adsb_out_control_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_uavionix_adsb_out_control_t* uavionix_adsb_out_control)
+static inline uint16_t mavlink_msg_uavionix_adsb_out_control_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_uavionix_adsb_out_control_t* uavionix_adsb_out_control)
 {
     return mavlink_msg_uavionix_adsb_out_control_pack_chan(system_id, component_id, chan, msg, uavionix_adsb_out_control->state, uavionix_adsb_out_control->baroAltMSL, uavionix_adsb_out_control->squawk, uavionix_adsb_out_control->emergencyStatus, uavionix_adsb_out_control->flight_id, uavionix_adsb_out_control->x_bit);
 }
@@ -217,7 +217,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_control_encode_chan(uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param uavionix_adsb_out_control C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_uavionix_adsb_out_control_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_uavionix_adsb_out_control_t* uavionix_adsb_out_control)
+static inline uint16_t mavlink_msg_uavionix_adsb_out_control_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_uavionix_adsb_out_control_t* uavionix_adsb_out_control)
 {
     return mavlink_msg_uavionix_adsb_out_control_pack_status(system_id, component_id, _status, msg,  uavionix_adsb_out_control->state, uavionix_adsb_out_control->baroAltMSL, uavionix_adsb_out_control->squawk, uavionix_adsb_out_control->emergencyStatus, uavionix_adsb_out_control->flight_id, uavionix_adsb_out_control->x_bit);
 }
@@ -389,4 +389,5 @@ static inline void mavlink_msg_uavionix_adsb_out_control_decode(const mavlink_me
         memset(uavionix_adsb_out_control, 0, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CONTROL_LEN);
     memcpy(uavionix_adsb_out_control, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

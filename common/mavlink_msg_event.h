@@ -70,7 +70,7 @@ typedef struct __mavlink_event_t {
  * @param arguments  Arguments (depend on event ID).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_event_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_event_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t destination_component, uint8_t destination_system, uint32_t id, uint32_t event_time_boot_ms, uint16_t sequence, uint8_t log_levels, const uint8_t *arguments)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -115,7 +115,7 @@ static inline uint16_t mavlink_msg_event_pack(uint8_t system_id, uint8_t compone
  * @param arguments  Arguments (depend on event ID).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_event_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_event_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t destination_component, uint8_t destination_system, uint32_t id, uint32_t event_time_boot_ms, uint16_t sequence, uint8_t log_levels, const uint8_t *arguments)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -144,7 +144,7 @@ static inline uint16_t mavlink_msg_event_pack_status(uint8_t system_id, uint8_t 
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_EVENT_MIN_LEN, MAVLINK_MSG_ID_EVENT_LEN, MAVLINK_MSG_ID_EVENT_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_EVENT_MIN_LEN, MAVLINK_MSG_ID_EVENT_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_EVENT_MIN_LEN, MAVLINK_MSG_ID_EVENT_LEN, 0);
 #endif
 }
 
@@ -163,7 +163,7 @@ static inline uint16_t mavlink_msg_event_pack_status(uint8_t system_id, uint8_t 
  * @param arguments  Arguments (depend on event ID).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_event_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_event_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t destination_component,uint8_t destination_system,uint32_t id,uint32_t event_time_boot_ms,uint16_t sequence,uint8_t log_levels,const uint8_t *arguments)
 {
@@ -201,7 +201,7 @@ static inline uint16_t mavlink_msg_event_pack_chan(uint8_t system_id, uint8_t co
  * @param msg The MAVLink message to compress the data into
  * @param event C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_event_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_event_t* event)
+static inline uint16_t mavlink_msg_event_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_event_t* event)
 {
     return mavlink_msg_event_pack(system_id, component_id, msg, event->destination_component, event->destination_system, event->id, event->event_time_boot_ms, event->sequence, event->log_levels, event->arguments);
 }
@@ -215,7 +215,7 @@ static inline uint16_t mavlink_msg_event_encode(uint8_t system_id, uint8_t compo
  * @param msg The MAVLink message to compress the data into
  * @param event C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_event_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_event_t* event)
+static inline uint16_t mavlink_msg_event_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_event_t* event)
 {
     return mavlink_msg_event_pack_chan(system_id, component_id, chan, msg, event->destination_component, event->destination_system, event->id, event->event_time_boot_ms, event->sequence, event->log_levels, event->arguments);
 }
@@ -229,7 +229,7 @@ static inline uint16_t mavlink_msg_event_encode_chan(uint8_t system_id, uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param event C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_event_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_event_t* event)
+static inline uint16_t mavlink_msg_event_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_event_t* event)
 {
     return mavlink_msg_event_pack_status(system_id, component_id, _status, msg,  event->destination_component, event->destination_system, event->id, event->event_time_boot_ms, event->sequence, event->log_levels, event->arguments);
 }
@@ -417,4 +417,5 @@ static inline void mavlink_msg_event_decode(const mavlink_message_t* msg, mavlin
         memset(event, 0, MAVLINK_MSG_ID_EVENT_LEN);
     memcpy(event, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

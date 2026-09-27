@@ -127,7 +127,7 @@ typedef struct __mavlink_motion_platform_state_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_motion_platform_state_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_motion_platform_state_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint32_t time_boot_ms, uint8_t health, uint8_t mode, float x, float y, float z, float roll, float pitch, float yaw, float vel_x, float vel_y, float vel_z, float vel_roll, float vel_pitch, float vel_yaw, float acc_x, float acc_y, float acc_z, float acc_roll, float acc_pitch, float acc_yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -216,7 +216,7 @@ static inline uint16_t mavlink_msg_motion_platform_state_pack(uint8_t system_id,
  * @param acc_yaw  Yaw acceleration, positive right. Unit rad/s/s, currently not part of mavschema.xsd
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_motion_platform_state_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_motion_platform_state_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint32_t time_boot_ms, uint8_t health, uint8_t mode, float x, float y, float z, float roll, float pitch, float yaw, float vel_x, float vel_y, float vel_z, float vel_roll, float vel_pitch, float vel_yaw, float acc_x, float acc_y, float acc_z, float acc_roll, float acc_pitch, float acc_yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -275,7 +275,7 @@ static inline uint16_t mavlink_msg_motion_platform_state_pack_status(uint8_t sys
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MOTION_PLATFORM_STATE_MIN_LEN, MAVLINK_MSG_ID_MOTION_PLATFORM_STATE_LEN, MAVLINK_MSG_ID_MOTION_PLATFORM_STATE_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MOTION_PLATFORM_STATE_MIN_LEN, MAVLINK_MSG_ID_MOTION_PLATFORM_STATE_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MOTION_PLATFORM_STATE_MIN_LEN, MAVLINK_MSG_ID_MOTION_PLATFORM_STATE_LEN, 0);
 #endif
 }
 
@@ -309,7 +309,7 @@ static inline uint16_t mavlink_msg_motion_platform_state_pack_status(uint8_t sys
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_motion_platform_state_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_motion_platform_state_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint32_t time_boot_ms,uint8_t health,uint8_t mode,float x,float y,float z,float roll,float pitch,float yaw,float vel_x,float vel_y,float vel_z,float vel_roll,float vel_pitch,float vel_yaw,float acc_x,float acc_y,float acc_z,float acc_roll,float acc_pitch,float acc_yaw)
 {
@@ -378,7 +378,7 @@ static inline uint16_t mavlink_msg_motion_platform_state_pack_chan(uint8_t syste
  * @param motion_platform_state C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_motion_platform_state_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_motion_platform_state_t* motion_platform_state)
+static inline uint16_t mavlink_msg_motion_platform_state_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_motion_platform_state_t* motion_platform_state)
 {
     return mavlink_msg_motion_platform_state_pack(system_id, component_id, msg, motion_platform_state->time_boot_ms, motion_platform_state->health, motion_platform_state->mode, motion_platform_state->x, motion_platform_state->y, motion_platform_state->z, motion_platform_state->roll, motion_platform_state->pitch, motion_platform_state->yaw, motion_platform_state->vel_x, motion_platform_state->vel_y, motion_platform_state->vel_z, motion_platform_state->vel_roll, motion_platform_state->vel_pitch, motion_platform_state->vel_yaw, motion_platform_state->acc_x, motion_platform_state->acc_y, motion_platform_state->acc_z, motion_platform_state->acc_roll, motion_platform_state->acc_pitch, motion_platform_state->acc_yaw);
 }
@@ -393,7 +393,7 @@ static inline uint16_t mavlink_msg_motion_platform_state_encode(uint8_t system_i
  * @param motion_platform_state C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_motion_platform_state_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_motion_platform_state_t* motion_platform_state)
+static inline uint16_t mavlink_msg_motion_platform_state_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_motion_platform_state_t* motion_platform_state)
 {
     return mavlink_msg_motion_platform_state_pack_chan(system_id, component_id, chan, msg, motion_platform_state->time_boot_ms, motion_platform_state->health, motion_platform_state->mode, motion_platform_state->x, motion_platform_state->y, motion_platform_state->z, motion_platform_state->roll, motion_platform_state->pitch, motion_platform_state->yaw, motion_platform_state->vel_x, motion_platform_state->vel_y, motion_platform_state->vel_z, motion_platform_state->vel_roll, motion_platform_state->vel_pitch, motion_platform_state->vel_yaw, motion_platform_state->acc_x, motion_platform_state->acc_y, motion_platform_state->acc_z, motion_platform_state->acc_roll, motion_platform_state->acc_pitch, motion_platform_state->acc_yaw);
 }
@@ -407,7 +407,7 @@ static inline uint16_t mavlink_msg_motion_platform_state_encode_chan(uint8_t sys
  * @param msg The MAVLink message to compress the data into
  * @param motion_platform_state C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_motion_platform_state_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_motion_platform_state_t* motion_platform_state)
+static inline uint16_t mavlink_msg_motion_platform_state_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_motion_platform_state_t* motion_platform_state)
 {
     return mavlink_msg_motion_platform_state_pack_status(system_id, component_id, _status, msg,  motion_platform_state->time_boot_ms, motion_platform_state->health, motion_platform_state->mode, motion_platform_state->x, motion_platform_state->y, motion_platform_state->z, motion_platform_state->roll, motion_platform_state->pitch, motion_platform_state->yaw, motion_platform_state->vel_x, motion_platform_state->vel_y, motion_platform_state->vel_z, motion_platform_state->vel_roll, motion_platform_state->vel_pitch, motion_platform_state->vel_yaw, motion_platform_state->acc_x, motion_platform_state->acc_y, motion_platform_state->acc_z, motion_platform_state->acc_roll, motion_platform_state->acc_pitch, motion_platform_state->acc_yaw);
 }
@@ -848,4 +848,5 @@ static inline void mavlink_msg_motion_platform_state_decode(const mavlink_messag
         memset(motion_platform_state, 0, MAVLINK_MSG_ID_MOTION_PLATFORM_STATE_LEN);
     memcpy(motion_platform_state, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

@@ -123,7 +123,7 @@ typedef struct __mavlink_efi_performance_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_efi_performance_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_efi_performance_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t ecu_index, uint8_t fuel_pump_duty_cycle, uint16_t fuel_pump_voltage, uint16_t fuel_pump_current, uint16_t ecu_supply_voltage, uint16_t ecu_current, int16_t ecu_temperature, uint8_t ecu_cpu_load, uint16_t servo_supply_voltage, uint8_t servo_output_level, uint8_t water_pump_duty_cycle, uint8_t injector_duty_cycle, float fuel_mass_rate, float commanded_rpm, uint32_t engine_runtime, uint8_t error_memory_count, float boost_pressure, float coolant_pressure, int16_t engine_torque, uint64_t status_flags)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -209,7 +209,7 @@ static inline uint16_t mavlink_msg_efi_performance_pack(uint8_t system_id, uint8
  * @param status_flags  EFI status flags.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_efi_performance_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_efi_performance_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t ecu_index, uint8_t fuel_pump_duty_cycle, uint16_t fuel_pump_voltage, uint16_t fuel_pump_current, uint16_t ecu_supply_voltage, uint16_t ecu_current, int16_t ecu_temperature, uint8_t ecu_cpu_load, uint16_t servo_supply_voltage, uint8_t servo_output_level, uint8_t water_pump_duty_cycle, uint8_t injector_duty_cycle, float fuel_mass_rate, float commanded_rpm, uint32_t engine_runtime, uint8_t error_memory_count, float boost_pressure, float coolant_pressure, int16_t engine_torque, uint64_t status_flags)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -266,7 +266,7 @@ static inline uint16_t mavlink_msg_efi_performance_pack_status(uint8_t system_id
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_EFI_PERFORMANCE_MIN_LEN, MAVLINK_MSG_ID_EFI_PERFORMANCE_LEN, MAVLINK_MSG_ID_EFI_PERFORMANCE_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_EFI_PERFORMANCE_MIN_LEN, MAVLINK_MSG_ID_EFI_PERFORMANCE_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_EFI_PERFORMANCE_MIN_LEN, MAVLINK_MSG_ID_EFI_PERFORMANCE_LEN, 0);
 #endif
 }
 
@@ -299,7 +299,7 @@ static inline uint16_t mavlink_msg_efi_performance_pack_status(uint8_t system_id
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_efi_performance_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_efi_performance_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t ecu_index,uint8_t fuel_pump_duty_cycle,uint16_t fuel_pump_voltage,uint16_t fuel_pump_current,uint16_t ecu_supply_voltage,uint16_t ecu_current,int16_t ecu_temperature,uint8_t ecu_cpu_load,uint16_t servo_supply_voltage,uint8_t servo_output_level,uint8_t water_pump_duty_cycle,uint8_t injector_duty_cycle,float fuel_mass_rate,float commanded_rpm,uint32_t engine_runtime,uint8_t error_memory_count,float boost_pressure,float coolant_pressure,int16_t engine_torque,uint64_t status_flags)
 {
@@ -366,7 +366,7 @@ static inline uint16_t mavlink_msg_efi_performance_pack_chan(uint8_t system_id, 
  * @param efi_performance C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_efi_performance_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_efi_performance_t* efi_performance)
+static inline uint16_t mavlink_msg_efi_performance_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_efi_performance_t* efi_performance)
 {
     return mavlink_msg_efi_performance_pack(system_id, component_id, msg, efi_performance->ecu_index, efi_performance->fuel_pump_duty_cycle, efi_performance->fuel_pump_voltage, efi_performance->fuel_pump_current, efi_performance->ecu_supply_voltage, efi_performance->ecu_current, efi_performance->ecu_temperature, efi_performance->ecu_cpu_load, efi_performance->servo_supply_voltage, efi_performance->servo_output_level, efi_performance->water_pump_duty_cycle, efi_performance->injector_duty_cycle, efi_performance->fuel_mass_rate, efi_performance->commanded_rpm, efi_performance->engine_runtime, efi_performance->error_memory_count, efi_performance->boost_pressure, efi_performance->coolant_pressure, efi_performance->engine_torque, efi_performance->status_flags);
 }
@@ -381,7 +381,7 @@ static inline uint16_t mavlink_msg_efi_performance_encode(uint8_t system_id, uin
  * @param efi_performance C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_efi_performance_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_efi_performance_t* efi_performance)
+static inline uint16_t mavlink_msg_efi_performance_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_efi_performance_t* efi_performance)
 {
     return mavlink_msg_efi_performance_pack_chan(system_id, component_id, chan, msg, efi_performance->ecu_index, efi_performance->fuel_pump_duty_cycle, efi_performance->fuel_pump_voltage, efi_performance->fuel_pump_current, efi_performance->ecu_supply_voltage, efi_performance->ecu_current, efi_performance->ecu_temperature, efi_performance->ecu_cpu_load, efi_performance->servo_supply_voltage, efi_performance->servo_output_level, efi_performance->water_pump_duty_cycle, efi_performance->injector_duty_cycle, efi_performance->fuel_mass_rate, efi_performance->commanded_rpm, efi_performance->engine_runtime, efi_performance->error_memory_count, efi_performance->boost_pressure, efi_performance->coolant_pressure, efi_performance->engine_torque, efi_performance->status_flags);
 }
@@ -395,7 +395,7 @@ static inline uint16_t mavlink_msg_efi_performance_encode_chan(uint8_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param efi_performance C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_efi_performance_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_efi_performance_t* efi_performance)
+static inline uint16_t mavlink_msg_efi_performance_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_efi_performance_t* efi_performance)
 {
     return mavlink_msg_efi_performance_pack_status(system_id, component_id, _status, msg,  efi_performance->ecu_index, efi_performance->fuel_pump_duty_cycle, efi_performance->fuel_pump_voltage, efi_performance->fuel_pump_current, efi_performance->ecu_supply_voltage, efi_performance->ecu_current, efi_performance->ecu_temperature, efi_performance->ecu_cpu_load, efi_performance->servo_supply_voltage, efi_performance->servo_output_level, efi_performance->water_pump_duty_cycle, efi_performance->injector_duty_cycle, efi_performance->fuel_mass_rate, efi_performance->commanded_rpm, efi_performance->engine_runtime, efi_performance->error_memory_count, efi_performance->boost_pressure, efi_performance->coolant_pressure, efi_performance->engine_torque, efi_performance->status_flags);
 }
@@ -819,4 +819,5 @@ static inline void mavlink_msg_efi_performance_decode(const mavlink_message_t* m
         memset(efi_performance, 0, MAVLINK_MSG_ID_EFI_PERFORMANCE_LEN);
     memcpy(efi_performance, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

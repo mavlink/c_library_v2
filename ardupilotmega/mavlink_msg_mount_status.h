@@ -66,15 +66,15 @@ typedef struct __mavlink_mount_status_t {
  * @param mount_mode  Mount operating mode.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_mount_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, int32_t pointing_a, int32_t pointing_b, int32_t pointing_c, uint8_t mount_mode)
+static inline uint16_t mavlink_msg_mount_status_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, int32_t pointing_a, int32_t pointing_b, int32_t pointing_c, uint8_t mount_mode)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_MOUNT_STATUS_LEN];
     _mav_put_int32_t(buf, 0, pointing_a);
     _mav_put_int32_t(buf, 4, pointing_b);
     _mav_put_int32_t(buf, 8, pointing_c);
-    _mav_put_uint8_t(buf, 12, target_system);
+    _mav_put_uint8_t(buf, 12, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 13, target_component);
     _mav_put_uint8_t(buf, 14, mount_mode);
 
@@ -84,7 +84,7 @@ static inline uint16_t mavlink_msg_mount_status_pack(uint8_t system_id, uint8_t 
     packet.pointing_a = pointing_a;
     packet.pointing_b = pointing_b;
     packet.pointing_c = pointing_c;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.mount_mode = mount_mode;
 
@@ -92,7 +92,7 @@ static inline uint16_t mavlink_msg_mount_status_pack(uint8_t system_id, uint8_t 
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_MOUNT_STATUS;
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_MOUNT_STATUS_MIN_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_CRC);
+    return mavlink_finalize_message_target(msg, system_id, component_id, MAVLINK_MSG_ID_MOUNT_STATUS_MIN_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_CRC, target_system);
 }
 
 /**
@@ -110,15 +110,15 @@ static inline uint16_t mavlink_msg_mount_status_pack(uint8_t system_id, uint8_t 
  * @param mount_mode  Mount operating mode.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_mount_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, int32_t pointing_a, int32_t pointing_b, int32_t pointing_c, uint8_t mount_mode)
+static inline uint16_t mavlink_msg_mount_status_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, int32_t pointing_a, int32_t pointing_b, int32_t pointing_c, uint8_t mount_mode)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_MOUNT_STATUS_LEN];
     _mav_put_int32_t(buf, 0, pointing_a);
     _mav_put_int32_t(buf, 4, pointing_b);
     _mav_put_int32_t(buf, 8, pointing_c);
-    _mav_put_uint8_t(buf, 12, target_system);
+    _mav_put_uint8_t(buf, 12, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 13, target_component);
     _mav_put_uint8_t(buf, 14, mount_mode);
 
@@ -128,7 +128,7 @@ static inline uint16_t mavlink_msg_mount_status_pack_status(uint8_t system_id, u
     packet.pointing_a = pointing_a;
     packet.pointing_b = pointing_b;
     packet.pointing_c = pointing_c;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.mount_mode = mount_mode;
 
@@ -137,9 +137,9 @@ static inline uint16_t mavlink_msg_mount_status_pack_status(uint8_t system_id, u
 
     msg->msgid = MAVLINK_MSG_ID_MOUNT_STATUS;
 #if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MOUNT_STATUS_MIN_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_CRC);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MOUNT_STATUS_MIN_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_CRC, target_system);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MOUNT_STATUS_MIN_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_LEN);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MOUNT_STATUS_MIN_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_LEN, 0, target_system);
 #endif
 }
 
@@ -157,16 +157,16 @@ static inline uint16_t mavlink_msg_mount_status_pack_status(uint8_t system_id, u
  * @param mount_mode  Mount operating mode.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_mount_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_mount_status_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t target_system,uint8_t target_component,int32_t pointing_a,int32_t pointing_b,int32_t pointing_c,uint8_t mount_mode)
+                                   uint32_t target_system,uint8_t target_component,int32_t pointing_a,int32_t pointing_b,int32_t pointing_c,uint8_t mount_mode)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_MOUNT_STATUS_LEN];
     _mav_put_int32_t(buf, 0, pointing_a);
     _mav_put_int32_t(buf, 4, pointing_b);
     _mav_put_int32_t(buf, 8, pointing_c);
-    _mav_put_uint8_t(buf, 12, target_system);
+    _mav_put_uint8_t(buf, 12, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 13, target_component);
     _mav_put_uint8_t(buf, 14, mount_mode);
 
@@ -176,7 +176,7 @@ static inline uint16_t mavlink_msg_mount_status_pack_chan(uint8_t system_id, uin
     packet.pointing_a = pointing_a;
     packet.pointing_b = pointing_b;
     packet.pointing_c = pointing_c;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.mount_mode = mount_mode;
 
@@ -184,7 +184,7 @@ static inline uint16_t mavlink_msg_mount_status_pack_chan(uint8_t system_id, uin
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_MOUNT_STATUS;
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_MOUNT_STATUS_MIN_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_CRC);
+    return mavlink_finalize_message_chan_target(msg, system_id, component_id, chan, MAVLINK_MSG_ID_MOUNT_STATUS_MIN_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_CRC, target_system);
 }
 
 /**
@@ -195,7 +195,7 @@ static inline uint16_t mavlink_msg_mount_status_pack_chan(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param mount_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mount_status_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_mount_status_t* mount_status)
+static inline uint16_t mavlink_msg_mount_status_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_mount_status_t* mount_status)
 {
     return mavlink_msg_mount_status_pack(system_id, component_id, msg, mount_status->target_system, mount_status->target_component, mount_status->pointing_a, mount_status->pointing_b, mount_status->pointing_c, mount_status->mount_mode);
 }
@@ -209,7 +209,7 @@ static inline uint16_t mavlink_msg_mount_status_encode(uint8_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param mount_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mount_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mount_status_t* mount_status)
+static inline uint16_t mavlink_msg_mount_status_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mount_status_t* mount_status)
 {
     return mavlink_msg_mount_status_pack_chan(system_id, component_id, chan, msg, mount_status->target_system, mount_status->target_component, mount_status->pointing_a, mount_status->pointing_b, mount_status->pointing_c, mount_status->mount_mode);
 }
@@ -223,7 +223,7 @@ static inline uint16_t mavlink_msg_mount_status_encode_chan(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param mount_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mount_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_mount_status_t* mount_status)
+static inline uint16_t mavlink_msg_mount_status_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_mount_status_t* mount_status)
 {
     return mavlink_msg_mount_status_pack_status(system_id, component_id, _status, msg,  mount_status->target_system, mount_status->target_component, mount_status->pointing_a, mount_status->pointing_b, mount_status->pointing_c, mount_status->mount_mode);
 }
@@ -241,28 +241,28 @@ static inline uint16_t mavlink_msg_mount_status_encode_status(uint8_t system_id,
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_mount_status_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, int32_t pointing_a, int32_t pointing_b, int32_t pointing_c, uint8_t mount_mode)
+static inline void mavlink_msg_mount_status_send(mavlink_channel_t chan, uint32_t target_system, uint8_t target_component, int32_t pointing_a, int32_t pointing_b, int32_t pointing_c, uint8_t mount_mode)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_MOUNT_STATUS_LEN];
     _mav_put_int32_t(buf, 0, pointing_a);
     _mav_put_int32_t(buf, 4, pointing_b);
     _mav_put_int32_t(buf, 8, pointing_c);
-    _mav_put_uint8_t(buf, 12, target_system);
+    _mav_put_uint8_t(buf, 12, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 13, target_component);
     _mav_put_uint8_t(buf, 14, mount_mode);
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MOUNT_STATUS, buf, MAVLINK_MSG_ID_MOUNT_STATUS_MIN_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_MOUNT_STATUS, buf, MAVLINK_MSG_ID_MOUNT_STATUS_MIN_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_CRC, target_system);
 #else
     mavlink_mount_status_t packet;
     packet.pointing_a = pointing_a;
     packet.pointing_b = pointing_b;
     packet.pointing_c = pointing_c;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.mount_mode = mount_mode;
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MOUNT_STATUS, (const char *)&packet, MAVLINK_MSG_ID_MOUNT_STATUS_MIN_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_MOUNT_STATUS, (const char *)&packet, MAVLINK_MSG_ID_MOUNT_STATUS_MIN_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_CRC, target_system);
 #endif
 }
 
@@ -288,28 +288,28 @@ static inline void mavlink_msg_mount_status_send_struct(mavlink_channel_t chan, 
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_mount_status_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, int32_t pointing_a, int32_t pointing_b, int32_t pointing_c, uint8_t mount_mode)
+static inline void mavlink_msg_mount_status_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t target_system, uint8_t target_component, int32_t pointing_a, int32_t pointing_b, int32_t pointing_c, uint8_t mount_mode)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_int32_t(buf, 0, pointing_a);
     _mav_put_int32_t(buf, 4, pointing_b);
     _mav_put_int32_t(buf, 8, pointing_c);
-    _mav_put_uint8_t(buf, 12, target_system);
+    _mav_put_uint8_t(buf, 12, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 13, target_component);
     _mav_put_uint8_t(buf, 14, mount_mode);
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MOUNT_STATUS, buf, MAVLINK_MSG_ID_MOUNT_STATUS_MIN_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_MOUNT_STATUS, buf, MAVLINK_MSG_ID_MOUNT_STATUS_MIN_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_CRC, target_system);
 #else
     mavlink_mount_status_t *packet = (mavlink_mount_status_t *)msgbuf;
     packet->pointing_a = pointing_a;
     packet->pointing_b = pointing_b;
     packet->pointing_c = pointing_c;
-    packet->target_system = target_system;
+    packet->target_system = mavlink_msg_target_field(target_system);
     packet->target_component = target_component;
     packet->mount_mode = mount_mode;
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MOUNT_STATUS, (const char *)packet, MAVLINK_MSG_ID_MOUNT_STATUS_MIN_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_MOUNT_STATUS, (const char *)packet, MAVLINK_MSG_ID_MOUNT_STATUS_MIN_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_LEN, MAVLINK_MSG_ID_MOUNT_STATUS_CRC, target_system);
 #endif
 }
 #endif
@@ -318,16 +318,6 @@ static inline void mavlink_msg_mount_status_send_buf(mavlink_message_t *msgbuf, 
 
 // MESSAGE MOUNT_STATUS UNPACKING
 
-
-/**
- * @brief Get field target_system from mount_status message
- *
- * @return  System ID.
- */
-static inline uint8_t mavlink_msg_mount_status_get_target_system(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint8_t(msg,  12);
-}
 
 /**
  * @brief Get field target_component from mount_status message
@@ -391,7 +381,7 @@ static inline void mavlink_msg_mount_status_decode(const mavlink_message_t* msg,
     mount_status->pointing_a = mavlink_msg_mount_status_get_pointing_a(msg);
     mount_status->pointing_b = mavlink_msg_mount_status_get_pointing_b(msg);
     mount_status->pointing_c = mavlink_msg_mount_status_get_pointing_c(msg);
-    mount_status->target_system = mavlink_msg_mount_status_get_target_system(msg);
+    mount_status->target_system = _MAV_RETURN_uint8_t(msg, 12);
     mount_status->target_component = mavlink_msg_mount_status_get_target_component(msg);
     mount_status->mount_mode = mavlink_msg_mount_status_get_mount_mode(msg);
 #else
@@ -399,4 +389,11 @@ static inline void mavlink_msg_mount_status_decode(const mavlink_message_t* msg,
         memset(mount_status, 0, MAVLINK_MSG_ID_MOUNT_STATUS_LEN);
     memcpy(mount_status, _MAV_PAYLOAD(msg), len);
 #endif
+    if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
+        // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
+        // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
+        // To relay after edits, pass that full target to _pack*(); _encode*() loses it.
+        mount_status->target_system = mavlink_msg_target_field(msg->target_sysid);
+    }
+
 }

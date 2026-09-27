@@ -70,7 +70,7 @@ typedef struct __mavlink_available_modes_t {
  * @param seq  Sequence number. The value iterates sequentially whenever the set of AVAILABLE_MODES changes and should match value of AVAILABLE_MODES_MONITOR. Note, a GCS must ignore 0 values, and should re-start the download if the value changes part-way through fetching modes.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_available_modes_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_available_modes_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t number_modes, uint8_t mode_index, uint8_t standard_mode, uint32_t custom_mode, uint32_t properties, const char *mode_name, uint8_t seq)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -115,7 +115,7 @@ static inline uint16_t mavlink_msg_available_modes_pack(uint8_t system_id, uint8
  * @param seq  Sequence number. The value iterates sequentially whenever the set of AVAILABLE_MODES changes and should match value of AVAILABLE_MODES_MONITOR. Note, a GCS must ignore 0 values, and should re-start the download if the value changes part-way through fetching modes.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_available_modes_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_available_modes_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t number_modes, uint8_t mode_index, uint8_t standard_mode, uint32_t custom_mode, uint32_t properties, const char *mode_name, uint8_t seq)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -144,7 +144,7 @@ static inline uint16_t mavlink_msg_available_modes_pack_status(uint8_t system_id
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AVAILABLE_MODES_MIN_LEN, MAVLINK_MSG_ID_AVAILABLE_MODES_LEN, MAVLINK_MSG_ID_AVAILABLE_MODES_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AVAILABLE_MODES_MIN_LEN, MAVLINK_MSG_ID_AVAILABLE_MODES_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AVAILABLE_MODES_MIN_LEN, MAVLINK_MSG_ID_AVAILABLE_MODES_LEN, 0);
 #endif
 }
 
@@ -163,7 +163,7 @@ static inline uint16_t mavlink_msg_available_modes_pack_status(uint8_t system_id
  * @param seq  Sequence number. The value iterates sequentially whenever the set of AVAILABLE_MODES changes and should match value of AVAILABLE_MODES_MONITOR. Note, a GCS must ignore 0 values, and should re-start the download if the value changes part-way through fetching modes.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_available_modes_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_available_modes_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t number_modes,uint8_t mode_index,uint8_t standard_mode,uint32_t custom_mode,uint32_t properties,const char *mode_name,uint8_t seq)
 {
@@ -201,7 +201,7 @@ static inline uint16_t mavlink_msg_available_modes_pack_chan(uint8_t system_id, 
  * @param msg The MAVLink message to compress the data into
  * @param available_modes C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_available_modes_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_available_modes_t* available_modes)
+static inline uint16_t mavlink_msg_available_modes_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_available_modes_t* available_modes)
 {
     return mavlink_msg_available_modes_pack(system_id, component_id, msg, available_modes->number_modes, available_modes->mode_index, available_modes->standard_mode, available_modes->custom_mode, available_modes->properties, available_modes->mode_name, available_modes->seq);
 }
@@ -215,7 +215,7 @@ static inline uint16_t mavlink_msg_available_modes_encode(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param available_modes C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_available_modes_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_available_modes_t* available_modes)
+static inline uint16_t mavlink_msg_available_modes_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_available_modes_t* available_modes)
 {
     return mavlink_msg_available_modes_pack_chan(system_id, component_id, chan, msg, available_modes->number_modes, available_modes->mode_index, available_modes->standard_mode, available_modes->custom_mode, available_modes->properties, available_modes->mode_name, available_modes->seq);
 }
@@ -229,7 +229,7 @@ static inline uint16_t mavlink_msg_available_modes_encode_chan(uint8_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param available_modes C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_available_modes_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_available_modes_t* available_modes)
+static inline uint16_t mavlink_msg_available_modes_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_available_modes_t* available_modes)
 {
     return mavlink_msg_available_modes_pack_status(system_id, component_id, _status, msg,  available_modes->number_modes, available_modes->mode_index, available_modes->standard_mode, available_modes->custom_mode, available_modes->properties, available_modes->mode_name, available_modes->seq);
 }
@@ -417,4 +417,5 @@ static inline void mavlink_msg_available_modes_decode(const mavlink_message_t* m
         memset(available_modes, 0, MAVLINK_MSG_ID_AVAILABLE_MODES_LEN);
     memcpy(available_modes, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

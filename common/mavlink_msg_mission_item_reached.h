@@ -46,7 +46,7 @@ typedef struct __mavlink_mission_item_reached_t {
  * @param seq  Sequence
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_mission_item_reached_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_mission_item_reached_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint16_t seq)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -75,7 +75,7 @@ static inline uint16_t mavlink_msg_mission_item_reached_pack(uint8_t system_id, 
  * @param seq  Sequence
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_mission_item_reached_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_mission_item_reached_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint16_t seq)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -94,7 +94,7 @@ static inline uint16_t mavlink_msg_mission_item_reached_pack_status(uint8_t syst
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MISSION_ITEM_REACHED_MIN_LEN, MAVLINK_MSG_ID_MISSION_ITEM_REACHED_LEN, MAVLINK_MSG_ID_MISSION_ITEM_REACHED_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MISSION_ITEM_REACHED_MIN_LEN, MAVLINK_MSG_ID_MISSION_ITEM_REACHED_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MISSION_ITEM_REACHED_MIN_LEN, MAVLINK_MSG_ID_MISSION_ITEM_REACHED_LEN, 0);
 #endif
 }
 
@@ -107,7 +107,7 @@ static inline uint16_t mavlink_msg_mission_item_reached_pack_status(uint8_t syst
  * @param seq  Sequence
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_mission_item_reached_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_mission_item_reached_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint16_t seq)
 {
@@ -135,7 +135,7 @@ static inline uint16_t mavlink_msg_mission_item_reached_pack_chan(uint8_t system
  * @param msg The MAVLink message to compress the data into
  * @param mission_item_reached C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mission_item_reached_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_mission_item_reached_t* mission_item_reached)
+static inline uint16_t mavlink_msg_mission_item_reached_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_mission_item_reached_t* mission_item_reached)
 {
     return mavlink_msg_mission_item_reached_pack(system_id, component_id, msg, mission_item_reached->seq);
 }
@@ -149,7 +149,7 @@ static inline uint16_t mavlink_msg_mission_item_reached_encode(uint8_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param mission_item_reached C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mission_item_reached_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mission_item_reached_t* mission_item_reached)
+static inline uint16_t mavlink_msg_mission_item_reached_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mission_item_reached_t* mission_item_reached)
 {
     return mavlink_msg_mission_item_reached_pack_chan(system_id, component_id, chan, msg, mission_item_reached->seq);
 }
@@ -163,7 +163,7 @@ static inline uint16_t mavlink_msg_mission_item_reached_encode_chan(uint8_t syst
  * @param msg The MAVLink message to compress the data into
  * @param mission_item_reached C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mission_item_reached_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_mission_item_reached_t* mission_item_reached)
+static inline uint16_t mavlink_msg_mission_item_reached_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_mission_item_reached_t* mission_item_reached)
 {
     return mavlink_msg_mission_item_reached_pack_status(system_id, component_id, _status, msg,  mission_item_reached->seq);
 }
@@ -259,4 +259,5 @@ static inline void mavlink_msg_mission_item_reached_decode(const mavlink_message
         memset(mission_item_reached, 0, MAVLINK_MSG_ID_MISSION_ITEM_REACHED_LEN);
     memcpy(mission_item_reached, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

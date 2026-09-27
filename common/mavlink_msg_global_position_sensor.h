@@ -94,8 +94,8 @@ typedef struct __mavlink_global_position_sensor_t {
  * @param epv [m] Standard deviation of vertical position error
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_global_position_sensor_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint8_t id, uint64_t time_usec, uint32_t processing_time, uint8_t source, uint8_t flags, int32_t lat, int32_t lon, float alt_ellipsoid, float alt, float eph, float epv)
+static inline uint16_t mavlink_msg_global_position_sensor_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, uint8_t id, uint64_t time_usec, uint32_t processing_time, uint8_t source, uint8_t flags, int32_t lat, int32_t lon, float alt_ellipsoid, float alt, float eph, float epv)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN];
@@ -107,7 +107,7 @@ static inline uint16_t mavlink_msg_global_position_sensor_pack(uint8_t system_id
     _mav_put_float(buf, 24, alt);
     _mav_put_float(buf, 28, eph);
     _mav_put_float(buf, 32, epv);
-    _mav_put_uint8_t(buf, 36, target_system);
+    _mav_put_uint8_t(buf, 36, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 37, target_component);
     _mav_put_uint8_t(buf, 38, id);
     _mav_put_uint8_t(buf, 39, source);
@@ -124,7 +124,7 @@ static inline uint16_t mavlink_msg_global_position_sensor_pack(uint8_t system_id
     packet.alt = alt;
     packet.eph = eph;
     packet.epv = epv;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.id = id;
     packet.source = source;
@@ -134,7 +134,7 @@ static inline uint16_t mavlink_msg_global_position_sensor_pack(uint8_t system_id
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR;
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_MIN_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_CRC);
+    return mavlink_finalize_message_target(msg, system_id, component_id, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_MIN_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_CRC, target_system);
 }
 
 /**
@@ -159,8 +159,8 @@ static inline uint16_t mavlink_msg_global_position_sensor_pack(uint8_t system_id
  * @param epv [m] Standard deviation of vertical position error
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_global_position_sensor_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint8_t id, uint64_t time_usec, uint32_t processing_time, uint8_t source, uint8_t flags, int32_t lat, int32_t lon, float alt_ellipsoid, float alt, float eph, float epv)
+static inline uint16_t mavlink_msg_global_position_sensor_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, uint8_t id, uint64_t time_usec, uint32_t processing_time, uint8_t source, uint8_t flags, int32_t lat, int32_t lon, float alt_ellipsoid, float alt, float eph, float epv)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN];
@@ -172,7 +172,7 @@ static inline uint16_t mavlink_msg_global_position_sensor_pack_status(uint8_t sy
     _mav_put_float(buf, 24, alt);
     _mav_put_float(buf, 28, eph);
     _mav_put_float(buf, 32, epv);
-    _mav_put_uint8_t(buf, 36, target_system);
+    _mav_put_uint8_t(buf, 36, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 37, target_component);
     _mav_put_uint8_t(buf, 38, id);
     _mav_put_uint8_t(buf, 39, source);
@@ -189,7 +189,7 @@ static inline uint16_t mavlink_msg_global_position_sensor_pack_status(uint8_t sy
     packet.alt = alt;
     packet.eph = eph;
     packet.epv = epv;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.id = id;
     packet.source = source;
@@ -200,9 +200,9 @@ static inline uint16_t mavlink_msg_global_position_sensor_pack_status(uint8_t sy
 
     msg->msgid = MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR;
 #if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_MIN_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_CRC);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_MIN_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_CRC, target_system);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_MIN_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_MIN_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN, 0, target_system);
 #endif
 }
 
@@ -227,9 +227,9 @@ static inline uint16_t mavlink_msg_global_position_sensor_pack_status(uint8_t sy
  * @param epv [m] Standard deviation of vertical position error
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_global_position_sensor_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_global_position_sensor_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t target_system,uint8_t target_component,uint8_t id,uint64_t time_usec,uint32_t processing_time,uint8_t source,uint8_t flags,int32_t lat,int32_t lon,float alt_ellipsoid,float alt,float eph,float epv)
+                                   uint32_t target_system,uint8_t target_component,uint8_t id,uint64_t time_usec,uint32_t processing_time,uint8_t source,uint8_t flags,int32_t lat,int32_t lon,float alt_ellipsoid,float alt,float eph,float epv)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN];
@@ -241,7 +241,7 @@ static inline uint16_t mavlink_msg_global_position_sensor_pack_chan(uint8_t syst
     _mav_put_float(buf, 24, alt);
     _mav_put_float(buf, 28, eph);
     _mav_put_float(buf, 32, epv);
-    _mav_put_uint8_t(buf, 36, target_system);
+    _mav_put_uint8_t(buf, 36, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 37, target_component);
     _mav_put_uint8_t(buf, 38, id);
     _mav_put_uint8_t(buf, 39, source);
@@ -258,7 +258,7 @@ static inline uint16_t mavlink_msg_global_position_sensor_pack_chan(uint8_t syst
     packet.alt = alt;
     packet.eph = eph;
     packet.epv = epv;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.id = id;
     packet.source = source;
@@ -268,7 +268,7 @@ static inline uint16_t mavlink_msg_global_position_sensor_pack_chan(uint8_t syst
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR;
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_MIN_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_CRC);
+    return mavlink_finalize_message_chan_target(msg, system_id, component_id, chan, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_MIN_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_CRC, target_system);
 }
 
 /**
@@ -279,7 +279,7 @@ static inline uint16_t mavlink_msg_global_position_sensor_pack_chan(uint8_t syst
  * @param msg The MAVLink message to compress the data into
  * @param global_position_sensor C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_global_position_sensor_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_global_position_sensor_t* global_position_sensor)
+static inline uint16_t mavlink_msg_global_position_sensor_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_global_position_sensor_t* global_position_sensor)
 {
     return mavlink_msg_global_position_sensor_pack(system_id, component_id, msg, global_position_sensor->target_system, global_position_sensor->target_component, global_position_sensor->id, global_position_sensor->time_usec, global_position_sensor->processing_time, global_position_sensor->source, global_position_sensor->flags, global_position_sensor->lat, global_position_sensor->lon, global_position_sensor->alt_ellipsoid, global_position_sensor->alt, global_position_sensor->eph, global_position_sensor->epv);
 }
@@ -293,7 +293,7 @@ static inline uint16_t mavlink_msg_global_position_sensor_encode(uint8_t system_
  * @param msg The MAVLink message to compress the data into
  * @param global_position_sensor C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_global_position_sensor_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_global_position_sensor_t* global_position_sensor)
+static inline uint16_t mavlink_msg_global_position_sensor_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_global_position_sensor_t* global_position_sensor)
 {
     return mavlink_msg_global_position_sensor_pack_chan(system_id, component_id, chan, msg, global_position_sensor->target_system, global_position_sensor->target_component, global_position_sensor->id, global_position_sensor->time_usec, global_position_sensor->processing_time, global_position_sensor->source, global_position_sensor->flags, global_position_sensor->lat, global_position_sensor->lon, global_position_sensor->alt_ellipsoid, global_position_sensor->alt, global_position_sensor->eph, global_position_sensor->epv);
 }
@@ -307,7 +307,7 @@ static inline uint16_t mavlink_msg_global_position_sensor_encode_chan(uint8_t sy
  * @param msg The MAVLink message to compress the data into
  * @param global_position_sensor C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_global_position_sensor_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_global_position_sensor_t* global_position_sensor)
+static inline uint16_t mavlink_msg_global_position_sensor_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_global_position_sensor_t* global_position_sensor)
 {
     return mavlink_msg_global_position_sensor_pack_status(system_id, component_id, _status, msg,  global_position_sensor->target_system, global_position_sensor->target_component, global_position_sensor->id, global_position_sensor->time_usec, global_position_sensor->processing_time, global_position_sensor->source, global_position_sensor->flags, global_position_sensor->lat, global_position_sensor->lon, global_position_sensor->alt_ellipsoid, global_position_sensor->alt, global_position_sensor->eph, global_position_sensor->epv);
 }
@@ -332,7 +332,7 @@ static inline uint16_t mavlink_msg_global_position_sensor_encode_status(uint8_t 
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_global_position_sensor_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint8_t id, uint64_t time_usec, uint32_t processing_time, uint8_t source, uint8_t flags, int32_t lat, int32_t lon, float alt_ellipsoid, float alt, float eph, float epv)
+static inline void mavlink_msg_global_position_sensor_send(mavlink_channel_t chan, uint32_t target_system, uint8_t target_component, uint8_t id, uint64_t time_usec, uint32_t processing_time, uint8_t source, uint8_t flags, int32_t lat, int32_t lon, float alt_ellipsoid, float alt, float eph, float epv)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN];
@@ -344,13 +344,13 @@ static inline void mavlink_msg_global_position_sensor_send(mavlink_channel_t cha
     _mav_put_float(buf, 24, alt);
     _mav_put_float(buf, 28, eph);
     _mav_put_float(buf, 32, epv);
-    _mav_put_uint8_t(buf, 36, target_system);
+    _mav_put_uint8_t(buf, 36, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 37, target_component);
     _mav_put_uint8_t(buf, 38, id);
     _mav_put_uint8_t(buf, 39, source);
     _mav_put_uint8_t(buf, 40, flags);
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR, buf, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_MIN_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR, buf, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_MIN_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_CRC, target_system);
 #else
     mavlink_global_position_sensor_t packet;
     packet.time_usec = time_usec;
@@ -361,13 +361,13 @@ static inline void mavlink_msg_global_position_sensor_send(mavlink_channel_t cha
     packet.alt = alt;
     packet.eph = eph;
     packet.epv = epv;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.id = id;
     packet.source = source;
     packet.flags = flags;
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR, (const char *)&packet, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_MIN_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR, (const char *)&packet, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_MIN_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_CRC, target_system);
 #endif
 }
 
@@ -393,7 +393,7 @@ static inline void mavlink_msg_global_position_sensor_send_struct(mavlink_channe
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_global_position_sensor_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, uint8_t id, uint64_t time_usec, uint32_t processing_time, uint8_t source, uint8_t flags, int32_t lat, int32_t lon, float alt_ellipsoid, float alt, float eph, float epv)
+static inline void mavlink_msg_global_position_sensor_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t target_system, uint8_t target_component, uint8_t id, uint64_t time_usec, uint32_t processing_time, uint8_t source, uint8_t flags, int32_t lat, int32_t lon, float alt_ellipsoid, float alt, float eph, float epv)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -405,13 +405,13 @@ static inline void mavlink_msg_global_position_sensor_send_buf(mavlink_message_t
     _mav_put_float(buf, 24, alt);
     _mav_put_float(buf, 28, eph);
     _mav_put_float(buf, 32, epv);
-    _mav_put_uint8_t(buf, 36, target_system);
+    _mav_put_uint8_t(buf, 36, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 37, target_component);
     _mav_put_uint8_t(buf, 38, id);
     _mav_put_uint8_t(buf, 39, source);
     _mav_put_uint8_t(buf, 40, flags);
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR, buf, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_MIN_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR, buf, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_MIN_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_CRC, target_system);
 #else
     mavlink_global_position_sensor_t *packet = (mavlink_global_position_sensor_t *)msgbuf;
     packet->time_usec = time_usec;
@@ -422,13 +422,13 @@ static inline void mavlink_msg_global_position_sensor_send_buf(mavlink_message_t
     packet->alt = alt;
     packet->eph = eph;
     packet->epv = epv;
-    packet->target_system = target_system;
+    packet->target_system = mavlink_msg_target_field(target_system);
     packet->target_component = target_component;
     packet->id = id;
     packet->source = source;
     packet->flags = flags;
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR, (const char *)packet, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_MIN_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR, (const char *)packet, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_MIN_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_CRC, target_system);
 #endif
 }
 #endif
@@ -437,16 +437,6 @@ static inline void mavlink_msg_global_position_sensor_send_buf(mavlink_message_t
 
 // MESSAGE GLOBAL_POSITION_SENSOR UNPACKING
 
-
-/**
- * @brief Get field target_system from global_position_sensor message
- *
- * @return  System ID (ID of target system, normally autopilot and ground station).
- */
-static inline uint8_t mavlink_msg_global_position_sensor_get_target_system(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint8_t(msg,  36);
-}
 
 /**
  * @brief Get field target_component from global_position_sensor message
@@ -585,7 +575,7 @@ static inline void mavlink_msg_global_position_sensor_decode(const mavlink_messa
     global_position_sensor->alt = mavlink_msg_global_position_sensor_get_alt(msg);
     global_position_sensor->eph = mavlink_msg_global_position_sensor_get_eph(msg);
     global_position_sensor->epv = mavlink_msg_global_position_sensor_get_epv(msg);
-    global_position_sensor->target_system = mavlink_msg_global_position_sensor_get_target_system(msg);
+    global_position_sensor->target_system = _MAV_RETURN_uint8_t(msg, 36);
     global_position_sensor->target_component = mavlink_msg_global_position_sensor_get_target_component(msg);
     global_position_sensor->id = mavlink_msg_global_position_sensor_get_id(msg);
     global_position_sensor->source = mavlink_msg_global_position_sensor_get_source(msg);
@@ -595,4 +585,11 @@ static inline void mavlink_msg_global_position_sensor_decode(const mavlink_messa
         memset(global_position_sensor, 0, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN);
     memcpy(global_position_sensor, _MAV_PAYLOAD(msg), len);
 #endif
+    if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
+        // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
+        // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
+        // To relay after edits, pass that full target to _pack*(); _encode*() loses it.
+        global_position_sensor->target_system = mavlink_msg_target_field(msg->target_sysid);
+    }
+
 }

@@ -62,7 +62,7 @@ typedef struct __mavlink_airspeed_t {
  * @param flags  Airspeed sensor flags.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_airspeed_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_airspeed_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t id, float airspeed, int16_t temperature, float raw_press, uint8_t flags)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -103,7 +103,7 @@ static inline uint16_t mavlink_msg_airspeed_pack(uint8_t system_id, uint8_t comp
  * @param flags  Airspeed sensor flags.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_airspeed_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_airspeed_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t id, float airspeed, int16_t temperature, float raw_press, uint8_t flags)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -130,7 +130,7 @@ static inline uint16_t mavlink_msg_airspeed_pack_status(uint8_t system_id, uint8
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AIRSPEED_MIN_LEN, MAVLINK_MSG_ID_AIRSPEED_LEN, MAVLINK_MSG_ID_AIRSPEED_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AIRSPEED_MIN_LEN, MAVLINK_MSG_ID_AIRSPEED_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AIRSPEED_MIN_LEN, MAVLINK_MSG_ID_AIRSPEED_LEN, 0);
 #endif
 }
 
@@ -147,7 +147,7 @@ static inline uint16_t mavlink_msg_airspeed_pack_status(uint8_t system_id, uint8
  * @param flags  Airspeed sensor flags.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_airspeed_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_airspeed_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t id,float airspeed,int16_t temperature,float raw_press,uint8_t flags)
 {
@@ -183,7 +183,7 @@ static inline uint16_t mavlink_msg_airspeed_pack_chan(uint8_t system_id, uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param airspeed C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_airspeed_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_airspeed_t* airspeed)
+static inline uint16_t mavlink_msg_airspeed_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_airspeed_t* airspeed)
 {
     return mavlink_msg_airspeed_pack(system_id, component_id, msg, airspeed->id, airspeed->airspeed, airspeed->temperature, airspeed->raw_press, airspeed->flags);
 }
@@ -197,7 +197,7 @@ static inline uint16_t mavlink_msg_airspeed_encode(uint8_t system_id, uint8_t co
  * @param msg The MAVLink message to compress the data into
  * @param airspeed C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_airspeed_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_airspeed_t* airspeed)
+static inline uint16_t mavlink_msg_airspeed_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_airspeed_t* airspeed)
 {
     return mavlink_msg_airspeed_pack_chan(system_id, component_id, chan, msg, airspeed->id, airspeed->airspeed, airspeed->temperature, airspeed->raw_press, airspeed->flags);
 }
@@ -211,7 +211,7 @@ static inline uint16_t mavlink_msg_airspeed_encode_chan(uint8_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param airspeed C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_airspeed_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_airspeed_t* airspeed)
+static inline uint16_t mavlink_msg_airspeed_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_airspeed_t* airspeed)
 {
     return mavlink_msg_airspeed_pack_status(system_id, component_id, _status, msg,  airspeed->id, airspeed->airspeed, airspeed->temperature, airspeed->raw_press, airspeed->flags);
 }
@@ -371,4 +371,5 @@ static inline void mavlink_msg_airspeed_decode(const mavlink_message_t* msg, mav
         memset(airspeed, 0, MAVLINK_MSG_ID_AIRSPEED_LEN);
     memcpy(airspeed, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

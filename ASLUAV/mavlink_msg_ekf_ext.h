@@ -70,7 +70,7 @@ typedef struct __mavlink_ekf_ext_t {
  * @param alpha [rad]  Angle of attack
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_ekf_ext_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_ekf_ext_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint64_t timestamp, float Windspeed, float WindDir, float WindZ, float Airspeed, float beta, float alpha)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -117,7 +117,7 @@ static inline uint16_t mavlink_msg_ekf_ext_pack(uint8_t system_id, uint8_t compo
  * @param alpha [rad]  Angle of attack
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_ekf_ext_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_ekf_ext_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint64_t timestamp, float Windspeed, float WindDir, float WindZ, float Airspeed, float beta, float alpha)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -148,7 +148,7 @@ static inline uint16_t mavlink_msg_ekf_ext_pack_status(uint8_t system_id, uint8_
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_EKF_EXT_MIN_LEN, MAVLINK_MSG_ID_EKF_EXT_LEN, MAVLINK_MSG_ID_EKF_EXT_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_EKF_EXT_MIN_LEN, MAVLINK_MSG_ID_EKF_EXT_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_EKF_EXT_MIN_LEN, MAVLINK_MSG_ID_EKF_EXT_LEN, 0);
 #endif
 }
 
@@ -167,7 +167,7 @@ static inline uint16_t mavlink_msg_ekf_ext_pack_status(uint8_t system_id, uint8_
  * @param alpha [rad]  Angle of attack
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_ekf_ext_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_ekf_ext_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint64_t timestamp,float Windspeed,float WindDir,float WindZ,float Airspeed,float beta,float alpha)
 {
@@ -207,7 +207,7 @@ static inline uint16_t mavlink_msg_ekf_ext_pack_chan(uint8_t system_id, uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param ekf_ext C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_ekf_ext_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_ekf_ext_t* ekf_ext)
+static inline uint16_t mavlink_msg_ekf_ext_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_ekf_ext_t* ekf_ext)
 {
     return mavlink_msg_ekf_ext_pack(system_id, component_id, msg, ekf_ext->timestamp, ekf_ext->Windspeed, ekf_ext->WindDir, ekf_ext->WindZ, ekf_ext->Airspeed, ekf_ext->beta, ekf_ext->alpha);
 }
@@ -221,7 +221,7 @@ static inline uint16_t mavlink_msg_ekf_ext_encode(uint8_t system_id, uint8_t com
  * @param msg The MAVLink message to compress the data into
  * @param ekf_ext C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_ekf_ext_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_ekf_ext_t* ekf_ext)
+static inline uint16_t mavlink_msg_ekf_ext_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_ekf_ext_t* ekf_ext)
 {
     return mavlink_msg_ekf_ext_pack_chan(system_id, component_id, chan, msg, ekf_ext->timestamp, ekf_ext->Windspeed, ekf_ext->WindDir, ekf_ext->WindZ, ekf_ext->Airspeed, ekf_ext->beta, ekf_ext->alpha);
 }
@@ -235,7 +235,7 @@ static inline uint16_t mavlink_msg_ekf_ext_encode_chan(uint8_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param ekf_ext C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_ekf_ext_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_ekf_ext_t* ekf_ext)
+static inline uint16_t mavlink_msg_ekf_ext_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_ekf_ext_t* ekf_ext)
 {
     return mavlink_msg_ekf_ext_pack_status(system_id, component_id, _status, msg,  ekf_ext->timestamp, ekf_ext->Windspeed, ekf_ext->WindDir, ekf_ext->WindZ, ekf_ext->Airspeed, ekf_ext->beta, ekf_ext->alpha);
 }
@@ -427,4 +427,5 @@ static inline void mavlink_msg_ekf_ext_decode(const mavlink_message_t* msg, mavl
         memset(ekf_ext, 0, MAVLINK_MSG_ID_EKF_EXT_LEN);
     memcpy(ekf_ext, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

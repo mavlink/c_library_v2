@@ -75,7 +75,7 @@ typedef struct __mavlink_distance_sensor_info_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_distance_sensor_info_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_distance_sensor_info_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t id, uint8_t type, float min_distance, float max_distance, uint8_t orientation, float horizontal_fov, float vertical_fov, const float *quaternion)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -123,7 +123,7 @@ static inline uint16_t mavlink_msg_distance_sensor_info_pack(uint8_t system_id, 
  * @param quaternion  Quaternion of the sensor orientation in vehicle body frame (w, x, y, z order, zero-rotation is 1, 0, 0, 0). Zero-rotation is along the vehicle body x-axis. This field is required if orientation is set to MAV_SENSOR_ROTATION_CUSTOM. Set it to 0 if invalid.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_distance_sensor_info_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_distance_sensor_info_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t id, uint8_t type, float min_distance, float max_distance, uint8_t orientation, float horizontal_fov, float vertical_fov, const float *quaternion)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -154,7 +154,7 @@ static inline uint16_t mavlink_msg_distance_sensor_info_pack_status(uint8_t syst
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_DISTANCE_SENSOR_INFO_MIN_LEN, MAVLINK_MSG_ID_DISTANCE_SENSOR_INFO_LEN, MAVLINK_MSG_ID_DISTANCE_SENSOR_INFO_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_DISTANCE_SENSOR_INFO_MIN_LEN, MAVLINK_MSG_ID_DISTANCE_SENSOR_INFO_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_DISTANCE_SENSOR_INFO_MIN_LEN, MAVLINK_MSG_ID_DISTANCE_SENSOR_INFO_LEN, 0);
 #endif
 }
 
@@ -175,7 +175,7 @@ static inline uint16_t mavlink_msg_distance_sensor_info_pack_status(uint8_t syst
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_distance_sensor_info_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_distance_sensor_info_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t id,uint8_t type,float min_distance,float max_distance,uint8_t orientation,float horizontal_fov,float vertical_fov,const float *quaternion)
 {
@@ -216,7 +216,7 @@ static inline uint16_t mavlink_msg_distance_sensor_info_pack_chan(uint8_t system
  * @param distance_sensor_info C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_distance_sensor_info_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_distance_sensor_info_t* distance_sensor_info)
+static inline uint16_t mavlink_msg_distance_sensor_info_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_distance_sensor_info_t* distance_sensor_info)
 {
     return mavlink_msg_distance_sensor_info_pack(system_id, component_id, msg, distance_sensor_info->id, distance_sensor_info->type, distance_sensor_info->min_distance, distance_sensor_info->max_distance, distance_sensor_info->orientation, distance_sensor_info->horizontal_fov, distance_sensor_info->vertical_fov, distance_sensor_info->quaternion);
 }
@@ -231,7 +231,7 @@ static inline uint16_t mavlink_msg_distance_sensor_info_encode(uint8_t system_id
  * @param distance_sensor_info C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_distance_sensor_info_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_distance_sensor_info_t* distance_sensor_info)
+static inline uint16_t mavlink_msg_distance_sensor_info_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_distance_sensor_info_t* distance_sensor_info)
 {
     return mavlink_msg_distance_sensor_info_pack_chan(system_id, component_id, chan, msg, distance_sensor_info->id, distance_sensor_info->type, distance_sensor_info->min_distance, distance_sensor_info->max_distance, distance_sensor_info->orientation, distance_sensor_info->horizontal_fov, distance_sensor_info->vertical_fov, distance_sensor_info->quaternion);
 }
@@ -245,7 +245,7 @@ static inline uint16_t mavlink_msg_distance_sensor_info_encode_chan(uint8_t syst
  * @param msg The MAVLink message to compress the data into
  * @param distance_sensor_info C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_distance_sensor_info_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_distance_sensor_info_t* distance_sensor_info)
+static inline uint16_t mavlink_msg_distance_sensor_info_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_distance_sensor_info_t* distance_sensor_info)
 {
     return mavlink_msg_distance_sensor_info_pack_status(system_id, component_id, _status, msg,  distance_sensor_info->id, distance_sensor_info->type, distance_sensor_info->min_distance, distance_sensor_info->max_distance, distance_sensor_info->orientation, distance_sensor_info->horizontal_fov, distance_sensor_info->vertical_fov, distance_sensor_info->quaternion);
 }
@@ -461,4 +461,5 @@ static inline void mavlink_msg_distance_sensor_info_decode(const mavlink_message
         memset(distance_sensor_info, 0, MAVLINK_MSG_ID_DISTANCE_SENSOR_INFO_LEN);
     memcpy(distance_sensor_info, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

@@ -82,13 +82,13 @@ typedef struct __mavlink_device_op_read_t {
  * @param bank  Bank number.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_device_op_read_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint32_t request_id, uint8_t bustype, uint8_t bus, uint8_t address, const char *busname, uint8_t regstart, uint8_t count, uint8_t bank)
+static inline uint16_t mavlink_msg_device_op_read_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, uint32_t request_id, uint8_t bustype, uint8_t bus, uint8_t address, const char *busname, uint8_t regstart, uint8_t count, uint8_t bank)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_DEVICE_OP_READ_LEN];
     _mav_put_uint32_t(buf, 0, request_id);
-    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 4, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 5, target_component);
     _mav_put_uint8_t(buf, 6, bustype);
     _mav_put_uint8_t(buf, 7, bus);
@@ -101,7 +101,7 @@ static inline uint16_t mavlink_msg_device_op_read_pack(uint8_t system_id, uint8_
 #else
     mavlink_device_op_read_t packet;
     packet.request_id = request_id;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.bustype = bustype;
     packet.bus = bus;
@@ -114,7 +114,7 @@ static inline uint16_t mavlink_msg_device_op_read_pack(uint8_t system_id, uint8_
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_DEVICE_OP_READ;
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_DEVICE_OP_READ_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_CRC);
+    return mavlink_finalize_message_target(msg, system_id, component_id, MAVLINK_MSG_ID_DEVICE_OP_READ_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_CRC, target_system);
 }
 
 /**
@@ -136,13 +136,13 @@ static inline uint16_t mavlink_msg_device_op_read_pack(uint8_t system_id, uint8_
  * @param bank  Bank number.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_device_op_read_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint32_t request_id, uint8_t bustype, uint8_t bus, uint8_t address, const char *busname, uint8_t regstart, uint8_t count, uint8_t bank)
+static inline uint16_t mavlink_msg_device_op_read_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, uint32_t request_id, uint8_t bustype, uint8_t bus, uint8_t address, const char *busname, uint8_t regstart, uint8_t count, uint8_t bank)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_DEVICE_OP_READ_LEN];
     _mav_put_uint32_t(buf, 0, request_id);
-    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 4, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 5, target_component);
     _mav_put_uint8_t(buf, 6, bustype);
     _mav_put_uint8_t(buf, 7, bus);
@@ -155,7 +155,7 @@ static inline uint16_t mavlink_msg_device_op_read_pack_status(uint8_t system_id,
 #else
     mavlink_device_op_read_t packet;
     packet.request_id = request_id;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.bustype = bustype;
     packet.bus = bus;
@@ -169,9 +169,9 @@ static inline uint16_t mavlink_msg_device_op_read_pack_status(uint8_t system_id,
 
     msg->msgid = MAVLINK_MSG_ID_DEVICE_OP_READ;
 #if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_DEVICE_OP_READ_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_CRC);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_DEVICE_OP_READ_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_CRC, target_system);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_DEVICE_OP_READ_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_LEN);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_DEVICE_OP_READ_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_LEN, 0, target_system);
 #endif
 }
 
@@ -193,14 +193,14 @@ static inline uint16_t mavlink_msg_device_op_read_pack_status(uint8_t system_id,
  * @param bank  Bank number.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_device_op_read_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_device_op_read_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t target_system,uint8_t target_component,uint32_t request_id,uint8_t bustype,uint8_t bus,uint8_t address,const char *busname,uint8_t regstart,uint8_t count,uint8_t bank)
+                                   uint32_t target_system,uint8_t target_component,uint32_t request_id,uint8_t bustype,uint8_t bus,uint8_t address,const char *busname,uint8_t regstart,uint8_t count,uint8_t bank)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_DEVICE_OP_READ_LEN];
     _mav_put_uint32_t(buf, 0, request_id);
-    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 4, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 5, target_component);
     _mav_put_uint8_t(buf, 6, bustype);
     _mav_put_uint8_t(buf, 7, bus);
@@ -213,7 +213,7 @@ static inline uint16_t mavlink_msg_device_op_read_pack_chan(uint8_t system_id, u
 #else
     mavlink_device_op_read_t packet;
     packet.request_id = request_id;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.bustype = bustype;
     packet.bus = bus;
@@ -226,7 +226,7 @@ static inline uint16_t mavlink_msg_device_op_read_pack_chan(uint8_t system_id, u
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_DEVICE_OP_READ;
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_DEVICE_OP_READ_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_CRC);
+    return mavlink_finalize_message_chan_target(msg, system_id, component_id, chan, MAVLINK_MSG_ID_DEVICE_OP_READ_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_CRC, target_system);
 }
 
 /**
@@ -237,7 +237,7 @@ static inline uint16_t mavlink_msg_device_op_read_pack_chan(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param device_op_read C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_device_op_read_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_device_op_read_t* device_op_read)
+static inline uint16_t mavlink_msg_device_op_read_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_device_op_read_t* device_op_read)
 {
     return mavlink_msg_device_op_read_pack(system_id, component_id, msg, device_op_read->target_system, device_op_read->target_component, device_op_read->request_id, device_op_read->bustype, device_op_read->bus, device_op_read->address, device_op_read->busname, device_op_read->regstart, device_op_read->count, device_op_read->bank);
 }
@@ -251,7 +251,7 @@ static inline uint16_t mavlink_msg_device_op_read_encode(uint8_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  * @param device_op_read C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_device_op_read_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_device_op_read_t* device_op_read)
+static inline uint16_t mavlink_msg_device_op_read_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_device_op_read_t* device_op_read)
 {
     return mavlink_msg_device_op_read_pack_chan(system_id, component_id, chan, msg, device_op_read->target_system, device_op_read->target_component, device_op_read->request_id, device_op_read->bustype, device_op_read->bus, device_op_read->address, device_op_read->busname, device_op_read->regstart, device_op_read->count, device_op_read->bank);
 }
@@ -265,7 +265,7 @@ static inline uint16_t mavlink_msg_device_op_read_encode_chan(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param device_op_read C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_device_op_read_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_device_op_read_t* device_op_read)
+static inline uint16_t mavlink_msg_device_op_read_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_device_op_read_t* device_op_read)
 {
     return mavlink_msg_device_op_read_pack_status(system_id, component_id, _status, msg,  device_op_read->target_system, device_op_read->target_component, device_op_read->request_id, device_op_read->bustype, device_op_read->bus, device_op_read->address, device_op_read->busname, device_op_read->regstart, device_op_read->count, device_op_read->bank);
 }
@@ -287,12 +287,12 @@ static inline uint16_t mavlink_msg_device_op_read_encode_status(uint8_t system_i
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_device_op_read_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint32_t request_id, uint8_t bustype, uint8_t bus, uint8_t address, const char *busname, uint8_t regstart, uint8_t count, uint8_t bank)
+static inline void mavlink_msg_device_op_read_send(mavlink_channel_t chan, uint32_t target_system, uint8_t target_component, uint32_t request_id, uint8_t bustype, uint8_t bus, uint8_t address, const char *busname, uint8_t regstart, uint8_t count, uint8_t bank)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_DEVICE_OP_READ_LEN];
     _mav_put_uint32_t(buf, 0, request_id);
-    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 4, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 5, target_component);
     _mav_put_uint8_t(buf, 6, bustype);
     _mav_put_uint8_t(buf, 7, bus);
@@ -301,11 +301,11 @@ static inline void mavlink_msg_device_op_read_send(mavlink_channel_t chan, uint8
     _mav_put_uint8_t(buf, 50, count);
     _mav_put_uint8_t(buf, 51, bank);
     _mav_put_char_array(buf, 9, busname, 40);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_DEVICE_OP_READ, buf, MAVLINK_MSG_ID_DEVICE_OP_READ_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_DEVICE_OP_READ, buf, MAVLINK_MSG_ID_DEVICE_OP_READ_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_CRC, target_system);
 #else
     mavlink_device_op_read_t packet;
     packet.request_id = request_id;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.bustype = bustype;
     packet.bus = bus;
@@ -314,7 +314,7 @@ static inline void mavlink_msg_device_op_read_send(mavlink_channel_t chan, uint8
     packet.count = count;
     packet.bank = bank;
     mav_array_memcpy(packet.busname, busname, sizeof(char)*40);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_DEVICE_OP_READ, (const char *)&packet, MAVLINK_MSG_ID_DEVICE_OP_READ_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_DEVICE_OP_READ, (const char *)&packet, MAVLINK_MSG_ID_DEVICE_OP_READ_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_CRC, target_system);
 #endif
 }
 
@@ -340,12 +340,12 @@ static inline void mavlink_msg_device_op_read_send_struct(mavlink_channel_t chan
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_device_op_read_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, uint32_t request_id, uint8_t bustype, uint8_t bus, uint8_t address, const char *busname, uint8_t regstart, uint8_t count, uint8_t bank)
+static inline void mavlink_msg_device_op_read_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t target_system, uint8_t target_component, uint32_t request_id, uint8_t bustype, uint8_t bus, uint8_t address, const char *busname, uint8_t regstart, uint8_t count, uint8_t bank)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_uint32_t(buf, 0, request_id);
-    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 4, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 5, target_component);
     _mav_put_uint8_t(buf, 6, bustype);
     _mav_put_uint8_t(buf, 7, bus);
@@ -354,11 +354,11 @@ static inline void mavlink_msg_device_op_read_send_buf(mavlink_message_t *msgbuf
     _mav_put_uint8_t(buf, 50, count);
     _mav_put_uint8_t(buf, 51, bank);
     _mav_put_char_array(buf, 9, busname, 40);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_DEVICE_OP_READ, buf, MAVLINK_MSG_ID_DEVICE_OP_READ_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_DEVICE_OP_READ, buf, MAVLINK_MSG_ID_DEVICE_OP_READ_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_CRC, target_system);
 #else
     mavlink_device_op_read_t *packet = (mavlink_device_op_read_t *)msgbuf;
     packet->request_id = request_id;
-    packet->target_system = target_system;
+    packet->target_system = mavlink_msg_target_field(target_system);
     packet->target_component = target_component;
     packet->bustype = bustype;
     packet->bus = bus;
@@ -367,7 +367,7 @@ static inline void mavlink_msg_device_op_read_send_buf(mavlink_message_t *msgbuf
     packet->count = count;
     packet->bank = bank;
     mav_array_memcpy(packet->busname, busname, sizeof(char)*40);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_DEVICE_OP_READ, (const char *)packet, MAVLINK_MSG_ID_DEVICE_OP_READ_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_DEVICE_OP_READ, (const char *)packet, MAVLINK_MSG_ID_DEVICE_OP_READ_MIN_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_LEN, MAVLINK_MSG_ID_DEVICE_OP_READ_CRC, target_system);
 #endif
 }
 #endif
@@ -376,16 +376,6 @@ static inline void mavlink_msg_device_op_read_send_buf(mavlink_message_t *msgbuf
 
 // MESSAGE DEVICE_OP_READ UNPACKING
 
-
-/**
- * @brief Get field target_system from device_op_read message
- *
- * @return  System ID.
- */
-static inline uint8_t mavlink_msg_device_op_read_get_target_system(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint8_t(msg,  4);
-}
 
 /**
  * @brief Get field target_component from device_op_read message
@@ -487,7 +477,7 @@ static inline void mavlink_msg_device_op_read_decode(const mavlink_message_t* ms
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     device_op_read->request_id = mavlink_msg_device_op_read_get_request_id(msg);
-    device_op_read->target_system = mavlink_msg_device_op_read_get_target_system(msg);
+    device_op_read->target_system = _MAV_RETURN_uint8_t(msg, 4);
     device_op_read->target_component = mavlink_msg_device_op_read_get_target_component(msg);
     device_op_read->bustype = mavlink_msg_device_op_read_get_bustype(msg);
     device_op_read->bus = mavlink_msg_device_op_read_get_bus(msg);
@@ -501,4 +491,11 @@ static inline void mavlink_msg_device_op_read_decode(const mavlink_message_t* ms
         memset(device_op_read, 0, MAVLINK_MSG_ID_DEVICE_OP_READ_LEN);
     memcpy(device_op_read, _MAV_PAYLOAD(msg), len);
 #endif
+    if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
+        // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
+        // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
+        // To relay after edits, pass that full target to _pack*(); _encode*() loses it.
+        device_op_read->target_system = mavlink_msg_target_field(msg->target_sysid);
+    }
+
 }

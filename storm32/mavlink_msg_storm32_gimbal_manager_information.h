@@ -78,7 +78,7 @@ typedef struct __mavlink_storm32_gimbal_manager_information_t {
  * @param yaw_max [rad] Hardware maximum yaw/pan angle (positive: pan to the right, relative to the vehicle/gimbal base). NaN if unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_storm32_gimbal_manager_information_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_storm32_gimbal_manager_information_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t gimbal_id, uint32_t device_cap_flags, uint32_t manager_cap_flags, float roll_min, float roll_max, float pitch_min, float pitch_max, float yaw_min, float yaw_max)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -131,7 +131,7 @@ static inline uint16_t mavlink_msg_storm32_gimbal_manager_information_pack(uint8
  * @param yaw_max [rad] Hardware maximum yaw/pan angle (positive: pan to the right, relative to the vehicle/gimbal base). NaN if unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_storm32_gimbal_manager_information_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_storm32_gimbal_manager_information_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t gimbal_id, uint32_t device_cap_flags, uint32_t manager_cap_flags, float roll_min, float roll_max, float pitch_min, float pitch_max, float yaw_min, float yaw_max)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -166,7 +166,7 @@ static inline uint16_t mavlink_msg_storm32_gimbal_manager_information_pack_statu
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_INFORMATION_LEN, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_INFORMATION_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_INFORMATION_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_INFORMATION_LEN, 0);
 #endif
 }
 
@@ -187,7 +187,7 @@ static inline uint16_t mavlink_msg_storm32_gimbal_manager_information_pack_statu
  * @param yaw_max [rad] Hardware maximum yaw/pan angle (positive: pan to the right, relative to the vehicle/gimbal base). NaN if unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_storm32_gimbal_manager_information_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_storm32_gimbal_manager_information_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t gimbal_id,uint32_t device_cap_flags,uint32_t manager_cap_flags,float roll_min,float roll_max,float pitch_min,float pitch_max,float yaw_min,float yaw_max)
 {
@@ -231,7 +231,7 @@ static inline uint16_t mavlink_msg_storm32_gimbal_manager_information_pack_chan(
  * @param msg The MAVLink message to compress the data into
  * @param storm32_gimbal_manager_information C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_storm32_gimbal_manager_information_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_storm32_gimbal_manager_information_t* storm32_gimbal_manager_information)
+static inline uint16_t mavlink_msg_storm32_gimbal_manager_information_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_storm32_gimbal_manager_information_t* storm32_gimbal_manager_information)
 {
     return mavlink_msg_storm32_gimbal_manager_information_pack(system_id, component_id, msg, storm32_gimbal_manager_information->gimbal_id, storm32_gimbal_manager_information->device_cap_flags, storm32_gimbal_manager_information->manager_cap_flags, storm32_gimbal_manager_information->roll_min, storm32_gimbal_manager_information->roll_max, storm32_gimbal_manager_information->pitch_min, storm32_gimbal_manager_information->pitch_max, storm32_gimbal_manager_information->yaw_min, storm32_gimbal_manager_information->yaw_max);
 }
@@ -245,7 +245,7 @@ static inline uint16_t mavlink_msg_storm32_gimbal_manager_information_encode(uin
  * @param msg The MAVLink message to compress the data into
  * @param storm32_gimbal_manager_information C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_storm32_gimbal_manager_information_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_storm32_gimbal_manager_information_t* storm32_gimbal_manager_information)
+static inline uint16_t mavlink_msg_storm32_gimbal_manager_information_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_storm32_gimbal_manager_information_t* storm32_gimbal_manager_information)
 {
     return mavlink_msg_storm32_gimbal_manager_information_pack_chan(system_id, component_id, chan, msg, storm32_gimbal_manager_information->gimbal_id, storm32_gimbal_manager_information->device_cap_flags, storm32_gimbal_manager_information->manager_cap_flags, storm32_gimbal_manager_information->roll_min, storm32_gimbal_manager_information->roll_max, storm32_gimbal_manager_information->pitch_min, storm32_gimbal_manager_information->pitch_max, storm32_gimbal_manager_information->yaw_min, storm32_gimbal_manager_information->yaw_max);
 }
@@ -259,7 +259,7 @@ static inline uint16_t mavlink_msg_storm32_gimbal_manager_information_encode_cha
  * @param msg The MAVLink message to compress the data into
  * @param storm32_gimbal_manager_information C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_storm32_gimbal_manager_information_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_storm32_gimbal_manager_information_t* storm32_gimbal_manager_information)
+static inline uint16_t mavlink_msg_storm32_gimbal_manager_information_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_storm32_gimbal_manager_information_t* storm32_gimbal_manager_information)
 {
     return mavlink_msg_storm32_gimbal_manager_information_pack_status(system_id, component_id, _status, msg,  storm32_gimbal_manager_information->gimbal_id, storm32_gimbal_manager_information->device_cap_flags, storm32_gimbal_manager_information->manager_cap_flags, storm32_gimbal_manager_information->roll_min, storm32_gimbal_manager_information->roll_max, storm32_gimbal_manager_information->pitch_min, storm32_gimbal_manager_information->pitch_max, storm32_gimbal_manager_information->yaw_min, storm32_gimbal_manager_information->yaw_max);
 }
@@ -483,4 +483,5 @@ static inline void mavlink_msg_storm32_gimbal_manager_information_decode(const m
         memset(storm32_gimbal_manager_information, 0, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_INFORMATION_LEN);
     memcpy(storm32_gimbal_manager_information, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

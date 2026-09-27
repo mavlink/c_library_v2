@@ -67,27 +67,27 @@ typedef struct __mavlink_rc_channels_override_v2_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_rc_channels_override_v2_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint32_t active_mask, const int16_t *channels)
+static inline uint16_t mavlink_msg_rc_channels_override_v2_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, uint32_t active_mask, const int16_t *channels)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN];
     _mav_put_uint32_t(buf, 0, active_mask);
-    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 4, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 5, target_component);
     _mav_put_int16_t_array(buf, 6, channels, 32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN);
 #else
     mavlink_rc_channels_override_v2_t packet;
     packet.active_mask = active_mask;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     mav_array_memcpy(packet.channels, channels, sizeof(int16_t)*32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN);
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2;
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_MIN_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_CRC);
+    return mavlink_finalize_message_target(msg, system_id, component_id, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_MIN_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_CRC, target_system);
 }
 
 /**
@@ -107,20 +107,20 @@ static inline uint16_t mavlink_msg_rc_channels_override_v2_pack(uint8_t system_i
       
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_rc_channels_override_v2_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint32_t active_mask, const int16_t *channels)
+static inline uint16_t mavlink_msg_rc_channels_override_v2_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, uint32_t active_mask, const int16_t *channels)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN];
     _mav_put_uint32_t(buf, 0, active_mask);
-    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 4, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 5, target_component);
     _mav_put_int16_t_array(buf, 6, channels, 32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN);
 #else
     mavlink_rc_channels_override_v2_t packet;
     packet.active_mask = active_mask;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     mav_array_memcpy(packet.channels, channels, sizeof(int16_t)*32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN);
@@ -128,9 +128,9 @@ static inline uint16_t mavlink_msg_rc_channels_override_v2_pack_status(uint8_t s
 
     msg->msgid = MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2;
 #if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_MIN_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_CRC);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_MIN_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_CRC, target_system);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_MIN_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_MIN_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN, 0, target_system);
 #endif
 }
 
@@ -151,28 +151,28 @@ static inline uint16_t mavlink_msg_rc_channels_override_v2_pack_status(uint8_t s
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_rc_channels_override_v2_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_rc_channels_override_v2_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t target_system,uint8_t target_component,uint32_t active_mask,const int16_t *channels)
+                                   uint32_t target_system,uint8_t target_component,uint32_t active_mask,const int16_t *channels)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN];
     _mav_put_uint32_t(buf, 0, active_mask);
-    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 4, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 5, target_component);
     _mav_put_int16_t_array(buf, 6, channels, 32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN);
 #else
     mavlink_rc_channels_override_v2_t packet;
     packet.active_mask = active_mask;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     mav_array_memcpy(packet.channels, channels, sizeof(int16_t)*32);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN);
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2;
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_MIN_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_CRC);
+    return mavlink_finalize_message_chan_target(msg, system_id, component_id, chan, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_MIN_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_CRC, target_system);
 }
 
 /**
@@ -184,7 +184,7 @@ static inline uint16_t mavlink_msg_rc_channels_override_v2_pack_chan(uint8_t sys
  * @param rc_channels_override_v2 C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_rc_channels_override_v2_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_rc_channels_override_v2_t* rc_channels_override_v2)
+static inline uint16_t mavlink_msg_rc_channels_override_v2_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_rc_channels_override_v2_t* rc_channels_override_v2)
 {
     return mavlink_msg_rc_channels_override_v2_pack(system_id, component_id, msg, rc_channels_override_v2->target_system, rc_channels_override_v2->target_component, rc_channels_override_v2->active_mask, rc_channels_override_v2->channels);
 }
@@ -199,7 +199,7 @@ static inline uint16_t mavlink_msg_rc_channels_override_v2_encode(uint8_t system
  * @param rc_channels_override_v2 C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_rc_channels_override_v2_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_rc_channels_override_v2_t* rc_channels_override_v2)
+static inline uint16_t mavlink_msg_rc_channels_override_v2_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_rc_channels_override_v2_t* rc_channels_override_v2)
 {
     return mavlink_msg_rc_channels_override_v2_pack_chan(system_id, component_id, chan, msg, rc_channels_override_v2->target_system, rc_channels_override_v2->target_component, rc_channels_override_v2->active_mask, rc_channels_override_v2->channels);
 }
@@ -213,7 +213,7 @@ static inline uint16_t mavlink_msg_rc_channels_override_v2_encode_chan(uint8_t s
  * @param msg The MAVLink message to compress the data into
  * @param rc_channels_override_v2 C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_rc_channels_override_v2_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_rc_channels_override_v2_t* rc_channels_override_v2)
+static inline uint16_t mavlink_msg_rc_channels_override_v2_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_rc_channels_override_v2_t* rc_channels_override_v2)
 {
     return mavlink_msg_rc_channels_override_v2_pack_status(system_id, component_id, _status, msg,  rc_channels_override_v2->target_system, rc_channels_override_v2->target_component, rc_channels_override_v2->active_mask, rc_channels_override_v2->channels);
 }
@@ -234,22 +234,22 @@ static inline uint16_t mavlink_msg_rc_channels_override_v2_encode_status(uint8_t
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
 MAVLINK_WIP
-static inline void mavlink_msg_rc_channels_override_v2_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint32_t active_mask, const int16_t *channels)
+static inline void mavlink_msg_rc_channels_override_v2_send(mavlink_channel_t chan, uint32_t target_system, uint8_t target_component, uint32_t active_mask, const int16_t *channels)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN];
     _mav_put_uint32_t(buf, 0, active_mask);
-    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 4, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 5, target_component);
     _mav_put_int16_t_array(buf, 6, channels, 32);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2, buf, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_MIN_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2, buf, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_MIN_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_CRC, target_system);
 #else
     mavlink_rc_channels_override_v2_t packet;
     packet.active_mask = active_mask;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     mav_array_memcpy(packet.channels, channels, sizeof(int16_t)*32);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2, (const char *)&packet, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_MIN_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2, (const char *)&packet, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_MIN_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_CRC, target_system);
 #endif
 }
 
@@ -277,22 +277,22 @@ static inline void mavlink_msg_rc_channels_override_v2_send_struct(mavlink_chann
   incoming message with minimum stack space usage.
  */
 MAVLINK_WIP
-static inline void mavlink_msg_rc_channels_override_v2_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, uint32_t active_mask, const int16_t *channels)
+static inline void mavlink_msg_rc_channels_override_v2_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t target_system, uint8_t target_component, uint32_t active_mask, const int16_t *channels)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_uint32_t(buf, 0, active_mask);
-    _mav_put_uint8_t(buf, 4, target_system);
+    _mav_put_uint8_t(buf, 4, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 5, target_component);
     _mav_put_int16_t_array(buf, 6, channels, 32);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2, buf, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_MIN_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2, buf, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_MIN_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_CRC, target_system);
 #else
     mavlink_rc_channels_override_v2_t *packet = (mavlink_rc_channels_override_v2_t *)msgbuf;
     packet->active_mask = active_mask;
-    packet->target_system = target_system;
+    packet->target_system = mavlink_msg_target_field(target_system);
     packet->target_component = target_component;
     mav_array_memcpy(packet->channels, channels, sizeof(int16_t)*32);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2, (const char *)packet, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_MIN_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2, (const char *)packet, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_MIN_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_CRC, target_system);
 #endif
 }
 #endif
@@ -301,17 +301,6 @@ static inline void mavlink_msg_rc_channels_override_v2_send_buf(mavlink_message_
 
 // MESSAGE RC_CHANNELS_OVERRIDE_V2 UNPACKING
 
-
-/**
- * @brief Get field target_system from rc_channels_override_v2 message
- *
- * @return  System ID.
- */
-MAVLINK_WIP
-static inline uint8_t mavlink_msg_rc_channels_override_v2_get_target_system(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint8_t(msg,  4);
-}
 
 /**
  * @brief Get field target_component from rc_channels_override_v2 message
@@ -361,7 +350,7 @@ static inline void mavlink_msg_rc_channels_override_v2_decode(const mavlink_mess
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     rc_channels_override_v2->active_mask = mavlink_msg_rc_channels_override_v2_get_active_mask(msg);
-    rc_channels_override_v2->target_system = mavlink_msg_rc_channels_override_v2_get_target_system(msg);
+    rc_channels_override_v2->target_system = _MAV_RETURN_uint8_t(msg, 4);
     rc_channels_override_v2->target_component = mavlink_msg_rc_channels_override_v2_get_target_component(msg);
     mavlink_msg_rc_channels_override_v2_get_channels(msg, rc_channels_override_v2->channels);
 #else
@@ -369,4 +358,11 @@ static inline void mavlink_msg_rc_channels_override_v2_decode(const mavlink_mess
         memset(rc_channels_override_v2, 0, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN);
     memcpy(rc_channels_override_v2, _MAV_PAYLOAD(msg), len);
 #endif
+    if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
+        // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
+        // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
+        // To relay after edits, pass that full target to _pack*(); _encode*() loses it.
+        rc_channels_override_v2->target_system = mavlink_msg_target_field(msg->target_sysid);
+    }
+
 }

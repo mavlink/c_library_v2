@@ -74,7 +74,7 @@ typedef struct __mavlink_herelink_video_stream_information_t {
  * @param uri  Video stream URI (TCP or RTSP URI ground station should connect to) or port number (UDP port ground station should listen to).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_herelink_video_stream_information_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_herelink_video_stream_information_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t camera_id, uint8_t status, float framerate, uint16_t resolution_h, uint16_t resolution_v, uint32_t bitrate, uint16_t rotation, const char *uri)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -122,7 +122,7 @@ static inline uint16_t mavlink_msg_herelink_video_stream_information_pack(uint8_
  * @param uri  Video stream URI (TCP or RTSP URI ground station should connect to) or port number (UDP port ground station should listen to).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_herelink_video_stream_information_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_herelink_video_stream_information_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t camera_id, uint8_t status, float framerate, uint16_t resolution_h, uint16_t resolution_v, uint32_t bitrate, uint16_t rotation, const char *uri)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -153,7 +153,7 @@ static inline uint16_t mavlink_msg_herelink_video_stream_information_pack_status
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_LEN, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_LEN, 0);
 #endif
 }
 
@@ -173,7 +173,7 @@ static inline uint16_t mavlink_msg_herelink_video_stream_information_pack_status
  * @param uri  Video stream URI (TCP or RTSP URI ground station should connect to) or port number (UDP port ground station should listen to).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_herelink_video_stream_information_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_herelink_video_stream_information_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t camera_id,uint8_t status,float framerate,uint16_t resolution_h,uint16_t resolution_v,uint32_t bitrate,uint16_t rotation,const char *uri)
 {
@@ -213,7 +213,7 @@ static inline uint16_t mavlink_msg_herelink_video_stream_information_pack_chan(u
  * @param msg The MAVLink message to compress the data into
  * @param herelink_video_stream_information C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_herelink_video_stream_information_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_herelink_video_stream_information_t* herelink_video_stream_information)
+static inline uint16_t mavlink_msg_herelink_video_stream_information_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_herelink_video_stream_information_t* herelink_video_stream_information)
 {
     return mavlink_msg_herelink_video_stream_information_pack(system_id, component_id, msg, herelink_video_stream_information->camera_id, herelink_video_stream_information->status, herelink_video_stream_information->framerate, herelink_video_stream_information->resolution_h, herelink_video_stream_information->resolution_v, herelink_video_stream_information->bitrate, herelink_video_stream_information->rotation, herelink_video_stream_information->uri);
 }
@@ -227,7 +227,7 @@ static inline uint16_t mavlink_msg_herelink_video_stream_information_encode(uint
  * @param msg The MAVLink message to compress the data into
  * @param herelink_video_stream_information C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_herelink_video_stream_information_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_herelink_video_stream_information_t* herelink_video_stream_information)
+static inline uint16_t mavlink_msg_herelink_video_stream_information_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_herelink_video_stream_information_t* herelink_video_stream_information)
 {
     return mavlink_msg_herelink_video_stream_information_pack_chan(system_id, component_id, chan, msg, herelink_video_stream_information->camera_id, herelink_video_stream_information->status, herelink_video_stream_information->framerate, herelink_video_stream_information->resolution_h, herelink_video_stream_information->resolution_v, herelink_video_stream_information->bitrate, herelink_video_stream_information->rotation, herelink_video_stream_information->uri);
 }
@@ -241,7 +241,7 @@ static inline uint16_t mavlink_msg_herelink_video_stream_information_encode_chan
  * @param msg The MAVLink message to compress the data into
  * @param herelink_video_stream_information C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_herelink_video_stream_information_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_herelink_video_stream_information_t* herelink_video_stream_information)
+static inline uint16_t mavlink_msg_herelink_video_stream_information_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_herelink_video_stream_information_t* herelink_video_stream_information)
 {
     return mavlink_msg_herelink_video_stream_information_pack_status(system_id, component_id, _status, msg,  herelink_video_stream_information->camera_id, herelink_video_stream_information->status, herelink_video_stream_information->framerate, herelink_video_stream_information->resolution_h, herelink_video_stream_information->resolution_v, herelink_video_stream_information->bitrate, herelink_video_stream_information->rotation, herelink_video_stream_information->uri);
 }
@@ -445,4 +445,5 @@ static inline void mavlink_msg_herelink_video_stream_information_decode(const ma
         memset(herelink_video_stream_information, 0, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_LEN);
     memcpy(herelink_video_stream_information, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

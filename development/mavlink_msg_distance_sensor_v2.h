@@ -59,7 +59,7 @@ typedef struct __mavlink_distance_sensor_v2_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_distance_sensor_v2_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_distance_sensor_v2_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint32_t time_boot_ms, uint8_t id, float distance, int8_t signal_quality)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -97,7 +97,7 @@ static inline uint16_t mavlink_msg_distance_sensor_v2_pack(uint8_t system_id, ui
  * @param signal_quality [%] Signal quality (sensor-type specific). Represents the relation of the signal strength with the target reflectivity, distance, size or aspect, but normalised as a percentage. Values: [0-100], 0 = unusable signal, 100 = perfect signal. INT8_MAX = unknown/not provided.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_distance_sensor_v2_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_distance_sensor_v2_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint32_t time_boot_ms, uint8_t id, float distance, int8_t signal_quality)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -122,7 +122,7 @@ static inline uint16_t mavlink_msg_distance_sensor_v2_pack_status(uint8_t system
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_DISTANCE_SENSOR_V2_MIN_LEN, MAVLINK_MSG_ID_DISTANCE_SENSOR_V2_LEN, MAVLINK_MSG_ID_DISTANCE_SENSOR_V2_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_DISTANCE_SENSOR_V2_MIN_LEN, MAVLINK_MSG_ID_DISTANCE_SENSOR_V2_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_DISTANCE_SENSOR_V2_MIN_LEN, MAVLINK_MSG_ID_DISTANCE_SENSOR_V2_LEN, 0);
 #endif
 }
 
@@ -139,7 +139,7 @@ static inline uint16_t mavlink_msg_distance_sensor_v2_pack_status(uint8_t system
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_distance_sensor_v2_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_distance_sensor_v2_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint32_t time_boot_ms,uint8_t id,float distance,int8_t signal_quality)
 {
@@ -174,7 +174,7 @@ static inline uint16_t mavlink_msg_distance_sensor_v2_pack_chan(uint8_t system_i
  * @param distance_sensor_v2 C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_distance_sensor_v2_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_distance_sensor_v2_t* distance_sensor_v2)
+static inline uint16_t mavlink_msg_distance_sensor_v2_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_distance_sensor_v2_t* distance_sensor_v2)
 {
     return mavlink_msg_distance_sensor_v2_pack(system_id, component_id, msg, distance_sensor_v2->time_boot_ms, distance_sensor_v2->id, distance_sensor_v2->distance, distance_sensor_v2->signal_quality);
 }
@@ -189,7 +189,7 @@ static inline uint16_t mavlink_msg_distance_sensor_v2_encode(uint8_t system_id, 
  * @param distance_sensor_v2 C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_distance_sensor_v2_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_distance_sensor_v2_t* distance_sensor_v2)
+static inline uint16_t mavlink_msg_distance_sensor_v2_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_distance_sensor_v2_t* distance_sensor_v2)
 {
     return mavlink_msg_distance_sensor_v2_pack_chan(system_id, component_id, chan, msg, distance_sensor_v2->time_boot_ms, distance_sensor_v2->id, distance_sensor_v2->distance, distance_sensor_v2->signal_quality);
 }
@@ -203,7 +203,7 @@ static inline uint16_t mavlink_msg_distance_sensor_v2_encode_chan(uint8_t system
  * @param msg The MAVLink message to compress the data into
  * @param distance_sensor_v2 C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_distance_sensor_v2_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_distance_sensor_v2_t* distance_sensor_v2)
+static inline uint16_t mavlink_msg_distance_sensor_v2_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_distance_sensor_v2_t* distance_sensor_v2)
 {
     return mavlink_msg_distance_sensor_v2_pack_status(system_id, component_id, _status, msg,  distance_sensor_v2->time_boot_ms, distance_sensor_v2->id, distance_sensor_v2->distance, distance_sensor_v2->signal_quality);
 }
@@ -355,4 +355,5 @@ static inline void mavlink_msg_distance_sensor_v2_decode(const mavlink_message_t
         memset(distance_sensor_v2, 0, MAVLINK_MSG_ID_DISTANCE_SENSOR_V2_LEN);
     memcpy(distance_sensor_v2, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

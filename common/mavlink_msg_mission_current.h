@@ -70,7 +70,7 @@ typedef struct __mavlink_mission_current_t {
  * @param rally_points_id  Id of current on-vehicle rally point plan, or 0 if IDs are not supported or there are no rally points loaded. GCS can use this to track changes to the rally point plan type. The same value is returned on rally point upload (in the MISSION_ACK).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_mission_current_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_mission_current_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint16_t seq, uint16_t total, uint8_t mission_state, uint8_t mission_mode, uint32_t mission_id, uint32_t fence_id, uint32_t rally_points_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -117,7 +117,7 @@ static inline uint16_t mavlink_msg_mission_current_pack(uint8_t system_id, uint8
  * @param rally_points_id  Id of current on-vehicle rally point plan, or 0 if IDs are not supported or there are no rally points loaded. GCS can use this to track changes to the rally point plan type. The same value is returned on rally point upload (in the MISSION_ACK).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_mission_current_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_mission_current_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint16_t seq, uint16_t total, uint8_t mission_state, uint8_t mission_mode, uint32_t mission_id, uint32_t fence_id, uint32_t rally_points_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -148,7 +148,7 @@ static inline uint16_t mavlink_msg_mission_current_pack_status(uint8_t system_id
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MISSION_CURRENT_MIN_LEN, MAVLINK_MSG_ID_MISSION_CURRENT_LEN, MAVLINK_MSG_ID_MISSION_CURRENT_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MISSION_CURRENT_MIN_LEN, MAVLINK_MSG_ID_MISSION_CURRENT_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MISSION_CURRENT_MIN_LEN, MAVLINK_MSG_ID_MISSION_CURRENT_LEN, 0);
 #endif
 }
 
@@ -167,7 +167,7 @@ static inline uint16_t mavlink_msg_mission_current_pack_status(uint8_t system_id
  * @param rally_points_id  Id of current on-vehicle rally point plan, or 0 if IDs are not supported or there are no rally points loaded. GCS can use this to track changes to the rally point plan type. The same value is returned on rally point upload (in the MISSION_ACK).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_mission_current_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_mission_current_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint16_t seq,uint16_t total,uint8_t mission_state,uint8_t mission_mode,uint32_t mission_id,uint32_t fence_id,uint32_t rally_points_id)
 {
@@ -207,7 +207,7 @@ static inline uint16_t mavlink_msg_mission_current_pack_chan(uint8_t system_id, 
  * @param msg The MAVLink message to compress the data into
  * @param mission_current C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mission_current_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_mission_current_t* mission_current)
+static inline uint16_t mavlink_msg_mission_current_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_mission_current_t* mission_current)
 {
     return mavlink_msg_mission_current_pack(system_id, component_id, msg, mission_current->seq, mission_current->total, mission_current->mission_state, mission_current->mission_mode, mission_current->mission_id, mission_current->fence_id, mission_current->rally_points_id);
 }
@@ -221,7 +221,7 @@ static inline uint16_t mavlink_msg_mission_current_encode(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param mission_current C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mission_current_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mission_current_t* mission_current)
+static inline uint16_t mavlink_msg_mission_current_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mission_current_t* mission_current)
 {
     return mavlink_msg_mission_current_pack_chan(system_id, component_id, chan, msg, mission_current->seq, mission_current->total, mission_current->mission_state, mission_current->mission_mode, mission_current->mission_id, mission_current->fence_id, mission_current->rally_points_id);
 }
@@ -235,7 +235,7 @@ static inline uint16_t mavlink_msg_mission_current_encode_chan(uint8_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param mission_current C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mission_current_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_mission_current_t* mission_current)
+static inline uint16_t mavlink_msg_mission_current_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_mission_current_t* mission_current)
 {
     return mavlink_msg_mission_current_pack_status(system_id, component_id, _status, msg,  mission_current->seq, mission_current->total, mission_current->mission_state, mission_current->mission_mode, mission_current->mission_id, mission_current->fence_id, mission_current->rally_points_id);
 }
@@ -427,4 +427,5 @@ static inline void mavlink_msg_mission_current_decode(const mavlink_message_t* m
         memset(mission_current, 0, MAVLINK_MSG_ID_MISSION_CURRENT_LEN);
     memcpy(mission_current, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

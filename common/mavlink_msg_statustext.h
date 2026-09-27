@@ -58,7 +58,7 @@ typedef struct __mavlink_statustext_t {
  * @param chunk_seq  This chunk's sequence number; indexing is from zero.  Any null character in the text field is taken to mean this was the last chunk.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_statustext_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_statustext_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t severity, const char *text, uint16_t id, uint8_t chunk_seq)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -94,7 +94,7 @@ static inline uint16_t mavlink_msg_statustext_pack(uint8_t system_id, uint8_t co
  * @param chunk_seq  This chunk's sequence number; indexing is from zero.  Any null character in the text field is taken to mean this was the last chunk.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_statustext_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_statustext_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t severity, const char *text, uint16_t id, uint8_t chunk_seq)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -117,7 +117,7 @@ static inline uint16_t mavlink_msg_statustext_pack_status(uint8_t system_id, uin
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_STATUSTEXT_MIN_LEN, MAVLINK_MSG_ID_STATUSTEXT_LEN, MAVLINK_MSG_ID_STATUSTEXT_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_STATUSTEXT_MIN_LEN, MAVLINK_MSG_ID_STATUSTEXT_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_STATUSTEXT_MIN_LEN, MAVLINK_MSG_ID_STATUSTEXT_LEN, 0);
 #endif
 }
 
@@ -133,7 +133,7 @@ static inline uint16_t mavlink_msg_statustext_pack_status(uint8_t system_id, uin
  * @param chunk_seq  This chunk's sequence number; indexing is from zero.  Any null character in the text field is taken to mean this was the last chunk.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_statustext_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_statustext_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t severity,const char *text,uint16_t id,uint8_t chunk_seq)
 {
@@ -165,7 +165,7 @@ static inline uint16_t mavlink_msg_statustext_pack_chan(uint8_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param statustext C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_statustext_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_statustext_t* statustext)
+static inline uint16_t mavlink_msg_statustext_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_statustext_t* statustext)
 {
     return mavlink_msg_statustext_pack(system_id, component_id, msg, statustext->severity, statustext->text, statustext->id, statustext->chunk_seq);
 }
@@ -179,7 +179,7 @@ static inline uint16_t mavlink_msg_statustext_encode(uint8_t system_id, uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param statustext C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_statustext_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_statustext_t* statustext)
+static inline uint16_t mavlink_msg_statustext_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_statustext_t* statustext)
 {
     return mavlink_msg_statustext_pack_chan(system_id, component_id, chan, msg, statustext->severity, statustext->text, statustext->id, statustext->chunk_seq);
 }
@@ -193,7 +193,7 @@ static inline uint16_t mavlink_msg_statustext_encode_chan(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param statustext C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_statustext_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_statustext_t* statustext)
+static inline uint16_t mavlink_msg_statustext_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_statustext_t* statustext)
 {
     return mavlink_msg_statustext_pack_status(system_id, component_id, _status, msg,  statustext->severity, statustext->text, statustext->id, statustext->chunk_seq);
 }
@@ -333,4 +333,5 @@ static inline void mavlink_msg_statustext_decode(const mavlink_message_t* msg, m
         memset(statustext, 0, MAVLINK_MSG_ID_STATUSTEXT_LEN);
     memcpy(statustext, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

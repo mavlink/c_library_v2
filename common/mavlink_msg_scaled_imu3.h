@@ -86,7 +86,7 @@ typedef struct __mavlink_scaled_imu3_t {
  * @param temperature [cdegC] Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 (0.01C).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_scaled_imu3_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_scaled_imu3_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint32_t time_boot_ms, int16_t xacc, int16_t yacc, int16_t zacc, int16_t xgyro, int16_t ygyro, int16_t zgyro, int16_t xmag, int16_t ymag, int16_t zmag, int16_t temperature)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -145,7 +145,7 @@ static inline uint16_t mavlink_msg_scaled_imu3_pack(uint8_t system_id, uint8_t c
  * @param temperature [cdegC] Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 (0.01C).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_scaled_imu3_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_scaled_imu3_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint32_t time_boot_ms, int16_t xacc, int16_t yacc, int16_t zacc, int16_t xgyro, int16_t ygyro, int16_t zgyro, int16_t xmag, int16_t ymag, int16_t zmag, int16_t temperature)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -184,7 +184,7 @@ static inline uint16_t mavlink_msg_scaled_imu3_pack_status(uint8_t system_id, ui
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SCALED_IMU3_MIN_LEN, MAVLINK_MSG_ID_SCALED_IMU3_LEN, MAVLINK_MSG_ID_SCALED_IMU3_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SCALED_IMU3_MIN_LEN, MAVLINK_MSG_ID_SCALED_IMU3_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SCALED_IMU3_MIN_LEN, MAVLINK_MSG_ID_SCALED_IMU3_LEN, 0);
 #endif
 }
 
@@ -207,7 +207,7 @@ static inline uint16_t mavlink_msg_scaled_imu3_pack_status(uint8_t system_id, ui
  * @param temperature [cdegC] Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 (0.01C).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_scaled_imu3_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_scaled_imu3_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint32_t time_boot_ms,int16_t xacc,int16_t yacc,int16_t zacc,int16_t xgyro,int16_t ygyro,int16_t zgyro,int16_t xmag,int16_t ymag,int16_t zmag,int16_t temperature)
 {
@@ -255,7 +255,7 @@ static inline uint16_t mavlink_msg_scaled_imu3_pack_chan(uint8_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  * @param scaled_imu3 C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_scaled_imu3_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_scaled_imu3_t* scaled_imu3)
+static inline uint16_t mavlink_msg_scaled_imu3_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_scaled_imu3_t* scaled_imu3)
 {
     return mavlink_msg_scaled_imu3_pack(system_id, component_id, msg, scaled_imu3->time_boot_ms, scaled_imu3->xacc, scaled_imu3->yacc, scaled_imu3->zacc, scaled_imu3->xgyro, scaled_imu3->ygyro, scaled_imu3->zgyro, scaled_imu3->xmag, scaled_imu3->ymag, scaled_imu3->zmag, scaled_imu3->temperature);
 }
@@ -269,7 +269,7 @@ static inline uint16_t mavlink_msg_scaled_imu3_encode(uint8_t system_id, uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param scaled_imu3 C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_scaled_imu3_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_scaled_imu3_t* scaled_imu3)
+static inline uint16_t mavlink_msg_scaled_imu3_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_scaled_imu3_t* scaled_imu3)
 {
     return mavlink_msg_scaled_imu3_pack_chan(system_id, component_id, chan, msg, scaled_imu3->time_boot_ms, scaled_imu3->xacc, scaled_imu3->yacc, scaled_imu3->zacc, scaled_imu3->xgyro, scaled_imu3->ygyro, scaled_imu3->zgyro, scaled_imu3->xmag, scaled_imu3->ymag, scaled_imu3->zmag, scaled_imu3->temperature);
 }
@@ -283,7 +283,7 @@ static inline uint16_t mavlink_msg_scaled_imu3_encode_chan(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param scaled_imu3 C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_scaled_imu3_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_scaled_imu3_t* scaled_imu3)
+static inline uint16_t mavlink_msg_scaled_imu3_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_scaled_imu3_t* scaled_imu3)
 {
     return mavlink_msg_scaled_imu3_pack_status(system_id, component_id, _status, msg,  scaled_imu3->time_boot_ms, scaled_imu3->xacc, scaled_imu3->yacc, scaled_imu3->zacc, scaled_imu3->xgyro, scaled_imu3->ygyro, scaled_imu3->zgyro, scaled_imu3->xmag, scaled_imu3->ymag, scaled_imu3->zmag, scaled_imu3->temperature);
 }
@@ -539,4 +539,5 @@ static inline void mavlink_msg_scaled_imu3_decode(const mavlink_message_t* msg, 
         memset(scaled_imu3, 0, MAVLINK_MSG_ID_SCALED_IMU3_LEN);
     memcpy(scaled_imu3, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

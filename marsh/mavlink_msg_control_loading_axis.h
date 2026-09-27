@@ -63,7 +63,7 @@ typedef struct __mavlink_control_loading_axis_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_control_loading_axis_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_control_loading_axis_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint32_t time_boot_ms, uint8_t axis, float position, float velocity, float force)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -104,7 +104,7 @@ static inline uint16_t mavlink_msg_control_loading_axis_pack(uint8_t system_id, 
  * @param force  Force applied in the pilot in the direction of movement axis (not gripping force), measured at the position of pilot's third finger (ring). Unit N (Newton), currently not part of mavschema.xsd
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_control_loading_axis_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_control_loading_axis_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint32_t time_boot_ms, uint8_t axis, float position, float velocity, float force)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -131,7 +131,7 @@ static inline uint16_t mavlink_msg_control_loading_axis_pack_status(uint8_t syst
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CONTROL_LOADING_AXIS_MIN_LEN, MAVLINK_MSG_ID_CONTROL_LOADING_AXIS_LEN, MAVLINK_MSG_ID_CONTROL_LOADING_AXIS_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CONTROL_LOADING_AXIS_MIN_LEN, MAVLINK_MSG_ID_CONTROL_LOADING_AXIS_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CONTROL_LOADING_AXIS_MIN_LEN, MAVLINK_MSG_ID_CONTROL_LOADING_AXIS_LEN, 0);
 #endif
 }
 
@@ -149,7 +149,7 @@ static inline uint16_t mavlink_msg_control_loading_axis_pack_status(uint8_t syst
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_control_loading_axis_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_control_loading_axis_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint32_t time_boot_ms,uint8_t axis,float position,float velocity,float force)
 {
@@ -186,7 +186,7 @@ static inline uint16_t mavlink_msg_control_loading_axis_pack_chan(uint8_t system
  * @param control_loading_axis C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_control_loading_axis_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_control_loading_axis_t* control_loading_axis)
+static inline uint16_t mavlink_msg_control_loading_axis_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_control_loading_axis_t* control_loading_axis)
 {
     return mavlink_msg_control_loading_axis_pack(system_id, component_id, msg, control_loading_axis->time_boot_ms, control_loading_axis->axis, control_loading_axis->position, control_loading_axis->velocity, control_loading_axis->force);
 }
@@ -201,7 +201,7 @@ static inline uint16_t mavlink_msg_control_loading_axis_encode(uint8_t system_id
  * @param control_loading_axis C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_control_loading_axis_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_control_loading_axis_t* control_loading_axis)
+static inline uint16_t mavlink_msg_control_loading_axis_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_control_loading_axis_t* control_loading_axis)
 {
     return mavlink_msg_control_loading_axis_pack_chan(system_id, component_id, chan, msg, control_loading_axis->time_boot_ms, control_loading_axis->axis, control_loading_axis->position, control_loading_axis->velocity, control_loading_axis->force);
 }
@@ -215,7 +215,7 @@ static inline uint16_t mavlink_msg_control_loading_axis_encode_chan(uint8_t syst
  * @param msg The MAVLink message to compress the data into
  * @param control_loading_axis C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_control_loading_axis_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_control_loading_axis_t* control_loading_axis)
+static inline uint16_t mavlink_msg_control_loading_axis_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_control_loading_axis_t* control_loading_axis)
 {
     return mavlink_msg_control_loading_axis_pack_status(system_id, component_id, _status, msg,  control_loading_axis->time_boot_ms, control_loading_axis->axis, control_loading_axis->position, control_loading_axis->velocity, control_loading_axis->force);
 }
@@ -384,4 +384,5 @@ static inline void mavlink_msg_control_loading_axis_decode(const mavlink_message
         memset(control_loading_axis, 0, MAVLINK_MSG_ID_CONTROL_LOADING_AXIS_LEN);
     memcpy(control_loading_axis, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

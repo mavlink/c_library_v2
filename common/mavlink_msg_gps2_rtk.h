@@ -94,7 +94,7 @@ typedef struct __mavlink_gps2_rtk_t {
  * @param iar_num_hypotheses  Current number of integer ambiguity hypotheses.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_gps2_rtk_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_gps2_rtk_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint32_t time_last_baseline_ms, uint8_t rtk_receiver_id, uint16_t wn, uint32_t tow, uint8_t rtk_health, uint8_t rtk_rate, uint8_t nsats, uint8_t baseline_coords_type, int32_t baseline_a_mm, int32_t baseline_b_mm, int32_t baseline_c_mm, uint32_t accuracy, int32_t iar_num_hypotheses)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -159,7 +159,7 @@ static inline uint16_t mavlink_msg_gps2_rtk_pack(uint8_t system_id, uint8_t comp
  * @param iar_num_hypotheses  Current number of integer ambiguity hypotheses.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_gps2_rtk_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_gps2_rtk_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint32_t time_last_baseline_ms, uint8_t rtk_receiver_id, uint16_t wn, uint32_t tow, uint8_t rtk_health, uint8_t rtk_rate, uint8_t nsats, uint8_t baseline_coords_type, int32_t baseline_a_mm, int32_t baseline_b_mm, int32_t baseline_c_mm, uint32_t accuracy, int32_t iar_num_hypotheses)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -202,7 +202,7 @@ static inline uint16_t mavlink_msg_gps2_rtk_pack_status(uint8_t system_id, uint8
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GPS2_RTK_MIN_LEN, MAVLINK_MSG_ID_GPS2_RTK_LEN, MAVLINK_MSG_ID_GPS2_RTK_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GPS2_RTK_MIN_LEN, MAVLINK_MSG_ID_GPS2_RTK_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GPS2_RTK_MIN_LEN, MAVLINK_MSG_ID_GPS2_RTK_LEN, 0);
 #endif
 }
 
@@ -227,7 +227,7 @@ static inline uint16_t mavlink_msg_gps2_rtk_pack_status(uint8_t system_id, uint8
  * @param iar_num_hypotheses  Current number of integer ambiguity hypotheses.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_gps2_rtk_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_gps2_rtk_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint32_t time_last_baseline_ms,uint8_t rtk_receiver_id,uint16_t wn,uint32_t tow,uint8_t rtk_health,uint8_t rtk_rate,uint8_t nsats,uint8_t baseline_coords_type,int32_t baseline_a_mm,int32_t baseline_b_mm,int32_t baseline_c_mm,uint32_t accuracy,int32_t iar_num_hypotheses)
 {
@@ -279,7 +279,7 @@ static inline uint16_t mavlink_msg_gps2_rtk_pack_chan(uint8_t system_id, uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param gps2_rtk C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gps2_rtk_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_gps2_rtk_t* gps2_rtk)
+static inline uint16_t mavlink_msg_gps2_rtk_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_gps2_rtk_t* gps2_rtk)
 {
     return mavlink_msg_gps2_rtk_pack(system_id, component_id, msg, gps2_rtk->time_last_baseline_ms, gps2_rtk->rtk_receiver_id, gps2_rtk->wn, gps2_rtk->tow, gps2_rtk->rtk_health, gps2_rtk->rtk_rate, gps2_rtk->nsats, gps2_rtk->baseline_coords_type, gps2_rtk->baseline_a_mm, gps2_rtk->baseline_b_mm, gps2_rtk->baseline_c_mm, gps2_rtk->accuracy, gps2_rtk->iar_num_hypotheses);
 }
@@ -293,7 +293,7 @@ static inline uint16_t mavlink_msg_gps2_rtk_encode(uint8_t system_id, uint8_t co
  * @param msg The MAVLink message to compress the data into
  * @param gps2_rtk C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gps2_rtk_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gps2_rtk_t* gps2_rtk)
+static inline uint16_t mavlink_msg_gps2_rtk_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gps2_rtk_t* gps2_rtk)
 {
     return mavlink_msg_gps2_rtk_pack_chan(system_id, component_id, chan, msg, gps2_rtk->time_last_baseline_ms, gps2_rtk->rtk_receiver_id, gps2_rtk->wn, gps2_rtk->tow, gps2_rtk->rtk_health, gps2_rtk->rtk_rate, gps2_rtk->nsats, gps2_rtk->baseline_coords_type, gps2_rtk->baseline_a_mm, gps2_rtk->baseline_b_mm, gps2_rtk->baseline_c_mm, gps2_rtk->accuracy, gps2_rtk->iar_num_hypotheses);
 }
@@ -307,7 +307,7 @@ static inline uint16_t mavlink_msg_gps2_rtk_encode_chan(uint8_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param gps2_rtk C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gps2_rtk_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_gps2_rtk_t* gps2_rtk)
+static inline uint16_t mavlink_msg_gps2_rtk_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_gps2_rtk_t* gps2_rtk)
 {
     return mavlink_msg_gps2_rtk_pack_status(system_id, component_id, _status, msg,  gps2_rtk->time_last_baseline_ms, gps2_rtk->rtk_receiver_id, gps2_rtk->wn, gps2_rtk->tow, gps2_rtk->rtk_health, gps2_rtk->rtk_rate, gps2_rtk->nsats, gps2_rtk->baseline_coords_type, gps2_rtk->baseline_a_mm, gps2_rtk->baseline_b_mm, gps2_rtk->baseline_c_mm, gps2_rtk->accuracy, gps2_rtk->iar_num_hypotheses);
 }
@@ -595,4 +595,5 @@ static inline void mavlink_msg_gps2_rtk_decode(const mavlink_message_t* msg, mav
         memset(gps2_rtk, 0, MAVLINK_MSG_ID_GPS2_RTK_LEN);
     memcpy(gps2_rtk, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

@@ -46,7 +46,7 @@ typedef struct __mavlink_cubepilot_raw_rc_t {
  * @param rc_raw  
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_cubepilot_raw_rc_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_cubepilot_raw_rc_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                const uint8_t *rc_raw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -75,7 +75,7 @@ static inline uint16_t mavlink_msg_cubepilot_raw_rc_pack(uint8_t system_id, uint
  * @param rc_raw  
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_cubepilot_raw_rc_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_cubepilot_raw_rc_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                const uint8_t *rc_raw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -94,7 +94,7 @@ static inline uint16_t mavlink_msg_cubepilot_raw_rc_pack_status(uint8_t system_i
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_MIN_LEN, MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_LEN, MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_MIN_LEN, MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_MIN_LEN, MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_LEN, 0);
 #endif
 }
 
@@ -107,7 +107,7 @@ static inline uint16_t mavlink_msg_cubepilot_raw_rc_pack_status(uint8_t system_i
  * @param rc_raw  
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_cubepilot_raw_rc_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_cubepilot_raw_rc_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    const uint8_t *rc_raw)
 {
@@ -135,7 +135,7 @@ static inline uint16_t mavlink_msg_cubepilot_raw_rc_pack_chan(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param cubepilot_raw_rc C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_cubepilot_raw_rc_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_cubepilot_raw_rc_t* cubepilot_raw_rc)
+static inline uint16_t mavlink_msg_cubepilot_raw_rc_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_cubepilot_raw_rc_t* cubepilot_raw_rc)
 {
     return mavlink_msg_cubepilot_raw_rc_pack(system_id, component_id, msg, cubepilot_raw_rc->rc_raw);
 }
@@ -149,7 +149,7 @@ static inline uint16_t mavlink_msg_cubepilot_raw_rc_encode(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param cubepilot_raw_rc C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_cubepilot_raw_rc_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_cubepilot_raw_rc_t* cubepilot_raw_rc)
+static inline uint16_t mavlink_msg_cubepilot_raw_rc_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_cubepilot_raw_rc_t* cubepilot_raw_rc)
 {
     return mavlink_msg_cubepilot_raw_rc_pack_chan(system_id, component_id, chan, msg, cubepilot_raw_rc->rc_raw);
 }
@@ -163,7 +163,7 @@ static inline uint16_t mavlink_msg_cubepilot_raw_rc_encode_chan(uint8_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param cubepilot_raw_rc C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_cubepilot_raw_rc_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_cubepilot_raw_rc_t* cubepilot_raw_rc)
+static inline uint16_t mavlink_msg_cubepilot_raw_rc_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_cubepilot_raw_rc_t* cubepilot_raw_rc)
 {
     return mavlink_msg_cubepilot_raw_rc_pack_status(system_id, component_id, _status, msg,  cubepilot_raw_rc->rc_raw);
 }
@@ -259,4 +259,5 @@ static inline void mavlink_msg_cubepilot_raw_rc_decode(const mavlink_message_t* 
         memset(cubepilot_raw_rc, 0, MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_LEN);
     memcpy(cubepilot_raw_rc, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

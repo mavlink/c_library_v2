@@ -66,7 +66,7 @@ typedef struct __mavlink_ap_adc_t {
  * @param adc6  ADC output 6.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_ap_adc_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_ap_adc_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint16_t adc1, uint16_t adc2, uint16_t adc3, uint16_t adc4, uint16_t adc5, uint16_t adc6)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -110,7 +110,7 @@ static inline uint16_t mavlink_msg_ap_adc_pack(uint8_t system_id, uint8_t compon
  * @param adc6  ADC output 6.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_ap_adc_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_ap_adc_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint16_t adc1, uint16_t adc2, uint16_t adc3, uint16_t adc4, uint16_t adc5, uint16_t adc6)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -139,7 +139,7 @@ static inline uint16_t mavlink_msg_ap_adc_pack_status(uint8_t system_id, uint8_t
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AP_ADC_MIN_LEN, MAVLINK_MSG_ID_AP_ADC_LEN, MAVLINK_MSG_ID_AP_ADC_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AP_ADC_MIN_LEN, MAVLINK_MSG_ID_AP_ADC_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AP_ADC_MIN_LEN, MAVLINK_MSG_ID_AP_ADC_LEN, 0);
 #endif
 }
 
@@ -157,7 +157,7 @@ static inline uint16_t mavlink_msg_ap_adc_pack_status(uint8_t system_id, uint8_t
  * @param adc6  ADC output 6.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_ap_adc_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_ap_adc_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint16_t adc1,uint16_t adc2,uint16_t adc3,uint16_t adc4,uint16_t adc5,uint16_t adc6)
 {
@@ -195,7 +195,7 @@ static inline uint16_t mavlink_msg_ap_adc_pack_chan(uint8_t system_id, uint8_t c
  * @param msg The MAVLink message to compress the data into
  * @param ap_adc C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_ap_adc_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_ap_adc_t* ap_adc)
+static inline uint16_t mavlink_msg_ap_adc_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_ap_adc_t* ap_adc)
 {
     return mavlink_msg_ap_adc_pack(system_id, component_id, msg, ap_adc->adc1, ap_adc->adc2, ap_adc->adc3, ap_adc->adc4, ap_adc->adc5, ap_adc->adc6);
 }
@@ -209,7 +209,7 @@ static inline uint16_t mavlink_msg_ap_adc_encode(uint8_t system_id, uint8_t comp
  * @param msg The MAVLink message to compress the data into
  * @param ap_adc C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_ap_adc_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_ap_adc_t* ap_adc)
+static inline uint16_t mavlink_msg_ap_adc_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_ap_adc_t* ap_adc)
 {
     return mavlink_msg_ap_adc_pack_chan(system_id, component_id, chan, msg, ap_adc->adc1, ap_adc->adc2, ap_adc->adc3, ap_adc->adc4, ap_adc->adc5, ap_adc->adc6);
 }
@@ -223,7 +223,7 @@ static inline uint16_t mavlink_msg_ap_adc_encode_chan(uint8_t system_id, uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param ap_adc C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_ap_adc_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_ap_adc_t* ap_adc)
+static inline uint16_t mavlink_msg_ap_adc_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_ap_adc_t* ap_adc)
 {
     return mavlink_msg_ap_adc_pack_status(system_id, component_id, _status, msg,  ap_adc->adc1, ap_adc->adc2, ap_adc->adc3, ap_adc->adc4, ap_adc->adc5, ap_adc->adc6);
 }
@@ -399,4 +399,5 @@ static inline void mavlink_msg_ap_adc_decode(const mavlink_message_t* msg, mavli
         memset(ap_adc, 0, MAVLINK_MSG_ID_AP_ADC_LEN);
     memcpy(ap_adc, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

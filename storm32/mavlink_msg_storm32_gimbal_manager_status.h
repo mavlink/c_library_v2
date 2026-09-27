@@ -62,7 +62,7 @@ typedef struct __mavlink_storm32_gimbal_manager_status_t {
  * @param profile  Profile currently applied (0 = default).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_storm32_gimbal_manager_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_storm32_gimbal_manager_status_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t gimbal_id, uint8_t supervisor, uint16_t device_flags, uint16_t manager_flags, uint8_t profile)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -103,7 +103,7 @@ static inline uint16_t mavlink_msg_storm32_gimbal_manager_status_pack(uint8_t sy
  * @param profile  Profile currently applied (0 = default).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_storm32_gimbal_manager_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_storm32_gimbal_manager_status_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t gimbal_id, uint8_t supervisor, uint16_t device_flags, uint16_t manager_flags, uint8_t profile)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -130,7 +130,7 @@ static inline uint16_t mavlink_msg_storm32_gimbal_manager_status_pack_status(uin
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_STATUS_MIN_LEN, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_STATUS_LEN, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_STATUS_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_STATUS_MIN_LEN, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_STATUS_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_STATUS_MIN_LEN, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_STATUS_LEN, 0);
 #endif
 }
 
@@ -147,7 +147,7 @@ static inline uint16_t mavlink_msg_storm32_gimbal_manager_status_pack_status(uin
  * @param profile  Profile currently applied (0 = default).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_storm32_gimbal_manager_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_storm32_gimbal_manager_status_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t gimbal_id,uint8_t supervisor,uint16_t device_flags,uint16_t manager_flags,uint8_t profile)
 {
@@ -183,7 +183,7 @@ static inline uint16_t mavlink_msg_storm32_gimbal_manager_status_pack_chan(uint8
  * @param msg The MAVLink message to compress the data into
  * @param storm32_gimbal_manager_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_storm32_gimbal_manager_status_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_storm32_gimbal_manager_status_t* storm32_gimbal_manager_status)
+static inline uint16_t mavlink_msg_storm32_gimbal_manager_status_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_storm32_gimbal_manager_status_t* storm32_gimbal_manager_status)
 {
     return mavlink_msg_storm32_gimbal_manager_status_pack(system_id, component_id, msg, storm32_gimbal_manager_status->gimbal_id, storm32_gimbal_manager_status->supervisor, storm32_gimbal_manager_status->device_flags, storm32_gimbal_manager_status->manager_flags, storm32_gimbal_manager_status->profile);
 }
@@ -197,7 +197,7 @@ static inline uint16_t mavlink_msg_storm32_gimbal_manager_status_encode(uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param storm32_gimbal_manager_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_storm32_gimbal_manager_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_storm32_gimbal_manager_status_t* storm32_gimbal_manager_status)
+static inline uint16_t mavlink_msg_storm32_gimbal_manager_status_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_storm32_gimbal_manager_status_t* storm32_gimbal_manager_status)
 {
     return mavlink_msg_storm32_gimbal_manager_status_pack_chan(system_id, component_id, chan, msg, storm32_gimbal_manager_status->gimbal_id, storm32_gimbal_manager_status->supervisor, storm32_gimbal_manager_status->device_flags, storm32_gimbal_manager_status->manager_flags, storm32_gimbal_manager_status->profile);
 }
@@ -211,7 +211,7 @@ static inline uint16_t mavlink_msg_storm32_gimbal_manager_status_encode_chan(uin
  * @param msg The MAVLink message to compress the data into
  * @param storm32_gimbal_manager_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_storm32_gimbal_manager_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_storm32_gimbal_manager_status_t* storm32_gimbal_manager_status)
+static inline uint16_t mavlink_msg_storm32_gimbal_manager_status_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_storm32_gimbal_manager_status_t* storm32_gimbal_manager_status)
 {
     return mavlink_msg_storm32_gimbal_manager_status_pack_status(system_id, component_id, _status, msg,  storm32_gimbal_manager_status->gimbal_id, storm32_gimbal_manager_status->supervisor, storm32_gimbal_manager_status->device_flags, storm32_gimbal_manager_status->manager_flags, storm32_gimbal_manager_status->profile);
 }
@@ -371,4 +371,5 @@ static inline void mavlink_msg_storm32_gimbal_manager_status_decode(const mavlin
         memset(storm32_gimbal_manager_status, 0, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_STATUS_LEN);
     memcpy(storm32_gimbal_manager_status, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

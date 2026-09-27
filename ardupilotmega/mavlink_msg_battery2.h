@@ -50,7 +50,7 @@ typedef struct __mavlink_battery2_t {
  * @param current_battery [cA] Battery current, -1: autopilot does not measure the current.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_battery2_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_battery2_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint16_t voltage, int16_t current_battery)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -82,7 +82,7 @@ static inline uint16_t mavlink_msg_battery2_pack(uint8_t system_id, uint8_t comp
  * @param current_battery [cA] Battery current, -1: autopilot does not measure the current.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_battery2_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_battery2_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint16_t voltage, int16_t current_battery)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -103,7 +103,7 @@ static inline uint16_t mavlink_msg_battery2_pack_status(uint8_t system_id, uint8
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_BATTERY2_MIN_LEN, MAVLINK_MSG_ID_BATTERY2_LEN, MAVLINK_MSG_ID_BATTERY2_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_BATTERY2_MIN_LEN, MAVLINK_MSG_ID_BATTERY2_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_BATTERY2_MIN_LEN, MAVLINK_MSG_ID_BATTERY2_LEN, 0);
 #endif
 }
 
@@ -117,7 +117,7 @@ static inline uint16_t mavlink_msg_battery2_pack_status(uint8_t system_id, uint8
  * @param current_battery [cA] Battery current, -1: autopilot does not measure the current.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_battery2_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_battery2_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint16_t voltage,int16_t current_battery)
 {
@@ -147,7 +147,7 @@ static inline uint16_t mavlink_msg_battery2_pack_chan(uint8_t system_id, uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param battery2 C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_battery2_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_battery2_t* battery2)
+static inline uint16_t mavlink_msg_battery2_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_battery2_t* battery2)
 {
     return mavlink_msg_battery2_pack(system_id, component_id, msg, battery2->voltage, battery2->current_battery);
 }
@@ -161,7 +161,7 @@ static inline uint16_t mavlink_msg_battery2_encode(uint8_t system_id, uint8_t co
  * @param msg The MAVLink message to compress the data into
  * @param battery2 C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_battery2_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_battery2_t* battery2)
+static inline uint16_t mavlink_msg_battery2_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_battery2_t* battery2)
 {
     return mavlink_msg_battery2_pack_chan(system_id, component_id, chan, msg, battery2->voltage, battery2->current_battery);
 }
@@ -175,7 +175,7 @@ static inline uint16_t mavlink_msg_battery2_encode_chan(uint8_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param battery2 C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_battery2_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_battery2_t* battery2)
+static inline uint16_t mavlink_msg_battery2_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_battery2_t* battery2)
 {
     return mavlink_msg_battery2_pack_status(system_id, component_id, _status, msg,  battery2->voltage, battery2->current_battery);
 }
@@ -287,4 +287,5 @@ static inline void mavlink_msg_battery2_decode(const mavlink_message_t* msg, mav
         memset(battery2, 0, MAVLINK_MSG_ID_BATTERY2_LEN);
     memcpy(battery2, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

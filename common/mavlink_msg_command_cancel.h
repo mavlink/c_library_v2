@@ -55,27 +55,27 @@ typedef struct __mavlink_command_cancel_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_command_cancel_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint16_t command)
+static inline uint16_t mavlink_msg_command_cancel_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, uint16_t command)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_COMMAND_CANCEL_LEN];
     _mav_put_uint16_t(buf, 0, command);
-    _mav_put_uint8_t(buf, 2, target_system);
+    _mav_put_uint8_t(buf, 2, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 3, target_component);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN);
 #else
     mavlink_command_cancel_t packet;
     packet.command = command;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN);
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_COMMAND_CANCEL;
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_COMMAND_CANCEL_MIN_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_CRC);
+    return mavlink_finalize_message_target(msg, system_id, component_id, MAVLINK_MSG_ID_COMMAND_CANCEL_MIN_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_CRC, target_system);
 }
 
 /**
@@ -90,20 +90,20 @@ static inline uint16_t mavlink_msg_command_cancel_pack(uint8_t system_id, uint8_
  * @param command  Command ID (of command to cancel).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_command_cancel_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint16_t command)
+static inline uint16_t mavlink_msg_command_cancel_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, uint16_t command)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_COMMAND_CANCEL_LEN];
     _mav_put_uint16_t(buf, 0, command);
-    _mav_put_uint8_t(buf, 2, target_system);
+    _mav_put_uint8_t(buf, 2, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 3, target_component);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN);
 #else
     mavlink_command_cancel_t packet;
     packet.command = command;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN);
@@ -111,9 +111,9 @@ static inline uint16_t mavlink_msg_command_cancel_pack_status(uint8_t system_id,
 
     msg->msgid = MAVLINK_MSG_ID_COMMAND_CANCEL;
 #if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_COMMAND_CANCEL_MIN_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_CRC);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_COMMAND_CANCEL_MIN_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_CRC, target_system);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_COMMAND_CANCEL_MIN_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_COMMAND_CANCEL_MIN_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN, 0, target_system);
 #endif
 }
 
@@ -129,28 +129,28 @@ static inline uint16_t mavlink_msg_command_cancel_pack_status(uint8_t system_id,
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_command_cancel_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_command_cancel_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t target_system,uint8_t target_component,uint16_t command)
+                                   uint32_t target_system,uint8_t target_component,uint16_t command)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_COMMAND_CANCEL_LEN];
     _mav_put_uint16_t(buf, 0, command);
-    _mav_put_uint8_t(buf, 2, target_system);
+    _mav_put_uint8_t(buf, 2, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 3, target_component);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN);
 #else
     mavlink_command_cancel_t packet;
     packet.command = command;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN);
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_COMMAND_CANCEL;
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_COMMAND_CANCEL_MIN_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_CRC);
+    return mavlink_finalize_message_chan_target(msg, system_id, component_id, chan, MAVLINK_MSG_ID_COMMAND_CANCEL_MIN_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_CRC, target_system);
 }
 
 /**
@@ -162,7 +162,7 @@ static inline uint16_t mavlink_msg_command_cancel_pack_chan(uint8_t system_id, u
  * @param command_cancel C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_command_cancel_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_command_cancel_t* command_cancel)
+static inline uint16_t mavlink_msg_command_cancel_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_command_cancel_t* command_cancel)
 {
     return mavlink_msg_command_cancel_pack(system_id, component_id, msg, command_cancel->target_system, command_cancel->target_component, command_cancel->command);
 }
@@ -177,7 +177,7 @@ static inline uint16_t mavlink_msg_command_cancel_encode(uint8_t system_id, uint
  * @param command_cancel C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_command_cancel_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_command_cancel_t* command_cancel)
+static inline uint16_t mavlink_msg_command_cancel_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_command_cancel_t* command_cancel)
 {
     return mavlink_msg_command_cancel_pack_chan(system_id, component_id, chan, msg, command_cancel->target_system, command_cancel->target_component, command_cancel->command);
 }
@@ -191,7 +191,7 @@ static inline uint16_t mavlink_msg_command_cancel_encode_chan(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param command_cancel C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_command_cancel_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_command_cancel_t* command_cancel)
+static inline uint16_t mavlink_msg_command_cancel_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_command_cancel_t* command_cancel)
 {
     return mavlink_msg_command_cancel_pack_status(system_id, component_id, _status, msg,  command_cancel->target_system, command_cancel->target_component, command_cancel->command);
 }
@@ -207,22 +207,22 @@ static inline uint16_t mavlink_msg_command_cancel_encode_status(uint8_t system_i
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
 MAVLINK_WIP
-static inline void mavlink_msg_command_cancel_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint16_t command)
+static inline void mavlink_msg_command_cancel_send(mavlink_channel_t chan, uint32_t target_system, uint8_t target_component, uint16_t command)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_COMMAND_CANCEL_LEN];
     _mav_put_uint16_t(buf, 0, command);
-    _mav_put_uint8_t(buf, 2, target_system);
+    _mav_put_uint8_t(buf, 2, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 3, target_component);
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_COMMAND_CANCEL, buf, MAVLINK_MSG_ID_COMMAND_CANCEL_MIN_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_COMMAND_CANCEL, buf, MAVLINK_MSG_ID_COMMAND_CANCEL_MIN_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_CRC, target_system);
 #else
     mavlink_command_cancel_t packet;
     packet.command = command;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_COMMAND_CANCEL, (const char *)&packet, MAVLINK_MSG_ID_COMMAND_CANCEL_MIN_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_COMMAND_CANCEL, (const char *)&packet, MAVLINK_MSG_ID_COMMAND_CANCEL_MIN_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_CRC, target_system);
 #endif
 }
 
@@ -250,22 +250,22 @@ static inline void mavlink_msg_command_cancel_send_struct(mavlink_channel_t chan
   incoming message with minimum stack space usage.
  */
 MAVLINK_WIP
-static inline void mavlink_msg_command_cancel_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, uint16_t command)
+static inline void mavlink_msg_command_cancel_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t target_system, uint8_t target_component, uint16_t command)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_uint16_t(buf, 0, command);
-    _mav_put_uint8_t(buf, 2, target_system);
+    _mav_put_uint8_t(buf, 2, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 3, target_component);
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_COMMAND_CANCEL, buf, MAVLINK_MSG_ID_COMMAND_CANCEL_MIN_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_COMMAND_CANCEL, buf, MAVLINK_MSG_ID_COMMAND_CANCEL_MIN_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_CRC, target_system);
 #else
     mavlink_command_cancel_t *packet = (mavlink_command_cancel_t *)msgbuf;
     packet->command = command;
-    packet->target_system = target_system;
+    packet->target_system = mavlink_msg_target_field(target_system);
     packet->target_component = target_component;
 
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_COMMAND_CANCEL, (const char *)packet, MAVLINK_MSG_ID_COMMAND_CANCEL_MIN_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_COMMAND_CANCEL, (const char *)packet, MAVLINK_MSG_ID_COMMAND_CANCEL_MIN_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN, MAVLINK_MSG_ID_COMMAND_CANCEL_CRC, target_system);
 #endif
 }
 #endif
@@ -274,17 +274,6 @@ static inline void mavlink_msg_command_cancel_send_buf(mavlink_message_t *msgbuf
 
 // MESSAGE COMMAND_CANCEL UNPACKING
 
-
-/**
- * @brief Get field target_system from command_cancel message
- *
- * @return  System executing long running command. Should not be broadcast (0).
- */
-MAVLINK_WIP
-static inline uint8_t mavlink_msg_command_cancel_get_target_system(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint8_t(msg,  2);
-}
 
 /**
  * @brief Get field target_component from command_cancel message
@@ -319,11 +308,18 @@ static inline void mavlink_msg_command_cancel_decode(const mavlink_message_t* ms
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     command_cancel->command = mavlink_msg_command_cancel_get_command(msg);
-    command_cancel->target_system = mavlink_msg_command_cancel_get_target_system(msg);
+    command_cancel->target_system = _MAV_RETURN_uint8_t(msg, 2);
     command_cancel->target_component = mavlink_msg_command_cancel_get_target_component(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_COMMAND_CANCEL_LEN? msg->len : MAVLINK_MSG_ID_COMMAND_CANCEL_LEN;
         memset(command_cancel, 0, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN);
     memcpy(command_cancel, _MAV_PAYLOAD(msg), len);
 #endif
+    if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
+        // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
+        // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
+        // To relay after edits, pass that full target to _pack*(); _encode*() loses it.
+        command_cancel->target_system = mavlink_msg_target_field(msg->target_sysid);
+    }
+
 }

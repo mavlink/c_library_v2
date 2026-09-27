@@ -51,7 +51,7 @@ typedef struct __mavlink_qshot_status_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_qshot_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_qshot_status_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint16_t mode, uint16_t shot_state)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -83,7 +83,7 @@ static inline uint16_t mavlink_msg_qshot_status_pack(uint8_t system_id, uint8_t 
  * @param shot_state  Current state in the shot. States are specific to the selected shot mode.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_qshot_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_qshot_status_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint16_t mode, uint16_t shot_state)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -104,7 +104,7 @@ static inline uint16_t mavlink_msg_qshot_status_pack_status(uint8_t system_id, u
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_QSHOT_STATUS_MIN_LEN, MAVLINK_MSG_ID_QSHOT_STATUS_LEN, MAVLINK_MSG_ID_QSHOT_STATUS_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_QSHOT_STATUS_MIN_LEN, MAVLINK_MSG_ID_QSHOT_STATUS_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_QSHOT_STATUS_MIN_LEN, MAVLINK_MSG_ID_QSHOT_STATUS_LEN, 0);
 #endif
 }
 
@@ -119,7 +119,7 @@ static inline uint16_t mavlink_msg_qshot_status_pack_status(uint8_t system_id, u
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_qshot_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_qshot_status_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint16_t mode,uint16_t shot_state)
 {
@@ -150,7 +150,7 @@ static inline uint16_t mavlink_msg_qshot_status_pack_chan(uint8_t system_id, uin
  * @param qshot_status C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_qshot_status_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_qshot_status_t* qshot_status)
+static inline uint16_t mavlink_msg_qshot_status_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_qshot_status_t* qshot_status)
 {
     return mavlink_msg_qshot_status_pack(system_id, component_id, msg, qshot_status->mode, qshot_status->shot_state);
 }
@@ -165,7 +165,7 @@ static inline uint16_t mavlink_msg_qshot_status_encode(uint8_t system_id, uint8_
  * @param qshot_status C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_qshot_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_qshot_status_t* qshot_status)
+static inline uint16_t mavlink_msg_qshot_status_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_qshot_status_t* qshot_status)
 {
     return mavlink_msg_qshot_status_pack_chan(system_id, component_id, chan, msg, qshot_status->mode, qshot_status->shot_state);
 }
@@ -179,7 +179,7 @@ static inline uint16_t mavlink_msg_qshot_status_encode_chan(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param qshot_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_qshot_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_qshot_status_t* qshot_status)
+static inline uint16_t mavlink_msg_qshot_status_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_qshot_status_t* qshot_status)
 {
     return mavlink_msg_qshot_status_pack_status(system_id, component_id, _status, msg,  qshot_status->mode, qshot_status->shot_state);
 }
@@ -297,4 +297,5 @@ static inline void mavlink_msg_qshot_status_decode(const mavlink_message_t* msg,
         memset(qshot_status, 0, MAVLINK_MSG_ID_QSHOT_STATUS_LEN);
     memcpy(qshot_status, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

@@ -55,7 +55,7 @@ typedef struct __mavlink_manual_input_status_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_manual_input_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_manual_input_status_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t source, uint8_t sender_system_id, uint8_t sender_component_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -90,7 +90,7 @@ static inline uint16_t mavlink_msg_manual_input_status_pack(uint8_t system_id, u
  * @param sender_component_id  Component ID of the MAVLink enabled input device currently providing manual control. Set whenever a MAVLink enabled input device is contributing, i.e. for both MAV_MANUAL_INPUT_SOURCE_MAVLINK and MAV_MANUAL_INPUT_SOURCE_MIXED. 0 otherwise.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_manual_input_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_manual_input_status_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t source, uint8_t sender_system_id, uint8_t sender_component_id)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -113,7 +113,7 @@ static inline uint16_t mavlink_msg_manual_input_status_pack_status(uint8_t syste
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MANUAL_INPUT_STATUS_MIN_LEN, MAVLINK_MSG_ID_MANUAL_INPUT_STATUS_LEN, MAVLINK_MSG_ID_MANUAL_INPUT_STATUS_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MANUAL_INPUT_STATUS_MIN_LEN, MAVLINK_MSG_ID_MANUAL_INPUT_STATUS_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MANUAL_INPUT_STATUS_MIN_LEN, MAVLINK_MSG_ID_MANUAL_INPUT_STATUS_LEN, 0);
 #endif
 }
 
@@ -129,7 +129,7 @@ static inline uint16_t mavlink_msg_manual_input_status_pack_status(uint8_t syste
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_manual_input_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_manual_input_status_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t source,uint8_t sender_system_id,uint8_t sender_component_id)
 {
@@ -162,7 +162,7 @@ static inline uint16_t mavlink_msg_manual_input_status_pack_chan(uint8_t system_
  * @param manual_input_status C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_manual_input_status_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_manual_input_status_t* manual_input_status)
+static inline uint16_t mavlink_msg_manual_input_status_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_manual_input_status_t* manual_input_status)
 {
     return mavlink_msg_manual_input_status_pack(system_id, component_id, msg, manual_input_status->source, manual_input_status->sender_system_id, manual_input_status->sender_component_id);
 }
@@ -177,7 +177,7 @@ static inline uint16_t mavlink_msg_manual_input_status_encode(uint8_t system_id,
  * @param manual_input_status C-struct to read the message contents from
  */
 MAVLINK_WIP
-static inline uint16_t mavlink_msg_manual_input_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_manual_input_status_t* manual_input_status)
+static inline uint16_t mavlink_msg_manual_input_status_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_manual_input_status_t* manual_input_status)
 {
     return mavlink_msg_manual_input_status_pack_chan(system_id, component_id, chan, msg, manual_input_status->source, manual_input_status->sender_system_id, manual_input_status->sender_component_id);
 }
@@ -191,7 +191,7 @@ static inline uint16_t mavlink_msg_manual_input_status_encode_chan(uint8_t syste
  * @param msg The MAVLink message to compress the data into
  * @param manual_input_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_manual_input_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_manual_input_status_t* manual_input_status)
+static inline uint16_t mavlink_msg_manual_input_status_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_manual_input_status_t* manual_input_status)
 {
     return mavlink_msg_manual_input_status_pack_status(system_id, component_id, _status, msg,  manual_input_status->source, manual_input_status->sender_system_id, manual_input_status->sender_component_id);
 }
@@ -326,4 +326,5 @@ static inline void mavlink_msg_manual_input_status_decode(const mavlink_message_
         memset(manual_input_status, 0, MAVLINK_MSG_ID_MANUAL_INPUT_STATUS_LEN);
     memcpy(manual_input_status, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

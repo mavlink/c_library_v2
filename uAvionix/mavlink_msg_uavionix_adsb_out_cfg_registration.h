@@ -46,7 +46,7 @@ typedef struct __mavlink_uavionix_adsb_out_cfg_registration_t {
  * @param registration  Aircraft Registration (ASCII string A-Z, 0-9 only), e.g. "N8644B ". Trailing spaces (0x20) only. This is null-terminated.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_registration_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_registration_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                const char *registration)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -75,7 +75,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_registration_pack(uint8
  * @param registration  Aircraft Registration (ASCII string A-Z, 0-9 only), e.g. "N8644B ". Trailing spaces (0x20) only. This is null-terminated.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_registration_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_registration_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                const char *registration)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -94,7 +94,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_registration_pack_statu
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_REGISTRATION_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_REGISTRATION_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_REGISTRATION_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_REGISTRATION_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_REGISTRATION_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_REGISTRATION_MIN_LEN, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_REGISTRATION_LEN, 0);
 #endif
 }
 
@@ -107,7 +107,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_registration_pack_statu
  * @param registration  Aircraft Registration (ASCII string A-Z, 0-9 only), e.g. "N8644B ". Trailing spaces (0x20) only. This is null-terminated.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_registration_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_registration_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    const char *registration)
 {
@@ -135,7 +135,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_registration_pack_chan(
  * @param msg The MAVLink message to compress the data into
  * @param uavionix_adsb_out_cfg_registration C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_registration_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_uavionix_adsb_out_cfg_registration_t* uavionix_adsb_out_cfg_registration)
+static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_registration_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_uavionix_adsb_out_cfg_registration_t* uavionix_adsb_out_cfg_registration)
 {
     return mavlink_msg_uavionix_adsb_out_cfg_registration_pack(system_id, component_id, msg, uavionix_adsb_out_cfg_registration->registration);
 }
@@ -149,7 +149,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_registration_encode(uin
  * @param msg The MAVLink message to compress the data into
  * @param uavionix_adsb_out_cfg_registration C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_registration_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_uavionix_adsb_out_cfg_registration_t* uavionix_adsb_out_cfg_registration)
+static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_registration_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_uavionix_adsb_out_cfg_registration_t* uavionix_adsb_out_cfg_registration)
 {
     return mavlink_msg_uavionix_adsb_out_cfg_registration_pack_chan(system_id, component_id, chan, msg, uavionix_adsb_out_cfg_registration->registration);
 }
@@ -163,7 +163,7 @@ static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_registration_encode_cha
  * @param msg The MAVLink message to compress the data into
  * @param uavionix_adsb_out_cfg_registration C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_registration_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_uavionix_adsb_out_cfg_registration_t* uavionix_adsb_out_cfg_registration)
+static inline uint16_t mavlink_msg_uavionix_adsb_out_cfg_registration_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_uavionix_adsb_out_cfg_registration_t* uavionix_adsb_out_cfg_registration)
 {
     return mavlink_msg_uavionix_adsb_out_cfg_registration_pack_status(system_id, component_id, _status, msg,  uavionix_adsb_out_cfg_registration->registration);
 }
@@ -259,4 +259,5 @@ static inline void mavlink_msg_uavionix_adsb_out_cfg_registration_decode(const m
         memset(uavionix_adsb_out_cfg_registration, 0, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_REGISTRATION_LEN);
     memcpy(uavionix_adsb_out_cfg_registration, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

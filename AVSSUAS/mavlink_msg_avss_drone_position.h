@@ -66,7 +66,7 @@ typedef struct __mavlink_avss_drone_position_t {
  * @param barometer_alt [m] This altitude is measured by a barometer
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_avss_drone_position_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_avss_drone_position_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint32_t time_boot_ms, int32_t lat, int32_t lon, int32_t alt, float ground_alt, float barometer_alt)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -110,7 +110,7 @@ static inline uint16_t mavlink_msg_avss_drone_position_pack(uint8_t system_id, u
  * @param barometer_alt [m] This altitude is measured by a barometer
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_avss_drone_position_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_avss_drone_position_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint32_t time_boot_ms, int32_t lat, int32_t lon, int32_t alt, float ground_alt, float barometer_alt)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -139,7 +139,7 @@ static inline uint16_t mavlink_msg_avss_drone_position_pack_status(uint8_t syste
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AVSS_DRONE_POSITION_MIN_LEN, MAVLINK_MSG_ID_AVSS_DRONE_POSITION_LEN, MAVLINK_MSG_ID_AVSS_DRONE_POSITION_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AVSS_DRONE_POSITION_MIN_LEN, MAVLINK_MSG_ID_AVSS_DRONE_POSITION_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AVSS_DRONE_POSITION_MIN_LEN, MAVLINK_MSG_ID_AVSS_DRONE_POSITION_LEN, 0);
 #endif
 }
 
@@ -157,7 +157,7 @@ static inline uint16_t mavlink_msg_avss_drone_position_pack_status(uint8_t syste
  * @param barometer_alt [m] This altitude is measured by a barometer
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_avss_drone_position_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_avss_drone_position_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint32_t time_boot_ms,int32_t lat,int32_t lon,int32_t alt,float ground_alt,float barometer_alt)
 {
@@ -195,7 +195,7 @@ static inline uint16_t mavlink_msg_avss_drone_position_pack_chan(uint8_t system_
  * @param msg The MAVLink message to compress the data into
  * @param avss_drone_position C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_avss_drone_position_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_avss_drone_position_t* avss_drone_position)
+static inline uint16_t mavlink_msg_avss_drone_position_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_avss_drone_position_t* avss_drone_position)
 {
     return mavlink_msg_avss_drone_position_pack(system_id, component_id, msg, avss_drone_position->time_boot_ms, avss_drone_position->lat, avss_drone_position->lon, avss_drone_position->alt, avss_drone_position->ground_alt, avss_drone_position->barometer_alt);
 }
@@ -209,7 +209,7 @@ static inline uint16_t mavlink_msg_avss_drone_position_encode(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param avss_drone_position C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_avss_drone_position_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_avss_drone_position_t* avss_drone_position)
+static inline uint16_t mavlink_msg_avss_drone_position_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_avss_drone_position_t* avss_drone_position)
 {
     return mavlink_msg_avss_drone_position_pack_chan(system_id, component_id, chan, msg, avss_drone_position->time_boot_ms, avss_drone_position->lat, avss_drone_position->lon, avss_drone_position->alt, avss_drone_position->ground_alt, avss_drone_position->barometer_alt);
 }
@@ -223,7 +223,7 @@ static inline uint16_t mavlink_msg_avss_drone_position_encode_chan(uint8_t syste
  * @param msg The MAVLink message to compress the data into
  * @param avss_drone_position C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_avss_drone_position_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_avss_drone_position_t* avss_drone_position)
+static inline uint16_t mavlink_msg_avss_drone_position_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_avss_drone_position_t* avss_drone_position)
 {
     return mavlink_msg_avss_drone_position_pack_status(system_id, component_id, _status, msg,  avss_drone_position->time_boot_ms, avss_drone_position->lat, avss_drone_position->lon, avss_drone_position->alt, avss_drone_position->ground_alt, avss_drone_position->barometer_alt);
 }
@@ -399,4 +399,5 @@ static inline void mavlink_msg_avss_drone_position_decode(const mavlink_message_
         memset(avss_drone_position, 0, MAVLINK_MSG_ID_AVSS_DRONE_POSITION_LEN);
     memcpy(avss_drone_position, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

@@ -94,7 +94,7 @@ typedef struct __mavlink_sens_mppt_t {
  * @param mppt3_status   MPPT3 status 
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_sens_mppt_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_sens_mppt_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint64_t mppt_timestamp, float mppt1_volt, float mppt1_amp, uint16_t mppt1_pwm, uint8_t mppt1_status, float mppt2_volt, float mppt2_amp, uint16_t mppt2_pwm, uint8_t mppt2_status, float mppt3_volt, float mppt3_amp, uint16_t mppt3_pwm, uint8_t mppt3_status)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -159,7 +159,7 @@ static inline uint16_t mavlink_msg_sens_mppt_pack(uint8_t system_id, uint8_t com
  * @param mppt3_status   MPPT3 status 
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_sens_mppt_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_sens_mppt_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint64_t mppt_timestamp, float mppt1_volt, float mppt1_amp, uint16_t mppt1_pwm, uint8_t mppt1_status, float mppt2_volt, float mppt2_amp, uint16_t mppt2_pwm, uint8_t mppt2_status, float mppt3_volt, float mppt3_amp, uint16_t mppt3_pwm, uint8_t mppt3_status)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -202,7 +202,7 @@ static inline uint16_t mavlink_msg_sens_mppt_pack_status(uint8_t system_id, uint
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SENS_MPPT_MIN_LEN, MAVLINK_MSG_ID_SENS_MPPT_LEN, MAVLINK_MSG_ID_SENS_MPPT_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SENS_MPPT_MIN_LEN, MAVLINK_MSG_ID_SENS_MPPT_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SENS_MPPT_MIN_LEN, MAVLINK_MSG_ID_SENS_MPPT_LEN, 0);
 #endif
 }
 
@@ -227,7 +227,7 @@ static inline uint16_t mavlink_msg_sens_mppt_pack_status(uint8_t system_id, uint
  * @param mppt3_status   MPPT3 status 
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_sens_mppt_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_sens_mppt_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint64_t mppt_timestamp,float mppt1_volt,float mppt1_amp,uint16_t mppt1_pwm,uint8_t mppt1_status,float mppt2_volt,float mppt2_amp,uint16_t mppt2_pwm,uint8_t mppt2_status,float mppt3_volt,float mppt3_amp,uint16_t mppt3_pwm,uint8_t mppt3_status)
 {
@@ -279,7 +279,7 @@ static inline uint16_t mavlink_msg_sens_mppt_pack_chan(uint8_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param sens_mppt C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_sens_mppt_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_sens_mppt_t* sens_mppt)
+static inline uint16_t mavlink_msg_sens_mppt_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_sens_mppt_t* sens_mppt)
 {
     return mavlink_msg_sens_mppt_pack(system_id, component_id, msg, sens_mppt->mppt_timestamp, sens_mppt->mppt1_volt, sens_mppt->mppt1_amp, sens_mppt->mppt1_pwm, sens_mppt->mppt1_status, sens_mppt->mppt2_volt, sens_mppt->mppt2_amp, sens_mppt->mppt2_pwm, sens_mppt->mppt2_status, sens_mppt->mppt3_volt, sens_mppt->mppt3_amp, sens_mppt->mppt3_pwm, sens_mppt->mppt3_status);
 }
@@ -293,7 +293,7 @@ static inline uint16_t mavlink_msg_sens_mppt_encode(uint8_t system_id, uint8_t c
  * @param msg The MAVLink message to compress the data into
  * @param sens_mppt C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_sens_mppt_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_sens_mppt_t* sens_mppt)
+static inline uint16_t mavlink_msg_sens_mppt_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_sens_mppt_t* sens_mppt)
 {
     return mavlink_msg_sens_mppt_pack_chan(system_id, component_id, chan, msg, sens_mppt->mppt_timestamp, sens_mppt->mppt1_volt, sens_mppt->mppt1_amp, sens_mppt->mppt1_pwm, sens_mppt->mppt1_status, sens_mppt->mppt2_volt, sens_mppt->mppt2_amp, sens_mppt->mppt2_pwm, sens_mppt->mppt2_status, sens_mppt->mppt3_volt, sens_mppt->mppt3_amp, sens_mppt->mppt3_pwm, sens_mppt->mppt3_status);
 }
@@ -307,7 +307,7 @@ static inline uint16_t mavlink_msg_sens_mppt_encode_chan(uint8_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  * @param sens_mppt C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_sens_mppt_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_sens_mppt_t* sens_mppt)
+static inline uint16_t mavlink_msg_sens_mppt_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_sens_mppt_t* sens_mppt)
 {
     return mavlink_msg_sens_mppt_pack_status(system_id, component_id, _status, msg,  sens_mppt->mppt_timestamp, sens_mppt->mppt1_volt, sens_mppt->mppt1_amp, sens_mppt->mppt1_pwm, sens_mppt->mppt1_status, sens_mppt->mppt2_volt, sens_mppt->mppt2_amp, sens_mppt->mppt2_pwm, sens_mppt->mppt2_status, sens_mppt->mppt3_volt, sens_mppt->mppt3_amp, sens_mppt->mppt3_pwm, sens_mppt->mppt3_status);
 }
@@ -595,4 +595,5 @@ static inline void mavlink_msg_sens_mppt_decode(const mavlink_message_t* msg, ma
         memset(sens_mppt, 0, MAVLINK_MSG_ID_SENS_MPPT_LEN);
     memcpy(sens_mppt, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

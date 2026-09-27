@@ -112,7 +112,7 @@ typedef struct __mavlink_gimbal_device_information_t {
  * @param cap_flags2  Extended bitmap of gimbal capability flags (32 bit). For backwards compatibility, the lower 16 bits should also be set in cap_flags. Ground stations should prefer this field if non-zero.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_gimbal_device_information_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_gimbal_device_information_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint32_t time_boot_ms, const char *vendor_name, const char *model_name, const char *custom_name, uint32_t firmware_version, uint32_t hardware_version, uint64_t uid, uint16_t cap_flags, uint16_t custom_cap_flags, float roll_min, float roll_max, float pitch_min, float pitch_max, float yaw_min, float yaw_max, uint8_t gimbal_device_id, uint32_t cap_flags2)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -187,7 +187,7 @@ static inline uint16_t mavlink_msg_gimbal_device_information_pack(uint8_t system
  * @param cap_flags2  Extended bitmap of gimbal capability flags (32 bit). For backwards compatibility, the lower 16 bits should also be set in cap_flags. Ground stations should prefer this field if non-zero.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_gimbal_device_information_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_gimbal_device_information_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint32_t time_boot_ms, const char *vendor_name, const char *model_name, const char *custom_name, uint32_t firmware_version, uint32_t hardware_version, uint64_t uid, uint16_t cap_flags, uint16_t custom_cap_flags, float roll_min, float roll_max, float pitch_min, float pitch_max, float yaw_min, float yaw_max, uint8_t gimbal_device_id, uint32_t cap_flags2)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -236,7 +236,7 @@ static inline uint16_t mavlink_msg_gimbal_device_information_pack_status(uint8_t
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN, 0);
 #endif
 }
 
@@ -265,7 +265,7 @@ static inline uint16_t mavlink_msg_gimbal_device_information_pack_status(uint8_t
  * @param cap_flags2  Extended bitmap of gimbal capability flags (32 bit). For backwards compatibility, the lower 16 bits should also be set in cap_flags. Ground stations should prefer this field if non-zero.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_gimbal_device_information_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_gimbal_device_information_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint32_t time_boot_ms,const char *vendor_name,const char *model_name,const char *custom_name,uint32_t firmware_version,uint32_t hardware_version,uint64_t uid,uint16_t cap_flags,uint16_t custom_cap_flags,float roll_min,float roll_max,float pitch_min,float pitch_max,float yaw_min,float yaw_max,uint8_t gimbal_device_id,uint32_t cap_flags2)
 {
@@ -323,7 +323,7 @@ static inline uint16_t mavlink_msg_gimbal_device_information_pack_chan(uint8_t s
  * @param msg The MAVLink message to compress the data into
  * @param gimbal_device_information C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gimbal_device_information_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_gimbal_device_information_t* gimbal_device_information)
+static inline uint16_t mavlink_msg_gimbal_device_information_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_gimbal_device_information_t* gimbal_device_information)
 {
     return mavlink_msg_gimbal_device_information_pack(system_id, component_id, msg, gimbal_device_information->time_boot_ms, gimbal_device_information->vendor_name, gimbal_device_information->model_name, gimbal_device_information->custom_name, gimbal_device_information->firmware_version, gimbal_device_information->hardware_version, gimbal_device_information->uid, gimbal_device_information->cap_flags, gimbal_device_information->custom_cap_flags, gimbal_device_information->roll_min, gimbal_device_information->roll_max, gimbal_device_information->pitch_min, gimbal_device_information->pitch_max, gimbal_device_information->yaw_min, gimbal_device_information->yaw_max, gimbal_device_information->gimbal_device_id, gimbal_device_information->cap_flags2);
 }
@@ -337,7 +337,7 @@ static inline uint16_t mavlink_msg_gimbal_device_information_encode(uint8_t syst
  * @param msg The MAVLink message to compress the data into
  * @param gimbal_device_information C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gimbal_device_information_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gimbal_device_information_t* gimbal_device_information)
+static inline uint16_t mavlink_msg_gimbal_device_information_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gimbal_device_information_t* gimbal_device_information)
 {
     return mavlink_msg_gimbal_device_information_pack_chan(system_id, component_id, chan, msg, gimbal_device_information->time_boot_ms, gimbal_device_information->vendor_name, gimbal_device_information->model_name, gimbal_device_information->custom_name, gimbal_device_information->firmware_version, gimbal_device_information->hardware_version, gimbal_device_information->uid, gimbal_device_information->cap_flags, gimbal_device_information->custom_cap_flags, gimbal_device_information->roll_min, gimbal_device_information->roll_max, gimbal_device_information->pitch_min, gimbal_device_information->pitch_max, gimbal_device_information->yaw_min, gimbal_device_information->yaw_max, gimbal_device_information->gimbal_device_id, gimbal_device_information->cap_flags2);
 }
@@ -351,7 +351,7 @@ static inline uint16_t mavlink_msg_gimbal_device_information_encode_chan(uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param gimbal_device_information C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gimbal_device_information_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_gimbal_device_information_t* gimbal_device_information)
+static inline uint16_t mavlink_msg_gimbal_device_information_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_gimbal_device_information_t* gimbal_device_information)
 {
     return mavlink_msg_gimbal_device_information_pack_status(system_id, component_id, _status, msg,  gimbal_device_information->time_boot_ms, gimbal_device_information->vendor_name, gimbal_device_information->model_name, gimbal_device_information->custom_name, gimbal_device_information->firmware_version, gimbal_device_information->hardware_version, gimbal_device_information->uid, gimbal_device_information->cap_flags, gimbal_device_information->custom_cap_flags, gimbal_device_information->roll_min, gimbal_device_information->roll_max, gimbal_device_information->pitch_min, gimbal_device_information->pitch_max, gimbal_device_information->yaw_min, gimbal_device_information->yaw_max, gimbal_device_information->gimbal_device_id, gimbal_device_information->cap_flags2);
 }
@@ -699,4 +699,5 @@ static inline void mavlink_msg_gimbal_device_information_decode(const mavlink_me
         memset(gimbal_device_information, 0, MAVLINK_MSG_ID_GIMBAL_DEVICE_INFORMATION_LEN);
     memcpy(gimbal_device_information, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

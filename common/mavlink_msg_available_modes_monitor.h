@@ -46,7 +46,7 @@ typedef struct __mavlink_available_modes_monitor_t {
  * @param seq  Sequence number. Iterates sequentially whenever AVAILABLE_MODES changes (e.g. support for a new mode is added/removed dynamically). 0 initially. 1 on first change of mode set.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_available_modes_monitor_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_available_modes_monitor_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t seq)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -75,7 +75,7 @@ static inline uint16_t mavlink_msg_available_modes_monitor_pack(uint8_t system_i
  * @param seq  Sequence number. Iterates sequentially whenever AVAILABLE_MODES changes (e.g. support for a new mode is added/removed dynamically). 0 initially. 1 on first change of mode set.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_available_modes_monitor_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_available_modes_monitor_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t seq)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -94,7 +94,7 @@ static inline uint16_t mavlink_msg_available_modes_monitor_pack_status(uint8_t s
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_MIN_LEN, MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_LEN, MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_MIN_LEN, MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_MIN_LEN, MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_LEN, 0);
 #endif
 }
 
@@ -107,7 +107,7 @@ static inline uint16_t mavlink_msg_available_modes_monitor_pack_status(uint8_t s
  * @param seq  Sequence number. Iterates sequentially whenever AVAILABLE_MODES changes (e.g. support for a new mode is added/removed dynamically). 0 initially. 1 on first change of mode set.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_available_modes_monitor_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_available_modes_monitor_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t seq)
 {
@@ -135,7 +135,7 @@ static inline uint16_t mavlink_msg_available_modes_monitor_pack_chan(uint8_t sys
  * @param msg The MAVLink message to compress the data into
  * @param available_modes_monitor C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_available_modes_monitor_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_available_modes_monitor_t* available_modes_monitor)
+static inline uint16_t mavlink_msg_available_modes_monitor_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_available_modes_monitor_t* available_modes_monitor)
 {
     return mavlink_msg_available_modes_monitor_pack(system_id, component_id, msg, available_modes_monitor->seq);
 }
@@ -149,7 +149,7 @@ static inline uint16_t mavlink_msg_available_modes_monitor_encode(uint8_t system
  * @param msg The MAVLink message to compress the data into
  * @param available_modes_monitor C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_available_modes_monitor_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_available_modes_monitor_t* available_modes_monitor)
+static inline uint16_t mavlink_msg_available_modes_monitor_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_available_modes_monitor_t* available_modes_monitor)
 {
     return mavlink_msg_available_modes_monitor_pack_chan(system_id, component_id, chan, msg, available_modes_monitor->seq);
 }
@@ -163,7 +163,7 @@ static inline uint16_t mavlink_msg_available_modes_monitor_encode_chan(uint8_t s
  * @param msg The MAVLink message to compress the data into
  * @param available_modes_monitor C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_available_modes_monitor_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_available_modes_monitor_t* available_modes_monitor)
+static inline uint16_t mavlink_msg_available_modes_monitor_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_available_modes_monitor_t* available_modes_monitor)
 {
     return mavlink_msg_available_modes_monitor_pack_status(system_id, component_id, _status, msg,  available_modes_monitor->seq);
 }
@@ -259,4 +259,5 @@ static inline void mavlink_msg_available_modes_monitor_decode(const mavlink_mess
         memset(available_modes_monitor, 0, MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_LEN);
     memcpy(available_modes_monitor, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

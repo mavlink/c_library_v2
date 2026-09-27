@@ -78,7 +78,7 @@ typedef struct __mavlink_mag_cal_progress_t {
  * @param direction_z  Body frame direction vector for display.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_mag_cal_progress_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_mag_cal_progress_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t compass_id, uint8_t cal_mask, uint8_t cal_status, uint8_t attempt, uint8_t completion_pct, const uint8_t *completion_mask, float direction_x, float direction_y, float direction_z)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -129,7 +129,7 @@ static inline uint16_t mavlink_msg_mag_cal_progress_pack(uint8_t system_id, uint
  * @param direction_z  Body frame direction vector for display.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_mag_cal_progress_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_mag_cal_progress_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t compass_id, uint8_t cal_mask, uint8_t cal_status, uint8_t attempt, uint8_t completion_pct, const uint8_t *completion_mask, float direction_x, float direction_y, float direction_z)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -162,7 +162,7 @@ static inline uint16_t mavlink_msg_mag_cal_progress_pack_status(uint8_t system_i
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MAG_CAL_PROGRESS_MIN_LEN, MAVLINK_MSG_ID_MAG_CAL_PROGRESS_LEN, MAVLINK_MSG_ID_MAG_CAL_PROGRESS_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MAG_CAL_PROGRESS_MIN_LEN, MAVLINK_MSG_ID_MAG_CAL_PROGRESS_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_MAG_CAL_PROGRESS_MIN_LEN, MAVLINK_MSG_ID_MAG_CAL_PROGRESS_LEN, 0);
 #endif
 }
 
@@ -183,7 +183,7 @@ static inline uint16_t mavlink_msg_mag_cal_progress_pack_status(uint8_t system_i
  * @param direction_z  Body frame direction vector for display.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_mag_cal_progress_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_mag_cal_progress_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t compass_id,uint8_t cal_mask,uint8_t cal_status,uint8_t attempt,uint8_t completion_pct,const uint8_t *completion_mask,float direction_x,float direction_y,float direction_z)
 {
@@ -225,7 +225,7 @@ static inline uint16_t mavlink_msg_mag_cal_progress_pack_chan(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param mag_cal_progress C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mag_cal_progress_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_mag_cal_progress_t* mag_cal_progress)
+static inline uint16_t mavlink_msg_mag_cal_progress_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_mag_cal_progress_t* mag_cal_progress)
 {
     return mavlink_msg_mag_cal_progress_pack(system_id, component_id, msg, mag_cal_progress->compass_id, mag_cal_progress->cal_mask, mag_cal_progress->cal_status, mag_cal_progress->attempt, mag_cal_progress->completion_pct, mag_cal_progress->completion_mask, mag_cal_progress->direction_x, mag_cal_progress->direction_y, mag_cal_progress->direction_z);
 }
@@ -239,7 +239,7 @@ static inline uint16_t mavlink_msg_mag_cal_progress_encode(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param mag_cal_progress C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mag_cal_progress_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mag_cal_progress_t* mag_cal_progress)
+static inline uint16_t mavlink_msg_mag_cal_progress_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mag_cal_progress_t* mag_cal_progress)
 {
     return mavlink_msg_mag_cal_progress_pack_chan(system_id, component_id, chan, msg, mag_cal_progress->compass_id, mag_cal_progress->cal_mask, mag_cal_progress->cal_status, mag_cal_progress->attempt, mag_cal_progress->completion_pct, mag_cal_progress->completion_mask, mag_cal_progress->direction_x, mag_cal_progress->direction_y, mag_cal_progress->direction_z);
 }
@@ -253,7 +253,7 @@ static inline uint16_t mavlink_msg_mag_cal_progress_encode_chan(uint8_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param mag_cal_progress C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mag_cal_progress_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_mag_cal_progress_t* mag_cal_progress)
+static inline uint16_t mavlink_msg_mag_cal_progress_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_mag_cal_progress_t* mag_cal_progress)
 {
     return mavlink_msg_mag_cal_progress_pack_status(system_id, component_id, _status, msg,  mag_cal_progress->compass_id, mag_cal_progress->cal_mask, mag_cal_progress->cal_status, mag_cal_progress->attempt, mag_cal_progress->completion_pct, mag_cal_progress->completion_mask, mag_cal_progress->direction_x, mag_cal_progress->direction_y, mag_cal_progress->direction_z);
 }
@@ -473,4 +473,5 @@ static inline void mavlink_msg_mag_cal_progress_decode(const mavlink_message_t* 
         memset(mag_cal_progress, 0, MAVLINK_MSG_ID_MAG_CAL_PROGRESS_LEN);
     memcpy(mag_cal_progress, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

@@ -78,7 +78,7 @@ typedef struct __mavlink_obstacle_distance_3d_t {
  * @param max_distance [m] Maximum distance the sensor can measure.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_obstacle_distance_3d_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_obstacle_distance_3d_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint32_t time_boot_ms, uint8_t sensor_type, uint8_t frame, uint16_t obstacle_id, float x, float y, float z, float min_distance, float max_distance)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -131,7 +131,7 @@ static inline uint16_t mavlink_msg_obstacle_distance_3d_pack(uint8_t system_id, 
  * @param max_distance [m] Maximum distance the sensor can measure.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_obstacle_distance_3d_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_obstacle_distance_3d_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint32_t time_boot_ms, uint8_t sensor_type, uint8_t frame, uint16_t obstacle_id, float x, float y, float z, float min_distance, float max_distance)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -166,7 +166,7 @@ static inline uint16_t mavlink_msg_obstacle_distance_3d_pack_status(uint8_t syst
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_OBSTACLE_DISTANCE_3D_MIN_LEN, MAVLINK_MSG_ID_OBSTACLE_DISTANCE_3D_LEN, MAVLINK_MSG_ID_OBSTACLE_DISTANCE_3D_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_OBSTACLE_DISTANCE_3D_MIN_LEN, MAVLINK_MSG_ID_OBSTACLE_DISTANCE_3D_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_OBSTACLE_DISTANCE_3D_MIN_LEN, MAVLINK_MSG_ID_OBSTACLE_DISTANCE_3D_LEN, 0);
 #endif
 }
 
@@ -187,7 +187,7 @@ static inline uint16_t mavlink_msg_obstacle_distance_3d_pack_status(uint8_t syst
  * @param max_distance [m] Maximum distance the sensor can measure.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_obstacle_distance_3d_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_obstacle_distance_3d_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint32_t time_boot_ms,uint8_t sensor_type,uint8_t frame,uint16_t obstacle_id,float x,float y,float z,float min_distance,float max_distance)
 {
@@ -231,7 +231,7 @@ static inline uint16_t mavlink_msg_obstacle_distance_3d_pack_chan(uint8_t system
  * @param msg The MAVLink message to compress the data into
  * @param obstacle_distance_3d C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_obstacle_distance_3d_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_obstacle_distance_3d_t* obstacle_distance_3d)
+static inline uint16_t mavlink_msg_obstacle_distance_3d_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_obstacle_distance_3d_t* obstacle_distance_3d)
 {
     return mavlink_msg_obstacle_distance_3d_pack(system_id, component_id, msg, obstacle_distance_3d->time_boot_ms, obstacle_distance_3d->sensor_type, obstacle_distance_3d->frame, obstacle_distance_3d->obstacle_id, obstacle_distance_3d->x, obstacle_distance_3d->y, obstacle_distance_3d->z, obstacle_distance_3d->min_distance, obstacle_distance_3d->max_distance);
 }
@@ -245,7 +245,7 @@ static inline uint16_t mavlink_msg_obstacle_distance_3d_encode(uint8_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param obstacle_distance_3d C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_obstacle_distance_3d_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_obstacle_distance_3d_t* obstacle_distance_3d)
+static inline uint16_t mavlink_msg_obstacle_distance_3d_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_obstacle_distance_3d_t* obstacle_distance_3d)
 {
     return mavlink_msg_obstacle_distance_3d_pack_chan(system_id, component_id, chan, msg, obstacle_distance_3d->time_boot_ms, obstacle_distance_3d->sensor_type, obstacle_distance_3d->frame, obstacle_distance_3d->obstacle_id, obstacle_distance_3d->x, obstacle_distance_3d->y, obstacle_distance_3d->z, obstacle_distance_3d->min_distance, obstacle_distance_3d->max_distance);
 }
@@ -259,7 +259,7 @@ static inline uint16_t mavlink_msg_obstacle_distance_3d_encode_chan(uint8_t syst
  * @param msg The MAVLink message to compress the data into
  * @param obstacle_distance_3d C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_obstacle_distance_3d_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_obstacle_distance_3d_t* obstacle_distance_3d)
+static inline uint16_t mavlink_msg_obstacle_distance_3d_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_obstacle_distance_3d_t* obstacle_distance_3d)
 {
     return mavlink_msg_obstacle_distance_3d_pack_status(system_id, component_id, _status, msg,  obstacle_distance_3d->time_boot_ms, obstacle_distance_3d->sensor_type, obstacle_distance_3d->frame, obstacle_distance_3d->obstacle_id, obstacle_distance_3d->x, obstacle_distance_3d->y, obstacle_distance_3d->z, obstacle_distance_3d->min_distance, obstacle_distance_3d->max_distance);
 }
@@ -483,4 +483,5 @@ static inline void mavlink_msg_obstacle_distance_3d_decode(const mavlink_message
         memset(obstacle_distance_3d, 0, MAVLINK_MSG_ID_OBSTACLE_DISTANCE_3D_LEN);
     memcpy(obstacle_distance_3d, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

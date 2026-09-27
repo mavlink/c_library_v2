@@ -46,7 +46,7 @@ typedef struct __mavlink_auth_key_t {
  * @param key  key
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_auth_key_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_auth_key_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                const char *key)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -75,7 +75,7 @@ static inline uint16_t mavlink_msg_auth_key_pack(uint8_t system_id, uint8_t comp
  * @param key  key
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_auth_key_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_auth_key_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                const char *key)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -94,7 +94,7 @@ static inline uint16_t mavlink_msg_auth_key_pack_status(uint8_t system_id, uint8
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AUTH_KEY_MIN_LEN, MAVLINK_MSG_ID_AUTH_KEY_LEN, MAVLINK_MSG_ID_AUTH_KEY_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AUTH_KEY_MIN_LEN, MAVLINK_MSG_ID_AUTH_KEY_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AUTH_KEY_MIN_LEN, MAVLINK_MSG_ID_AUTH_KEY_LEN, 0);
 #endif
 }
 
@@ -107,7 +107,7 @@ static inline uint16_t mavlink_msg_auth_key_pack_status(uint8_t system_id, uint8
  * @param key  key
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_auth_key_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_auth_key_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    const char *key)
 {
@@ -135,7 +135,7 @@ static inline uint16_t mavlink_msg_auth_key_pack_chan(uint8_t system_id, uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param auth_key C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_auth_key_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_auth_key_t* auth_key)
+static inline uint16_t mavlink_msg_auth_key_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_auth_key_t* auth_key)
 {
     return mavlink_msg_auth_key_pack(system_id, component_id, msg, auth_key->key);
 }
@@ -149,7 +149,7 @@ static inline uint16_t mavlink_msg_auth_key_encode(uint8_t system_id, uint8_t co
  * @param msg The MAVLink message to compress the data into
  * @param auth_key C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_auth_key_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_auth_key_t* auth_key)
+static inline uint16_t mavlink_msg_auth_key_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_auth_key_t* auth_key)
 {
     return mavlink_msg_auth_key_pack_chan(system_id, component_id, chan, msg, auth_key->key);
 }
@@ -163,7 +163,7 @@ static inline uint16_t mavlink_msg_auth_key_encode_chan(uint8_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param auth_key C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_auth_key_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_auth_key_t* auth_key)
+static inline uint16_t mavlink_msg_auth_key_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_auth_key_t* auth_key)
 {
     return mavlink_msg_auth_key_pack_status(system_id, component_id, _status, msg,  auth_key->key);
 }
@@ -259,4 +259,5 @@ static inline void mavlink_msg_auth_key_decode(const mavlink_message_t* msg, mav
         memset(auth_key, 0, MAVLINK_MSG_ID_AUTH_KEY_LEN);
     memcpy(auth_key, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

@@ -97,7 +97,7 @@ typedef struct __mavlink_autopilot_version_t {
  * @param uid2  UID if provided by hardware (supersedes the uid field. If this is non-zero, use this field, otherwise use uid)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_autopilot_version_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_autopilot_version_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint64_t capabilities, uint32_t flight_sw_version, uint32_t middleware_sw_version, uint32_t os_sw_version, uint32_t board_version, const uint8_t *flight_custom_version, const uint8_t *middleware_custom_version, const uint8_t *os_custom_version, uint16_t vendor_id, uint16_t product_id, uint64_t uid, const uint8_t *uid2)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -159,7 +159,7 @@ static inline uint16_t mavlink_msg_autopilot_version_pack(uint8_t system_id, uin
  * @param uid2  UID if provided by hardware (supersedes the uid field. If this is non-zero, use this field, otherwise use uid)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_autopilot_version_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_autopilot_version_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint64_t capabilities, uint32_t flight_sw_version, uint32_t middleware_sw_version, uint32_t os_sw_version, uint32_t board_version, const uint8_t *flight_custom_version, const uint8_t *middleware_custom_version, const uint8_t *os_custom_version, uint16_t vendor_id, uint16_t product_id, uint64_t uid, const uint8_t *uid2)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -198,7 +198,7 @@ static inline uint16_t mavlink_msg_autopilot_version_pack_status(uint8_t system_
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AUTOPILOT_VERSION_MIN_LEN, MAVLINK_MSG_ID_AUTOPILOT_VERSION_LEN, MAVLINK_MSG_ID_AUTOPILOT_VERSION_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AUTOPILOT_VERSION_MIN_LEN, MAVLINK_MSG_ID_AUTOPILOT_VERSION_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_AUTOPILOT_VERSION_MIN_LEN, MAVLINK_MSG_ID_AUTOPILOT_VERSION_LEN, 0);
 #endif
 }
 
@@ -224,7 +224,7 @@ static inline uint16_t mavlink_msg_autopilot_version_pack_status(uint8_t system_
  * @param uid2  UID if provided by hardware (supersedes the uid field. If this is non-zero, use this field, otherwise use uid)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_autopilot_version_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_autopilot_version_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint64_t capabilities,uint32_t flight_sw_version,uint32_t middleware_sw_version,uint32_t os_sw_version,uint32_t board_version,const uint8_t *flight_custom_version,const uint8_t *middleware_custom_version,const uint8_t *os_custom_version,uint16_t vendor_id,uint16_t product_id,uint64_t uid,const uint8_t *uid2)
 {
@@ -272,7 +272,7 @@ static inline uint16_t mavlink_msg_autopilot_version_pack_chan(uint8_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param autopilot_version C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_autopilot_version_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_autopilot_version_t* autopilot_version)
+static inline uint16_t mavlink_msg_autopilot_version_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_autopilot_version_t* autopilot_version)
 {
     return mavlink_msg_autopilot_version_pack(system_id, component_id, msg, autopilot_version->capabilities, autopilot_version->flight_sw_version, autopilot_version->middleware_sw_version, autopilot_version->os_sw_version, autopilot_version->board_version, autopilot_version->flight_custom_version, autopilot_version->middleware_custom_version, autopilot_version->os_custom_version, autopilot_version->vendor_id, autopilot_version->product_id, autopilot_version->uid, autopilot_version->uid2);
 }
@@ -286,7 +286,7 @@ static inline uint16_t mavlink_msg_autopilot_version_encode(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param autopilot_version C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_autopilot_version_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_autopilot_version_t* autopilot_version)
+static inline uint16_t mavlink_msg_autopilot_version_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_autopilot_version_t* autopilot_version)
 {
     return mavlink_msg_autopilot_version_pack_chan(system_id, component_id, chan, msg, autopilot_version->capabilities, autopilot_version->flight_sw_version, autopilot_version->middleware_sw_version, autopilot_version->os_sw_version, autopilot_version->board_version, autopilot_version->flight_custom_version, autopilot_version->middleware_custom_version, autopilot_version->os_custom_version, autopilot_version->vendor_id, autopilot_version->product_id, autopilot_version->uid, autopilot_version->uid2);
 }
@@ -300,7 +300,7 @@ static inline uint16_t mavlink_msg_autopilot_version_encode_chan(uint8_t system_
  * @param msg The MAVLink message to compress the data into
  * @param autopilot_version C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_autopilot_version_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_autopilot_version_t* autopilot_version)
+static inline uint16_t mavlink_msg_autopilot_version_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_autopilot_version_t* autopilot_version)
 {
     return mavlink_msg_autopilot_version_pack_status(system_id, component_id, _status, msg,  autopilot_version->capabilities, autopilot_version->flight_sw_version, autopilot_version->middleware_sw_version, autopilot_version->os_sw_version, autopilot_version->board_version, autopilot_version->flight_custom_version, autopilot_version->middleware_custom_version, autopilot_version->os_custom_version, autopilot_version->vendor_id, autopilot_version->product_id, autopilot_version->uid, autopilot_version->uid2);
 }
@@ -572,4 +572,5 @@ static inline void mavlink_msg_autopilot_version_decode(const mavlink_message_t*
         memset(autopilot_version, 0, MAVLINK_MSG_ID_AUTOPILOT_VERSION_LEN);
     memcpy(autopilot_version, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

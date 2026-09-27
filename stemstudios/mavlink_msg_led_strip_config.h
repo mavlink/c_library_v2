@@ -70,12 +70,12 @@ typedef struct __mavlink_led_strip_config_t {
  * @param colors  Array of 32-bit color values (0xWWRRGGBB).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_led_strip_config_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint8_t mode, uint8_t index, uint8_t length, uint8_t id, const uint32_t *colors)
+static inline uint16_t mavlink_msg_led_strip_config_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, uint8_t mode, uint8_t index, uint8_t length, uint8_t id, const uint32_t *colors)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN];
-    _mav_put_uint8_t(buf, 32, target_system);
+    _mav_put_uint8_t(buf, 32, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 33, target_component);
     _mav_put_uint8_t(buf, 34, mode);
     _mav_put_uint8_t(buf, 35, index);
@@ -85,7 +85,7 @@ static inline uint16_t mavlink_msg_led_strip_config_pack(uint8_t system_id, uint
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN);
 #else
     mavlink_led_strip_config_t packet;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.mode = mode;
     packet.index = index;
@@ -96,7 +96,7 @@ static inline uint16_t mavlink_msg_led_strip_config_pack(uint8_t system_id, uint
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_LED_STRIP_CONFIG;
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_LED_STRIP_CONFIG_MIN_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_CRC);
+    return mavlink_finalize_message_target(msg, system_id, component_id, MAVLINK_MSG_ID_LED_STRIP_CONFIG_MIN_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_CRC, target_system);
 }
 
 /**
@@ -115,12 +115,12 @@ static inline uint16_t mavlink_msg_led_strip_config_pack(uint8_t system_id, uint
  * @param colors  Array of 32-bit color values (0xWWRRGGBB).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_led_strip_config_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint8_t mode, uint8_t index, uint8_t length, uint8_t id, const uint32_t *colors)
+static inline uint16_t mavlink_msg_led_strip_config_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+                               uint32_t target_system, uint8_t target_component, uint8_t mode, uint8_t index, uint8_t length, uint8_t id, const uint32_t *colors)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN];
-    _mav_put_uint8_t(buf, 32, target_system);
+    _mav_put_uint8_t(buf, 32, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 33, target_component);
     _mav_put_uint8_t(buf, 34, mode);
     _mav_put_uint8_t(buf, 35, index);
@@ -130,7 +130,7 @@ static inline uint16_t mavlink_msg_led_strip_config_pack_status(uint8_t system_i
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN);
 #else
     mavlink_led_strip_config_t packet;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.mode = mode;
     packet.index = index;
@@ -142,9 +142,9 @@ static inline uint16_t mavlink_msg_led_strip_config_pack_status(uint8_t system_i
 
     msg->msgid = MAVLINK_MSG_ID_LED_STRIP_CONFIG;
 #if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_LED_STRIP_CONFIG_MIN_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_CRC);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_LED_STRIP_CONFIG_MIN_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_CRC, target_system);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_LED_STRIP_CONFIG_MIN_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN);
+    return mavlink_finalize_message_buffer_target(msg, system_id, component_id, _status, MAVLINK_MSG_ID_LED_STRIP_CONFIG_MIN_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN, 0, target_system);
 #endif
 }
 
@@ -163,13 +163,13 @@ static inline uint16_t mavlink_msg_led_strip_config_pack_status(uint8_t system_i
  * @param colors  Array of 32-bit color values (0xWWRRGGBB).
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_led_strip_config_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_led_strip_config_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t target_system,uint8_t target_component,uint8_t mode,uint8_t index,uint8_t length,uint8_t id,const uint32_t *colors)
+                                   uint32_t target_system,uint8_t target_component,uint8_t mode,uint8_t index,uint8_t length,uint8_t id,const uint32_t *colors)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN];
-    _mav_put_uint8_t(buf, 32, target_system);
+    _mav_put_uint8_t(buf, 32, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 33, target_component);
     _mav_put_uint8_t(buf, 34, mode);
     _mav_put_uint8_t(buf, 35, index);
@@ -179,7 +179,7 @@ static inline uint16_t mavlink_msg_led_strip_config_pack_chan(uint8_t system_id,
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN);
 #else
     mavlink_led_strip_config_t packet;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.mode = mode;
     packet.index = index;
@@ -190,7 +190,7 @@ static inline uint16_t mavlink_msg_led_strip_config_pack_chan(uint8_t system_id,
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_LED_STRIP_CONFIG;
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_LED_STRIP_CONFIG_MIN_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_CRC);
+    return mavlink_finalize_message_chan_target(msg, system_id, component_id, chan, MAVLINK_MSG_ID_LED_STRIP_CONFIG_MIN_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_CRC, target_system);
 }
 
 /**
@@ -201,7 +201,7 @@ static inline uint16_t mavlink_msg_led_strip_config_pack_chan(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param led_strip_config C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_led_strip_config_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_led_strip_config_t* led_strip_config)
+static inline uint16_t mavlink_msg_led_strip_config_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_led_strip_config_t* led_strip_config)
 {
     return mavlink_msg_led_strip_config_pack(system_id, component_id, msg, led_strip_config->target_system, led_strip_config->target_component, led_strip_config->mode, led_strip_config->index, led_strip_config->length, led_strip_config->id, led_strip_config->colors);
 }
@@ -215,7 +215,7 @@ static inline uint16_t mavlink_msg_led_strip_config_encode(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param led_strip_config C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_led_strip_config_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_led_strip_config_t* led_strip_config)
+static inline uint16_t mavlink_msg_led_strip_config_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_led_strip_config_t* led_strip_config)
 {
     return mavlink_msg_led_strip_config_pack_chan(system_id, component_id, chan, msg, led_strip_config->target_system, led_strip_config->target_component, led_strip_config->mode, led_strip_config->index, led_strip_config->length, led_strip_config->id, led_strip_config->colors);
 }
@@ -229,7 +229,7 @@ static inline uint16_t mavlink_msg_led_strip_config_encode_chan(uint8_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param led_strip_config C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_led_strip_config_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_led_strip_config_t* led_strip_config)
+static inline uint16_t mavlink_msg_led_strip_config_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_led_strip_config_t* led_strip_config)
 {
     return mavlink_msg_led_strip_config_pack_status(system_id, component_id, _status, msg,  led_strip_config->target_system, led_strip_config->target_component, led_strip_config->mode, led_strip_config->index, led_strip_config->length, led_strip_config->id, led_strip_config->colors);
 }
@@ -248,28 +248,28 @@ static inline uint16_t mavlink_msg_led_strip_config_encode_status(uint8_t system
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_led_strip_config_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint8_t mode, uint8_t index, uint8_t length, uint8_t id, const uint32_t *colors)
+static inline void mavlink_msg_led_strip_config_send(mavlink_channel_t chan, uint32_t target_system, uint8_t target_component, uint8_t mode, uint8_t index, uint8_t length, uint8_t id, const uint32_t *colors)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN];
-    _mav_put_uint8_t(buf, 32, target_system);
+    _mav_put_uint8_t(buf, 32, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 33, target_component);
     _mav_put_uint8_t(buf, 34, mode);
     _mav_put_uint8_t(buf, 35, index);
     _mav_put_uint8_t(buf, 36, length);
     _mav_put_uint8_t(buf, 37, id);
     _mav_put_uint32_t_array(buf, 0, colors, 8);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LED_STRIP_CONFIG, buf, MAVLINK_MSG_ID_LED_STRIP_CONFIG_MIN_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_LED_STRIP_CONFIG, buf, MAVLINK_MSG_ID_LED_STRIP_CONFIG_MIN_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_CRC, target_system);
 #else
     mavlink_led_strip_config_t packet;
-    packet.target_system = target_system;
+    packet.target_system = mavlink_msg_target_field(target_system);
     packet.target_component = target_component;
     packet.mode = mode;
     packet.index = index;
     packet.length = length;
     packet.id = id;
     mav_array_memcpy(packet.colors, colors, sizeof(uint32_t)*8);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LED_STRIP_CONFIG, (const char *)&packet, MAVLINK_MSG_ID_LED_STRIP_CONFIG_MIN_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_LED_STRIP_CONFIG, (const char *)&packet, MAVLINK_MSG_ID_LED_STRIP_CONFIG_MIN_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_CRC, target_system);
 #endif
 }
 
@@ -295,28 +295,28 @@ static inline void mavlink_msg_led_strip_config_send_struct(mavlink_channel_t ch
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_led_strip_config_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, uint8_t mode, uint8_t index, uint8_t length, uint8_t id, const uint32_t *colors)
+static inline void mavlink_msg_led_strip_config_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t target_system, uint8_t target_component, uint8_t mode, uint8_t index, uint8_t length, uint8_t id, const uint32_t *colors)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
-    _mav_put_uint8_t(buf, 32, target_system);
+    _mav_put_uint8_t(buf, 32, mavlink_msg_target_field(target_system));
     _mav_put_uint8_t(buf, 33, target_component);
     _mav_put_uint8_t(buf, 34, mode);
     _mav_put_uint8_t(buf, 35, index);
     _mav_put_uint8_t(buf, 36, length);
     _mav_put_uint8_t(buf, 37, id);
     _mav_put_uint32_t_array(buf, 0, colors, 8);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LED_STRIP_CONFIG, buf, MAVLINK_MSG_ID_LED_STRIP_CONFIG_MIN_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_LED_STRIP_CONFIG, buf, MAVLINK_MSG_ID_LED_STRIP_CONFIG_MIN_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_CRC, target_system);
 #else
     mavlink_led_strip_config_t *packet = (mavlink_led_strip_config_t *)msgbuf;
-    packet->target_system = target_system;
+    packet->target_system = mavlink_msg_target_field(target_system);
     packet->target_component = target_component;
     packet->mode = mode;
     packet->index = index;
     packet->length = length;
     packet->id = id;
     mav_array_memcpy(packet->colors, colors, sizeof(uint32_t)*8);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LED_STRIP_CONFIG, (const char *)packet, MAVLINK_MSG_ID_LED_STRIP_CONFIG_MIN_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_CRC);
+    _mav_finalize_message_chan_send_target(chan, MAVLINK_MSG_ID_LED_STRIP_CONFIG, (const char *)packet, MAVLINK_MSG_ID_LED_STRIP_CONFIG_MIN_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN, MAVLINK_MSG_ID_LED_STRIP_CONFIG_CRC, target_system);
 #endif
 }
 #endif
@@ -325,16 +325,6 @@ static inline void mavlink_msg_led_strip_config_send_buf(mavlink_message_t *msgb
 
 // MESSAGE LED_STRIP_CONFIG UNPACKING
 
-
-/**
- * @brief Get field target_system from led_strip_config message
- *
- * @return  System ID.
- */
-static inline uint8_t mavlink_msg_led_strip_config_get_target_system(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint8_t(msg,  32);
-}
 
 /**
  * @brief Get field target_component from led_strip_config message
@@ -406,7 +396,7 @@ static inline void mavlink_msg_led_strip_config_decode(const mavlink_message_t* 
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_led_strip_config_get_colors(msg, led_strip_config->colors);
-    led_strip_config->target_system = mavlink_msg_led_strip_config_get_target_system(msg);
+    led_strip_config->target_system = _MAV_RETURN_uint8_t(msg, 32);
     led_strip_config->target_component = mavlink_msg_led_strip_config_get_target_component(msg);
     led_strip_config->mode = mavlink_msg_led_strip_config_get_mode(msg);
     led_strip_config->index = mavlink_msg_led_strip_config_get_index(msg);
@@ -417,4 +407,11 @@ static inline void mavlink_msg_led_strip_config_decode(const mavlink_message_t* 
         memset(led_strip_config, 0, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN);
     memcpy(led_strip_config, _MAV_PAYLOAD(msg), len);
 #endif
+    if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
+        // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
+        // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
+        // To relay after edits, pass that full target to _pack*(); _encode*() loses it.
+        led_strip_config->target_system = mavlink_msg_target_field(msg->target_sysid);
+    }
+
 }

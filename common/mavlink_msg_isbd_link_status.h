@@ -74,7 +74,7 @@ typedef struct __mavlink_isbd_link_status_t {
  * @param rx_session_pending  1: Receiving session pending, 0: No receiving session pending.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_isbd_link_status_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_isbd_link_status_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint64_t timestamp, uint64_t last_heartbeat, uint16_t failed_sessions, uint16_t successful_sessions, uint8_t signal_quality, uint8_t ring_pending, uint8_t tx_session_pending, uint8_t rx_session_pending)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -124,7 +124,7 @@ static inline uint16_t mavlink_msg_isbd_link_status_pack(uint8_t system_id, uint
  * @param rx_session_pending  1: Receiving session pending, 0: No receiving session pending.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_isbd_link_status_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_isbd_link_status_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint64_t timestamp, uint64_t last_heartbeat, uint16_t failed_sessions, uint16_t successful_sessions, uint8_t signal_quality, uint8_t ring_pending, uint8_t tx_session_pending, uint8_t rx_session_pending)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -157,7 +157,7 @@ static inline uint16_t mavlink_msg_isbd_link_status_pack_status(uint8_t system_i
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ISBD_LINK_STATUS_MIN_LEN, MAVLINK_MSG_ID_ISBD_LINK_STATUS_LEN, MAVLINK_MSG_ID_ISBD_LINK_STATUS_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ISBD_LINK_STATUS_MIN_LEN, MAVLINK_MSG_ID_ISBD_LINK_STATUS_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_ISBD_LINK_STATUS_MIN_LEN, MAVLINK_MSG_ID_ISBD_LINK_STATUS_LEN, 0);
 #endif
 }
 
@@ -177,7 +177,7 @@ static inline uint16_t mavlink_msg_isbd_link_status_pack_status(uint8_t system_i
  * @param rx_session_pending  1: Receiving session pending, 0: No receiving session pending.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_isbd_link_status_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_isbd_link_status_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint64_t timestamp,uint64_t last_heartbeat,uint16_t failed_sessions,uint16_t successful_sessions,uint8_t signal_quality,uint8_t ring_pending,uint8_t tx_session_pending,uint8_t rx_session_pending)
 {
@@ -219,7 +219,7 @@ static inline uint16_t mavlink_msg_isbd_link_status_pack_chan(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param isbd_link_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_isbd_link_status_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_isbd_link_status_t* isbd_link_status)
+static inline uint16_t mavlink_msg_isbd_link_status_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_isbd_link_status_t* isbd_link_status)
 {
     return mavlink_msg_isbd_link_status_pack(system_id, component_id, msg, isbd_link_status->timestamp, isbd_link_status->last_heartbeat, isbd_link_status->failed_sessions, isbd_link_status->successful_sessions, isbd_link_status->signal_quality, isbd_link_status->ring_pending, isbd_link_status->tx_session_pending, isbd_link_status->rx_session_pending);
 }
@@ -233,7 +233,7 @@ static inline uint16_t mavlink_msg_isbd_link_status_encode(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param isbd_link_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_isbd_link_status_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_isbd_link_status_t* isbd_link_status)
+static inline uint16_t mavlink_msg_isbd_link_status_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_isbd_link_status_t* isbd_link_status)
 {
     return mavlink_msg_isbd_link_status_pack_chan(system_id, component_id, chan, msg, isbd_link_status->timestamp, isbd_link_status->last_heartbeat, isbd_link_status->failed_sessions, isbd_link_status->successful_sessions, isbd_link_status->signal_quality, isbd_link_status->ring_pending, isbd_link_status->tx_session_pending, isbd_link_status->rx_session_pending);
 }
@@ -247,7 +247,7 @@ static inline uint16_t mavlink_msg_isbd_link_status_encode_chan(uint8_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param isbd_link_status C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_isbd_link_status_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_isbd_link_status_t* isbd_link_status)
+static inline uint16_t mavlink_msg_isbd_link_status_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_isbd_link_status_t* isbd_link_status)
 {
     return mavlink_msg_isbd_link_status_pack_status(system_id, component_id, _status, msg,  isbd_link_status->timestamp, isbd_link_status->last_heartbeat, isbd_link_status->failed_sessions, isbd_link_status->successful_sessions, isbd_link_status->signal_quality, isbd_link_status->ring_pending, isbd_link_status->tx_session_pending, isbd_link_status->rx_session_pending);
 }
@@ -455,4 +455,5 @@ static inline void mavlink_msg_isbd_link_status_decode(const mavlink_message_t* 
         memset(isbd_link_status, 0, MAVLINK_MSG_ID_ISBD_LINK_STATUS_LEN);
     memcpy(isbd_link_status, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

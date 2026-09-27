@@ -54,7 +54,7 @@ typedef struct __mavlink_sens_atmos_t {
  * @param Humidity [%]  Relative humidity
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_sens_atmos_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_sens_atmos_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint64_t timestamp, float TempAmbient, float Humidity)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -89,7 +89,7 @@ static inline uint16_t mavlink_msg_sens_atmos_pack(uint8_t system_id, uint8_t co
  * @param Humidity [%]  Relative humidity
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_sens_atmos_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_sens_atmos_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint64_t timestamp, float TempAmbient, float Humidity)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -112,7 +112,7 @@ static inline uint16_t mavlink_msg_sens_atmos_pack_status(uint8_t system_id, uin
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SENS_ATMOS_MIN_LEN, MAVLINK_MSG_ID_SENS_ATMOS_LEN, MAVLINK_MSG_ID_SENS_ATMOS_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SENS_ATMOS_MIN_LEN, MAVLINK_MSG_ID_SENS_ATMOS_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SENS_ATMOS_MIN_LEN, MAVLINK_MSG_ID_SENS_ATMOS_LEN, 0);
 #endif
 }
 
@@ -127,7 +127,7 @@ static inline uint16_t mavlink_msg_sens_atmos_pack_status(uint8_t system_id, uin
  * @param Humidity [%]  Relative humidity
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_sens_atmos_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_sens_atmos_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint64_t timestamp,float TempAmbient,float Humidity)
 {
@@ -159,7 +159,7 @@ static inline uint16_t mavlink_msg_sens_atmos_pack_chan(uint8_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param sens_atmos C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_sens_atmos_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_sens_atmos_t* sens_atmos)
+static inline uint16_t mavlink_msg_sens_atmos_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_sens_atmos_t* sens_atmos)
 {
     return mavlink_msg_sens_atmos_pack(system_id, component_id, msg, sens_atmos->timestamp, sens_atmos->TempAmbient, sens_atmos->Humidity);
 }
@@ -173,7 +173,7 @@ static inline uint16_t mavlink_msg_sens_atmos_encode(uint8_t system_id, uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param sens_atmos C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_sens_atmos_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_sens_atmos_t* sens_atmos)
+static inline uint16_t mavlink_msg_sens_atmos_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_sens_atmos_t* sens_atmos)
 {
     return mavlink_msg_sens_atmos_pack_chan(system_id, component_id, chan, msg, sens_atmos->timestamp, sens_atmos->TempAmbient, sens_atmos->Humidity);
 }
@@ -187,7 +187,7 @@ static inline uint16_t mavlink_msg_sens_atmos_encode_chan(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param sens_atmos C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_sens_atmos_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_sens_atmos_t* sens_atmos)
+static inline uint16_t mavlink_msg_sens_atmos_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_sens_atmos_t* sens_atmos)
 {
     return mavlink_msg_sens_atmos_pack_status(system_id, component_id, _status, msg,  sens_atmos->timestamp, sens_atmos->TempAmbient, sens_atmos->Humidity);
 }
@@ -315,4 +315,5 @@ static inline void mavlink_msg_sens_atmos_decode(const mavlink_message_t* msg, m
         memset(sens_atmos, 0, MAVLINK_MSG_ID_SENS_ATMOS_LEN);
     memcpy(sens_atmos, _MAV_PAYLOAD(msg), len);
 #endif
+
 }

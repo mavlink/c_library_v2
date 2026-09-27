@@ -88,7 +88,7 @@ typedef struct __mavlink_target_relative_t {
  * @param type  Type of target
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_target_relative_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_target_relative_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint64_t timestamp, uint8_t id, uint8_t frame, float x, float y, float z, const float *pos_std, float yaw_std, const float *q_target, const float *q_sensor, uint8_t type)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -145,7 +145,7 @@ static inline uint16_t mavlink_msg_target_relative_pack(uint8_t system_id, uint8
  * @param type  Type of target
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_target_relative_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
+static inline uint16_t mavlink_msg_target_relative_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint64_t timestamp, uint8_t id, uint8_t frame, float x, float y, float z, const float *pos_std, float yaw_std, const float *q_target, const float *q_sensor, uint8_t type)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -182,7 +182,7 @@ static inline uint16_t mavlink_msg_target_relative_pack_status(uint8_t system_id
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_TARGET_RELATIVE_MIN_LEN, MAVLINK_MSG_ID_TARGET_RELATIVE_LEN, MAVLINK_MSG_ID_TARGET_RELATIVE_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_TARGET_RELATIVE_MIN_LEN, MAVLINK_MSG_ID_TARGET_RELATIVE_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_TARGET_RELATIVE_MIN_LEN, MAVLINK_MSG_ID_TARGET_RELATIVE_LEN, 0);
 #endif
 }
 
@@ -205,7 +205,7 @@ static inline uint16_t mavlink_msg_target_relative_pack_status(uint8_t system_id
  * @param type  Type of target
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_target_relative_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static inline uint16_t mavlink_msg_target_relative_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint64_t timestamp,uint8_t id,uint8_t frame,float x,float y,float z,const float *pos_std,float yaw_std,const float *q_target,const float *q_sensor,uint8_t type)
 {
@@ -251,7 +251,7 @@ static inline uint16_t mavlink_msg_target_relative_pack_chan(uint8_t system_id, 
  * @param msg The MAVLink message to compress the data into
  * @param target_relative C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_target_relative_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_target_relative_t* target_relative)
+static inline uint16_t mavlink_msg_target_relative_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_target_relative_t* target_relative)
 {
     return mavlink_msg_target_relative_pack(system_id, component_id, msg, target_relative->timestamp, target_relative->id, target_relative->frame, target_relative->x, target_relative->y, target_relative->z, target_relative->pos_std, target_relative->yaw_std, target_relative->q_target, target_relative->q_sensor, target_relative->type);
 }
@@ -265,7 +265,7 @@ static inline uint16_t mavlink_msg_target_relative_encode(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param target_relative C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_target_relative_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_target_relative_t* target_relative)
+static inline uint16_t mavlink_msg_target_relative_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_target_relative_t* target_relative)
 {
     return mavlink_msg_target_relative_pack_chan(system_id, component_id, chan, msg, target_relative->timestamp, target_relative->id, target_relative->frame, target_relative->x, target_relative->y, target_relative->z, target_relative->pos_std, target_relative->yaw_std, target_relative->q_target, target_relative->q_sensor, target_relative->type);
 }
@@ -279,7 +279,7 @@ static inline uint16_t mavlink_msg_target_relative_encode_chan(uint8_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param target_relative C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_target_relative_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_target_relative_t* target_relative)
+static inline uint16_t mavlink_msg_target_relative_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_target_relative_t* target_relative)
 {
     return mavlink_msg_target_relative_pack_status(system_id, component_id, _status, msg,  target_relative->timestamp, target_relative->id, target_relative->frame, target_relative->x, target_relative->y, target_relative->z, target_relative->pos_std, target_relative->yaw_std, target_relative->q_target, target_relative->q_sensor, target_relative->type);
 }
@@ -531,4 +531,5 @@ static inline void mavlink_msg_target_relative_decode(const mavlink_message_t* m
         memset(target_relative, 0, MAVLINK_MSG_ID_TARGET_RELATIVE_LEN);
     memcpy(target_relative, _MAV_PAYLOAD(msg), len);
 #endif
+
 }
