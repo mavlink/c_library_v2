@@ -1056,9 +1056,7 @@ typedef enum MAV_DATA_STREAM
 } MAV_DATA_STREAM;
 #endif
 
-/** @brief The ROI (region of interest) for the vehicle. This can be
-                be used by the vehicle for camera/vehicle attitude alignment (see
-                MAV_CMD_NAV_ROI). */
+/** @brief The ROI (region of interest) for the vehicle. This can be used by the vehicle for camera/vehicle attitude alignment (see MAV_CMD_NAV_ROI). */
 #ifndef HAVE_ENUM_MAV_ROI
 #define HAVE_ENUM_MAV_ROI
 typedef enum MAV_ROI
@@ -1900,7 +1898,7 @@ typedef enum PARAM_ACK
    PARAM_ACK_ACCEPTED=0, /* Parameter value ACCEPTED and SET | */
    PARAM_ACK_VALUE_UNSUPPORTED=1, /* Parameter value UNKNOWN/UNSUPPORTED | */
    PARAM_ACK_FAILED=2, /* Parameter failed to set | */
-   PARAM_ACK_IN_PROGRESS=3, /* Parameter value received but not yet set/accepted. A subsequent PARAM_EXT_ACK with the final result will follow once operation is completed. This is returned immediately for parameters that take longer to set, indicating that the the parameter was received and does not need to be resent. | */
+   PARAM_ACK_IN_PROGRESS=3, /* Parameter value received but not yet set/accepted. A subsequent PARAM_EXT_ACK with the final result will follow once operation is completed. This is returned immediately for parameters that take longer to set, indicating that the parameter was received and does not need to be resent. | */
    PARAM_ACK_ENUM_END=4, /*  | */
 } PARAM_ACK;
 #endif
@@ -2883,7 +2881,7 @@ typedef enum MAV_STANDARD_MODE
          | */
    MAV_STANDARD_MODE_SAFE_RECOVERY=5, /* Safe recovery mode (auto).
           Automatic mode that takes vehicle to a predefined safe location via a safe flight path, and may also automatically land the vehicle.
-          This mode is more commonly referred to as RTL and/or or Smart RTL.
+          This mode is more commonly referred to as RTL and/or Smart RTL.
           The precise return location, flight path, and landing behaviour depend on vehicle configuration and type.
           For example, the vehicle might return to the home/launch location, a rally point, or the start of a mission landing, it might follow a direct path, mission path, or breadcrumb path, and land using a mission landing pattern or some other kind of descent.
          | */

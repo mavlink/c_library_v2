@@ -11,7 +11,7 @@ typedef struct __mavlink_cellular_status_t {
  uint16_t mnc; /*<  Mobile network code. If unknown, set to UINT16_MAX*/
  uint16_t lac; /*<  Location area code. If unknown, set to 0*/
  uint8_t status; /*<  Cellular modem status*/
- uint8_t failure_reason; /*<  Failure reason when status in in CELLULAR_STATUS_FLAG_FAILED*/
+ uint8_t failure_reason; /*<  Failure reason when status is CELLULAR_STATUS_FLAG_FAILED*/
  uint8_t type; /*<  Cellular network radio type: gsm, cdma, lte...*/
  uint8_t quality; /*<  Signal quality in percent. If unknown, set to UINT8_MAX*/
  uint8_t id; /*<  Cellular modem instance number. Indexed from 1.*/
@@ -95,7 +95,7 @@ typedef struct __mavlink_cellular_status_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param status  Cellular modem status
- * @param failure_reason  Failure reason when status in in CELLULAR_STATUS_FLAG_FAILED
+ * @param failure_reason  Failure reason when status is CELLULAR_STATUS_FLAG_FAILED
  * @param type  Cellular network radio type: gsm, cdma, lte...
  * @param quality  Signal quality in percent. If unknown, set to UINT8_MAX
  * @param mcc  Mobile country code. If unknown, set to UINT16_MAX
@@ -173,7 +173,7 @@ static inline uint16_t mavlink_msg_cellular_status_pack(uint32_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  *
  * @param status  Cellular modem status
- * @param failure_reason  Failure reason when status in in CELLULAR_STATUS_FLAG_FAILED
+ * @param failure_reason  Failure reason when status is CELLULAR_STATUS_FLAG_FAILED
  * @param type  Cellular network radio type: gsm, cdma, lte...
  * @param quality  Signal quality in percent. If unknown, set to UINT8_MAX
  * @param mcc  Mobile country code. If unknown, set to UINT16_MAX
@@ -254,7 +254,7 @@ static inline uint16_t mavlink_msg_cellular_status_pack_status(uint32_t system_i
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param status  Cellular modem status
- * @param failure_reason  Failure reason when status in in CELLULAR_STATUS_FLAG_FAILED
+ * @param failure_reason  Failure reason when status is CELLULAR_STATUS_FLAG_FAILED
  * @param type  Cellular network radio type: gsm, cdma, lte...
  * @param quality  Signal quality in percent. If unknown, set to UINT8_MAX
  * @param mcc  Mobile country code. If unknown, set to UINT16_MAX
@@ -371,7 +371,7 @@ static inline uint16_t mavlink_msg_cellular_status_encode_status(uint32_t system
  * @param chan MAVLink channel to send the message
  *
  * @param status  Cellular modem status
- * @param failure_reason  Failure reason when status in in CELLULAR_STATUS_FLAG_FAILED
+ * @param failure_reason  Failure reason when status is CELLULAR_STATUS_FLAG_FAILED
  * @param type  Cellular network radio type: gsm, cdma, lte...
  * @param quality  Signal quality in percent. If unknown, set to UINT8_MAX
  * @param mcc  Mobile country code. If unknown, set to UINT16_MAX
@@ -526,7 +526,7 @@ static inline uint8_t mavlink_msg_cellular_status_get_status(const mavlink_messa
 /**
  * @brief Get field failure_reason from cellular_status message
  *
- * @return  Failure reason when status in in CELLULAR_STATUS_FLAG_FAILED
+ * @return  Failure reason when status is CELLULAR_STATUS_FLAG_FAILED
  */
 static inline uint8_t mavlink_msg_cellular_status_get_failure_reason(const mavlink_message_t* msg)
 {
