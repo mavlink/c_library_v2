@@ -18,7 +18,7 @@ typedef struct __mavlink_video_stream_information_t {
  uint8_t count; /*<  Number of streams available.*/
  uint8_t type; /*<  Type of stream.*/
  char name[32]; /*<  Stream name.*/
- char uri[160]; /*<  Video stream URI (TCP or RTSP URI ground station should connect to) or port number (UDP port ground station should listen to).*/
+ char uri[160]; /*<  Video stream URI (TCP, RTSP or SRT URI ground station should connect to) or port number (UDP port ground station should listen to).*/
  uint8_t encoding; /*<  Encoding of stream.*/
  uint8_t camera_device_id; /*<  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).*/
 } mavlink_video_stream_information_t;
@@ -94,7 +94,7 @@ typedef struct __mavlink_video_stream_information_t {
  * @param rotation [deg] Video image rotation clockwise.
  * @param hfov [deg] Horizontal Field of view.
  * @param name  Stream name.
- * @param uri  Video stream URI (TCP or RTSP URI ground station should connect to) or port number (UDP port ground station should listen to).
+ * @param uri  Video stream URI (TCP, RTSP or SRT URI ground station should connect to) or port number (UDP port ground station should listen to).
  * @param encoding  Encoding of stream.
  * @param camera_device_id  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -160,7 +160,7 @@ static inline uint16_t mavlink_msg_video_stream_information_pack(uint32_t system
  * @param rotation [deg] Video image rotation clockwise.
  * @param hfov [deg] Horizontal Field of view.
  * @param name  Stream name.
- * @param uri  Video stream URI (TCP or RTSP URI ground station should connect to) or port number (UDP port ground station should listen to).
+ * @param uri  Video stream URI (TCP, RTSP or SRT URI ground station should connect to) or port number (UDP port ground station should listen to).
  * @param encoding  Encoding of stream.
  * @param camera_device_id  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -229,7 +229,7 @@ static inline uint16_t mavlink_msg_video_stream_information_pack_status(uint32_t
  * @param rotation [deg] Video image rotation clockwise.
  * @param hfov [deg] Horizontal Field of view.
  * @param name  Stream name.
- * @param uri  Video stream URI (TCP or RTSP URI ground station should connect to) or port number (UDP port ground station should listen to).
+ * @param uri  Video stream URI (TCP, RTSP or SRT URI ground station should connect to) or port number (UDP port ground station should listen to).
  * @param encoding  Encoding of stream.
  * @param camera_device_id  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -334,7 +334,7 @@ static inline uint16_t mavlink_msg_video_stream_information_encode_status(uint32
  * @param rotation [deg] Video image rotation clockwise.
  * @param hfov [deg] Horizontal Field of view.
  * @param name  Stream name.
- * @param uri  Video stream URI (TCP or RTSP URI ground station should connect to) or port number (UDP port ground station should listen to).
+ * @param uri  Video stream URI (TCP, RTSP or SRT URI ground station should connect to) or port number (UDP port ground station should listen to).
  * @param encoding  Encoding of stream.
  * @param camera_device_id  Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).
  */
@@ -559,7 +559,7 @@ static inline uint16_t mavlink_msg_video_stream_information_get_name(const mavli
 /**
  * @brief Get field uri from video_stream_information message
  *
- * @return  Video stream URI (TCP or RTSP URI ground station should connect to) or port number (UDP port ground station should listen to).
+ * @return  Video stream URI (TCP, RTSP or SRT URI ground station should connect to) or port number (UDP port ground station should listen to).
  */
 static inline uint16_t mavlink_msg_video_stream_information_get_uri(const mavlink_message_t* msg, char *uri)
 {

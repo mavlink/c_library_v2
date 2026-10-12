@@ -1796,7 +1796,12 @@ typedef enum VIDEO_STREAM_TYPE
    VIDEO_STREAM_TYPE_TCP_MPEG=2, /* Stream is MPEG on TCP | */
    VIDEO_STREAM_TYPE_MPEG_TS=3, /* Stream is MPEG TS (URI gives the port number) | */
    VIDEO_STREAM_TYPE_WHEP=4, /* Stream is WHEP (WebRTC-HTTP Egress Protocol) | */
-   VIDEO_STREAM_TYPE_ENUM_END=5, /*  | */
+   VIDEO_STREAM_TYPE_SRT=5, /* Stream is SRT (Secure Reliable Transport).
+          The payload is MPEG-TS (as for VIDEO_STREAM_TYPE_MPEG_TS); streams other than video (e.g. KLV metadata, audio) may be ignored.
+          VIDEO_STREAM_INFORMATION.uri is a full URI with the prefix `srt://host:port` followed by query parameters.
+          Recognised parameters include: mode (caller, listener or rendezvous), latency (ms), streamid (opaque string, e.g. for hub access control).
+          Encryption passphrases should be exchanged out of band rather than in the URI, as MAVLink messages are not encrypted. | */
+   VIDEO_STREAM_TYPE_ENUM_END=6, /*  | */
 } VIDEO_STREAM_TYPE;
 #endif
 
