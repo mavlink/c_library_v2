@@ -119,7 +119,7 @@ typedef enum MAV_CMD
           The Latitude/Longitude/Altitude are optional, and may be set to 0 if not needed.
           If specified, the item defines the waypoint at which the return segment starts.
           If sent using as a command, the vehicle will perform a mission landing (using the land segment if defined) or reject the command if mission landings are not supported, or no mission landing is defined. When used as a command any position information in the command is ignored.
-         |Empty| Empty| Empty| Empty| Latitudee. 0: not used.| Longitudee. 0: not used.| Altitudee. 0: not used.|  */
+         |Empty| Empty| Empty| Empty| Latitude. 0: not used.| Longitude. 0: not used.| Altitude. 0: not used.|  */
    MAV_CMD_DO_LAND_START=189, /* Mission item to mark the start of a mission landing pattern, or a command to land with a mission landing pattern.
 
         When used in a mission, this is a marker for the start of a sequence of mission items that represent a landing pattern.
