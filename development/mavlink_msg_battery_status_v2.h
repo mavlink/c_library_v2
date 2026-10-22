@@ -74,6 +74,7 @@ typedef struct __mavlink_battery_status_v2_t {
  * @param status_flags  Fault, health, readiness, and other status indications.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_battery_status_v2_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t id, int16_t temperature, float voltage, float current, float capacity_consumed, float capacity_remaining, float state_of_charge, uint32_t status_flags)
 {
@@ -177,6 +178,7 @@ static inline uint16_t mavlink_msg_battery_status_v2_pack_status(uint32_t system
  * @param status_flags  Fault, health, readiness, and other status indications.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_battery_status_v2_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t id,int16_t temperature,float voltage,float current,float capacity_consumed,float capacity_remaining,float state_of_charge,uint32_t status_flags)
@@ -219,6 +221,7 @@ static inline uint16_t mavlink_msg_battery_status_v2_pack_chan(uint32_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param battery_status_v2 C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_battery_status_v2_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_battery_status_v2_t* battery_status_v2)
 {
     return mavlink_msg_battery_status_v2_pack(system_id, component_id, msg, battery_status_v2->id, battery_status_v2->temperature, battery_status_v2->voltage, battery_status_v2->current, battery_status_v2->capacity_consumed, battery_status_v2->capacity_remaining, battery_status_v2->state_of_charge, battery_status_v2->status_flags);
@@ -233,6 +236,7 @@ static inline uint16_t mavlink_msg_battery_status_v2_encode(uint32_t system_id, 
  * @param msg The MAVLink message to compress the data into
  * @param battery_status_v2 C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_battery_status_v2_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_battery_status_v2_t* battery_status_v2)
 {
     return mavlink_msg_battery_status_v2_pack_chan(system_id, component_id, chan, msg, battery_status_v2->id, battery_status_v2->temperature, battery_status_v2->voltage, battery_status_v2->current, battery_status_v2->capacity_consumed, battery_status_v2->capacity_remaining, battery_status_v2->state_of_charge, battery_status_v2->status_flags);
@@ -267,6 +271,7 @@ static inline uint16_t mavlink_msg_battery_status_v2_encode_status(uint32_t syst
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
+MAVLINK_WIP
 static inline void mavlink_msg_battery_status_v2_send(mavlink_channel_t chan, uint8_t id, int16_t temperature, float voltage, float current, float capacity_consumed, float capacity_remaining, float state_of_charge, uint32_t status_flags)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -301,6 +306,7 @@ static inline void mavlink_msg_battery_status_v2_send(mavlink_channel_t chan, ui
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
+MAVLINK_WIP
 static inline void mavlink_msg_battery_status_v2_send_struct(mavlink_channel_t chan, const mavlink_battery_status_v2_t* battery_status_v2)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -318,6 +324,7 @@ static inline void mavlink_msg_battery_status_v2_send_struct(mavlink_channel_t c
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
+MAVLINK_WIP
 static inline void mavlink_msg_battery_status_v2_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t id, int16_t temperature, float voltage, float current, float capacity_consumed, float capacity_remaining, float state_of_charge, uint32_t status_flags)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -358,6 +365,7 @@ static inline void mavlink_msg_battery_status_v2_send_buf(mavlink_message_t *msg
  *
  * @return  Battery ID
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_battery_status_v2_get_id(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  26);
@@ -368,6 +376,7 @@ static inline uint8_t mavlink_msg_battery_status_v2_get_id(const mavlink_message
  *
  * @return [cdegC] Temperature of the whole battery pack (not internal electronics). INT16_MAX field not provided.
  */
+MAVLINK_WIP
 static inline int16_t mavlink_msg_battery_status_v2_get_temperature(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_int16_t(msg,  24);
@@ -378,6 +387,7 @@ static inline int16_t mavlink_msg_battery_status_v2_get_temperature(const mavlin
  *
  * @return [V] Battery voltage (total). NaN: field not provided.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_battery_status_v2_get_voltage(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  0);
@@ -388,6 +398,7 @@ static inline float mavlink_msg_battery_status_v2_get_voltage(const mavlink_mess
  *
  * @return [A] Battery current (through all cells/loads). Positive value when discharging and negative if charging. NaN: field not provided.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_battery_status_v2_get_current(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  4);
@@ -398,6 +409,7 @@ static inline float mavlink_msg_battery_status_v2_get_current(const mavlink_mess
  *
  * @return [Ah] Consumed charge. NaN: field not provided. This is either the consumption since power-on or since the battery was full, depending on the value of MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_battery_status_v2_get_capacity_consumed(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  8);
@@ -408,6 +420,7 @@ static inline float mavlink_msg_battery_status_v2_get_capacity_consumed(const ma
  *
  * @return [Ah] Remaining charge (until empty). NaN: field not provided. Note: If MAV_BATTERY_STATUS_FLAGS_CAPACITY_RELATIVE_TO_FULL is unset, this value is based on the assumption the battery was full when the system was powered.
  */
+MAVLINK_WIP
 static inline float mavlink_msg_battery_status_v2_get_capacity_remaining(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  12);
@@ -418,6 +431,7 @@ static inline float mavlink_msg_battery_status_v2_get_capacity_remaining(const m
  *
  * @return [%] State of Charge (SoC). Remaining capacity relative to current fully-charged capacity as a percentage. Values: [0-100], NaN: field not provided. Note that the value may be calculated from design_capacity if current full_charge_capacity is not known (see BATTERY_INFO).
  */
+MAVLINK_WIP
 static inline float mavlink_msg_battery_status_v2_get_state_of_charge(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  16);
@@ -428,6 +442,7 @@ static inline float mavlink_msg_battery_status_v2_get_state_of_charge(const mavl
  *
  * @return  Fault, health, readiness, and other status indications.
  */
+MAVLINK_WIP
 static inline uint32_t mavlink_msg_battery_status_v2_get_status_flags(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint32_t(msg,  20);
@@ -439,6 +454,7 @@ static inline uint32_t mavlink_msg_battery_status_v2_get_status_flags(const mavl
  * @param msg The message to decode
  * @param battery_status_v2 C-struct to decode the message contents into
  */
+MAVLINK_WIP
 static inline void mavlink_msg_battery_status_v2_decode(const mavlink_message_t* msg, mavlink_battery_status_v2_t* battery_status_v2)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS

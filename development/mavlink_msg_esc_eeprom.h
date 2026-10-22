@@ -79,6 +79,7 @@ typedef struct __mavlink_esc_eeprom_t {
  * @param data  Raw ESC EEPROM data. Unused bytes should be set to zero.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_esc_eeprom_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint32_t target_system, uint8_t target_component, uint8_t firmware, uint8_t msg_index, uint8_t msg_count, uint8_t esc_index, const uint32_t *write_mask, uint8_t length, const uint8_t *data)
 {
@@ -184,6 +185,7 @@ static inline uint16_t mavlink_msg_esc_eeprom_pack_status(uint32_t system_id, ui
  * @param data  Raw ESC EEPROM data. Unused bytes should be set to zero.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_esc_eeprom_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint32_t target_system,uint8_t target_component,uint8_t firmware,uint8_t msg_index,uint8_t msg_count,uint8_t esc_index,const uint32_t *write_mask,uint8_t length,const uint8_t *data)
@@ -226,6 +228,7 @@ static inline uint16_t mavlink_msg_esc_eeprom_pack_chan(uint32_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  * @param esc_eeprom C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_esc_eeprom_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_esc_eeprom_t* esc_eeprom)
 {
     return mavlink_msg_esc_eeprom_pack(system_id, component_id, msg, esc_eeprom->target_system, esc_eeprom->target_component, esc_eeprom->firmware, esc_eeprom->msg_index, esc_eeprom->msg_count, esc_eeprom->esc_index, esc_eeprom->write_mask, esc_eeprom->length, esc_eeprom->data);
@@ -240,6 +243,7 @@ static inline uint16_t mavlink_msg_esc_eeprom_encode(uint32_t system_id, uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param esc_eeprom C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_esc_eeprom_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_esc_eeprom_t* esc_eeprom)
 {
     return mavlink_msg_esc_eeprom_pack_chan(system_id, component_id, chan, msg, esc_eeprom->target_system, esc_eeprom->target_component, esc_eeprom->firmware, esc_eeprom->msg_index, esc_eeprom->msg_count, esc_eeprom->esc_index, esc_eeprom->write_mask, esc_eeprom->length, esc_eeprom->data);
@@ -275,6 +279,7 @@ static inline uint16_t mavlink_msg_esc_eeprom_encode_status(uint32_t system_id, 
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
+MAVLINK_WIP
 static inline void mavlink_msg_esc_eeprom_send(mavlink_channel_t chan, uint32_t target_system, uint8_t target_component, uint8_t firmware, uint8_t msg_index, uint8_t msg_count, uint8_t esc_index, const uint32_t *write_mask, uint8_t length, const uint8_t *data)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -309,6 +314,7 @@ static inline void mavlink_msg_esc_eeprom_send(mavlink_channel_t chan, uint32_t 
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
+MAVLINK_WIP
 static inline void mavlink_msg_esc_eeprom_send_struct(mavlink_channel_t chan, const mavlink_esc_eeprom_t* esc_eeprom)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -326,6 +332,7 @@ static inline void mavlink_msg_esc_eeprom_send_struct(mavlink_channel_t chan, co
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
+MAVLINK_WIP
 static inline void mavlink_msg_esc_eeprom_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t target_system, uint8_t target_component, uint8_t firmware, uint8_t msg_index, uint8_t msg_count, uint8_t esc_index, const uint32_t *write_mask, uint8_t length, const uint8_t *data)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -366,6 +373,7 @@ static inline void mavlink_msg_esc_eeprom_send_buf(mavlink_message_t *msgbuf, ma
  *
  * @return  Component ID (normally 0 for broadcast).
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_esc_eeprom_get_target_component(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  25);
@@ -376,6 +384,7 @@ static inline uint8_t mavlink_msg_esc_eeprom_get_target_component(const mavlink_
  *
  * @return  ESC firmware type.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_esc_eeprom_get_firmware(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  26);
@@ -386,6 +395,7 @@ static inline uint8_t mavlink_msg_esc_eeprom_get_firmware(const mavlink_message_
  *
  * @return  Zero-indexed sequence number of this message when multiple messages are required to transfer the complete EEPROM data. The first message has index 0. For single-message transfers, set to 0.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_esc_eeprom_get_msg_index(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  27);
@@ -396,6 +406,7 @@ static inline uint8_t mavlink_msg_esc_eeprom_get_msg_index(const mavlink_message
  *
  * @return  Total number of messages required to transfer the complete EEPROM data. For single-message transfers, set to 1. Receivers should collect all messages from index 0 to msg_count-1 before reconstructing the complete data.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_esc_eeprom_get_msg_count(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  28);
@@ -406,6 +417,7 @@ static inline uint8_t mavlink_msg_esc_eeprom_get_msg_count(const mavlink_message
  *
  * @return  Index of the ESC (0 = ESC1, 1 = ESC2, etc.).
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_esc_eeprom_get_esc_index(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  29);
@@ -416,6 +428,7 @@ static inline uint8_t mavlink_msg_esc_eeprom_get_esc_index(const mavlink_message
  *
  * @return  Bitmask indicating which bytes in the data array should be written. Each bit corresponds to a byte index in the data array (bit 0 of write_mask[0] = data[0], bit 31 of write_mask[0] = data[31], bit 0 of write_mask[1] = data[32], etc.). Set bits indicate bytes to write, cleared bits indicate bytes to skip. This allows precise updates of individual parameters without overwriting the entire EEPROM.
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_esc_eeprom_get_write_mask(const mavlink_message_t* msg, uint32_t *write_mask)
 {
     return _MAV_RETURN_uint32_t_array(msg, write_mask, 6,  0);
@@ -426,6 +439,7 @@ static inline uint16_t mavlink_msg_esc_eeprom_get_write_mask(const mavlink_messa
  *
  * @return  Number of valid bytes in data array.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_esc_eeprom_get_length(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  30);
@@ -436,6 +450,7 @@ static inline uint8_t mavlink_msg_esc_eeprom_get_length(const mavlink_message_t*
  *
  * @return  Raw ESC EEPROM data. Unused bytes should be set to zero.
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_esc_eeprom_get_data(const mavlink_message_t* msg, uint8_t *data)
 {
     return _MAV_RETURN_uint8_t_array(msg, data, 192,  31);
@@ -447,6 +462,7 @@ static inline uint16_t mavlink_msg_esc_eeprom_get_data(const mavlink_message_t* 
  * @param msg The message to decode
  * @param esc_eeprom C-struct to decode the message contents into
  */
+MAVLINK_WIP
 static inline void mavlink_msg_esc_eeprom_decode(const mavlink_message_t* msg, mavlink_esc_eeprom_t* esc_eeprom)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS

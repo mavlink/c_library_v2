@@ -56,6 +56,7 @@ typedef struct __mavlink_estimator_sensor_fusion_status_t {
  * @param test_ratio  Per-source normalized innovation test ratio. NaN if not available.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                const uint8_t *intended, const uint8_t *active, const float *test_ratio)
 {
@@ -129,6 +130,7 @@ static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_pack_status(ui
  * @param test_ratio  Per-source normalized innovation test ratio. NaN if not available.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    const uint8_t *intended,const uint8_t *active,const float *test_ratio)
@@ -161,6 +163,7 @@ static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_pack_chan(uint
  * @param msg The MAVLink message to compress the data into
  * @param estimator_sensor_fusion_status C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_estimator_sensor_fusion_status_t* estimator_sensor_fusion_status)
 {
     return mavlink_msg_estimator_sensor_fusion_status_pack(system_id, component_id, msg, estimator_sensor_fusion_status->intended, estimator_sensor_fusion_status->active, estimator_sensor_fusion_status->test_ratio);
@@ -175,6 +178,7 @@ static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_encode(uint32_
  * @param msg The MAVLink message to compress the data into
  * @param estimator_sensor_fusion_status C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_estimator_sensor_fusion_status_t* estimator_sensor_fusion_status)
 {
     return mavlink_msg_estimator_sensor_fusion_status_pack_chan(system_id, component_id, chan, msg, estimator_sensor_fusion_status->intended, estimator_sensor_fusion_status->active, estimator_sensor_fusion_status->test_ratio);
@@ -204,6 +208,7 @@ static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_encode_status(
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
+MAVLINK_WIP
 static inline void mavlink_msg_estimator_sensor_fusion_status_send(mavlink_channel_t chan, const uint8_t *intended, const uint8_t *active, const float *test_ratio)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -228,6 +233,7 @@ static inline void mavlink_msg_estimator_sensor_fusion_status_send(mavlink_chann
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
+MAVLINK_WIP
 static inline void mavlink_msg_estimator_sensor_fusion_status_send_struct(mavlink_channel_t chan, const mavlink_estimator_sensor_fusion_status_t* estimator_sensor_fusion_status)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -245,6 +251,7 @@ static inline void mavlink_msg_estimator_sensor_fusion_status_send_struct(mavlin
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
+MAVLINK_WIP
 static inline void mavlink_msg_estimator_sensor_fusion_status_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  const uint8_t *intended, const uint8_t *active, const float *test_ratio)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -275,6 +282,7 @@ static inline void mavlink_msg_estimator_sensor_fusion_status_send_buf(mavlink_m
  *
  * @return  Per-source instance bitmask of sensors the estimator intends to fuse (reflects CTRL params with runtime overrides via MAV_CMD_ESTIMATOR_SENSOR_ENABLE).
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_get_intended(const mavlink_message_t* msg, uint8_t *intended)
 {
     return _MAV_RETURN_uint8_t_array(msg, intended, 9,  36);
@@ -285,6 +293,7 @@ static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_get_intended(c
  *
  * @return  Per-source instance bitmask of sensors the estimator is actively fusing.
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_get_active(const mavlink_message_t* msg, uint8_t *active)
 {
     return _MAV_RETURN_uint8_t_array(msg, active, 9,  45);
@@ -295,6 +304,7 @@ static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_get_active(con
  *
  * @return  Per-source normalized innovation test ratio. NaN if not available.
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_get_test_ratio(const mavlink_message_t* msg, float *test_ratio)
 {
     return _MAV_RETURN_float_array(msg, test_ratio, 9,  0);
@@ -306,6 +316,7 @@ static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_get_test_ratio
  * @param msg The message to decode
  * @param estimator_sensor_fusion_status C-struct to decode the message contents into
  */
+MAVLINK_WIP
 static inline void mavlink_msg_estimator_sensor_fusion_status_decode(const mavlink_message_t* msg, mavlink_estimator_sensor_fusion_status_t* estimator_sensor_fusion_status)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS

@@ -90,6 +90,7 @@ typedef struct __mavlink_gnss_integrity_t {
  * @param post_processing_quality  An abstract value representing the estimated PPK quality, or 255 if not available.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_gnss_integrity_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t id, uint32_t system_errors, uint8_t authentication_state, uint8_t jamming_state, uint8_t spoofing_state, uint8_t raim_state, uint16_t raim_hfom, uint16_t raim_vfom, uint8_t corrections_quality, uint8_t system_status_summary, uint8_t gnss_signal_quality, uint8_t post_processing_quality)
 {
@@ -217,6 +218,7 @@ static inline uint16_t mavlink_msg_gnss_integrity_pack_status(uint32_t system_id
  * @param post_processing_quality  An abstract value representing the estimated PPK quality, or 255 if not available.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_gnss_integrity_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t id,uint32_t system_errors,uint8_t authentication_state,uint8_t jamming_state,uint8_t spoofing_state,uint8_t raim_state,uint16_t raim_hfom,uint16_t raim_vfom,uint8_t corrections_quality,uint8_t system_status_summary,uint8_t gnss_signal_quality,uint8_t post_processing_quality)
@@ -267,6 +269,7 @@ static inline uint16_t mavlink_msg_gnss_integrity_pack_chan(uint32_t system_id, 
  * @param msg The MAVLink message to compress the data into
  * @param gnss_integrity C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_gnss_integrity_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_gnss_integrity_t* gnss_integrity)
 {
     return mavlink_msg_gnss_integrity_pack(system_id, component_id, msg, gnss_integrity->id, gnss_integrity->system_errors, gnss_integrity->authentication_state, gnss_integrity->jamming_state, gnss_integrity->spoofing_state, gnss_integrity->raim_state, gnss_integrity->raim_hfom, gnss_integrity->raim_vfom, gnss_integrity->corrections_quality, gnss_integrity->system_status_summary, gnss_integrity->gnss_signal_quality, gnss_integrity->post_processing_quality);
@@ -281,6 +284,7 @@ static inline uint16_t mavlink_msg_gnss_integrity_encode(uint32_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param gnss_integrity C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_gnss_integrity_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_gnss_integrity_t* gnss_integrity)
 {
     return mavlink_msg_gnss_integrity_pack_chan(system_id, component_id, chan, msg, gnss_integrity->id, gnss_integrity->system_errors, gnss_integrity->authentication_state, gnss_integrity->jamming_state, gnss_integrity->spoofing_state, gnss_integrity->raim_state, gnss_integrity->raim_hfom, gnss_integrity->raim_vfom, gnss_integrity->corrections_quality, gnss_integrity->system_status_summary, gnss_integrity->gnss_signal_quality, gnss_integrity->post_processing_quality);
@@ -319,6 +323,7 @@ static inline uint16_t mavlink_msg_gnss_integrity_encode_status(uint32_t system_
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
+MAVLINK_WIP
 static inline void mavlink_msg_gnss_integrity_send(mavlink_channel_t chan, uint8_t id, uint32_t system_errors, uint8_t authentication_state, uint8_t jamming_state, uint8_t spoofing_state, uint8_t raim_state, uint16_t raim_hfom, uint16_t raim_vfom, uint8_t corrections_quality, uint8_t system_status_summary, uint8_t gnss_signal_quality, uint8_t post_processing_quality)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -361,6 +366,7 @@ static inline void mavlink_msg_gnss_integrity_send(mavlink_channel_t chan, uint8
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
+MAVLINK_WIP
 static inline void mavlink_msg_gnss_integrity_send_struct(mavlink_channel_t chan, const mavlink_gnss_integrity_t* gnss_integrity)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -378,6 +384,7 @@ static inline void mavlink_msg_gnss_integrity_send_struct(mavlink_channel_t chan
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
+MAVLINK_WIP
 static inline void mavlink_msg_gnss_integrity_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t id, uint32_t system_errors, uint8_t authentication_state, uint8_t jamming_state, uint8_t spoofing_state, uint8_t raim_state, uint16_t raim_hfom, uint16_t raim_vfom, uint8_t corrections_quality, uint8_t system_status_summary, uint8_t gnss_signal_quality, uint8_t post_processing_quality)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -426,6 +433,7 @@ static inline void mavlink_msg_gnss_integrity_send_buf(mavlink_message_t *msgbuf
  *
  * @return  GNSS receiver id. Must match instance ids of other messages from same receiver.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_gnss_integrity_get_id(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  8);
@@ -436,6 +444,7 @@ static inline uint8_t mavlink_msg_gnss_integrity_get_id(const mavlink_message_t*
  *
  * @return  Errors in the GPS system.
  */
+MAVLINK_WIP
 static inline uint32_t mavlink_msg_gnss_integrity_get_system_errors(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint32_t(msg,  0);
@@ -446,6 +455,7 @@ static inline uint32_t mavlink_msg_gnss_integrity_get_system_errors(const mavlin
  *
  * @return  Signal authentication state of the GPS system.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_gnss_integrity_get_authentication_state(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  9);
@@ -456,6 +466,7 @@ static inline uint8_t mavlink_msg_gnss_integrity_get_authentication_state(const 
  *
  * @return  Signal jamming state of the GPS system.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_gnss_integrity_get_jamming_state(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  10);
@@ -466,6 +477,7 @@ static inline uint8_t mavlink_msg_gnss_integrity_get_jamming_state(const mavlink
  *
  * @return  Signal spoofing state of the GPS system.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_gnss_integrity_get_spoofing_state(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  11);
@@ -476,6 +488,7 @@ static inline uint8_t mavlink_msg_gnss_integrity_get_spoofing_state(const mavlin
  *
  * @return  The state of the RAIM processing.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_gnss_integrity_get_raim_state(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  12);
@@ -486,6 +499,7 @@ static inline uint8_t mavlink_msg_gnss_integrity_get_raim_state(const mavlink_me
  *
  * @return [cm] Horizontal expected accuracy using satellites successfully validated using RAIM.
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_gnss_integrity_get_raim_hfom(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint16_t(msg,  4);
@@ -496,6 +510,7 @@ static inline uint16_t mavlink_msg_gnss_integrity_get_raim_hfom(const mavlink_me
  *
  * @return [cm] Vertical expected accuracy using satellites successfully validated using RAIM.
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_gnss_integrity_get_raim_vfom(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint16_t(msg,  6);
@@ -506,6 +521,7 @@ static inline uint16_t mavlink_msg_gnss_integrity_get_raim_vfom(const mavlink_me
  *
  * @return  An abstract value representing the estimated quality of incoming corrections, or 255 if not available.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_gnss_integrity_get_corrections_quality(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  13);
@@ -516,6 +532,7 @@ static inline uint8_t mavlink_msg_gnss_integrity_get_corrections_quality(const m
  *
  * @return  An abstract value representing the overall status of the receiver, or 255 if not available.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_gnss_integrity_get_system_status_summary(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  14);
@@ -526,6 +543,7 @@ static inline uint8_t mavlink_msg_gnss_integrity_get_system_status_summary(const
  *
  * @return  An abstract value representing the quality of incoming GNSS signals, or 255 if not available.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_gnss_integrity_get_gnss_signal_quality(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  15);
@@ -536,6 +554,7 @@ static inline uint8_t mavlink_msg_gnss_integrity_get_gnss_signal_quality(const m
  *
  * @return  An abstract value representing the estimated PPK quality, or 255 if not available.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_gnss_integrity_get_post_processing_quality(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  16);
@@ -547,6 +566,7 @@ static inline uint8_t mavlink_msg_gnss_integrity_get_post_processing_quality(con
  * @param msg The message to decode
  * @param gnss_integrity C-struct to decode the message contents into
  */
+MAVLINK_WIP
 static inline void mavlink_msg_gnss_integrity_decode(const mavlink_message_t* msg, mavlink_gnss_integrity_t* gnss_integrity)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS

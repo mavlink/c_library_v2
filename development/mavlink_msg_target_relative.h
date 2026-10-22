@@ -88,6 +88,7 @@ typedef struct __mavlink_target_relative_t {
  * @param type  Type of target
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_relative_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint64_t timestamp, uint8_t id, uint8_t frame, float x, float y, float z, const float *pos_std, float yaw_std, const float *q_target, const float *q_sensor, uint8_t type)
 {
@@ -205,6 +206,7 @@ static inline uint16_t mavlink_msg_target_relative_pack_status(uint32_t system_i
  * @param type  Type of target
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_relative_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint64_t timestamp,uint8_t id,uint8_t frame,float x,float y,float z,const float *pos_std,float yaw_std,const float *q_target,const float *q_sensor,uint8_t type)
@@ -251,6 +253,7 @@ static inline uint16_t mavlink_msg_target_relative_pack_chan(uint32_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param target_relative C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_relative_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_target_relative_t* target_relative)
 {
     return mavlink_msg_target_relative_pack(system_id, component_id, msg, target_relative->timestamp, target_relative->id, target_relative->frame, target_relative->x, target_relative->y, target_relative->z, target_relative->pos_std, target_relative->yaw_std, target_relative->q_target, target_relative->q_sensor, target_relative->type);
@@ -265,6 +268,7 @@ static inline uint16_t mavlink_msg_target_relative_encode(uint32_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param target_relative C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_relative_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_target_relative_t* target_relative)
 {
     return mavlink_msg_target_relative_pack_chan(system_id, component_id, chan, msg, target_relative->timestamp, target_relative->id, target_relative->frame, target_relative->x, target_relative->y, target_relative->z, target_relative->pos_std, target_relative->yaw_std, target_relative->q_target, target_relative->q_sensor, target_relative->type);
@@ -302,6 +306,7 @@ static inline uint16_t mavlink_msg_target_relative_encode_status(uint32_t system
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
+MAVLINK_WIP
 static inline void mavlink_msg_target_relative_send(mavlink_channel_t chan, uint64_t timestamp, uint8_t id, uint8_t frame, float x, float y, float z, const float *pos_std, float yaw_std, const float *q_target, const float *q_sensor, uint8_t type)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -340,6 +345,7 @@ static inline void mavlink_msg_target_relative_send(mavlink_channel_t chan, uint
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
+MAVLINK_WIP
 static inline void mavlink_msg_target_relative_send_struct(mavlink_channel_t chan, const mavlink_target_relative_t* target_relative)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -357,6 +363,7 @@ static inline void mavlink_msg_target_relative_send_struct(mavlink_channel_t cha
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
+MAVLINK_WIP
 static inline void mavlink_msg_target_relative_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t timestamp, uint8_t id, uint8_t frame, float x, float y, float z, const float *pos_std, float yaw_std, const float *q_target, const float *q_sensor, uint8_t type)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -401,6 +408,7 @@ static inline void mavlink_msg_target_relative_send_buf(mavlink_message_t *msgbu
  *
  * @return [us] Timestamp (UNIX epoch time)
  */
+MAVLINK_WIP
 static inline uint64_t mavlink_msg_target_relative_get_timestamp(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint64_t(msg,  0);
@@ -411,6 +419,7 @@ static inline uint64_t mavlink_msg_target_relative_get_timestamp(const mavlink_m
  *
  * @return  The ID of the target if multiple targets are present
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_target_relative_get_id(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  68);
@@ -421,6 +430,7 @@ static inline uint8_t mavlink_msg_target_relative_get_id(const mavlink_message_t
  *
  * @return  Coordinate frame used for following fields.
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_target_relative_get_frame(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  69);
@@ -431,6 +441,7 @@ static inline uint8_t mavlink_msg_target_relative_get_frame(const mavlink_messag
  *
  * @return [m] X Position of the target in TARGET_OBS_FRAME
  */
+MAVLINK_WIP
 static inline float mavlink_msg_target_relative_get_x(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  8);
@@ -441,6 +452,7 @@ static inline float mavlink_msg_target_relative_get_x(const mavlink_message_t* m
  *
  * @return [m] Y Position of the target in TARGET_OBS_FRAME
  */
+MAVLINK_WIP
 static inline float mavlink_msg_target_relative_get_y(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  12);
@@ -451,6 +463,7 @@ static inline float mavlink_msg_target_relative_get_y(const mavlink_message_t* m
  *
  * @return [m] Z Position of the target in TARGET_OBS_FRAME
  */
+MAVLINK_WIP
 static inline float mavlink_msg_target_relative_get_z(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  16);
@@ -461,6 +474,7 @@ static inline float mavlink_msg_target_relative_get_z(const mavlink_message_t* m
  *
  * @return [m] Standard deviation of the target's position in TARGET_OBS_FRAME
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_relative_get_pos_std(const mavlink_message_t* msg, float *pos_std)
 {
     return _MAV_RETURN_float_array(msg, pos_std, 3,  20);
@@ -471,6 +485,7 @@ static inline uint16_t mavlink_msg_target_relative_get_pos_std(const mavlink_mes
  *
  * @return [rad] Standard deviation of the target's orientation in TARGET_OBS_FRAME
  */
+MAVLINK_WIP
 static inline float mavlink_msg_target_relative_get_yaw_std(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  32);
@@ -481,6 +496,7 @@ static inline float mavlink_msg_target_relative_get_yaw_std(const mavlink_messag
  *
  * @return  Quaternion of the target's orientation from the target's frame to the TARGET_OBS_FRAME (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_relative_get_q_target(const mavlink_message_t* msg, float *q_target)
 {
     return _MAV_RETURN_float_array(msg, q_target, 4,  36);
@@ -491,6 +507,7 @@ static inline uint16_t mavlink_msg_target_relative_get_q_target(const mavlink_me
  *
  * @return  Quaternion of the sensor's orientation from TARGET_OBS_FRAME to vehicle-carried NED. (Ignored if set to (0,0,0,0)) (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_relative_get_q_sensor(const mavlink_message_t* msg, float *q_sensor)
 {
     return _MAV_RETURN_float_array(msg, q_sensor, 4,  52);
@@ -501,6 +518,7 @@ static inline uint16_t mavlink_msg_target_relative_get_q_sensor(const mavlink_me
  *
  * @return  Type of target
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_target_relative_get_type(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  70);
@@ -512,6 +530,7 @@ static inline uint8_t mavlink_msg_target_relative_get_type(const mavlink_message
  * @param msg The message to decode
  * @param target_relative C-struct to decode the message contents into
  */
+MAVLINK_WIP
 static inline void mavlink_msg_target_relative_decode(const mavlink_message_t* msg, mavlink_target_relative_t* target_relative)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS

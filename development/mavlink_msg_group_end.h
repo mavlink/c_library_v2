@@ -56,6 +56,7 @@ typedef struct __mavlink_group_end_t {
         The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_group_end_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint32_t group_id, uint32_t mission_checksum, uint64_t time_usec)
 {
@@ -131,6 +132,7 @@ static inline uint16_t mavlink_msg_group_end_pack_status(uint32_t system_id, uin
         The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_group_end_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint32_t group_id,uint32_t mission_checksum,uint64_t time_usec)
@@ -163,6 +165,7 @@ static inline uint16_t mavlink_msg_group_end_pack_chan(uint32_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param group_end C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_group_end_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_group_end_t* group_end)
 {
     return mavlink_msg_group_end_pack(system_id, component_id, msg, group_end->group_id, group_end->mission_checksum, group_end->time_usec);
@@ -177,6 +180,7 @@ static inline uint16_t mavlink_msg_group_end_encode(uint32_t system_id, uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param group_end C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_group_end_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_group_end_t* group_end)
 {
     return mavlink_msg_group_end_pack_chan(system_id, component_id, chan, msg, group_end->group_id, group_end->mission_checksum, group_end->time_usec);
@@ -207,6 +211,7 @@ static inline uint16_t mavlink_msg_group_end_encode_status(uint32_t system_id, u
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
+MAVLINK_WIP
 static inline void mavlink_msg_group_end_send(mavlink_channel_t chan, uint32_t group_id, uint32_t mission_checksum, uint64_t time_usec)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -231,6 +236,7 @@ static inline void mavlink_msg_group_end_send(mavlink_channel_t chan, uint32_t g
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
+MAVLINK_WIP
 static inline void mavlink_msg_group_end_send_struct(mavlink_channel_t chan, const mavlink_group_end_t* group_end)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -248,6 +254,7 @@ static inline void mavlink_msg_group_end_send_struct(mavlink_channel_t chan, con
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
+MAVLINK_WIP
 static inline void mavlink_msg_group_end_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t group_id, uint32_t mission_checksum, uint64_t time_usec)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -278,6 +285,7 @@ static inline void mavlink_msg_group_end_send_buf(mavlink_message_t *msgbuf, mav
  *
  * @return  Mission-unique group id (from MAV_CMD_GROUP_END).
  */
+MAVLINK_WIP
 static inline uint32_t mavlink_msg_group_end_get_group_id(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint32_t(msg,  8);
@@ -288,6 +296,7 @@ static inline uint32_t mavlink_msg_group_end_get_group_id(const mavlink_message_
  *
  * @return  CRC32 checksum of current plan for MAV_MISSION_TYPE_ALL. As defined in MISSION_CHECKSUM message.
  */
+MAVLINK_WIP
 static inline uint32_t mavlink_msg_group_end_get_mission_checksum(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint32_t(msg,  12);
@@ -299,6 +308,7 @@ static inline uint32_t mavlink_msg_group_end_get_mission_checksum(const mavlink_
  * @return [us] Timestamp (UNIX Epoch time or time since system boot).
         The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  */
+MAVLINK_WIP
 static inline uint64_t mavlink_msg_group_end_get_time_usec(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint64_t(msg,  0);
@@ -310,6 +320,7 @@ static inline uint64_t mavlink_msg_group_end_get_time_usec(const mavlink_message
  * @param msg The message to decode
  * @param group_end C-struct to decode the message contents into
  */
+MAVLINK_WIP
 static inline void mavlink_msg_group_end_decode(const mavlink_message_t* msg, mavlink_group_end_t* group_end)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS

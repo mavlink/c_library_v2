@@ -100,6 +100,7 @@ typedef struct __mavlink_target_absolute_t {
  * @param acc_std [m/s/s] Standard deviation of the target's acceleration in its body frame
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_absolute_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint64_t timestamp, uint8_t id, uint8_t sensor_capabilities, int32_t lat, int32_t lon, float alt, const float *vel, const float *acc, const float *q_target, const float *rates, const float *position_std, const float *vel_std, const float *acc_std)
 {
@@ -229,6 +230,7 @@ static inline uint16_t mavlink_msg_target_absolute_pack_status(uint32_t system_i
  * @param acc_std [m/s/s] Standard deviation of the target's acceleration in its body frame
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_absolute_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint64_t timestamp,uint8_t id,uint8_t sensor_capabilities,int32_t lat,int32_t lon,float alt,const float *vel,const float *acc,const float *q_target,const float *rates,const float *position_std,const float *vel_std,const float *acc_std)
@@ -279,6 +281,7 @@ static inline uint16_t mavlink_msg_target_absolute_pack_chan(uint32_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param target_absolute C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_absolute_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_target_absolute_t* target_absolute)
 {
     return mavlink_msg_target_absolute_pack(system_id, component_id, msg, target_absolute->timestamp, target_absolute->id, target_absolute->sensor_capabilities, target_absolute->lat, target_absolute->lon, target_absolute->alt, target_absolute->vel, target_absolute->acc, target_absolute->q_target, target_absolute->rates, target_absolute->position_std, target_absolute->vel_std, target_absolute->acc_std);
@@ -293,6 +296,7 @@ static inline uint16_t mavlink_msg_target_absolute_encode(uint32_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param target_absolute C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_absolute_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_target_absolute_t* target_absolute)
 {
     return mavlink_msg_target_absolute_pack_chan(system_id, component_id, chan, msg, target_absolute->timestamp, target_absolute->id, target_absolute->sensor_capabilities, target_absolute->lat, target_absolute->lon, target_absolute->alt, target_absolute->vel, target_absolute->acc, target_absolute->q_target, target_absolute->rates, target_absolute->position_std, target_absolute->vel_std, target_absolute->acc_std);
@@ -332,6 +336,7 @@ static inline uint16_t mavlink_msg_target_absolute_encode_status(uint32_t system
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
+MAVLINK_WIP
 static inline void mavlink_msg_target_absolute_send(mavlink_channel_t chan, uint64_t timestamp, uint8_t id, uint8_t sensor_capabilities, int32_t lat, int32_t lon, float alt, const float *vel, const float *acc, const float *q_target, const float *rates, const float *position_std, const float *vel_std, const float *acc_std)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -374,6 +379,7 @@ static inline void mavlink_msg_target_absolute_send(mavlink_channel_t chan, uint
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
+MAVLINK_WIP
 static inline void mavlink_msg_target_absolute_send_struct(mavlink_channel_t chan, const mavlink_target_absolute_t* target_absolute)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -391,6 +397,7 @@ static inline void mavlink_msg_target_absolute_send_struct(mavlink_channel_t cha
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
+MAVLINK_WIP
 static inline void mavlink_msg_target_absolute_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t timestamp, uint8_t id, uint8_t sensor_capabilities, int32_t lat, int32_t lon, float alt, const float *vel, const float *acc, const float *q_target, const float *rates, const float *position_std, const float *vel_std, const float *acc_std)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -439,6 +446,7 @@ static inline void mavlink_msg_target_absolute_send_buf(mavlink_message_t *msgbu
  *
  * @return [us] Timestamp (UNIX epoch time).
  */
+MAVLINK_WIP
 static inline uint64_t mavlink_msg_target_absolute_get_timestamp(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint64_t(msg,  0);
@@ -449,6 +457,7 @@ static inline uint64_t mavlink_msg_target_absolute_get_timestamp(const mavlink_m
  *
  * @return  The ID of the target if multiple targets are present
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_target_absolute_get_id(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  104);
@@ -459,6 +468,7 @@ static inline uint8_t mavlink_msg_target_absolute_get_id(const mavlink_message_t
  *
  * @return  Bitmap to indicate the sensor's reporting capabilities
  */
+MAVLINK_WIP
 static inline uint8_t mavlink_msg_target_absolute_get_sensor_capabilities(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  105);
@@ -469,6 +479,7 @@ static inline uint8_t mavlink_msg_target_absolute_get_sensor_capabilities(const 
  *
  * @return [degE7] Target's latitude (WGS84)
  */
+MAVLINK_WIP
 static inline int32_t mavlink_msg_target_absolute_get_lat(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_int32_t(msg,  8);
@@ -479,6 +490,7 @@ static inline int32_t mavlink_msg_target_absolute_get_lat(const mavlink_message_
  *
  * @return [degE7] Target's longitude (WGS84)
  */
+MAVLINK_WIP
 static inline int32_t mavlink_msg_target_absolute_get_lon(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_int32_t(msg,  12);
@@ -489,6 +501,7 @@ static inline int32_t mavlink_msg_target_absolute_get_lon(const mavlink_message_
  *
  * @return [m] Target's altitude (AMSL)
  */
+MAVLINK_WIP
 static inline float mavlink_msg_target_absolute_get_alt(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  16);
@@ -499,6 +512,7 @@ static inline float mavlink_msg_target_absolute_get_alt(const mavlink_message_t*
  *
  * @return [m/s] Target's velocity in its body frame
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_absolute_get_vel(const mavlink_message_t* msg, float *vel)
 {
     return _MAV_RETURN_float_array(msg, vel, 3,  20);
@@ -509,6 +523,7 @@ static inline uint16_t mavlink_msg_target_absolute_get_vel(const mavlink_message
  *
  * @return [m/s/s] Linear target's acceleration in its body frame
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_absolute_get_acc(const mavlink_message_t* msg, float *acc)
 {
     return _MAV_RETURN_float_array(msg, acc, 3,  32);
@@ -519,6 +534,7 @@ static inline uint16_t mavlink_msg_target_absolute_get_acc(const mavlink_message
  *
  * @return  Quaternion of the target's orientation from its body frame to the vehicle's NED frame.
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_absolute_get_q_target(const mavlink_message_t* msg, float *q_target)
 {
     return _MAV_RETURN_float_array(msg, q_target, 4,  44);
@@ -529,6 +545,7 @@ static inline uint16_t mavlink_msg_target_absolute_get_q_target(const mavlink_me
  *
  * @return [rad/s] Target's roll, pitch and yaw rates
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_absolute_get_rates(const mavlink_message_t* msg, float *rates)
 {
     return _MAV_RETURN_float_array(msg, rates, 3,  60);
@@ -539,6 +556,7 @@ static inline uint16_t mavlink_msg_target_absolute_get_rates(const mavlink_messa
  *
  * @return [m] Standard deviation of horizontal (eph) and vertical (epv) position errors
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_absolute_get_position_std(const mavlink_message_t* msg, float *position_std)
 {
     return _MAV_RETURN_float_array(msg, position_std, 2,  72);
@@ -549,6 +567,7 @@ static inline uint16_t mavlink_msg_target_absolute_get_position_std(const mavlin
  *
  * @return [m/s] Standard deviation of the target's velocity in its body frame
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_absolute_get_vel_std(const mavlink_message_t* msg, float *vel_std)
 {
     return _MAV_RETURN_float_array(msg, vel_std, 3,  80);
@@ -559,6 +578,7 @@ static inline uint16_t mavlink_msg_target_absolute_get_vel_std(const mavlink_mes
  *
  * @return [m/s/s] Standard deviation of the target's acceleration in its body frame
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_absolute_get_acc_std(const mavlink_message_t* msg, float *acc_std)
 {
     return _MAV_RETURN_float_array(msg, acc_std, 3,  92);
@@ -570,6 +590,7 @@ static inline uint16_t mavlink_msg_target_absolute_get_acc_std(const mavlink_mes
  * @param msg The message to decode
  * @param target_absolute C-struct to decode the message contents into
  */
+MAVLINK_WIP
 static inline void mavlink_msg_target_absolute_decode(const mavlink_message_t* msg, mavlink_target_absolute_t* target_absolute)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
