@@ -60,7 +60,8 @@ typedef enum MAV_AUTOPILOT
    MAV_AUTOPILOT_AIRRAILS=19, /* AirRails - http://uaventure.com | */
    MAV_AUTOPILOT_REFLEX=20, /* Fusion Reflex - https://fusion.engineering | */
    MAV_AUTOPILOT_FLIX=21, /* Flix quadcopter - https://quadcopter.dev | */
-   MAV_AUTOPILOT_ENUM_END=22, /*  | */
+   MAV_AUTOPILOT_BETAFLIGHT=22, /* Betaflight - https://betaflight.com | */
+   MAV_AUTOPILOT_ENUM_END=23, /*  | */
 } MAV_AUTOPILOT;
 #endif
 
