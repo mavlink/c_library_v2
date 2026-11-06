@@ -310,10 +310,10 @@ static inline void mavlink_msg_relay_status_decode(const mavlink_message_t* msg,
     relay_status->time_boot_ms = mavlink_msg_relay_status_get_time_boot_ms(msg);
     relay_status->on = mavlink_msg_relay_status_get_on(msg);
     relay_status->present = mavlink_msg_relay_status_get_present(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_RELAY_STATUS_LEN? msg->len : MAVLINK_MSG_ID_RELAY_STATUS_LEN;
-        memset(relay_status, 0, MAVLINK_MSG_ID_RELAY_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_RELAY_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_RELAY_STATUS_LEN;
+    memset(relay_status, 0, MAVLINK_MSG_ID_RELAY_STATUS_LEN);
     memcpy(relay_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

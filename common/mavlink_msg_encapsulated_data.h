@@ -272,10 +272,10 @@ static inline void mavlink_msg_encapsulated_data_decode(const mavlink_message_t*
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     encapsulated_data->seqnr = mavlink_msg_encapsulated_data_get_seqnr(msg);
     mavlink_msg_encapsulated_data_get_data(msg, encapsulated_data->data);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ENCAPSULATED_DATA_LEN? msg->len : MAVLINK_MSG_ID_ENCAPSULATED_DATA_LEN;
-        memset(encapsulated_data, 0, MAVLINK_MSG_ID_ENCAPSULATED_DATA_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ENCAPSULATED_DATA_LEN ? msg->len : MAVLINK_MSG_ID_ENCAPSULATED_DATA_LEN;
+    memset(encapsulated_data, 0, MAVLINK_MSG_ID_ENCAPSULATED_DATA_LEN);
     memcpy(encapsulated_data, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

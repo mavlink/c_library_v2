@@ -534,10 +534,10 @@ static inline void mavlink_msg_hil_controls_decode(const mavlink_message_t* msg,
     hil_controls->aux4 = mavlink_msg_hil_controls_get_aux4(msg);
     hil_controls->mode = mavlink_msg_hil_controls_get_mode(msg);
     hil_controls->nav_mode = mavlink_msg_hil_controls_get_nav_mode(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_HIL_CONTROLS_LEN? msg->len : MAVLINK_MSG_ID_HIL_CONTROLS_LEN;
-        memset(hil_controls, 0, MAVLINK_MSG_ID_HIL_CONTROLS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_HIL_CONTROLS_LEN ? msg->len : MAVLINK_MSG_ID_HIL_CONTROLS_LEN;
+    memset(hil_controls, 0, MAVLINK_MSG_ID_HIL_CONTROLS_LEN);
     memcpy(hil_controls, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -318,11 +318,6 @@ static inline void mavlink_msg_gps_inject_data_decode(const mavlink_message_t* m
     gps_inject_data->target_component = mavlink_msg_gps_inject_data_get_target_component(msg);
     gps_inject_data->len = mavlink_msg_gps_inject_data_get_len(msg);
     mavlink_msg_gps_inject_data_get_data(msg, gps_inject_data->data);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_GPS_INJECT_DATA_LEN? msg->len : MAVLINK_MSG_ID_GPS_INJECT_DATA_LEN;
-        memset(gps_inject_data, 0, MAVLINK_MSG_ID_GPS_INJECT_DATA_LEN);
-    memcpy(gps_inject_data, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -330,4 +325,7 @@ static inline void mavlink_msg_gps_inject_data_decode(const mavlink_message_t* m
         gps_inject_data->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, gps_inject_data, MAVLINK_MSG_ID_GPS_INJECT_DATA_LEN, 0);
+#endif
 }

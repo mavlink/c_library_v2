@@ -487,11 +487,6 @@ static inline void mavlink_msg_set_attitude_target_decode(const mavlink_message_
     set_attitude_target->target_component = mavlink_msg_set_attitude_target_get_target_component(msg);
     set_attitude_target->type_mask = mavlink_msg_set_attitude_target_get_type_mask(msg);
     mavlink_msg_set_attitude_target_get_thrust_body(msg, set_attitude_target->thrust_body);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SET_ATTITUDE_TARGET_LEN? msg->len : MAVLINK_MSG_ID_SET_ATTITUDE_TARGET_LEN;
-        memset(set_attitude_target, 0, MAVLINK_MSG_ID_SET_ATTITUDE_TARGET_LEN);
-    memcpy(set_attitude_target, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -499,4 +494,7 @@ static inline void mavlink_msg_set_attitude_target_decode(const mavlink_message_
         set_attitude_target->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, set_attitude_target, MAVLINK_MSG_ID_SET_ATTITUDE_TARGET_LEN, 36);
+#endif
 }

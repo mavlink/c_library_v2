@@ -366,10 +366,10 @@ static inline void mavlink_msg_mount_orientation_decode(const mavlink_message_t*
     mount_orientation->pitch = mavlink_msg_mount_orientation_get_pitch(msg);
     mount_orientation->yaw = mavlink_msg_mount_orientation_get_yaw(msg);
     mount_orientation->yaw_absolute = mavlink_msg_mount_orientation_get_yaw_absolute(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN? msg->len : MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN;
-        memset(mount_orientation, 0, MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN ? msg->len : MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN;
+    memset(mount_orientation, 0, MAVLINK_MSG_ID_MOUNT_ORIENTATION_LEN);
     memcpy(mount_orientation, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

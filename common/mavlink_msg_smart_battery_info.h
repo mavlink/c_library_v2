@@ -694,10 +694,10 @@ static inline void mavlink_msg_smart_battery_info_decode(const mavlink_message_t
     smart_battery_info->discharge_maximum_current = mavlink_msg_smart_battery_info_get_discharge_maximum_current(msg);
     smart_battery_info->discharge_maximum_burst_current = mavlink_msg_smart_battery_info_get_discharge_maximum_burst_current(msg);
     mavlink_msg_smart_battery_info_get_manufacture_date(msg, smart_battery_info->manufacture_date);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SMART_BATTERY_INFO_LEN? msg->len : MAVLINK_MSG_ID_SMART_BATTERY_INFO_LEN;
-        memset(smart_battery_info, 0, MAVLINK_MSG_ID_SMART_BATTERY_INFO_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_SMART_BATTERY_INFO_LEN ? msg->len : MAVLINK_MSG_ID_SMART_BATTERY_INFO_LEN;
+    memset(smart_battery_info, 0, MAVLINK_MSG_ID_SMART_BATTERY_INFO_LEN);
     memcpy(smart_battery_info, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

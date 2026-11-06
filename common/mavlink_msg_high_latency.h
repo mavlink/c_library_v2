@@ -898,10 +898,10 @@ static inline void mavlink_msg_high_latency_decode(const mavlink_message_t* msg,
     high_latency->temperature_air = mavlink_msg_high_latency_get_temperature_air(msg);
     high_latency->failsafe = mavlink_msg_high_latency_get_failsafe(msg);
     high_latency->wp_num = mavlink_msg_high_latency_get_wp_num(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_HIGH_LATENCY_LEN? msg->len : MAVLINK_MSG_ID_HIGH_LATENCY_LEN;
-        memset(high_latency, 0, MAVLINK_MSG_ID_HIGH_LATENCY_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_HIGH_LATENCY_LEN ? msg->len : MAVLINK_MSG_ID_HIGH_LATENCY_LEN;
+    memset(high_latency, 0, MAVLINK_MSG_ID_HIGH_LATENCY_LEN);
     memcpy(high_latency, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

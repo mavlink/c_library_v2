@@ -310,11 +310,6 @@ static inline void mavlink_msg_command_cancel_decode(const mavlink_message_t* ms
     command_cancel->command = mavlink_msg_command_cancel_get_command(msg);
     command_cancel->target_system = _MAV_RETURN_uint8_t(msg, 2);
     command_cancel->target_component = mavlink_msg_command_cancel_get_target_component(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_COMMAND_CANCEL_LEN? msg->len : MAVLINK_MSG_ID_COMMAND_CANCEL_LEN;
-        memset(command_cancel, 0, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN);
-    memcpy(command_cancel, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -322,4 +317,7 @@ static inline void mavlink_msg_command_cancel_decode(const mavlink_message_t* ms
         command_cancel->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, command_cancel, MAVLINK_MSG_ID_COMMAND_CANCEL_LEN, 2);
+#endif
 }

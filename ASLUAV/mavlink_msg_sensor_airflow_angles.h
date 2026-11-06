@@ -366,10 +366,10 @@ static inline void mavlink_msg_sensor_airflow_angles_decode(const mavlink_messag
     sensor_airflow_angles->sideslip = mavlink_msg_sensor_airflow_angles_get_sideslip(msg);
     sensor_airflow_angles->angleofattack_valid = mavlink_msg_sensor_airflow_angles_get_angleofattack_valid(msg);
     sensor_airflow_angles->sideslip_valid = mavlink_msg_sensor_airflow_angles_get_sideslip_valid(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SENSOR_AIRFLOW_ANGLES_LEN? msg->len : MAVLINK_MSG_ID_SENSOR_AIRFLOW_ANGLES_LEN;
-        memset(sensor_airflow_angles, 0, MAVLINK_MSG_ID_SENSOR_AIRFLOW_ANGLES_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_SENSOR_AIRFLOW_ANGLES_LEN ? msg->len : MAVLINK_MSG_ID_SENSOR_AIRFLOW_ANGLES_LEN;
+    memset(sensor_airflow_angles, 0, MAVLINK_MSG_ID_SENSOR_AIRFLOW_ANGLES_LEN);
     memcpy(sensor_airflow_angles, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

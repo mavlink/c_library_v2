@@ -758,10 +758,10 @@ static inline void mavlink_msg_gps_input_decode(const mavlink_message_t* msg, ma
     gps_input->fix_type = mavlink_msg_gps_input_get_fix_type(msg);
     gps_input->satellites_visible = mavlink_msg_gps_input_get_satellites_visible(msg);
     gps_input->yaw = mavlink_msg_gps_input_get_yaw(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_GPS_INPUT_LEN? msg->len : MAVLINK_MSG_ID_GPS_INPUT_LEN;
-        memset(gps_input, 0, MAVLINK_MSG_ID_GPS_INPUT_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_GPS_INPUT_LEN ? msg->len : MAVLINK_MSG_ID_GPS_INPUT_LEN;
+    memset(gps_input, 0, MAVLINK_MSG_ID_GPS_INPUT_LEN);
     memcpy(gps_input, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

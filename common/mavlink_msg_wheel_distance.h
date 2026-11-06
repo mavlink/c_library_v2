@@ -300,10 +300,10 @@ static inline void mavlink_msg_wheel_distance_decode(const mavlink_message_t* ms
     wheel_distance->time_usec = mavlink_msg_wheel_distance_get_time_usec(msg);
     mavlink_msg_wheel_distance_get_distance(msg, wheel_distance->distance);
     wheel_distance->count = mavlink_msg_wheel_distance_get_count(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_WHEEL_DISTANCE_LEN? msg->len : MAVLINK_MSG_ID_WHEEL_DISTANCE_LEN;
-        memset(wheel_distance, 0, MAVLINK_MSG_ID_WHEEL_DISTANCE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_WHEEL_DISTANCE_LEN ? msg->len : MAVLINK_MSG_ID_WHEEL_DISTANCE_LEN;
+    memset(wheel_distance, 0, MAVLINK_MSG_ID_WHEEL_DISTANCE_LEN);
     memcpy(wheel_distance, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

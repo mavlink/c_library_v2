@@ -694,10 +694,10 @@ static inline void mavlink_msg_control_system_state_decode(const mavlink_message
     control_system_state->roll_rate = mavlink_msg_control_system_state_get_roll_rate(msg);
     control_system_state->pitch_rate = mavlink_msg_control_system_state_get_pitch_rate(msg);
     control_system_state->yaw_rate = mavlink_msg_control_system_state_get_yaw_rate(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE_LEN? msg->len : MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE_LEN;
-        memset(control_system_state, 0, MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE_LEN ? msg->len : MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE_LEN;
+    memset(control_system_state, 0, MAVLINK_MSG_ID_CONTROL_SYSTEM_STATE_LEN);
     memcpy(control_system_state, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

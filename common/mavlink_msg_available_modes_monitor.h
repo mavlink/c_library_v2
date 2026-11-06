@@ -254,10 +254,10 @@ static inline void mavlink_msg_available_modes_monitor_decode(const mavlink_mess
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     available_modes_monitor->seq = mavlink_msg_available_modes_monitor_get_seq(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_LEN? msg->len : MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_LEN;
-        memset(available_modes_monitor, 0, MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_LEN ? msg->len : MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_LEN;
+    memset(available_modes_monitor, 0, MAVLINK_MSG_ID_AVAILABLE_MODES_MONITOR_LEN);
     memcpy(available_modes_monitor, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

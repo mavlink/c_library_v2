@@ -300,10 +300,10 @@ static inline void mavlink_msg_gopro_get_response_decode(const mavlink_message_t
     gopro_get_response->cmd_id = mavlink_msg_gopro_get_response_get_cmd_id(msg);
     gopro_get_response->status = mavlink_msg_gopro_get_response_get_status(msg);
     mavlink_msg_gopro_get_response_get_value(msg, gopro_get_response->value);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_GOPRO_GET_RESPONSE_LEN? msg->len : MAVLINK_MSG_ID_GOPRO_GET_RESPONSE_LEN;
-        memset(gopro_get_response, 0, MAVLINK_MSG_ID_GOPRO_GET_RESPONSE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_GOPRO_GET_RESPONSE_LEN ? msg->len : MAVLINK_MSG_ID_GOPRO_GET_RESPONSE_LEN;
+    memset(gopro_get_response, 0, MAVLINK_MSG_ID_GOPRO_GET_RESPONSE_LEN);
     memcpy(gopro_get_response, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -356,10 +356,10 @@ static inline void mavlink_msg_param_value_decode(const mavlink_message_t* msg, 
     param_value->param_index = mavlink_msg_param_value_get_param_index(msg);
     mavlink_msg_param_value_get_param_id(msg, param_value->param_id);
     param_value->param_type = mavlink_msg_param_value_get_param_type(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_PARAM_VALUE_LEN? msg->len : MAVLINK_MSG_ID_PARAM_VALUE_LEN;
-        memset(param_value, 0, MAVLINK_MSG_ID_PARAM_VALUE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_PARAM_VALUE_LEN ? msg->len : MAVLINK_MSG_ID_PARAM_VALUE_LEN;
+    memset(param_value, 0, MAVLINK_MSG_ID_PARAM_VALUE_LEN);
     memcpy(param_value, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

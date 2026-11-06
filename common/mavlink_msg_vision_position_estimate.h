@@ -468,10 +468,10 @@ static inline void mavlink_msg_vision_position_estimate_decode(const mavlink_mes
     vision_position_estimate->yaw = mavlink_msg_vision_position_estimate_get_yaw(msg);
     mavlink_msg_vision_position_estimate_get_covariance(msg, vision_position_estimate->covariance);
     vision_position_estimate->reset_counter = mavlink_msg_vision_position_estimate_get_reset_counter(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_VISION_POSITION_ESTIMATE_LEN? msg->len : MAVLINK_MSG_ID_VISION_POSITION_ESTIMATE_LEN;
-        memset(vision_position_estimate, 0, MAVLINK_MSG_ID_VISION_POSITION_ESTIMATE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_VISION_POSITION_ESTIMATE_LEN ? msg->len : MAVLINK_MSG_ID_VISION_POSITION_ESTIMATE_LEN;
+    memset(vision_position_estimate, 0, MAVLINK_MSG_ID_VISION_POSITION_ESTIMATE_LEN);
     memcpy(vision_position_estimate, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

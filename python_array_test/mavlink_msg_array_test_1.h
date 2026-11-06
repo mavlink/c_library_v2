@@ -254,10 +254,10 @@ static inline void mavlink_msg_array_test_1_decode(const mavlink_message_t* msg,
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_array_test_1_get_ar_u32(msg, array_test_1->ar_u32);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ARRAY_TEST_1_LEN? msg->len : MAVLINK_MSG_ID_ARRAY_TEST_1_LEN;
-        memset(array_test_1, 0, MAVLINK_MSG_ID_ARRAY_TEST_1_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ARRAY_TEST_1_LEN ? msg->len : MAVLINK_MSG_ID_ARRAY_TEST_1_LEN;
+    memset(array_test_1, 0, MAVLINK_MSG_ID_ARRAY_TEST_1_LEN);
     memcpy(array_test_1, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

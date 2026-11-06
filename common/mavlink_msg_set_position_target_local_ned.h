@@ -664,11 +664,6 @@ static inline void mavlink_msg_set_position_target_local_ned_decode(const mavlin
     set_position_target_local_ned->target_system = _MAV_RETURN_uint8_t(msg, 50);
     set_position_target_local_ned->target_component = mavlink_msg_set_position_target_local_ned_get_target_component(msg);
     set_position_target_local_ned->coordinate_frame = mavlink_msg_set_position_target_local_ned_get_coordinate_frame(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SET_POSITION_TARGET_LOCAL_NED_LEN? msg->len : MAVLINK_MSG_ID_SET_POSITION_TARGET_LOCAL_NED_LEN;
-        memset(set_position_target_local_ned, 0, MAVLINK_MSG_ID_SET_POSITION_TARGET_LOCAL_NED_LEN);
-    memcpy(set_position_target_local_ned, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -676,4 +671,7 @@ static inline void mavlink_msg_set_position_target_local_ned_decode(const mavlin
         set_position_target_local_ned->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, set_position_target_local_ned, MAVLINK_MSG_ID_SET_POSITION_TARGET_LOCAL_NED_LEN, 50);
+#endif
 }

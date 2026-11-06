@@ -422,10 +422,10 @@ static inline void mavlink_msg_gsm_link_status_decode(const mavlink_message_t* m
     gsm_link_status->rsrp_rscp = mavlink_msg_gsm_link_status_get_rsrp_rscp(msg);
     gsm_link_status->sinr_ecio = mavlink_msg_gsm_link_status_get_sinr_ecio(msg);
     gsm_link_status->rsrq = mavlink_msg_gsm_link_status_get_rsrq(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_GSM_LINK_STATUS_LEN? msg->len : MAVLINK_MSG_ID_GSM_LINK_STATUS_LEN;
-        memset(gsm_link_status, 0, MAVLINK_MSG_ID_GSM_LINK_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_GSM_LINK_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_GSM_LINK_STATUS_LEN;
+    memset(gsm_link_status, 0, MAVLINK_MSG_ID_GSM_LINK_STATUS_LEN);
     memcpy(gsm_link_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

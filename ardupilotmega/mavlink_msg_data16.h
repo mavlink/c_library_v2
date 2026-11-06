@@ -300,10 +300,10 @@ static inline void mavlink_msg_data16_decode(const mavlink_message_t* msg, mavli
     data16->type = mavlink_msg_data16_get_type(msg);
     data16->len = mavlink_msg_data16_get_len(msg);
     mavlink_msg_data16_get_data(msg, data16->data);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_DATA16_LEN? msg->len : MAVLINK_MSG_ID_DATA16_LEN;
-        memset(data16, 0, MAVLINK_MSG_ID_DATA16_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_DATA16_LEN ? msg->len : MAVLINK_MSG_ID_DATA16_LEN;
+    memset(data16, 0, MAVLINK_MSG_ID_DATA16_LEN);
     memcpy(data16, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

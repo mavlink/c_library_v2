@@ -590,10 +590,10 @@ static inline void mavlink_msg_adap_tuning_decode(const mavlink_message_t* msg, 
     adap_tuning->f_dot = mavlink_msg_adap_tuning_get_f_dot(msg);
     adap_tuning->u = mavlink_msg_adap_tuning_get_u(msg);
     adap_tuning->axis = mavlink_msg_adap_tuning_get_axis(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ADAP_TUNING_LEN? msg->len : MAVLINK_MSG_ID_ADAP_TUNING_LEN;
-        memset(adap_tuning, 0, MAVLINK_MSG_ID_ADAP_TUNING_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ADAP_TUNING_LEN ? msg->len : MAVLINK_MSG_ID_ADAP_TUNING_LEN;
+    memset(adap_tuning, 0, MAVLINK_MSG_ID_ADAP_TUNING_LEN);
     memcpy(adap_tuning, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

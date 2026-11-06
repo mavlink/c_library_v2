@@ -338,10 +338,10 @@ static inline void mavlink_msg_sens_power_decode(const mavlink_message_t* msg, m
     sens_power->adc121_cspb_amp = mavlink_msg_sens_power_get_adc121_cspb_amp(msg);
     sens_power->adc121_cs1_amp = mavlink_msg_sens_power_get_adc121_cs1_amp(msg);
     sens_power->adc121_cs2_amp = mavlink_msg_sens_power_get_adc121_cs2_amp(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SENS_POWER_LEN? msg->len : MAVLINK_MSG_ID_SENS_POWER_LEN;
-        memset(sens_power, 0, MAVLINK_MSG_ID_SENS_POWER_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_SENS_POWER_LEN ? msg->len : MAVLINK_MSG_ID_SENS_POWER_LEN;
+    memset(sens_power, 0, MAVLINK_MSG_ID_SENS_POWER_LEN);
     memcpy(sens_power, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

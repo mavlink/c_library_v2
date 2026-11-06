@@ -301,10 +301,10 @@ static inline void mavlink_msg_array_test_8_decode(const mavlink_message_t* msg,
     mavlink_msg_array_test_8_get_ar_d(msg, array_test_8->ar_d);
     array_test_8->v3 = mavlink_msg_array_test_8_get_v3(msg);
     mavlink_msg_array_test_8_get_ar_u16(msg, array_test_8->ar_u16);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ARRAY_TEST_8_LEN? msg->len : MAVLINK_MSG_ID_ARRAY_TEST_8_LEN;
-        memset(array_test_8, 0, MAVLINK_MSG_ID_ARRAY_TEST_8_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ARRAY_TEST_8_LEN ? msg->len : MAVLINK_MSG_ID_ARRAY_TEST_8_LEN;
+    memset(array_test_8, 0, MAVLINK_MSG_ID_ARRAY_TEST_8_LEN);
     memcpy(array_test_8, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

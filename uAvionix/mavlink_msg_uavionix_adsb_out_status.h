@@ -384,10 +384,10 @@ static inline void mavlink_msg_uavionix_adsb_out_status_decode(const mavlink_mes
     uavionix_adsb_out_status->boardTemp = mavlink_msg_uavionix_adsb_out_status_get_boardTemp(msg);
     uavionix_adsb_out_status->fault = mavlink_msg_uavionix_adsb_out_status_get_fault(msg);
     mavlink_msg_uavionix_adsb_out_status_get_flight_id(msg, uavionix_adsb_out_status->flight_id);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_STATUS_LEN? msg->len : MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_STATUS_LEN;
-        memset(uavionix_adsb_out_status, 0, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_STATUS_LEN;
+    memset(uavionix_adsb_out_status, 0, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_STATUS_LEN);
     memcpy(uavionix_adsb_out_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

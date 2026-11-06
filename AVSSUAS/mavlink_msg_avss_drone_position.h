@@ -394,10 +394,10 @@ static inline void mavlink_msg_avss_drone_position_decode(const mavlink_message_
     avss_drone_position->alt = mavlink_msg_avss_drone_position_get_alt(msg);
     avss_drone_position->ground_alt = mavlink_msg_avss_drone_position_get_ground_alt(msg);
     avss_drone_position->barometer_alt = mavlink_msg_avss_drone_position_get_barometer_alt(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_AVSS_DRONE_POSITION_LEN? msg->len : MAVLINK_MSG_ID_AVSS_DRONE_POSITION_LEN;
-        memset(avss_drone_position, 0, MAVLINK_MSG_ID_AVSS_DRONE_POSITION_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_AVSS_DRONE_POSITION_LEN ? msg->len : MAVLINK_MSG_ID_AVSS_DRONE_POSITION_LEN;
+    memset(avss_drone_position, 0, MAVLINK_MSG_ID_AVSS_DRONE_POSITION_LEN);
     memcpy(avss_drone_position, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -254,10 +254,10 @@ static inline void mavlink_msg_uavionix_adsb_get_decode(const mavlink_message_t*
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     uavionix_adsb_get->ReqMessageId = mavlink_msg_uavionix_adsb_get_get_ReqMessageId(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_UAVIONIX_ADSB_GET_LEN? msg->len : MAVLINK_MSG_ID_UAVIONIX_ADSB_GET_LEN;
-        memset(uavionix_adsb_get, 0, MAVLINK_MSG_ID_UAVIONIX_ADSB_GET_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_UAVIONIX_ADSB_GET_LEN ? msg->len : MAVLINK_MSG_ID_UAVIONIX_ADSB_GET_LEN;
+    memset(uavionix_adsb_get, 0, MAVLINK_MSG_ID_UAVIONIX_ADSB_GET_LEN);
     memcpy(uavionix_adsb_get, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

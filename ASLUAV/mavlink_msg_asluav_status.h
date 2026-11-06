@@ -328,10 +328,10 @@ static inline void mavlink_msg_asluav_status_decode(const mavlink_message_t* msg
     asluav_status->LED_status = mavlink_msg_asluav_status_get_LED_status(msg);
     asluav_status->SATCOM_status = mavlink_msg_asluav_status_get_SATCOM_status(msg);
     mavlink_msg_asluav_status_get_Servo_status(msg, asluav_status->Servo_status);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ASLUAV_STATUS_LEN? msg->len : MAVLINK_MSG_ID_ASLUAV_STATUS_LEN;
-        memset(asluav_status, 0, MAVLINK_MSG_ID_ASLUAV_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ASLUAV_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_ASLUAV_STATUS_LEN;
+    memset(asluav_status, 0, MAVLINK_MSG_ID_ASLUAV_STATUS_LEN);
     memcpy(asluav_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

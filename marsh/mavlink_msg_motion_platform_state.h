@@ -843,10 +843,10 @@ static inline void mavlink_msg_motion_platform_state_decode(const mavlink_messag
     motion_platform_state->acc_yaw = mavlink_msg_motion_platform_state_get_acc_yaw(msg);
     motion_platform_state->health = mavlink_msg_motion_platform_state_get_health(msg);
     motion_platform_state->mode = mavlink_msg_motion_platform_state_get_mode(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_MOTION_PLATFORM_STATE_LEN? msg->len : MAVLINK_MSG_ID_MOTION_PLATFORM_STATE_LEN;
-        memset(motion_platform_state, 0, MAVLINK_MSG_ID_MOTION_PLATFORM_STATE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_MOTION_PLATFORM_STATE_LEN ? msg->len : MAVLINK_MSG_ID_MOTION_PLATFORM_STATE_LEN;
+    memset(motion_platform_state, 0, MAVLINK_MSG_ID_MOTION_PLATFORM_STATE_LEN);
     memcpy(motion_platform_state, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

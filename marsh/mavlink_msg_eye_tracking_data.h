@@ -611,10 +611,10 @@ static inline void mavlink_msg_eye_tracking_data_decode(const mavlink_message_t*
     eye_tracking_data->surface_gaze_y = mavlink_msg_eye_tracking_data_get_surface_gaze_y(msg);
     eye_tracking_data->sensor_id = mavlink_msg_eye_tracking_data_get_sensor_id(msg);
     eye_tracking_data->surface_id = mavlink_msg_eye_tracking_data_get_surface_id(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_EYE_TRACKING_DATA_LEN? msg->len : MAVLINK_MSG_ID_EYE_TRACKING_DATA_LEN;
-        memset(eye_tracking_data, 0, MAVLINK_MSG_ID_EYE_TRACKING_DATA_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_EYE_TRACKING_DATA_LEN ? msg->len : MAVLINK_MSG_ID_EYE_TRACKING_DATA_LEN;
+    memset(eye_tracking_data, 0, MAVLINK_MSG_ID_EYE_TRACKING_DATA_LEN);
     memcpy(eye_tracking_data, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

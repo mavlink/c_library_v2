@@ -582,10 +582,10 @@ static inline void mavlink_msg_gnss_integrity_decode(const mavlink_message_t* ms
     gnss_integrity->system_status_summary = mavlink_msg_gnss_integrity_get_system_status_summary(msg);
     gnss_integrity->gnss_signal_quality = mavlink_msg_gnss_integrity_get_gnss_signal_quality(msg);
     gnss_integrity->post_processing_quality = mavlink_msg_gnss_integrity_get_post_processing_quality(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_GNSS_INTEGRITY_LEN? msg->len : MAVLINK_MSG_ID_GNSS_INTEGRITY_LEN;
-        memset(gnss_integrity, 0, MAVLINK_MSG_ID_GNSS_INTEGRITY_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_GNSS_INTEGRITY_LEN ? msg->len : MAVLINK_MSG_ID_GNSS_INTEGRITY_LEN;
+    memset(gnss_integrity, 0, MAVLINK_MSG_ID_GNSS_INTEGRITY_LEN);
     memcpy(gnss_integrity, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -450,10 +450,10 @@ static inline void mavlink_msg_fuel_status_decode(const mavlink_message_t* msg, 
     fuel_status->fuel_type = mavlink_msg_fuel_status_get_fuel_type(msg);
     fuel_status->id = mavlink_msg_fuel_status_get_id(msg);
     fuel_status->percent_remaining = mavlink_msg_fuel_status_get_percent_remaining(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_FUEL_STATUS_LEN? msg->len : MAVLINK_MSG_ID_FUEL_STATUS_LEN;
-        memset(fuel_status, 0, MAVLINK_MSG_ID_FUEL_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_FUEL_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_FUEL_STATUS_LEN;
+    memset(fuel_status, 0, MAVLINK_MSG_ID_FUEL_STATUS_LEN);
     memcpy(fuel_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

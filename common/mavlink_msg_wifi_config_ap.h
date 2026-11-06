@@ -329,10 +329,10 @@ static inline void mavlink_msg_wifi_config_ap_decode(const mavlink_message_t* ms
     mavlink_msg_wifi_config_ap_get_password(msg, wifi_config_ap->password);
     wifi_config_ap->mode = mavlink_msg_wifi_config_ap_get_mode(msg);
     wifi_config_ap->response = mavlink_msg_wifi_config_ap_get_response(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_WIFI_CONFIG_AP_LEN? msg->len : MAVLINK_MSG_ID_WIFI_CONFIG_AP_LEN;
-        memset(wifi_config_ap, 0, MAVLINK_MSG_ID_WIFI_CONFIG_AP_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_WIFI_CONFIG_AP_LEN ? msg->len : MAVLINK_MSG_ID_WIFI_CONFIG_AP_LEN;
+    memset(wifi_config_ap, 0, MAVLINK_MSG_ID_WIFI_CONFIG_AP_LEN);
     memcpy(wifi_config_ap, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

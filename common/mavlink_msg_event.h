@@ -412,10 +412,10 @@ static inline void mavlink_msg_event_decode(const mavlink_message_t* msg, mavlin
     event->destination_system = mavlink_msg_event_get_destination_system(msg);
     event->log_levels = mavlink_msg_event_get_log_levels(msg);
     mavlink_msg_event_get_arguments(msg, event->arguments);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_EVENT_LEN? msg->len : MAVLINK_MSG_ID_EVENT_LEN;
-        memset(event, 0, MAVLINK_MSG_ID_EVENT_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_EVENT_LEN ? msg->len : MAVLINK_MSG_ID_EVENT_LEN;
+    memset(event, 0, MAVLINK_MSG_ID_EVENT_LEN);
     memcpy(event, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

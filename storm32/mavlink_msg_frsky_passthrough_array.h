@@ -300,10 +300,10 @@ static inline void mavlink_msg_frsky_passthrough_array_decode(const mavlink_mess
     frsky_passthrough_array->time_boot_ms = mavlink_msg_frsky_passthrough_array_get_time_boot_ms(msg);
     frsky_passthrough_array->count = mavlink_msg_frsky_passthrough_array_get_count(msg);
     mavlink_msg_frsky_passthrough_array_get_packet_buf(msg, frsky_passthrough_array->packet_buf);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_FRSKY_PASSTHROUGH_ARRAY_LEN? msg->len : MAVLINK_MSG_ID_FRSKY_PASSTHROUGH_ARRAY_LEN;
-        memset(frsky_passthrough_array, 0, MAVLINK_MSG_ID_FRSKY_PASSTHROUGH_ARRAY_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_FRSKY_PASSTHROUGH_ARRAY_LEN ? msg->len : MAVLINK_MSG_ID_FRSKY_PASSTHROUGH_ARRAY_LEN;
+    memset(frsky_passthrough_array, 0, MAVLINK_MSG_ID_FRSKY_PASSTHROUGH_ARRAY_LEN);
     memcpy(frsky_passthrough_array, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

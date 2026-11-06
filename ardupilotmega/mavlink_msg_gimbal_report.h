@@ -552,11 +552,6 @@ static inline void mavlink_msg_gimbal_report_decode(const mavlink_message_t* msg
     gimbal_report->joint_az = mavlink_msg_gimbal_report_get_joint_az(msg);
     gimbal_report->target_system = _MAV_RETURN_uint8_t(msg, 40);
     gimbal_report->target_component = mavlink_msg_gimbal_report_get_target_component(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_GIMBAL_REPORT_LEN? msg->len : MAVLINK_MSG_ID_GIMBAL_REPORT_LEN;
-        memset(gimbal_report, 0, MAVLINK_MSG_ID_GIMBAL_REPORT_LEN);
-    memcpy(gimbal_report, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -564,4 +559,7 @@ static inline void mavlink_msg_gimbal_report_decode(const mavlink_message_t* msg
         gimbal_report->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, gimbal_report, MAVLINK_MSG_ID_GIMBAL_REPORT_LEN, 40);
+#endif
 }

@@ -384,11 +384,6 @@ static inline void mavlink_msg_mount_control_decode(const mavlink_message_t* msg
     mount_control->target_system = _MAV_RETURN_uint8_t(msg, 12);
     mount_control->target_component = mavlink_msg_mount_control_get_target_component(msg);
     mount_control->save_position = mavlink_msg_mount_control_get_save_position(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_MOUNT_CONTROL_LEN? msg->len : MAVLINK_MSG_ID_MOUNT_CONTROL_LEN;
-        memset(mount_control, 0, MAVLINK_MSG_ID_MOUNT_CONTROL_LEN);
-    memcpy(mount_control, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -396,4 +391,7 @@ static inline void mavlink_msg_mount_control_decode(const mavlink_message_t* msg
         mount_control->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, mount_control, MAVLINK_MSG_ID_MOUNT_CONTROL_LEN, 12);
+#endif
 }

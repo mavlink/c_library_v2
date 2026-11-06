@@ -534,10 +534,10 @@ static inline void mavlink_msg_link_node_status_decode(const mavlink_message_t* 
     link_node_status->rx_overflows = mavlink_msg_link_node_status_get_rx_overflows(msg);
     link_node_status->tx_buf = mavlink_msg_link_node_status_get_tx_buf(msg);
     link_node_status->rx_buf = mavlink_msg_link_node_status_get_rx_buf(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_LINK_NODE_STATUS_LEN? msg->len : MAVLINK_MSG_ID_LINK_NODE_STATUS_LEN;
-        memset(link_node_status, 0, MAVLINK_MSG_ID_LINK_NODE_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_LINK_NODE_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_LINK_NODE_STATUS_LEN;
+    memset(link_node_status, 0, MAVLINK_MSG_ID_LINK_NODE_STATUS_LEN);
     memcpy(link_node_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

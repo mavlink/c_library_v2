@@ -300,10 +300,10 @@ static inline void mavlink_msg_component_metadata_decode(const mavlink_message_t
     component_metadata->time_boot_ms = mavlink_msg_component_metadata_get_time_boot_ms(msg);
     component_metadata->file_crc = mavlink_msg_component_metadata_get_file_crc(msg);
     mavlink_msg_component_metadata_get_uri(msg, component_metadata->uri);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_COMPONENT_METADATA_LEN? msg->len : MAVLINK_MSG_ID_COMPONENT_METADATA_LEN;
-        memset(component_metadata, 0, MAVLINK_MSG_ID_COMPONENT_METADATA_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_COMPONENT_METADATA_LEN ? msg->len : MAVLINK_MSG_ID_COMPONENT_METADATA_LEN;
+    memset(component_metadata, 0, MAVLINK_MSG_ID_COMPONENT_METADATA_LEN);
     memcpy(component_metadata, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

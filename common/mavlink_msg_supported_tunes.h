@@ -300,11 +300,6 @@ static inline void mavlink_msg_supported_tunes_decode(const mavlink_message_t* m
     supported_tunes->format = mavlink_msg_supported_tunes_get_format(msg);
     supported_tunes->target_system = _MAV_RETURN_uint8_t(msg, 4);
     supported_tunes->target_component = mavlink_msg_supported_tunes_get_target_component(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SUPPORTED_TUNES_LEN? msg->len : MAVLINK_MSG_ID_SUPPORTED_TUNES_LEN;
-        memset(supported_tunes, 0, MAVLINK_MSG_ID_SUPPORTED_TUNES_LEN);
-    memcpy(supported_tunes, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -312,4 +307,7 @@ static inline void mavlink_msg_supported_tunes_decode(const mavlink_message_t* m
         supported_tunes->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, supported_tunes, MAVLINK_MSG_ID_SUPPORTED_TUNES_LEN, 4);
+#endif
 }

@@ -416,10 +416,10 @@ static inline void mavlink_msg_trajectory_representation_bezier_decode(const mav
     mavlink_msg_trajectory_representation_bezier_get_delta(msg, trajectory_representation_bezier->delta);
     mavlink_msg_trajectory_representation_bezier_get_pos_yaw(msg, trajectory_representation_bezier->pos_yaw);
     trajectory_representation_bezier->valid_points = mavlink_msg_trajectory_representation_bezier_get_valid_points(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_BEZIER_LEN? msg->len : MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_BEZIER_LEN;
-        memset(trajectory_representation_bezier, 0, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_BEZIER_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_BEZIER_LEN ? msg->len : MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_BEZIER_LEN;
+    memset(trajectory_representation_bezier, 0, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_BEZIER_LEN);
     memcpy(trajectory_representation_bezier, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -327,10 +327,10 @@ static inline void mavlink_msg_group_start_decode(const mavlink_message_t* msg, 
     group_start->time_usec = mavlink_msg_group_start_get_time_usec(msg);
     group_start->group_id = mavlink_msg_group_start_get_group_id(msg);
     group_start->mission_checksum = mavlink_msg_group_start_get_mission_checksum(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_GROUP_START_LEN? msg->len : MAVLINK_MSG_ID_GROUP_START_LEN;
-        memset(group_start, 0, MAVLINK_MSG_ID_GROUP_START_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_GROUP_START_LEN ? msg->len : MAVLINK_MSG_ID_GROUP_START_LEN;
+    memset(group_start, 0, MAVLINK_MSG_ID_GROUP_START_LEN);
     memcpy(group_start, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

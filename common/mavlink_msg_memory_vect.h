@@ -328,10 +328,10 @@ static inline void mavlink_msg_memory_vect_decode(const mavlink_message_t* msg, 
     memory_vect->ver = mavlink_msg_memory_vect_get_ver(msg);
     memory_vect->type = mavlink_msg_memory_vect_get_type(msg);
     mavlink_msg_memory_vect_get_value(msg, memory_vect->value);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_MEMORY_VECT_LEN? msg->len : MAVLINK_MSG_ID_MEMORY_VECT_LEN;
-        memset(memory_vect, 0, MAVLINK_MSG_ID_MEMORY_VECT_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_MEMORY_VECT_LEN ? msg->len : MAVLINK_MSG_ID_MEMORY_VECT_LEN;
+    memset(memory_vect, 0, MAVLINK_MSG_ID_MEMORY_VECT_LEN);
     memcpy(memory_vect, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

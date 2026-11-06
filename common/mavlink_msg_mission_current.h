@@ -422,10 +422,10 @@ static inline void mavlink_msg_mission_current_decode(const mavlink_message_t* m
     mission_current->mission_id = mavlink_msg_mission_current_get_mission_id(msg);
     mission_current->fence_id = mavlink_msg_mission_current_get_fence_id(msg);
     mission_current->rally_points_id = mavlink_msg_mission_current_get_rally_points_id(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_MISSION_CURRENT_LEN? msg->len : MAVLINK_MSG_ID_MISSION_CURRENT_LEN;
-        memset(mission_current, 0, MAVLINK_MSG_ID_MISSION_CURRENT_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_MISSION_CURRENT_LEN ? msg->len : MAVLINK_MSG_ID_MISSION_CURRENT_LEN;
+    memset(mission_current, 0, MAVLINK_MSG_ID_MISSION_CURRENT_LEN);
     memcpy(mission_current, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

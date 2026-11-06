@@ -422,10 +422,10 @@ static inline void mavlink_msg_radio_decode(const mavlink_message_t* msg, mavlin
     radio->txbuf = mavlink_msg_radio_get_txbuf(msg);
     radio->noise = mavlink_msg_radio_get_noise(msg);
     radio->remnoise = mavlink_msg_radio_get_remnoise(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_RADIO_LEN? msg->len : MAVLINK_MSG_ID_RADIO_LEN;
-        memset(radio, 0, MAVLINK_MSG_ID_RADIO_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_RADIO_LEN ? msg->len : MAVLINK_MSG_ID_RADIO_LEN;
+    memset(radio, 0, MAVLINK_MSG_ID_RADIO_LEN);
     memcpy(radio, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

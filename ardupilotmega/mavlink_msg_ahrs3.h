@@ -506,10 +506,10 @@ static inline void mavlink_msg_ahrs3_decode(const mavlink_message_t* msg, mavlin
     ahrs3->v2 = mavlink_msg_ahrs3_get_v2(msg);
     ahrs3->v3 = mavlink_msg_ahrs3_get_v3(msg);
     ahrs3->v4 = mavlink_msg_ahrs3_get_v4(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_AHRS3_LEN? msg->len : MAVLINK_MSG_ID_AHRS3_LEN;
-        memset(ahrs3, 0, MAVLINK_MSG_ID_AHRS3_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_AHRS3_LEN ? msg->len : MAVLINK_MSG_ID_AHRS3_LEN;
+    memset(ahrs3, 0, MAVLINK_MSG_ID_AHRS3_LEN);
     memcpy(ahrs3, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

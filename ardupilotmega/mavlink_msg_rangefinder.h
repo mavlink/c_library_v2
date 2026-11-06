@@ -282,10 +282,10 @@ static inline void mavlink_msg_rangefinder_decode(const mavlink_message_t* msg, 
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     rangefinder->distance = mavlink_msg_rangefinder_get_distance(msg);
     rangefinder->voltage = mavlink_msg_rangefinder_get_voltage(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_RANGEFINDER_LEN? msg->len : MAVLINK_MSG_ID_RANGEFINDER_LEN;
-        memset(rangefinder, 0, MAVLINK_MSG_ID_RANGEFINDER_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_RANGEFINDER_LEN ? msg->len : MAVLINK_MSG_ID_RANGEFINDER_LEN;
+    memset(rangefinder, 0, MAVLINK_MSG_ID_RANGEFINDER_LEN);
     memcpy(rangefinder, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

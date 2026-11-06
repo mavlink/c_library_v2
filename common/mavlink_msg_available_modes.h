@@ -412,10 +412,10 @@ static inline void mavlink_msg_available_modes_decode(const mavlink_message_t* m
     available_modes->standard_mode = mavlink_msg_available_modes_get_standard_mode(msg);
     mavlink_msg_available_modes_get_mode_name(msg, available_modes->mode_name);
     available_modes->seq = mavlink_msg_available_modes_get_seq(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_AVAILABLE_MODES_LEN? msg->len : MAVLINK_MSG_ID_AVAILABLE_MODES_LEN;
-        memset(available_modes, 0, MAVLINK_MSG_ID_AVAILABLE_MODES_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_AVAILABLE_MODES_LEN ? msg->len : MAVLINK_MSG_ID_AVAILABLE_MODES_LEN;
+    memset(available_modes, 0, MAVLINK_MSG_ID_AVAILABLE_MODES_LEN);
     memcpy(available_modes, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -478,10 +478,10 @@ static inline void mavlink_msg_camera_thermal_range_decode(const mavlink_message
     camera_thermal_range->min_point_y = mavlink_msg_camera_thermal_range_get_min_point_y(msg);
     camera_thermal_range->stream_id = mavlink_msg_camera_thermal_range_get_stream_id(msg);
     camera_thermal_range->camera_device_id = mavlink_msg_camera_thermal_range_get_camera_device_id(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_CAMERA_THERMAL_RANGE_LEN? msg->len : MAVLINK_MSG_ID_CAMERA_THERMAL_RANGE_LEN;
-        memset(camera_thermal_range, 0, MAVLINK_MSG_ID_CAMERA_THERMAL_RANGE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_CAMERA_THERMAL_RANGE_LEN ? msg->len : MAVLINK_MSG_ID_CAMERA_THERMAL_RANGE_LEN;
+    memset(camera_thermal_range, 0, MAVLINK_MSG_ID_CAMERA_THERMAL_RANGE_LEN);
     memcpy(camera_thermal_range, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

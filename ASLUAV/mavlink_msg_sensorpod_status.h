@@ -450,10 +450,10 @@ static inline void mavlink_msg_sensorpod_status_decode(const mavlink_message_t* 
     sensorpod_status->visensor_rate_4 = mavlink_msg_sensorpod_status_get_visensor_rate_4(msg);
     sensorpod_status->recording_nodes_count = mavlink_msg_sensorpod_status_get_recording_nodes_count(msg);
     sensorpod_status->cpu_temp = mavlink_msg_sensorpod_status_get_cpu_temp(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN? msg->len : MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN;
-        memset(sensorpod_status, 0, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN;
+    memset(sensorpod_status, 0, MAVLINK_MSG_ID_SENSORPOD_STATUS_LEN);
     memcpy(sensorpod_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

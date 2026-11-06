@@ -552,10 +552,10 @@ static inline void mavlink_msg_local_position_ned_cov_decode(const mavlink_messa
     local_position_ned_cov->az = mavlink_msg_local_position_ned_cov_get_az(msg);
     mavlink_msg_local_position_ned_cov_get_covariance(msg, local_position_ned_cov->covariance);
     local_position_ned_cov->estimator_type = mavlink_msg_local_position_ned_cov_get_estimator_type(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_LOCAL_POSITION_NED_COV_LEN? msg->len : MAVLINK_MSG_ID_LOCAL_POSITION_NED_COV_LEN;
-        memset(local_position_ned_cov, 0, MAVLINK_MSG_ID_LOCAL_POSITION_NED_COV_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_LOCAL_POSITION_NED_COV_LEN ? msg->len : MAVLINK_MSG_ID_LOCAL_POSITION_NED_COV_LEN;
+    memset(local_position_ned_cov, 0, MAVLINK_MSG_ID_LOCAL_POSITION_NED_COV_LEN);
     memcpy(local_position_ned_cov, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

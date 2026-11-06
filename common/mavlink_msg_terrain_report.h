@@ -422,10 +422,10 @@ static inline void mavlink_msg_terrain_report_decode(const mavlink_message_t* ms
     terrain_report->spacing = mavlink_msg_terrain_report_get_spacing(msg);
     terrain_report->pending = mavlink_msg_terrain_report_get_pending(msg);
     terrain_report->loaded = mavlink_msg_terrain_report_get_loaded(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_TERRAIN_REPORT_LEN? msg->len : MAVLINK_MSG_ID_TERRAIN_REPORT_LEN;
-        memset(terrain_report, 0, MAVLINK_MSG_ID_TERRAIN_REPORT_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_TERRAIN_REPORT_LEN ? msg->len : MAVLINK_MSG_ID_TERRAIN_REPORT_LEN;
+    memset(terrain_report, 0, MAVLINK_MSG_ID_TERRAIN_REPORT_LEN);
     memcpy(terrain_report, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

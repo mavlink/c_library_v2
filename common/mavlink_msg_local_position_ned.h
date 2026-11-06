@@ -422,10 +422,10 @@ static inline void mavlink_msg_local_position_ned_decode(const mavlink_message_t
     local_position_ned->vx = mavlink_msg_local_position_ned_get_vx(msg);
     local_position_ned->vy = mavlink_msg_local_position_ned_get_vy(msg);
     local_position_ned->vz = mavlink_msg_local_position_ned_get_vz(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_LOCAL_POSITION_NED_LEN? msg->len : MAVLINK_MSG_ID_LOCAL_POSITION_NED_LEN;
-        memset(local_position_ned, 0, MAVLINK_MSG_ID_LOCAL_POSITION_NED_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_LOCAL_POSITION_NED_LEN ? msg->len : MAVLINK_MSG_ID_LOCAL_POSITION_NED_LEN;
+    memset(local_position_ned, 0, MAVLINK_MSG_ID_LOCAL_POSITION_NED_LEN);
     memcpy(local_position_ned, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

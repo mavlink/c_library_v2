@@ -318,11 +318,6 @@ static inline void mavlink_msg_change_operator_control_decode(const mavlink_mess
     change_operator_control->control_request = mavlink_msg_change_operator_control_get_control_request(msg);
     change_operator_control->version = mavlink_msg_change_operator_control_get_version(msg);
     mavlink_msg_change_operator_control_get_passkey(msg, change_operator_control->passkey);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL_LEN? msg->len : MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL_LEN;
-        memset(change_operator_control, 0, MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL_LEN);
-    memcpy(change_operator_control, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -330,4 +325,7 @@ static inline void mavlink_msg_change_operator_control_decode(const mavlink_mess
         change_operator_control->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, change_operator_control, MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL_LEN, 0);
+#endif
 }

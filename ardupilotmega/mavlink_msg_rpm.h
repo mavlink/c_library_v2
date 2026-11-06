@@ -282,10 +282,10 @@ static inline void mavlink_msg_rpm_decode(const mavlink_message_t* msg, mavlink_
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     rpm->rpm1 = mavlink_msg_rpm_get_rpm1(msg);
     rpm->rpm2 = mavlink_msg_rpm_get_rpm2(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_RPM_LEN? msg->len : MAVLINK_MSG_ID_RPM_LEN;
-        memset(rpm, 0, MAVLINK_MSG_ID_RPM_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_RPM_LEN ? msg->len : MAVLINK_MSG_ID_RPM_LEN;
+    memset(rpm, 0, MAVLINK_MSG_ID_RPM_LEN);
     memcpy(rpm, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

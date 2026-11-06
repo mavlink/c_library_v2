@@ -366,10 +366,10 @@ static inline void mavlink_msg_mcu_status_decode(const mavlink_message_t* msg, m
     mcu_status->MCU_voltage_min = mavlink_msg_mcu_status_get_MCU_voltage_min(msg);
     mcu_status->MCU_voltage_max = mavlink_msg_mcu_status_get_MCU_voltage_max(msg);
     mcu_status->id = mavlink_msg_mcu_status_get_id(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_MCU_STATUS_LEN? msg->len : MAVLINK_MSG_ID_MCU_STATUS_LEN;
-        memset(mcu_status, 0, MAVLINK_MSG_ID_MCU_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_MCU_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_MCU_STATUS_LEN;
+    memset(mcu_status, 0, MAVLINK_MSG_ID_MCU_STATUS_LEN);
     memcpy(mcu_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

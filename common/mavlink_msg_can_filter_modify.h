@@ -374,11 +374,6 @@ static inline void mavlink_msg_can_filter_modify_decode(const mavlink_message_t*
     can_filter_modify->bus = mavlink_msg_can_filter_modify_get_bus(msg);
     can_filter_modify->operation = mavlink_msg_can_filter_modify_get_operation(msg);
     can_filter_modify->num_ids = mavlink_msg_can_filter_modify_get_num_ids(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_CAN_FILTER_MODIFY_LEN? msg->len : MAVLINK_MSG_ID_CAN_FILTER_MODIFY_LEN;
-        memset(can_filter_modify, 0, MAVLINK_MSG_ID_CAN_FILTER_MODIFY_LEN);
-    memcpy(can_filter_modify, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -386,4 +381,7 @@ static inline void mavlink_msg_can_filter_modify_decode(const mavlink_message_t*
         can_filter_modify->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, can_filter_modify, MAVLINK_MSG_ID_CAN_FILTER_MODIFY_LEN, 32);
+#endif
 }

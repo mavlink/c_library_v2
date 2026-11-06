@@ -422,10 +422,10 @@ static inline void mavlink_msg_altitude_decode(const mavlink_message_t* msg, mav
     altitude->altitude_relative = mavlink_msg_altitude_get_altitude_relative(msg);
     altitude->altitude_terrain = mavlink_msg_altitude_get_altitude_terrain(msg);
     altitude->bottom_clearance = mavlink_msg_altitude_get_bottom_clearance(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ALTITUDE_LEN? msg->len : MAVLINK_MSG_ID_ALTITUDE_LEN;
-        memset(altitude, 0, MAVLINK_MSG_ID_ALTITUDE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ALTITUDE_LEN ? msg->len : MAVLINK_MSG_ID_ALTITUDE_LEN;
+    memset(altitude, 0, MAVLINK_MSG_ID_ALTITUDE_LEN);
     memcpy(altitude, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

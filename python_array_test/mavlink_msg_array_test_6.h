@@ -560,10 +560,10 @@ static inline void mavlink_msg_array_test_6_decode(const mavlink_message_t* msg,
     mavlink_msg_array_test_6_get_ar_u8(msg, array_test_6->ar_u8);
     mavlink_msg_array_test_6_get_ar_i8(msg, array_test_6->ar_i8);
     mavlink_msg_array_test_6_get_ar_c(msg, array_test_6->ar_c);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ARRAY_TEST_6_LEN? msg->len : MAVLINK_MSG_ID_ARRAY_TEST_6_LEN;
-        memset(array_test_6, 0, MAVLINK_MSG_ID_ARRAY_TEST_6_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ARRAY_TEST_6_LEN ? msg->len : MAVLINK_MSG_ID_ARRAY_TEST_6_LEN;
+    memset(array_test_6, 0, MAVLINK_MSG_ID_ARRAY_TEST_6_LEN);
     memcpy(array_test_6, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

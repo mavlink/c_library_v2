@@ -328,11 +328,6 @@ static inline void mavlink_msg_remote_log_block_status_decode(const mavlink_mess
     remote_log_block_status->target_system = _MAV_RETURN_uint8_t(msg, 4);
     remote_log_block_status->target_component = mavlink_msg_remote_log_block_status_get_target_component(msg);
     remote_log_block_status->status = mavlink_msg_remote_log_block_status_get_status(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_REMOTE_LOG_BLOCK_STATUS_LEN? msg->len : MAVLINK_MSG_ID_REMOTE_LOG_BLOCK_STATUS_LEN;
-        memset(remote_log_block_status, 0, MAVLINK_MSG_ID_REMOTE_LOG_BLOCK_STATUS_LEN);
-    memcpy(remote_log_block_status, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -340,4 +335,7 @@ static inline void mavlink_msg_remote_log_block_status_decode(const mavlink_mess
         remote_log_block_status->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, remote_log_block_status, MAVLINK_MSG_ID_REMOTE_LOG_BLOCK_STATUS_LEN, 4);
+#endif
 }

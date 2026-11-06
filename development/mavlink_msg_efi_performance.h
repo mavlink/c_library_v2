@@ -814,10 +814,10 @@ static inline void mavlink_msg_efi_performance_decode(const mavlink_message_t* m
     efi_performance->water_pump_duty_cycle = mavlink_msg_efi_performance_get_water_pump_duty_cycle(msg);
     efi_performance->injector_duty_cycle = mavlink_msg_efi_performance_get_injector_duty_cycle(msg);
     efi_performance->error_memory_count = mavlink_msg_efi_performance_get_error_memory_count(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_EFI_PERFORMANCE_LEN? msg->len : MAVLINK_MSG_ID_EFI_PERFORMANCE_LEN;
-        memset(efi_performance, 0, MAVLINK_MSG_ID_EFI_PERFORMANCE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_EFI_PERFORMANCE_LEN ? msg->len : MAVLINK_MSG_ID_EFI_PERFORMANCE_LEN;
+    memset(efi_performance, 0, MAVLINK_MSG_ID_EFI_PERFORMANCE_LEN);
     memcpy(efi_performance, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

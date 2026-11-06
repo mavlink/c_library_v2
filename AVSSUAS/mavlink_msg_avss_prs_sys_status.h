@@ -366,10 +366,10 @@ static inline void mavlink_msg_avss_prs_sys_status_decode(const mavlink_message_
     avss_prs_sys_status->battery_status = mavlink_msg_avss_prs_sys_status_get_battery_status(msg);
     avss_prs_sys_status->arm_status = mavlink_msg_avss_prs_sys_status_get_arm_status(msg);
     avss_prs_sys_status->charge_status = mavlink_msg_avss_prs_sys_status_get_charge_status(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_AVSS_PRS_SYS_STATUS_LEN? msg->len : MAVLINK_MSG_ID_AVSS_PRS_SYS_STATUS_LEN;
-        memset(avss_prs_sys_status, 0, MAVLINK_MSG_ID_AVSS_PRS_SYS_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_AVSS_PRS_SYS_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_AVSS_PRS_SYS_STATUS_LEN;
+    memset(avss_prs_sys_status, 0, MAVLINK_MSG_ID_AVSS_PRS_SYS_STATUS_LEN);
     memcpy(avss_prs_sys_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -638,10 +638,10 @@ static inline void mavlink_msg_camera_information_decode(const mavlink_message_t
     mavlink_msg_camera_information_get_cam_definition_uri(msg, camera_information->cam_definition_uri);
     camera_information->gimbal_device_id = mavlink_msg_camera_information_get_gimbal_device_id(msg);
     camera_information->camera_device_id = mavlink_msg_camera_information_get_camera_device_id(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_CAMERA_INFORMATION_LEN? msg->len : MAVLINK_MSG_ID_CAMERA_INFORMATION_LEN;
-        memset(camera_information, 0, MAVLINK_MSG_ID_CAMERA_INFORMATION_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_CAMERA_INFORMATION_LEN ? msg->len : MAVLINK_MSG_ID_CAMERA_INFORMATION_LEN;
+    memset(camera_information, 0, MAVLINK_MSG_ID_CAMERA_INFORMATION_LEN);
     memcpy(camera_information, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -608,11 +608,6 @@ static inline void mavlink_msg_camera_feedback_decode(const mavlink_message_t* m
     camera_feedback->cam_idx = mavlink_msg_camera_feedback_get_cam_idx(msg);
     camera_feedback->flags = mavlink_msg_camera_feedback_get_flags(msg);
     camera_feedback->completed_captures = mavlink_msg_camera_feedback_get_completed_captures(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_CAMERA_FEEDBACK_LEN? msg->len : MAVLINK_MSG_ID_CAMERA_FEEDBACK_LEN;
-        memset(camera_feedback, 0, MAVLINK_MSG_ID_CAMERA_FEEDBACK_LEN);
-    memcpy(camera_feedback, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -620,4 +615,7 @@ static inline void mavlink_msg_camera_feedback_decode(const mavlink_message_t* m
         camera_feedback->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, camera_feedback, MAVLINK_MSG_ID_CAMERA_FEEDBACK_LEN, 42);
+#endif
 }

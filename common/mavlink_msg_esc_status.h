@@ -358,10 +358,10 @@ static inline void mavlink_msg_esc_status_decode(const mavlink_message_t* msg, m
     mavlink_msg_esc_status_get_voltage(msg, esc_status->voltage);
     mavlink_msg_esc_status_get_current(msg, esc_status->current);
     esc_status->index = mavlink_msg_esc_status_get_index(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ESC_STATUS_LEN? msg->len : MAVLINK_MSG_ID_ESC_STATUS_LEN;
-        memset(esc_status, 0, MAVLINK_MSG_ID_ESC_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ESC_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_ESC_STATUS_LEN;
+    memset(esc_status, 0, MAVLINK_MSG_ID_ESC_STATUS_LEN);
     memcpy(esc_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

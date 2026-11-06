@@ -776,11 +776,6 @@ static inline void mavlink_msg_rc_channels_override_decode(const mavlink_message
     rc_channels_override->chan16_raw = mavlink_msg_rc_channels_override_get_chan16_raw(msg);
     rc_channels_override->chan17_raw = mavlink_msg_rc_channels_override_get_chan17_raw(msg);
     rc_channels_override->chan18_raw = mavlink_msg_rc_channels_override_get_chan18_raw(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_LEN? msg->len : MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_LEN;
-        memset(rc_channels_override, 0, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_LEN);
-    memcpy(rc_channels_override, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -788,4 +783,7 @@ static inline void mavlink_msg_rc_channels_override_decode(const mavlink_message
         rc_channels_override->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, rc_channels_override, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_LEN, 16);
+#endif
 }

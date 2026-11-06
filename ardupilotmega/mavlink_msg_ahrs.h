@@ -422,10 +422,10 @@ static inline void mavlink_msg_ahrs_decode(const mavlink_message_t* msg, mavlink
     ahrs->renorm_val = mavlink_msg_ahrs_get_renorm_val(msg);
     ahrs->error_rp = mavlink_msg_ahrs_get_error_rp(msg);
     ahrs->error_yaw = mavlink_msg_ahrs_get_error_yaw(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_AHRS_LEN? msg->len : MAVLINK_MSG_ID_AHRS_LEN;
-        memset(ahrs, 0, MAVLINK_MSG_ID_AHRS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_AHRS_LEN ? msg->len : MAVLINK_MSG_ID_AHRS_LEN;
+    memset(ahrs, 0, MAVLINK_MSG_ID_AHRS_LEN);
     memcpy(ahrs, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

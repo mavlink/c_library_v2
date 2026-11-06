@@ -422,10 +422,10 @@ static inline void mavlink_msg_herelink_telem_decode(const mavlink_message_t* ms
     herelink_telem->cpu_temp = mavlink_msg_herelink_telem_get_cpu_temp(msg);
     herelink_telem->board_temp = mavlink_msg_herelink_telem_get_board_temp(msg);
     herelink_telem->rssi = mavlink_msg_herelink_telem_get_rssi(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_HERELINK_TELEM_LEN? msg->len : MAVLINK_MSG_ID_HERELINK_TELEM_LEN;
-        memset(herelink_telem, 0, MAVLINK_MSG_ID_HERELINK_TELEM_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_HERELINK_TELEM_LEN ? msg->len : MAVLINK_MSG_ID_HERELINK_TELEM_LEN;
+    memset(herelink_telem, 0, MAVLINK_MSG_ID_HERELINK_TELEM_LEN);
     memcpy(herelink_telem, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -496,11 +496,6 @@ static inline void mavlink_msg_storm32_gimbal_manager_control_pitchyaw_decode(co
     storm32_gimbal_manager_control_pitchyaw->target_component = mavlink_msg_storm32_gimbal_manager_control_pitchyaw_get_target_component(msg);
     storm32_gimbal_manager_control_pitchyaw->gimbal_id = mavlink_msg_storm32_gimbal_manager_control_pitchyaw_get_gimbal_id(msg);
     storm32_gimbal_manager_control_pitchyaw->client = mavlink_msg_storm32_gimbal_manager_control_pitchyaw_get_client(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL_PITCHYAW_LEN? msg->len : MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL_PITCHYAW_LEN;
-        memset(storm32_gimbal_manager_control_pitchyaw, 0, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL_PITCHYAW_LEN);
-    memcpy(storm32_gimbal_manager_control_pitchyaw, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -508,4 +503,7 @@ static inline void mavlink_msg_storm32_gimbal_manager_control_pitchyaw_decode(co
         storm32_gimbal_manager_control_pitchyaw->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, storm32_gimbal_manager_control_pitchyaw, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_CONTROL_PITCHYAW_LEN, 20);
+#endif
 }

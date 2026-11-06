@@ -300,10 +300,10 @@ static inline void mavlink_msg_actuator_control_target_decode(const mavlink_mess
     actuator_control_target->time_usec = mavlink_msg_actuator_control_target_get_time_usec(msg);
     mavlink_msg_actuator_control_target_get_controls(msg, actuator_control_target->controls);
     actuator_control_target->group_mlx = mavlink_msg_actuator_control_target_get_group_mlx(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN? msg->len : MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN;
-        memset(actuator_control_target, 0, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN ? msg->len : MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN;
+    memset(actuator_control_target, 0, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN);
     memcpy(actuator_control_target, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

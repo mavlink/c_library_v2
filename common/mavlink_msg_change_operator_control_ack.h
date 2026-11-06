@@ -310,10 +310,10 @@ static inline void mavlink_msg_change_operator_control_ack_decode(const mavlink_
     change_operator_control_ack->gcs_system_id = mavlink_msg_change_operator_control_ack_get_gcs_system_id(msg);
     change_operator_control_ack->control_request = mavlink_msg_change_operator_control_ack_get_control_request(msg);
     change_operator_control_ack->ack = mavlink_msg_change_operator_control_ack_get_ack(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL_ACK_LEN? msg->len : MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL_ACK_LEN;
-        memset(change_operator_control_ack, 0, MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL_ACK_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL_ACK_LEN ? msg->len : MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL_ACK_LEN;
+    memset(change_operator_control_ack, 0, MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL_ACK_LEN);
     memcpy(change_operator_control_ack, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -470,10 +470,10 @@ static inline void mavlink_msg_esc_info_decode(const mavlink_message_t* msg, mav
     esc_info->count = mavlink_msg_esc_info_get_count(msg);
     esc_info->connection_type = mavlink_msg_esc_info_get_connection_type(msg);
     esc_info->info = mavlink_msg_esc_info_get_info(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ESC_INFO_LEN? msg->len : MAVLINK_MSG_ID_ESC_INFO_LEN;
-        memset(esc_info, 0, MAVLINK_MSG_ID_ESC_INFO_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ESC_INFO_LEN ? msg->len : MAVLINK_MSG_ID_ESC_INFO_LEN;
+    memset(esc_info, 0, MAVLINK_MSG_ID_ESC_INFO_LEN);
     memcpy(esc_info, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

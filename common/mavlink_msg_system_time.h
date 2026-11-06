@@ -282,10 +282,10 @@ static inline void mavlink_msg_system_time_decode(const mavlink_message_t* msg, 
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     system_time->time_unix_usec = mavlink_msg_system_time_get_time_unix_usec(msg);
     system_time->time_boot_ms = mavlink_msg_system_time_get_time_boot_ms(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SYSTEM_TIME_LEN? msg->len : MAVLINK_MSG_ID_SYSTEM_TIME_LEN;
-        memset(system_time, 0, MAVLINK_MSG_ID_SYSTEM_TIME_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_SYSTEM_TIME_LEN ? msg->len : MAVLINK_MSG_ID_SYSTEM_TIME_LEN;
+    memset(system_time, 0, MAVLINK_MSG_ID_SYSTEM_TIME_LEN);
     memcpy(system_time, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

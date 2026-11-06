@@ -321,10 +321,10 @@ static inline void mavlink_msg_velocity_limits_decode(const mavlink_message_t* m
     velocity_limits->horizontal_speed_limit = mavlink_msg_velocity_limits_get_horizontal_speed_limit(msg);
     velocity_limits->vertical_speed_limit = mavlink_msg_velocity_limits_get_vertical_speed_limit(msg);
     velocity_limits->yaw_rate_limit = mavlink_msg_velocity_limits_get_yaw_rate_limit(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_VELOCITY_LIMITS_LEN? msg->len : MAVLINK_MSG_ID_VELOCITY_LIMITS_LEN;
-        memset(velocity_limits, 0, MAVLINK_MSG_ID_VELOCITY_LIMITS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_VELOCITY_LIMITS_LEN ? msg->len : MAVLINK_MSG_ID_VELOCITY_LIMITS_LEN;
+    memset(velocity_limits, 0, MAVLINK_MSG_ID_VELOCITY_LIMITS_LEN);
     memcpy(velocity_limits, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

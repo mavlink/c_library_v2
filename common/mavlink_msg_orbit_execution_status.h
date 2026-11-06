@@ -394,10 +394,10 @@ static inline void mavlink_msg_orbit_execution_status_decode(const mavlink_messa
     orbit_execution_status->y = mavlink_msg_orbit_execution_status_get_y(msg);
     orbit_execution_status->z = mavlink_msg_orbit_execution_status_get_z(msg);
     orbit_execution_status->frame = mavlink_msg_orbit_execution_status_get_frame(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ORBIT_EXECUTION_STATUS_LEN? msg->len : MAVLINK_MSG_ID_ORBIT_EXECUTION_STATUS_LEN;
-        memset(orbit_execution_status, 0, MAVLINK_MSG_ID_ORBIT_EXECUTION_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ORBIT_EXECUTION_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_ORBIT_EXECUTION_STATUS_LEN;
+    memset(orbit_execution_status, 0, MAVLINK_MSG_ID_ORBIT_EXECUTION_STATUS_LEN);
     memcpy(orbit_execution_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

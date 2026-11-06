@@ -443,10 +443,10 @@ static inline void mavlink_msg_cellular_config_decode(const mavlink_message_t* m
     mavlink_msg_cellular_config_get_puk(msg, cellular_config->puk);
     cellular_config->roaming = mavlink_msg_cellular_config_get_roaming(msg);
     cellular_config->response = mavlink_msg_cellular_config_get_response(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_CELLULAR_CONFIG_LEN? msg->len : MAVLINK_MSG_ID_CELLULAR_CONFIG_LEN;
-        memset(cellular_config, 0, MAVLINK_MSG_ID_CELLULAR_CONFIG_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_CELLULAR_CONFIG_LEN ? msg->len : MAVLINK_MSG_ID_CELLULAR_CONFIG_LEN;
+    memset(cellular_config, 0, MAVLINK_MSG_ID_CELLULAR_CONFIG_LEN);
     memcpy(cellular_config, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

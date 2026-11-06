@@ -738,11 +738,6 @@ static inline void mavlink_msg_open_drone_id_location_decode(const mavlink_messa
     open_drone_id_location->barometer_accuracy = mavlink_msg_open_drone_id_location_get_barometer_accuracy(msg);
     open_drone_id_location->speed_accuracy = mavlink_msg_open_drone_id_location_get_speed_accuracy(msg);
     open_drone_id_location->timestamp_accuracy = mavlink_msg_open_drone_id_location_get_timestamp_accuracy(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_OPEN_DRONE_ID_LOCATION_LEN? msg->len : MAVLINK_MSG_ID_OPEN_DRONE_ID_LOCATION_LEN;
-        memset(open_drone_id_location, 0, MAVLINK_MSG_ID_OPEN_DRONE_ID_LOCATION_LEN);
-    memcpy(open_drone_id_location, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -750,4 +745,7 @@ static inline void mavlink_msg_open_drone_id_location_decode(const mavlink_messa
         open_drone_id_location->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, open_drone_id_location, MAVLINK_MSG_ID_OPEN_DRONE_ID_LOCATION_LEN, 30);
+#endif
 }

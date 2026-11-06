@@ -478,10 +478,10 @@ static inline void mavlink_msg_storm32_gimbal_manager_information_decode(const m
     storm32_gimbal_manager_information->yaw_min = mavlink_msg_storm32_gimbal_manager_information_get_yaw_min(msg);
     storm32_gimbal_manager_information->yaw_max = mavlink_msg_storm32_gimbal_manager_information_get_yaw_max(msg);
     storm32_gimbal_manager_information->gimbal_id = mavlink_msg_storm32_gimbal_manager_information_get_gimbal_id(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_INFORMATION_LEN? msg->len : MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_INFORMATION_LEN;
-        memset(storm32_gimbal_manager_information, 0, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_INFORMATION_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_INFORMATION_LEN ? msg->len : MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_INFORMATION_LEN;
+    memset(storm32_gimbal_manager_information, 0, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_INFORMATION_LEN);
     memcpy(storm32_gimbal_manager_information, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

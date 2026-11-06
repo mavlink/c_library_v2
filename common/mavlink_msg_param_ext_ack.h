@@ -329,10 +329,10 @@ static inline void mavlink_msg_param_ext_ack_decode(const mavlink_message_t* msg
     mavlink_msg_param_ext_ack_get_param_value(msg, param_ext_ack->param_value);
     param_ext_ack->param_type = mavlink_msg_param_ext_ack_get_param_type(msg);
     param_ext_ack->param_result = mavlink_msg_param_ext_ack_get_param_result(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_PARAM_EXT_ACK_LEN? msg->len : MAVLINK_MSG_ID_PARAM_EXT_ACK_LEN;
-        memset(param_ext_ack, 0, MAVLINK_MSG_ID_PARAM_EXT_ACK_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_PARAM_EXT_ACK_LEN ? msg->len : MAVLINK_MSG_ID_PARAM_EXT_ACK_LEN;
+    memset(param_ext_ack, 0, MAVLINK_MSG_ID_PARAM_EXT_ACK_LEN);
     memcpy(param_ext_ack, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

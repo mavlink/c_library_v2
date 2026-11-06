@@ -534,10 +534,10 @@ static inline void mavlink_msg_illuminator_status_decode(const mavlink_message_t
     illuminator_status->enable = mavlink_msg_illuminator_status_get_enable(msg);
     illuminator_status->mode_bitmask = mavlink_msg_illuminator_status_get_mode_bitmask(msg);
     illuminator_status->mode = mavlink_msg_illuminator_status_get_mode(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ILLUMINATOR_STATUS_LEN? msg->len : MAVLINK_MSG_ID_ILLUMINATOR_STATUS_LEN;
-        memset(illuminator_status, 0, MAVLINK_MSG_ID_ILLUMINATOR_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ILLUMINATOR_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_ILLUMINATOR_STATUS_LEN;
+    memset(illuminator_status, 0, MAVLINK_MSG_ID_ILLUMINATOR_STATUS_LEN);
     memcpy(illuminator_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

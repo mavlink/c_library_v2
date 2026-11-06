@@ -562,10 +562,10 @@ static inline void mavlink_msg_sens_power_board_decode(const mavlink_message_t* 
     sens_power_board->pwr_brd_aux_amp = mavlink_msg_sens_power_board_get_pwr_brd_aux_amp(msg);
     sens_power_board->pwr_brd_status = mavlink_msg_sens_power_board_get_pwr_brd_status(msg);
     sens_power_board->pwr_brd_led_status = mavlink_msg_sens_power_board_get_pwr_brd_led_status(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SENS_POWER_BOARD_LEN? msg->len : MAVLINK_MSG_ID_SENS_POWER_BOARD_LEN;
-        memset(sens_power_board, 0, MAVLINK_MSG_ID_SENS_POWER_BOARD_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_SENS_POWER_BOARD_LEN ? msg->len : MAVLINK_MSG_ID_SENS_POWER_BOARD_LEN;
+    memset(sens_power_board, 0, MAVLINK_MSG_ID_SENS_POWER_BOARD_LEN);
     memcpy(sens_power_board, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

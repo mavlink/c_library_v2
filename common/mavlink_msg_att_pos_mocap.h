@@ -385,10 +385,10 @@ static inline void mavlink_msg_att_pos_mocap_decode(const mavlink_message_t* msg
     att_pos_mocap->y = mavlink_msg_att_pos_mocap_get_y(msg);
     att_pos_mocap->z = mavlink_msg_att_pos_mocap_get_z(msg);
     mavlink_msg_att_pos_mocap_get_covariance(msg, att_pos_mocap->covariance);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN? msg->len : MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN;
-        memset(att_pos_mocap, 0, MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN ? msg->len : MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN;
+    memset(att_pos_mocap, 0, MAVLINK_MSG_ID_ATT_POS_MOCAP_LEN);
     memcpy(att_pos_mocap, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

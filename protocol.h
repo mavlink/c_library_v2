@@ -92,6 +92,7 @@ static inline uint8_t mavlink_msg_target_field(uint32_t target_system)
                                                         uint8_t min_length, uint8_t length, uint8_t crc_extra);
     #endif
     MAVLINK_HELPER uint16_t mavlink_msg_to_send_buffer(uint8_t *buffer, const mavlink_message_t *msg);
+    MAVLINK_HELPER void mavlink_msg_decode_target(const mavlink_message_t *msg, void *payload, uint8_t length, uint8_t target_system_ofs);
     MAVLINK_HELPER bool mavlink_msg_get_target_system(const mavlink_message_t *msg, const uint8_t *target_system_ptr, uint32_t *target_system);
     MAVLINK_HELPER uint32_t mavlink_msg_get_target_sysid(const mavlink_message_t *msg, const mavlink_msg_entry_t *entry);
     MAVLINK_HELPER uint8_t mavlink_msg_get_target_compid(const mavlink_message_t *msg, const mavlink_msg_entry_t *entry);
@@ -103,6 +104,11 @@ static inline uint8_t mavlink_msg_target_field(uint32_t target_system)
 						     mavlink_message_t* r_message, 
 						     mavlink_status_t* r_mavlink_status);
     MAVLINK_HELPER uint8_t mavlink_frame_char(uint8_t chan, uint8_t c, mavlink_message_t* r_message, mavlink_status_t* r_mavlink_status);
+    MAVLINK_HELPER uint8_t mavlink_parse_char_buffer(mavlink_message_t* rxmsg,
+						     mavlink_status_t* status,
+						     uint8_t c,
+                                                     mavlink_message_t* r_message,
+                                                     mavlink_status_t* r_mavlink_status);
     MAVLINK_HELPER uint8_t mavlink_parse_char(uint8_t chan, uint8_t c, mavlink_message_t* r_message, mavlink_status_t* r_mavlink_status);
     MAVLINK_HELPER const mavlink_msg_entry_t *mavlink_get_msg_entry(uint32_t msgid);
     #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS

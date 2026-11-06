@@ -693,10 +693,10 @@ static inline void mavlink_msg_ais_vessel_decode(const mavlink_message_t* msg, m
     ais_vessel->dimension_starboard = mavlink_msg_ais_vessel_get_dimension_starboard(msg);
     mavlink_msg_ais_vessel_get_callsign(msg, ais_vessel->callsign);
     mavlink_msg_ais_vessel_get_name(msg, ais_vessel->name);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_AIS_VESSEL_LEN? msg->len : MAVLINK_MSG_ID_AIS_VESSEL_LEN;
-        memset(ais_vessel, 0, MAVLINK_MSG_ID_AIS_VESSEL_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_AIS_VESSEL_LEN ? msg->len : MAVLINK_MSG_ID_AIS_VESSEL_LEN;
+    memset(ais_vessel, 0, MAVLINK_MSG_ID_AIS_VESSEL_LEN);
     memcpy(ais_vessel, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

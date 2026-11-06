@@ -534,10 +534,10 @@ static inline void mavlink_msg_aslctrl_debug_decode(const mavlink_message_t* msg
     aslctrl_debug->f_8 = mavlink_msg_aslctrl_debug_get_f_8(msg);
     aslctrl_debug->i8_1 = mavlink_msg_aslctrl_debug_get_i8_1(msg);
     aslctrl_debug->i8_2 = mavlink_msg_aslctrl_debug_get_i8_2(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ASLCTRL_DEBUG_LEN? msg->len : MAVLINK_MSG_ID_ASLCTRL_DEBUG_LEN;
-        memset(aslctrl_debug, 0, MAVLINK_MSG_ID_ASLCTRL_DEBUG_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ASLCTRL_DEBUG_LEN ? msg->len : MAVLINK_MSG_ID_ASLCTRL_DEBUG_LEN;
+    memset(aslctrl_debug, 0, MAVLINK_MSG_ID_ASLCTRL_DEBUG_LEN);
     memcpy(aslctrl_debug, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

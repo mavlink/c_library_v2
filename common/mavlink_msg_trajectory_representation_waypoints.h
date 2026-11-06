@@ -619,10 +619,10 @@ static inline void mavlink_msg_trajectory_representation_waypoints_decode(const 
     mavlink_msg_trajectory_representation_waypoints_get_vel_yaw(msg, trajectory_representation_waypoints->vel_yaw);
     mavlink_msg_trajectory_representation_waypoints_get_command(msg, trajectory_representation_waypoints->command);
     trajectory_representation_waypoints->valid_points = mavlink_msg_trajectory_representation_waypoints_get_valid_points(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN? msg->len : MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN;
-        memset(trajectory_representation_waypoints, 0, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN ? msg->len : MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN;
+    memset(trajectory_representation_waypoints, 0, MAVLINK_MSG_ID_TRAJECTORY_REPRESENTATION_WAYPOINTS_LEN);
     memcpy(trajectory_representation_waypoints, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

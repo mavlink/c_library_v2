@@ -366,10 +366,10 @@ static inline void mavlink_msg_airspeed_decode(const mavlink_message_t* msg, mav
     airspeed->temperature = mavlink_msg_airspeed_get_temperature(msg);
     airspeed->id = mavlink_msg_airspeed_get_id(msg);
     airspeed->flags = mavlink_msg_airspeed_get_flags(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_AIRSPEED_LEN? msg->len : MAVLINK_MSG_ID_AIRSPEED_LEN;
-        memset(airspeed, 0, MAVLINK_MSG_ID_AIRSPEED_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_AIRSPEED_LEN ? msg->len : MAVLINK_MSG_ID_AIRSPEED_LEN;
+    memset(airspeed, 0, MAVLINK_MSG_ID_AIRSPEED_LEN);
     memcpy(airspeed, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

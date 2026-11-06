@@ -357,10 +357,10 @@ static inline void mavlink_msg_protocol_version_decode(const mavlink_message_t* 
     protocol_version->max_version = mavlink_msg_protocol_version_get_max_version(msg);
     mavlink_msg_protocol_version_get_spec_version_hash(msg, protocol_version->spec_version_hash);
     mavlink_msg_protocol_version_get_library_version_hash(msg, protocol_version->library_version_hash);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_PROTOCOL_VERSION_LEN? msg->len : MAVLINK_MSG_ID_PROTOCOL_VERSION_LEN;
-        memset(protocol_version, 0, MAVLINK_MSG_ID_PROTOCOL_VERSION_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_PROTOCOL_VERSION_LEN ? msg->len : MAVLINK_MSG_ID_PROTOCOL_VERSION_LEN;
+    memset(protocol_version, 0, MAVLINK_MSG_ID_PROTOCOL_VERSION_LEN);
     memcpy(protocol_version, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

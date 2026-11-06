@@ -506,10 +506,10 @@ static inline void mavlink_msg_deepstall_decode(const mavlink_message_t* msg, ma
     deepstall->expected_travel_distance = mavlink_msg_deepstall_get_expected_travel_distance(msg);
     deepstall->cross_track_error = mavlink_msg_deepstall_get_cross_track_error(msg);
     deepstall->stage = mavlink_msg_deepstall_get_stage(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_DEEPSTALL_LEN? msg->len : MAVLINK_MSG_ID_DEEPSTALL_LEN;
-        memset(deepstall, 0, MAVLINK_MSG_ID_DEEPSTALL_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_DEEPSTALL_LEN ? msg->len : MAVLINK_MSG_ID_DEEPSTALL_LEN;
+    memset(deepstall, 0, MAVLINK_MSG_ID_DEEPSTALL_LEN);
     memcpy(deepstall, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

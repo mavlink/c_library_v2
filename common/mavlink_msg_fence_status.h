@@ -366,10 +366,10 @@ static inline void mavlink_msg_fence_status_decode(const mavlink_message_t* msg,
     fence_status->breach_status = mavlink_msg_fence_status_get_breach_status(msg);
     fence_status->breach_type = mavlink_msg_fence_status_get_breach_type(msg);
     fence_status->breach_mitigation = mavlink_msg_fence_status_get_breach_mitigation(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_FENCE_STATUS_LEN? msg->len : MAVLINK_MSG_ID_FENCE_STATUS_LEN;
-        memset(fence_status, 0, MAVLINK_MSG_ID_FENCE_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_FENCE_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_FENCE_STATUS_LEN;
+    memset(fence_status, 0, MAVLINK_MSG_ID_FENCE_STATUS_LEN);
     memcpy(fence_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

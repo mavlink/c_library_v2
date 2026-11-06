@@ -310,10 +310,10 @@ static inline void mavlink_msg_gopro_heartbeat_decode(const mavlink_message_t* m
     gopro_heartbeat->status = mavlink_msg_gopro_heartbeat_get_status(msg);
     gopro_heartbeat->capture_mode = mavlink_msg_gopro_heartbeat_get_capture_mode(msg);
     gopro_heartbeat->flags = mavlink_msg_gopro_heartbeat_get_flags(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_GOPRO_HEARTBEAT_LEN? msg->len : MAVLINK_MSG_ID_GOPRO_HEARTBEAT_LEN;
-        memset(gopro_heartbeat, 0, MAVLINK_MSG_ID_GOPRO_HEARTBEAT_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_GOPRO_HEARTBEAT_LEN ? msg->len : MAVLINK_MSG_ID_GOPRO_HEARTBEAT_LEN;
+    memset(gopro_heartbeat, 0, MAVLINK_MSG_ID_GOPRO_HEARTBEAT_LEN);
     memcpy(gopro_heartbeat, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

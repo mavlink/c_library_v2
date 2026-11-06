@@ -422,10 +422,10 @@ static inline void mavlink_msg_motion_cue_extra_decode(const mavlink_message_t* 
     motion_cue_extra->acc_x = mavlink_msg_motion_cue_extra_get_acc_x(msg);
     motion_cue_extra->acc_y = mavlink_msg_motion_cue_extra_get_acc_y(msg);
     motion_cue_extra->acc_z = mavlink_msg_motion_cue_extra_get_acc_z(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_MOTION_CUE_EXTRA_LEN? msg->len : MAVLINK_MSG_ID_MOTION_CUE_EXTRA_LEN;
-        memset(motion_cue_extra, 0, MAVLINK_MSG_ID_MOTION_CUE_EXTRA_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_MOTION_CUE_EXTRA_LEN ? msg->len : MAVLINK_MSG_ID_MOTION_CUE_EXTRA_LEN;
+    memset(motion_cue_extra, 0, MAVLINK_MSG_ID_MOTION_CUE_EXTRA_LEN);
     memcpy(motion_cue_extra, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

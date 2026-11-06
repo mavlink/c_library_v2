@@ -300,11 +300,6 @@ static inline void mavlink_msg_set_mode_decode(const mavlink_message_t* msg, mav
     set_mode->custom_mode = mavlink_msg_set_mode_get_custom_mode(msg);
     set_mode->target_system = _MAV_RETURN_uint8_t(msg, 4);
     set_mode->base_mode = mavlink_msg_set_mode_get_base_mode(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SET_MODE_LEN? msg->len : MAVLINK_MSG_ID_SET_MODE_LEN;
-        memset(set_mode, 0, MAVLINK_MSG_ID_SET_MODE_LEN);
-    memcpy(set_mode, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -312,4 +307,7 @@ static inline void mavlink_msg_set_mode_decode(const mavlink_message_t* msg, mav
         set_mode->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, set_mode, MAVLINK_MSG_ID_SET_MODE_LEN, 4);
+#endif
 }

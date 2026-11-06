@@ -402,11 +402,6 @@ static inline void mavlink_msg_led_strip_config_decode(const mavlink_message_t* 
     led_strip_config->index = mavlink_msg_led_strip_config_get_index(msg);
     led_strip_config->length = mavlink_msg_led_strip_config_get_length(msg);
     led_strip_config->id = mavlink_msg_led_strip_config_get_id(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN? msg->len : MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN;
-        memset(led_strip_config, 0, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN);
-    memcpy(led_strip_config, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -414,4 +409,7 @@ static inline void mavlink_msg_led_strip_config_decode(const mavlink_message_t* 
         led_strip_config->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, led_strip_config, MAVLINK_MSG_ID_LED_STRIP_CONFIG_LEN, 32);
+#endif
 }

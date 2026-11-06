@@ -374,11 +374,6 @@ static inline void mavlink_msg_led_control_decode(const mavlink_message_t* msg, 
     led_control->pattern = mavlink_msg_led_control_get_pattern(msg);
     led_control->custom_len = mavlink_msg_led_control_get_custom_len(msg);
     mavlink_msg_led_control_get_custom_bytes(msg, led_control->custom_bytes);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_LED_CONTROL_LEN? msg->len : MAVLINK_MSG_ID_LED_CONTROL_LEN;
-        memset(led_control, 0, MAVLINK_MSG_ID_LED_CONTROL_LEN);
-    memcpy(led_control, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -386,4 +381,7 @@ static inline void mavlink_msg_led_control_decode(const mavlink_message_t* msg, 
         led_control->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, led_control, MAVLINK_MSG_ID_LED_CONTROL_LEN, 0);
+#endif
 }

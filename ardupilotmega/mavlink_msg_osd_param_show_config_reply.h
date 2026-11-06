@@ -412,10 +412,10 @@ static inline void mavlink_msg_osd_param_show_config_reply_decode(const mavlink_
     osd_param_show_config_reply->result = mavlink_msg_osd_param_show_config_reply_get_result(msg);
     mavlink_msg_osd_param_show_config_reply_get_param_id(msg, osd_param_show_config_reply->param_id);
     osd_param_show_config_reply->config_type = mavlink_msg_osd_param_show_config_reply_get_config_type(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_LEN? msg->len : MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_LEN;
-        memset(osd_param_show_config_reply, 0, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_LEN ? msg->len : MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_LEN;
+    memset(osd_param_show_config_reply, 0, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_REPLY_LEN);
     memcpy(osd_param_show_config_reply, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

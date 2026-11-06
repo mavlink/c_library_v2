@@ -323,10 +323,10 @@ static inline void mavlink_msg_estimator_sensor_fusion_status_decode(const mavli
     mavlink_msg_estimator_sensor_fusion_status_get_test_ratio(msg, estimator_sensor_fusion_status->test_ratio);
     mavlink_msg_estimator_sensor_fusion_status_get_intended(msg, estimator_sensor_fusion_status->intended);
     mavlink_msg_estimator_sensor_fusion_status_get_active(msg, estimator_sensor_fusion_status->active);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ESTIMATOR_SENSOR_FUSION_STATUS_LEN? msg->len : MAVLINK_MSG_ID_ESTIMATOR_SENSOR_FUSION_STATUS_LEN;
-        memset(estimator_sensor_fusion_status, 0, MAVLINK_MSG_ID_ESTIMATOR_SENSOR_FUSION_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ESTIMATOR_SENSOR_FUSION_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_ESTIMATOR_SENSOR_FUSION_STATUS_LEN;
+    memset(estimator_sensor_fusion_status, 0, MAVLINK_MSG_ID_ESTIMATOR_SENSOR_FUSION_STATUS_LEN);
     memcpy(estimator_sensor_fusion_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

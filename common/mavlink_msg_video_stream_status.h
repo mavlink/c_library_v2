@@ -506,10 +506,10 @@ static inline void mavlink_msg_video_stream_status_decode(const mavlink_message_
     video_stream_status->stream_id = mavlink_msg_video_stream_status_get_stream_id(msg);
     video_stream_status->camera_device_id = mavlink_msg_video_stream_status_get_camera_device_id(msg);
     video_stream_status->vfov = mavlink_msg_video_stream_status_get_vfov(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN? msg->len : MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN;
-        memset(video_stream_status, 0, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN;
+    memset(video_stream_status, 0, MAVLINK_MSG_ID_VIDEO_STREAM_STATUS_LEN);
     memcpy(video_stream_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

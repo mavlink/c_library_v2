@@ -926,10 +926,10 @@ static inline void mavlink_msg_aslctrl_data_decode(const mavlink_message_t* msg,
     aslctrl_data->uRud = mavlink_msg_aslctrl_data_get_uRud(msg);
     aslctrl_data->aslctrl_mode = mavlink_msg_aslctrl_data_get_aslctrl_mode(msg);
     aslctrl_data->SpoilersEngaged = mavlink_msg_aslctrl_data_get_SpoilersEngaged(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ASLCTRL_DATA_LEN? msg->len : MAVLINK_MSG_ID_ASLCTRL_DATA_LEN;
-        memset(aslctrl_data, 0, MAVLINK_MSG_ID_ASLCTRL_DATA_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ASLCTRL_DATA_LEN ? msg->len : MAVLINK_MSG_ID_ASLCTRL_DATA_LEN;
+    memset(aslctrl_data, 0, MAVLINK_MSG_ID_ASLCTRL_DATA_LEN);
     memcpy(aslctrl_data, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

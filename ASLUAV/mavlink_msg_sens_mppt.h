@@ -590,10 +590,10 @@ static inline void mavlink_msg_sens_mppt_decode(const mavlink_message_t* msg, ma
     sens_mppt->mppt1_status = mavlink_msg_sens_mppt_get_mppt1_status(msg);
     sens_mppt->mppt2_status = mavlink_msg_sens_mppt_get_mppt2_status(msg);
     sens_mppt->mppt3_status = mavlink_msg_sens_mppt_get_mppt3_status(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SENS_MPPT_LEN? msg->len : MAVLINK_MSG_ID_SENS_MPPT_LEN;
-        memset(sens_mppt, 0, MAVLINK_MSG_ID_SENS_MPPT_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_SENS_MPPT_LEN ? msg->len : MAVLINK_MSG_ID_SENS_MPPT_LEN;
+    memset(sens_mppt, 0, MAVLINK_MSG_ID_SENS_MPPT_LEN);
     memcpy(sens_mppt, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

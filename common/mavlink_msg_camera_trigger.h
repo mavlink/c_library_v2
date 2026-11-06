@@ -282,10 +282,10 @@ static inline void mavlink_msg_camera_trigger_decode(const mavlink_message_t* ms
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     camera_trigger->time_usec = mavlink_msg_camera_trigger_get_time_usec(msg);
     camera_trigger->seq = mavlink_msg_camera_trigger_get_seq(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_CAMERA_TRIGGER_LEN? msg->len : MAVLINK_MSG_ID_CAMERA_TRIGGER_LEN;
-        memset(camera_trigger, 0, MAVLINK_MSG_ID_CAMERA_TRIGGER_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_CAMERA_TRIGGER_LEN ? msg->len : MAVLINK_MSG_ID_CAMERA_TRIGGER_LEN;
+    memset(camera_trigger, 0, MAVLINK_MSG_ID_CAMERA_TRIGGER_LEN);
     memcpy(camera_trigger, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

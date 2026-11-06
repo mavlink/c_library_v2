@@ -982,10 +982,10 @@ static inline void mavlink_msg_high_latency2_decode(const mavlink_message_t* msg
     high_latency2->custom0 = mavlink_msg_high_latency2_get_custom0(msg);
     high_latency2->custom1 = mavlink_msg_high_latency2_get_custom1(msg);
     high_latency2->custom2 = mavlink_msg_high_latency2_get_custom2(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_HIGH_LATENCY2_LEN? msg->len : MAVLINK_MSG_ID_HIGH_LATENCY2_LEN;
-        memset(high_latency2, 0, MAVLINK_MSG_ID_HIGH_LATENCY2_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_HIGH_LATENCY2_LEN ? msg->len : MAVLINK_MSG_ID_HIGH_LATENCY2_LEN;
+    memset(high_latency2, 0, MAVLINK_MSG_ID_HIGH_LATENCY2_LEN);
     memcpy(high_latency2, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -730,10 +730,10 @@ static inline void mavlink_msg_mag_cal_report_decode(const mavlink_message_t* ms
     mag_cal_report->old_orientation = mavlink_msg_mag_cal_report_get_old_orientation(msg);
     mag_cal_report->new_orientation = mavlink_msg_mag_cal_report_get_new_orientation(msg);
     mag_cal_report->scale_factor = mavlink_msg_mag_cal_report_get_scale_factor(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN? msg->len : MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN;
-        memset(mag_cal_report, 0, MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN ? msg->len : MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN;
+    memset(mag_cal_report, 0, MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN);
     memcpy(mag_cal_report, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

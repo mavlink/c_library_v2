@@ -310,10 +310,10 @@ static inline void mavlink_msg_current_mode_decode(const mavlink_message_t* msg,
     current_mode->custom_mode = mavlink_msg_current_mode_get_custom_mode(msg);
     current_mode->intended_custom_mode = mavlink_msg_current_mode_get_intended_custom_mode(msg);
     current_mode->standard_mode = mavlink_msg_current_mode_get_standard_mode(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_CURRENT_MODE_LEN? msg->len : MAVLINK_MSG_ID_CURRENT_MODE_LEN;
-        memset(current_mode, 0, MAVLINK_MSG_ID_CURRENT_MODE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_CURRENT_MODE_LEN ? msg->len : MAVLINK_MSG_ID_CURRENT_MODE_LEN;
+    memset(current_mode, 0, MAVLINK_MSG_ID_CURRENT_MODE_LEN);
     memcpy(current_mode, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

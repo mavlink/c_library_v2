@@ -254,10 +254,10 @@ static inline void mavlink_msg_cubepilot_raw_rc_decode(const mavlink_message_t* 
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_cubepilot_raw_rc_get_rc_raw(msg, cubepilot_raw_rc->rc_raw);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_LEN? msg->len : MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_LEN;
-        memset(cubepilot_raw_rc, 0, MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_LEN ? msg->len : MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_LEN;
+    memset(cubepilot_raw_rc, 0, MAVLINK_MSG_ID_CUBEPILOT_RAW_RC_LEN);
     memcpy(cubepilot_raw_rc, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

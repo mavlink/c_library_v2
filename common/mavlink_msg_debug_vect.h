@@ -356,10 +356,10 @@ static inline void mavlink_msg_debug_vect_decode(const mavlink_message_t* msg, m
     debug_vect->y = mavlink_msg_debug_vect_get_y(msg);
     debug_vect->z = mavlink_msg_debug_vect_get_z(msg);
     mavlink_msg_debug_vect_get_name(msg, debug_vect->name);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_DEBUG_VECT_LEN? msg->len : MAVLINK_MSG_ID_DEBUG_VECT_LEN;
-        memset(debug_vect, 0, MAVLINK_MSG_ID_DEBUG_VECT_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_DEBUG_VECT_LEN ? msg->len : MAVLINK_MSG_ID_DEBUG_VECT_LEN;
+    memset(debug_vect, 0, MAVLINK_MSG_ID_DEBUG_VECT_LEN);
     memcpy(debug_vect, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

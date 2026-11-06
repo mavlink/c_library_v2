@@ -283,10 +283,10 @@ static inline void mavlink_msg_airlink_auth_decode(const mavlink_message_t* msg,
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_airlink_auth_get_login(msg, airlink_auth->login);
     mavlink_msg_airlink_auth_get_password(msg, airlink_auth->password);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_AIRLINK_AUTH_LEN? msg->len : MAVLINK_MSG_ID_AIRLINK_AUTH_LEN;
-        memset(airlink_auth, 0, MAVLINK_MSG_ID_AIRLINK_AUTH_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_AIRLINK_AUTH_LEN ? msg->len : MAVLINK_MSG_ID_AIRLINK_AUTH_LEN;
+    memset(airlink_auth, 0, MAVLINK_MSG_ID_AIRLINK_AUTH_LEN);
     memcpy(airlink_auth, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

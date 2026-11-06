@@ -534,10 +534,10 @@ static inline void mavlink_msg_rc_channels_scaled_decode(const mavlink_message_t
     rc_channels_scaled->chan8_scaled = mavlink_msg_rc_channels_scaled_get_chan8_scaled(msg);
     rc_channels_scaled->port = mavlink_msg_rc_channels_scaled_get_port(msg);
     rc_channels_scaled->rssi = mavlink_msg_rc_channels_scaled_get_rssi(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_RC_CHANNELS_SCALED_LEN? msg->len : MAVLINK_MSG_ID_RC_CHANNELS_SCALED_LEN;
-        memset(rc_channels_scaled, 0, MAVLINK_MSG_ID_RC_CHANNELS_SCALED_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_RC_CHANNELS_SCALED_LEN ? msg->len : MAVLINK_MSG_ID_RC_CHANNELS_SCALED_LEN;
+    memset(rc_channels_scaled, 0, MAVLINK_MSG_ID_RC_CHANNELS_SCALED_LEN);
     memcpy(rc_channels_scaled, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

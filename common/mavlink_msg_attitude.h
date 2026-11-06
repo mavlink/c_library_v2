@@ -422,10 +422,10 @@ static inline void mavlink_msg_attitude_decode(const mavlink_message_t* msg, mav
     attitude->rollspeed = mavlink_msg_attitude_get_rollspeed(msg);
     attitude->pitchspeed = mavlink_msg_attitude_get_pitchspeed(msg);
     attitude->yawspeed = mavlink_msg_attitude_get_yawspeed(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ATTITUDE_LEN? msg->len : MAVLINK_MSG_ID_ATTITUDE_LEN;
-        memset(attitude, 0, MAVLINK_MSG_ID_ATTITUDE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ATTITUDE_LEN ? msg->len : MAVLINK_MSG_ID_ATTITUDE_LEN;
+    memset(attitude, 0, MAVLINK_MSG_ID_ATTITUDE_LEN);
     memcpy(attitude, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

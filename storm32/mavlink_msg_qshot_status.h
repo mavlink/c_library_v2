@@ -292,10 +292,10 @@ static inline void mavlink_msg_qshot_status_decode(const mavlink_message_t* msg,
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     qshot_status->mode = mavlink_msg_qshot_status_get_mode(msg);
     qshot_status->shot_state = mavlink_msg_qshot_status_get_shot_state(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_QSHOT_STATUS_LEN? msg->len : MAVLINK_MSG_ID_QSHOT_STATUS_LEN;
-        memset(qshot_status, 0, MAVLINK_MSG_ID_QSHOT_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_QSHOT_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_QSHOT_STATUS_LEN;
+    memset(qshot_status, 0, MAVLINK_MSG_ID_QSHOT_STATUS_LEN);
     memcpy(qshot_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

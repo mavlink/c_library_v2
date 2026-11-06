@@ -506,10 +506,10 @@ static inline void mavlink_msg_optical_flow_decode(const mavlink_message_t* msg,
     optical_flow->quality = mavlink_msg_optical_flow_get_quality(msg);
     optical_flow->flow_rate_x = mavlink_msg_optical_flow_get_flow_rate_x(msg);
     optical_flow->flow_rate_y = mavlink_msg_optical_flow_get_flow_rate_y(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_OPTICAL_FLOW_LEN? msg->len : MAVLINK_MSG_ID_OPTICAL_FLOW_LEN;
-        memset(optical_flow, 0, MAVLINK_MSG_ID_OPTICAL_FLOW_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_OPTICAL_FLOW_LEN ? msg->len : MAVLINK_MSG_ID_OPTICAL_FLOW_LEN;
+    memset(optical_flow, 0, MAVLINK_MSG_ID_OPTICAL_FLOW_LEN);
     memcpy(optical_flow, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

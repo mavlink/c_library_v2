@@ -282,10 +282,10 @@ static inline void mavlink_msg_gopro_set_response_decode(const mavlink_message_t
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     gopro_set_response->cmd_id = mavlink_msg_gopro_set_response_get_cmd_id(msg);
     gopro_set_response->status = mavlink_msg_gopro_set_response_get_status(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_GOPRO_SET_RESPONSE_LEN? msg->len : MAVLINK_MSG_ID_GOPRO_SET_RESPONSE_LEN;
-        memset(gopro_set_response, 0, MAVLINK_MSG_ID_GOPRO_SET_RESPONSE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_GOPRO_SET_RESPONSE_LEN ? msg->len : MAVLINK_MSG_ID_GOPRO_SET_RESPONSE_LEN;
+    memset(gopro_set_response, 0, MAVLINK_MSG_ID_GOPRO_SET_RESPONSE_LEN);
     memcpy(gopro_set_response, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

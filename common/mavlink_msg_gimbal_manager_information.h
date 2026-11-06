@@ -478,10 +478,10 @@ static inline void mavlink_msg_gimbal_manager_information_decode(const mavlink_m
     gimbal_manager_information->yaw_min = mavlink_msg_gimbal_manager_information_get_yaw_min(msg);
     gimbal_manager_information->yaw_max = mavlink_msg_gimbal_manager_information_get_yaw_max(msg);
     gimbal_manager_information->gimbal_device_id = mavlink_msg_gimbal_manager_information_get_gimbal_device_id(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_GIMBAL_MANAGER_INFORMATION_LEN? msg->len : MAVLINK_MSG_ID_GIMBAL_MANAGER_INFORMATION_LEN;
-        memset(gimbal_manager_information, 0, MAVLINK_MSG_ID_GIMBAL_MANAGER_INFORMATION_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_GIMBAL_MANAGER_INFORMATION_LEN ? msg->len : MAVLINK_MSG_ID_GIMBAL_MANAGER_INFORMATION_LEN;
+    memset(gimbal_manager_information, 0, MAVLINK_MSG_ID_GIMBAL_MANAGER_INFORMATION_LEN);
     memcpy(gimbal_manager_information, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

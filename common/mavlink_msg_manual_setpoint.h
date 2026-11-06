@@ -422,10 +422,10 @@ static inline void mavlink_msg_manual_setpoint_decode(const mavlink_message_t* m
     manual_setpoint->thrust = mavlink_msg_manual_setpoint_get_thrust(msg);
     manual_setpoint->mode_switch = mavlink_msg_manual_setpoint_get_mode_switch(msg);
     manual_setpoint->manual_override_switch = mavlink_msg_manual_setpoint_get_manual_override_switch(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_MANUAL_SETPOINT_LEN? msg->len : MAVLINK_MSG_ID_MANUAL_SETPOINT_LEN;
-        memset(manual_setpoint, 0, MAVLINK_MSG_ID_MANUAL_SETPOINT_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_MANUAL_SETPOINT_LEN ? msg->len : MAVLINK_MSG_ID_MANUAL_SETPOINT_LEN;
+    memset(manual_setpoint, 0, MAVLINK_MSG_ID_MANUAL_SETPOINT_LEN);
     memcpy(manual_setpoint, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

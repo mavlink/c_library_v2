@@ -357,10 +357,10 @@ static inline void mavlink_msg_resource_request_decode(const mavlink_message_t* 
     mavlink_msg_resource_request_get_uri(msg, resource_request->uri);
     resource_request->transfer_type = mavlink_msg_resource_request_get_transfer_type(msg);
     mavlink_msg_resource_request_get_storage(msg, resource_request->storage);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_RESOURCE_REQUEST_LEN? msg->len : MAVLINK_MSG_ID_RESOURCE_REQUEST_LEN;
-        memset(resource_request, 0, MAVLINK_MSG_ID_RESOURCE_REQUEST_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_RESOURCE_REQUEST_LEN ? msg->len : MAVLINK_MSG_ID_RESOURCE_REQUEST_LEN;
+    memset(resource_request, 0, MAVLINK_MSG_ID_RESOURCE_REQUEST_LEN);
     memcpy(resource_request, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

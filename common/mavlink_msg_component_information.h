@@ -357,10 +357,10 @@ static inline void mavlink_msg_component_information_decode(const mavlink_messag
     component_information->peripherals_metadata_file_crc = mavlink_msg_component_information_get_peripherals_metadata_file_crc(msg);
     mavlink_msg_component_information_get_general_metadata_uri(msg, component_information->general_metadata_uri);
     mavlink_msg_component_information_get_peripherals_metadata_uri(msg, component_information->peripherals_metadata_uri);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_COMPONENT_INFORMATION_LEN? msg->len : MAVLINK_MSG_ID_COMPONENT_INFORMATION_LEN;
-        memset(component_information, 0, MAVLINK_MSG_ID_COMPONENT_INFORMATION_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_COMPONENT_INFORMATION_LEN ? msg->len : MAVLINK_MSG_ID_COMPONENT_INFORMATION_LEN;
+    memset(component_information, 0, MAVLINK_MSG_ID_COMPONENT_INFORMATION_LEN);
     memcpy(component_information, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

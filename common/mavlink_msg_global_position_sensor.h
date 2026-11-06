@@ -580,11 +580,6 @@ static inline void mavlink_msg_global_position_sensor_decode(const mavlink_messa
     global_position_sensor->id = mavlink_msg_global_position_sensor_get_id(msg);
     global_position_sensor->source = mavlink_msg_global_position_sensor_get_source(msg);
     global_position_sensor->flags = mavlink_msg_global_position_sensor_get_flags(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN? msg->len : MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN;
-        memset(global_position_sensor, 0, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN);
-    memcpy(global_position_sensor, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -592,4 +587,7 @@ static inline void mavlink_msg_global_position_sensor_decode(const mavlink_messa
         global_position_sensor->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, global_position_sensor, MAVLINK_MSG_ID_GLOBAL_POSITION_SENSOR_LEN, 36);
+#endif
 }

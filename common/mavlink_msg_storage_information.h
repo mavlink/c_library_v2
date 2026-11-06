@@ -570,10 +570,10 @@ static inline void mavlink_msg_storage_information_decode(const mavlink_message_
     storage_information->type = mavlink_msg_storage_information_get_type(msg);
     mavlink_msg_storage_information_get_name(msg, storage_information->name);
     storage_information->storage_usage = mavlink_msg_storage_information_get_storage_usage(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_STORAGE_INFORMATION_LEN? msg->len : MAVLINK_MSG_ID_STORAGE_INFORMATION_LEN;
-        memset(storage_information, 0, MAVLINK_MSG_ID_STORAGE_INFORMATION_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_STORAGE_INFORMATION_LEN ? msg->len : MAVLINK_MSG_ID_STORAGE_INFORMATION_LEN;
+    memset(storage_information, 0, MAVLINK_MSG_ID_STORAGE_INFORMATION_LEN);
     memcpy(storage_information, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -379,10 +379,10 @@ static inline void mavlink_msg_control_loading_axis_decode(const mavlink_message
     control_loading_axis->velocity = mavlink_msg_control_loading_axis_get_velocity(msg);
     control_loading_axis->force = mavlink_msg_control_loading_axis_get_force(msg);
     control_loading_axis->axis = mavlink_msg_control_loading_axis_get_axis(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_CONTROL_LOADING_AXIS_LEN? msg->len : MAVLINK_MSG_ID_CONTROL_LOADING_AXIS_LEN;
-        memset(control_loading_axis, 0, MAVLINK_MSG_ID_CONTROL_LOADING_AXIS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_CONTROL_LOADING_AXIS_LEN ? msg->len : MAVLINK_MSG_ID_CONTROL_LOADING_AXIS_LEN;
+    memset(control_loading_axis, 0, MAVLINK_MSG_ID_CONTROL_LOADING_AXIS_LEN);
     memcpy(control_loading_axis, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

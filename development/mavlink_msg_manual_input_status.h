@@ -321,10 +321,10 @@ static inline void mavlink_msg_manual_input_status_decode(const mavlink_message_
     manual_input_status->source = mavlink_msg_manual_input_status_get_source(msg);
     manual_input_status->sender_system_id = mavlink_msg_manual_input_status_get_sender_system_id(msg);
     manual_input_status->sender_component_id = mavlink_msg_manual_input_status_get_sender_component_id(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_MANUAL_INPUT_STATUS_LEN? msg->len : MAVLINK_MSG_ID_MANUAL_INPUT_STATUS_LEN;
-        memset(manual_input_status, 0, MAVLINK_MSG_ID_MANUAL_INPUT_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_MANUAL_INPUT_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_MANUAL_INPUT_STATUS_LEN;
+    memset(manual_input_status, 0, MAVLINK_MSG_ID_MANUAL_INPUT_STATUS_LEN);
     memcpy(manual_input_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -368,11 +368,6 @@ static inline void mavlink_msg_set_velocity_limits_decode(const mavlink_message_
     set_velocity_limits->yaw_rate_limit = mavlink_msg_set_velocity_limits_get_yaw_rate_limit(msg);
     set_velocity_limits->target_system = _MAV_RETURN_uint8_t(msg, 12);
     set_velocity_limits->target_component = mavlink_msg_set_velocity_limits_get_target_component(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN? msg->len : MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN;
-        memset(set_velocity_limits, 0, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN);
-    memcpy(set_velocity_limits, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -380,4 +375,7 @@ static inline void mavlink_msg_set_velocity_limits_decode(const mavlink_message_
         set_velocity_limits->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, set_velocity_limits, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN, 12);
+#endif
 }

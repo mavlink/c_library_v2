@@ -300,10 +300,10 @@ static inline void mavlink_msg_data64_decode(const mavlink_message_t* msg, mavli
     data64->type = mavlink_msg_data64_get_type(msg);
     data64->len = mavlink_msg_data64_get_len(msg);
     mavlink_msg_data64_get_data(msg, data64->data);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_DATA64_LEN? msg->len : MAVLINK_MSG_ID_DATA64_LEN;
-        memset(data64, 0, MAVLINK_MSG_ID_DATA64_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_DATA64_LEN ? msg->len : MAVLINK_MSG_ID_DATA64_LEN;
+    memset(data64, 0, MAVLINK_MSG_ID_DATA64_LEN);
     memcpy(data64, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -282,10 +282,10 @@ static inline void mavlink_msg_battery2_decode(const mavlink_message_t* msg, mav
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     battery2->voltage = mavlink_msg_battery2_get_voltage(msg);
     battery2->current_battery = mavlink_msg_battery2_get_current_battery(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_BATTERY2_LEN? msg->len : MAVLINK_MSG_ID_BATTERY2_LEN;
-        memset(battery2, 0, MAVLINK_MSG_ID_BATTERY2_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_BATTERY2_LEN ? msg->len : MAVLINK_MSG_ID_BATTERY2_LEN;
+    memset(battery2, 0, MAVLINK_MSG_ID_BATTERY2_LEN);
     memcpy(battery2, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

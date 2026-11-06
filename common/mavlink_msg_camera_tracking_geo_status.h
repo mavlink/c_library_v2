@@ -618,10 +618,10 @@ static inline void mavlink_msg_camera_tracking_geo_status_decode(const mavlink_m
     camera_tracking_geo_status->hdg_acc = mavlink_msg_camera_tracking_geo_status_get_hdg_acc(msg);
     camera_tracking_geo_status->tracking_status = mavlink_msg_camera_tracking_geo_status_get_tracking_status(msg);
     camera_tracking_geo_status->camera_device_id = mavlink_msg_camera_tracking_geo_status_get_camera_device_id(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_CAMERA_TRACKING_GEO_STATUS_LEN? msg->len : MAVLINK_MSG_ID_CAMERA_TRACKING_GEO_STATUS_LEN;
-        memset(camera_tracking_geo_status, 0, MAVLINK_MSG_ID_CAMERA_TRACKING_GEO_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_CAMERA_TRACKING_GEO_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_CAMERA_TRACKING_GEO_STATUS_LEN;
+    memset(camera_tracking_geo_status, 0, MAVLINK_MSG_ID_CAMERA_TRACKING_GEO_STATUS_LEN);
     memcpy(camera_tracking_geo_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

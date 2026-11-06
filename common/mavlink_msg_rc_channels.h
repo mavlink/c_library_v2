@@ -814,10 +814,10 @@ static inline void mavlink_msg_rc_channels_decode(const mavlink_message_t* msg, 
     rc_channels->chan18_raw = mavlink_msg_rc_channels_get_chan18_raw(msg);
     rc_channels->chancount = mavlink_msg_rc_channels_get_chancount(msg);
     rc_channels->rssi = mavlink_msg_rc_channels_get_rssi(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_RC_CHANNELS_LEN? msg->len : MAVLINK_MSG_ID_RC_CHANNELS_LEN;
-        memset(rc_channels, 0, MAVLINK_MSG_ID_RC_CHANNELS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_RC_CHANNELS_LEN ? msg->len : MAVLINK_MSG_ID_RC_CHANNELS_LEN;
+    memset(rc_channels, 0, MAVLINK_MSG_ID_RC_CHANNELS_LEN);
     memcpy(rc_channels, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -392,11 +392,6 @@ static inline void mavlink_msg_mission_ack_decode(const mavlink_message_t* msg, 
     mission_ack->type = mavlink_msg_mission_ack_get_type(msg);
     mission_ack->mission_type = mavlink_msg_mission_ack_get_mission_type(msg);
     mission_ack->opaque_id = mavlink_msg_mission_ack_get_opaque_id(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_MISSION_ACK_LEN? msg->len : MAVLINK_MSG_ID_MISSION_ACK_LEN;
-        memset(mission_ack, 0, MAVLINK_MSG_ID_MISSION_ACK_LEN);
-    memcpy(mission_ack, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -404,4 +399,7 @@ static inline void mavlink_msg_mission_ack_decode(const mavlink_message_t* msg, 
         mission_ack->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, mission_ack, MAVLINK_MSG_ID_MISSION_ACK_LEN, 0);
+#endif
 }

@@ -478,10 +478,10 @@ static inline void mavlink_msg_wind_cov_decode(const mavlink_message_t* msg, mav
     wind_cov->wind_alt = mavlink_msg_wind_cov_get_wind_alt(msg);
     wind_cov->horiz_accuracy = mavlink_msg_wind_cov_get_horiz_accuracy(msg);
     wind_cov->vert_accuracy = mavlink_msg_wind_cov_get_vert_accuracy(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_WIND_COV_LEN? msg->len : MAVLINK_MSG_ID_WIND_COV_LEN;
-        memset(wind_cov, 0, MAVLINK_MSG_ID_WIND_COV_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_WIND_COV_LEN ? msg->len : MAVLINK_MSG_ID_WIND_COV_LEN;
+    memset(wind_cov, 0, MAVLINK_MSG_ID_WIND_COV_LEN);
     memcpy(wind_cov, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

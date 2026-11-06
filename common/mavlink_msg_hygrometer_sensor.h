@@ -310,10 +310,10 @@ static inline void mavlink_msg_hygrometer_sensor_decode(const mavlink_message_t*
     hygrometer_sensor->temperature = mavlink_msg_hygrometer_sensor_get_temperature(msg);
     hygrometer_sensor->humidity = mavlink_msg_hygrometer_sensor_get_humidity(msg);
     hygrometer_sensor->id = mavlink_msg_hygrometer_sensor_get_id(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_HYGROMETER_SENSOR_LEN? msg->len : MAVLINK_MSG_ID_HYGROMETER_SENSOR_LEN;
-        memset(hygrometer_sensor, 0, MAVLINK_MSG_ID_HYGROMETER_SENSOR_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_HYGROMETER_SENSOR_LEN ? msg->len : MAVLINK_MSG_ID_HYGROMETER_SENSOR_LEN;
+    memset(hygrometer_sensor, 0, MAVLINK_MSG_ID_HYGROMETER_SENSOR_LEN);
     memcpy(hygrometer_sensor, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

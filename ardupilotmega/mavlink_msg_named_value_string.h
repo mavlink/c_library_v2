@@ -301,10 +301,10 @@ static inline void mavlink_msg_named_value_string_decode(const mavlink_message_t
     named_value_string->time_boot_ms = mavlink_msg_named_value_string_get_time_boot_ms(msg);
     mavlink_msg_named_value_string_get_name(msg, named_value_string->name);
     mavlink_msg_named_value_string_get_value(msg, named_value_string->value);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_NAMED_VALUE_STRING_LEN? msg->len : MAVLINK_MSG_ID_NAMED_VALUE_STRING_LEN;
-        memset(named_value_string, 0, MAVLINK_MSG_ID_NAMED_VALUE_STRING_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_NAMED_VALUE_STRING_LEN ? msg->len : MAVLINK_MSG_ID_NAMED_VALUE_STRING_LEN;
+    memset(named_value_string, 0, MAVLINK_MSG_ID_NAMED_VALUE_STRING_LEN);
     memcpy(named_value_string, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -468,10 +468,10 @@ static inline void mavlink_msg_mag_cal_progress_decode(const mavlink_message_t* 
     mag_cal_progress->attempt = mavlink_msg_mag_cal_progress_get_attempt(msg);
     mag_cal_progress->completion_pct = mavlink_msg_mag_cal_progress_get_completion_pct(msg);
     mavlink_msg_mag_cal_progress_get_completion_mask(msg, mag_cal_progress->completion_mask);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_MAG_CAL_PROGRESS_LEN? msg->len : MAVLINK_MSG_ID_MAG_CAL_PROGRESS_LEN;
-        memset(mag_cal_progress, 0, MAVLINK_MSG_ID_MAG_CAL_PROGRESS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_MAG_CAL_PROGRESS_LEN ? msg->len : MAVLINK_MSG_ID_MAG_CAL_PROGRESS_LEN;
+    memset(mag_cal_progress, 0, MAVLINK_MSG_ID_MAG_CAL_PROGRESS_LEN);
     memcpy(mag_cal_progress, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

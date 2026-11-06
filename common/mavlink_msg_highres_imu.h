@@ -674,10 +674,10 @@ static inline void mavlink_msg_highres_imu_decode(const mavlink_message_t* msg, 
     highres_imu->temperature = mavlink_msg_highres_imu_get_temperature(msg);
     highres_imu->fields_updated = mavlink_msg_highres_imu_get_fields_updated(msg);
     highres_imu->id = mavlink_msg_highres_imu_get_id(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_HIGHRES_IMU_LEN? msg->len : MAVLINK_MSG_ID_HIGHRES_IMU_LEN;
-        memset(highres_imu, 0, MAVLINK_MSG_ID_HIGHRES_IMU_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_HIGHRES_IMU_LEN ? msg->len : MAVLINK_MSG_ID_HIGHRES_IMU_LEN;
+    memset(highres_imu, 0, MAVLINK_MSG_ID_HIGHRES_IMU_LEN);
     memcpy(highres_imu, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

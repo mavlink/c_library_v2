@@ -562,10 +562,10 @@ static inline void mavlink_msg_airspeed_autocal_decode(const mavlink_message_t* 
     airspeed_autocal->Pax = mavlink_msg_airspeed_autocal_get_Pax(msg);
     airspeed_autocal->Pby = mavlink_msg_airspeed_autocal_get_Pby(msg);
     airspeed_autocal->Pcz = mavlink_msg_airspeed_autocal_get_Pcz(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_AIRSPEED_AUTOCAL_LEN? msg->len : MAVLINK_MSG_ID_AIRSPEED_AUTOCAL_LEN;
-        memset(airspeed_autocal, 0, MAVLINK_MSG_ID_AIRSPEED_AUTOCAL_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_AIRSPEED_AUTOCAL_LEN ? msg->len : MAVLINK_MSG_ID_AIRSPEED_AUTOCAL_LEN;
+    memset(airspeed_autocal, 0, MAVLINK_MSG_ID_AIRSPEED_AUTOCAL_LEN);
     memcpy(airspeed_autocal, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

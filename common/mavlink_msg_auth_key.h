@@ -254,10 +254,10 @@ static inline void mavlink_msg_auth_key_decode(const mavlink_message_t* msg, mav
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_auth_key_get_key(msg, auth_key->key);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_AUTH_KEY_LEN? msg->len : MAVLINK_MSG_ID_AUTH_KEY_LEN;
-        memset(auth_key, 0, MAVLINK_MSG_ID_AUTH_KEY_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_AUTH_KEY_LEN ? msg->len : MAVLINK_MSG_ID_AUTH_KEY_LEN;
+    memset(auth_key, 0, MAVLINK_MSG_ID_AUTH_KEY_LEN);
     memcpy(auth_key, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

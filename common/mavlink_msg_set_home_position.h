@@ -542,11 +542,6 @@ static inline void mavlink_msg_set_home_position_decode(const mavlink_message_t*
     set_home_position->approach_z = mavlink_msg_set_home_position_get_approach_z(msg);
     set_home_position->target_system = _MAV_RETURN_uint8_t(msg, 52);
     set_home_position->time_usec = mavlink_msg_set_home_position_get_time_usec(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SET_HOME_POSITION_LEN? msg->len : MAVLINK_MSG_ID_SET_HOME_POSITION_LEN;
-        memset(set_home_position, 0, MAVLINK_MSG_ID_SET_HOME_POSITION_LEN);
-    memcpy(set_home_position, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -554,4 +549,7 @@ static inline void mavlink_msg_set_home_position_decode(const mavlink_message_t*
         set_home_position->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, set_home_position, MAVLINK_MSG_ID_SET_HOME_POSITION_LEN, 52);
+#endif
 }

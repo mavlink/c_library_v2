@@ -310,10 +310,10 @@ static inline void mavlink_msg_wind_decode(const mavlink_message_t* msg, mavlink
     wind->direction = mavlink_msg_wind_get_direction(msg);
     wind->speed = mavlink_msg_wind_get_speed(msg);
     wind->speed_z = mavlink_msg_wind_get_speed_z(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_WIND_LEN? msg->len : MAVLINK_MSG_ID_WIND_LEN;
-        memset(wind, 0, MAVLINK_MSG_ID_WIND_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_WIND_LEN ? msg->len : MAVLINK_MSG_ID_WIND_LEN;
+    memset(wind, 0, MAVLINK_MSG_ID_WIND_LEN);
     memcpy(wind, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

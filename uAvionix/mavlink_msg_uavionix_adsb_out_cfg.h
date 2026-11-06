@@ -440,10 +440,10 @@ static inline void mavlink_msg_uavionix_adsb_out_cfg_decode(const mavlink_messag
     uavionix_adsb_out_cfg->gpsOffsetLat = mavlink_msg_uavionix_adsb_out_cfg_get_gpsOffsetLat(msg);
     uavionix_adsb_out_cfg->gpsOffsetLon = mavlink_msg_uavionix_adsb_out_cfg_get_gpsOffsetLon(msg);
     uavionix_adsb_out_cfg->rfSelect = mavlink_msg_uavionix_adsb_out_cfg_get_rfSelect(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_LEN? msg->len : MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_LEN;
-        memset(uavionix_adsb_out_cfg, 0, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_LEN ? msg->len : MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_LEN;
+    memset(uavionix_adsb_out_cfg, 0, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_LEN);
     memcpy(uavionix_adsb_out_cfg, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

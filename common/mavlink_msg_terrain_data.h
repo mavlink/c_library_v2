@@ -356,10 +356,10 @@ static inline void mavlink_msg_terrain_data_decode(const mavlink_message_t* msg,
     terrain_data->grid_spacing = mavlink_msg_terrain_data_get_grid_spacing(msg);
     mavlink_msg_terrain_data_get_data(msg, terrain_data->data);
     terrain_data->gridbit = mavlink_msg_terrain_data_get_gridbit(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_TERRAIN_DATA_LEN? msg->len : MAVLINK_MSG_ID_TERRAIN_DATA_LEN;
-        memset(terrain_data, 0, MAVLINK_MSG_ID_TERRAIN_DATA_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_TERRAIN_DATA_LEN ? msg->len : MAVLINK_MSG_ID_TERRAIN_DATA_LEN;
+    memset(terrain_data, 0, MAVLINK_MSG_ID_TERRAIN_DATA_LEN);
     memcpy(terrain_data, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -282,10 +282,10 @@ static inline void mavlink_msg_device_op_write_reply_decode(const mavlink_messag
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     device_op_write_reply->request_id = mavlink_msg_device_op_write_reply_get_request_id(msg);
     device_op_write_reply->result = mavlink_msg_device_op_write_reply_get_result(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_DEVICE_OP_WRITE_REPLY_LEN? msg->len : MAVLINK_MSG_ID_DEVICE_OP_WRITE_REPLY_LEN;
-        memset(device_op_write_reply, 0, MAVLINK_MSG_ID_DEVICE_OP_WRITE_REPLY_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_DEVICE_OP_WRITE_REPLY_LEN ? msg->len : MAVLINK_MSG_ID_DEVICE_OP_WRITE_REPLY_LEN;
+    memset(device_op_write_reply, 0, MAVLINK_MSG_ID_DEVICE_OP_WRITE_REPLY_LEN);
     memcpy(device_op_write_reply, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

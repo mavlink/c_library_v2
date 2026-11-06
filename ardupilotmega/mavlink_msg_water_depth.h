@@ -534,10 +534,10 @@ static inline void mavlink_msg_water_depth_decode(const mavlink_message_t* msg, 
     water_depth->temperature = mavlink_msg_water_depth_get_temperature(msg);
     water_depth->id = mavlink_msg_water_depth_get_id(msg);
     water_depth->healthy = mavlink_msg_water_depth_get_healthy(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_WATER_DEPTH_LEN? msg->len : MAVLINK_MSG_ID_WATER_DEPTH_LEN;
-        memset(water_depth, 0, MAVLINK_MSG_ID_WATER_DEPTH_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_WATER_DEPTH_LEN ? msg->len : MAVLINK_MSG_ID_WATER_DEPTH_LEN;
+    memset(water_depth, 0, MAVLINK_MSG_ID_WATER_DEPTH_LEN);
     memcpy(water_depth, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

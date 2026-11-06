@@ -356,11 +356,6 @@ static inline void mavlink_msg_osd_param_show_config_decode(const mavlink_messag
     osd_param_show_config->target_component = mavlink_msg_osd_param_show_config_get_target_component(msg);
     osd_param_show_config->osd_screen = mavlink_msg_osd_param_show_config_get_osd_screen(msg);
     osd_param_show_config->osd_index = mavlink_msg_osd_param_show_config_get_osd_index(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN? msg->len : MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN;
-        memset(osd_param_show_config, 0, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN);
-    memcpy(osd_param_show_config, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -368,4 +363,7 @@ static inline void mavlink_msg_osd_param_show_config_decode(const mavlink_messag
         osd_param_show_config->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, osd_param_show_config, MAVLINK_MSG_ID_OSD_PARAM_SHOW_CONFIG_LEN, 4);
+#endif
 }

@@ -806,10 +806,10 @@ static inline void mavlink_msg_battery_info_decode(const mavlink_message_t* msg,
     mavlink_msg_battery_info_get_manufacture_date(msg, battery_info->manufacture_date);
     mavlink_msg_battery_info_get_serial_number(msg, battery_info->serial_number);
     mavlink_msg_battery_info_get_name(msg, battery_info->name);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_BATTERY_INFO_LEN? msg->len : MAVLINK_MSG_ID_BATTERY_INFO_LEN;
-        memset(battery_info, 0, MAVLINK_MSG_ID_BATTERY_INFO_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_BATTERY_INFO_LEN ? msg->len : MAVLINK_MSG_ID_BATTERY_INFO_LEN;
+    memset(battery_info, 0, MAVLINK_MSG_ID_BATTERY_INFO_LEN);
     memcpy(battery_info, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

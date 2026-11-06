@@ -562,10 +562,10 @@ static inline void mavlink_msg_optical_flow_rad_decode(const mavlink_message_t* 
     optical_flow_rad->temperature = mavlink_msg_optical_flow_rad_get_temperature(msg);
     optical_flow_rad->sensor_id = mavlink_msg_optical_flow_rad_get_sensor_id(msg);
     optical_flow_rad->quality = mavlink_msg_optical_flow_rad_get_quality(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_OPTICAL_FLOW_RAD_LEN? msg->len : MAVLINK_MSG_ID_OPTICAL_FLOW_RAD_LEN;
-        memset(optical_flow_rad, 0, MAVLINK_MSG_ID_OPTICAL_FLOW_RAD_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_OPTICAL_FLOW_RAD_LEN ? msg->len : MAVLINK_MSG_ID_OPTICAL_FLOW_RAD_LEN;
+    memset(optical_flow_rad, 0, MAVLINK_MSG_ID_OPTICAL_FLOW_RAD_LEN);
     memcpy(optical_flow_rad, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

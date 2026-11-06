@@ -282,10 +282,10 @@ static inline void mavlink_msg_extended_sys_state_decode(const mavlink_message_t
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     extended_sys_state->vtol_state = mavlink_msg_extended_sys_state_get_vtol_state(msg);
     extended_sys_state->landed_state = mavlink_msg_extended_sys_state_get_landed_state(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_EXTENDED_SYS_STATE_LEN? msg->len : MAVLINK_MSG_ID_EXTENDED_SYS_STATE_LEN;
-        memset(extended_sys_state, 0, MAVLINK_MSG_ID_EXTENDED_SYS_STATE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_EXTENDED_SYS_STATE_LEN ? msg->len : MAVLINK_MSG_ID_EXTENDED_SYS_STATE_LEN;
+    memset(extended_sys_state, 0, MAVLINK_MSG_ID_EXTENDED_SYS_STATE_LEN);
     memcpy(extended_sys_state, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

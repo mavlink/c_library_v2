@@ -646,10 +646,10 @@ static inline void mavlink_msg_sens_batmon_decode(const mavlink_message_t* msg, 
     sens_batmon->cellvoltage5 = mavlink_msg_sens_batmon_get_cellvoltage5(msg);
     sens_batmon->cellvoltage6 = mavlink_msg_sens_batmon_get_cellvoltage6(msg);
     sens_batmon->SoC = mavlink_msg_sens_batmon_get_SoC(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SENS_BATMON_LEN? msg->len : MAVLINK_MSG_ID_SENS_BATMON_LEN;
-        memset(sens_batmon, 0, MAVLINK_MSG_ID_SENS_BATMON_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_SENS_BATMON_LEN ? msg->len : MAVLINK_MSG_ID_SENS_BATMON_LEN;
+    memset(sens_batmon, 0, MAVLINK_MSG_ID_SENS_BATMON_LEN);
     memcpy(sens_batmon, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

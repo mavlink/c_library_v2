@@ -674,10 +674,10 @@ static inline void mavlink_msg_icarous_kinematic_bands_decode(const mavlink_mess
     icarous_kinematic_bands->type3 = mavlink_msg_icarous_kinematic_bands_get_type3(msg);
     icarous_kinematic_bands->type4 = mavlink_msg_icarous_kinematic_bands_get_type4(msg);
     icarous_kinematic_bands->type5 = mavlink_msg_icarous_kinematic_bands_get_type5(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ICAROUS_KINEMATIC_BANDS_LEN? msg->len : MAVLINK_MSG_ID_ICAROUS_KINEMATIC_BANDS_LEN;
-        memset(icarous_kinematic_bands, 0, MAVLINK_MSG_ID_ICAROUS_KINEMATIC_BANDS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ICAROUS_KINEMATIC_BANDS_LEN ? msg->len : MAVLINK_MSG_ID_ICAROUS_KINEMATIC_BANDS_LEN;
+    memset(icarous_kinematic_bands, 0, MAVLINK_MSG_ID_ICAROUS_KINEMATIC_BANDS_LEN);
     memcpy(icarous_kinematic_bands, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

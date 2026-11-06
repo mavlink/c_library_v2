@@ -379,10 +379,10 @@ static inline void mavlink_msg_time_estimate_to_target_decode(const mavlink_mess
     time_estimate_to_target->mission_next_item = mavlink_msg_time_estimate_to_target_get_mission_next_item(msg);
     time_estimate_to_target->mission_end = mavlink_msg_time_estimate_to_target_get_mission_end(msg);
     time_estimate_to_target->commanded_action = mavlink_msg_time_estimate_to_target_get_commanded_action(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_TIME_ESTIMATE_TO_TARGET_LEN? msg->len : MAVLINK_MSG_ID_TIME_ESTIMATE_TO_TARGET_LEN;
-        memset(time_estimate_to_target, 0, MAVLINK_MSG_ID_TIME_ESTIMATE_TO_TARGET_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_TIME_ESTIMATE_TO_TARGET_LEN ? msg->len : MAVLINK_MSG_ID_TIME_ESTIMATE_TO_TARGET_LEN;
+    memset(time_estimate_to_target, 0, MAVLINK_MSG_ID_TIME_ESTIMATE_TO_TARGET_LEN);
     memcpy(time_estimate_to_target, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

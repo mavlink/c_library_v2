@@ -310,10 +310,10 @@ static inline void mavlink_msg_power_status_decode(const mavlink_message_t* msg,
     power_status->Vcc = mavlink_msg_power_status_get_Vcc(msg);
     power_status->Vservo = mavlink_msg_power_status_get_Vservo(msg);
     power_status->flags = mavlink_msg_power_status_get_flags(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_POWER_STATUS_LEN? msg->len : MAVLINK_MSG_ID_POWER_STATUS_LEN;
-        memset(power_status, 0, MAVLINK_MSG_ID_POWER_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_POWER_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_POWER_STATUS_LEN;
+    memset(power_status, 0, MAVLINK_MSG_ID_POWER_STATUS_LEN);
     memcpy(power_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

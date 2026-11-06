@@ -328,10 +328,10 @@ static inline void mavlink_msg_statustext_decode(const mavlink_message_t* msg, m
     mavlink_msg_statustext_get_text(msg, statustext->text);
     statustext->id = mavlink_msg_statustext_get_id(msg);
     statustext->chunk_seq = mavlink_msg_statustext_get_chunk_seq(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_STATUSTEXT_LEN? msg->len : MAVLINK_MSG_ID_STATUSTEXT_LEN;
-        memset(statustext, 0, MAVLINK_MSG_ID_STATUSTEXT_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_STATUSTEXT_LEN ? msg->len : MAVLINK_MSG_ID_STATUSTEXT_LEN;
+    memset(statustext, 0, MAVLINK_MSG_ID_STATUSTEXT_LEN);
     memcpy(statustext, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

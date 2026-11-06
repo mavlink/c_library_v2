@@ -272,11 +272,6 @@ static inline void mavlink_msg_log_request_end_decode(const mavlink_message_t* m
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     log_request_end->target_system = _MAV_RETURN_uint8_t(msg, 0);
     log_request_end->target_component = mavlink_msg_log_request_end_get_target_component(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_LOG_REQUEST_END_LEN? msg->len : MAVLINK_MSG_ID_LOG_REQUEST_END_LEN;
-        memset(log_request_end, 0, MAVLINK_MSG_ID_LOG_REQUEST_END_LEN);
-    memcpy(log_request_end, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -284,4 +279,7 @@ static inline void mavlink_msg_log_request_end_decode(const mavlink_message_t* m
         log_request_end->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, log_request_end, MAVLINK_MSG_ID_LOG_REQUEST_END_LEN, 0);
+#endif
 }

@@ -422,10 +422,10 @@ static inline void mavlink_msg_ekf_ext_decode(const mavlink_message_t* msg, mavl
     ekf_ext->Airspeed = mavlink_msg_ekf_ext_get_Airspeed(msg);
     ekf_ext->beta = mavlink_msg_ekf_ext_get_beta(msg);
     ekf_ext->alpha = mavlink_msg_ekf_ext_get_alpha(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_EKF_EXT_LEN? msg->len : MAVLINK_MSG_ID_EKF_EXT_LEN;
-        memset(ekf_ext, 0, MAVLINK_MSG_ID_EKF_EXT_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_EKF_EXT_LEN ? msg->len : MAVLINK_MSG_ID_EKF_EXT_LEN;
+    memset(ekf_ext, 0, MAVLINK_MSG_ID_EKF_EXT_LEN);
     memcpy(ekf_ext, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

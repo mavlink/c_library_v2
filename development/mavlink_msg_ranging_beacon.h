@@ -658,11 +658,6 @@ static inline void mavlink_msg_ranging_beacon_decode(const mavlink_message_t* ms
     ranging_beacon->alt_type = mavlink_msg_ranging_beacon_get_alt_type(msg);
     ranging_beacon->sequence = mavlink_msg_ranging_beacon_get_sequence(msg);
     ranging_beacon->status = mavlink_msg_ranging_beacon_get_status(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_RANGING_BEACON_LEN? msg->len : MAVLINK_MSG_ID_RANGING_BEACON_LEN;
-        memset(ranging_beacon, 0, MAVLINK_MSG_ID_RANGING_BEACON_LEN);
-    memcpy(ranging_beacon, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -670,4 +665,7 @@ static inline void mavlink_msg_ranging_beacon_decode(const mavlink_message_t* ms
         ranging_beacon->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, ranging_beacon, MAVLINK_MSG_ID_RANGING_BEACON_LEN, 40);
+#endif
 }

@@ -300,10 +300,10 @@ static inline void mavlink_msg_gps_rtcm_data_decode(const mavlink_message_t* msg
     gps_rtcm_data->flags = mavlink_msg_gps_rtcm_data_get_flags(msg);
     gps_rtcm_data->len = mavlink_msg_gps_rtcm_data_get_len(msg);
     mavlink_msg_gps_rtcm_data_get_data(msg, gps_rtcm_data->data);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN? msg->len : MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN;
-        memset(gps_rtcm_data, 0, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN ? msg->len : MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN;
+    memset(gps_rtcm_data, 0, MAVLINK_MSG_ID_GPS_RTCM_DATA_LEN);
     memcpy(gps_rtcm_data, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

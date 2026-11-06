@@ -567,10 +567,10 @@ static inline void mavlink_msg_autopilot_version_decode(const mavlink_message_t*
     mavlink_msg_autopilot_version_get_middleware_custom_version(msg, autopilot_version->middleware_custom_version);
     mavlink_msg_autopilot_version_get_os_custom_version(msg, autopilot_version->os_custom_version);
     mavlink_msg_autopilot_version_get_uid2(msg, autopilot_version->uid2);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_AUTOPILOT_VERSION_LEN? msg->len : MAVLINK_MSG_ID_AUTOPILOT_VERSION_LEN;
-        memset(autopilot_version, 0, MAVLINK_MSG_ID_AUTOPILOT_VERSION_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_AUTOPILOT_VERSION_LEN ? msg->len : MAVLINK_MSG_ID_AUTOPILOT_VERSION_LEN;
+    memset(autopilot_version, 0, MAVLINK_MSG_ID_AUTOPILOT_VERSION_LEN);
     memcpy(autopilot_version, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

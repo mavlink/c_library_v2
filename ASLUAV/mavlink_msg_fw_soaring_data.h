@@ -926,10 +926,10 @@ static inline void mavlink_msg_fw_soaring_data_decode(const mavlink_message_t* m
     fw_soaring_data->DebugVar2 = mavlink_msg_fw_soaring_data_get_DebugVar2(msg);
     fw_soaring_data->ControlMode = mavlink_msg_fw_soaring_data_get_ControlMode(msg);
     fw_soaring_data->valid = mavlink_msg_fw_soaring_data_get_valid(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_FW_SOARING_DATA_LEN? msg->len : MAVLINK_MSG_ID_FW_SOARING_DATA_LEN;
-        memset(fw_soaring_data, 0, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_FW_SOARING_DATA_LEN ? msg->len : MAVLINK_MSG_ID_FW_SOARING_DATA_LEN;
+    memset(fw_soaring_data, 0, MAVLINK_MSG_ID_FW_SOARING_DATA_LEN);
     memcpy(fw_soaring_data, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

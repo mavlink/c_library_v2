@@ -328,10 +328,10 @@ static inline void mavlink_msg_log_data_decode(const mavlink_message_t* msg, mav
     log_data->id = mavlink_msg_log_data_get_id(msg);
     log_data->count = mavlink_msg_log_data_get_count(msg);
     mavlink_msg_log_data_get_data(msg, log_data->data);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_LOG_DATA_LEN? msg->len : MAVLINK_MSG_ID_LOG_DATA_LEN;
-        memset(log_data, 0, MAVLINK_MSG_ID_LOG_DATA_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_LOG_DATA_LEN ? msg->len : MAVLINK_MSG_ID_LOG_DATA_LEN;
+    memset(log_data, 0, MAVLINK_MSG_ID_LOG_DATA_LEN);
     memcpy(log_data, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

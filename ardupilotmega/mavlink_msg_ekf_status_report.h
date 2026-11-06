@@ -422,10 +422,10 @@ static inline void mavlink_msg_ekf_status_report_decode(const mavlink_message_t*
     ekf_status_report->terrain_alt_variance = mavlink_msg_ekf_status_report_get_terrain_alt_variance(msg);
     ekf_status_report->flags = mavlink_msg_ekf_status_report_get_flags(msg);
     ekf_status_report->airspeed_variance = mavlink_msg_ekf_status_report_get_airspeed_variance(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_EKF_STATUS_REPORT_LEN? msg->len : MAVLINK_MSG_ID_EKF_STATUS_REPORT_LEN;
-        memset(ekf_status_report, 0, MAVLINK_MSG_ID_EKF_STATUS_REPORT_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_EKF_STATUS_REPORT_LEN ? msg->len : MAVLINK_MSG_ID_EKF_STATUS_REPORT_LEN;
+    memset(ekf_status_report, 0, MAVLINK_MSG_ID_EKF_STATUS_REPORT_LEN);
     memcpy(ekf_status_report, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

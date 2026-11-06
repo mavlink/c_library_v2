@@ -534,10 +534,10 @@ static inline void mavlink_msg_scaled_imu2_decode(const mavlink_message_t* msg, 
     scaled_imu2->ymag = mavlink_msg_scaled_imu2_get_ymag(msg);
     scaled_imu2->zmag = mavlink_msg_scaled_imu2_get_zmag(msg);
     scaled_imu2->temperature = mavlink_msg_scaled_imu2_get_temperature(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SCALED_IMU2_LEN? msg->len : MAVLINK_MSG_ID_SCALED_IMU2_LEN;
-        memset(scaled_imu2, 0, MAVLINK_MSG_ID_SCALED_IMU2_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_SCALED_IMU2_LEN ? msg->len : MAVLINK_MSG_ID_SCALED_IMU2_LEN;
+    memset(scaled_imu2, 0, MAVLINK_MSG_ID_SCALED_IMU2_LEN);
     memcpy(scaled_imu2, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

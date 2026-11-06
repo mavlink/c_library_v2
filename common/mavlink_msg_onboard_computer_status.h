@@ -817,10 +817,10 @@ static inline void mavlink_msg_onboard_computer_status_decode(const mavlink_mess
     onboard_computer_status->temperature_board = mavlink_msg_onboard_computer_status_get_temperature_board(msg);
     mavlink_msg_onboard_computer_status_get_temperature_core(msg, onboard_computer_status->temperature_core);
     onboard_computer_status->status_flags = mavlink_msg_onboard_computer_status_get_status_flags(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ONBOARD_COMPUTER_STATUS_LEN? msg->len : MAVLINK_MSG_ID_ONBOARD_COMPUTER_STATUS_LEN;
-        memset(onboard_computer_status, 0, MAVLINK_MSG_ID_ONBOARD_COMPUTER_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ONBOARD_COMPUTER_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_ONBOARD_COMPUTER_STATUS_LEN;
+    memset(onboard_computer_status, 0, MAVLINK_MSG_ID_ONBOARD_COMPUTER_STATUS_LEN);
     memcpy(onboard_computer_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

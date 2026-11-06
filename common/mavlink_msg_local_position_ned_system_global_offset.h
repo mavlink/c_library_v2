@@ -422,10 +422,10 @@ static inline void mavlink_msg_local_position_ned_system_global_offset_decode(co
     local_position_ned_system_global_offset->roll = mavlink_msg_local_position_ned_system_global_offset_get_roll(msg);
     local_position_ned_system_global_offset->pitch = mavlink_msg_local_position_ned_system_global_offset_get_pitch(msg);
     local_position_ned_system_global_offset->yaw = mavlink_msg_local_position_ned_system_global_offset_get_yaw(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_LEN? msg->len : MAVLINK_MSG_ID_LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_LEN;
-        memset(local_position_ned_system_global_offset, 0, MAVLINK_MSG_ID_LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_LEN ? msg->len : MAVLINK_MSG_ID_LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_LEN;
+    memset(local_position_ned_system_global_offset, 0, MAVLINK_MSG_ID_LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_LEN);
     memcpy(local_position_ned_system_global_offset, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

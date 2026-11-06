@@ -450,10 +450,10 @@ static inline void mavlink_msg_figure_eight_execution_status_decode(const mavlin
     figure_eight_execution_status->y = mavlink_msg_figure_eight_execution_status_get_y(msg);
     figure_eight_execution_status->z = mavlink_msg_figure_eight_execution_status_get_z(msg);
     figure_eight_execution_status->frame = mavlink_msg_figure_eight_execution_status_get_frame(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_FIGURE_EIGHT_EXECUTION_STATUS_LEN? msg->len : MAVLINK_MSG_ID_FIGURE_EIGHT_EXECUTION_STATUS_LEN;
-        memset(figure_eight_execution_status, 0, MAVLINK_MSG_ID_FIGURE_EIGHT_EXECUTION_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_FIGURE_EIGHT_EXECUTION_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_FIGURE_EIGHT_EXECUTION_STATUS_LEN;
+    memset(figure_eight_execution_status, 0, MAVLINK_MSG_ID_FIGURE_EIGHT_EXECUTION_STATUS_LEN);
     memcpy(figure_eight_execution_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

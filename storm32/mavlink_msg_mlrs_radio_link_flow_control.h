@@ -379,10 +379,10 @@ static inline void mavlink_msg_mlrs_radio_link_flow_control_decode(const mavlink
     mlrs_radio_link_flow_control->tx_used_ser_bandwidth = mavlink_msg_mlrs_radio_link_flow_control_get_tx_used_ser_bandwidth(msg);
     mlrs_radio_link_flow_control->rx_used_ser_bandwidth = mavlink_msg_mlrs_radio_link_flow_control_get_rx_used_ser_bandwidth(msg);
     mlrs_radio_link_flow_control->txbuf = mavlink_msg_mlrs_radio_link_flow_control_get_txbuf(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_MLRS_RADIO_LINK_FLOW_CONTROL_LEN? msg->len : MAVLINK_MSG_ID_MLRS_RADIO_LINK_FLOW_CONTROL_LEN;
-        memset(mlrs_radio_link_flow_control, 0, MAVLINK_MSG_ID_MLRS_RADIO_LINK_FLOW_CONTROL_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_MLRS_RADIO_LINK_FLOW_CONTROL_LEN ? msg->len : MAVLINK_MSG_ID_MLRS_RADIO_LINK_FLOW_CONTROL_LEN;
+    memset(mlrs_radio_link_flow_control, 0, MAVLINK_MSG_ID_MLRS_RADIO_LINK_FLOW_CONTROL_LEN);
     memcpy(mlrs_radio_link_flow_control, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -254,10 +254,10 @@ static inline void mavlink_msg_icarous_heartbeat_decode(const mavlink_message_t*
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     icarous_heartbeat->status = mavlink_msg_icarous_heartbeat_get_status(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ICAROUS_HEARTBEAT_LEN? msg->len : MAVLINK_MSG_ID_ICAROUS_HEARTBEAT_LEN;
-        memset(icarous_heartbeat, 0, MAVLINK_MSG_ID_ICAROUS_HEARTBEAT_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ICAROUS_HEARTBEAT_LEN ? msg->len : MAVLINK_MSG_ID_ICAROUS_HEARTBEAT_LEN;
+    memset(icarous_heartbeat, 0, MAVLINK_MSG_ID_ICAROUS_HEARTBEAT_LEN);
     memcpy(icarous_heartbeat, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

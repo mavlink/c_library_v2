@@ -580,10 +580,10 @@ static inline void mavlink_msg_adsb_vehicle_decode(const mavlink_message_t* msg,
     mavlink_msg_adsb_vehicle_get_callsign(msg, adsb_vehicle->callsign);
     adsb_vehicle->emitter_type = mavlink_msg_adsb_vehicle_get_emitter_type(msg);
     adsb_vehicle->tslc = mavlink_msg_adsb_vehicle_get_tslc(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ADSB_VEHICLE_LEN? msg->len : MAVLINK_MSG_ID_ADSB_VEHICLE_LEN;
-        memset(adsb_vehicle, 0, MAVLINK_MSG_ID_ADSB_VEHICLE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ADSB_VEHICLE_LEN ? msg->len : MAVLINK_MSG_ID_ADSB_VEHICLE_LEN;
+    memset(adsb_vehicle, 0, MAVLINK_MSG_ID_ADSB_VEHICLE_LEN);
     memcpy(adsb_vehicle, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

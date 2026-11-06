@@ -496,11 +496,6 @@ static inline void mavlink_msg_rally_point_decode(const mavlink_message_t* msg, 
     rally_point->idx = mavlink_msg_rally_point_get_idx(msg);
     rally_point->count = mavlink_msg_rally_point_get_count(msg);
     rally_point->flags = mavlink_msg_rally_point_get_flags(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_RALLY_POINT_LEN? msg->len : MAVLINK_MSG_ID_RALLY_POINT_LEN;
-        memset(rally_point, 0, MAVLINK_MSG_ID_RALLY_POINT_LEN);
-    memcpy(rally_point, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -508,4 +503,7 @@ static inline void mavlink_msg_rally_point_decode(const mavlink_message_t* msg, 
         rally_point->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, rally_point, MAVLINK_MSG_ID_RALLY_POINT_LEN, 14);
+#endif
 }

@@ -562,10 +562,10 @@ static inline void mavlink_msg_sensor_offsets_decode(const mavlink_message_t* ms
     sensor_offsets->mag_ofs_x = mavlink_msg_sensor_offsets_get_mag_ofs_x(msg);
     sensor_offsets->mag_ofs_y = mavlink_msg_sensor_offsets_get_mag_ofs_y(msg);
     sensor_offsets->mag_ofs_z = mavlink_msg_sensor_offsets_get_mag_ofs_z(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SENSOR_OFFSETS_LEN? msg->len : MAVLINK_MSG_ID_SENSOR_OFFSETS_LEN;
-        memset(sensor_offsets, 0, MAVLINK_MSG_ID_SENSOR_OFFSETS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_SENSOR_OFFSETS_LEN ? msg->len : MAVLINK_MSG_ID_SENSOR_OFFSETS_LEN;
+    memset(sensor_offsets, 0, MAVLINK_MSG_ID_SENSOR_OFFSETS_LEN);
     memcpy(sensor_offsets, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

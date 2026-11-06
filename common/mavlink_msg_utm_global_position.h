@@ -720,10 +720,10 @@ static inline void mavlink_msg_utm_global_position_decode(const mavlink_message_
     mavlink_msg_utm_global_position_get_uas_id(msg, utm_global_position->uas_id);
     utm_global_position->flight_state = mavlink_msg_utm_global_position_get_flight_state(msg);
     utm_global_position->flags = mavlink_msg_utm_global_position_get_flags(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_UTM_GLOBAL_POSITION_LEN? msg->len : MAVLINK_MSG_ID_UTM_GLOBAL_POSITION_LEN;
-        memset(utm_global_position, 0, MAVLINK_MSG_ID_UTM_GLOBAL_POSITION_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_UTM_GLOBAL_POSITION_LEN ? msg->len : MAVLINK_MSG_ID_UTM_GLOBAL_POSITION_LEN;
+    memset(utm_global_position, 0, MAVLINK_MSG_ID_UTM_GLOBAL_POSITION_LEN);
     memcpy(utm_global_position, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -525,10 +525,10 @@ static inline void mavlink_msg_camera_image_captured_decode(const mavlink_messag
     camera_image_captured->camera_id = mavlink_msg_camera_image_captured_get_camera_id(msg);
     camera_image_captured->capture_result = mavlink_msg_camera_image_captured_get_capture_result(msg);
     mavlink_msg_camera_image_captured_get_file_url(msg, camera_image_captured->file_url);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_LEN? msg->len : MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_LEN;
-        memset(camera_image_captured, 0, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_LEN ? msg->len : MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_LEN;
+    memset(camera_image_captured, 0, MAVLINK_MSG_ID_CAMERA_IMAGE_CAPTURED_LEN);
     memcpy(camera_image_captured, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

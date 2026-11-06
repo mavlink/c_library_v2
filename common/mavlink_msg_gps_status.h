@@ -388,10 +388,10 @@ static inline void mavlink_msg_gps_status_decode(const mavlink_message_t* msg, m
     mavlink_msg_gps_status_get_satellite_elevation(msg, gps_status->satellite_elevation);
     mavlink_msg_gps_status_get_satellite_azimuth(msg, gps_status->satellite_azimuth);
     mavlink_msg_gps_status_get_satellite_snr(msg, gps_status->satellite_snr);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_GPS_STATUS_LEN? msg->len : MAVLINK_MSG_ID_GPS_STATUS_LEN;
-        memset(gps_status, 0, MAVLINK_MSG_ID_GPS_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_GPS_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_GPS_STATUS_LEN;
+    memset(gps_status, 0, MAVLINK_MSG_ID_GPS_STATUS_LEN);
     memcpy(gps_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

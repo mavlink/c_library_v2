@@ -356,10 +356,10 @@ static inline void mavlink_msg_led_strip_state_decode(const mavlink_message_t* m
     led_strip_state->index = mavlink_msg_led_strip_state_get_index(msg);
     led_strip_state->id = mavlink_msg_led_strip_state_get_id(msg);
     led_strip_state->following_flight_mode = mavlink_msg_led_strip_state_get_following_flight_mode(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_LED_STRIP_STATE_LEN? msg->len : MAVLINK_MSG_ID_LED_STRIP_STATE_LEN;
-        memset(led_strip_state, 0, MAVLINK_MSG_ID_LED_STRIP_STATE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_LED_STRIP_STATE_LEN ? msg->len : MAVLINK_MSG_ID_LED_STRIP_STATE_LEN;
+    memset(led_strip_state, 0, MAVLINK_MSG_ID_LED_STRIP_STATE_LEN);
     memcpy(led_strip_state, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -440,10 +440,10 @@ static inline void mavlink_msg_herelink_video_stream_information_decode(const ma
     herelink_video_stream_information->camera_id = mavlink_msg_herelink_video_stream_information_get_camera_id(msg);
     herelink_video_stream_information->status = mavlink_msg_herelink_video_stream_information_get_status(msg);
     mavlink_msg_herelink_video_stream_information_get_uri(msg, herelink_video_stream_information->uri);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_LEN? msg->len : MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_LEN;
-        memset(herelink_video_stream_information, 0, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_LEN ? msg->len : MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_LEN;
+    memset(herelink_video_stream_information, 0, MAVLINK_MSG_ID_HERELINK_VIDEO_STREAM_INFORMATION_LEN);
     memcpy(herelink_video_stream_information, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

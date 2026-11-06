@@ -542,11 +542,6 @@ static inline void mavlink_msg_gimbal_device_attitude_status_decode(const mavlin
     gimbal_device_attitude_status->delta_yaw = mavlink_msg_gimbal_device_attitude_status_get_delta_yaw(msg);
     gimbal_device_attitude_status->delta_yaw_velocity = mavlink_msg_gimbal_device_attitude_status_get_delta_yaw_velocity(msg);
     gimbal_device_attitude_status->gimbal_device_id = mavlink_msg_gimbal_device_attitude_status_get_gimbal_device_id(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN? msg->len : MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN;
-        memset(gimbal_device_attitude_status, 0, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN);
-    memcpy(gimbal_device_attitude_status, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -554,4 +549,7 @@ static inline void mavlink_msg_gimbal_device_attitude_status_decode(const mavlin
         gimbal_device_attitude_status->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, gimbal_device_attitude_status, MAVLINK_MSG_ID_GIMBAL_DEVICE_ATTITUDE_STATUS_LEN, 38);
+#endif
 }

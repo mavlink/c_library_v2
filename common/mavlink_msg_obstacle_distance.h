@@ -468,10 +468,10 @@ static inline void mavlink_msg_obstacle_distance_decode(const mavlink_message_t*
     obstacle_distance->increment_f = mavlink_msg_obstacle_distance_get_increment_f(msg);
     obstacle_distance->angle_offset = mavlink_msg_obstacle_distance_get_angle_offset(msg);
     obstacle_distance->frame = mavlink_msg_obstacle_distance_get_frame(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_OBSTACLE_DISTANCE_LEN? msg->len : MAVLINK_MSG_ID_OBSTACLE_DISTANCE_LEN;
-        memset(obstacle_distance, 0, MAVLINK_MSG_ID_OBSTACLE_DISTANCE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_OBSTACLE_DISTANCE_LEN ? msg->len : MAVLINK_MSG_ID_OBSTACLE_DISTANCE_LEN;
+    memset(obstacle_distance, 0, MAVLINK_MSG_ID_OBSTACLE_DISTANCE_LEN);
     memcpy(obstacle_distance, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

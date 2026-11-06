@@ -478,10 +478,10 @@ static inline void mavlink_msg_limits_status_decode(const mavlink_message_t* msg
     limits_status->mods_enabled = mavlink_msg_limits_status_get_mods_enabled(msg);
     limits_status->mods_required = mavlink_msg_limits_status_get_mods_required(msg);
     limits_status->mods_triggered = mavlink_msg_limits_status_get_mods_triggered(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_LIMITS_STATUS_LEN? msg->len : MAVLINK_MSG_ID_LIMITS_STATUS_LEN;
-        memset(limits_status, 0, MAVLINK_MSG_ID_LIMITS_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_LIMITS_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_LIMITS_STATUS_LEN;
+    memset(limits_status, 0, MAVLINK_MSG_ID_LIMITS_STATUS_LEN);
     memcpy(limits_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

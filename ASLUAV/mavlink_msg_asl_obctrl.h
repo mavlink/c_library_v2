@@ -450,10 +450,10 @@ static inline void mavlink_msg_asl_obctrl_decode(const mavlink_message_t* msg, m
     asl_obctrl->uAilR = mavlink_msg_asl_obctrl_get_uAilR(msg);
     asl_obctrl->uRud = mavlink_msg_asl_obctrl_get_uRud(msg);
     asl_obctrl->obctrl_status = mavlink_msg_asl_obctrl_get_obctrl_status(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ASL_OBCTRL_LEN? msg->len : MAVLINK_MSG_ID_ASL_OBCTRL_LEN;
-        memset(asl_obctrl, 0, MAVLINK_MSG_ID_ASL_OBCTRL_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ASL_OBCTRL_LEN ? msg->len : MAVLINK_MSG_ID_ASL_OBCTRL_LEN;
+    memset(asl_obctrl, 0, MAVLINK_MSG_ID_ASL_OBCTRL_LEN);
     memcpy(asl_obctrl, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

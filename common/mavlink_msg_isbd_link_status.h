@@ -450,10 +450,10 @@ static inline void mavlink_msg_isbd_link_status_decode(const mavlink_message_t* 
     isbd_link_status->ring_pending = mavlink_msg_isbd_link_status_get_ring_pending(msg);
     isbd_link_status->tx_session_pending = mavlink_msg_isbd_link_status_get_tx_session_pending(msg);
     isbd_link_status->rx_session_pending = mavlink_msg_isbd_link_status_get_rx_session_pending(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ISBD_LINK_STATUS_LEN? msg->len : MAVLINK_MSG_ID_ISBD_LINK_STATUS_LEN;
-        memset(isbd_link_status, 0, MAVLINK_MSG_ID_ISBD_LINK_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ISBD_LINK_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_ISBD_LINK_STATUS_LEN;
+    memset(isbd_link_status, 0, MAVLINK_MSG_ID_ISBD_LINK_STATUS_LEN);
     memcpy(isbd_link_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

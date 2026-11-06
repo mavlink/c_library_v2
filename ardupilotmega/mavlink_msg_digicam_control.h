@@ -496,11 +496,6 @@ static inline void mavlink_msg_digicam_control_decode(const mavlink_message_t* m
     digicam_control->shot = mavlink_msg_digicam_control_get_shot(msg);
     digicam_control->command_id = mavlink_msg_digicam_control_get_command_id(msg);
     digicam_control->extra_param = mavlink_msg_digicam_control_get_extra_param(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_DIGICAM_CONTROL_LEN? msg->len : MAVLINK_MSG_ID_DIGICAM_CONTROL_LEN;
-        memset(digicam_control, 0, MAVLINK_MSG_ID_DIGICAM_CONTROL_LEN);
-    memcpy(digicam_control, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -508,4 +503,7 @@ static inline void mavlink_msg_digicam_control_decode(const mavlink_message_t* m
         digicam_control->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, digicam_control, MAVLINK_MSG_ID_DIGICAM_CONTROL_LEN, 4);
+#endif
 }

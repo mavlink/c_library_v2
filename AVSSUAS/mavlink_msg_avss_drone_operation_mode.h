@@ -310,10 +310,10 @@ static inline void mavlink_msg_avss_drone_operation_mode_decode(const mavlink_me
     avss_drone_operation_mode->time_boot_ms = mavlink_msg_avss_drone_operation_mode_get_time_boot_ms(msg);
     avss_drone_operation_mode->M300_operation_mode = mavlink_msg_avss_drone_operation_mode_get_M300_operation_mode(msg);
     avss_drone_operation_mode->horsefly_operation_mode = mavlink_msg_avss_drone_operation_mode_get_horsefly_operation_mode(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_AVSS_DRONE_OPERATION_MODE_LEN? msg->len : MAVLINK_MSG_ID_AVSS_DRONE_OPERATION_MODE_LEN;
-        memset(avss_drone_operation_mode, 0, MAVLINK_MSG_ID_AVSS_DRONE_OPERATION_MODE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_AVSS_DRONE_OPERATION_MODE_LEN ? msg->len : MAVLINK_MSG_ID_AVSS_DRONE_OPERATION_MODE_LEN;
+    memset(avss_drone_operation_mode, 0, MAVLINK_MSG_ID_AVSS_DRONE_OPERATION_MODE_LEN);
     memcpy(avss_drone_operation_mode, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -272,10 +272,10 @@ static inline void mavlink_msg_open_drone_id_arm_status_decode(const mavlink_mes
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     open_drone_id_arm_status->status = mavlink_msg_open_drone_id_arm_status_get_status(msg);
     mavlink_msg_open_drone_id_arm_status_get_error(msg, open_drone_id_arm_status->error);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_OPEN_DRONE_ID_ARM_STATUS_LEN? msg->len : MAVLINK_MSG_ID_OPEN_DRONE_ID_ARM_STATUS_LEN;
-        memset(open_drone_id_arm_status, 0, MAVLINK_MSG_ID_OPEN_DRONE_ID_ARM_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_OPEN_DRONE_ID_ARM_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_OPEN_DRONE_ID_ARM_STATUS_LEN;
+    memset(open_drone_id_arm_status, 0, MAVLINK_MSG_ID_OPEN_DRONE_ID_ARM_STATUS_LEN);
     memcpy(open_drone_id_arm_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

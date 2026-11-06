@@ -328,10 +328,10 @@ static inline void mavlink_msg_hil_actuator_controls_decode(const mavlink_messag
     hil_actuator_controls->flags = mavlink_msg_hil_actuator_controls_get_flags(msg);
     mavlink_msg_hil_actuator_controls_get_controls(msg, hil_actuator_controls->controls);
     hil_actuator_controls->mode = mavlink_msg_hil_actuator_controls_get_mode(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_HIL_ACTUATOR_CONTROLS_LEN? msg->len : MAVLINK_MSG_ID_HIL_ACTUATOR_CONTROLS_LEN;
-        memset(hil_actuator_controls, 0, MAVLINK_MSG_ID_HIL_ACTUATOR_CONTROLS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_HIL_ACTUATOR_CONTROLS_LEN ? msg->len : MAVLINK_MSG_ID_HIL_ACTUATOR_CONTROLS_LEN;
+    memset(hil_actuator_controls, 0, MAVLINK_MSG_ID_HIL_ACTUATOR_CONTROLS_LEN);
     memcpy(hil_actuator_controls, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

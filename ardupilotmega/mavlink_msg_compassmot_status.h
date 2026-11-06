@@ -394,10 +394,10 @@ static inline void mavlink_msg_compassmot_status_decode(const mavlink_message_t*
     compassmot_status->CompensationZ = mavlink_msg_compassmot_status_get_CompensationZ(msg);
     compassmot_status->throttle = mavlink_msg_compassmot_status_get_throttle(msg);
     compassmot_status->interference = mavlink_msg_compassmot_status_get_interference(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_COMPASSMOT_STATUS_LEN? msg->len : MAVLINK_MSG_ID_COMPASSMOT_STATUS_LEN;
-        memset(compassmot_status, 0, MAVLINK_MSG_ID_COMPASSMOT_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_COMPASSMOT_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_COMPASSMOT_STATUS_LEN;
+    memset(compassmot_status, 0, MAVLINK_MSG_ID_COMPASSMOT_STATUS_LEN);
     memcpy(compassmot_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

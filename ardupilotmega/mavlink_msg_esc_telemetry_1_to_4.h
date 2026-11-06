@@ -399,10 +399,10 @@ static inline void mavlink_msg_esc_telemetry_1_to_4_decode(const mavlink_message
     mavlink_msg_esc_telemetry_1_to_4_get_rpm(msg, esc_telemetry_1_to_4->rpm);
     mavlink_msg_esc_telemetry_1_to_4_get_count(msg, esc_telemetry_1_to_4->count);
     mavlink_msg_esc_telemetry_1_to_4_get_temperature(msg, esc_telemetry_1_to_4->temperature);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ESC_TELEMETRY_1_TO_4_LEN? msg->len : MAVLINK_MSG_ID_ESC_TELEMETRY_1_TO_4_LEN;
-        memset(esc_telemetry_1_to_4, 0, MAVLINK_MSG_ID_ESC_TELEMETRY_1_TO_4_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ESC_TELEMETRY_1_TO_4_LEN ? msg->len : MAVLINK_MSG_ID_ESC_TELEMETRY_1_TO_4_LEN;
+    memset(esc_telemetry_1_to_4, 0, MAVLINK_MSG_ID_ESC_TELEMETRY_1_TO_4_LEN);
     memcpy(esc_telemetry_1_to_4, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

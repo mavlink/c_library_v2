@@ -394,10 +394,10 @@ static inline void mavlink_msg_uavcan_node_status_decode(const mavlink_message_t
     uavcan_node_status->health = mavlink_msg_uavcan_node_status_get_health(msg);
     uavcan_node_status->mode = mavlink_msg_uavcan_node_status_get_mode(msg);
     uavcan_node_status->sub_mode = mavlink_msg_uavcan_node_status_get_sub_mode(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_UAVCAN_NODE_STATUS_LEN? msg->len : MAVLINK_MSG_ID_UAVCAN_NODE_STATUS_LEN;
-        memset(uavcan_node_status, 0, MAVLINK_MSG_ID_UAVCAN_NODE_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_UAVCAN_NODE_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_UAVCAN_NODE_STATUS_LEN;
+    memset(uavcan_node_status, 0, MAVLINK_MSG_ID_UAVCAN_NODE_STATUS_LEN);
     memcpy(uavcan_node_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -357,10 +357,10 @@ static inline void mavlink_msg_vision_position_delta_decode(const mavlink_messag
     mavlink_msg_vision_position_delta_get_angle_delta(msg, vision_position_delta->angle_delta);
     mavlink_msg_vision_position_delta_get_position_delta(msg, vision_position_delta->position_delta);
     vision_position_delta->confidence = mavlink_msg_vision_position_delta_get_confidence(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_VISION_POSITION_DELTA_LEN? msg->len : MAVLINK_MSG_ID_VISION_POSITION_DELTA_LEN;
-        memset(vision_position_delta, 0, MAVLINK_MSG_ID_VISION_POSITION_DELTA_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_VISION_POSITION_DELTA_LEN ? msg->len : MAVLINK_MSG_ID_VISION_POSITION_DELTA_LEN;
+    memset(vision_position_delta, 0, MAVLINK_MSG_ID_VISION_POSITION_DELTA_LEN);
     memcpy(vision_position_delta, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

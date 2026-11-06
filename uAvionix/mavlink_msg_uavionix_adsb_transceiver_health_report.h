@@ -254,10 +254,10 @@ static inline void mavlink_msg_uavionix_adsb_transceiver_health_report_decode(co
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     uavionix_adsb_transceiver_health_report->rfHealth = mavlink_msg_uavionix_adsb_transceiver_health_report_get_rfHealth(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN? msg->len : MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN;
-        memset(uavionix_adsb_transceiver_health_report, 0, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN ? msg->len : MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN;
+    memset(uavionix_adsb_transceiver_health_report, 0, MAVLINK_MSG_ID_UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT_LEN);
     memcpy(uavionix_adsb_transceiver_health_report, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

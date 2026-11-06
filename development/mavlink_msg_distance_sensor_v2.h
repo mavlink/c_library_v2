@@ -350,10 +350,10 @@ static inline void mavlink_msg_distance_sensor_v2_decode(const mavlink_message_t
     distance_sensor_v2->distance = mavlink_msg_distance_sensor_v2_get_distance(msg);
     distance_sensor_v2->id = mavlink_msg_distance_sensor_v2_get_id(msg);
     distance_sensor_v2->signal_quality = mavlink_msg_distance_sensor_v2_get_signal_quality(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_DISTANCE_SENSOR_V2_LEN? msg->len : MAVLINK_MSG_ID_DISTANCE_SENSOR_V2_LEN;
-        memset(distance_sensor_v2, 0, MAVLINK_MSG_ID_DISTANCE_SENSOR_V2_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_DISTANCE_SENSOR_V2_LEN ? msg->len : MAVLINK_MSG_ID_DISTANCE_SENSOR_V2_LEN;
+    memset(distance_sensor_v2, 0, MAVLINK_MSG_ID_DISTANCE_SENSOR_V2_LEN);
     memcpy(distance_sensor_v2, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

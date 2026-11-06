@@ -674,10 +674,10 @@ static inline void mavlink_msg_uavionix_adsb_out_dynamic_decode(const mavlink_me
     uavionix_adsb_out_dynamic->gpsFix = mavlink_msg_uavionix_adsb_out_dynamic_get_gpsFix(msg);
     uavionix_adsb_out_dynamic->numSats = mavlink_msg_uavionix_adsb_out_dynamic_get_numSats(msg);
     uavionix_adsb_out_dynamic->emergencyStatus = mavlink_msg_uavionix_adsb_out_dynamic_get_emergencyStatus(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN? msg->len : MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN;
-        memset(uavionix_adsb_out_dynamic, 0, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN ? msg->len : MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN;
+    memset(uavionix_adsb_out_dynamic, 0, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_DYNAMIC_LEN);
     memcpy(uavionix_adsb_out_dynamic, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

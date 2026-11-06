@@ -254,10 +254,10 @@ static inline void mavlink_msg_script_current_decode(const mavlink_message_t* ms
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     script_current->seq = mavlink_msg_script_current_get_seq(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SCRIPT_CURRENT_LEN? msg->len : MAVLINK_MSG_ID_SCRIPT_CURRENT_LEN;
-        memset(script_current, 0, MAVLINK_MSG_ID_SCRIPT_CURRENT_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_SCRIPT_CURRENT_LEN ? msg->len : MAVLINK_MSG_ID_SCRIPT_CURRENT_LEN;
+    memset(script_current, 0, MAVLINK_MSG_ID_SCRIPT_CURRENT_LEN);
     memcpy(script_current, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

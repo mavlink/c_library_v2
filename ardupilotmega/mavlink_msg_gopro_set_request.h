@@ -318,11 +318,6 @@ static inline void mavlink_msg_gopro_set_request_decode(const mavlink_message_t*
     gopro_set_request->target_component = mavlink_msg_gopro_set_request_get_target_component(msg);
     gopro_set_request->cmd_id = mavlink_msg_gopro_set_request_get_cmd_id(msg);
     mavlink_msg_gopro_set_request_get_value(msg, gopro_set_request->value);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_GOPRO_SET_REQUEST_LEN? msg->len : MAVLINK_MSG_ID_GOPRO_SET_REQUEST_LEN;
-        memset(gopro_set_request, 0, MAVLINK_MSG_ID_GOPRO_SET_REQUEST_LEN);
-    memcpy(gopro_set_request, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -330,4 +325,7 @@ static inline void mavlink_msg_gopro_set_request_decode(const mavlink_message_t*
         gopro_set_request->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, gopro_set_request, MAVLINK_MSG_ID_GOPRO_SET_REQUEST_LEN, 0);
+#endif
 }

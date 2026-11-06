@@ -722,10 +722,10 @@ static inline void mavlink_msg_odometry_decode(const mavlink_message_t* msg, mav
     odometry->reset_counter = mavlink_msg_odometry_get_reset_counter(msg);
     odometry->estimator_type = mavlink_msg_odometry_get_estimator_type(msg);
     odometry->quality = mavlink_msg_odometry_get_quality(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ODOMETRY_LEN? msg->len : MAVLINK_MSG_ID_ODOMETRY_LEN;
-        memset(odometry, 0, MAVLINK_MSG_ID_ODOMETRY_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ODOMETRY_LEN ? msg->len : MAVLINK_MSG_ID_ODOMETRY_LEN;
+    memset(odometry, 0, MAVLINK_MSG_ID_ODOMETRY_LEN);
     memcpy(odometry, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

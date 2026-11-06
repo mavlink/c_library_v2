@@ -366,10 +366,10 @@ static inline void mavlink_msg_camera_settings_decode(const mavlink_message_t* m
     camera_settings->zoomLevel = mavlink_msg_camera_settings_get_zoomLevel(msg);
     camera_settings->focusLevel = mavlink_msg_camera_settings_get_focusLevel(msg);
     camera_settings->camera_device_id = mavlink_msg_camera_settings_get_camera_device_id(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN? msg->len : MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN;
-        memset(camera_settings, 0, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN ? msg->len : MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN;
+    memset(camera_settings, 0, MAVLINK_MSG_ID_CAMERA_SETTINGS_LEN);
     memcpy(camera_settings, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

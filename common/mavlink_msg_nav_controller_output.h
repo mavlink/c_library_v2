@@ -450,10 +450,10 @@ static inline void mavlink_msg_nav_controller_output_decode(const mavlink_messag
     nav_controller_output->nav_bearing = mavlink_msg_nav_controller_output_get_nav_bearing(msg);
     nav_controller_output->target_bearing = mavlink_msg_nav_controller_output_get_target_bearing(msg);
     nav_controller_output->wp_dist = mavlink_msg_nav_controller_output_get_wp_dist(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_NAV_CONTROLLER_OUTPUT_LEN? msg->len : MAVLINK_MSG_ID_NAV_CONTROLLER_OUTPUT_LEN;
-        memset(nav_controller_output, 0, MAVLINK_MSG_ID_NAV_CONTROLLER_OUTPUT_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_NAV_CONTROLLER_OUTPUT_LEN ? msg->len : MAVLINK_MSG_ID_NAV_CONTROLLER_OUTPUT_LEN;
+    memset(nav_controller_output, 0, MAVLINK_MSG_ID_NAV_CONTROLLER_OUTPUT_LEN);
     memcpy(nav_controller_output, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

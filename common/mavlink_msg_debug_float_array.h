@@ -329,10 +329,10 @@ static inline void mavlink_msg_debug_float_array_decode(const mavlink_message_t*
     debug_float_array->array_id = mavlink_msg_debug_float_array_get_array_id(msg);
     mavlink_msg_debug_float_array_get_name(msg, debug_float_array->name);
     mavlink_msg_debug_float_array_get_data(msg, debug_float_array->data);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_DEBUG_FLOAT_ARRAY_LEN? msg->len : MAVLINK_MSG_ID_DEBUG_FLOAT_ARRAY_LEN;
-        memset(debug_float_array, 0, MAVLINK_MSG_ID_DEBUG_FLOAT_ARRAY_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_DEBUG_FLOAT_ARRAY_LEN ? msg->len : MAVLINK_MSG_ID_DEBUG_FLOAT_ARRAY_LEN;
+    memset(debug_float_array, 0, MAVLINK_MSG_ID_DEBUG_FLOAT_ARRAY_LEN);
     memcpy(debug_float_array, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

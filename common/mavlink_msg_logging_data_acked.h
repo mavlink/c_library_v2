@@ -374,11 +374,6 @@ static inline void mavlink_msg_logging_data_acked_decode(const mavlink_message_t
     logging_data_acked->length = mavlink_msg_logging_data_acked_get_length(msg);
     logging_data_acked->first_message_offset = mavlink_msg_logging_data_acked_get_first_message_offset(msg);
     mavlink_msg_logging_data_acked_get_data(msg, logging_data_acked->data);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_LOGGING_DATA_ACKED_LEN? msg->len : MAVLINK_MSG_ID_LOGGING_DATA_ACKED_LEN;
-        memset(logging_data_acked, 0, MAVLINK_MSG_ID_LOGGING_DATA_ACKED_LEN);
-    memcpy(logging_data_acked, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -386,4 +381,7 @@ static inline void mavlink_msg_logging_data_acked_decode(const mavlink_message_t
         logging_data_acked->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, logging_data_acked, MAVLINK_MSG_ID_LOGGING_DATA_ACKED_LEN, 2);
+#endif
 }

@@ -394,10 +394,10 @@ static inline void mavlink_msg_ahrs2_decode(const mavlink_message_t* msg, mavlin
     ahrs2->altitude = mavlink_msg_ahrs2_get_altitude(msg);
     ahrs2->lat = mavlink_msg_ahrs2_get_lat(msg);
     ahrs2->lng = mavlink_msg_ahrs2_get_lng(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_AHRS2_LEN? msg->len : MAVLINK_MSG_ID_AHRS2_LEN;
-        memset(ahrs2, 0, MAVLINK_MSG_ID_AHRS2_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_AHRS2_LEN ? msg->len : MAVLINK_MSG_ID_AHRS2_LEN;
+    memset(ahrs2, 0, MAVLINK_MSG_ID_AHRS2_LEN);
     memcpy(ahrs2, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

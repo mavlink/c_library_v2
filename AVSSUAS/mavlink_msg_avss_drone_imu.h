@@ -534,10 +534,10 @@ static inline void mavlink_msg_avss_drone_imu_decode(const mavlink_message_t* ms
     avss_drone_imu->xgyro = mavlink_msg_avss_drone_imu_get_xgyro(msg);
     avss_drone_imu->ygyro = mavlink_msg_avss_drone_imu_get_ygyro(msg);
     avss_drone_imu->zgyro = mavlink_msg_avss_drone_imu_get_zgyro(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_AVSS_DRONE_IMU_LEN? msg->len : MAVLINK_MSG_ID_AVSS_DRONE_IMU_LEN;
-        memset(avss_drone_imu, 0, MAVLINK_MSG_ID_AVSS_DRONE_IMU_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_AVSS_DRONE_IMU_LEN ? msg->len : MAVLINK_MSG_ID_AVSS_DRONE_IMU_LEN;
+    memset(avss_drone_imu, 0, MAVLINK_MSG_ID_AVSS_DRONE_IMU_LEN);
     memcpy(avss_drone_imu, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -311,10 +311,10 @@ static inline void mavlink_msg_control_status_decode(const mavlink_message_t* ms
     control_status->flags = mavlink_msg_control_status_get_flags(msg);
     control_status->gcs_main = mavlink_msg_control_status_get_gcs_main(msg);
     mavlink_msg_control_status_get_gcs_secondary(msg, control_status->gcs_secondary);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_CONTROL_STATUS_LEN? msg->len : MAVLINK_MSG_ID_CONTROL_STATUS_LEN;
-        memset(control_status, 0, MAVLINK_MSG_ID_CONTROL_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_CONTROL_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_CONTROL_STATUS_LEN;
+    memset(control_status, 0, MAVLINK_MSG_ID_CONTROL_STATUS_LEN);
     memcpy(control_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

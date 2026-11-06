@@ -444,10 +444,10 @@ static inline void mavlink_msg_component_information_basic_decode(const mavlink_
     mavlink_msg_component_information_basic_get_software_version(msg, component_information_basic->software_version);
     mavlink_msg_component_information_basic_get_hardware_version(msg, component_information_basic->hardware_version);
     mavlink_msg_component_information_basic_get_serial_number(msg, component_information_basic->serial_number);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_LEN? msg->len : MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_LEN;
-        memset(component_information_basic, 0, MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_LEN ? msg->len : MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_LEN;
+    memset(component_information_basic, 0, MAVLINK_MSG_ID_COMPONENT_INFORMATION_BASIC_LEN);
     memcpy(component_information_basic, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

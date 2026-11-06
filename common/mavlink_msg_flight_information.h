@@ -366,10 +366,10 @@ static inline void mavlink_msg_flight_information_decode(const mavlink_message_t
     flight_information->flight_uuid = mavlink_msg_flight_information_get_flight_uuid(msg);
     flight_information->time_boot_ms = mavlink_msg_flight_information_get_time_boot_ms(msg);
     flight_information->landing_time = mavlink_msg_flight_information_get_landing_time(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_FLIGHT_INFORMATION_LEN? msg->len : MAVLINK_MSG_ID_FLIGHT_INFORMATION_LEN;
-        memset(flight_information, 0, MAVLINK_MSG_ID_FLIGHT_INFORMATION_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_FLIGHT_INFORMATION_LEN ? msg->len : MAVLINK_MSG_ID_FLIGHT_INFORMATION_LEN;
+    memset(flight_information, 0, MAVLINK_MSG_ID_FLIGHT_INFORMATION_LEN);
     memcpy(flight_information, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

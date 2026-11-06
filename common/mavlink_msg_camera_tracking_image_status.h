@@ -534,10 +534,10 @@ static inline void mavlink_msg_camera_tracking_image_status_decode(const mavlink
     camera_tracking_image_status->tracking_mode = mavlink_msg_camera_tracking_image_status_get_tracking_mode(msg);
     camera_tracking_image_status->target_data = mavlink_msg_camera_tracking_image_status_get_target_data(msg);
     camera_tracking_image_status->camera_device_id = mavlink_msg_camera_tracking_image_status_get_camera_device_id(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_CAMERA_TRACKING_IMAGE_STATUS_LEN? msg->len : MAVLINK_MSG_ID_CAMERA_TRACKING_IMAGE_STATUS_LEN;
-        memset(camera_tracking_image_status, 0, MAVLINK_MSG_ID_CAMERA_TRACKING_IMAGE_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_CAMERA_TRACKING_IMAGE_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_CAMERA_TRACKING_IMAGE_STATUS_LEN;
+    memset(camera_tracking_image_status, 0, MAVLINK_MSG_ID_CAMERA_TRACKING_IMAGE_STATUS_LEN);
     memcpy(camera_tracking_image_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

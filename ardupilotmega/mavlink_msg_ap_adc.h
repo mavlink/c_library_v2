@@ -394,10 +394,10 @@ static inline void mavlink_msg_ap_adc_decode(const mavlink_message_t* msg, mavli
     ap_adc->adc4 = mavlink_msg_ap_adc_get_adc4(msg);
     ap_adc->adc5 = mavlink_msg_ap_adc_get_adc5(msg);
     ap_adc->adc6 = mavlink_msg_ap_adc_get_adc6(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_AP_ADC_LEN? msg->len : MAVLINK_MSG_ID_AP_ADC_LEN;
-        memset(ap_adc, 0, MAVLINK_MSG_ID_AP_ADC_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_AP_ADC_LEN ? msg->len : MAVLINK_MSG_ID_AP_ADC_LEN;
+    memset(ap_adc, 0, MAVLINK_MSG_ID_AP_ADC_LEN);
     memcpy(ap_adc, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -310,10 +310,10 @@ static inline void mavlink_msg_aoa_ssa_decode(const mavlink_message_t* msg, mavl
     aoa_ssa->time_usec = mavlink_msg_aoa_ssa_get_time_usec(msg);
     aoa_ssa->AOA = mavlink_msg_aoa_ssa_get_AOA(msg);
     aoa_ssa->SSA = mavlink_msg_aoa_ssa_get_SSA(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_AOA_SSA_LEN? msg->len : MAVLINK_MSG_ID_AOA_SSA_LEN;
-        memset(aoa_ssa, 0, MAVLINK_MSG_ID_AOA_SSA_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_AOA_SSA_LEN ? msg->len : MAVLINK_MSG_ID_AOA_SSA_LEN;
+    memset(aoa_ssa, 0, MAVLINK_MSG_ID_AOA_SSA_LEN);
     memcpy(aoa_ssa, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

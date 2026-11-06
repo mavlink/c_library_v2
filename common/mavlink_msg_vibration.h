@@ -422,10 +422,10 @@ static inline void mavlink_msg_vibration_decode(const mavlink_message_t* msg, ma
     vibration->clipping_0 = mavlink_msg_vibration_get_clipping_0(msg);
     vibration->clipping_1 = mavlink_msg_vibration_get_clipping_1(msg);
     vibration->clipping_2 = mavlink_msg_vibration_get_clipping_2(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_VIBRATION_LEN? msg->len : MAVLINK_MSG_ID_VIBRATION_LEN;
-        memset(vibration, 0, MAVLINK_MSG_ID_VIBRATION_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_VIBRATION_LEN ? msg->len : MAVLINK_MSG_ID_VIBRATION_LEN;
+    memset(vibration, 0, MAVLINK_MSG_ID_VIBRATION_LEN);
     memcpy(vibration, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

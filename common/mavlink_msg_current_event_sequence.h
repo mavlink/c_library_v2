@@ -282,10 +282,10 @@ static inline void mavlink_msg_current_event_sequence_decode(const mavlink_messa
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     current_event_sequence->sequence = mavlink_msg_current_event_sequence_get_sequence(msg);
     current_event_sequence->flags = mavlink_msg_current_event_sequence_get_flags(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_CURRENT_EVENT_SEQUENCE_LEN? msg->len : MAVLINK_MSG_ID_CURRENT_EVENT_SEQUENCE_LEN;
-        memset(current_event_sequence, 0, MAVLINK_MSG_ID_CURRENT_EVENT_SEQUENCE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_CURRENT_EVENT_SEQUENCE_LEN ? msg->len : MAVLINK_MSG_ID_CURRENT_EVENT_SEQUENCE_LEN;
+    memset(current_event_sequence, 0, MAVLINK_MSG_ID_CURRENT_EVENT_SEQUENCE_LEN);
     memcpy(current_event_sequence, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -422,10 +422,10 @@ static inline void mavlink_msg_gimbal_manager_status_decode(const mavlink_messag
     gimbal_manager_status->primary_control_compid = mavlink_msg_gimbal_manager_status_get_primary_control_compid(msg);
     gimbal_manager_status->secondary_control_sysid = mavlink_msg_gimbal_manager_status_get_secondary_control_sysid(msg);
     gimbal_manager_status->secondary_control_compid = mavlink_msg_gimbal_manager_status_get_secondary_control_compid(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_GIMBAL_MANAGER_STATUS_LEN? msg->len : MAVLINK_MSG_ID_GIMBAL_MANAGER_STATUS_LEN;
-        memset(gimbal_manager_status, 0, MAVLINK_MSG_ID_GIMBAL_MANAGER_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_GIMBAL_MANAGER_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_GIMBAL_MANAGER_STATUS_LEN;
+    memset(gimbal_manager_status, 0, MAVLINK_MSG_ID_GIMBAL_MANAGER_STATUS_LEN);
     memcpy(gimbal_manager_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -254,10 +254,10 @@ static inline void mavlink_msg_mission_item_reached_decode(const mavlink_message
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mission_item_reached->seq = mavlink_msg_mission_item_reached_get_seq(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_MISSION_ITEM_REACHED_LEN? msg->len : MAVLINK_MSG_ID_MISSION_ITEM_REACHED_LEN;
-        memset(mission_item_reached, 0, MAVLINK_MSG_ID_MISSION_ITEM_REACHED_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_MISSION_ITEM_REACHED_LEN ? msg->len : MAVLINK_MSG_ID_MISSION_ITEM_REACHED_LEN;
+    memset(mission_item_reached, 0, MAVLINK_MSG_ID_MISSION_ITEM_REACHED_LEN);
     memcpy(mission_item_reached, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -390,10 +390,10 @@ static inline void mavlink_msg_heartbeat_decode(const mavlink_message_t* msg, ma
     heartbeat->base_mode = mavlink_msg_heartbeat_get_base_mode(msg);
     heartbeat->system_status = mavlink_msg_heartbeat_get_system_status(msg);
     heartbeat->mavlink_version = mavlink_msg_heartbeat_get_mavlink_version(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_HEARTBEAT_LEN? msg->len : MAVLINK_MSG_ID_HEARTBEAT_LEN;
-        memset(heartbeat, 0, MAVLINK_MSG_ID_HEARTBEAT_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_HEARTBEAT_LEN ? msg->len : MAVLINK_MSG_ID_HEARTBEAT_LEN;
+    memset(heartbeat, 0, MAVLINK_MSG_ID_HEARTBEAT_LEN);
     memcpy(heartbeat, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

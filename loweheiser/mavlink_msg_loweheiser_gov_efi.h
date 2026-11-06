@@ -870,10 +870,10 @@ static inline void mavlink_msg_loweheiser_gov_efi_decode(const mavlink_message_t
     loweheiser_gov_efi->generator_status = mavlink_msg_loweheiser_gov_efi_get_generator_status(msg);
     loweheiser_gov_efi->efi_status = mavlink_msg_loweheiser_gov_efi_get_efi_status(msg);
     loweheiser_gov_efi->efi_index = mavlink_msg_loweheiser_gov_efi_get_efi_index(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_LOWEHEISER_GOV_EFI_LEN? msg->len : MAVLINK_MSG_ID_LOWEHEISER_GOV_EFI_LEN;
-        memset(loweheiser_gov_efi, 0, MAVLINK_MSG_ID_LOWEHEISER_GOV_EFI_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_LOWEHEISER_GOV_EFI_LEN ? msg->len : MAVLINK_MSG_ID_LOWEHEISER_GOV_EFI_LEN;
+    memset(loweheiser_gov_efi, 0, MAVLINK_MSG_ID_LOWEHEISER_GOV_EFI_LEN);
     memcpy(loweheiser_gov_efi, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

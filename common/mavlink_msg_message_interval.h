@@ -282,10 +282,10 @@ static inline void mavlink_msg_message_interval_decode(const mavlink_message_t* 
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     message_interval->interval_us = mavlink_msg_message_interval_get_interval_us(msg);
     message_interval->message_id = mavlink_msg_message_interval_get_message_id(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_MESSAGE_INTERVAL_LEN? msg->len : MAVLINK_MSG_ID_MESSAGE_INTERVAL_LEN;
-        memset(message_interval, 0, MAVLINK_MSG_ID_MESSAGE_INTERVAL_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_MESSAGE_INTERVAL_LEN ? msg->len : MAVLINK_MSG_ID_MESSAGE_INTERVAL_LEN;
+    memset(message_interval, 0, MAVLINK_MSG_ID_MESSAGE_INTERVAL_LEN);
     memcpy(message_interval, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -422,10 +422,10 @@ static inline void mavlink_msg_collision_decode(const mavlink_message_t* msg, ma
     collision->src = mavlink_msg_collision_get_src(msg);
     collision->action = mavlink_msg_collision_get_action(msg);
     collision->threat_level = mavlink_msg_collision_get_threat_level(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_COLLISION_LEN? msg->len : MAVLINK_MSG_ID_COLLISION_LEN;
-        memset(collision, 0, MAVLINK_MSG_ID_COLLISION_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_COLLISION_LEN ? msg->len : MAVLINK_MSG_ID_COLLISION_LEN;
+    memset(collision, 0, MAVLINK_MSG_ID_COLLISION_LEN);
     memcpy(collision, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

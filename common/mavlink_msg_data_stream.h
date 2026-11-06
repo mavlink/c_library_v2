@@ -310,10 +310,10 @@ static inline void mavlink_msg_data_stream_decode(const mavlink_message_t* msg, 
     data_stream->message_rate = mavlink_msg_data_stream_get_message_rate(msg);
     data_stream->stream_id = mavlink_msg_data_stream_get_stream_id(msg);
     data_stream->on_off = mavlink_msg_data_stream_get_on_off(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_DATA_STREAM_LEN? msg->len : MAVLINK_MSG_ID_DATA_STREAM_LEN;
-        memset(data_stream, 0, MAVLINK_MSG_ID_DATA_STREAM_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_DATA_STREAM_LEN ? msg->len : MAVLINK_MSG_ID_DATA_STREAM_LEN;
+    memset(data_stream, 0, MAVLINK_MSG_ID_DATA_STREAM_LEN);
     memcpy(data_stream, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

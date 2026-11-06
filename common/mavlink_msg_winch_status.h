@@ -450,10 +450,10 @@ static inline void mavlink_msg_winch_status_decode(const mavlink_message_t* msg,
     winch_status->current = mavlink_msg_winch_status_get_current(msg);
     winch_status->status = mavlink_msg_winch_status_get_status(msg);
     winch_status->temperature = mavlink_msg_winch_status_get_temperature(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_WINCH_STATUS_LEN? msg->len : MAVLINK_MSG_ID_WINCH_STATUS_LEN;
-        memset(winch_status, 0, MAVLINK_MSG_ID_WINCH_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_WINCH_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_WINCH_STATUS_LEN;
+    memset(winch_status, 0, MAVLINK_MSG_ID_WINCH_STATUS_LEN);
     memcpy(winch_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

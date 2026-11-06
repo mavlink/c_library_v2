@@ -384,10 +384,10 @@ static inline void mavlink_msg_device_op_read_reply_decode(const mavlink_message
     device_op_read_reply->count = mavlink_msg_device_op_read_reply_get_count(msg);
     mavlink_msg_device_op_read_reply_get_data(msg, device_op_read_reply->data);
     device_op_read_reply->bank = mavlink_msg_device_op_read_reply_get_bank(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_DEVICE_OP_READ_REPLY_LEN? msg->len : MAVLINK_MSG_ID_DEVICE_OP_READ_REPLY_LEN;
-        memset(device_op_read_reply, 0, MAVLINK_MSG_ID_DEVICE_OP_READ_REPLY_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_DEVICE_OP_READ_REPLY_LEN ? msg->len : MAVLINK_MSG_ID_DEVICE_OP_READ_REPLY_LEN;
+    memset(device_op_read_reply, 0, MAVLINK_MSG_ID_DEVICE_OP_READ_REPLY_LEN);
     memcpy(device_op_read_reply, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

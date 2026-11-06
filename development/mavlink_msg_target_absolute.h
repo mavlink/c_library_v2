@@ -607,10 +607,10 @@ static inline void mavlink_msg_target_absolute_decode(const mavlink_message_t* m
     mavlink_msg_target_absolute_get_acc_std(msg, target_absolute->acc_std);
     target_absolute->id = mavlink_msg_target_absolute_get_id(msg);
     target_absolute->sensor_capabilities = mavlink_msg_target_absolute_get_sensor_capabilities(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_TARGET_ABSOLUTE_LEN? msg->len : MAVLINK_MSG_ID_TARGET_ABSOLUTE_LEN;
-        memset(target_absolute, 0, MAVLINK_MSG_ID_TARGET_ABSOLUTE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_TARGET_ABSOLUTE_LEN ? msg->len : MAVLINK_MSG_ID_TARGET_ABSOLUTE_LEN;
+    memset(target_absolute, 0, MAVLINK_MSG_ID_TARGET_ABSOLUTE_LEN);
     memcpy(target_absolute, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

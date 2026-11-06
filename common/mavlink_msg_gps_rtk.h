@@ -590,10 +590,10 @@ static inline void mavlink_msg_gps_rtk_decode(const mavlink_message_t* msg, mavl
     gps_rtk->rtk_rate = mavlink_msg_gps_rtk_get_rtk_rate(msg);
     gps_rtk->nsats = mavlink_msg_gps_rtk_get_nsats(msg);
     gps_rtk->baseline_coords_type = mavlink_msg_gps_rtk_get_baseline_coords_type(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_GPS_RTK_LEN? msg->len : MAVLINK_MSG_ID_GPS_RTK_LEN;
-        memset(gps_rtk, 0, MAVLINK_MSG_ID_GPS_RTK_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_GPS_RTK_LEN ? msg->len : MAVLINK_MSG_ID_GPS_RTK_LEN;
+    memset(gps_rtk, 0, MAVLINK_MSG_ID_GPS_RTK_LEN);
     memcpy(gps_rtk, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

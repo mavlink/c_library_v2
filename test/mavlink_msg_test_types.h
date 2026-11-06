@@ -842,10 +842,10 @@ static inline void mavlink_msg_test_types_decode(const mavlink_message_t* msg, m
     test_types->s8 = mavlink_msg_test_types_get_s8(msg);
     mavlink_msg_test_types_get_u8_array(msg, test_types->u8_array);
     mavlink_msg_test_types_get_s8_array(msg, test_types->s8_array);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_TEST_TYPES_LEN? msg->len : MAVLINK_MSG_ID_TEST_TYPES_LEN;
-        memset(test_types, 0, MAVLINK_MSG_ID_TEST_TYPES_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_TEST_TYPES_LEN ? msg->len : MAVLINK_MSG_ID_TEST_TYPES_LEN;
+    memset(test_types, 0, MAVLINK_MSG_ID_TEST_TYPES_LEN);
     memcpy(test_types, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

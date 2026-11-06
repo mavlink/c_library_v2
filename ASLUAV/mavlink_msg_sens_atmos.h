@@ -310,10 +310,10 @@ static inline void mavlink_msg_sens_atmos_decode(const mavlink_message_t* msg, m
     sens_atmos->timestamp = mavlink_msg_sens_atmos_get_timestamp(msg);
     sens_atmos->TempAmbient = mavlink_msg_sens_atmos_get_TempAmbient(msg);
     sens_atmos->Humidity = mavlink_msg_sens_atmos_get_Humidity(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SENS_ATMOS_LEN? msg->len : MAVLINK_MSG_ID_SENS_ATMOS_LEN;
-        memset(sens_atmos, 0, MAVLINK_MSG_ID_SENS_ATMOS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_SENS_ATMOS_LEN ? msg->len : MAVLINK_MSG_ID_SENS_ATMOS_LEN;
+    memset(sens_atmos, 0, MAVLINK_MSG_ID_SENS_ATMOS_LEN);
     memcpy(sens_atmos, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

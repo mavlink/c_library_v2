@@ -366,10 +366,10 @@ static inline void mavlink_msg_log_entry_decode(const mavlink_message_t* msg, ma
     log_entry->id = mavlink_msg_log_entry_get_id(msg);
     log_entry->num_logs = mavlink_msg_log_entry_get_num_logs(msg);
     log_entry->last_log_num = mavlink_msg_log_entry_get_last_log_num(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_LOG_ENTRY_LEN? msg->len : MAVLINK_MSG_ID_LOG_ENTRY_LEN;
-        memset(log_entry, 0, MAVLINK_MSG_ID_LOG_ENTRY_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_LOG_ENTRY_LEN ? msg->len : MAVLINK_MSG_ID_LOG_ENTRY_LEN;
+    memset(log_entry, 0, MAVLINK_MSG_ID_LOG_ENTRY_LEN);
     memcpy(log_entry, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

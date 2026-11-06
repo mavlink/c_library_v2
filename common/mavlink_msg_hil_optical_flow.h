@@ -562,10 +562,10 @@ static inline void mavlink_msg_hil_optical_flow_decode(const mavlink_message_t* 
     hil_optical_flow->temperature = mavlink_msg_hil_optical_flow_get_temperature(msg);
     hil_optical_flow->sensor_id = mavlink_msg_hil_optical_flow_get_sensor_id(msg);
     hil_optical_flow->quality = mavlink_msg_hil_optical_flow_get_quality(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_HIL_OPTICAL_FLOW_LEN? msg->len : MAVLINK_MSG_ID_HIL_OPTICAL_FLOW_LEN;
-        memset(hil_optical_flow, 0, MAVLINK_MSG_ID_HIL_OPTICAL_FLOW_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_HIL_OPTICAL_FLOW_LEN ? msg->len : MAVLINK_MSG_ID_HIL_OPTICAL_FLOW_LEN;
+    memset(hil_optical_flow, 0, MAVLINK_MSG_ID_HIL_OPTICAL_FLOW_LEN);
     memcpy(hil_optical_flow, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

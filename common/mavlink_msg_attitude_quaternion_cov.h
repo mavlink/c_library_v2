@@ -385,10 +385,10 @@ static inline void mavlink_msg_attitude_quaternion_cov_decode(const mavlink_mess
     attitude_quaternion_cov->pitchspeed = mavlink_msg_attitude_quaternion_cov_get_pitchspeed(msg);
     attitude_quaternion_cov->yawspeed = mavlink_msg_attitude_quaternion_cov_get_yawspeed(msg);
     mavlink_msg_attitude_quaternion_cov_get_covariance(msg, attitude_quaternion_cov->covariance);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ATTITUDE_QUATERNION_COV_LEN? msg->len : MAVLINK_MSG_ID_ATTITUDE_QUATERNION_COV_LEN;
-        memset(attitude_quaternion_cov, 0, MAVLINK_MSG_ID_ATTITUDE_QUATERNION_COV_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_ATTITUDE_QUATERNION_COV_LEN ? msg->len : MAVLINK_MSG_ID_ATTITUDE_QUATERNION_COV_LEN;
+    memset(attitude_quaternion_cov, 0, MAVLINK_MSG_ID_ATTITUDE_QUATERNION_COV_LEN);
     memcpy(attitude_quaternion_cov, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

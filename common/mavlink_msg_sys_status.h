@@ -674,10 +674,10 @@ static inline void mavlink_msg_sys_status_decode(const mavlink_message_t* msg, m
     sys_status->onboard_control_sensors_present_extended = mavlink_msg_sys_status_get_onboard_control_sensors_present_extended(msg);
     sys_status->onboard_control_sensors_enabled_extended = mavlink_msg_sys_status_get_onboard_control_sensors_enabled_extended(msg);
     sys_status->onboard_control_sensors_health_extended = mavlink_msg_sys_status_get_onboard_control_sensors_health_extended(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SYS_STATUS_LEN? msg->len : MAVLINK_MSG_ID_SYS_STATUS_LEN;
-        memset(sys_status, 0, MAVLINK_MSG_ID_SYS_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_SYS_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_SYS_STATUS_LEN;
+    memset(sys_status, 0, MAVLINK_MSG_ID_SYS_STATUS_LEN);
     memcpy(sys_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

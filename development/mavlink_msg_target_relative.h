@@ -545,10 +545,10 @@ static inline void mavlink_msg_target_relative_decode(const mavlink_message_t* m
     target_relative->id = mavlink_msg_target_relative_get_id(msg);
     target_relative->frame = mavlink_msg_target_relative_get_frame(msg);
     target_relative->type = mavlink_msg_target_relative_get_type(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_TARGET_RELATIVE_LEN? msg->len : MAVLINK_MSG_ID_TARGET_RELATIVE_LEN;
-        memset(target_relative, 0, MAVLINK_MSG_ID_TARGET_RELATIVE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_TARGET_RELATIVE_LEN ? msg->len : MAVLINK_MSG_ID_TARGET_RELATIVE_LEN;
+    memset(target_relative, 0, MAVLINK_MSG_ID_TARGET_RELATIVE_LEN);
     memcpy(target_relative, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

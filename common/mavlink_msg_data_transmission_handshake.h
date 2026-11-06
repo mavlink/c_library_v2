@@ -422,10 +422,10 @@ static inline void mavlink_msg_data_transmission_handshake_decode(const mavlink_
     data_transmission_handshake->type = mavlink_msg_data_transmission_handshake_get_type(msg);
     data_transmission_handshake->payload = mavlink_msg_data_transmission_handshake_get_payload(msg);
     data_transmission_handshake->jpg_quality = mavlink_msg_data_transmission_handshake_get_jpg_quality(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_DATA_TRANSMISSION_HANDSHAKE_LEN? msg->len : MAVLINK_MSG_ID_DATA_TRANSMISSION_HANDSHAKE_LEN;
-        memset(data_transmission_handshake, 0, MAVLINK_MSG_ID_DATA_TRANSMISSION_HANDSHAKE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_DATA_TRANSMISSION_HANDSHAKE_LEN ? msg->len : MAVLINK_MSG_ID_DATA_TRANSMISSION_HANDSHAKE_LEN;
+    memset(data_transmission_handshake, 0, MAVLINK_MSG_ID_DATA_TRANSMISSION_HANDSHAKE_LEN);
     memcpy(data_transmission_handshake, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

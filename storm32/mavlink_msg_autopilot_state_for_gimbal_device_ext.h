@@ -397,11 +397,6 @@ static inline void mavlink_msg_autopilot_state_for_gimbal_device_ext_decode(cons
     autopilot_state_for_gimbal_device_ext->wind_correction_angle = mavlink_msg_autopilot_state_for_gimbal_device_ext_get_wind_correction_angle(msg);
     autopilot_state_for_gimbal_device_ext->target_system = _MAV_RETURN_uint8_t(msg, 20);
     autopilot_state_for_gimbal_device_ext->target_component = mavlink_msg_autopilot_state_for_gimbal_device_ext_get_target_component(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN? msg->len : MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN;
-        memset(autopilot_state_for_gimbal_device_ext, 0, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN);
-    memcpy(autopilot_state_for_gimbal_device_ext, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -409,4 +404,7 @@ static inline void mavlink_msg_autopilot_state_for_gimbal_device_ext_decode(cons
         autopilot_state_for_gimbal_device_ext->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, autopilot_state_for_gimbal_device_ext, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN, 20);
+#endif
 }

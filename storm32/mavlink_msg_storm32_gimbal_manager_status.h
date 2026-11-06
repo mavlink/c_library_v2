@@ -366,10 +366,10 @@ static inline void mavlink_msg_storm32_gimbal_manager_status_decode(const mavlin
     storm32_gimbal_manager_status->gimbal_id = mavlink_msg_storm32_gimbal_manager_status_get_gimbal_id(msg);
     storm32_gimbal_manager_status->supervisor = mavlink_msg_storm32_gimbal_manager_status_get_supervisor(msg);
     storm32_gimbal_manager_status->profile = mavlink_msg_storm32_gimbal_manager_status_get_profile(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_STATUS_LEN? msg->len : MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_STATUS_LEN;
-        memset(storm32_gimbal_manager_status, 0, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_STATUS_LEN;
+    memset(storm32_gimbal_manager_status, 0, MAVLINK_MSG_ID_STORM32_GIMBAL_MANAGER_STATUS_LEN);
     memcpy(storm32_gimbal_manager_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

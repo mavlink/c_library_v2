@@ -664,11 +664,6 @@ static inline void mavlink_msg_mlrs_radio_link_stats_decode(const mavlink_messag
     mlrs_radio_link_stats->tx_snr2 = mavlink_msg_mlrs_radio_link_stats_get_tx_snr2(msg);
     mlrs_radio_link_stats->frequency1 = mavlink_msg_mlrs_radio_link_stats_get_frequency1(msg);
     mlrs_radio_link_stats->frequency2 = mavlink_msg_mlrs_radio_link_stats_get_frequency2(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN? msg->len : MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN;
-        memset(mlrs_radio_link_stats, 0, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN);
-    memcpy(mlrs_radio_link_stats, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -676,4 +671,7 @@ static inline void mavlink_msg_mlrs_radio_link_stats_decode(const mavlink_messag
         mlrs_radio_link_stats->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, mlrs_radio_link_stats, MAVLINK_MSG_ID_MLRS_RADIO_LINK_STATS_LEN, 2);
+#endif
 }

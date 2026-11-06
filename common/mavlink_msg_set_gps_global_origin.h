@@ -356,11 +356,6 @@ static inline void mavlink_msg_set_gps_global_origin_decode(const mavlink_messag
     set_gps_global_origin->altitude = mavlink_msg_set_gps_global_origin_get_altitude(msg);
     set_gps_global_origin->target_system = _MAV_RETURN_uint8_t(msg, 12);
     set_gps_global_origin->time_usec = mavlink_msg_set_gps_global_origin_get_time_usec(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SET_GPS_GLOBAL_ORIGIN_LEN? msg->len : MAVLINK_MSG_ID_SET_GPS_GLOBAL_ORIGIN_LEN;
-        memset(set_gps_global_origin, 0, MAVLINK_MSG_ID_SET_GPS_GLOBAL_ORIGIN_LEN);
-    memcpy(set_gps_global_origin, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -368,4 +363,7 @@ static inline void mavlink_msg_set_gps_global_origin_decode(const mavlink_messag
         set_gps_global_origin->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, set_gps_global_origin, MAVLINK_MSG_ID_SET_GPS_GLOBAL_ORIGIN_LEN, 12);
+#endif
 }

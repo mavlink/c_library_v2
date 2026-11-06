@@ -534,10 +534,10 @@ static inline void mavlink_msg_simstate_decode(const mavlink_message_t* msg, mav
     simstate->zgyro = mavlink_msg_simstate_get_zgyro(msg);
     simstate->lat = mavlink_msg_simstate_get_lat(msg);
     simstate->lng = mavlink_msg_simstate_get_lng(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SIMSTATE_LEN? msg->len : MAVLINK_MSG_ID_SIMSTATE_LEN;
-        memset(simstate, 0, MAVLINK_MSG_ID_SIMSTATE_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_SIMSTATE_LEN ? msg->len : MAVLINK_MSG_ID_SIMSTATE_LEN;
+    memset(simstate, 0, MAVLINK_MSG_ID_SIMSTATE_LEN);
     memcpy(simstate, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

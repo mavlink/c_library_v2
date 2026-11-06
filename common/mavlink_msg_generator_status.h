@@ -534,10 +534,10 @@ static inline void mavlink_msg_generator_status_decode(const mavlink_message_t* 
     generator_status->generator_speed = mavlink_msg_generator_status_get_generator_speed(msg);
     generator_status->rectifier_temperature = mavlink_msg_generator_status_get_rectifier_temperature(msg);
     generator_status->generator_temperature = mavlink_msg_generator_status_get_generator_temperature(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_GENERATOR_STATUS_LEN? msg->len : MAVLINK_MSG_ID_GENERATOR_STATUS_LEN;
-        memset(generator_status, 0, MAVLINK_MSG_ID_GENERATOR_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_GENERATOR_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_GENERATOR_STATUS_LEN;
+    memset(generator_status, 0, MAVLINK_MSG_ID_GENERATOR_STATUS_LEN);
     memcpy(generator_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

@@ -469,10 +469,10 @@ static inline void mavlink_msg_uavcan_node_info_decode(const mavlink_message_t* 
     mavlink_msg_uavcan_node_info_get_hw_unique_id(msg, uavcan_node_info->hw_unique_id);
     uavcan_node_info->sw_version_major = mavlink_msg_uavcan_node_info_get_sw_version_major(msg);
     uavcan_node_info->sw_version_minor = mavlink_msg_uavcan_node_info_get_sw_version_minor(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_UAVCAN_NODE_INFO_LEN? msg->len : MAVLINK_MSG_ID_UAVCAN_NODE_INFO_LEN;
-        memset(uavcan_node_info, 0, MAVLINK_MSG_ID_UAVCAN_NODE_INFO_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_UAVCAN_NODE_INFO_LEN ? msg->len : MAVLINK_MSG_ID_UAVCAN_NODE_INFO_LEN;
+    memset(uavcan_node_info, 0, MAVLINK_MSG_ID_UAVCAN_NODE_INFO_LEN);
     memcpy(uavcan_node_info, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

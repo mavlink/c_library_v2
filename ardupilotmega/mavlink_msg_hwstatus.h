@@ -282,10 +282,10 @@ static inline void mavlink_msg_hwstatus_decode(const mavlink_message_t* msg, mav
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     hwstatus->Vcc = mavlink_msg_hwstatus_get_Vcc(msg);
     hwstatus->I2Cerr = mavlink_msg_hwstatus_get_I2Cerr(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_HWSTATUS_LEN? msg->len : MAVLINK_MSG_ID_HWSTATUS_LEN;
-        memset(hwstatus, 0, MAVLINK_MSG_ID_HWSTATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_HWSTATUS_LEN ? msg->len : MAVLINK_MSG_ID_HWSTATUS_LEN;
+    memset(hwstatus, 0, MAVLINK_MSG_ID_HWSTATUS_LEN);
     memcpy(hwstatus, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

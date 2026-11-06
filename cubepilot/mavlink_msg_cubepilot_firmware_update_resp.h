@@ -300,11 +300,6 @@ static inline void mavlink_msg_cubepilot_firmware_update_resp_decode(const mavli
     cubepilot_firmware_update_resp->offset = mavlink_msg_cubepilot_firmware_update_resp_get_offset(msg);
     cubepilot_firmware_update_resp->target_system = _MAV_RETURN_uint8_t(msg, 4);
     cubepilot_firmware_update_resp->target_component = mavlink_msg_cubepilot_firmware_update_resp_get_target_component(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_CUBEPILOT_FIRMWARE_UPDATE_RESP_LEN? msg->len : MAVLINK_MSG_ID_CUBEPILOT_FIRMWARE_UPDATE_RESP_LEN;
-        memset(cubepilot_firmware_update_resp, 0, MAVLINK_MSG_ID_CUBEPILOT_FIRMWARE_UPDATE_RESP_LEN);
-    memcpy(cubepilot_firmware_update_resp, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -312,4 +307,7 @@ static inline void mavlink_msg_cubepilot_firmware_update_resp_decode(const mavli
         cubepilot_firmware_update_resp->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, cubepilot_firmware_update_resp, MAVLINK_MSG_ID_CUBEPILOT_FIRMWARE_UPDATE_RESP_LEN, 4);
+#endif
 }

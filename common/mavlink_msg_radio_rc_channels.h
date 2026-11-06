@@ -386,11 +386,6 @@ static inline void mavlink_msg_radio_rc_channels_decode(const mavlink_message_t*
     radio_rc_channels->target_component = mavlink_msg_radio_rc_channels_get_target_component(msg);
     radio_rc_channels->count = mavlink_msg_radio_rc_channels_get_count(msg);
     mavlink_msg_radio_rc_channels_get_channels(msg, radio_rc_channels->channels);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_RADIO_RC_CHANNELS_LEN? msg->len : MAVLINK_MSG_ID_RADIO_RC_CHANNELS_LEN;
-        memset(radio_rc_channels, 0, MAVLINK_MSG_ID_RADIO_RC_CHANNELS_LEN);
-    memcpy(radio_rc_channels, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -398,4 +393,7 @@ static inline void mavlink_msg_radio_rc_channels_decode(const mavlink_message_t*
         radio_rc_channels->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, radio_rc_channels, MAVLINK_MSG_ID_RADIO_RC_CHANNELS_LEN, 6);
+#endif
 }

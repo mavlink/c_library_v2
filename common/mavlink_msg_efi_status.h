@@ -758,10 +758,10 @@ static inline void mavlink_msg_efi_status_decode(const mavlink_message_t* msg, m
     efi_status->health = mavlink_msg_efi_status_get_health(msg);
     efi_status->ignition_voltage = mavlink_msg_efi_status_get_ignition_voltage(msg);
     efi_status->fuel_pressure = mavlink_msg_efi_status_get_fuel_pressure(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_EFI_STATUS_LEN? msg->len : MAVLINK_MSG_ID_EFI_STATUS_LEN;
-        memset(efi_status, 0, MAVLINK_MSG_ID_EFI_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_EFI_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_EFI_STATUS_LEN;
+    memset(efi_status, 0, MAVLINK_MSG_ID_EFI_STATUS_LEN);
     memcpy(efi_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

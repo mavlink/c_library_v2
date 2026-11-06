@@ -272,11 +272,6 @@ static inline void mavlink_msg_log_erase_decode(const mavlink_message_t* msg, ma
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     log_erase->target_system = _MAV_RETURN_uint8_t(msg, 0);
     log_erase->target_component = mavlink_msg_log_erase_get_target_component(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_LOG_ERASE_LEN? msg->len : MAVLINK_MSG_ID_LOG_ERASE_LEN;
-        memset(log_erase, 0, MAVLINK_MSG_ID_LOG_ERASE_LEN);
-    memcpy(log_erase, _MAV_PAYLOAD(msg), len);
-#endif
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).
@@ -284,4 +279,7 @@ static inline void mavlink_msg_log_erase_decode(const mavlink_message_t* msg, ma
         log_erase->target_system = mavlink_msg_target_field(msg->target_sysid);
     }
 
+#else
+    mavlink_msg_decode_target(msg, log_erase, MAVLINK_MSG_ID_LOG_ERASE_LEN, 0);
+#endif
 }

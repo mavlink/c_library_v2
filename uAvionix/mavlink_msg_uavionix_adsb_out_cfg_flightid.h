@@ -254,10 +254,10 @@ static inline void mavlink_msg_uavionix_adsb_out_cfg_flightid_decode(const mavli
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     mavlink_msg_uavionix_adsb_out_cfg_flightid_get_flight_id(msg, uavionix_adsb_out_cfg_flightid->flight_id);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_FLIGHTID_LEN? msg->len : MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_FLIGHTID_LEN;
-        memset(uavionix_adsb_out_cfg_flightid, 0, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_FLIGHTID_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_FLIGHTID_LEN ? msg->len : MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_FLIGHTID_LEN;
+    memset(uavionix_adsb_out_cfg_flightid, 0, MAVLINK_MSG_ID_UAVIONIX_ADSB_OUT_CFG_FLIGHTID_LEN);
     memcpy(uavionix_adsb_out_cfg_flightid, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

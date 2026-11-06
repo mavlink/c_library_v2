@@ -618,10 +618,10 @@ static inline void mavlink_msg_position_target_local_ned_decode(const mavlink_me
     position_target_local_ned->yaw_rate = mavlink_msg_position_target_local_ned_get_yaw_rate(msg);
     position_target_local_ned->type_mask = mavlink_msg_position_target_local_ned_get_type_mask(msg);
     position_target_local_ned->coordinate_frame = mavlink_msg_position_target_local_ned_get_coordinate_frame(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_POSITION_TARGET_LOCAL_NED_LEN? msg->len : MAVLINK_MSG_ID_POSITION_TARGET_LOCAL_NED_LEN;
-        memset(position_target_local_ned, 0, MAVLINK_MSG_ID_POSITION_TARGET_LOCAL_NED_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_POSITION_TARGET_LOCAL_NED_LEN ? msg->len : MAVLINK_MSG_ID_POSITION_TARGET_LOCAL_NED_LEN;
+    memset(position_target_local_ned, 0, MAVLINK_MSG_ID_POSITION_TARGET_LOCAL_NED_LEN);
     memcpy(position_target_local_ned, _MAV_PAYLOAD(msg), len);
 #endif
-
 }

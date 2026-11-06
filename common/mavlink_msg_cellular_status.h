@@ -720,10 +720,10 @@ static inline void mavlink_msg_cellular_status_decode(const mavlink_message_t* m
     cellular_status->tx_level = mavlink_msg_cellular_status_get_tx_level(msg);
     cellular_status->rx_quality = mavlink_msg_cellular_status_get_rx_quality(msg);
     cellular_status->sinr = mavlink_msg_cellular_status_get_sinr(msg);
+
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_CELLULAR_STATUS_LEN? msg->len : MAVLINK_MSG_ID_CELLULAR_STATUS_LEN;
-        memset(cellular_status, 0, MAVLINK_MSG_ID_CELLULAR_STATUS_LEN);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_CELLULAR_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_CELLULAR_STATUS_LEN;
+    memset(cellular_status, 0, MAVLINK_MSG_ID_CELLULAR_STATUS_LEN);
     memcpy(cellular_status, _MAV_PAYLOAD(msg), len);
 #endif
-
 }
