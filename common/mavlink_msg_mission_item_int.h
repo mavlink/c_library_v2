@@ -12,8 +12,8 @@ typedef struct __mavlink_mission_item_int_t {
  float param3; /*<  PARAM3, see MAV_CMD enum*/
  float param4; /*<  PARAM4, see MAV_CMD enum*/
  int32_t x; /*<  PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7*/
- int32_t y; /*<  PARAM6 / y position: local: x position in meters * 1e4, global: longitude in degrees *10^7*/
- float z; /*<  PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.*/
+ int32_t y; /*<  PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7*/
+ float z; /*<  PARAM7 / local: z position in meters, global: altitude in meters (relative or absolute, depending on frame).*/
  uint16_t seq; /*<  Waypoint ID (sequence number). Starts at zero. Increases monotonically for each waypoint, no gaps in the sequence (0,1,2,3,4).*/
  uint16_t command; /*<  The scheduled action for the waypoint.*/
  uint8_t target_system; /*<  System ID*/
@@ -97,8 +97,8 @@ typedef struct __mavlink_mission_item_int_t {
  * @param param3  PARAM3, see MAV_CMD enum
  * @param param4  PARAM4, see MAV_CMD enum
  * @param x  PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7
- * @param y  PARAM6 / y position: local: x position in meters * 1e4, global: longitude in degrees *10^7
- * @param z  PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.
+ * @param y  PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7
+ * @param z  PARAM7 / local: z position in meters, global: altitude in meters (relative or absolute, depending on frame).
  * @param mission_type  Mission type.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -168,8 +168,8 @@ static inline uint16_t mavlink_msg_mission_item_int_pack(uint32_t system_id, uin
  * @param param3  PARAM3, see MAV_CMD enum
  * @param param4  PARAM4, see MAV_CMD enum
  * @param x  PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7
- * @param y  PARAM6 / y position: local: x position in meters * 1e4, global: longitude in degrees *10^7
- * @param z  PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.
+ * @param y  PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7
+ * @param z  PARAM7 / local: z position in meters, global: altitude in meters (relative or absolute, depending on frame).
  * @param mission_type  Mission type.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -242,8 +242,8 @@ static inline uint16_t mavlink_msg_mission_item_int_pack_status(uint32_t system_
  * @param param3  PARAM3, see MAV_CMD enum
  * @param param4  PARAM4, see MAV_CMD enum
  * @param x  PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7
- * @param y  PARAM6 / y position: local: x position in meters * 1e4, global: longitude in degrees *10^7
- * @param z  PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.
+ * @param y  PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7
+ * @param z  PARAM7 / local: z position in meters, global: altitude in meters (relative or absolute, depending on frame).
  * @param mission_type  Mission type.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -352,8 +352,8 @@ static inline uint16_t mavlink_msg_mission_item_int_encode_status(uint32_t syste
  * @param param3  PARAM3, see MAV_CMD enum
  * @param param4  PARAM4, see MAV_CMD enum
  * @param x  PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7
- * @param y  PARAM6 / y position: local: x position in meters * 1e4, global: longitude in degrees *10^7
- * @param z  PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.
+ * @param y  PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7
+ * @param z  PARAM7 / local: z position in meters, global: altitude in meters (relative or absolute, depending on frame).
  * @param mission_type  Mission type.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -585,7 +585,7 @@ static inline int32_t mavlink_msg_mission_item_int_get_x(const mavlink_message_t
 /**
  * @brief Get field y from mission_item_int message
  *
- * @return  PARAM6 / y position: local: x position in meters * 1e4, global: longitude in degrees *10^7
+ * @return  PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7
  */
 static inline int32_t mavlink_msg_mission_item_int_get_y(const mavlink_message_t* msg)
 {
@@ -595,7 +595,7 @@ static inline int32_t mavlink_msg_mission_item_int_get_y(const mavlink_message_t
 /**
  * @brief Get field z from mission_item_int message
  *
- * @return  PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.
+ * @return  PARAM7 / local: z position in meters, global: altitude in meters (relative or absolute, depending on frame).
  */
 static inline float mavlink_msg_mission_item_int_get_z(const mavlink_message_t* msg)
 {

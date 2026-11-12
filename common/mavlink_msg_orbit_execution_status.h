@@ -10,7 +10,7 @@ typedef struct __mavlink_orbit_execution_status_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  float radius; /*< [m] Radius of the orbit circle. Positive values orbit clockwise, negative values orbit counter-clockwise.*/
  int32_t x; /*<  X coordinate of center point. Coordinate system depends on frame field: local = x position in meters * 1e4, global = latitude in degrees * 1e7.*/
- int32_t y; /*<  Y coordinate of center point.  Coordinate system depends on frame field: local = x position in meters * 1e4, global = latitude in degrees * 1e7.*/
+ int32_t y; /*<  Y coordinate of center point. Coordinate system depends on frame field: local = y position in meters * 1e4, global = longitude in degrees * 1e7.*/
  float z; /*< [m] Altitude of center point. Coordinate system depends on frame field.*/
  uint8_t frame; /*<  The coordinate system of the fields: x, y, z.*/
 } mavlink_orbit_execution_status_t;
@@ -62,7 +62,7 @@ typedef struct __mavlink_orbit_execution_status_t {
  * @param radius [m] Radius of the orbit circle. Positive values orbit clockwise, negative values orbit counter-clockwise.
  * @param frame  The coordinate system of the fields: x, y, z.
  * @param x  X coordinate of center point. Coordinate system depends on frame field: local = x position in meters * 1e4, global = latitude in degrees * 1e7.
- * @param y  Y coordinate of center point.  Coordinate system depends on frame field: local = x position in meters * 1e4, global = latitude in degrees * 1e7.
+ * @param y  Y coordinate of center point. Coordinate system depends on frame field: local = y position in meters * 1e4, global = longitude in degrees * 1e7.
  * @param z [m] Altitude of center point. Coordinate system depends on frame field.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -106,7 +106,7 @@ static inline uint16_t mavlink_msg_orbit_execution_status_pack(uint32_t system_i
  * @param radius [m] Radius of the orbit circle. Positive values orbit clockwise, negative values orbit counter-clockwise.
  * @param frame  The coordinate system of the fields: x, y, z.
  * @param x  X coordinate of center point. Coordinate system depends on frame field: local = x position in meters * 1e4, global = latitude in degrees * 1e7.
- * @param y  Y coordinate of center point.  Coordinate system depends on frame field: local = x position in meters * 1e4, global = latitude in degrees * 1e7.
+ * @param y  Y coordinate of center point. Coordinate system depends on frame field: local = y position in meters * 1e4, global = longitude in degrees * 1e7.
  * @param z [m] Altitude of center point. Coordinate system depends on frame field.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -153,7 +153,7 @@ static inline uint16_t mavlink_msg_orbit_execution_status_pack_status(uint32_t s
  * @param radius [m] Radius of the orbit circle. Positive values orbit clockwise, negative values orbit counter-clockwise.
  * @param frame  The coordinate system of the fields: x, y, z.
  * @param x  X coordinate of center point. Coordinate system depends on frame field: local = x position in meters * 1e4, global = latitude in degrees * 1e7.
- * @param y  Y coordinate of center point.  Coordinate system depends on frame field: local = x position in meters * 1e4, global = latitude in degrees * 1e7.
+ * @param y  Y coordinate of center point. Coordinate system depends on frame field: local = y position in meters * 1e4, global = longitude in degrees * 1e7.
  * @param z [m] Altitude of center point. Coordinate system depends on frame field.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -236,7 +236,7 @@ static inline uint16_t mavlink_msg_orbit_execution_status_encode_status(uint32_t
  * @param radius [m] Radius of the orbit circle. Positive values orbit clockwise, negative values orbit counter-clockwise.
  * @param frame  The coordinate system of the fields: x, y, z.
  * @param x  X coordinate of center point. Coordinate system depends on frame field: local = x position in meters * 1e4, global = latitude in degrees * 1e7.
- * @param y  Y coordinate of center point.  Coordinate system depends on frame field: local = x position in meters * 1e4, global = latitude in degrees * 1e7.
+ * @param y  Y coordinate of center point. Coordinate system depends on frame field: local = y position in meters * 1e4, global = longitude in degrees * 1e7.
  * @param z [m] Altitude of center point. Coordinate system depends on frame field.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -362,7 +362,7 @@ static inline int32_t mavlink_msg_orbit_execution_status_get_x(const mavlink_mes
 /**
  * @brief Get field y from orbit_execution_status message
  *
- * @return  Y coordinate of center point.  Coordinate system depends on frame field: local = x position in meters * 1e4, global = latitude in degrees * 1e7.
+ * @return  Y coordinate of center point. Coordinate system depends on frame field: local = y position in meters * 1e4, global = longitude in degrees * 1e7.
  */
 static inline int32_t mavlink_msg_orbit_execution_status_get_y(const mavlink_message_t* msg)
 {
