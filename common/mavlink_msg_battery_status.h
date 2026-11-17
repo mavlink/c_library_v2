@@ -18,7 +18,7 @@ typedef struct __mavlink_battery_status_t {
  int8_t battery_remaining; /*< [%] Remaining battery energy. Values: [0-100], -1: autopilot does not estimate the remaining battery.*/
  int32_t time_remaining; /*< [s] Remaining battery time, 0: autopilot does not provide remaining battery time estimate*/
  uint8_t charge_state; /*<  State for extent of discharge, provided by autopilot for warning or external reactions*/
- uint16_t voltages_ext[4]; /*< [mV] Battery voltages for cells 11 to 14. Cells above the valid cell count for this battery should have a value of 0, where zero indicates not supported (note, this is different than for the voltages field and allows empty byte truncation). If the measured value is 0 then 1 should be sent instead.*/
+ uint16_t voltages_ext[4]; /*< [mV] Battery voltages for cells 11 to 14. Cells above the valid cell count for this battery should have a value of 0, where zero indicates not supported (note, this is different than for the voltages field and allows empty byte truncation). If the measured value is 0 then 1 should be sent instead. Receivers should also treat UINT16_MAX in this field as unused (it is not a valid cell voltage, and some senders incorrectly reuse the voltages sentinel here). Receivers should ignore this field unless all 10 entries of the `voltages` field are valid (i.e. none are UINT16_MAX), since fewer than 10 valid base cells means the pack has no extension cells.*/
  uint8_t mode; /*<  Battery mode. Default (0) is that battery mode reporting is not supported or battery is in normal-use mode.*/
  uint32_t fault_bitmask; /*<  Fault/health indications. These should be set when charge_state is MAV_BATTERY_CHARGE_STATE_FAILED or MAV_BATTERY_CHARGE_STATE_UNHEALTHY (if not, fault reporting is not supported).*/
 }) mavlink_battery_status_t;
@@ -94,7 +94,7 @@ typedef struct __mavlink_battery_status_t {
  * @param battery_remaining [%] Remaining battery energy. Values: [0-100], -1: autopilot does not estimate the remaining battery.
  * @param time_remaining [s] Remaining battery time, 0: autopilot does not provide remaining battery time estimate
  * @param charge_state  State for extent of discharge, provided by autopilot for warning or external reactions
- * @param voltages_ext [mV] Battery voltages for cells 11 to 14. Cells above the valid cell count for this battery should have a value of 0, where zero indicates not supported (note, this is different than for the voltages field and allows empty byte truncation). If the measured value is 0 then 1 should be sent instead.
+ * @param voltages_ext [mV] Battery voltages for cells 11 to 14. Cells above the valid cell count for this battery should have a value of 0, where zero indicates not supported (note, this is different than for the voltages field and allows empty byte truncation). If the measured value is 0 then 1 should be sent instead. Receivers should also treat UINT16_MAX in this field as unused (it is not a valid cell voltage, and some senders incorrectly reuse the voltages sentinel here). Receivers should ignore this field unless all 10 entries of the `voltages` field are valid (i.e. none are UINT16_MAX), since fewer than 10 valid base cells means the pack has no extension cells.
  * @param mode  Battery mode. Default (0) is that battery mode reporting is not supported or battery is in normal-use mode.
  * @param fault_bitmask  Fault/health indications. These should be set when charge_state is MAV_BATTERY_CHARGE_STATE_FAILED or MAV_BATTERY_CHARGE_STATE_UNHEALTHY (if not, fault reporting is not supported).
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -160,7 +160,7 @@ static inline uint16_t mavlink_msg_battery_status_pack(uint32_t system_id, uint8
  * @param battery_remaining [%] Remaining battery energy. Values: [0-100], -1: autopilot does not estimate the remaining battery.
  * @param time_remaining [s] Remaining battery time, 0: autopilot does not provide remaining battery time estimate
  * @param charge_state  State for extent of discharge, provided by autopilot for warning or external reactions
- * @param voltages_ext [mV] Battery voltages for cells 11 to 14. Cells above the valid cell count for this battery should have a value of 0, where zero indicates not supported (note, this is different than for the voltages field and allows empty byte truncation). If the measured value is 0 then 1 should be sent instead.
+ * @param voltages_ext [mV] Battery voltages for cells 11 to 14. Cells above the valid cell count for this battery should have a value of 0, where zero indicates not supported (note, this is different than for the voltages field and allows empty byte truncation). If the measured value is 0 then 1 should be sent instead. Receivers should also treat UINT16_MAX in this field as unused (it is not a valid cell voltage, and some senders incorrectly reuse the voltages sentinel here). Receivers should ignore this field unless all 10 entries of the `voltages` field are valid (i.e. none are UINT16_MAX), since fewer than 10 valid base cells means the pack has no extension cells.
  * @param mode  Battery mode. Default (0) is that battery mode reporting is not supported or battery is in normal-use mode.
  * @param fault_bitmask  Fault/health indications. These should be set when charge_state is MAV_BATTERY_CHARGE_STATE_FAILED or MAV_BATTERY_CHARGE_STATE_UNHEALTHY (if not, fault reporting is not supported).
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -229,7 +229,7 @@ static inline uint16_t mavlink_msg_battery_status_pack_status(uint32_t system_id
  * @param battery_remaining [%] Remaining battery energy. Values: [0-100], -1: autopilot does not estimate the remaining battery.
  * @param time_remaining [s] Remaining battery time, 0: autopilot does not provide remaining battery time estimate
  * @param charge_state  State for extent of discharge, provided by autopilot for warning or external reactions
- * @param voltages_ext [mV] Battery voltages for cells 11 to 14. Cells above the valid cell count for this battery should have a value of 0, where zero indicates not supported (note, this is different than for the voltages field and allows empty byte truncation). If the measured value is 0 then 1 should be sent instead.
+ * @param voltages_ext [mV] Battery voltages for cells 11 to 14. Cells above the valid cell count for this battery should have a value of 0, where zero indicates not supported (note, this is different than for the voltages field and allows empty byte truncation). If the measured value is 0 then 1 should be sent instead. Receivers should also treat UINT16_MAX in this field as unused (it is not a valid cell voltage, and some senders incorrectly reuse the voltages sentinel here). Receivers should ignore this field unless all 10 entries of the `voltages` field are valid (i.e. none are UINT16_MAX), since fewer than 10 valid base cells means the pack has no extension cells.
  * @param mode  Battery mode. Default (0) is that battery mode reporting is not supported or battery is in normal-use mode.
  * @param fault_bitmask  Fault/health indications. These should be set when charge_state is MAV_BATTERY_CHARGE_STATE_FAILED or MAV_BATTERY_CHARGE_STATE_UNHEALTHY (if not, fault reporting is not supported).
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -334,7 +334,7 @@ static inline uint16_t mavlink_msg_battery_status_encode_status(uint32_t system_
  * @param battery_remaining [%] Remaining battery energy. Values: [0-100], -1: autopilot does not estimate the remaining battery.
  * @param time_remaining [s] Remaining battery time, 0: autopilot does not provide remaining battery time estimate
  * @param charge_state  State for extent of discharge, provided by autopilot for warning or external reactions
- * @param voltages_ext [mV] Battery voltages for cells 11 to 14. Cells above the valid cell count for this battery should have a value of 0, where zero indicates not supported (note, this is different than for the voltages field and allows empty byte truncation). If the measured value is 0 then 1 should be sent instead.
+ * @param voltages_ext [mV] Battery voltages for cells 11 to 14. Cells above the valid cell count for this battery should have a value of 0, where zero indicates not supported (note, this is different than for the voltages field and allows empty byte truncation). If the measured value is 0 then 1 should be sent instead. Receivers should also treat UINT16_MAX in this field as unused (it is not a valid cell voltage, and some senders incorrectly reuse the voltages sentinel here). Receivers should ignore this field unless all 10 entries of the `voltages` field are valid (i.e. none are UINT16_MAX), since fewer than 10 valid base cells means the pack has no extension cells.
  * @param mode  Battery mode. Default (0) is that battery mode reporting is not supported or battery is in normal-use mode.
  * @param fault_bitmask  Fault/health indications. These should be set when charge_state is MAV_BATTERY_CHARGE_STATE_FAILED or MAV_BATTERY_CHARGE_STATE_UNHEALTHY (if not, fault reporting is not supported).
  */
@@ -559,7 +559,7 @@ static inline uint8_t mavlink_msg_battery_status_get_charge_state(const mavlink_
 /**
  * @brief Get field voltages_ext from battery_status message
  *
- * @return [mV] Battery voltages for cells 11 to 14. Cells above the valid cell count for this battery should have a value of 0, where zero indicates not supported (note, this is different than for the voltages field and allows empty byte truncation). If the measured value is 0 then 1 should be sent instead.
+ * @return [mV] Battery voltages for cells 11 to 14. Cells above the valid cell count for this battery should have a value of 0, where zero indicates not supported (note, this is different than for the voltages field and allows empty byte truncation). If the measured value is 0 then 1 should be sent instead. Receivers should also treat UINT16_MAX in this field as unused (it is not a valid cell voltage, and some senders incorrectly reuse the voltages sentinel here). Receivers should ignore this field unless all 10 entries of the `voltages` field are valid (i.e. none are UINT16_MAX), since fewer than 10 valid base cells means the pack has no extension cells.
  */
 static inline uint16_t mavlink_msg_battery_status_get_voltages_ext(const mavlink_message_t* msg, uint16_t *voltages_ext)
 {
