@@ -104,6 +104,7 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_pack(uint32_t sy
  * @param txbuf [c%] For compatibility with legacy method. UINT8_MAX: unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint16_t tx_ser_rate, uint16_t rx_ser_rate, uint8_t tx_used_ser_bandwidth, uint8_t rx_used_ser_bandwidth, uint8_t txbuf)
 {
@@ -188,7 +189,9 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_pack_chan(uint32
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_mlrs_radio_link_flow_control_t* mlrs_radio_link_flow_control)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_mlrs_radio_link_flow_control_pack(system_id, component_id, msg, mlrs_radio_link_flow_control->tx_ser_rate, mlrs_radio_link_flow_control->rx_ser_rate, mlrs_radio_link_flow_control->tx_used_ser_bandwidth, mlrs_radio_link_flow_control->rx_used_ser_bandwidth, mlrs_radio_link_flow_control->txbuf);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -203,7 +206,9 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_encode(uint32_t 
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mlrs_radio_link_flow_control_t* mlrs_radio_link_flow_control)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_mlrs_radio_link_flow_control_pack_chan(system_id, component_id, chan, msg, mlrs_radio_link_flow_control->tx_ser_rate, mlrs_radio_link_flow_control->rx_ser_rate, mlrs_radio_link_flow_control->tx_used_ser_bandwidth, mlrs_radio_link_flow_control->rx_used_ser_bandwidth, mlrs_radio_link_flow_control->txbuf);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -215,9 +220,12 @@ static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_encode_chan(uint
  * @param msg The MAVLink message to compress the data into
  * @param mlrs_radio_link_flow_control C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_mlrs_radio_link_flow_control_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_mlrs_radio_link_flow_control_t* mlrs_radio_link_flow_control)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_mlrs_radio_link_flow_control_pack_status(system_id, component_id, _status, msg,  mlrs_radio_link_flow_control->tx_ser_rate, mlrs_radio_link_flow_control->rx_ser_rate, mlrs_radio_link_flow_control->tx_used_ser_bandwidth, mlrs_radio_link_flow_control->rx_used_ser_bandwidth, mlrs_radio_link_flow_control->txbuf);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -265,7 +273,9 @@ MAVLINK_WIP
 static inline void mavlink_msg_mlrs_radio_link_flow_control_send_struct(mavlink_channel_t chan, const mavlink_mlrs_radio_link_flow_control_t* mlrs_radio_link_flow_control)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_mlrs_radio_link_flow_control_send(chan, mlrs_radio_link_flow_control->tx_ser_rate, mlrs_radio_link_flow_control->rx_ser_rate, mlrs_radio_link_flow_control->tx_used_ser_bandwidth, mlrs_radio_link_flow_control->rx_used_ser_bandwidth, mlrs_radio_link_flow_control->txbuf);
+    MAVLINK_DEPRECATED_CALL_END
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MLRS_RADIO_LINK_FLOW_CONTROL, (const char *)mlrs_radio_link_flow_control, MAVLINK_MSG_ID_MLRS_RADIO_LINK_FLOW_CONTROL_MIN_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_FLOW_CONTROL_LEN, MAVLINK_MSG_ID_MLRS_RADIO_LINK_FLOW_CONTROL_CRC);
 #endif
@@ -374,11 +384,13 @@ MAVLINK_WIP
 static inline void mavlink_msg_mlrs_radio_link_flow_control_decode(const mavlink_message_t* msg, mavlink_mlrs_radio_link_flow_control_t* mlrs_radio_link_flow_control)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mlrs_radio_link_flow_control->tx_ser_rate = mavlink_msg_mlrs_radio_link_flow_control_get_tx_ser_rate(msg);
     mlrs_radio_link_flow_control->rx_ser_rate = mavlink_msg_mlrs_radio_link_flow_control_get_rx_ser_rate(msg);
     mlrs_radio_link_flow_control->tx_used_ser_bandwidth = mavlink_msg_mlrs_radio_link_flow_control_get_tx_used_ser_bandwidth(msg);
     mlrs_radio_link_flow_control->rx_used_ser_bandwidth = mavlink_msg_mlrs_radio_link_flow_control_get_rx_used_ser_bandwidth(msg);
     mlrs_radio_link_flow_control->txbuf = mavlink_msg_mlrs_radio_link_flow_control_get_txbuf(msg);
+    MAVLINK_DEPRECATED_CALL_END
 
 #else
     uint8_t len = msg->len < MAVLINK_MSG_ID_MLRS_RADIO_LINK_FLOW_CONTROL_LEN ? msg->len : MAVLINK_MSG_ID_MLRS_RADIO_LINK_FLOW_CONTROL_LEN;

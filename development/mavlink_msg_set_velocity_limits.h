@@ -104,6 +104,7 @@ static inline uint16_t mavlink_msg_set_velocity_limits_pack(uint32_t system_id, 
  * @param yaw_rate_limit [rad/s] Limit for vehicle turn rate around its yaw axis. NaN: Field not used (ignore)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_set_velocity_limits_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint32_t target_system, uint8_t target_component, float horizontal_speed_limit, float vertical_speed_limit, float yaw_rate_limit)
 {
@@ -188,7 +189,9 @@ static inline uint16_t mavlink_msg_set_velocity_limits_pack_chan(uint32_t system
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_set_velocity_limits_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_set_velocity_limits_t* set_velocity_limits)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_set_velocity_limits_pack(system_id, component_id, msg, set_velocity_limits->target_system, set_velocity_limits->target_component, set_velocity_limits->horizontal_speed_limit, set_velocity_limits->vertical_speed_limit, set_velocity_limits->yaw_rate_limit);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -203,7 +206,9 @@ static inline uint16_t mavlink_msg_set_velocity_limits_encode(uint32_t system_id
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_set_velocity_limits_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_set_velocity_limits_t* set_velocity_limits)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_set_velocity_limits_pack_chan(system_id, component_id, chan, msg, set_velocity_limits->target_system, set_velocity_limits->target_component, set_velocity_limits->horizontal_speed_limit, set_velocity_limits->vertical_speed_limit, set_velocity_limits->yaw_rate_limit);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -215,9 +220,12 @@ static inline uint16_t mavlink_msg_set_velocity_limits_encode_chan(uint32_t syst
  * @param msg The MAVLink message to compress the data into
  * @param set_velocity_limits C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_set_velocity_limits_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_set_velocity_limits_t* set_velocity_limits)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_set_velocity_limits_pack_status(system_id, component_id, _status, msg,  set_velocity_limits->target_system, set_velocity_limits->target_component, set_velocity_limits->horizontal_speed_limit, set_velocity_limits->vertical_speed_limit, set_velocity_limits->yaw_rate_limit);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -265,7 +273,9 @@ MAVLINK_WIP
 static inline void mavlink_msg_set_velocity_limits_send_struct(mavlink_channel_t chan, const mavlink_set_velocity_limits_t* set_velocity_limits)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_set_velocity_limits_send(chan, set_velocity_limits->target_system, set_velocity_limits->target_component, set_velocity_limits->horizontal_speed_limit, set_velocity_limits->vertical_speed_limit, set_velocity_limits->yaw_rate_limit);
+    MAVLINK_DEPRECATED_CALL_END
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS, (const char *)set_velocity_limits, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_MIN_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_LEN, MAVLINK_MSG_ID_SET_VELOCITY_LIMITS_CRC);
 #endif
@@ -363,11 +373,13 @@ MAVLINK_WIP
 static inline void mavlink_msg_set_velocity_limits_decode(const mavlink_message_t* msg, mavlink_set_velocity_limits_t* set_velocity_limits)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     set_velocity_limits->horizontal_speed_limit = mavlink_msg_set_velocity_limits_get_horizontal_speed_limit(msg);
     set_velocity_limits->vertical_speed_limit = mavlink_msg_set_velocity_limits_get_vertical_speed_limit(msg);
     set_velocity_limits->yaw_rate_limit = mavlink_msg_set_velocity_limits_get_yaw_rate_limit(msg);
     set_velocity_limits->target_system = _MAV_RETURN_uint8_t(msg, 12);
     set_velocity_limits->target_component = mavlink_msg_set_velocity_limits_get_target_component(msg);
+    MAVLINK_DEPRECATED_CALL_END
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).

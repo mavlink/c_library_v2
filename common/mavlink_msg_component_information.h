@@ -63,6 +63,7 @@ typedef struct __mavlink_component_information_t {
  * @param peripherals_metadata_uri  (Optional) MAVLink FTP URI for the peripherals metadata file (COMP_METADATA_TYPE_PERIPHERALS), which may be compressed with xz. This contains data about "attached components" such as UAVCAN nodes. The peripherals are in a separate file because the information must be generated dynamically at runtime. The string needs to be zero terminated.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_DEPRECATED
 static inline uint16_t mavlink_msg_component_information_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint32_t time_boot_ms, uint32_t general_metadata_file_crc, const char *general_metadata_uri, uint32_t peripherals_metadata_file_crc, const char *peripherals_metadata_uri)
 {
@@ -102,6 +103,7 @@ static inline uint16_t mavlink_msg_component_information_pack(uint32_t system_id
  * @param peripherals_metadata_uri  (Optional) MAVLink FTP URI for the peripherals metadata file (COMP_METADATA_TYPE_PERIPHERALS), which may be compressed with xz. This contains data about "attached components" such as UAVCAN nodes. The peripherals are in a separate file because the information must be generated dynamically at runtime. The string needs to be zero terminated.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_DEPRECATED
 static inline uint16_t mavlink_msg_component_information_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint32_t time_boot_ms, uint32_t general_metadata_file_crc, const char *general_metadata_uri, uint32_t peripherals_metadata_file_crc, const char *peripherals_metadata_uri)
 {
@@ -144,6 +146,7 @@ static inline uint16_t mavlink_msg_component_information_pack_status(uint32_t sy
  * @param peripherals_metadata_uri  (Optional) MAVLink FTP URI for the peripherals metadata file (COMP_METADATA_TYPE_PERIPHERALS), which may be compressed with xz. This contains data about "attached components" such as UAVCAN nodes. The peripherals are in a separate file because the information must be generated dynamically at runtime. The string needs to be zero terminated.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_DEPRECATED
 static inline uint16_t mavlink_msg_component_information_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint32_t time_boot_ms,uint32_t general_metadata_file_crc,const char *general_metadata_uri,uint32_t peripherals_metadata_file_crc,const char *peripherals_metadata_uri)
@@ -178,9 +181,12 @@ static inline uint16_t mavlink_msg_component_information_pack_chan(uint32_t syst
  * @param msg The MAVLink message to compress the data into
  * @param component_information C-struct to read the message contents from
  */
+MAVLINK_DEPRECATED
 static inline uint16_t mavlink_msg_component_information_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_component_information_t* component_information)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_component_information_pack(system_id, component_id, msg, component_information->time_boot_ms, component_information->general_metadata_file_crc, component_information->general_metadata_uri, component_information->peripherals_metadata_file_crc, component_information->peripherals_metadata_uri);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -192,9 +198,12 @@ static inline uint16_t mavlink_msg_component_information_encode(uint32_t system_
  * @param msg The MAVLink message to compress the data into
  * @param component_information C-struct to read the message contents from
  */
+MAVLINK_DEPRECATED
 static inline uint16_t mavlink_msg_component_information_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_component_information_t* component_information)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_component_information_pack_chan(system_id, component_id, chan, msg, component_information->time_boot_ms, component_information->general_metadata_file_crc, component_information->general_metadata_uri, component_information->peripherals_metadata_file_crc, component_information->peripherals_metadata_uri);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -206,9 +215,12 @@ static inline uint16_t mavlink_msg_component_information_encode_chan(uint32_t sy
  * @param msg The MAVLink message to compress the data into
  * @param component_information C-struct to read the message contents from
  */
+MAVLINK_DEPRECATED
 static inline uint16_t mavlink_msg_component_information_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_component_information_t* component_information)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_component_information_pack_status(system_id, component_id, _status, msg,  component_information->time_boot_ms, component_information->general_metadata_file_crc, component_information->general_metadata_uri, component_information->peripherals_metadata_file_crc, component_information->peripherals_metadata_uri);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -223,6 +235,7 @@ static inline uint16_t mavlink_msg_component_information_encode_status(uint32_t 
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
+MAVLINK_DEPRECATED
 static inline void mavlink_msg_component_information_send(mavlink_channel_t chan, uint32_t time_boot_ms, uint32_t general_metadata_file_crc, const char *general_metadata_uri, uint32_t peripherals_metadata_file_crc, const char *peripherals_metadata_uri)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -249,10 +262,13 @@ static inline void mavlink_msg_component_information_send(mavlink_channel_t chan
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
+MAVLINK_DEPRECATED
 static inline void mavlink_msg_component_information_send_struct(mavlink_channel_t chan, const mavlink_component_information_t* component_information)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_component_information_send(chan, component_information->time_boot_ms, component_information->general_metadata_file_crc, component_information->general_metadata_uri, component_information->peripherals_metadata_file_crc, component_information->peripherals_metadata_uri);
+    MAVLINK_DEPRECATED_CALL_END
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_COMPONENT_INFORMATION, (const char *)component_information, MAVLINK_MSG_ID_COMPONENT_INFORMATION_MIN_LEN, MAVLINK_MSG_ID_COMPONENT_INFORMATION_LEN, MAVLINK_MSG_ID_COMPONENT_INFORMATION_CRC);
 #endif
@@ -266,6 +282,7 @@ static inline void mavlink_msg_component_information_send_struct(mavlink_channel
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
+MAVLINK_DEPRECATED
 static inline void mavlink_msg_component_information_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, uint32_t general_metadata_file_crc, const char *general_metadata_uri, uint32_t peripherals_metadata_file_crc, const char *peripherals_metadata_uri)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -298,6 +315,7 @@ static inline void mavlink_msg_component_information_send_buf(mavlink_message_t 
  *
  * @return [ms] Timestamp (time since system boot).
  */
+MAVLINK_DEPRECATED
 static inline uint32_t mavlink_msg_component_information_get_time_boot_ms(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint32_t(msg,  0);
@@ -308,6 +326,7 @@ static inline uint32_t mavlink_msg_component_information_get_time_boot_ms(const 
  *
  * @return  CRC32 of the general metadata file (general_metadata_uri).
  */
+MAVLINK_DEPRECATED
 static inline uint32_t mavlink_msg_component_information_get_general_metadata_file_crc(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint32_t(msg,  4);
@@ -318,6 +337,7 @@ static inline uint32_t mavlink_msg_component_information_get_general_metadata_fi
  *
  * @return  MAVLink FTP URI for the general metadata file (COMP_METADATA_TYPE_GENERAL), which may be compressed with xz. The file contains general component metadata, and may contain URI links for additional metadata (see COMP_METADATA_TYPE). The information is static from boot, and may be generated at compile time. The string needs to be zero terminated.
  */
+MAVLINK_DEPRECATED
 static inline uint16_t mavlink_msg_component_information_get_general_metadata_uri(const mavlink_message_t* msg, char *general_metadata_uri)
 {
     return _MAV_RETURN_char_array(msg, general_metadata_uri, 100,  12);
@@ -328,6 +348,7 @@ static inline uint16_t mavlink_msg_component_information_get_general_metadata_ur
  *
  * @return  CRC32 of peripherals metadata file (peripherals_metadata_uri).
  */
+MAVLINK_DEPRECATED
 static inline uint32_t mavlink_msg_component_information_get_peripherals_metadata_file_crc(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint32_t(msg,  8);
@@ -338,6 +359,7 @@ static inline uint32_t mavlink_msg_component_information_get_peripherals_metadat
  *
  * @return  (Optional) MAVLink FTP URI for the peripherals metadata file (COMP_METADATA_TYPE_PERIPHERALS), which may be compressed with xz. This contains data about "attached components" such as UAVCAN nodes. The peripherals are in a separate file because the information must be generated dynamically at runtime. The string needs to be zero terminated.
  */
+MAVLINK_DEPRECATED
 static inline uint16_t mavlink_msg_component_information_get_peripherals_metadata_uri(const mavlink_message_t* msg, char *peripherals_metadata_uri)
 {
     return _MAV_RETURN_char_array(msg, peripherals_metadata_uri, 100,  112);
@@ -349,14 +371,17 @@ static inline uint16_t mavlink_msg_component_information_get_peripherals_metadat
  * @param msg The message to decode
  * @param component_information C-struct to decode the message contents into
  */
+MAVLINK_DEPRECATED
 static inline void mavlink_msg_component_information_decode(const mavlink_message_t* msg, mavlink_component_information_t* component_information)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     component_information->time_boot_ms = mavlink_msg_component_information_get_time_boot_ms(msg);
     component_information->general_metadata_file_crc = mavlink_msg_component_information_get_general_metadata_file_crc(msg);
     component_information->peripherals_metadata_file_crc = mavlink_msg_component_information_get_peripherals_metadata_file_crc(msg);
     mavlink_msg_component_information_get_general_metadata_uri(msg, component_information->general_metadata_uri);
     mavlink_msg_component_information_get_peripherals_metadata_uri(msg, component_information->peripherals_metadata_uri);
+    MAVLINK_DEPRECATED_CALL_END
 
 #else
     uint8_t len = msg->len < MAVLINK_MSG_ID_COMPONENT_INFORMATION_LEN ? msg->len : MAVLINK_MSG_ID_COMPONENT_INFORMATION_LEN;

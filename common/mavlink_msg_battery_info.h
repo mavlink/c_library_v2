@@ -209,6 +209,7 @@ static inline uint16_t mavlink_msg_battery_info_pack(uint32_t system_id, uint8_t
  * @param name  Battery device name. Formatted as manufacturer name then product name, separated with an underscore (in ASCII characters), 0 terminated. All 0: field not provided.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_battery_info_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t id, uint8_t battery_function, uint8_t type, uint8_t state_of_health, uint8_t cells_in_series, uint16_t cycle_count, uint16_t weight, float discharge_minimum_voltage, float charging_minimum_voltage, float resting_minimum_voltage, float charging_maximum_voltage, float charging_maximum_current, float nominal_voltage, float discharge_maximum_current, float discharge_maximum_burst_current, float design_capacity, float full_charge_capacity, const char *manufacture_date, const char *serial_number, const char *name)
 {
@@ -364,7 +365,9 @@ static inline uint16_t mavlink_msg_battery_info_pack_chan(uint32_t system_id, ui
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_battery_info_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_battery_info_t* battery_info)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_battery_info_pack(system_id, component_id, msg, battery_info->id, battery_info->battery_function, battery_info->type, battery_info->state_of_health, battery_info->cells_in_series, battery_info->cycle_count, battery_info->weight, battery_info->discharge_minimum_voltage, battery_info->charging_minimum_voltage, battery_info->resting_minimum_voltage, battery_info->charging_maximum_voltage, battery_info->charging_maximum_current, battery_info->nominal_voltage, battery_info->discharge_maximum_current, battery_info->discharge_maximum_burst_current, battery_info->design_capacity, battery_info->full_charge_capacity, battery_info->manufacture_date, battery_info->serial_number, battery_info->name);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -379,7 +382,9 @@ static inline uint16_t mavlink_msg_battery_info_encode(uint32_t system_id, uint8
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_battery_info_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_battery_info_t* battery_info)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_battery_info_pack_chan(system_id, component_id, chan, msg, battery_info->id, battery_info->battery_function, battery_info->type, battery_info->state_of_health, battery_info->cells_in_series, battery_info->cycle_count, battery_info->weight, battery_info->discharge_minimum_voltage, battery_info->charging_minimum_voltage, battery_info->resting_minimum_voltage, battery_info->charging_maximum_voltage, battery_info->charging_maximum_current, battery_info->nominal_voltage, battery_info->discharge_maximum_current, battery_info->discharge_maximum_burst_current, battery_info->design_capacity, battery_info->full_charge_capacity, battery_info->manufacture_date, battery_info->serial_number, battery_info->name);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -391,9 +396,12 @@ static inline uint16_t mavlink_msg_battery_info_encode_chan(uint32_t system_id, 
  * @param msg The MAVLink message to compress the data into
  * @param battery_info C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_battery_info_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_battery_info_t* battery_info)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_battery_info_pack_status(system_id, component_id, _status, msg,  battery_info->id, battery_info->battery_function, battery_info->type, battery_info->state_of_health, battery_info->cells_in_series, battery_info->cycle_count, battery_info->weight, battery_info->discharge_minimum_voltage, battery_info->charging_minimum_voltage, battery_info->resting_minimum_voltage, battery_info->charging_maximum_voltage, battery_info->charging_maximum_current, battery_info->nominal_voltage, battery_info->discharge_maximum_current, battery_info->discharge_maximum_burst_current, battery_info->design_capacity, battery_info->full_charge_capacity, battery_info->manufacture_date, battery_info->serial_number, battery_info->name);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -484,7 +492,9 @@ MAVLINK_WIP
 static inline void mavlink_msg_battery_info_send_struct(mavlink_channel_t chan, const mavlink_battery_info_t* battery_info)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_battery_info_send(chan, battery_info->id, battery_info->battery_function, battery_info->type, battery_info->state_of_health, battery_info->cells_in_series, battery_info->cycle_count, battery_info->weight, battery_info->discharge_minimum_voltage, battery_info->charging_minimum_voltage, battery_info->resting_minimum_voltage, battery_info->charging_maximum_voltage, battery_info->charging_maximum_current, battery_info->nominal_voltage, battery_info->discharge_maximum_current, battery_info->discharge_maximum_burst_current, battery_info->design_capacity, battery_info->full_charge_capacity, battery_info->manufacture_date, battery_info->serial_number, battery_info->name);
+    MAVLINK_DEPRECATED_CALL_END
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_BATTERY_INFO, (const char *)battery_info, MAVLINK_MSG_ID_BATTERY_INFO_MIN_LEN, MAVLINK_MSG_ID_BATTERY_INFO_LEN, MAVLINK_MSG_ID_BATTERY_INFO_CRC);
 #endif
@@ -786,6 +796,7 @@ MAVLINK_WIP
 static inline void mavlink_msg_battery_info_decode(const mavlink_message_t* msg, mavlink_battery_info_t* battery_info)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     battery_info->discharge_minimum_voltage = mavlink_msg_battery_info_get_discharge_minimum_voltage(msg);
     battery_info->charging_minimum_voltage = mavlink_msg_battery_info_get_charging_minimum_voltage(msg);
     battery_info->resting_minimum_voltage = mavlink_msg_battery_info_get_resting_minimum_voltage(msg);
@@ -806,6 +817,7 @@ static inline void mavlink_msg_battery_info_decode(const mavlink_message_t* msg,
     mavlink_msg_battery_info_get_manufacture_date(msg, battery_info->manufacture_date);
     mavlink_msg_battery_info_get_serial_number(msg, battery_info->serial_number);
     mavlink_msg_battery_info_get_name(msg, battery_info->name);
+    MAVLINK_DEPRECATED_CALL_END
 
 #else
     uint8_t len = msg->len < MAVLINK_MSG_ID_BATTERY_INFO_LEN ? msg->len : MAVLINK_MSG_ID_BATTERY_INFO_LEN;

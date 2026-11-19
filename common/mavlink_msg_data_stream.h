@@ -54,6 +54,7 @@ typedef struct __mavlink_data_stream_t {
  * @param on_off  1 stream is enabled, 0 stream is stopped.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_SUPERSEDED
 static inline uint16_t mavlink_msg_data_stream_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint8_t stream_id, uint16_t message_rate, uint8_t on_off)
 {
@@ -89,6 +90,7 @@ static inline uint16_t mavlink_msg_data_stream_pack(uint32_t system_id, uint8_t 
  * @param on_off  1 stream is enabled, 0 stream is stopped.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_SUPERSEDED
 static inline uint16_t mavlink_msg_data_stream_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t stream_id, uint16_t message_rate, uint8_t on_off)
 {
@@ -127,6 +129,7 @@ static inline uint16_t mavlink_msg_data_stream_pack_status(uint32_t system_id, u
  * @param on_off  1 stream is enabled, 0 stream is stopped.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_SUPERSEDED
 static inline uint16_t mavlink_msg_data_stream_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint8_t stream_id,uint16_t message_rate,uint8_t on_off)
@@ -159,9 +162,12 @@ static inline uint16_t mavlink_msg_data_stream_pack_chan(uint32_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param data_stream C-struct to read the message contents from
  */
+MAVLINK_SUPERSEDED
 static inline uint16_t mavlink_msg_data_stream_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_data_stream_t* data_stream)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_data_stream_pack(system_id, component_id, msg, data_stream->stream_id, data_stream->message_rate, data_stream->on_off);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -173,9 +179,12 @@ static inline uint16_t mavlink_msg_data_stream_encode(uint32_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param data_stream C-struct to read the message contents from
  */
+MAVLINK_SUPERSEDED
 static inline uint16_t mavlink_msg_data_stream_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_data_stream_t* data_stream)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_data_stream_pack_chan(system_id, component_id, chan, msg, data_stream->stream_id, data_stream->message_rate, data_stream->on_off);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -187,9 +196,12 @@ static inline uint16_t mavlink_msg_data_stream_encode_chan(uint32_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param data_stream C-struct to read the message contents from
  */
+MAVLINK_SUPERSEDED
 static inline uint16_t mavlink_msg_data_stream_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_data_stream_t* data_stream)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_data_stream_pack_status(system_id, component_id, _status, msg,  data_stream->stream_id, data_stream->message_rate, data_stream->on_off);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -202,6 +214,7 @@ static inline uint16_t mavlink_msg_data_stream_encode_status(uint32_t system_id,
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
+MAVLINK_SUPERSEDED
 static inline void mavlink_msg_data_stream_send(mavlink_channel_t chan, uint8_t stream_id, uint16_t message_rate, uint8_t on_off)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -226,10 +239,13 @@ static inline void mavlink_msg_data_stream_send(mavlink_channel_t chan, uint8_t 
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
+MAVLINK_SUPERSEDED
 static inline void mavlink_msg_data_stream_send_struct(mavlink_channel_t chan, const mavlink_data_stream_t* data_stream)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_data_stream_send(chan, data_stream->stream_id, data_stream->message_rate, data_stream->on_off);
+    MAVLINK_DEPRECATED_CALL_END
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_DATA_STREAM, (const char *)data_stream, MAVLINK_MSG_ID_DATA_STREAM_MIN_LEN, MAVLINK_MSG_ID_DATA_STREAM_LEN, MAVLINK_MSG_ID_DATA_STREAM_CRC);
 #endif
@@ -243,6 +259,7 @@ static inline void mavlink_msg_data_stream_send_struct(mavlink_channel_t chan, c
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
+MAVLINK_SUPERSEDED
 static inline void mavlink_msg_data_stream_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t stream_id, uint16_t message_rate, uint8_t on_off)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -273,6 +290,7 @@ static inline void mavlink_msg_data_stream_send_buf(mavlink_message_t *msgbuf, m
  *
  * @return  The ID of the requested data stream.
  */
+MAVLINK_SUPERSEDED
 static inline uint8_t mavlink_msg_data_stream_get_stream_id(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  2);
@@ -283,6 +301,7 @@ static inline uint8_t mavlink_msg_data_stream_get_stream_id(const mavlink_messag
  *
  * @return [Hz] The message rate
  */
+MAVLINK_SUPERSEDED
 static inline uint16_t mavlink_msg_data_stream_get_message_rate(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint16_t(msg,  0);
@@ -293,6 +312,7 @@ static inline uint16_t mavlink_msg_data_stream_get_message_rate(const mavlink_me
  *
  * @return  1 stream is enabled, 0 stream is stopped.
  */
+MAVLINK_SUPERSEDED
 static inline uint8_t mavlink_msg_data_stream_get_on_off(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  3);
@@ -304,12 +324,15 @@ static inline uint8_t mavlink_msg_data_stream_get_on_off(const mavlink_message_t
  * @param msg The message to decode
  * @param data_stream C-struct to decode the message contents into
  */
+MAVLINK_SUPERSEDED
 static inline void mavlink_msg_data_stream_decode(const mavlink_message_t* msg, mavlink_data_stream_t* data_stream)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     data_stream->message_rate = mavlink_msg_data_stream_get_message_rate(msg);
     data_stream->stream_id = mavlink_msg_data_stream_get_stream_id(msg);
     data_stream->on_off = mavlink_msg_data_stream_get_on_off(msg);
+    MAVLINK_DEPRECATED_CALL_END
 
 #else
     uint8_t len = msg->len < MAVLINK_MSG_ID_DATA_STREAM_LEN ? msg->len : MAVLINK_MSG_ID_DATA_STREAM_LEN;

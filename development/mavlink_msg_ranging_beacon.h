@@ -174,6 +174,7 @@ static inline uint16_t mavlink_msg_ranging_beacon_pack(uint32_t system_id, uint8
  * @param status  Ranging beacon status.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_ranging_beacon_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint64_t time_usec, uint32_t target_system, uint8_t target_component, uint16_t beacon_id, uint32_t range, int32_t lat, int32_t lon, float alt, uint8_t alt_type, uint32_t hacc_est, uint32_t vacc_est, uint16_t carrier_freq, uint32_t range_accuracy, uint8_t sequence, uint8_t status)
 {
@@ -308,7 +309,9 @@ static inline uint16_t mavlink_msg_ranging_beacon_pack_chan(uint32_t system_id, 
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_ranging_beacon_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_ranging_beacon_t* ranging_beacon)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_ranging_beacon_pack(system_id, component_id, msg, ranging_beacon->time_usec, ranging_beacon->target_system, ranging_beacon->target_component, ranging_beacon->beacon_id, ranging_beacon->range, ranging_beacon->lat, ranging_beacon->lon, ranging_beacon->alt, ranging_beacon->alt_type, ranging_beacon->hacc_est, ranging_beacon->vacc_est, ranging_beacon->carrier_freq, ranging_beacon->range_accuracy, ranging_beacon->sequence, ranging_beacon->status);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -323,7 +326,9 @@ static inline uint16_t mavlink_msg_ranging_beacon_encode(uint32_t system_id, uin
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_ranging_beacon_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_ranging_beacon_t* ranging_beacon)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_ranging_beacon_pack_chan(system_id, component_id, chan, msg, ranging_beacon->time_usec, ranging_beacon->target_system, ranging_beacon->target_component, ranging_beacon->beacon_id, ranging_beacon->range, ranging_beacon->lat, ranging_beacon->lon, ranging_beacon->alt, ranging_beacon->alt_type, ranging_beacon->hacc_est, ranging_beacon->vacc_est, ranging_beacon->carrier_freq, ranging_beacon->range_accuracy, ranging_beacon->sequence, ranging_beacon->status);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -335,9 +340,12 @@ static inline uint16_t mavlink_msg_ranging_beacon_encode_chan(uint32_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param ranging_beacon C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_ranging_beacon_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_ranging_beacon_t* ranging_beacon)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_ranging_beacon_pack_status(system_id, component_id, _status, msg,  ranging_beacon->time_usec, ranging_beacon->target_system, ranging_beacon->target_component, ranging_beacon->beacon_id, ranging_beacon->range, ranging_beacon->lat, ranging_beacon->lon, ranging_beacon->alt, ranging_beacon->alt_type, ranging_beacon->hacc_est, ranging_beacon->vacc_est, ranging_beacon->carrier_freq, ranging_beacon->range_accuracy, ranging_beacon->sequence, ranging_beacon->status);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -415,7 +423,9 @@ MAVLINK_WIP
 static inline void mavlink_msg_ranging_beacon_send_struct(mavlink_channel_t chan, const mavlink_ranging_beacon_t* ranging_beacon)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_ranging_beacon_send(chan, ranging_beacon->time_usec, ranging_beacon->target_system, ranging_beacon->target_component, ranging_beacon->beacon_id, ranging_beacon->range, ranging_beacon->lat, ranging_beacon->lon, ranging_beacon->alt, ranging_beacon->alt_type, ranging_beacon->hacc_est, ranging_beacon->vacc_est, ranging_beacon->carrier_freq, ranging_beacon->range_accuracy, ranging_beacon->sequence, ranging_beacon->status);
+    MAVLINK_DEPRECATED_CALL_END
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RANGING_BEACON, (const char *)ranging_beacon, MAVLINK_MSG_ID_RANGING_BEACON_MIN_LEN, MAVLINK_MSG_ID_RANGING_BEACON_LEN, MAVLINK_MSG_ID_RANGING_BEACON_CRC);
 #endif
@@ -643,6 +653,7 @@ MAVLINK_WIP
 static inline void mavlink_msg_ranging_beacon_decode(const mavlink_message_t* msg, mavlink_ranging_beacon_t* ranging_beacon)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     ranging_beacon->time_usec = mavlink_msg_ranging_beacon_get_time_usec(msg);
     ranging_beacon->range = mavlink_msg_ranging_beacon_get_range(msg);
     ranging_beacon->lat = mavlink_msg_ranging_beacon_get_lat(msg);
@@ -658,6 +669,7 @@ static inline void mavlink_msg_ranging_beacon_decode(const mavlink_message_t* ms
     ranging_beacon->alt_type = mavlink_msg_ranging_beacon_get_alt_type(msg);
     ranging_beacon->sequence = mavlink_msg_ranging_beacon_get_sequence(msg);
     ranging_beacon->status = mavlink_msg_ranging_beacon_get_status(msg);
+    MAVLINK_DEPRECATED_CALL_END
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).

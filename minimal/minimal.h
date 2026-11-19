@@ -297,7 +297,7 @@ typedef enum MAV_COMPONENT
    MAV_COMP_ID_ADSB=156, /* Automatic Dependent Surveillance-Broadcast (ADS-B) component. | */
    MAV_COMP_ID_OSD=157, /* On Screen Display (OSD) devices for video links. | */
    MAV_COMP_ID_PERIPHERAL=158, /* Generic autopilot peripheral component ID. Meant for devices that do not implement the parameter microservice. | */
-   MAV_COMP_ID_QX1_GIMBAL=159, /* Gimbal ID for QX1. | */
+   MAV_COMP_ID_QX1_GIMBAL MAVLINK_ENUM_DEPRECATED=159, /* Gimbal ID for QX1. | */
    MAV_COMP_ID_FLARM=160, /* FLARM collision alert component. | */
    MAV_COMP_ID_PARACHUTE=161, /* Parachute component. | */
    MAV_COMP_ID_WINCH=169, /* Winch component. | */
@@ -330,7 +330,7 @@ typedef enum MAV_COMPONENT
    MAV_COMP_ID_UART_BRIDGE=241, /* Component to bridge to UART (i.e. from UDP). | */
    MAV_COMP_ID_TUNNEL_NODE=242, /* Component handling TUNNEL messages (e.g. vendor specific GUI of a component). | */
    MAV_COMP_ID_ILLUMINATOR=243, /* Illuminator | */
-   MAV_COMP_ID_SYSTEM_CONTROL=250, /* Deprecated, don't use. Component for handling system messages (e.g. to ARM, takeoff, etc.). | */
+   MAV_COMP_ID_SYSTEM_CONTROL MAVLINK_ENUM_DEPRECATED=250, /* Deprecated, don't use. Component for handling system messages (e.g. to ARM, takeoff, etc.). | */
    MAV_COMPONENT_ENUM_END=251, /*  | */
 } MAV_COMPONENT;
 #endif

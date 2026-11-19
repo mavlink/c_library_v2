@@ -107,6 +107,7 @@ static inline uint16_t mavlink_msg_rc_channels_override_v2_pack(uint32_t system_
       
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_rc_channels_override_v2_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint32_t target_system, uint8_t target_component, uint32_t active_mask, const int16_t *channels)
 {
@@ -186,7 +187,9 @@ static inline uint16_t mavlink_msg_rc_channels_override_v2_pack_chan(uint32_t sy
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_rc_channels_override_v2_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_rc_channels_override_v2_t* rc_channels_override_v2)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_rc_channels_override_v2_pack(system_id, component_id, msg, rc_channels_override_v2->target_system, rc_channels_override_v2->target_component, rc_channels_override_v2->active_mask, rc_channels_override_v2->channels);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -201,7 +204,9 @@ static inline uint16_t mavlink_msg_rc_channels_override_v2_encode(uint32_t syste
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_rc_channels_override_v2_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_rc_channels_override_v2_t* rc_channels_override_v2)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_rc_channels_override_v2_pack_chan(system_id, component_id, chan, msg, rc_channels_override_v2->target_system, rc_channels_override_v2->target_component, rc_channels_override_v2->active_mask, rc_channels_override_v2->channels);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -213,9 +218,12 @@ static inline uint16_t mavlink_msg_rc_channels_override_v2_encode_chan(uint32_t 
  * @param msg The MAVLink message to compress the data into
  * @param rc_channels_override_v2 C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_rc_channels_override_v2_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_rc_channels_override_v2_t* rc_channels_override_v2)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_rc_channels_override_v2_pack_status(system_id, component_id, _status, msg,  rc_channels_override_v2->target_system, rc_channels_override_v2->target_component, rc_channels_override_v2->active_mask, rc_channels_override_v2->channels);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -262,7 +270,9 @@ MAVLINK_WIP
 static inline void mavlink_msg_rc_channels_override_v2_send_struct(mavlink_channel_t chan, const mavlink_rc_channels_override_v2_t* rc_channels_override_v2)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_rc_channels_override_v2_send(chan, rc_channels_override_v2->target_system, rc_channels_override_v2->target_component, rc_channels_override_v2->active_mask, rc_channels_override_v2->channels);
+    MAVLINK_DEPRECATED_CALL_END
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2, (const char *)rc_channels_override_v2, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_MIN_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_LEN, MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2_CRC);
 #endif
@@ -349,10 +359,12 @@ MAVLINK_WIP
 static inline void mavlink_msg_rc_channels_override_v2_decode(const mavlink_message_t* msg, mavlink_rc_channels_override_v2_t* rc_channels_override_v2)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     rc_channels_override_v2->active_mask = mavlink_msg_rc_channels_override_v2_get_active_mask(msg);
     rc_channels_override_v2->target_system = _MAV_RETURN_uint8_t(msg, 4);
     rc_channels_override_v2->target_component = mavlink_msg_rc_channels_override_v2_get_target_component(msg);
     mavlink_msg_rc_channels_override_v2_get_channels(msg, rc_channels_override_v2->channels);
+    MAVLINK_DEPRECATED_CALL_END
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).

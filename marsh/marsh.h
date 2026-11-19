@@ -60,11 +60,11 @@ typedef enum MARSH_TYPE
 #define HAVE_ENUM_MARSH_MODE_FLAGS
 typedef enum MARSH_MODE_FLAGS
 {
-   MARSH_MODE_SINGLE_MESSAGE=16777216, /* Request Manager to only send one specific message, advised for very resource limited nodes or with control flow limitations like Simulink.
+   MARSH_MODE_SINGLE_MESSAGE MAVLINK_ENUM_WIP=16777216, /* Request Manager to only send one specific message, advised for very resource limited nodes or with control flow limitations like Simulink.
           That message id should be in the lower three bytes of the mode, which can be done by adding it to the flags. | */
-   MARSH_MODE_ALL_MESSAGES=33554432, /* Request Manager to send every message going out to any of the clients. | */
+   MARSH_MODE_ALL_MESSAGES MAVLINK_ENUM_WIP=33554432, /* Request Manager to send every message going out to any of the clients. | */
    MARSH_MODE_FLAGS_ENUM_END=33554433, /*  | */
-} MARSH_MODE_FLAGS;
+} MARSH_MODE_FLAGS MAVLINK_ENUM_WIP;
 #endif
 
 /** @brief Specific axis of pilot control inputs, with order corresponding to x, y, z, r fields in MANUAL_CONTROL message. */

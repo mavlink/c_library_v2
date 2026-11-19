@@ -125,6 +125,7 @@ static inline uint16_t mavlink_msg_battery_status_v2_pack(uint32_t system_id, ui
  * @param status_flags  Fault, health, readiness, and other status indications.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_battery_status_v2_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t id, int16_t temperature, float voltage, float current, float capacity_consumed, float capacity_remaining, float state_of_charge, uint32_t status_flags)
 {
@@ -224,7 +225,9 @@ static inline uint16_t mavlink_msg_battery_status_v2_pack_chan(uint32_t system_i
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_battery_status_v2_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_battery_status_v2_t* battery_status_v2)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_battery_status_v2_pack(system_id, component_id, msg, battery_status_v2->id, battery_status_v2->temperature, battery_status_v2->voltage, battery_status_v2->current, battery_status_v2->capacity_consumed, battery_status_v2->capacity_remaining, battery_status_v2->state_of_charge, battery_status_v2->status_flags);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -239,7 +242,9 @@ static inline uint16_t mavlink_msg_battery_status_v2_encode(uint32_t system_id, 
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_battery_status_v2_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_battery_status_v2_t* battery_status_v2)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_battery_status_v2_pack_chan(system_id, component_id, chan, msg, battery_status_v2->id, battery_status_v2->temperature, battery_status_v2->voltage, battery_status_v2->current, battery_status_v2->capacity_consumed, battery_status_v2->capacity_remaining, battery_status_v2->state_of_charge, battery_status_v2->status_flags);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -251,9 +256,12 @@ static inline uint16_t mavlink_msg_battery_status_v2_encode_chan(uint32_t system
  * @param msg The MAVLink message to compress the data into
  * @param battery_status_v2 C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_battery_status_v2_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_battery_status_v2_t* battery_status_v2)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_battery_status_v2_pack_status(system_id, component_id, _status, msg,  battery_status_v2->id, battery_status_v2->temperature, battery_status_v2->voltage, battery_status_v2->current, battery_status_v2->capacity_consumed, battery_status_v2->capacity_remaining, battery_status_v2->state_of_charge, battery_status_v2->status_flags);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -310,7 +318,9 @@ MAVLINK_WIP
 static inline void mavlink_msg_battery_status_v2_send_struct(mavlink_channel_t chan, const mavlink_battery_status_v2_t* battery_status_v2)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_battery_status_v2_send(chan, battery_status_v2->id, battery_status_v2->temperature, battery_status_v2->voltage, battery_status_v2->current, battery_status_v2->capacity_consumed, battery_status_v2->capacity_remaining, battery_status_v2->state_of_charge, battery_status_v2->status_flags);
+    MAVLINK_DEPRECATED_CALL_END
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_BATTERY_STATUS_V2, (const char *)battery_status_v2, MAVLINK_MSG_ID_BATTERY_STATUS_V2_MIN_LEN, MAVLINK_MSG_ID_BATTERY_STATUS_V2_LEN, MAVLINK_MSG_ID_BATTERY_STATUS_V2_CRC);
 #endif
@@ -458,6 +468,7 @@ MAVLINK_WIP
 static inline void mavlink_msg_battery_status_v2_decode(const mavlink_message_t* msg, mavlink_battery_status_v2_t* battery_status_v2)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     battery_status_v2->voltage = mavlink_msg_battery_status_v2_get_voltage(msg);
     battery_status_v2->current = mavlink_msg_battery_status_v2_get_current(msg);
     battery_status_v2->capacity_consumed = mavlink_msg_battery_status_v2_get_capacity_consumed(msg);
@@ -466,6 +477,7 @@ static inline void mavlink_msg_battery_status_v2_decode(const mavlink_message_t*
     battery_status_v2->status_flags = mavlink_msg_battery_status_v2_get_status_flags(msg);
     battery_status_v2->temperature = mavlink_msg_battery_status_v2_get_temperature(msg);
     battery_status_v2->id = mavlink_msg_battery_status_v2_get_id(msg);
+    MAVLINK_DEPRECATED_CALL_END
 
 #else
     uint8_t len = msg->len < MAVLINK_MSG_ID_BATTERY_STATUS_V2_LEN ? msg->len : MAVLINK_MSG_ID_BATTERY_STATUS_V2_LEN;

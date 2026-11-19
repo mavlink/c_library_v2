@@ -131,6 +131,7 @@ static inline uint16_t mavlink_msg_esc_eeprom_pack(uint32_t system_id, uint8_t c
  * @param data  Raw ESC EEPROM data. Unused bytes should be set to zero.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_esc_eeprom_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint32_t target_system, uint8_t target_component, uint8_t firmware, uint8_t msg_index, uint8_t msg_count, uint8_t esc_index, const uint32_t *write_mask, uint8_t length, const uint8_t *data)
 {
@@ -231,7 +232,9 @@ static inline uint16_t mavlink_msg_esc_eeprom_pack_chan(uint32_t system_id, uint
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_esc_eeprom_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_esc_eeprom_t* esc_eeprom)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_esc_eeprom_pack(system_id, component_id, msg, esc_eeprom->target_system, esc_eeprom->target_component, esc_eeprom->firmware, esc_eeprom->msg_index, esc_eeprom->msg_count, esc_eeprom->esc_index, esc_eeprom->write_mask, esc_eeprom->length, esc_eeprom->data);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -246,7 +249,9 @@ static inline uint16_t mavlink_msg_esc_eeprom_encode(uint32_t system_id, uint8_t
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_esc_eeprom_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_esc_eeprom_t* esc_eeprom)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_esc_eeprom_pack_chan(system_id, component_id, chan, msg, esc_eeprom->target_system, esc_eeprom->target_component, esc_eeprom->firmware, esc_eeprom->msg_index, esc_eeprom->msg_count, esc_eeprom->esc_index, esc_eeprom->write_mask, esc_eeprom->length, esc_eeprom->data);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -258,9 +263,12 @@ static inline uint16_t mavlink_msg_esc_eeprom_encode_chan(uint32_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param esc_eeprom C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_esc_eeprom_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_esc_eeprom_t* esc_eeprom)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_esc_eeprom_pack_status(system_id, component_id, _status, msg,  esc_eeprom->target_system, esc_eeprom->target_component, esc_eeprom->firmware, esc_eeprom->msg_index, esc_eeprom->msg_count, esc_eeprom->esc_index, esc_eeprom->write_mask, esc_eeprom->length, esc_eeprom->data);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -318,7 +326,9 @@ MAVLINK_WIP
 static inline void mavlink_msg_esc_eeprom_send_struct(mavlink_channel_t chan, const mavlink_esc_eeprom_t* esc_eeprom)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_esc_eeprom_send(chan, esc_eeprom->target_system, esc_eeprom->target_component, esc_eeprom->firmware, esc_eeprom->msg_index, esc_eeprom->msg_count, esc_eeprom->esc_index, esc_eeprom->write_mask, esc_eeprom->length, esc_eeprom->data);
+    MAVLINK_DEPRECATED_CALL_END
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ESC_EEPROM, (const char *)esc_eeprom, MAVLINK_MSG_ID_ESC_EEPROM_MIN_LEN, MAVLINK_MSG_ID_ESC_EEPROM_LEN, MAVLINK_MSG_ID_ESC_EEPROM_CRC);
 #endif
@@ -466,6 +476,7 @@ MAVLINK_WIP
 static inline void mavlink_msg_esc_eeprom_decode(const mavlink_message_t* msg, mavlink_esc_eeprom_t* esc_eeprom)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_esc_eeprom_get_write_mask(msg, esc_eeprom->write_mask);
     esc_eeprom->target_system = _MAV_RETURN_uint8_t(msg, 24);
     esc_eeprom->target_component = mavlink_msg_esc_eeprom_get_target_component(msg);
@@ -475,6 +486,7 @@ static inline void mavlink_msg_esc_eeprom_decode(const mavlink_message_t* msg, m
     esc_eeprom->esc_index = mavlink_msg_esc_eeprom_get_esc_index(msg);
     esc_eeprom->length = mavlink_msg_esc_eeprom_get_length(msg);
     mavlink_msg_esc_eeprom_get_data(msg, esc_eeprom->data);
+    MAVLINK_DEPRECATED_CALL_END
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).

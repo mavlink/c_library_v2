@@ -111,6 +111,7 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack(ui
  * @param wind_correction_angle [rad] Correction angle due to wind. NaN if unknown.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint32_t target_system, uint8_t target_component, uint64_t time_boot_us, float wind_x, float wind_y, float wind_correction_angle)
 {
@@ -200,7 +201,9 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_ch
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_autopilot_state_for_gimbal_device_ext_t* autopilot_state_for_gimbal_device_ext)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_autopilot_state_for_gimbal_device_ext_pack(system_id, component_id, msg, autopilot_state_for_gimbal_device_ext->target_system, autopilot_state_for_gimbal_device_ext->target_component, autopilot_state_for_gimbal_device_ext->time_boot_us, autopilot_state_for_gimbal_device_ext->wind_x, autopilot_state_for_gimbal_device_ext->wind_y, autopilot_state_for_gimbal_device_ext->wind_correction_angle);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -215,7 +218,9 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_encode(
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_autopilot_state_for_gimbal_device_ext_t* autopilot_state_for_gimbal_device_ext)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_chan(system_id, component_id, chan, msg, autopilot_state_for_gimbal_device_ext->target_system, autopilot_state_for_gimbal_device_ext->target_component, autopilot_state_for_gimbal_device_ext->time_boot_us, autopilot_state_for_gimbal_device_ext->wind_x, autopilot_state_for_gimbal_device_ext->wind_y, autopilot_state_for_gimbal_device_ext->wind_correction_angle);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -227,9 +232,12 @@ static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_encode_
  * @param msg The MAVLink message to compress the data into
  * @param autopilot_state_for_gimbal_device_ext C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_autopilot_state_for_gimbal_device_ext_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_autopilot_state_for_gimbal_device_ext_t* autopilot_state_for_gimbal_device_ext)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_autopilot_state_for_gimbal_device_ext_pack_status(system_id, component_id, _status, msg,  autopilot_state_for_gimbal_device_ext->target_system, autopilot_state_for_gimbal_device_ext->target_component, autopilot_state_for_gimbal_device_ext->time_boot_us, autopilot_state_for_gimbal_device_ext->wind_x, autopilot_state_for_gimbal_device_ext->wind_y, autopilot_state_for_gimbal_device_ext->wind_correction_angle);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -280,7 +288,9 @@ MAVLINK_WIP
 static inline void mavlink_msg_autopilot_state_for_gimbal_device_ext_send_struct(mavlink_channel_t chan, const mavlink_autopilot_state_for_gimbal_device_ext_t* autopilot_state_for_gimbal_device_ext)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_autopilot_state_for_gimbal_device_ext_send(chan, autopilot_state_for_gimbal_device_ext->target_system, autopilot_state_for_gimbal_device_ext->target_component, autopilot_state_for_gimbal_device_ext->time_boot_us, autopilot_state_for_gimbal_device_ext->wind_x, autopilot_state_for_gimbal_device_ext->wind_y, autopilot_state_for_gimbal_device_ext->wind_correction_angle);
+    MAVLINK_DEPRECATED_CALL_END
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT, (const char *)autopilot_state_for_gimbal_device_ext, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_MIN_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_LEN, MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT_CRC);
 #endif
@@ -391,12 +401,14 @@ MAVLINK_WIP
 static inline void mavlink_msg_autopilot_state_for_gimbal_device_ext_decode(const mavlink_message_t* msg, mavlink_autopilot_state_for_gimbal_device_ext_t* autopilot_state_for_gimbal_device_ext)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     autopilot_state_for_gimbal_device_ext->time_boot_us = mavlink_msg_autopilot_state_for_gimbal_device_ext_get_time_boot_us(msg);
     autopilot_state_for_gimbal_device_ext->wind_x = mavlink_msg_autopilot_state_for_gimbal_device_ext_get_wind_x(msg);
     autopilot_state_for_gimbal_device_ext->wind_y = mavlink_msg_autopilot_state_for_gimbal_device_ext_get_wind_y(msg);
     autopilot_state_for_gimbal_device_ext->wind_correction_angle = mavlink_msg_autopilot_state_for_gimbal_device_ext_get_wind_correction_angle(msg);
     autopilot_state_for_gimbal_device_ext->target_system = _MAV_RETURN_uint8_t(msg, 20);
     autopilot_state_for_gimbal_device_ext->target_component = mavlink_msg_autopilot_state_for_gimbal_device_ext_get_target_component(msg);
+    MAVLINK_DEPRECATED_CALL_END
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).

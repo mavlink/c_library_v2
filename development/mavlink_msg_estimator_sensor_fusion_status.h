@@ -92,6 +92,7 @@ static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_pack(uint32_t 
  * @param test_ratio  Per-source normalized innovation test ratio. NaN if not available.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                const uint8_t *intended, const uint8_t *active, const float *test_ratio)
 {
@@ -166,7 +167,9 @@ static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_pack_chan(uint
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_estimator_sensor_fusion_status_t* estimator_sensor_fusion_status)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_estimator_sensor_fusion_status_pack(system_id, component_id, msg, estimator_sensor_fusion_status->intended, estimator_sensor_fusion_status->active, estimator_sensor_fusion_status->test_ratio);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -181,7 +184,9 @@ static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_encode(uint32_
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_estimator_sensor_fusion_status_t* estimator_sensor_fusion_status)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_estimator_sensor_fusion_status_pack_chan(system_id, component_id, chan, msg, estimator_sensor_fusion_status->intended, estimator_sensor_fusion_status->active, estimator_sensor_fusion_status->test_ratio);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -193,9 +198,12 @@ static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_encode_chan(ui
  * @param msg The MAVLink message to compress the data into
  * @param estimator_sensor_fusion_status C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_estimator_sensor_fusion_status_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_estimator_sensor_fusion_status_t* estimator_sensor_fusion_status)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_estimator_sensor_fusion_status_pack_status(system_id, component_id, _status, msg,  estimator_sensor_fusion_status->intended, estimator_sensor_fusion_status->active, estimator_sensor_fusion_status->test_ratio);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -237,7 +245,9 @@ MAVLINK_WIP
 static inline void mavlink_msg_estimator_sensor_fusion_status_send_struct(mavlink_channel_t chan, const mavlink_estimator_sensor_fusion_status_t* estimator_sensor_fusion_status)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_estimator_sensor_fusion_status_send(chan, estimator_sensor_fusion_status->intended, estimator_sensor_fusion_status->active, estimator_sensor_fusion_status->test_ratio);
+    MAVLINK_DEPRECATED_CALL_END
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ESTIMATOR_SENSOR_FUSION_STATUS, (const char *)estimator_sensor_fusion_status, MAVLINK_MSG_ID_ESTIMATOR_SENSOR_FUSION_STATUS_MIN_LEN, MAVLINK_MSG_ID_ESTIMATOR_SENSOR_FUSION_STATUS_LEN, MAVLINK_MSG_ID_ESTIMATOR_SENSOR_FUSION_STATUS_CRC);
 #endif
@@ -320,9 +330,11 @@ MAVLINK_WIP
 static inline void mavlink_msg_estimator_sensor_fusion_status_decode(const mavlink_message_t* msg, mavlink_estimator_sensor_fusion_status_t* estimator_sensor_fusion_status)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_estimator_sensor_fusion_status_get_test_ratio(msg, estimator_sensor_fusion_status->test_ratio);
     mavlink_msg_estimator_sensor_fusion_status_get_intended(msg, estimator_sensor_fusion_status->intended);
     mavlink_msg_estimator_sensor_fusion_status_get_active(msg, estimator_sensor_fusion_status->active);
+    MAVLINK_DEPRECATED_CALL_END
 
 #else
     uint8_t len = msg->len < MAVLINK_MSG_ID_ESTIMATOR_SENSOR_FUSION_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_ESTIMATOR_SENSOR_FUSION_STATUS_LEN;

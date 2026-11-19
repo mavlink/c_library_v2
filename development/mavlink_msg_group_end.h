@@ -93,6 +93,7 @@ static inline uint16_t mavlink_msg_group_end_pack(uint32_t system_id, uint8_t co
         The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_group_end_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint32_t group_id, uint32_t mission_checksum, uint64_t time_usec)
 {
@@ -168,7 +169,9 @@ static inline uint16_t mavlink_msg_group_end_pack_chan(uint32_t system_id, uint8
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_group_end_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_group_end_t* group_end)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_group_end_pack(system_id, component_id, msg, group_end->group_id, group_end->mission_checksum, group_end->time_usec);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -183,7 +186,9 @@ static inline uint16_t mavlink_msg_group_end_encode(uint32_t system_id, uint8_t 
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_group_end_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_group_end_t* group_end)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_group_end_pack_chan(system_id, component_id, chan, msg, group_end->group_id, group_end->mission_checksum, group_end->time_usec);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -195,9 +200,12 @@ static inline uint16_t mavlink_msg_group_end_encode_chan(uint32_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param group_end C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_group_end_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_group_end_t* group_end)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_group_end_pack_status(system_id, component_id, _status, msg,  group_end->group_id, group_end->mission_checksum, group_end->time_usec);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -240,7 +248,9 @@ MAVLINK_WIP
 static inline void mavlink_msg_group_end_send_struct(mavlink_channel_t chan, const mavlink_group_end_t* group_end)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_group_end_send(chan, group_end->group_id, group_end->mission_checksum, group_end->time_usec);
+    MAVLINK_DEPRECATED_CALL_END
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_GROUP_END, (const char *)group_end, MAVLINK_MSG_ID_GROUP_END_MIN_LEN, MAVLINK_MSG_ID_GROUP_END_LEN, MAVLINK_MSG_ID_GROUP_END_CRC);
 #endif
@@ -324,9 +334,11 @@ MAVLINK_WIP
 static inline void mavlink_msg_group_end_decode(const mavlink_message_t* msg, mavlink_group_end_t* group_end)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     group_end->time_usec = mavlink_msg_group_end_get_time_usec(msg);
     group_end->group_id = mavlink_msg_group_end_get_group_id(msg);
     group_end->mission_checksum = mavlink_msg_group_end_get_mission_checksum(msg);
+    MAVLINK_DEPRECATED_CALL_END
 
 #else
     uint8_t len = msg->len < MAVLINK_MSG_ID_GROUP_END_LEN ? msg->len : MAVLINK_MSG_ID_GROUP_END_LEN;

@@ -164,6 +164,7 @@ static inline uint16_t mavlink_msg_target_absolute_pack(uint32_t system_id, uint
  * @param acc_std [m/s/s] Standard deviation of the target's acceleration in its body frame
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_absolute_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint64_t timestamp, uint8_t id, uint8_t sensor_capabilities, int32_t lat, int32_t lon, float alt, const float *vel, const float *acc, const float *q_target, const float *rates, const float *position_std, const float *vel_std, const float *acc_std)
 {
@@ -284,7 +285,9 @@ static inline uint16_t mavlink_msg_target_absolute_pack_chan(uint32_t system_id,
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_absolute_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_target_absolute_t* target_absolute)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_target_absolute_pack(system_id, component_id, msg, target_absolute->timestamp, target_absolute->id, target_absolute->sensor_capabilities, target_absolute->lat, target_absolute->lon, target_absolute->alt, target_absolute->vel, target_absolute->acc, target_absolute->q_target, target_absolute->rates, target_absolute->position_std, target_absolute->vel_std, target_absolute->acc_std);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -299,7 +302,9 @@ static inline uint16_t mavlink_msg_target_absolute_encode(uint32_t system_id, ui
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_absolute_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_target_absolute_t* target_absolute)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_target_absolute_pack_chan(system_id, component_id, chan, msg, target_absolute->timestamp, target_absolute->id, target_absolute->sensor_capabilities, target_absolute->lat, target_absolute->lon, target_absolute->alt, target_absolute->vel, target_absolute->acc, target_absolute->q_target, target_absolute->rates, target_absolute->position_std, target_absolute->vel_std, target_absolute->acc_std);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -311,9 +316,12 @@ static inline uint16_t mavlink_msg_target_absolute_encode_chan(uint32_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param target_absolute C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_target_absolute_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_target_absolute_t* target_absolute)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_target_absolute_pack_status(system_id, component_id, _status, msg,  target_absolute->timestamp, target_absolute->id, target_absolute->sensor_capabilities, target_absolute->lat, target_absolute->lon, target_absolute->alt, target_absolute->vel, target_absolute->acc, target_absolute->q_target, target_absolute->rates, target_absolute->position_std, target_absolute->vel_std, target_absolute->acc_std);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -383,7 +391,9 @@ MAVLINK_WIP
 static inline void mavlink_msg_target_absolute_send_struct(mavlink_channel_t chan, const mavlink_target_absolute_t* target_absolute)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_target_absolute_send(chan, target_absolute->timestamp, target_absolute->id, target_absolute->sensor_capabilities, target_absolute->lat, target_absolute->lon, target_absolute->alt, target_absolute->vel, target_absolute->acc, target_absolute->q_target, target_absolute->rates, target_absolute->position_std, target_absolute->vel_std, target_absolute->acc_std);
+    MAVLINK_DEPRECATED_CALL_END
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_TARGET_ABSOLUTE, (const char *)target_absolute, MAVLINK_MSG_ID_TARGET_ABSOLUTE_MIN_LEN, MAVLINK_MSG_ID_TARGET_ABSOLUTE_LEN, MAVLINK_MSG_ID_TARGET_ABSOLUTE_CRC);
 #endif
@@ -594,6 +604,7 @@ MAVLINK_WIP
 static inline void mavlink_msg_target_absolute_decode(const mavlink_message_t* msg, mavlink_target_absolute_t* target_absolute)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     target_absolute->timestamp = mavlink_msg_target_absolute_get_timestamp(msg);
     target_absolute->lat = mavlink_msg_target_absolute_get_lat(msg);
     target_absolute->lon = mavlink_msg_target_absolute_get_lon(msg);
@@ -607,6 +618,7 @@ static inline void mavlink_msg_target_absolute_decode(const mavlink_message_t* m
     mavlink_msg_target_absolute_get_acc_std(msg, target_absolute->acc_std);
     target_absolute->id = mavlink_msg_target_absolute_get_id(msg);
     target_absolute->sensor_capabilities = mavlink_msg_target_absolute_get_sensor_capabilities(msg);
+    MAVLINK_DEPRECATED_CALL_END
 
 #else
     uint8_t len = msg->len < MAVLINK_MSG_ID_TARGET_ABSOLUTE_LEN ? msg->len : MAVLINK_MSG_ID_TARGET_ABSOLUTE_LEN;

@@ -90,6 +90,7 @@ static inline uint16_t mavlink_msg_velocity_limits_pack(uint32_t system_id, uint
  * @param yaw_rate_limit [rad/s] Limit for vehicle turn rate around its yaw axis. NaN: No limit applied
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_velocity_limits_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                float horizontal_speed_limit, float vertical_speed_limit, float yaw_rate_limit)
 {
@@ -164,7 +165,9 @@ static inline uint16_t mavlink_msg_velocity_limits_pack_chan(uint32_t system_id,
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_velocity_limits_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_velocity_limits_t* velocity_limits)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_velocity_limits_pack(system_id, component_id, msg, velocity_limits->horizontal_speed_limit, velocity_limits->vertical_speed_limit, velocity_limits->yaw_rate_limit);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -179,7 +182,9 @@ static inline uint16_t mavlink_msg_velocity_limits_encode(uint32_t system_id, ui
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_velocity_limits_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_velocity_limits_t* velocity_limits)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_velocity_limits_pack_chan(system_id, component_id, chan, msg, velocity_limits->horizontal_speed_limit, velocity_limits->vertical_speed_limit, velocity_limits->yaw_rate_limit);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -191,9 +196,12 @@ static inline uint16_t mavlink_msg_velocity_limits_encode_chan(uint32_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param velocity_limits C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_velocity_limits_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_velocity_limits_t* velocity_limits)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_velocity_limits_pack_status(system_id, component_id, _status, msg,  velocity_limits->horizontal_speed_limit, velocity_limits->vertical_speed_limit, velocity_limits->yaw_rate_limit);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -235,7 +243,9 @@ MAVLINK_WIP
 static inline void mavlink_msg_velocity_limits_send_struct(mavlink_channel_t chan, const mavlink_velocity_limits_t* velocity_limits)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_velocity_limits_send(chan, velocity_limits->horizontal_speed_limit, velocity_limits->vertical_speed_limit, velocity_limits->yaw_rate_limit);
+    MAVLINK_DEPRECATED_CALL_END
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_VELOCITY_LIMITS, (const char *)velocity_limits, MAVLINK_MSG_ID_VELOCITY_LIMITS_MIN_LEN, MAVLINK_MSG_ID_VELOCITY_LIMITS_LEN, MAVLINK_MSG_ID_VELOCITY_LIMITS_CRC);
 #endif
@@ -318,9 +328,11 @@ MAVLINK_WIP
 static inline void mavlink_msg_velocity_limits_decode(const mavlink_message_t* msg, mavlink_velocity_limits_t* velocity_limits)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     velocity_limits->horizontal_speed_limit = mavlink_msg_velocity_limits_get_horizontal_speed_limit(msg);
     velocity_limits->vertical_speed_limit = mavlink_msg_velocity_limits_get_vertical_speed_limit(msg);
     velocity_limits->yaw_rate_limit = mavlink_msg_velocity_limits_get_yaw_rate_limit(msg);
+    MAVLINK_DEPRECATED_CALL_END
 
 #else
     uint8_t len = msg->len < MAVLINK_MSG_ID_VELOCITY_LIMITS_LEN ? msg->len : MAVLINK_MSG_ID_VELOCITY_LIMITS_LEN;

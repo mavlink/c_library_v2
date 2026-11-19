@@ -50,6 +50,7 @@ typedef struct __mavlink_hwstatus_t {
  * @param I2Cerr  I2C error count.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_DEPRECATED
 static inline uint16_t mavlink_msg_hwstatus_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint16_t Vcc, uint8_t I2Cerr)
 {
@@ -82,6 +83,7 @@ static inline uint16_t mavlink_msg_hwstatus_pack(uint32_t system_id, uint8_t com
  * @param I2Cerr  I2C error count.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_DEPRECATED
 static inline uint16_t mavlink_msg_hwstatus_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint16_t Vcc, uint8_t I2Cerr)
 {
@@ -117,6 +119,7 @@ static inline uint16_t mavlink_msg_hwstatus_pack_status(uint32_t system_id, uint
  * @param I2Cerr  I2C error count.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_DEPRECATED
 static inline uint16_t mavlink_msg_hwstatus_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint16_t Vcc,uint8_t I2Cerr)
@@ -147,9 +150,12 @@ static inline uint16_t mavlink_msg_hwstatus_pack_chan(uint32_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param hwstatus C-struct to read the message contents from
  */
+MAVLINK_DEPRECATED
 static inline uint16_t mavlink_msg_hwstatus_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_hwstatus_t* hwstatus)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_hwstatus_pack(system_id, component_id, msg, hwstatus->Vcc, hwstatus->I2Cerr);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -161,9 +167,12 @@ static inline uint16_t mavlink_msg_hwstatus_encode(uint32_t system_id, uint8_t c
  * @param msg The MAVLink message to compress the data into
  * @param hwstatus C-struct to read the message contents from
  */
+MAVLINK_DEPRECATED
 static inline uint16_t mavlink_msg_hwstatus_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_hwstatus_t* hwstatus)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_hwstatus_pack_chan(system_id, component_id, chan, msg, hwstatus->Vcc, hwstatus->I2Cerr);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -175,9 +184,12 @@ static inline uint16_t mavlink_msg_hwstatus_encode_chan(uint32_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  * @param hwstatus C-struct to read the message contents from
  */
+MAVLINK_DEPRECATED
 static inline uint16_t mavlink_msg_hwstatus_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_hwstatus_t* hwstatus)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_hwstatus_pack_status(system_id, component_id, _status, msg,  hwstatus->Vcc, hwstatus->I2Cerr);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -189,6 +201,7 @@ static inline uint16_t mavlink_msg_hwstatus_encode_status(uint32_t system_id, ui
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
+MAVLINK_DEPRECATED
 static inline void mavlink_msg_hwstatus_send(mavlink_channel_t chan, uint16_t Vcc, uint8_t I2Cerr)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -211,10 +224,13 @@ static inline void mavlink_msg_hwstatus_send(mavlink_channel_t chan, uint16_t Vc
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
+MAVLINK_DEPRECATED
 static inline void mavlink_msg_hwstatus_send_struct(mavlink_channel_t chan, const mavlink_hwstatus_t* hwstatus)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_hwstatus_send(chan, hwstatus->Vcc, hwstatus->I2Cerr);
+    MAVLINK_DEPRECATED_CALL_END
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HWSTATUS, (const char *)hwstatus, MAVLINK_MSG_ID_HWSTATUS_MIN_LEN, MAVLINK_MSG_ID_HWSTATUS_LEN, MAVLINK_MSG_ID_HWSTATUS_CRC);
 #endif
@@ -228,6 +244,7 @@ static inline void mavlink_msg_hwstatus_send_struct(mavlink_channel_t chan, cons
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
+MAVLINK_DEPRECATED
 static inline void mavlink_msg_hwstatus_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint16_t Vcc, uint8_t I2Cerr)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -256,6 +273,7 @@ static inline void mavlink_msg_hwstatus_send_buf(mavlink_message_t *msgbuf, mavl
  *
  * @return [mV] Board voltage.
  */
+MAVLINK_DEPRECATED
 static inline uint16_t mavlink_msg_hwstatus_get_Vcc(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint16_t(msg,  0);
@@ -266,6 +284,7 @@ static inline uint16_t mavlink_msg_hwstatus_get_Vcc(const mavlink_message_t* msg
  *
  * @return  I2C error count.
  */
+MAVLINK_DEPRECATED
 static inline uint8_t mavlink_msg_hwstatus_get_I2Cerr(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  2);
@@ -277,11 +296,14 @@ static inline uint8_t mavlink_msg_hwstatus_get_I2Cerr(const mavlink_message_t* m
  * @param msg The message to decode
  * @param hwstatus C-struct to decode the message contents into
  */
+MAVLINK_DEPRECATED
 static inline void mavlink_msg_hwstatus_decode(const mavlink_message_t* msg, mavlink_hwstatus_t* hwstatus)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     hwstatus->Vcc = mavlink_msg_hwstatus_get_Vcc(msg);
     hwstatus->I2Cerr = mavlink_msg_hwstatus_get_I2Cerr(msg);
+    MAVLINK_DEPRECATED_CALL_END
 
 #else
     uint8_t len = msg->len < MAVLINK_MSG_ID_HWSTATUS_LEN ? msg->len : MAVLINK_MSG_ID_HWSTATUS_LEN;

@@ -27,6 +27,7 @@ static void mavlink_test_all(uint8_t system_id, uint8_t component_id, mavlink_me
 
 static void mavlink_test_set_velocity_limits(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_SET_VELOCITY_LIMITS >= 256) {
@@ -86,10 +87,12 @@ static void mavlink_test_set_velocity_limits(uint8_t system_id, uint8_t componen
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("SET_VELOCITY_LIMITS") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_SET_VELOCITY_LIMITS) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_velocity_limits(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_VELOCITY_LIMITS >= 256) {
@@ -147,10 +150,12 @@ static void mavlink_test_velocity_limits(uint8_t system_id, uint8_t component_id
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("VELOCITY_LIMITS") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_VELOCITY_LIMITS) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_battery_status_v2(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_BATTERY_STATUS_V2 >= 256) {
@@ -213,10 +218,12 @@ static void mavlink_test_battery_status_v2(uint8_t system_id, uint8_t component_
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("BATTERY_STATUS_V2") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_BATTERY_STATUS_V2) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_group_start(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_GROUP_START >= 256) {
@@ -274,10 +281,12 @@ static void mavlink_test_group_start(uint8_t system_id, uint8_t component_id, ma
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("GROUP_START") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_GROUP_START) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_group_end(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_GROUP_END >= 256) {
@@ -335,10 +344,12 @@ static void mavlink_test_group_end(uint8_t system_id, uint8_t component_id, mavl
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("GROUP_END") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_GROUP_END) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_rc_channels_override_v2(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2 >= 256) {
@@ -397,10 +408,12 @@ static void mavlink_test_rc_channels_override_v2(uint8_t system_id, uint8_t comp
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("RC_CHANNELS_OVERRIDE_V2") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_RC_CHANNELS_OVERRIDE_V2) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_gnss_integrity(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_GNSS_INTEGRITY >= 256) {
@@ -467,10 +480,12 @@ static void mavlink_test_gnss_integrity(uint8_t system_id, uint8_t component_id,
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("GNSS_INTEGRITY") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_GNSS_INTEGRITY) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_target_absolute(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_TARGET_ABSOLUTE >= 256) {
@@ -538,10 +553,12 @@ static void mavlink_test_target_absolute(uint8_t system_id, uint8_t component_id
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("TARGET_ABSOLUTE") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_TARGET_ABSOLUTE) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_target_relative(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_TARGET_RELATIVE >= 256) {
@@ -607,10 +624,12 @@ static void mavlink_test_target_relative(uint8_t system_id, uint8_t component_id
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("TARGET_RELATIVE") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_TARGET_RELATIVE) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_control_status(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_CONTROL_STATUS >= 256) {
@@ -668,10 +687,12 @@ static void mavlink_test_control_status(uint8_t system_id, uint8_t component_id,
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("CONTROL_STATUS") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_CONTROL_STATUS) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_esc_eeprom(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_ESC_EEPROM >= 256) {
@@ -735,10 +756,12 @@ static void mavlink_test_esc_eeprom(uint8_t system_id, uint8_t component_id, mav
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("ESC_EEPROM") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_ESC_EEPROM) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_ranging_beacon(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_RANGING_BEACON >= 256) {
@@ -808,10 +831,12 @@ static void mavlink_test_ranging_beacon(uint8_t system_id, uint8_t component_id,
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("RANGING_BEACON") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_RANGING_BEACON) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_estimator_sensor_fusion_status(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_ESTIMATOR_SENSOR_FUSION_STATUS >= 256) {
@@ -869,10 +894,12 @@ static void mavlink_test_estimator_sensor_fusion_status(uint8_t system_id, uint8
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("ESTIMATOR_SENSOR_FUSION_STATUS") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_ESTIMATOR_SENSOR_FUSION_STATUS) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_manual_input_status(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_MANUAL_INPUT_STATUS >= 256) {
@@ -930,10 +957,12 @@ static void mavlink_test_manual_input_status(uint8_t system_id, uint8_t componen
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("MANUAL_INPUT_STATUS") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_MANUAL_INPUT_STATUS) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_efi_performance(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_EFI_PERFORMANCE >= 256) {
@@ -1008,10 +1037,12 @@ static void mavlink_test_efi_performance(uint8_t system_id, uint8_t component_id
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("EFI_PERFORMANCE") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_EFI_PERFORMANCE) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_distance_sensor_info(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_DISTANCE_SENSOR_INFO >= 256) {
@@ -1074,10 +1105,12 @@ static void mavlink_test_distance_sensor_info(uint8_t system_id, uint8_t compone
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("DISTANCE_SENSOR_INFO") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_DISTANCE_SENSOR_INFO) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_distance_sensor_v2(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_DISTANCE_SENSOR_V2 >= 256) {
@@ -1136,6 +1169,7 @@ static void mavlink_test_distance_sensor_v2(uint8_t system_id, uint8_t component
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("DISTANCE_SENSOR_V2") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_DISTANCE_SENSOR_V2) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_development(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)

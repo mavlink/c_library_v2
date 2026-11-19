@@ -223,6 +223,7 @@ static inline uint16_t mavlink_msg_rexroth_motion_platform_pack(uint32_t system_
  * @param effect_setpoint_yaw [rad] Yaw special effect setpoint, positive right.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_rexroth_motion_platform_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint32_t time_boot_ms, uint32_t frame_count, uint32_t motion_status, uint8_t error_code, float actuator1, float actuator2, float actuator3, float actuator4, float actuator5, float actuator6, float platform_setpoint_x, float platform_setpoint_y, float platform_setpoint_z, float platform_setpoint_roll, float platform_setpoint_pitch, float platform_setpoint_yaw, float effect_setpoint_x, float effect_setpoint_y, float effect_setpoint_z, float effect_setpoint_roll, float effect_setpoint_pitch, float effect_setpoint_yaw)
 {
@@ -392,7 +393,9 @@ static inline uint16_t mavlink_msg_rexroth_motion_platform_pack_chan(uint32_t sy
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_rexroth_motion_platform_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_rexroth_motion_platform_t* rexroth_motion_platform)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_rexroth_motion_platform_pack(system_id, component_id, msg, rexroth_motion_platform->time_boot_ms, rexroth_motion_platform->frame_count, rexroth_motion_platform->motion_status, rexroth_motion_platform->error_code, rexroth_motion_platform->actuator1, rexroth_motion_platform->actuator2, rexroth_motion_platform->actuator3, rexroth_motion_platform->actuator4, rexroth_motion_platform->actuator5, rexroth_motion_platform->actuator6, rexroth_motion_platform->platform_setpoint_x, rexroth_motion_platform->platform_setpoint_y, rexroth_motion_platform->platform_setpoint_z, rexroth_motion_platform->platform_setpoint_roll, rexroth_motion_platform->platform_setpoint_pitch, rexroth_motion_platform->platform_setpoint_yaw, rexroth_motion_platform->effect_setpoint_x, rexroth_motion_platform->effect_setpoint_y, rexroth_motion_platform->effect_setpoint_z, rexroth_motion_platform->effect_setpoint_roll, rexroth_motion_platform->effect_setpoint_pitch, rexroth_motion_platform->effect_setpoint_yaw);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -407,7 +410,9 @@ static inline uint16_t mavlink_msg_rexroth_motion_platform_encode(uint32_t syste
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_rexroth_motion_platform_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_rexroth_motion_platform_t* rexroth_motion_platform)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_rexroth_motion_platform_pack_chan(system_id, component_id, chan, msg, rexroth_motion_platform->time_boot_ms, rexroth_motion_platform->frame_count, rexroth_motion_platform->motion_status, rexroth_motion_platform->error_code, rexroth_motion_platform->actuator1, rexroth_motion_platform->actuator2, rexroth_motion_platform->actuator3, rexroth_motion_platform->actuator4, rexroth_motion_platform->actuator5, rexroth_motion_platform->actuator6, rexroth_motion_platform->platform_setpoint_x, rexroth_motion_platform->platform_setpoint_y, rexroth_motion_platform->platform_setpoint_z, rexroth_motion_platform->platform_setpoint_roll, rexroth_motion_platform->platform_setpoint_pitch, rexroth_motion_platform->platform_setpoint_yaw, rexroth_motion_platform->effect_setpoint_x, rexroth_motion_platform->effect_setpoint_y, rexroth_motion_platform->effect_setpoint_z, rexroth_motion_platform->effect_setpoint_roll, rexroth_motion_platform->effect_setpoint_pitch, rexroth_motion_platform->effect_setpoint_yaw);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -419,9 +424,12 @@ static inline uint16_t mavlink_msg_rexroth_motion_platform_encode_chan(uint32_t 
  * @param msg The MAVLink message to compress the data into
  * @param rexroth_motion_platform C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_rexroth_motion_platform_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_rexroth_motion_platform_t* rexroth_motion_platform)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_rexroth_motion_platform_pack_status(system_id, component_id, _status, msg,  rexroth_motion_platform->time_boot_ms, rexroth_motion_platform->frame_count, rexroth_motion_platform->motion_status, rexroth_motion_platform->error_code, rexroth_motion_platform->actuator1, rexroth_motion_platform->actuator2, rexroth_motion_platform->actuator3, rexroth_motion_platform->actuator4, rexroth_motion_platform->actuator5, rexroth_motion_platform->actuator6, rexroth_motion_platform->platform_setpoint_x, rexroth_motion_platform->platform_setpoint_y, rexroth_motion_platform->platform_setpoint_z, rexroth_motion_platform->platform_setpoint_roll, rexroth_motion_platform->platform_setpoint_pitch, rexroth_motion_platform->platform_setpoint_yaw, rexroth_motion_platform->effect_setpoint_x, rexroth_motion_platform->effect_setpoint_y, rexroth_motion_platform->effect_setpoint_z, rexroth_motion_platform->effect_setpoint_roll, rexroth_motion_platform->effect_setpoint_pitch, rexroth_motion_platform->effect_setpoint_yaw);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -520,7 +528,9 @@ MAVLINK_WIP
 static inline void mavlink_msg_rexroth_motion_platform_send_struct(mavlink_channel_t chan, const mavlink_rexroth_motion_platform_t* rexroth_motion_platform)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_rexroth_motion_platform_send(chan, rexroth_motion_platform->time_boot_ms, rexroth_motion_platform->frame_count, rexroth_motion_platform->motion_status, rexroth_motion_platform->error_code, rexroth_motion_platform->actuator1, rexroth_motion_platform->actuator2, rexroth_motion_platform->actuator3, rexroth_motion_platform->actuator4, rexroth_motion_platform->actuator5, rexroth_motion_platform->actuator6, rexroth_motion_platform->platform_setpoint_x, rexroth_motion_platform->platform_setpoint_y, rexroth_motion_platform->platform_setpoint_z, rexroth_motion_platform->platform_setpoint_roll, rexroth_motion_platform->platform_setpoint_pitch, rexroth_motion_platform->platform_setpoint_yaw, rexroth_motion_platform->effect_setpoint_x, rexroth_motion_platform->effect_setpoint_y, rexroth_motion_platform->effect_setpoint_z, rexroth_motion_platform->effect_setpoint_roll, rexroth_motion_platform->effect_setpoint_pitch, rexroth_motion_platform->effect_setpoint_yaw);
+    MAVLINK_DEPRECATED_CALL_END
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_REXROTH_MOTION_PLATFORM, (const char *)rexroth_motion_platform, MAVLINK_MSG_ID_REXROTH_MOTION_PLATFORM_MIN_LEN, MAVLINK_MSG_ID_REXROTH_MOTION_PLATFORM_LEN, MAVLINK_MSG_ID_REXROTH_MOTION_PLATFORM_CRC);
 #endif
@@ -850,6 +860,7 @@ MAVLINK_WIP
 static inline void mavlink_msg_rexroth_motion_platform_decode(const mavlink_message_t* msg, mavlink_rexroth_motion_platform_t* rexroth_motion_platform)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     rexroth_motion_platform->time_boot_ms = mavlink_msg_rexroth_motion_platform_get_time_boot_ms(msg);
     rexroth_motion_platform->frame_count = mavlink_msg_rexroth_motion_platform_get_frame_count(msg);
     rexroth_motion_platform->motion_status = mavlink_msg_rexroth_motion_platform_get_motion_status(msg);
@@ -872,6 +883,7 @@ static inline void mavlink_msg_rexroth_motion_platform_decode(const mavlink_mess
     rexroth_motion_platform->effect_setpoint_pitch = mavlink_msg_rexroth_motion_platform_get_effect_setpoint_pitch(msg);
     rexroth_motion_platform->effect_setpoint_yaw = mavlink_msg_rexroth_motion_platform_get_effect_setpoint_yaw(msg);
     rexroth_motion_platform->error_code = mavlink_msg_rexroth_motion_platform_get_error_code(msg);
+    MAVLINK_DEPRECATED_CALL_END
 
 #else
     uint8_t len = msg->len < MAVLINK_MSG_ID_REXROTH_MOTION_PLATFORM_LEN ? msg->len : MAVLINK_MSG_ID_REXROTH_MOTION_PLATFORM_LEN;

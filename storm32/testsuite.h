@@ -356,6 +356,7 @@ static void mavlink_test_storm32_gimbal_manager_correct_roll(uint8_t system_id, 
 
 static void mavlink_test_qshot_status(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_QSHOT_STATUS >= 256) {
@@ -412,10 +413,12 @@ static void mavlink_test_qshot_status(uint8_t system_id, uint8_t component_id, m
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("QSHOT_STATUS") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_QSHOT_STATUS) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_autopilot_state_for_gimbal_device_ext(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT >= 256) {
@@ -476,6 +479,7 @@ static void mavlink_test_autopilot_state_for_gimbal_device_ext(uint8_t system_id
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_AUTOPILOT_STATE_FOR_GIMBAL_DEVICE_EXT) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_frsky_passthrough_array(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
@@ -541,6 +545,7 @@ static void mavlink_test_frsky_passthrough_array(uint8_t system_id, uint8_t comp
 
 static void mavlink_test_param_value_array(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_PARAM_VALUE_ARRAY >= 256) {
@@ -600,6 +605,7 @@ static void mavlink_test_param_value_array(uint8_t system_id, uint8_t component_
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("PARAM_VALUE_ARRAY") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_PARAM_VALUE_ARRAY) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_mlrs_radio_link_stats(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
@@ -750,6 +756,7 @@ static void mavlink_test_mlrs_radio_link_information(uint8_t system_id, uint8_t 
 
 static void mavlink_test_mlrs_radio_link_flow_control(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_MLRS_RADIO_LINK_FLOW_CONTROL >= 256) {
@@ -809,6 +816,7 @@ static void mavlink_test_mlrs_radio_link_flow_control(uint8_t system_id, uint8_t
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("MLRS_RADIO_LINK_FLOW_CONTROL") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_MLRS_RADIO_LINK_FLOW_CONTROL) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_storm32(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)

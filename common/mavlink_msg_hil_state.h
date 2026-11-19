@@ -106,6 +106,7 @@ typedef struct __mavlink_hil_state_t {
  * @param zacc [mG] Z acceleration
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_SUPERSEDED
 static inline uint16_t mavlink_msg_hil_state_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint64_t time_usec, float roll, float pitch, float yaw, float rollspeed, float pitchspeed, float yawspeed, int32_t lat, int32_t lon, int32_t alt, int16_t vx, int16_t vy, int16_t vz, int16_t xacc, int16_t yacc, int16_t zacc)
 {
@@ -180,6 +181,7 @@ static inline uint16_t mavlink_msg_hil_state_pack(uint32_t system_id, uint8_t co
  * @param zacc [mG] Z acceleration
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_SUPERSEDED
 static inline uint16_t mavlink_msg_hil_state_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint64_t time_usec, float roll, float pitch, float yaw, float rollspeed, float pitchspeed, float yawspeed, int32_t lat, int32_t lon, int32_t alt, int16_t vx, int16_t vy, int16_t vz, int16_t xacc, int16_t yacc, int16_t zacc)
 {
@@ -257,6 +259,7 @@ static inline uint16_t mavlink_msg_hil_state_pack_status(uint32_t system_id, uin
  * @param zacc [mG] Z acceleration
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_SUPERSEDED
 static inline uint16_t mavlink_msg_hil_state_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint64_t time_usec,float roll,float pitch,float yaw,float rollspeed,float pitchspeed,float yawspeed,int32_t lat,int32_t lon,int32_t alt,int16_t vx,int16_t vy,int16_t vz,int16_t xacc,int16_t yacc,int16_t zacc)
@@ -315,9 +318,12 @@ static inline uint16_t mavlink_msg_hil_state_pack_chan(uint32_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param hil_state C-struct to read the message contents from
  */
+MAVLINK_SUPERSEDED
 static inline uint16_t mavlink_msg_hil_state_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_hil_state_t* hil_state)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_hil_state_pack(system_id, component_id, msg, hil_state->time_usec, hil_state->roll, hil_state->pitch, hil_state->yaw, hil_state->rollspeed, hil_state->pitchspeed, hil_state->yawspeed, hil_state->lat, hil_state->lon, hil_state->alt, hil_state->vx, hil_state->vy, hil_state->vz, hil_state->xacc, hil_state->yacc, hil_state->zacc);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -329,9 +335,12 @@ static inline uint16_t mavlink_msg_hil_state_encode(uint32_t system_id, uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param hil_state C-struct to read the message contents from
  */
+MAVLINK_SUPERSEDED
 static inline uint16_t mavlink_msg_hil_state_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_hil_state_t* hil_state)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_hil_state_pack_chan(system_id, component_id, chan, msg, hil_state->time_usec, hil_state->roll, hil_state->pitch, hil_state->yaw, hil_state->rollspeed, hil_state->pitchspeed, hil_state->yawspeed, hil_state->lat, hil_state->lon, hil_state->alt, hil_state->vx, hil_state->vy, hil_state->vz, hil_state->xacc, hil_state->yacc, hil_state->zacc);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -343,9 +352,12 @@ static inline uint16_t mavlink_msg_hil_state_encode_chan(uint32_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param hil_state C-struct to read the message contents from
  */
+MAVLINK_SUPERSEDED
 static inline uint16_t mavlink_msg_hil_state_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_hil_state_t* hil_state)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_hil_state_pack_status(system_id, component_id, _status, msg,  hil_state->time_usec, hil_state->roll, hil_state->pitch, hil_state->yaw, hil_state->rollspeed, hil_state->pitchspeed, hil_state->yawspeed, hil_state->lat, hil_state->lon, hil_state->alt, hil_state->vx, hil_state->vy, hil_state->vz, hil_state->xacc, hil_state->yacc, hil_state->zacc);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -371,6 +383,7 @@ static inline uint16_t mavlink_msg_hil_state_encode_status(uint32_t system_id, u
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
+MAVLINK_SUPERSEDED
 static inline void mavlink_msg_hil_state_send(mavlink_channel_t chan, uint64_t time_usec, float roll, float pitch, float yaw, float rollspeed, float pitchspeed, float yawspeed, int32_t lat, int32_t lon, int32_t alt, int16_t vx, int16_t vy, int16_t vz, int16_t xacc, int16_t yacc, int16_t zacc)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -421,10 +434,13 @@ static inline void mavlink_msg_hil_state_send(mavlink_channel_t chan, uint64_t t
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
+MAVLINK_SUPERSEDED
 static inline void mavlink_msg_hil_state_send_struct(mavlink_channel_t chan, const mavlink_hil_state_t* hil_state)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_hil_state_send(chan, hil_state->time_usec, hil_state->roll, hil_state->pitch, hil_state->yaw, hil_state->rollspeed, hil_state->pitchspeed, hil_state->yawspeed, hil_state->lat, hil_state->lon, hil_state->alt, hil_state->vx, hil_state->vy, hil_state->vz, hil_state->xacc, hil_state->yacc, hil_state->zacc);
+    MAVLINK_DEPRECATED_CALL_END
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HIL_STATE, (const char *)hil_state, MAVLINK_MSG_ID_HIL_STATE_MIN_LEN, MAVLINK_MSG_ID_HIL_STATE_LEN, MAVLINK_MSG_ID_HIL_STATE_CRC);
 #endif
@@ -438,6 +454,7 @@ static inline void mavlink_msg_hil_state_send_struct(mavlink_channel_t chan, con
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
+MAVLINK_SUPERSEDED
 static inline void mavlink_msg_hil_state_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, float roll, float pitch, float yaw, float rollspeed, float pitchspeed, float yawspeed, int32_t lat, int32_t lon, int32_t alt, int16_t vx, int16_t vy, int16_t vz, int16_t xacc, int16_t yacc, int16_t zacc)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -494,6 +511,7 @@ static inline void mavlink_msg_hil_state_send_buf(mavlink_message_t *msgbuf, mav
  *
  * @return [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  */
+MAVLINK_SUPERSEDED
 static inline uint64_t mavlink_msg_hil_state_get_time_usec(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint64_t(msg,  0);
@@ -504,6 +522,7 @@ static inline uint64_t mavlink_msg_hil_state_get_time_usec(const mavlink_message
  *
  * @return [rad] Roll angle
  */
+MAVLINK_SUPERSEDED
 static inline float mavlink_msg_hil_state_get_roll(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  8);
@@ -514,6 +533,7 @@ static inline float mavlink_msg_hil_state_get_roll(const mavlink_message_t* msg)
  *
  * @return [rad] Pitch angle
  */
+MAVLINK_SUPERSEDED
 static inline float mavlink_msg_hil_state_get_pitch(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  12);
@@ -524,6 +544,7 @@ static inline float mavlink_msg_hil_state_get_pitch(const mavlink_message_t* msg
  *
  * @return [rad] Yaw angle
  */
+MAVLINK_SUPERSEDED
 static inline float mavlink_msg_hil_state_get_yaw(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  16);
@@ -534,6 +555,7 @@ static inline float mavlink_msg_hil_state_get_yaw(const mavlink_message_t* msg)
  *
  * @return [rad/s] Body frame roll / phi angular speed
  */
+MAVLINK_SUPERSEDED
 static inline float mavlink_msg_hil_state_get_rollspeed(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  20);
@@ -544,6 +566,7 @@ static inline float mavlink_msg_hil_state_get_rollspeed(const mavlink_message_t*
  *
  * @return [rad/s] Body frame pitch / theta angular speed
  */
+MAVLINK_SUPERSEDED
 static inline float mavlink_msg_hil_state_get_pitchspeed(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  24);
@@ -554,6 +577,7 @@ static inline float mavlink_msg_hil_state_get_pitchspeed(const mavlink_message_t
  *
  * @return [rad/s] Body frame yaw / psi angular speed
  */
+MAVLINK_SUPERSEDED
 static inline float mavlink_msg_hil_state_get_yawspeed(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  28);
@@ -564,6 +588,7 @@ static inline float mavlink_msg_hil_state_get_yawspeed(const mavlink_message_t* 
  *
  * @return [degE7] Latitude
  */
+MAVLINK_SUPERSEDED
 static inline int32_t mavlink_msg_hil_state_get_lat(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_int32_t(msg,  32);
@@ -574,6 +599,7 @@ static inline int32_t mavlink_msg_hil_state_get_lat(const mavlink_message_t* msg
  *
  * @return [degE7] Longitude
  */
+MAVLINK_SUPERSEDED
 static inline int32_t mavlink_msg_hil_state_get_lon(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_int32_t(msg,  36);
@@ -584,6 +610,7 @@ static inline int32_t mavlink_msg_hil_state_get_lon(const mavlink_message_t* msg
  *
  * @return [mm] Altitude
  */
+MAVLINK_SUPERSEDED
 static inline int32_t mavlink_msg_hil_state_get_alt(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_int32_t(msg,  40);
@@ -594,6 +621,7 @@ static inline int32_t mavlink_msg_hil_state_get_alt(const mavlink_message_t* msg
  *
  * @return [cm/s] Ground X Speed (Latitude)
  */
+MAVLINK_SUPERSEDED
 static inline int16_t mavlink_msg_hil_state_get_vx(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_int16_t(msg,  44);
@@ -604,6 +632,7 @@ static inline int16_t mavlink_msg_hil_state_get_vx(const mavlink_message_t* msg)
  *
  * @return [cm/s] Ground Y Speed (Longitude)
  */
+MAVLINK_SUPERSEDED
 static inline int16_t mavlink_msg_hil_state_get_vy(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_int16_t(msg,  46);
@@ -614,6 +643,7 @@ static inline int16_t mavlink_msg_hil_state_get_vy(const mavlink_message_t* msg)
  *
  * @return [cm/s] Ground Z Speed (Altitude)
  */
+MAVLINK_SUPERSEDED
 static inline int16_t mavlink_msg_hil_state_get_vz(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_int16_t(msg,  48);
@@ -624,6 +654,7 @@ static inline int16_t mavlink_msg_hil_state_get_vz(const mavlink_message_t* msg)
  *
  * @return [mG] X acceleration
  */
+MAVLINK_SUPERSEDED
 static inline int16_t mavlink_msg_hil_state_get_xacc(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_int16_t(msg,  50);
@@ -634,6 +665,7 @@ static inline int16_t mavlink_msg_hil_state_get_xacc(const mavlink_message_t* ms
  *
  * @return [mG] Y acceleration
  */
+MAVLINK_SUPERSEDED
 static inline int16_t mavlink_msg_hil_state_get_yacc(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_int16_t(msg,  52);
@@ -644,6 +676,7 @@ static inline int16_t mavlink_msg_hil_state_get_yacc(const mavlink_message_t* ms
  *
  * @return [mG] Z acceleration
  */
+MAVLINK_SUPERSEDED
 static inline int16_t mavlink_msg_hil_state_get_zacc(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_int16_t(msg,  54);
@@ -655,9 +688,11 @@ static inline int16_t mavlink_msg_hil_state_get_zacc(const mavlink_message_t* ms
  * @param msg The message to decode
  * @param hil_state C-struct to decode the message contents into
  */
+MAVLINK_SUPERSEDED
 static inline void mavlink_msg_hil_state_decode(const mavlink_message_t* msg, mavlink_hil_state_t* hil_state)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     hil_state->time_usec = mavlink_msg_hil_state_get_time_usec(msg);
     hil_state->roll = mavlink_msg_hil_state_get_roll(msg);
     hil_state->pitch = mavlink_msg_hil_state_get_pitch(msg);
@@ -674,6 +709,7 @@ static inline void mavlink_msg_hil_state_decode(const mavlink_message_t* msg, ma
     hil_state->xacc = mavlink_msg_hil_state_get_xacc(msg);
     hil_state->yacc = mavlink_msg_hil_state_get_yacc(msg);
     hil_state->zacc = mavlink_msg_hil_state_get_zacc(msg);
+    MAVLINK_DEPRECATED_CALL_END
 
 #else
     uint8_t len = msg->len < MAVLINK_MSG_ID_HIL_STATE_LEN ? msg->len : MAVLINK_MSG_ID_HIL_STATE_LEN;

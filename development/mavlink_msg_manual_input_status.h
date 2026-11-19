@@ -90,6 +90,7 @@ static inline uint16_t mavlink_msg_manual_input_status_pack(uint32_t system_id, 
  * @param sender_component_id  Component ID of the MAVLink enabled input device currently providing manual control. Set whenever a MAVLink enabled input device is contributing, i.e. for both MAV_MANUAL_INPUT_SOURCE_MAVLINK and MAV_MANUAL_INPUT_SOURCE_MIXED. 0 otherwise.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_manual_input_status_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint8_t source, uint8_t sender_system_id, uint8_t sender_component_id)
 {
@@ -164,7 +165,9 @@ static inline uint16_t mavlink_msg_manual_input_status_pack_chan(uint32_t system
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_manual_input_status_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_manual_input_status_t* manual_input_status)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_manual_input_status_pack(system_id, component_id, msg, manual_input_status->source, manual_input_status->sender_system_id, manual_input_status->sender_component_id);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -179,7 +182,9 @@ static inline uint16_t mavlink_msg_manual_input_status_encode(uint32_t system_id
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_manual_input_status_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_manual_input_status_t* manual_input_status)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_manual_input_status_pack_chan(system_id, component_id, chan, msg, manual_input_status->source, manual_input_status->sender_system_id, manual_input_status->sender_component_id);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -191,9 +196,12 @@ static inline uint16_t mavlink_msg_manual_input_status_encode_chan(uint32_t syst
  * @param msg The MAVLink message to compress the data into
  * @param manual_input_status C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_manual_input_status_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_manual_input_status_t* manual_input_status)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_manual_input_status_pack_status(system_id, component_id, _status, msg,  manual_input_status->source, manual_input_status->sender_system_id, manual_input_status->sender_component_id);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -235,7 +243,9 @@ MAVLINK_WIP
 static inline void mavlink_msg_manual_input_status_send_struct(mavlink_channel_t chan, const mavlink_manual_input_status_t* manual_input_status)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_manual_input_status_send(chan, manual_input_status->source, manual_input_status->sender_system_id, manual_input_status->sender_component_id);
+    MAVLINK_DEPRECATED_CALL_END
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MANUAL_INPUT_STATUS, (const char *)manual_input_status, MAVLINK_MSG_ID_MANUAL_INPUT_STATUS_MIN_LEN, MAVLINK_MSG_ID_MANUAL_INPUT_STATUS_LEN, MAVLINK_MSG_ID_MANUAL_INPUT_STATUS_CRC);
 #endif
@@ -318,9 +328,11 @@ MAVLINK_WIP
 static inline void mavlink_msg_manual_input_status_decode(const mavlink_message_t* msg, mavlink_manual_input_status_t* manual_input_status)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     manual_input_status->source = mavlink_msg_manual_input_status_get_source(msg);
     manual_input_status->sender_system_id = mavlink_msg_manual_input_status_get_sender_system_id(msg);
     manual_input_status->sender_component_id = mavlink_msg_manual_input_status_get_sender_component_id(msg);
+    MAVLINK_DEPRECATED_CALL_END
 
 #else
     uint8_t len = msg->len < MAVLINK_MSG_ID_MANUAL_INPUT_STATUS_LEN ? msg->len : MAVLINK_MSG_ID_MANUAL_INPUT_STATUS_LEN;

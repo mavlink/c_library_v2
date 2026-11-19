@@ -62,6 +62,7 @@ typedef struct __mavlink_set_mag_offsets_t {
  * @param mag_ofs_z  Magnetometer Z offset.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_DEPRECATED
 static inline uint16_t mavlink_msg_set_mag_offsets_pack(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg,
                                uint32_t target_system, uint8_t target_component, int16_t mag_ofs_x, int16_t mag_ofs_y, int16_t mag_ofs_z)
 {
@@ -103,6 +104,7 @@ static inline uint16_t mavlink_msg_set_mag_offsets_pack(uint32_t system_id, uint
  * @param mag_ofs_z  Magnetometer Z offset.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_DEPRECATED
 static inline uint16_t mavlink_msg_set_mag_offsets_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint32_t target_system, uint8_t target_component, int16_t mag_ofs_x, int16_t mag_ofs_y, int16_t mag_ofs_z)
 {
@@ -147,6 +149,7 @@ static inline uint16_t mavlink_msg_set_mag_offsets_pack_status(uint32_t system_i
  * @param mag_ofs_z  Magnetometer Z offset.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_DEPRECATED
 static inline uint16_t mavlink_msg_set_mag_offsets_pack_chan(uint32_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
                                    uint32_t target_system,uint8_t target_component,int16_t mag_ofs_x,int16_t mag_ofs_y,int16_t mag_ofs_z)
@@ -183,9 +186,12 @@ static inline uint16_t mavlink_msg_set_mag_offsets_pack_chan(uint32_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param set_mag_offsets C-struct to read the message contents from
  */
+MAVLINK_DEPRECATED
 static inline uint16_t mavlink_msg_set_mag_offsets_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_set_mag_offsets_t* set_mag_offsets)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_set_mag_offsets_pack(system_id, component_id, msg, set_mag_offsets->target_system, set_mag_offsets->target_component, set_mag_offsets->mag_ofs_x, set_mag_offsets->mag_ofs_y, set_mag_offsets->mag_ofs_z);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -197,9 +203,12 @@ static inline uint16_t mavlink_msg_set_mag_offsets_encode(uint32_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param set_mag_offsets C-struct to read the message contents from
  */
+MAVLINK_DEPRECATED
 static inline uint16_t mavlink_msg_set_mag_offsets_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_set_mag_offsets_t* set_mag_offsets)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_set_mag_offsets_pack_chan(system_id, component_id, chan, msg, set_mag_offsets->target_system, set_mag_offsets->target_component, set_mag_offsets->mag_ofs_x, set_mag_offsets->mag_ofs_y, set_mag_offsets->mag_ofs_z);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -211,9 +220,12 @@ static inline uint16_t mavlink_msg_set_mag_offsets_encode_chan(uint32_t system_i
  * @param msg The MAVLink message to compress the data into
  * @param set_mag_offsets C-struct to read the message contents from
  */
+MAVLINK_DEPRECATED
 static inline uint16_t mavlink_msg_set_mag_offsets_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_set_mag_offsets_t* set_mag_offsets)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_set_mag_offsets_pack_status(system_id, component_id, _status, msg,  set_mag_offsets->target_system, set_mag_offsets->target_component, set_mag_offsets->mag_ofs_x, set_mag_offsets->mag_ofs_y, set_mag_offsets->mag_ofs_z);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -228,6 +240,7 @@ static inline uint16_t mavlink_msg_set_mag_offsets_encode_status(uint32_t system
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
+MAVLINK_DEPRECATED
 static inline void mavlink_msg_set_mag_offsets_send(mavlink_channel_t chan, uint32_t target_system, uint8_t target_component, int16_t mag_ofs_x, int16_t mag_ofs_y, int16_t mag_ofs_z)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -256,10 +269,13 @@ static inline void mavlink_msg_set_mag_offsets_send(mavlink_channel_t chan, uint
  * @param chan MAVLink channel to send the message
  * @param struct The MAVLink struct to serialize
  */
+MAVLINK_DEPRECATED
 static inline void mavlink_msg_set_mag_offsets_send_struct(mavlink_channel_t chan, const mavlink_set_mag_offsets_t* set_mag_offsets)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_set_mag_offsets_send(chan, set_mag_offsets->target_system, set_mag_offsets->target_component, set_mag_offsets->mag_ofs_x, set_mag_offsets->mag_ofs_y, set_mag_offsets->mag_ofs_z);
+    MAVLINK_DEPRECATED_CALL_END
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SET_MAG_OFFSETS, (const char *)set_mag_offsets, MAVLINK_MSG_ID_SET_MAG_OFFSETS_MIN_LEN, MAVLINK_MSG_ID_SET_MAG_OFFSETS_LEN, MAVLINK_MSG_ID_SET_MAG_OFFSETS_CRC);
 #endif
@@ -273,6 +289,7 @@ static inline void mavlink_msg_set_mag_offsets_send_struct(mavlink_channel_t cha
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
+MAVLINK_DEPRECATED
 static inline void mavlink_msg_set_mag_offsets_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t target_system, uint8_t target_component, int16_t mag_ofs_x, int16_t mag_ofs_y, int16_t mag_ofs_z)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -307,6 +324,7 @@ static inline void mavlink_msg_set_mag_offsets_send_buf(mavlink_message_t *msgbu
  *
  * @return  Component ID.
  */
+MAVLINK_DEPRECATED
 static inline uint8_t mavlink_msg_set_mag_offsets_get_target_component(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  7);
@@ -317,6 +335,7 @@ static inline uint8_t mavlink_msg_set_mag_offsets_get_target_component(const mav
  *
  * @return  Magnetometer X offset.
  */
+MAVLINK_DEPRECATED
 static inline int16_t mavlink_msg_set_mag_offsets_get_mag_ofs_x(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_int16_t(msg,  0);
@@ -327,6 +346,7 @@ static inline int16_t mavlink_msg_set_mag_offsets_get_mag_ofs_x(const mavlink_me
  *
  * @return  Magnetometer Y offset.
  */
+MAVLINK_DEPRECATED
 static inline int16_t mavlink_msg_set_mag_offsets_get_mag_ofs_y(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_int16_t(msg,  2);
@@ -337,6 +357,7 @@ static inline int16_t mavlink_msg_set_mag_offsets_get_mag_ofs_y(const mavlink_me
  *
  * @return  Magnetometer Z offset.
  */
+MAVLINK_DEPRECATED
 static inline int16_t mavlink_msg_set_mag_offsets_get_mag_ofs_z(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_int16_t(msg,  4);
@@ -348,14 +369,17 @@ static inline int16_t mavlink_msg_set_mag_offsets_get_mag_ofs_z(const mavlink_me
  * @param msg The message to decode
  * @param set_mag_offsets C-struct to decode the message contents into
  */
+MAVLINK_DEPRECATED
 static inline void mavlink_msg_set_mag_offsets_decode(const mavlink_message_t* msg, mavlink_set_mag_offsets_t* set_mag_offsets)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     set_mag_offsets->mag_ofs_x = mavlink_msg_set_mag_offsets_get_mag_ofs_x(msg);
     set_mag_offsets->mag_ofs_y = mavlink_msg_set_mag_offsets_get_mag_ofs_y(msg);
     set_mag_offsets->mag_ofs_z = mavlink_msg_set_mag_offsets_get_mag_ofs_z(msg);
     set_mag_offsets->target_system = _MAV_RETURN_uint8_t(msg, 6);
     set_mag_offsets->target_component = mavlink_msg_set_mag_offsets_get_target_component(msg);
+    MAVLINK_DEPRECATED_CALL_END
     if (msg->incompat_flags & MAVLINK_IFLAG_TARGET32) {
         // This uint8_t field cannot retain a wide target. The sentinel is NOT reserved.
         // For routing use mavlink_msg_get_target_sysid(msg, mavlink_get_msg_entry(msg->msgid)).

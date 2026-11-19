@@ -160,6 +160,7 @@ static inline uint16_t mavlink_msg_eye_tracking_data_pack(uint32_t system_id, ui
  * @param surface_gaze_y  Gaze focal point on surface y value (normalized 0..1, 0 is top, 1 is bottom), NaN if unknown
  * @return length of the message in bytes (excluding serial stream start sign)
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_eye_tracking_data_pack_status(uint32_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
                                uint64_t time_usec, uint8_t sensor_id, float gaze_origin_x, float gaze_origin_y, float gaze_origin_z, float gaze_direction_x, float gaze_direction_y, float gaze_direction_z, float video_gaze_x, float video_gaze_y, uint8_t surface_id, float surface_gaze_x, float surface_gaze_y)
 {
@@ -284,7 +285,9 @@ static inline uint16_t mavlink_msg_eye_tracking_data_pack_chan(uint32_t system_i
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_eye_tracking_data_encode(uint32_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_eye_tracking_data_t* eye_tracking_data)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_eye_tracking_data_pack(system_id, component_id, msg, eye_tracking_data->time_usec, eye_tracking_data->sensor_id, eye_tracking_data->gaze_origin_x, eye_tracking_data->gaze_origin_y, eye_tracking_data->gaze_origin_z, eye_tracking_data->gaze_direction_x, eye_tracking_data->gaze_direction_y, eye_tracking_data->gaze_direction_z, eye_tracking_data->video_gaze_x, eye_tracking_data->video_gaze_y, eye_tracking_data->surface_id, eye_tracking_data->surface_gaze_x, eye_tracking_data->surface_gaze_y);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -299,7 +302,9 @@ static inline uint16_t mavlink_msg_eye_tracking_data_encode(uint32_t system_id, 
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_eye_tracking_data_encode_chan(uint32_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_eye_tracking_data_t* eye_tracking_data)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_eye_tracking_data_pack_chan(system_id, component_id, chan, msg, eye_tracking_data->time_usec, eye_tracking_data->sensor_id, eye_tracking_data->gaze_origin_x, eye_tracking_data->gaze_origin_y, eye_tracking_data->gaze_origin_z, eye_tracking_data->gaze_direction_x, eye_tracking_data->gaze_direction_y, eye_tracking_data->gaze_direction_z, eye_tracking_data->video_gaze_x, eye_tracking_data->video_gaze_y, eye_tracking_data->surface_id, eye_tracking_data->surface_gaze_x, eye_tracking_data->surface_gaze_y);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -311,9 +316,12 @@ static inline uint16_t mavlink_msg_eye_tracking_data_encode_chan(uint32_t system
  * @param msg The MAVLink message to compress the data into
  * @param eye_tracking_data C-struct to read the message contents from
  */
+MAVLINK_WIP
 static inline uint16_t mavlink_msg_eye_tracking_data_encode_status(uint32_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_eye_tracking_data_t* eye_tracking_data)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
     return mavlink_msg_eye_tracking_data_pack_status(system_id, component_id, _status, msg,  eye_tracking_data->time_usec, eye_tracking_data->sensor_id, eye_tracking_data->gaze_origin_x, eye_tracking_data->gaze_origin_y, eye_tracking_data->gaze_origin_z, eye_tracking_data->gaze_direction_x, eye_tracking_data->gaze_direction_y, eye_tracking_data->gaze_direction_z, eye_tracking_data->video_gaze_x, eye_tracking_data->video_gaze_y, eye_tracking_data->surface_id, eye_tracking_data->surface_gaze_x, eye_tracking_data->surface_gaze_y);
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 /**
@@ -385,7 +393,9 @@ MAVLINK_WIP
 static inline void mavlink_msg_eye_tracking_data_send_struct(mavlink_channel_t chan, const mavlink_eye_tracking_data_t* eye_tracking_data)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     mavlink_msg_eye_tracking_data_send(chan, eye_tracking_data->time_usec, eye_tracking_data->sensor_id, eye_tracking_data->gaze_origin_x, eye_tracking_data->gaze_origin_y, eye_tracking_data->gaze_origin_z, eye_tracking_data->gaze_direction_x, eye_tracking_data->gaze_direction_y, eye_tracking_data->gaze_direction_z, eye_tracking_data->video_gaze_x, eye_tracking_data->video_gaze_y, eye_tracking_data->surface_id, eye_tracking_data->surface_gaze_x, eye_tracking_data->surface_gaze_y);
+    MAVLINK_DEPRECATED_CALL_END
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_EYE_TRACKING_DATA, (const char *)eye_tracking_data, MAVLINK_MSG_ID_EYE_TRACKING_DATA_MIN_LEN, MAVLINK_MSG_ID_EYE_TRACKING_DATA_LEN, MAVLINK_MSG_ID_EYE_TRACKING_DATA_CRC);
 #endif
@@ -598,6 +608,7 @@ MAVLINK_WIP
 static inline void mavlink_msg_eye_tracking_data_decode(const mavlink_message_t* msg, mavlink_eye_tracking_data_t* eye_tracking_data)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    MAVLINK_DEPRECATED_CALL_BEGIN
     eye_tracking_data->time_usec = mavlink_msg_eye_tracking_data_get_time_usec(msg);
     eye_tracking_data->gaze_origin_x = mavlink_msg_eye_tracking_data_get_gaze_origin_x(msg);
     eye_tracking_data->gaze_origin_y = mavlink_msg_eye_tracking_data_get_gaze_origin_y(msg);
@@ -611,6 +622,7 @@ static inline void mavlink_msg_eye_tracking_data_decode(const mavlink_message_t*
     eye_tracking_data->surface_gaze_y = mavlink_msg_eye_tracking_data_get_surface_gaze_y(msg);
     eye_tracking_data->sensor_id = mavlink_msg_eye_tracking_data_get_sensor_id(msg);
     eye_tracking_data->surface_id = mavlink_msg_eye_tracking_data_get_surface_id(msg);
+    MAVLINK_DEPRECATED_CALL_END
 
 #else
     uint8_t len = msg->len < MAVLINK_MSG_ID_EYE_TRACKING_DATA_LEN ? msg->len : MAVLINK_MSG_ID_EYE_TRACKING_DATA_LEN;

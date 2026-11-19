@@ -27,6 +27,7 @@ static void mavlink_test_all(uint8_t system_id, uint8_t component_id, mavlink_me
 
 static void mavlink_test_control_loading_axis(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_CONTROL_LOADING_AXIS >= 256) {
@@ -86,10 +87,12 @@ static void mavlink_test_control_loading_axis(uint8_t system_id, uint8_t compone
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("CONTROL_LOADING_AXIS") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_CONTROL_LOADING_AXIS) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_motion_platform_state(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_MOTION_PLATFORM_STATE >= 256) {
@@ -165,10 +168,12 @@ static void mavlink_test_motion_platform_state(uint8_t system_id, uint8_t compon
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("MOTION_PLATFORM_STATE") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_MOTION_PLATFORM_STATE) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_rexroth_motion_platform(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_REXROTH_MOTION_PLATFORM >= 256) {
@@ -245,6 +250,7 @@ static void mavlink_test_rexroth_motion_platform(uint8_t system_id, uint8_t comp
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("REXROTH_MOTION_PLATFORM") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_REXROTH_MOTION_PLATFORM) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_motion_cue_extra(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
@@ -314,6 +320,7 @@ static void mavlink_test_motion_cue_extra(uint8_t system_id, uint8_t component_i
 
 static void mavlink_test_eye_tracking_data(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    MAVLINK_DEPRECATED_CALL_BEGIN
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
     mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
         if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_EYE_TRACKING_DATA >= 256) {
@@ -381,6 +388,7 @@ static void mavlink_test_eye_tracking_data(uint8_t system_id, uint8_t component_
     MAVLINK_ASSERT(mavlink_get_message_info_by_name("EYE_TRACKING_DATA") != NULL);
     MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_EYE_TRACKING_DATA) != NULL);
 #endif
+    MAVLINK_DEPRECATED_CALL_END
 }
 
 static void mavlink_test_marsh(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
