@@ -16,7 +16,7 @@ typedef struct __mavlink_ranging_beacon_t {
  uint32_t vacc_est; /*< [mm] Beacon 1-sigma vertical accuracy estimate.*/
  uint32_t range_accuracy; /*< [mm] Estimated 1-sigma range measurement accuracy.*/
  uint16_t beacon_id; /*<  ID of the ranging beacon/station.*/
- uint16_t carrier_freq; /*< [MHz] Ranging carrier frequency*/
+ uint16_t carrier_freq; /*< [MHz] Ranging carrier frequency.*/
  uint8_t target_system; /*<  System ID.*/
  uint8_t target_component; /*<  Component ID.*/
  uint8_t alt_type; /*<  Altitude frame for alt field. RANGING_BEACON_ALT_TYPE_WGS84 (0) preferred.*/
@@ -96,7 +96,7 @@ typedef struct __mavlink_ranging_beacon_t {
  * @param alt_type  Altitude frame for alt field. RANGING_BEACON_ALT_TYPE_WGS84 (0) preferred.
  * @param hacc_est [mm] Beacon 1-sigma horizontal accuracy estimate.
  * @param vacc_est [mm] Beacon 1-sigma vertical accuracy estimate.
- * @param carrier_freq [MHz] Ranging carrier frequency
+ * @param carrier_freq [MHz] Ranging carrier frequency.
  * @param range_accuracy [mm] Estimated 1-sigma range measurement accuracy.
  * @param sequence  Measurement sequence number.
  * @param status  Ranging beacon status.
@@ -168,7 +168,7 @@ static inline uint16_t mavlink_msg_ranging_beacon_pack(uint32_t system_id, uint8
  * @param alt_type  Altitude frame for alt field. RANGING_BEACON_ALT_TYPE_WGS84 (0) preferred.
  * @param hacc_est [mm] Beacon 1-sigma horizontal accuracy estimate.
  * @param vacc_est [mm] Beacon 1-sigma vertical accuracy estimate.
- * @param carrier_freq [MHz] Ranging carrier frequency
+ * @param carrier_freq [MHz] Ranging carrier frequency.
  * @param range_accuracy [mm] Estimated 1-sigma range measurement accuracy.
  * @param sequence  Measurement sequence number.
  * @param status  Ranging beacon status.
@@ -243,7 +243,7 @@ static inline uint16_t mavlink_msg_ranging_beacon_pack_status(uint32_t system_id
  * @param alt_type  Altitude frame for alt field. RANGING_BEACON_ALT_TYPE_WGS84 (0) preferred.
  * @param hacc_est [mm] Beacon 1-sigma horizontal accuracy estimate.
  * @param vacc_est [mm] Beacon 1-sigma vertical accuracy estimate.
- * @param carrier_freq [MHz] Ranging carrier frequency
+ * @param carrier_freq [MHz] Ranging carrier frequency.
  * @param range_accuracy [mm] Estimated 1-sigma range measurement accuracy.
  * @param sequence  Measurement sequence number.
  * @param status  Ranging beacon status.
@@ -363,7 +363,7 @@ static inline uint16_t mavlink_msg_ranging_beacon_encode_status(uint32_t system_
  * @param alt_type  Altitude frame for alt field. RANGING_BEACON_ALT_TYPE_WGS84 (0) preferred.
  * @param hacc_est [mm] Beacon 1-sigma horizontal accuracy estimate.
  * @param vacc_est [mm] Beacon 1-sigma vertical accuracy estimate.
- * @param carrier_freq [MHz] Ranging carrier frequency
+ * @param carrier_freq [MHz] Ranging carrier frequency.
  * @param range_accuracy [mm] Estimated 1-sigma range measurement accuracy.
  * @param sequence  Measurement sequence number.
  * @param status  Ranging beacon status.
@@ -602,7 +602,7 @@ static inline uint32_t mavlink_msg_ranging_beacon_get_vacc_est(const mavlink_mes
 /**
  * @brief Get field carrier_freq from ranging_beacon message
  *
- * @return [MHz] Ranging carrier frequency
+ * @return [MHz] Ranging carrier frequency.
  */
 MAVLINK_WIP
 static inline uint16_t mavlink_msg_ranging_beacon_get_carrier_freq(const mavlink_message_t* msg)
