@@ -9,9 +9,9 @@
 typedef struct __mavlink_attitude_quaternion_cov_t {
  uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  float q[4]; /*<  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)*/
- float rollspeed; /*< [rad/s] Roll angular speed*/
- float pitchspeed; /*< [rad/s] Pitch angular speed*/
- float yawspeed; /*< [rad/s] Yaw angular speed*/
+ float rollspeed; /*< [rad/s] Roll angular speed (about the body frame X axis)*/
+ float pitchspeed; /*< [rad/s] Pitch angular speed (about the body frame Y axis)*/
+ float yawspeed; /*< [rad/s] Yaw angular speed (about the body frame Z axis)*/
  float covariance[9]; /*<  Row-major representation of a 3x3 attitude covariance matrix (states: roll, pitch, yaw; first three entries are the first ROW, next three entries are the second row, etc.). If unknown, assign NaN value to first element in the array.*/
 } mavlink_attitude_quaternion_cov_t;
 
@@ -61,9 +61,9 @@ typedef struct __mavlink_attitude_quaternion_cov_t {
  *
  * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
- * @param rollspeed [rad/s] Roll angular speed
- * @param pitchspeed [rad/s] Pitch angular speed
- * @param yawspeed [rad/s] Yaw angular speed
+ * @param rollspeed [rad/s] Roll angular speed (about the body frame X axis)
+ * @param pitchspeed [rad/s] Pitch angular speed (about the body frame Y axis)
+ * @param yawspeed [rad/s] Yaw angular speed (about the body frame Z axis)
  * @param covariance  Row-major representation of a 3x3 attitude covariance matrix (states: roll, pitch, yaw; first three entries are the first ROW, next three entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -103,9 +103,9 @@ static inline uint16_t mavlink_msg_attitude_quaternion_cov_pack(uint32_t system_
  *
  * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
- * @param rollspeed [rad/s] Roll angular speed
- * @param pitchspeed [rad/s] Pitch angular speed
- * @param yawspeed [rad/s] Yaw angular speed
+ * @param rollspeed [rad/s] Roll angular speed (about the body frame X axis)
+ * @param pitchspeed [rad/s] Pitch angular speed (about the body frame Y axis)
+ * @param yawspeed [rad/s] Yaw angular speed (about the body frame Z axis)
  * @param covariance  Row-major representation of a 3x3 attitude covariance matrix (states: roll, pitch, yaw; first three entries are the first ROW, next three entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -148,9 +148,9 @@ static inline uint16_t mavlink_msg_attitude_quaternion_cov_pack_status(uint32_t 
  * @param msg The MAVLink message to compress the data into
  * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
- * @param rollspeed [rad/s] Roll angular speed
- * @param pitchspeed [rad/s] Pitch angular speed
- * @param yawspeed [rad/s] Yaw angular speed
+ * @param rollspeed [rad/s] Roll angular speed (about the body frame X axis)
+ * @param pitchspeed [rad/s] Pitch angular speed (about the body frame Y axis)
+ * @param yawspeed [rad/s] Yaw angular speed (about the body frame Z axis)
  * @param covariance  Row-major representation of a 3x3 attitude covariance matrix (states: roll, pitch, yaw; first three entries are the first ROW, next three entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -229,9 +229,9 @@ static inline uint16_t mavlink_msg_attitude_quaternion_cov_encode_status(uint32_
  *
  * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param q  Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
- * @param rollspeed [rad/s] Roll angular speed
- * @param pitchspeed [rad/s] Pitch angular speed
- * @param yawspeed [rad/s] Yaw angular speed
+ * @param rollspeed [rad/s] Roll angular speed (about the body frame X axis)
+ * @param pitchspeed [rad/s] Pitch angular speed (about the body frame Y axis)
+ * @param yawspeed [rad/s] Yaw angular speed (about the body frame Z axis)
  * @param covariance  Row-major representation of a 3x3 attitude covariance matrix (states: roll, pitch, yaw; first three entries are the first ROW, next three entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -333,7 +333,7 @@ static inline uint16_t mavlink_msg_attitude_quaternion_cov_get_q(const mavlink_m
 /**
  * @brief Get field rollspeed from attitude_quaternion_cov message
  *
- * @return [rad/s] Roll angular speed
+ * @return [rad/s] Roll angular speed (about the body frame X axis)
  */
 static inline float mavlink_msg_attitude_quaternion_cov_get_rollspeed(const mavlink_message_t* msg)
 {
@@ -343,7 +343,7 @@ static inline float mavlink_msg_attitude_quaternion_cov_get_rollspeed(const mavl
 /**
  * @brief Get field pitchspeed from attitude_quaternion_cov message
  *
- * @return [rad/s] Pitch angular speed
+ * @return [rad/s] Pitch angular speed (about the body frame Y axis)
  */
 static inline float mavlink_msg_attitude_quaternion_cov_get_pitchspeed(const mavlink_message_t* msg)
 {
@@ -353,7 +353,7 @@ static inline float mavlink_msg_attitude_quaternion_cov_get_pitchspeed(const mav
 /**
  * @brief Get field yawspeed from attitude_quaternion_cov message
  *
- * @return [rad/s] Yaw angular speed
+ * @return [rad/s] Yaw angular speed (about the body frame Z axis)
  */
 static inline float mavlink_msg_attitude_quaternion_cov_get_yawspeed(const mavlink_message_t* msg)
 {
